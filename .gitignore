@@ -312,3 +312,5 @@ service-fabric/core-services/resourcemanagers/*/*_pb2_grpc.py
 
 # SciDK Function Service
 sdk/scidk/commands/function_service_cache/
+tmp
+Gemfile.lock
