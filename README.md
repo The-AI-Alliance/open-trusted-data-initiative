@@ -1,12 +1,11 @@
-# open-trusted-data-initiative
-Working repo to support the Alliance's Open Trusted Data Initiative
-# README
+# Open Trusted Data Initiative README
 
-[Published Website](https://the-ai-alliance.github.io/trust-safety-user-guide/)
+Welcome to the AI Alliance [Open Trusted Data Initiative](https://the-ai-alliance.github.io/open-trusted-data-initiative/)
 
-This repo contains the AI Alliance _Understanding AI Trust and Safety: A Living Guide_, published using [GitHub Pages](https://pages.github.com/). We welcome contributions as PRs. See the AI Alliance [CONTRIBUTING](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md) instructions. Also, you'll need to agree with the AI Alliance [Code of Conduct](https://github.com/The-AI-Alliance/community/blob/main/CODE_OF_CONDUCT.md) and all contributions will be covered by the [LICENSE](https://github.com/The-AI-Alliance/community/blob/main/LICENSE) (which is also in [this repo](LICENSE)).
+The documentation for this repo is published using [GitHub Pages](https://pages.github.com/). We welcome contributions as PRs. See the AI Alliance [CONTRIBUTING](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md) instructions. Also, you'll need to agree with the AI Alliance [Code of Conduct](https://github.com/The-AI-Alliance/community/blob/main/CODE_OF_CONDUCT.md) and all contributions will be covered by the [LICENSE](https://github.com/The-AI-Alliance/community/blob/main/LICENSE) (which is also in [this repo](LICENSE)).
 
-> This work is licensed under Creative Commons Attribution 4.0 International. To view a copy of this license, see [LICENSE](LICENSE) or visit https://creativecommons.org/licenses/by/4.0/legalcode.
+> [!NOTE]
+> The documentation in this repo is licensed under Creative Commons Attribution 4.0 International. To view a copy of this license, see [LICENSE.CC-BY-4.0](LICENSE.CC-BY-4.0) or visit https://creativecommons.org/licenses/by/4.0/legalcode. All code uses the [Apache 2.0](LICENSE.Apache-2.0) license.
 
 ## Quick Setup
 
@@ -42,7 +41,7 @@ Open the URL in a browser.
 > 1. On MacOS, use &#8984;-click on the URL to open it in a browser.
 > 2. Run `make help` for a list of commands defined.
 
-> **WARNING:** The automatic setup of `jekyll` in the `Makefile` has only been tested on MacOS. If you encounter problems on other platforms, please [post an issue](https://github.com/The-AI-Alliance/trust-safety-user-guide/issues) to get help, or if you can fix the issue, a [pull request](https://github.com/The-AI-Alliance/trust-safety-user-guide/pulls) (PR) is always welcome :nerd_face:. (More details on PRs below.)
+> **WARNING:** The automatic setup of `jekyll` in the `Makefile` has only been tested on MacOS. If you encounter problems on other platforms, please [post an issue](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues) to get help, or if you can fix the issue, a [pull request](https://github.com/The-AI-Alliance/open-trusted-data-initiative/pulls) (PR) is always welcome :nerd_face:. (More details on PRs below.)
 
 
 
@@ -101,7 +100,7 @@ For external links, add a `target` tag using the following syntax, which works f
 [title]({{site.baseurl}}/relative_URL){:target="_target"}
 ```
 
-The `target` value is arbitrary; use whatever you want. While this is a little more tedious to type, it is usually better for users so they don't lose their place in the document. Also, [our stylesheet](https://github.com/The-AI-Alliance/trust-safety-user-guide/blob/main/docs/_includes/css/custom.scss.liquid) is configured to put the little up-and-to-the-right arrows after every link that isn't relative, i.e., links that start with `http` or `https`. This provides a visual clue that a new tab will be opened.
+The `target` value is arbitrary; use whatever you want. While this is a little more tedious to type, it is usually better for users so they don't lose their place in the document. Also, [our stylesheet](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/main/docs/_includes/css/custom.scss.liquid) is configured to put the little up-and-to-the-right arrows after every link that isn't relative, i.e., links that start with `http` or `https`. This provides a visual clue that a new tab will be opened.
 
 ### Emojis
 
@@ -154,7 +153,7 @@ The `make` target runs the following command:
 cd docs && bundle exec jekyll serve --baseurl '' --incremental
 ```
 
-The `--baseurl` flag effectively supports the simple URL, `localhost:4000`. (Without it, the URL would be `localhost:4000/The-AI-Alliance/trust-safety-user-guide/`.) The `--incremental` flag lets you edit the pages and refresh the browser tab to see the updates immediately. 
+The `--baseurl` flag effectively supports the simple URL, `localhost:4000`. (Without it, the URL would be `localhost:4000/The-AI-Alliance/open-trusted-data-initiative/`.) The `--incremental` flag lets you edit the pages and refresh the browser tab to see the updates immediately. 
 
 > **Note:** Well, more or less immediately. It can take several seconds for new pages to be generated and sometimes you'll get weird behaviors if you change URL paths, etc. So, occasionally it is useful to _control-c_ in the terminal and rerun `make view-local`.
 
@@ -211,7 +210,7 @@ bundle install
 bundle update html-pipeline
 ```
 
-Finally, if you are still stuck, please [post an issue](https://github.com/The-AI-Alliance/trust-safety-user-guide/issues) to get help.
+Finally, if you are still stuck, please [post an issue](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues) to get help.
 
 > **Help Needed:** If you find missing steps that `make setup-jekyll` should run but doesn't, or you find and fix problems that only occur on non-MacOS platforms, **please** submit a PR with fixes! Thank you. 
 
