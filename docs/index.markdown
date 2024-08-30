@@ -5,32 +5,54 @@ nav_order: 10
 has_children: false
 ---
 
+# Contribute to the Future of AI with Trusted, Open Data
+
+**Join our mission to create a comprehensive, crowdsourced data catalog for AI model pre-training and domain-specific fine-tuning.**
+
+| Start Contributing Data | Learn More |
+
 # The AI Alliance Open Trusted Data Initiative
 
 | **Authors** | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focusareas/foundation-models){:target="ai-alliance-fm"} |
 | **History** | V0.0.1, 2024-08-30 |
 
-Welcome to the **The AI Alliance Open Trusted Data Initiative**, an introduction to the broad topic of trustworthy, safe AI, prepared by The AI Alliance.
+# Why Contribute to the Open Trusted Data Catalog?
 
-> **Tip:** Use the search box at the top of this page to find specific content.
+- **Empower AI Innovation:** Your data helps build more accurate, fair, and versatile AI models.
+- **Transparency & Trust:** Every contribution is transparent, with robust data provenance and trust mechanisms.
+- **Tailored Contributions:** Support domain-specific AI fine-tuning relevant to your industry or interest.
+- **Recognition:** Get credited for your data contributions and become part of an AI-driven future.
 
-This guide is organized as follows:
+# How It Works
 
-* [Introduction to the Open Trusted Data Initiative]({{site.baseurl}}/introduction): Why we started this initiative and our goals.
-* [What Is a Trusted Dataset?]({{site.baseurl}}/what-is-a-trusted-dataset): The requirements we feel are important for a dataset to be _trusted_, which we require for all datasets submitted to this project.
-* [How to Contribute Your Datasets]({{site.baseurl}}/contributing): The steps you can take to contribute your datasets to this initiative.
+- **Step 1: Submit Data** - Upload your dataset or integrate via our API.
+- **Step 2: Review & Categorize** - Ensure your data is correctly categorized and labeled.
+- **Step 3: Monitor Usage** - Track how your data is being used and its impact on AI training.- 
 
-Additional links:
+# Diverse Data for Diverse AI Models
+**Explore our data categories:**
 
-* [Contributing to This Documentation]({{site.baseurl}}/contributing#how-to-contribute-to-this-documentation): We welcome your documentation contributions, too!
-* [About Us]({{site.baseurl}}/about): More about the AI Alliance and this document.
-* [The AI Alliance](https://thealliance.ai){:target="ai-alliance"}
-* [This Documentation's GitHub Repo](https://github.com/The-AI-Alliance/open-trusted-data-initiatve){:target="tsug-repo"}
+- Climate
+- Finance
+- Healthcare
+- Industrial
+- Legal
+- Marine
+- Materials
+- Multimedia
+- Semiconductor
+- Social Science
+- Time Series
 
-<!--
-These are nice looking buttons, but using a "gratuitously different" way to show links doesn't really work...
--->
-<!--
-[The AI Alliance](https://thealliance.ai){:target="ai-alliance" .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 .no-glyph} [GitHub Repo](https://github.com/The-AI-Alliance/open-trusted-data-initiatve){:target="tsug-repo" .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 .no-glyph}
--->
+# Join a Global Community of Innovators
+
+- **Collaborate with Experts:** Connect with data scientists, AI researchers, and industry leaders.
+- **Forums & Discussions:** Engage in discussions, share insights, and collaborate on projects.
+- **Events & Webinars:** Attend exclusive events and webinars to stay updated.
+
+&copy; 2024 The AI Alliance
+
+| [About Us](https://thealliance.ai/about-aia) | [Contact](mailto:contact@thealliance.ai) |
+
+Follow us on [LinkedIn](https://www.linkedin.com/company/the-aialliance/) and [X](https://x.com/thealliance_ai)
 
