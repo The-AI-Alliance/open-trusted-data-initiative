@@ -63,11 +63,11 @@ As for most Git projects, issue PRs to the `main` branch. However, the repo is a
 
 ## Publishing a New Version
 
-Because PRs go to the `main` branch, but the pages are published from the `latest` branch, PRs are not immediately published. When it is time to publish a new version of the website, change to the `main` git branch and run the script `./publish.sh`. It takes several options:
+Because PRs go to the `main` branch, but the pages are published from the `latest` branch, PRs are not immediately published. When it is time to publish a new version of the website, change to the `main` git branch and run the script `./publish-website.sh`. It takes several options:
 
 ```shell
-> publish.sh -h
-publish.sh [-h|--help] [-n|--noop] [-v|--version V] [-t|--timestamp T]
+> publish-website.sh -h
+publish-website.sh [-h|--help] [-n|--noop] [-v|--version V] [-t|--timestamp T]
 
 Where the options are the following:
 -h | --help            Print this message and exit
