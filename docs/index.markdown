@@ -9,7 +9,8 @@ has_children: false
 
 **Join our mission to create a comprehensive, crowdsourced data catalog for AI model pre-training and domain-specific fine-tuning.**
 
-| Start Contributing Data | Learn More |
+<a href="contributing.markdown" class="btn">Start Contributing Data</a>
+<a href="about.markdown" class="btn">Learn More</a>
 
 # The AI Alliance Open Trusted Data Initiative
 
