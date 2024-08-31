@@ -1,16 +1,51 @@
 ---
 layout: default
-title: Contributing
+title: Contribute a Dataset
 nav_order: 90
+show_contribute_dataset_button: false
 ---
 
-# How to Contribute Your Datasets 
+# How to Contribute a Dataset 
 
-TODO
+## Contribute Your Dataset in Four Steps
+
+1. **Prepare your contribution:** Complete the contribution form to ensure the dataset is ready for contribution and to prepare the required _data card_.
+2. **Upload the Data:** (Optional) Use our services to host the data. Or you can host it yourself, for example, in your own Hugging Face account.
+3. **Review & Categorize Your Submission:** Check that your data is correctly categorized and labeled in our catalog.
+4. **Monitor Usage:** Track how your data is being used and its impact on AI training.
+
+## It's Your Data, but Our Responsibility
+
+* **Data Anonymization:** We prioritize privacy with built-in data anonymization techniques.
+* **Secure Storage:** When we store your data, it is stored securely with state-of-the-art encryption.
+* **Ethical Use:** Our platform ensures your data is used ethically and responsibly.
 
 
-# How to Contribute to This Documentation
+## Diverse Data for Diverse AI Models
 
-We welcome your contributions to this User Guide. The sources for this guide are in [this GitHub repo](https://github.com/The-AI-Alliance/open-trusted-data-initiatve){:target="tsug-repo"}. Please either [post issues](https://github.com/The-AI-Alliance/open-trusted-data-initiatve/issues){:target="tsug-repo"} or contribute changes as [pull requests](https://github.com/The-AI-Alliance/open-trusted-data-initiatve/pulls){:target="tsug-repo"}. Notice that every page has _Edit this page on GitHub_ links, making it easy to view a page, then go straight to the source to make edits and submit a PR! This is the best way to help us fix typos and make similar small edits.
+We are particularly interested in new datasets that can be used to tune models to excel in various domains.
 
-The [README](https://github.com/The-AI-Alliance/open-trusted-data-initiatve){:target="tsug-repo"} for the User Guide source repo explains more details for testing the website locally and for creating more extensive changes as PRs, such as adding new content.
+There are our current data categories:
+
+* Climate
+* Finance
+* Healthcare
+* Industrial
+* Legal
+* Marine
+* Materials
+* Multimedia
+* Semiconductors
+* Social Sciences
+* Timeseries
+
+
+## Join a Global Community of Innovators
+
+Your participation helps you to achieve the following:
+
+* **Collaborate with Experts:** Connect with data scientists, AI researchers, and industry leaders.
+* **Participate in OTDI Forums, Discussions:** Engage in discussions, share insights, and collaborate on projects.
+* **Events and Webinars:** Attend exclusive events and webinars to stay updated.
+
+

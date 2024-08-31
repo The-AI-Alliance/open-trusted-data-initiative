@@ -140,16 +140,11 @@ layout: table_wrappers
       {% endunless %}
       <div id="main-content" class="main-content" role="main">
         <a href="https://thealliance.ai" target="_aia" class="no-glyph"><img alt="AI Alliance Banner" src="{{site.baseurl}}/assets/images/alliance-banner.png"/></a>
-        {% if
-          site.gh_edit_link and
-          site.gh_edit_link_text and
-          site.gh_edit_repository and
-          site.gh_edit_branch and
-          site.gh_edit_view_mode
-        %}
-          <p class="text-small text-grey-dk-000 mb-0">
-            <a href="{{ site.gh_edit_repository }}/{{ page.path }}" id="edit-this-page" target="_doc_repo_page">{{ site.gh_edit_link_text }}</a>
-          </p>
+        <hr/>
+        <a href="https://huggingface.co/aialliance" target="hugging-face" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph">Browse the Datasets</a>
+        {% if page.show_contribute_dataset_button %}
+        &nbsp;
+        <a href="{{site.baseurl}}/contributing" target="hugging-face" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph">Contribute a new Dataset!</a>
         {% endif %}
 
         {% if site.heading_anchors != false %}

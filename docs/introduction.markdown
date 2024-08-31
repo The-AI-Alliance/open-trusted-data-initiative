@@ -2,6 +2,7 @@
 layout: default
 title: Introduction
 nav_order: 20
+show_contribute_dataset_button: true
 ---
 
 # Introduction to Open Trusted Data

@@ -94,7 +94,7 @@ last_edit_time_format: "%Y-%m-%d %H:%M %z" # uses ruby's time format: https://ru
 last_modified_timestamp: 2024-08-30 13:50 -0500
 last_version: 0.0.1
 
-# Footer "Edit this page on GitHub" link text
+# "Edit this page on GitHub" link text
 gh_edit_link: true # show or hide edit this page link
 gh_edit_link_text: "Edit this page on GitHub"
 gh_edit_repository: "https://github.com/The-AI-Alliance/open-trusted-data-initiative/tree/latest/docs" # the github URL for your repo
@@ -104,6 +104,9 @@ gh_edit_view_mode: "tree" # "tree" or "edit" if you want the user to jump into t
 
 # Color scheme currently only supports "dark", "light"/nil (default), or a custom scheme that you define
 color_scheme: nil
+
+# Show the "contribute dataset" button
+show_contribute_dataset_button: true
 
 # Google Analytics Tracking (optional)
 # e.g, UA-1234567-89

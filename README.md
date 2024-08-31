@@ -1,11 +1,11 @@
 # Open Trusted Data Initiative README
 
-Welcome to the AI Alliance [Open Trusted Data Initiative](https://the-ai-alliance.github.io/open-trusted-data-initiative/) (OTDI)
+Welcome to the AI Alliance [Open Trusted Data Initiative](https://the-ai-alliance.github.io/open-trusted-data-initiative/) (OTDI).
 
 TODO: Description, Motivation, Call to Action.
 
 > [!NOTE]
-> The documentation in this repo is licensed under Creative Commons Attribution 4.0 International. To view a copy of this license, see [LICENSE.CC-BY-4.0](LICENSE.CC-BY-4.0) or visit https://creativecommons.org/licenses/by/4.0/legalcode. All code uses the [Apache 2.0](LICENSE.Apache-2.0) license.
+> We follow the AI Alliance [CONTRIBUTING](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md) guidelines (also [here](CONTRIBUTING.md)). This includes policies for [licensing repo content](CONTRIBUTING.md#licenses). You will also need to agree with and follow the AI Alliance [Code of Conduct](https://github.com/The-AI-Alliance/community/blob/main/CODE_OF_CONDUCT.md) (also [here](CODE_OF_CONDUCT.md)). 
 
 ## Contents
 
