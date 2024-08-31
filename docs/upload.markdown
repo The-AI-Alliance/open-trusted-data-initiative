@@ -21,7 +21,7 @@ reproduce, display, make compilations of and distribute the dataset under the
   <label for="dataset">Dataset File:</label><br>
   <input type="text" id="dataset" name="dataset"><br><br>
 
-  <label for="domain">Dataset Card:</label><br>
+  <label for="domain">Dataset Card [Template](dataset-card/dataset-card_template.md):</label><br>
   <input type="text" id="datasetcard" name="datasetcard"><br><br>
   
   <input type="submit" value="Upload">
