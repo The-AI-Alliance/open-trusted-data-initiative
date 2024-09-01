@@ -1,11 +1,20 @@
 ---
 layout: default
 title: Contribute a Dataset
-nav_order: 90
+nav_order: 30
+has_children: false
 show_contribute_dataset_button: false
 ---
 
 # How to Contribute a Dataset 
+
+By contributing a dataset, you affirm that you are the owner of the dataset
+or you have been granted permission by the owner(s) to act on their behalf with respect
+to the dataset. You can either retain the current hosting location or have us host it for you.
+
+You retain all ownership, copyrights and other interests, and rights to and title to the
+dataset. By contributing the dataset, you grant The AI Alliance a non-exclusive, worldwide, royalty-free, perpetual, and non-cancellable license to use, modify, alter, edit, copy, reproduce, display, make compilations of and distribute the dataset under the
+[Community Data License Agreement - Permissive, Version 2.0](https://cdla.dev/permissive-2-0/).
 
 ## Contribute Your Dataset in Four Steps
 
@@ -27,9 +36,9 @@ We are particularly interested in new datasets that can be used to tune models t
 
 There are our current data categories:
 
-* Climate
-* Finance
-* Healthcare
+* Climate - Used for research in climate change, modeling vegetation and water cover, studying agriculture, etc.
+* Finance - Historical market activity and behaviors. Connections to influences like climate, weather events, political events, etc. 
+* Healthcare - Everything from synthetic patient data for modeling outcomes, to public literature on known diseases and conditions, to diagnostics results and their analysis.
 * Industrial
 * Legal
 * Marine
@@ -55,26 +64,26 @@ Your participation helps you to achieve the following:
 		<table class="form-dataset-table">
 			<tr>
 				<th class="form-dataset-table-label">
-				  <label for="name">Name:</label>
-				</th>
-				<td class="form-dataset-table-value">
-				  <input type="text" id="name" name="name" class="form-dataset-table-input" required />
-				</td>
-			</tr>
-			<tr>
-				<th class="form-dataset-table-label">
-				  <label for="email">Email:</label>
-				</th>
-				<td class="form-dataset-table-value">
-				  <input type="email" id="email" name="email" class="form-dataset-table-input" required />	  
-				</td>
-			</tr>
-			<tr>
-				<th class="form-dataset-table-label">
 				  <label for="dataset">Dataset&nbsp;name:</label>
 				</th>
 				<td class="form-dataset-table-value">
-				  <input type="text" id="dataset" name="dataset" class="form-dataset-table-input" required />	  
+				  <input type="text" id="dataset-name" name="dataset-name" class="form-dataset-table-input" placeholder="A descriptive and unique name" required />	  
+				</td>
+			</tr>
+			<tr>
+				<th class="form-dataset-table-label">
+				  <label for="dataset">Dataset&nbsp;location:</label>
+				</th>
+				<td class="form-dataset-table-value">
+				  <input type="url" id="dataset" name="dataset" class="form-dataset-table-input" placeholder="https://example.com" pattern="https://.*" required />
+				</td>
+			</tr>
+			<tr>
+				<th class="form-dataset-table-label">
+				  &nbsp;
+				</th>
+				<td class="form-dataset-table-value">
+				  <input type="checkbox" name="agree-to-terms" checked /> I want the AI Alliance to host this dataset.
 				</td>
 			</tr>
 			<tr>
@@ -82,7 +91,7 @@ Your participation helps you to achieve the following:
 				  <label for="dataset">Dataset&nbsp;card:</label>
 				</th>
 				<td class="form-dataset-table-value">
-				  <input type="text" id="dataset" name="dataset" class="form-dataset-table-input" required />
+				  <input type="file" id="dataset-card" name="dataset-card" accept=".txt, .md, .markdown" class="form-dataset-table-input" required />
 				</td>
 			</tr>
 			<tr>
@@ -114,10 +123,18 @@ Your participation helps you to achieve the following:
 			</tr>
 			<tr>
 				<th class="form-dataset-table-label">
+				  <label for="email">Email:</label>
+				</th>
+				<td class="form-dataset-table-value">
+				  <input type="email" id="email" name="email" class="form-dataset-table-input" placeholder="Your email address" required />	  
+				</td>
+			</tr>
+			<tr>
+				<th class="form-dataset-table-label">
     			&nbsp;
     		</th>
 				<td class="form-dataset-table-value">
-				  <input type="checkbox" name="aggree-to-terms" required /> I agree to the terms for contribution.
+				  <input type="checkbox" name="agree-to-terms" required /> I agree to the terms for contribution.
 				</td>
 			</tr>
 			<tr>
@@ -131,3 +148,8 @@ Your participation helps you to achieve the following:
 		</table>
   </div>
 </form>
+<script>
+	<!-- Necessary to have the file browser limit all the allowed sections to what "accept=''" specifies. -->
+  var test = document.querySelector('input');
+</script>
+

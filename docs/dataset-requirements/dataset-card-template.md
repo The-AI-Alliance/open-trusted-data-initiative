@@ -1,7 +1,9 @@
 ---
 layout: default
 title: Dataset Card Template
-nav_order: 10
+nav_order: 200
+parent: Dataset Requirements
+has_children: false
 ---
 
 Use the following template to create your dataset card. Replace all the content marked with `{...}` with appropriate values and add additional text as you see fit (note the HTML-style comments `<!-- ... -->`). When you submit this card with your dataset, we'll provide feedback. If you are uncertain about what a particular section requires, add questions in that section!
