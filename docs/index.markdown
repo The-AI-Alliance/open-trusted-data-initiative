@@ -27,7 +27,7 @@ OTDI aims to address these concerns with an industry wide effort to gather and p
 Ready to contribute a dataset? To get started, first review our requirements and prepare a _dataset card_, then contribute your dataset!
 
 * [Dataset Requirements]({{site.baseurl}}/dataset-requirements/dataset-requirements)
-  * [The Dataset Card Template]({{site.baseurl}}/dataset-requirements/dataset-card-template)
+* [The Dataset Card Template]({{site.baseurl}}/dataset-requirements/dataset-card-template)
 * [Contribute Your Dataset!]({{site.baseurl}}/contributing)
 
 ## More Information
@@ -39,4 +39,5 @@ Ready to contribute a dataset? To get started, first review our requirements and
 > **Tip:** Use the search box at the top of this page to find specific content.
 
 | **Authors** | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focusareas/foundation-models){:target="ai-alliance-wg"} |
-| **History** | V0.0.1, 2024-09-01 |
+| **History** | V0.0.2, 2024-09-01 |
+|             | V0.0.1, 2024-09-01 |
