@@ -36,18 +36,22 @@ We are particularly interested in new datasets that can be used to tune models t
 
 There are our current data categories:
 
-* Climate - Used for research in climate change, modeling vegetation and water cover, studying agriculture, etc.
+### Science and Industrial
+
+* Climate - Supporting research in climate change, modeling vegetation and water cover, studying agriculture, etc.
+* Marine - Supporting research on and applications targeted towards marine environments.
+* Materials - Known chemical and mechanical properties of chemicals useful for research into potential new and existing materials. 
+* Semiconductors - Specific area of materials research focused on improving the state of the art for semiconductor performance and manufacturing.
+* Other Industrial - Other areas not covered above.
+
+### Other Domains
+
 * Finance - Historical market activity and behaviors. Connections to influences like climate, weather events, political events, etc. 
 * Healthcare - Everything from synthetic patient data for modeling outcomes, to public literature on known diseases and conditions, to diagnostics results and their analysis.
-* Industrial
-* Legal
-* Marine
-* Materials
-* Multimedia
-* Semiconductors
-* Social Sciences
-* Timeseries
-
+* Legal - Jurisdiction-specific data about case law, etc.
+* Multimedia - Data for training, tuning, and testing multimodal models, e.g., text and image, including specific applications.
+* Social Sciences - Social dynamics, political activity and sentiments, etc.
+* Timeseries - Data for training, tuning, and testing time series models, including specific applications.
 
 ## Join a Global Community of Innovators
 
@@ -104,13 +108,13 @@ Your participation helps you to achieve the following:
 							<option default>Not domain specific</option>
 					  </optgroup>
 					  <optgroup label="Science & Industrial">
+							<option>Climate</option>
 							<option>Marine</option>
 							<option>Materials</option>
 							<option>Semiconductors</option>
 							<option>Other Industrial</option>
 						</optgroup>
 					  <optgroup label="Other">
-							<option>Climate</option>
 							<option>Finance</option>
 							<option>Healthcare</option>
 							<option>Legal</option>
