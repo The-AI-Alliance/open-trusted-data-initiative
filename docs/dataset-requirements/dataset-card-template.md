@@ -4,13 +4,11 @@ title: Dataset Card Template
 nav_order: 10
 ---
 
-Use the following template to create your dataset card.
+Use the following template to create your dataset card. Replace all the content marked with `{...}` with appropriate values and add additional text as you see fit (note the HTML-style comments `<!-- ... -->`). When you submit this card with your dataset, we'll provide feedback. If you are uncertain about what a particular section requires, add questions in that section!
 
-For reference on dataset card metadata, see the [Hugging Face guide](https://huggingface.co/docs/hub/datasets-cards) and [card specification](https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1)
+For reference on dataset card metadata, see the [Hugging Face guide](https://huggingface.co/docs/hub/datasets-cards) and their [card specification](https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1), from which this card template is adapted.
 
-Content in `{...}` must be replaced with appropriate values or the defaults shown.
-
-TODO: Turn this into a form.
+> **NOTE:** We intend to turn this template into a form for easier preparation.
 
 ```text
 # Dataset Card for { pretty_name | default("Dataset Name", true) }

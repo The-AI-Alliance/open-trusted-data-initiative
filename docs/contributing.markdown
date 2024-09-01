@@ -9,7 +9,7 @@ show_contribute_dataset_button: false
 
 ## Contribute Your Dataset in Four Steps
 
-1. **Prepare your contribution:** Complete the contribution form to ensure the dataset is ready for contribution and to prepare the required _data card_.
+1. **Prepare your contribution:** Complete the contribution form [below](#contribute-your-dataset) to ensure the dataset is ready for contribution and to prepare the required _data card_.
 2. **Upload the Data:** (Optional) Use our services to host the data. Or you can host it yourself, for example, in your own Hugging Face account.
 3. **Review & Categorize Your Submission:** Check that your data is correctly categorized and labeled in our catalog.
 4. **Monitor Usage:** Track how your data is being used and its impact on AI training.
@@ -52,19 +52,82 @@ Your participation helps you to achieve the following:
 
 <form action="#" method="post">
 	<div class="form-dataset">
-	  <label for="name">Name: </label>
-	  <input type="text" id="name" name="name" required>
-	  <label for="email">Email: </label>
-	  <input type="email" id="email" name="email" required>	  
-	  <label for="dataset">Dataset name: </label>
-	  <input type="text" id="dataset" name="dataset" required>	  
-	  <label for="dataset">Dataset card: </label>
-	  <input type="text" id="dataset" name="dataset" required>
-	  <label for="domain">Domain (optional): </label>
-	  <input type="text" id="domain" name="domain">
-	</div>  
-	<div class="form-dataset">
-    <input type="submit" value="Contribute!" />
+		<table class="form-dataset-table">
+			<tr>
+				<th class="form-dataset-table-label">
+				  <label for="name">Name:</label>
+				</th>
+				<td class="form-dataset-table-value">
+				  <input type="text" id="name" name="name" class="form-dataset-table-input" required />
+				</td>
+			</tr>
+			<tr>
+				<th class="form-dataset-table-label">
+				  <label for="email">Email:</label>
+				</th>
+				<td class="form-dataset-table-value">
+				  <input type="email" id="email" name="email" class="form-dataset-table-input" required />	  
+				</td>
+			</tr>
+			<tr>
+				<th class="form-dataset-table-label">
+				  <label for="dataset">Dataset&nbsp;name:</label>
+				</th>
+				<td class="form-dataset-table-value">
+				  <input type="text" id="dataset" name="dataset" class="form-dataset-table-input" required />	  
+				</td>
+			</tr>
+			<tr>
+				<th class="form-dataset-table-label">
+				  <label for="dataset">Dataset&nbsp;card:</label>
+				</th>
+				<td class="form-dataset-table-value">
+				  <input type="text" id="dataset" name="dataset" class="form-dataset-table-input" required />
+				</td>
+			</tr>
+			<tr>
+				<th class="form-dataset-table-label">
+				  <label for="domain">Domain:</label>
+				</th>
+				<td class="form-dataset-table-value">
+					<select id="domain" name="domain" class="form-dataset-table-input">
+					  <optgroup label="General Purpose">
+							<option default>Not domain specific</option>
+					  </optgroup>
+					  <optgroup label="Science & Industrial">
+							<option>Marine</option>
+							<option>Materials</option>
+							<option>Semiconductors</option>
+							<option>Other Industrial</option>
+						</optgroup>
+					  <optgroup label="Other">
+							<option>Climate</option>
+							<option>Finance</option>
+							<option>Healthcare</option>
+							<option>Legal</option>
+							<option>Multimedia</option>
+							<option>Social Science</option>
+							<option>Time Series</option>
+					  </optgroup>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th class="form-dataset-table-label">
+    			&nbsp;
+    		</th>
+				<td class="form-dataset-table-value">
+				  <input type="checkbox" name="aggree-to-terms" required /> I agree to the terms for contribution.
+				</td>
+			</tr>
+			<tr>
+				<th class="form-dataset-table-label">
+    			&nbsp;
+    		</th>
+				<td class="form-dataset-table-value">
+			    <input type="submit" value="Contribute!" />
+				</td>
+			</tr>
+		</table>
   </div>
-
 </form>
