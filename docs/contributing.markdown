@@ -32,26 +32,28 @@ dataset. By contributing the dataset, you grant The AI Alliance a non-exclusive,
 
 ## Diverse Data for Diverse AI Models
 
-We are particularly interested in new datasets that can be used to tune models to excel in various domains.
+We are particularly interested in new datasets that can be used to tune models to excel in various domains, although general-purpose datasets are also welcome. 
 
-There are our current data categories:
+When you contribute a dataset, you will have the ability to optionally specify a domain specialty. To keep things relatively simple, we currently only allow one domain specialty to be specified, if any.
+
+These are our current domains:
 
 ### Science and Industrial
 
-* Climate - Supporting research in climate change, modeling vegetation and water cover, studying agriculture, etc.
-* Marine - Supporting research on and applications targeted towards marine environments.
-* Materials - Known chemical and mechanical properties of chemicals useful for research into potential new and existing materials. 
-* Semiconductors - Specific area of materials research focused on improving the state of the art for semiconductor performance and manufacturing.
-* Other Industrial - Other areas not covered above.
+* **Climate:** Supporting research in climate change, modeling vegetation and water cover, studying agriculture, etc.
+* **Marine:** Supporting research on and applications targeted towards marine environments.
+* **Materials:** Known chemical and mechanical properties of chemicals useful for research into potential new and existing materials. 
+* **Semiconductors:** Specific area of materials research focused on improving the state of the art for semiconductor performance and manufacturing.
+* **Other Industrial:** Other areas not covered above.
 
 ### Other Domains
 
-* Finance - Historical market activity and behaviors. Connections to influences like climate, weather events, political events, etc. 
-* Healthcare - Everything from synthetic patient data for modeling outcomes, to public literature on known diseases and conditions, to diagnostics results and their analysis.
-* Legal - Jurisdiction-specific data about case law, etc.
-* Multimedia - Data for training, tuning, and testing multimodal models, e.g., text and image, including specific applications.
-* Social Sciences - Social dynamics, political activity and sentiments, etc.
-* Timeseries - Data for training, tuning, and testing time series models, including specific applications.
+* **Finance:** Historical market activity and behaviors. Connections to influences like climate, weather events, political events, etc. 
+* **Healthcare:** Everything from synthetic patient data for modeling outcomes, to public literature on known diseases and conditions, to diagnostics results and their analysis.
+* **Legal:** Jurisdiction-specific data about case law, etc.
+* **Multimedia:** Data for training, tuning, and testing multimodal models, e.g., text and image, including specific applications.
+* **Social Sciences:** Social dynamics, political activity and sentiments, etc.
+* **Timeseries:** Data for training, tuning, and testing time series models, including specific applications.
 
 ## Join a Global Community of Innovators
 
@@ -79,7 +81,7 @@ Your participation helps you to achieve the following:
 				  <label for="dataset">Dataset&nbsp;location:</label>
 				</th>
 				<td class="form-dataset-table-value">
-				  <input type="url" id="dataset" name="dataset" class="form-dataset-table-input" placeholder="https://example.com" pattern="https://.*" required />
+				  <input type="url" id="dataset-url" name="dataset-url" class="form-dataset-table-input" placeholder="https://example.com" pattern="https://.*" required />
 				</td>
 			</tr>
 			<tr>
@@ -87,7 +89,7 @@ Your participation helps you to achieve the following:
 				  &nbsp;
 				</th>
 				<td class="form-dataset-table-value">
-				  <input type="checkbox" name="agree-to-terms" checked /> I want the AI Alliance to host this dataset.
+				  <input type="checkbox" name="dataset-alliance-hosting" checked /> I want the AI Alliance to host this dataset.
 				</td>
 			</tr>
 			<tr>
@@ -103,7 +105,7 @@ Your participation helps you to achieve the following:
 				  <label for="domain">Domain:</label>
 				</th>
 				<td class="form-dataset-table-value">
-					<select id="domain" name="domain" class="form-dataset-table-input">
+					<select id="dataset-domain" name="dataset-domain" class="form-dataset-table-input">
 					  <optgroup label="General Purpose">
 							<option default>Not domain specific</option>
 					  </optgroup>
@@ -123,6 +125,8 @@ Your participation helps you to achieve the following:
 							<option>Time Series</option>
 					  </optgroup>
 					</select>
+					Or another domain? 
+				  <input type="text" id="dataset-other-domain" name="dataset-other-domain" class="form-dataset-table-input-shorter" placeholder="Your domain suggestion" required />	  					
 				</td>
 			</tr>
 			<tr>
