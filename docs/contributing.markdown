@@ -48,4 +48,23 @@ Your participation helps you to achieve the following:
 * **Participate in OTDI Forums, Discussions:** Engage in discussions, share insights, and collaborate on projects.
 * **Events and Webinars:** Attend exclusive events and webinars to stay updated.
 
+# Contribute Your Dataset
 
+<form action="#" method="post">
+	<div class="form-dataset">
+	  <label for="name">Name: </label>
+	  <input type="text" id="name" name="name" required>
+	  <label for="email">Email: </label>
+	  <input type="email" id="email" name="email" required>	  
+	  <label for="dataset">Dataset name: </label>
+	  <input type="text" id="dataset" name="dataset" required>	  
+	  <label for="dataset">Dataset card: </label>
+	  <input type="text" id="dataset" name="dataset" required>
+	  <label for="domain">Domain (optional): </label>
+	  <input type="text" id="domain" name="domain">
+	</div>  
+	<div class="form-dataset">
+    <input type="submit" value="Contribute!" />
+  </div>
+
+</form>

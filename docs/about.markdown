@@ -9,7 +9,9 @@ show_contribute_dataset_button: true
 
 The **Open Trusted Data Initiative** (OTDI) is managed by the [Open Trusted Data Work Group](https://thealliance.ai/focusareas/foundation-models){:target="tands"} in [The AI Alliance](https://thealliance.ai){:target="ai-alliance"}. The AI Alliance is a global collaboration of startups, enterprises, academic and other research institutions interested in advancing the state of the art, the availability, and the safety of AI technology and uses. 
 
-We welcome your dataset contributions! See [Contributing]({{site.baseurl}}/contributing/).
+* [More About the AI Alliance](https://thealliance.ai/about-aia){:target="ai-alliance"}
+* [Contact Us](mailto:contact@thealliance.ai) (email)
+* Follow us on [LinkedIn](https://www.linkedin.com/company/the-aialliance/){:target="linkedin"} and [X](https://x.com/thealliance_ai){:target="twitter"}
 
 ## About This Documentation
 

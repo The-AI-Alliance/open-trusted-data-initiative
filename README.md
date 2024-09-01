@@ -2,6 +2,10 @@
 
 Welcome to the AI Alliance [Open Trusted Data Initiative](https://the-ai-alliance.github.io/open-trusted-data-initiative/) (OTDI).
 
+# Vision
+A high quality, trusted, open catalog / distributed repository of datasets for AI LLM pre-training and domain-specific fine-tuning that is amenable to a wide variety of use cases in enterprises, govenrments, regulated industries, and wherevr high trust in the data foundations of AI is essential.
+
+
 TODO: Description, Motivation, Call to Action.
 
 > [!NOTE]
