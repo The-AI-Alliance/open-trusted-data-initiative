@@ -11,10 +11,10 @@ show_contribute_dataset_button: false
 By contributing a dataset, you affirm that you are the owner of the dataset
 or you have been granted permission by the owner(s) to act on their behalf with respect
 to the dataset. You can either retain the current hosting location or have us host it for you.
+Do not contribute any data that was obtained by crawling or scraping public data from the Internet.
 
 You retain all ownership, copyrights and other interests, and rights to and title to the
-dataset. By contributing the dataset, you grant The AI Alliance a non-exclusive, worldwide, royalty-free, perpetual, and non-cancellable license to use, modify, alter, edit, copy, reproduce, display, make compilations of and distribute the dataset under the
-[Community Data License Agreement - Permissive, Version 2.0](https://cdla.dev/permissive-2-0/).
+dataset. By contributing the dataset, you grant The AI Alliance a non-exclusive, worldwide, royalty-free, perpetual, and non-cancellable license under the [Community Data License Agreement - Permissive, Version 2.0](https://cdla.dev/permissive-2-0/), which includes, but is not limited to, the ability to use, modify, alter, edit, copy, reproduce, display, make compilations of and distribute the dataset.
 
 ## Contribute Your Dataset in Four Steps
 
