@@ -99,7 +99,7 @@ Use this form to tell us about your dataset. We will follow up with next steps.
 				  <label for="dataset">Dataset&nbsp;card:</label>
 				</th>
 				<td class="form-dataset-table-value">
-				  <input type="file" id="dataset-card" name="dataset-card" accept=".txt, .md, .markdown" class="form-dataset-table-input" required />
+				  <input type="file" id="dataset-card" name="dataset-card" accept=".txt, .md, .markdown" class="form-dataset-table-input" required /> (.txt, .md, or .markdown file only)
 				</td>
 			</tr>
 			<tr>
