@@ -26,6 +26,16 @@ A current challenge in AI is the &ldquo;murky&rdquo; provenance of many datasets
 
 OTDI aims to address these concerns with an industry wide effort to gather and process data fully in the open, allowing model developers and users to have full confidence in the provenance and governance of the data they use.
 
+## Delivering Trust
+
+* Data Explortion
+* Data Cleaning
+* Data Deduplication
+* Data Decontamination
+* Data Auditing
+* Data Documentation
+* Data Governance
+
 ## Next Steps
 
 Ready to contribute a dataset? To get started, first review our [requirements]({{site.baseurl}}/dataset-requirements/dataset-requirements) and prepare a [_dataset card_]({{site.baseurl}}/dataset-requirements/dataset-card-template)), then [contribute]({{site.baseurl}}/contributing) your dataset!
