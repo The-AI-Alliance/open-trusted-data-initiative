@@ -8,7 +8,21 @@ show_contribute_dataset_button: true
 
 # About The AI Alliance
 
-The **Open Trusted Data Initiative** (OTDI) is managed by the [Open Trusted Data Work Group](https://thealliance.ai/focusareas/foundation-models){:target="tands"} in [The AI Alliance](https://thealliance.ai){:target="ai-alliance"}. The AI Alliance is a global collaboration of startups, enterprises, academic and other research institutions interested in advancing the state of the art, the availability, and the safety of AI technology and uses. 
+The **Open Trusted Data Initiative** (OTDI) is a core project managed by the [Open Trusted Data Work Group](https://thealliance.ai/focusareas/foundation-models){:target="tands"} in [The AI Alliance](https://thealliance.ai){:target="ai-alliance"}. The AI Alliance is a global collaboration of startups, enterprises, academic and other research institutions interested in advancing the state of the art, the availability, and the safety of AI technology and uses. The AI Alliance's core projects seek to address substantial cross-community challenges and are an opportunity for contributors to collaborate, build, and make an impact on the future of AI. Core Projects are managed directly by the AI Alliance and governed as described below. You can find a list of AI Alliance Core Projects here on the AI Alliance website.
+
+## Governance
+
+## Steering committee.
+Coming soon.
+
+## Maintainers
+Coming soon.
+
+## Sponsoring Organizations
+* IBM
+* ServiceNow
+* Hugging Face
+* ...
 
 * [More About the AI Alliance](https://thealliance.ai/about-aia){:target="ai-alliance"}
 * [Contact Us](mailto:contact@thealliance.ai) (email)
