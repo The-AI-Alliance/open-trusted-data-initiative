@@ -18,7 +18,7 @@ Given the importance to us of provenance and governance of our datasets in this 
 
 ## Steering Committee
 
-Coming soon.
+We are assembling a steering committee of representatives for sponsoring organizations and from the broader comunity - coming soon.
 
 ## Maintainers
 
@@ -28,6 +28,7 @@ Coming soon.
 
 * IBM
 * ServiceNow
+* Aitomatic
 * ... more soon! ...
 
 ## Other AI Alliance Information
