@@ -65,6 +65,8 @@ Your participation helps you to achieve the following:
 
 # Contribute Your Dataset
 
+Use this form to tell us about your dataset. We will follow up with next steps.
+
 <form action="#" method="post">
 	<div class="form-dataset">
 		<table class="form-dataset-table">
