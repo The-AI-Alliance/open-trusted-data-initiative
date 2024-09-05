@@ -66,7 +66,7 @@ Your participation helps you to achieve the following:
 
 # Contribute Your Dataset
 
-<form action="#" method="post">
+<form id="datasets-hubspot-form">
 	<div class="form-dataset">
 		<table class="form-dataset-table">
 			<tr>
@@ -90,7 +90,7 @@ Your participation helps you to achieve the following:
 				  &nbsp;
 				</th>
 				<td class="form-dataset-table-value">
-				  <input type="checkbox" name="dataset-alliance-hosting" checked /> I want the AI Alliance to host this dataset.
+				  <input type="checkbox" id="dataset-alliance-hosting" name="dataset-alliance-hosting" checked /> I want the AI Alliance to host this dataset.
 				</td>
 			</tr>
 			<tr>
@@ -160,5 +160,64 @@ Your participation helps you to achieve the following:
 <script>
 	<!-- Necessary to have the file browser limit all the allowed sections to what "accept=''" specifies. -->
   var test = document.querySelector('input');
+
+const form = document.getElementById('datasets-hubspot-form');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                fields: [
+                    {
+                        name: 'dataset-name',
+                        value: document.getElementById('dataset-name').value
+                    },
+                    {
+                        name: 'dataset-url',
+                        value: document.getElementById('dataset-url').value
+                    },
+                    {
+                        name: 'datasert-alliance-hosting',
+                        value: document.getElementById('dataset-alliance-hosting').value
+                    },
+	            {
+                        name: 'dataset-card',
+                        value: document.getElementById('dataset-card').value
+                    },
+		    {
+                        name: 'dataset-domain',
+                        value: document.getElementById('dataset-domain').value
+                    },
+		    {
+                        name: 'email',
+                        value: document.getElementById('email').value
+                    },
+		    {
+      			name: 'agree-to-terms',
+	 		value: document.getElementById('agree-to-terms'),value
+    		    }
+                ],
+                context: {
+                    hutk: document.cookie.match(/hubspotutk=(.*?);/)[1] || ""  // HubSpot tracking cookie (optional)
+                }
+            };
+
+            try {
+                const response = await fetch('https://api.hsforms.com/submissions/v3/integration/submit/:portalId/:formGuid', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    alert('Form successfully submitted!');
+                } else {
+                    console.error('Form submission failed', response);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
 </script>
 
