@@ -1,5 +1,8 @@
 # Open Trusted Data Initiative README
 
+> [!NOTE]
+> This is a preview of a forthcoming AI Alliance project.
+
 Welcome to the AI Alliance [Open Trusted Data Initiative](https://the-ai-alliance.github.io/open-trusted-data-initiative/) (OTDI).
 
 # Vision
