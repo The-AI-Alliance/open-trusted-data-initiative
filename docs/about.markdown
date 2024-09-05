@@ -18,7 +18,7 @@ Given the importance to us of provenance and governance of our datasets in this 
 
 ## Steering Committee
 
-We are assembling a steering committee of representatives for sponsoring organizations and from the broader comunity - coming soon.
+We are assembling a steering committee of representatives for sponsoring organizations and from the broader community - coming soon.
 
 ## Maintainers
 

@@ -53,7 +53,9 @@ We support several levels of quality and cleanliness, as follows. Think of this 
 * **Filtered:** A _raw_ dataset has gone through our processing pipeline to remove duplicates, filter for objectional content, etc.
 * **Structured:** A _filtered_ dataset has been reformated to be most suitable for model training (LLMs, time series, etc.), RAG patterns, and similar purposes. For example, JSON-formatted data is often desirable. 
 
-The filtering process will involve the following (at the time of this writing):
+## Our Processing Pipeline
+
+After submission, our process for initial inspection, followed by creating **Filtered** and **Structured** derivatives, will involve the following steps (at the time of this writing):
 
 * **An initial quality check:**
   * Acceptable format
