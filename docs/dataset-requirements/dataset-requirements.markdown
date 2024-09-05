@@ -21,7 +21,7 @@ Here are the requirements to contribute a dataset to the Open Trusted Dataset In
 
 ## License
 
-A core goal for all OTDI datasets is that they support permissive usage. Therefore, we require that _all contributed datasets_ support the [CDLA Permissive 2.0](https://cdla.dev/permissive-2-0/) license ([SPDX link](https://spdx.org/licenses/CDLA-Permissive-2.0.html)). 
+A core goal for all OTDI datasets is that they support permissive usage. Therefore, we require that _all contributed datasets_ support the [CDLA Permissive 2.0](https://cdla.dev/permissive-2-0/) license ([SPDX link](https://spdx.org/licenses/CDLA-Permissive-2.0.html)). If for some reason this license requirement is dificult to satisfy but you are still interested in contributing, please reach out to us at [data@thealliance.ai](mailto:data@thealliance.ai).
 
 
 ## Dataset Card
