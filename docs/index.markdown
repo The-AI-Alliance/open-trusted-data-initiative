@@ -15,7 +15,7 @@ show_contribute_dataset_button: true
 
 # Why Contribute?
 
-* **Empower AI Innovation:** Your data helps build more accurate, fair, and versatile AI models.
+* **Collaborate on AI Innovation:** Your data helps build more accurate, fair, and versatile AI models. You can also connect with like-minded data scientists, AI researchers, and industry leaders.
 * **Transparency & Trust:** Every contribution is transparent, with robust data provenance, governance, and trust mechanisms. Bring your expertise to help us improve all aspects of data management.
 * **Tailored Contributions:** Support domain-specific model tuning to create open foundation models relevant to your industry or domain of interest.
 * **Recognition:** Get credited for your data contributions, which help the industry move to a more open, end-to-end development process for AI models and applications, with all the traditional benefits of open source software development.
@@ -28,7 +28,7 @@ OTDI aims to address these concerns with an industry wide effort to gather and p
 
 ## Next Steps
 
-Ready to contribute a dataset? To get started, first review our [requirements]({{site.baseurl}}/dataset-requirements/dataset-requirements) and prepare a [_dataset card_]({{site.baseurl}}/dataset-requirements/dataset-card-template)), then [contribute]({{site.baseurl}}/contributing) your dataset! Finally, [How We Process Datasets]({{site.baseurl}}/our-processing) provides an overview of the filtering and analysis steps we perform.
+Ready to contribute a dataset? To get started, first review our [requirements]({{site.baseurl}}/dataset-requirements/dataset-requirements) and prepare a [_dataset card_]({{site.baseurl}}/dataset-requirements/dataset-card-template), then [contribute]({{site.baseurl}}/contributing) your dataset! Finally, see [How We Process Datasets]({{site.baseurl}}/our-processing) for an overview of the filtering and analysis steps we perform.
 
 * [Dataset Requirements]({{site.baseurl}}/dataset-requirements/dataset-requirements)
 * [The Dataset Card Template]({{site.baseurl}}/dataset-requirements/dataset-card-template)
@@ -39,7 +39,6 @@ Ready to contribute a dataset? To get started, first review our [requirements]({
 
 * [About Us]({{site.baseurl}}/about): More about the AI Alliance and this document.
 * [The AI Alliance](https://thealliance.ai){:target="ai-alliance"}
-* [This Documentation's GitHub Repo](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/main/docs){:target="otdi-repo"}
 
 > **Tip:** Use the search box at the top of this page to find specific content.
 
