@@ -81,8 +81,12 @@ Your participation helps you to achieve the following:
 
 Use this form to tell us about your dataset. We will follow up with next steps.
 
+<div class="callout-box centered bold">
+  <em>Contributions will be open soon!</em>
+</div>
+
 <form action="#" method="post">
-	<div class="form-dataset">
+	<div class="form-dataset disabled" inert>
 		<table class="form-dataset-table">
 			<tr>
 				<th class="form-dataset-table-label">
