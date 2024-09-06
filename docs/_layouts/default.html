@@ -142,9 +142,11 @@ layout: table_wrappers
         <a href="https://thealliance.ai" target="_aia" class="no-glyph"><img alt="AI Alliance Banner" src="{{site.baseurl}}/assets/images/alliance-banner.png"/></a>
         <hr/>
         <a href="https://huggingface.co/aialliance" target="hugging-face" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph">Browse the Datasets</a>
-        {% if page.show_contribute_dataset_button %}
         &nbsp;
+        {% if page.show_contribute_dataset_button %}
         <a href="{{site.baseurl}}/contributing" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph">Contribute a new Dataset!</a>
+        {% else %}
+        <a href="#" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph">Contribute a new Dataset!</a>
         {% endif %}
 
         {% if site.heading_anchors != false %}

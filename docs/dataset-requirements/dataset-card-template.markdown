@@ -4,6 +4,7 @@ title: Dataset Card Template
 nav_order: 200
 parent: Dataset Requirements
 has_children: false
+show_contribute_dataset_button: true
 ---
 
 Use the following template to create your dataset card. Replace all the content marked with `{...}` with appropriate values and add additional text as you see fit. Note the suggestions in _italics_, which you should remove. Also, pay attention to sections marked required. Keep in mind our goals for OTDI and how this metadata supports those goals.  
