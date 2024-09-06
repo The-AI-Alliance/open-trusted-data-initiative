@@ -81,11 +81,6 @@ In addition, we will ask you clarify the _modality_ of the data. It may contain 
 * **Audio:** 
 * **Video:** (including optional audio)
 
-
-### Categorization
-
-We will ask you to specify the dataset's _modality_, i.e., is the dataset text-only, images, audio, video, or combinations thereof. We also ask you to indicate the target domain (e.g., time series), if any.
-
 ### Data Quality and &ldquo;Cleanliness&rdquo;
 
 We support several levels of quality and cleanliness, as follows. This list corresponds to stages in our _ingestion_ process:
