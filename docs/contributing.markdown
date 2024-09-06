@@ -10,11 +10,17 @@ show_contribute_dataset_button: false
 
 By contributing a dataset, you affirm that you are the owner of the dataset
 or you have been granted permission by the owner(s) to act on their behalf with respect
-to the dataset. You can either retain the current hosting location or have us host it for you.
+to the dataset. You can either retain the current hosting location or have the AI Alliance host it for you.
 
 You retain all ownership, copyrights and other interests, and rights to and title to the
+<<<<<<< HEAD
+dataset. By contributing the dataset, you grant The AI Alliance a non-exclusive, worldwide, royalty-free, perpetual, and non-cancellable license under the [Community Data License Agreement - Permissive, Version 2.0](https://cdla.dev/permissive-2-0/), which includes, but is not limited to, the ability to use, modify, alter, edit, copy, reproduce, display, make compilations of and distribute the dataset.
+
+Do not contribute any data that was obtained by crawling or scraping public data from the Internet.
+=======
 dataset. By contributing the dataset, you grant The AI Alliance a non-exclusive, worldwide, royalty-free, perpetual, and non-cancellable license to use, modify, alter, edit, copy, reproduce, display, make compilations of and distribute the dataset under the
 **Community Data License Agreement - Permissive, Version 2.0** [license](https://cdla.dev/permissive-2-0/).
+>>>>>>> latest
 
 Be sure to read the [Dataset Requirements]({{site.baseurl}}/dataset-requirements/dataset-requirements) before proceeding. 
 
@@ -28,11 +34,6 @@ The process follows these steps:
 4. **Upload the Data:** (Optional) Use our services to host the data. Or you can host it yourself, for example, in your own Hugging Face account.
 5. **Review & Categorize Your Submission:** One registered in [our datasets catalog](https://huggingface.co/aialliance), verify that your data is correctly categorized and labeled.
 4. **Monitor Usage:** Track how your data is being used and its impact on AI training and other uses.
-
-## It's Your Data, but Our Responsibility
-
-* **Data Anonymization:** We prioritize privacy with built-in data anonymization techniques.
-* **Secure Storage:** When we store your data, it is stored securely with state-of-the-art encryption.
 
 ## Diverse Data for Diverse AI Models
 
@@ -82,8 +83,7 @@ Use this form to tell us about your dataset. We will follow up with next steps.
 <div class="callout-box centered bold">
   <em>Contributions will be open soon!</em>
 </div>
-
-<form action="#" method="post">
+<form id="datasets-hubspot-form">
 	<div class="form-dataset disabled" inert>
 		<table class="form-dataset-table">
 			<tr>
@@ -107,7 +107,7 @@ Use this form to tell us about your dataset. We will follow up with next steps.
 				  <label for="dataset-hosting">Hosting:</label>
 				</th>
 				<td class="form-dataset-table-value">
-				  <input type="checkbox" name="dataset-alliance-hosting" checked /> I want the AI Alliance to host this dataset.
+				  <input type="checkbox" id="dataset-alliance-hosting" name="dataset-alliance-hosting" checked /> I want the AI Alliance to host this dataset.
 				</td>
 			</tr>
 			<tr>
@@ -201,5 +201,65 @@ Use this form to tell us about your dataset. We will follow up with next steps.
 <script>
 	<!-- Necessary to have the file browser limit all the allowed sections to what "accept=''" specifies. -->
   var test = document.querySelector('input');
+
+const form = document.getElementById('datasets-hubspot-form');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                fields: [
+                    {
+                        name: 'dataset-name',
+                        value: document.getElementById('dataset-name').value
+                    },
+                    {
+                        name: 'dataset-url',
+                        value: document.getElementById('dataset-url').value
+                    },
+                    {
+                        name: 'datasert-alliance-hosting',
+                        value: document.getElementById('dataset-alliance-hosting').value
+                    },
+	            {
+                        name: 'dataset-card',
+                        value: document.getElementById('dataset-card').value
+                    },
+		    {
+                        name: 'dataset-domain',
+                        value: document.getElementById('dataset-domain').value
+                    },
+		    {
+                        name: 'email',
+                        value: document.getElementById('email').value
+                    },
+		    {
+      			name: 'agree-to-terms',
+	 		value: document.getElementById('agree-to-terms'),value
+    		    }
+                ],
+                context: {
+                    hutk: document.cookie.match(/hubspotutk=(.*?);/)[1] || ""  // HubSpot tracking cookie (optional)
+                }
+            };
+
+            try {
+              /* https://api.hsforms.com/submissions/v3/integration/submit/:portalId/:formGuid' */
+                const response = await fetch('localhost', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    alert('Form successfully submitted!');
+                } else {
+                    console.error('Form submission failed', response);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
 </script>
 
