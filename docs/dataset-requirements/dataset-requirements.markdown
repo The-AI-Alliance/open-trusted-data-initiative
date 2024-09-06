@@ -68,9 +68,6 @@ The filtering process will involve the following (at the time of this writing):
   * Decontamination against known evaluation and benchmark datasets
   * License verification (where feasible, detect data known to be covered by a different, incompatible license)
   * Other consistency and quality improvements
-* **Security Threat Mitigations:**
-  * Detect and ban contributors attempting to game the system in some way and for undesirable purposes
-  * Attempts to corrupt LLMs or AI systems with data containing deliberate wrong or biased information
 
 All steps will audit provenance and lineage with full visibility available to users of the datasets.
 
