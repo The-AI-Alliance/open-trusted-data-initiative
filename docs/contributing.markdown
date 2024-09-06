@@ -6,77 +6,23 @@ has_children: false
 show_contribute_dataset_button: false
 ---
 
-# How to Contribute a Dataset 
+# Contribute a Dataset 
 
-By contributing a dataset, you affirm that you are the owner of the dataset
-or you have been granted permission by the owner(s) to act on their behalf with respect
-to the dataset. You can either retain the current hosting location or have the AI Alliance host it for you.
+> **NOTE:**
+> Be sure to read all the [Dataset Requirements]({{site.baseurl}}/dataset-requirements/dataset-requirements) before proceeding. Make sure you agree to all the provisions or contact us at [data@thealliance.ai](mailto:data@thealliance.ai) if you have questions.
 
-You retain all ownership, copyrights and other interests, and rights to and title to the
-<<<<<<< HEAD
-dataset. By contributing the dataset, you grant The AI Alliance a non-exclusive, worldwide, royalty-free, perpetual, and non-cancellable license under the [Community Data License Agreement - Permissive, Version 2.0](https://cdla.dev/permissive-2-0/), which includes, but is not limited to, the ability to use, modify, alter, edit, copy, reproduce, display, make compilations of and distribute the dataset.
-
-Do not contribute any data that was obtained by crawling or scraping public data from the Internet.
-=======
-dataset. By contributing the dataset, you grant The AI Alliance a non-exclusive, worldwide, royalty-free, perpetual, and non-cancellable license to use, modify, alter, edit, copy, reproduce, display, make compilations of and distribute the dataset under the
-**Community Data License Agreement - Permissive, Version 2.0** [license](https://cdla.dev/permissive-2-0/).
->>>>>>> latest
-
-Be sure to read the [Dataset Requirements]({{site.baseurl}}/dataset-requirements/dataset-requirements) before proceeding. 
-
-## Contribute Your Dataset
+## The Contribution Process
 
 The process follows these steps:
 
 1. **Prepare your contribution:** Prepare the [The Dataset Card]({{site.baseurl}}/dataset-requirements/dataset-card-template).
 2. **Complete the contribution form:** The form [below](#contribute-your-dataset) submits your dataset for consideration.
 3. **Receive Feedback from Us:** We will evaluate the dataset card and the dataset itself, providing feedback and requesting clarifications where needed.
-4. **Upload the Data:** (Optional) Use our services to host the data. Or you can host it yourself, for example, in your own Hugging Face account.
-5. **Review & Categorize Your Submission:** One registered in [our datasets catalog](https://huggingface.co/aialliance), verify that your data is correctly categorized and labeled.
-4. **Monitor Usage:** Track how your data is being used and its impact on AI training and other uses.
+4. **Upload the Data:** (Optional) Once your contribution is accepted, you can transfer the data to [our datasets catalog](https://huggingface.co/aialliance) or you can continue to host it yourself, for example, in your own Hugging Face account.
+5. **Review Your Submission Details:** Verify that your data is correctly categorized and labeled in our [catalog](https://huggingface.co/aialliance).
+4. **Monitor Usage:** Track how your data is being used by others.
 
-## Diverse Data for Diverse AI Models
-
-We are particularly interested in new datasets that can be used to tune models to excel in various domains, although general-purpose datasets are also welcome. 
-
-When you contribute a dataset, you will have the ability to optionally specify a domain specialty. To keep things relatively simple, we currently only allow one domain specialty to be specified, if any.
-
-These are our current domains:
-
-### Science and Industrial
-
-* **Climate:** Supporting research in climate change, modeling vegetation and water cover, studying agriculture, etc.
-* **Marine:** Supporting research on and applications targeted towards marine environments.
-* **Materials:** Known chemical and mechanical properties of chemicals useful for research into potential new and existing materials. 
-* **Semiconductors:** Specific area of materials research focused on improving the state of the art for semiconductor performance and manufacturing.
-* **Other Industrial:** Other areas not covered above.
-
-### Other Domains
-
-* **Finance:** Historical market activity and behaviors. Connections to influences like climate, weather events, political events, etc. 
-* **Healthcare:** Everything from synthetic patient data for modeling outcomes, to public literature on known diseases and conditions, to diagnostics results and their analysis.
-* **Legal:** Jurisdiction-specific data about case law, etc.
-specific applications.
-* **Social Sciences:** Social dynamics, political activity and sentiments, etc.
-* **Timeseries:** Data for training, tuning, and testing time series models, including specific applications.
-
-In addition, we will ask you clarify the _modality_ of the data. It may contain one or more of the following:
-
-* **Text Only**
-* **Images:** (still images)
-* **Audio:** 
-* **Video:** (including optional audio)
-
-
-## Join a Global Community of Innovators
-
-Your participation helps you to achieve the following:
-
-* **Collaborate with Experts:** Connect with data scientists, AI researchers, and industry leaders.
-* **Participate in OTDI Forums, Discussions:** Engage in discussions, share insights, and collaborate on projects.
-* **Events and Webinars:** Attend exclusive events and webinars to stay updated.
-
-# Contribute Your Dataset
+## Now to Contribute Your Dataset
 
 Use this form to tell us about your dataset. We will follow up with next steps.
 
