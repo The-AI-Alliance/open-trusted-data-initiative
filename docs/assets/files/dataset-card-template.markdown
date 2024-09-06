@@ -1,13 +1,3 @@
----
-title: Dataset Card Template
-nav_order: 2000
-parent: Dataset Requirements
-has_children: false
-show_contribute_dataset_button: true
-published: false
----
-
-<!-- There may be a GitHub Pages Jekyll bug where this page shows up in the website unless the control block above is shown. Delete this comment and everything above it! -->
 
 # Dataset Card for { dataset_name }
 
