@@ -28,11 +28,12 @@ OTDI aims to address these concerns with an industry wide effort to gather and p
 
 ## Next Steps
 
-Ready to contribute a dataset? To get started, first review our [requirements]({{site.baseurl}}/dataset-requirements/dataset-requirements) and prepare a [_dataset card_]({{site.baseurl}}/dataset-requirements/dataset-card-template)), then [contribute]({{site.baseurl}}/contributing) your dataset!
+Ready to contribute a dataset? To get started, first review our [requirements]({{site.baseurl}}/dataset-requirements/dataset-requirements) and prepare a [_dataset card_]({{site.baseurl}}/dataset-requirements/dataset-card-template)), then [contribute]({{site.baseurl}}/contributing) your dataset! Finally, [How We Process Datasets]({{site.baseurl}}/our-processing) provides an overview of the filtering and analysis steps we perform.
 
 * [Dataset Requirements]({{site.baseurl}}/dataset-requirements/dataset-requirements)
 * [The Dataset Card Template]({{site.baseurl}}/dataset-requirements/dataset-card-template)
 * [Contribute Your Dataset!]({{site.baseurl}}/contributing)
+* [How We Process Datasets]({{site.baseurl}}/our-processing)
 
 ## More Information
 

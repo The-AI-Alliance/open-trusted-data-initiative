@@ -33,8 +33,6 @@ The process follows these steps:
 
 * **Data Anonymization:** We prioritize privacy with built-in data anonymization techniques.
 * **Secure Storage:** When we store your data, it is stored securely with state-of-the-art encryption.
-* **Ethical Use:** Our platform ensures your data is used ethically and responsibly.
-
 
 ## Diverse Data for Diverse AI Models
 

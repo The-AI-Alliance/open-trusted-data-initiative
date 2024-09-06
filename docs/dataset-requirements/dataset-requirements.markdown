@@ -47,33 +47,10 @@ We will ask you to specify the dataset's _modality_, i.e., is the dataset text-o
 
 ### Data Quality and &ldquo;Cleanliness&rdquo;
 
-We support several levels of quality and cleanliness, as follows. Think of this as the _ingestion_ process we use:
+We support several levels of quality and cleanliness, as follows. Think of this as a rough outline of our _ingestion_ process:
 
-* **Raw:** The dataset as submitted, which could already be in good shape. _Our most important criteria at this stage is unambigious provenance._ Nevertheless, datasets that contain some objectionable content with legal implications, such as some forms of PII and company confidential information, may have to be rejected outright.
+* **Raw:** The dataset as submitted, which could already be in good shape. _Our most important criteria at this stage is **unambigious provenance**._ Nevertheless, datasets that contain some objectionable content with legal implications, such as some forms of PII and company confidential information, may have to be rejected outright.
 * **Filtered:** A _raw_ dataset has gone through our processing pipeline to remove duplicates, filter for objectional content, etc.
 * **Structured:** A _filtered_ dataset has been reformated to be most suitable for model training (LLMs, time series, etc.), RAG patterns, and similar purposes. For example, JSON-formatted data is often desirable. 
 
-The filtering process will involve the following (at the time of this writing):
-
-* **An initial quality check:**
-  * Acceptable format
-  * Not corrupted (e.g., a valid PDF)
-* **Filtering:**
-  * Duplicate removal
-  * Remove low-quality data (e.g., HTML tags)
-  * PII removal
-  * Copyright data removal (where feasible)
-  * Toxic content removal
-  * Bias
-  * Decontamination against known evaluation and benchmark datasets
-  * License verification (where feasible, detect data known to be covered by a different, incompatible license)
-  * Other consistency and quality improvements
-
-All steps will audit provenance and lineage with full visibility available to users of the datasets.
-
-The structured transformations may include one or more of the following:
-
-* Tokenization
-* Conversion to JSON or YAML
-* &ldquo;Chunkification&rdquo; (e.g., for use in RAG data stores)
-
+See [How We Process Datasets]({{site.baseurl}}/our-processing) for more details on these levels and how we process datasets.
