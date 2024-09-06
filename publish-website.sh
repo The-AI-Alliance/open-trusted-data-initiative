@@ -127,16 +127,19 @@ fi
 # Commit and push the updated config file:
 if [[ "$latest_history" = "$version" ]]
 then
-	$NOOP git commit -m "Updated version and timestamps in $cfg" $cfg
+	$NOOP git commit -m "Updated version ($version) and timestamps in $cfg" $cfg
 else
-	$NOOP git commit -m "Updated version and timestamps in $cfg and $index" $cfg $index
+	$NOOP git commit -m "Updated version ($version) and timestamps in $cfg and $index" $cfg $index
 fi
+
 $NOOP git push
 
-# Merge to latest and push to publish.
+# Merge to latest and push to publish. Also tag it!
 
 $NOOP git checkout $publich_branch
 $NOOP git merge $work_branch
 $NOOP git push
+$NOOP git tag v${version}
+$NOOP git push --tags
 $NOOP git checkout $work_branch
 
