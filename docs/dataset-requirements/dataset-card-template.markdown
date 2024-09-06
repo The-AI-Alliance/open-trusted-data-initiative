@@ -16,7 +16,9 @@ For more information on dataset card metadata, see the [Hugging Face guide](http
 
 > **NOTE:** We intend to turn this template into a form for easier preparation. Apologies in the meantime...
 
-Here is the template:
+> **WARNING:** At this time, we can only accept text files with one of the following extensions: `*.txt`, `*.md`, or `*.markdown`.
+
+Here is the template. <a href="{{site.baseurl}}/assets/files/dataset-card-template.markdown" download="dataset-card-template.markdown">Click here to download a copy.</a> (You might need to right click on the link...)
 
 # Dataset Card for { dataset_name }
 
