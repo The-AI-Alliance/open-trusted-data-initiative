@@ -31,7 +31,7 @@ All OTDI datasets must support permissive usage, including for commercial purpos
 
 All useful datasets include _metadata_ about their provenance, target uses, known limitations and risks, etc. To provide a uniform, standardized way of expressing this metadata, we ask you to submit a completed _Dataset Card_ when you [contribute the dataset]({{site.baseurl}}/contributing).
 
-Please create a copy of the [dataset card template text]({{site.baseurl}}/dataset-requirements/dataset-card-template) and replace all the content marked with `{...}` with appropriate values. Add additional text as you see fit Note the suggestions in HTML-style comments `<!-- ... -->`. Also note which sections are required vs. optional. After you submit this card with your dataset, we will provide feedback about clarifications needed and next steps. If you are uncertain about what a particular section requires, add questions in that section of your dataset card!
+Please create a copy of the [dataset card template text]({{site.baseurl}}/dataset-requirements/dataset-card-template) and fill it in as instructed. After you submit this card with your dataset, we will provide feedback about clarifications needed and next steps. If you are uncertain about what a particular section requires, add questions in that section of your dataset card!
 
 > **WARNING:** At this time, we can only accept text files with one of the following extensions: `*.txt`, `*.md`, or `*.markdown`.
 
