@@ -35,13 +35,6 @@ The process follows these steps:
 5. **Review & Categorize Your Submission:** One registered in [our datasets catalog](https://huggingface.co/aialliance), verify that your data is correctly categorized and labeled.
 4. **Monitor Usage:** Track how your data is being used and its impact on AI training and other uses.
 
-## It's Your Data, but Our Responsibility
-
-* **Data Anonymization:** We prioritize privacy with built-in data anonymization techniques.
-* **Secure Storage:** When we store your data, it is stored securely with state-of-the-art encryption.
-* **Ethical Use:** Our platform ensures your data is used ethically and responsibly.
-
-
 ## Diverse Data for Diverse AI Models
 
 We are particularly interested in new datasets that can be used to tune models to excel in various domains, although general-purpose datasets are also welcome. 
