@@ -6,9 +6,11 @@ parent: Dataset Requirements
 has_children: false
 ---
 
-Use the following template to create your dataset card. Replace all the content marked with `{...}` with appropriate values and add additional text as you see fit. Note the HTML-style comments `<!-- ... -->`, which you can remove, and also pay attention to sections marked required. Keep in mind our goals for OTDI and how this metadata supports those goals.  
+Use the following template to create your dataset card. Replace all the content marked with `{...}` with appropriate values and add additional text as you see fit. Note the suggestions in _italics_, which you should remove. Also, pay attention to sections marked required. Keep in mind our goals for OTDI and how this metadata supports those goals.  
 
 If you are uncertain about what a particular section requires, add questions in that section! When you submit this card with your dataset, we will provide answers, as well as other feedback. 
+
+You might have nothing to enter for some sections that are options. If so, just use &ldquo;N/A&rdquo;.
 
 For more information on dataset card metadata, see the [Hugging Face guide](https://huggingface.co/docs/hub/datasets-cards) and their [card specification](https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1), from which this card template is adapted.
 
@@ -16,11 +18,13 @@ For more information on dataset card metadata, see the [Hugging Face guide](http
 
 Here is the template:
 
-# Dataset Card for { descriptive, unique name }
+# Dataset Card for { dataset_name }
+
+_A descriptive and unique name is best!_
 
 ## Short Description (Required)
 
-<!-- Provide a quick summary of the dataset and its purpose. -->
+_A quick summary of the dataset and its purpose._
 
 { dataset_summary }
 
@@ -28,56 +32,60 @@ Here is the template:
 
 ### Dataset Description (Required)
 
-<!-- Provide longer details about this dataset, it's purpose, goals, etc. Note that some of the bullet list items are expanded below, so use the bullets when a single, concise entry is known, or use the longer sections below. -->
+_Longer details about this dataset, it's purpose, goals, etc._
 
 { dataset_description }
 
-* **Curated by (required):** { curators_list } (Required)
+* **Curated by (required):** { curators_list }
 * **Funded by (optional):** { funded_by }
-* **Shared by (optional):** { shared_by, e.g., your name and email } <!-- The submission form will also have this. -->
-* **Language(s) (NLP):** { language_list } <!-- include the primary languages you know of -->
+* **Shared by (optional):** { shared_by, e.g., your name and email } _The submission form will also have this._
+* **Language(s) (NLP):** { language_list } _include the primary languages you know of_
+
+_Some of these bullet list items can be expanded upon in sections below, so use the bullet points when a single, concise entry is known, or use the longer sections below._
 
 
 ### Dataset Card Authors (Required)
+
+_Names and email addresses for the authors._
 
 { dataset_card_authors }
 
 ### Dataset Card Contacts {Required}
 
-<!-- Email addresses for one or more of authors or other contact people -->
+_Names and email addresses for the primary contact people._
 
 { dataset_card_contacts }
 
 ### Dataset Sources
 
-<!-- Provide the basic links for the dataset. While this information will also be in the submission form, we want to have it in the data card, as well. -->
+_The link where the dataset lives today. (Preferably one link, but add more if necessary.) While this information will also be in the submission form, we want to have it in the data card, as well._
 
-- **Repository (required):** { repo_URL } <!-- e.g., https://huggingface.co/datasets/... -->
-- **Paper (optional):** { paper_URL } <!-- e.g., arxiv.org link -->
-- **GitHub (optional):** { GitHub_URL } <!-- e.g., for supporting code and documentation -->
-- **Other Demo or Documentation Links (optional):** { URL_list }
+* **Repository (required):** { repo_URL } _e.g., https://huggingface.co/datasets/..._
+* **Paper (optional):** { paper_URL } _e.g., arxiv.org link_
+* **GitHub (optional):** { GitHub_URL } _e.g., for supporting code and documentation_
+* **Other Demo or Documentation Links (optional):** { URL_list } _e.g., a [Just the Docs](https://just-the-docs.com/) link._
 
 ### Notes on How to Use the Dataset
 
-<!-- Address questions around how the dataset is intended to be used. For example, is it only suitable for use certain models, modalities, tools? -->
+_Address questions about how the dataset is intended to be used. For example, is it only suitable for use with/for certain models, modalities, tools? Are there significant limitations to be aware of?_
 
 { how_to_use_the_dataset }
 
 ### Target Use Cases
 
-<!-- Describes suitable use cases for the dataset. -->
+_Describe the best use cases for the dataset._
 
 { target_use_cases }
 
 ### Out-of-Scope Use Cases
 
-<!-- This section addresses misuse, malicious use, and uses that the dataset will not work well for. -->
+_Note use cases for which the dataset is ill-suited. This could include scenarios for misuse and malicious activity._
 
 { out_of_scope_use_cases }
 
 ### Dataset Structure
 
-<!-- This section provides a description of the dataset format, directory structure, fields, and additional information about the dataset structure such as criteria used to create the splits, relationships between data points, etc. -->
+_Provide a description of the dataset format, directory structure, schema (if structured), and additional useful information, such as criteria that were used to create splits, known relationships between data points, etc._
 
 { dataset_structure }
 
@@ -85,61 +93,61 @@ Here is the template:
 
 #### Curation Rationale
 
-<!-- Motivation for the creation of this dataset. -->
+_Motivation for the creation of this dataset._
 
 { curation_rationale_section }
 
 #### Source Data (Required)
 
-<!-- This section describes the source data (e.g. news text and headlines, social media posts, translated sentences, ...) used to create your dataset. Because of our emphasis on provenance, you must provide explicit details about any sources you used, including information about provenance, license to use, etc. -->
+_Describe the source data (e.g. news text and headlines, social media posts, translated sentences, ...) used to create the dataset. Because of our emphasis on provenance, **you must provide explicit details about any sources you used to derive this dataset**, including information about provenance, license to use, etc._
 
 { source_data }
 
 #### Data Collection and Processing (Required)
 
-<!-- This section describes the data collection and processing process such as data selection criteria, filtering and normalization methods, tools and libraries used, etc. While we understand you may not want to reveal any proprietary methods used, please provide enough information to satisfy our provenance concerns. -->
+_Describe the data collection and processing tools and techniques, such as data selection criteria, filtering and normalization methods, tools and libraries used, etc. While we understand you may not want to reveal any proprietary methods used, please provide enough information to satisfy our provenance concerns._
 
 { data_collection_and_processing }
 
 #### Source Data Producers (Required)
 
-<!-- This section describes the people or systems who originally created the data. It should also include self-reported demographic or identity information for the source data creators if this information is available. Provide enough information to satisfy our provenance concerns. -->
+_Describe the people or systems who originally created the data. It should also include self-reported demographic or identity information for the source data creators if this information is available. Provide enough information to satisfy our provenance concerns._
 
 { source_data_producers }
 
 ### Annotations (Optional)
 
-<!-- If the dataset contains annotations which are not part of the initial data collection, use this section to describe them. -->
+_If the dataset contains annotations which are not an "inherent" part of the initial data collection, use this section to describe them._
 
 { annotations }
 
 #### Annotation Process
 
-<!-- This section describes the annotation process such as annotation tools used in the process, the amount of data annotated, annotation guidelines provided to the annotators, interannotator statistics, annotation validation, etc. -->
+_Describe the annotation process used, such as particular, the amount of data annotated, annotation guidelines provided to the annotators, inter-annotator statistics, annotation validation, etc._
 
 { annotation_process }
 
 #### Who Are the Annotators?
 
-<!-- This section describes the people or systems who created the annotations. -->
+_Describe the people or systems who created the annotations. For example, Amazon Mechanical Turk._
 
 { who_are_annotators }
 
 ### Personal and Sensitive Information (Required)
 
-<!-- State whether the dataset contains data that might be considered personal, sensitive, or private (e.g., data that reveals addresses, uniquely identifiable names or aliases, racial or ethnic origins, sexual orientations, religious beliefs, political opinions, financial or health data, etc.). If efforts were made to anonymize the data, describe the anonymization process. -->
+_State whether the dataset contains data that might be considered personal, sensitive, or private (e.g., data that reveals addresses, uniquely identifiable names or aliases, racial or ethnic origins, sexual orientations, religious beliefs, political opinions, financial or health data, etc.). If efforts were made to anonymize or filter the data, describe this process._
 
 { personal_and_sensitive_information }
 
 ### Bias, Risks, and Limitations (Required)
 
-<!-- This section describes any known technical and social limitations of the dataset. -->
+_Describe any other known technical and social limitations of the dataset._
 
 { bias_risks_limitations }
 
 #### Recommendations
 
-<!-- This section is meant to convey any additional recommendations with respect to known bias, risk, and technical limitations. Note that we will always warn users "to be aware of potential risks, biases, and limitations of this dataset, which may not be fully known." -->
+_Describe any particular recommendations for handling known bias, risk, and technical limitations when using this dataset. Note that at as a matter of common practice, we will always warn users "to be aware of potential risks, biases, and limitations of this dataset, which may not be known."_
 
 { bias_recommendations }
 
@@ -149,31 +157,31 @@ The dataset is released under the **Community Data License Agreement – Permiss
 
 ### Future Work
 
-<!-- Describe planned work, if any. -->
+_Describe planned work, if any._
 
 { future_work }
 
 ### Citation (Optional)
 
-<!-- If there is a paper or blog post introducing the dataset, the APA and Bibtex information for that should go in this section. If they don't exist, delete these entries. -->
+_In additional to research papers mentioned above, add APA and Bibtex citations here, if any._
 
-**BibTeX:**
+#### BibTeX
 
 { citation_bibtex }
 
-**APA:**
+#### APA
 
 { citation_apa }
 
 ## Glossary (Optional)
 
-<!-- If relevant, include terms and calculations in this section that can help readers understand the dataset or dataset card. If there are none, just use "N/A". -->
+_If relevant, include terms and calculations in this section that can help readers understand the dataset or dataset card. For example, are there domain-specific terms used that might be unclear to a reader outside the domain?_
 
 { glossary }
 
 ## More Information (Optional)
 
-<!-- Anything else you want to add? -->
+_Anything else you want to add?_
 
 { more_information }
 
