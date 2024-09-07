@@ -27,7 +27,7 @@ The process follows these steps:
 Use this form to tell us about your dataset. We will follow up with next steps.
 
 <div class="callout-box centered bold">
-  <em>Contributions will be open soon!</em>
+  <em>Contributions will be accepted soon!</em>
 </div>
 <form id="datasets-hubspot-form">
 	<div class="form-dataset disabled" inert>

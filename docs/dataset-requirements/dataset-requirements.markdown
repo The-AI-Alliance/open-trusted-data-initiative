@@ -49,7 +49,7 @@ The [dataset card template]({{site.baseurl}}/dataset-requirements/dataset-card-t
 
 We endeavor to be flexible on dataset file formats and how they are organized. For text, we recommend formats like CSV, JSON, Parquet, ORC, AVRO. Supporting PDFs, where extraction will be necessary, can be difficult, but not impossible.
 
-## Diverse Datasets Desired for Diverse AI Models and Applications
+### Diverse Datasets Desired for Diverse AI Models and Applications
 
 We are particularly interested in new datasets that can be used to tune models to excel in various domains, although general-purpose datasets are also welcome. 
 
@@ -57,7 +57,7 @@ When you contribute a dataset, you will have the ability to optionally specify a
 
 These are our current domains:
 
-### Science and Industrial
+#### Science and Industrial
 
 * **Climate:** Supporting research in climate change, modeling vegetation and water cover, studying agriculture, etc.
 * **Marine:** Supporting research on and applications targeted towards marine environments.
@@ -65,7 +65,7 @@ These are our current domains:
 * **Semiconductors:** Specific area of materials research focused on improving the state of the art for semiconductor performance and manufacturing.
 * **Other Industrial:** Other areas not covered above.
 
-### Other Domains
+#### Other Domains
 
 * **Finance:** Historical market activity and behaviors. Connections to influences like climate, weather events, political events, etc. 
 * **Healthcare:** Everything from synthetic patient data for modeling outcomes, to public literature on known diseases and conditions, to diagnostics results and their analysis.
@@ -74,6 +74,8 @@ specific applications.
 * **Social Sciences:** Social dynamics, political activity and sentiments, etc.
 * **Timeseries:** Data for training, tuning, and testing time series models, including specific applications.
 
+#### Modularity
+
 In addition, we will ask you clarify the _modality_ of the data. It may contain one or more of the following:
 
 * **Text Only**
@@ -81,7 +83,7 @@ In addition, we will ask you clarify the _modality_ of the data. It may contain 
 * **Audio:** 
 * **Video:** (including optional audio)
 
-### Data Quality and &ldquo;Cleanliness&rdquo;
+### Data Quality and &ldquo;Cleanliness&rdquo; Concepts
 
 We support several levels of quality and cleanliness, as follows. This list corresponds to stages in our _ingestion_ process:
 
