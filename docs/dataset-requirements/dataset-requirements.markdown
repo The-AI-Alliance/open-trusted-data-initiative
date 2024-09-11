@@ -25,10 +25,6 @@ To ensure fully-traceable provenance and governance, you must affirm that you ar
 
 > **WARNING:** Do not contribute any data that was obtained by crawling or scraping public data from the Internet. At this time, we can not accept such datasets because of concerns about verifying the provenance of all such data.
 
-## License 
-
-You retain all ownership, copyrights and other interests, and rights to and title to the dataset, but you grant The AI Alliance a non-exclusive, worldwide, royalty-free, perpetual, and non-cancellable license under the [Community Data License Agreement - Permissive, Version 2.0](https://cdla.dev/permissive-2-0/), which includes, but is not limited to, the ability to use, modify, alter, edit, copy, reproduce, display, make compilations of and distribute the dataset.
-
 ## Dataset Card
 
 All useful datasets include _metadata_ about their provenance, target uses, known limitations and risks, etc. To provide a uniform, standardized way of expressing this metadata, we ask you to submit a completed _Dataset Card_ when you [contribute the dataset]({{site.baseurl}}/contributing).
