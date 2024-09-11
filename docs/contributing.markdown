@@ -22,6 +22,14 @@ The process follows these steps:
 5. **Review Your Submission Details:** Verify that your data is correctly categorized and labeled in our [catalog](https://huggingface.co/aialliance).
 4. **Monitor Usage:** Track how your data is being used by others.
 
+## License
+
+The Open Trusted Data Initiative is focused on obtaining datasets from submitters who either own or have a broad license from all owners of data included in the dataset. By contributing a dataset to the Initative, you affirm that with respect to the dataset and all of its data, you are either (1) the owner or (2) you have been granted a license by all owner(s) of the data enabling you to license it to others under the Community Data License Agreement - Permissive, Version 2.0, which gives anyone the right to use, modify, copy, and create derivative works of the data and dataset, among other things. Do not contribute any data that was obtained merely by collecting public data from the Internet or from other sources that you do not own or to which you do not have a license.
+
+By contributing the dataset to the Initiative, you grant anyone a license to the dataset and its data under the [Developer Certificate of Origin, Version 1.1](https://developercertificate.org/) and the [Community Data License Agreement - Permissive, Version 2.0](https://cdla.dev/permissive-2-0/).  This does not affect your ownership, copyrights and other interests, and rights to and title to the dataset and its data.
+![image](https://github.com/user-attachments/assets/f73cfd45-bae4-4a70-8cab-25fe54036c11)
+
+
 ## Now to Contribute Your Dataset
 
 Use this form to tell us about your dataset. We will follow up with next steps.
