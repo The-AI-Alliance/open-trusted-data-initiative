@@ -9,7 +9,7 @@ show_contribute_dataset_button: true
 # Contribute to the Future of AI with Open, Trusted Data!
 
 {: .hightlight}
-> _Join **The AI Alliance Open Trusted Data Initiative** (OTDI), where our mission is to create a comprehensive, crowd-sourced data catalog for AI model training, domain-specific tuning, and related uses._
+> _Join **The AI Alliance Open Trusted Data Initiative** (OTDI), where our mission is to create a comprehensive, crowd-sourced catalog of openly licensed, provenanced data for AI model training, domain-specific tuning, and related uses._
 >
 > _In our context_ Trusted Data _means the provenance and governance of the data are clear and unambiguous. The metadata about each dataset will also provide clarity about their safety and other concerns, such as the potential presence of hate speech, the filtering used to remove such content, etc._
 
