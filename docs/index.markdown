@@ -37,6 +37,7 @@ Ready to contribute a dataset? To get started, first review our [requirements]({
 
 ## More Information
 
+* [References]({{site.baseurl}}/references): What others are saying about trusted, open data.
 * [About Us]({{site.baseurl}}/about): More about the AI Alliance and this document.
 * [The AI Alliance](https://thealliance.ai){:target="ai-alliance"}
 
