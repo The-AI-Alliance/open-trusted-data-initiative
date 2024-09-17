@@ -1,7 +1,7 @@
 ---
 layout: default
 title: About Us
-nav_order: 100
+nav_order: 60
 has_children: false
 show_contribute_dataset_button: true
 ---
