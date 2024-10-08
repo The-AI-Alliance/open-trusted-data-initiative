@@ -28,13 +28,15 @@ OTDI aims to address these concerns with an industry wide effort to gather and p
 
 ## Delivering Trust
 
-* Data Explortion
-* Data Cleaning
-* Data Deduplication
-* Data Decontamination
-* Data Auditing
-* Data Documentation
-* Data Governance
+What does delivering trust mean? We wish to enable the following:
+
+* **Data Exploration:** Finding the appropriate dataset for your needs.
+* **Data Cleaning:** Processing datasets with clear, open data pipelines towards specific objectives.
+* **Data Deduplication:** Part of cleaning, removal of exact and _fuzzy_ duplicates.
+* **Data Decontamination:** Part of cleaning, removal of objective content.
+* **Data Auditing:** End-to-end traceability of all activity on a dataset.
+* **Data Documentation:** Understanding all aspects of a dataset, including _actionable_ metadata.
+* **Data Governance:** Confidence in all aspects of a dataset's management, from its origin to its final state.
 
 ## Next Steps
 
