@@ -55,7 +55,7 @@ Ready to contribute a dataset? To get started, first review our [requirements]({
 
 > **Tip:** Use the search box at the top of this page to find specific content.
 
-| **Authors** | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focusareas/foundation-models){:target="ai-alliance-wg"} |
+| **Authors** | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
 | **History** | V0.0.3, 2024-09-06 |
 |             | V0.0.2, 2024-09-01 |
 |             | V0.0.1, 2024-09-01 |
