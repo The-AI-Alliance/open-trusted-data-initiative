@@ -1,15 +1,17 @@
 ---
 layout: default
-title: Contribute a Dataset
-nav_order: 30
+title: Contribute Your Dataset!
+nav_order: 40
 has_children: false
 show_contribute_dataset_button: false
 ---
 
-# Contribute a Dataset 
+# Contribute Your Dataset! 
 
 > **NOTE:**
 > Be sure to read all the [Dataset Requirements]({{site.baseurl}}/dataset-requirements/dataset-requirements) before proceeding. Make sure you agree to all the provisions or contact us at [data@thealliance.ai](mailto:data@thealliance.ai) if you have questions.
+
+_Contribution_ can mean _donating_ a dataset to the Alliance, where we take ownership of a copy at the time of donation and we host it ourselves, or it can mean adding your dataset to our catalog, but you continue to own and host it.
 
 ## The Contribution Process
 
@@ -18,15 +20,17 @@ The process follows these steps:
 1. **Prepare your contribution:** Prepare the [The Dataset Card]({{site.baseurl}}/dataset-requirements/dataset-card-template).
 2. **Complete the contribution form:** The form [below](#contribute-your-dataset) submits your dataset for consideration.
 3. **Receive Feedback from Us:** We will evaluate the dataset card and the dataset itself, providing feedback and requesting clarifications where needed.
-4. **Upload the Data:** (Optional) Once your contribution is accepted, you can transfer the data to [our datasets catalog](https://huggingface.co/aialliance) or you can continue to host it yourself, for example, in your own Hugging Face account.
-5. **Review Your Submission Details:** Verify that your data is correctly categorized and labeled in our [catalog](https://huggingface.co/aialliance).
+4. **Upload the Data:** (Optional) Once your contribution is accepted, you can transfer the data to be hosted in [The AI Alliance Hugging Face space](https://huggingface.co/aialliance){:target="aia-hf"} or you can continue to host it yourself, for example, in your own Hugging Face space.
+5. **Review Your Submission Details:** Verify that your data is correctly categorized and labeled in our catalog.
 4. **Monitor Usage:** Track how your data is being used by others.
+
+> **Note:** The public dataset catalog for all project datasets is coming soon.
 
 ## License
 
-The Open Trusted Data Initiative is focused on obtaining datasets from submitters who either own or have a broad license from all owners of data included in the dataset. By contributing a dataset to the Initative, you affirm that with respect to the dataset and all of its data, you are either (1) the owner or (2) you have been granted a license by all owner(s) of the data enabling you to license it to others under the [Community Data License Agreement - Permissive, Version 2.0](https://cdla.dev/permissive-2-0/), which gives anyone the right to use, modify, copy, and create derivative works of the data and dataset, among other things. Do not contribute any data that was obtained merely by collecting public data from the Internet or from other sources that you do not own or to which you do not have a license.
+The Open Trusted Data Initiative is focused on obtaining datasets from submitters who either own or have a broad license from all owners of data included in the dataset. By contributing a dataset to the Initative, you affirm that with respect to the dataset and all of its data, you are either (1) the owner or (2) you have been granted a license by all owner(s) of the data enabling you to license it to others under the [Community Data License Agreement - Permissive, Version 2.0](https://cdla.dev/permissive-2-0/), which gives anyone the right to use, modify, copy, and create derivative works of the data and dataset, among other things. Do not contribute any data that was obtained merely by collecting publicly-visible data from the Internet or from other sources that you do not own or to which you do not have a CDLA or compatible license.
 
-By contributing the dataset to the Initiative, you grant anyone a license to the dataset and its data under the [Developer Certificate of Origin, Version 1.1](https://developercertificate.org/) and the [Community Data License Agreement - Permissive, Version 2.0](https://cdla.dev/permissive-2-0/).  This does not affect your ownership, copyrights and other interests, and rights to and title to the dataset and its data.
+By contributing the dataset to the Initiative, you grant anyone a license to the dataset and its data under the [Developer Certificate of Origin, Version 1.1](https://developercertificate.org/){:target="dco"} (see also our [community contributors page](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md){:target="community"}) and the [Community Data License Agreement - Permissive, Version 2.0](https://cdla.dev/permissive-2-0/){:target="cdla"}.  This does not affect your ownership, copyrights and other interests, and rights to and title to the dataset and its data.
 
 ## Now to Contribute Your Dataset
 

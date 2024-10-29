@@ -19,6 +19,10 @@ show_contribute_dataset_button: true
 
 Here are the requirements to contribute a dataset to The AI Alliance Open Trusted Dataset Initiative. If you have any questions or concerns about meeting these requirements, but you are still interested in contributing, please contact us at [data@thealliance.ai](mailto:data@thealliance.ai).
 
+
+https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md
+
+
 ## The Data Is Yours to Contribute
 
 To ensure fully-traceable provenance and governance, you must affirm that you are the owner of the dataset or you must affirm that the dataset came from a source that offers the data for use without restriction, for example, that you have been granted permission by the owners to act on their behalf with respect to the dataset. The _data card_ has sections for specifying these details. 
