@@ -17,10 +17,9 @@ show_contribute_dataset_button: true
 {:toc}
 </details>
 
-
 ## Provenance and Governance
 
-Given the importance to us of provenance and governance of our datasets in this initiative, we will process all proposed datasets to ensure they meet our guidelines. We will publish the technical details of these processes soon. The [Data and Trust Alliance](https://dataandtrustalliance.org/) standard for [provenance](https://dataandtrustalliance.org/work/data-provenance-standards) will inform our work.
+Given the importance of provenance and governance for the datasets in this initiative, we will analyze all proposed datasets to ensure they meet our [dataset requirements]({{site.baseurl/dataset-requirements/dataset-requirements}}). We will publish the technical details of these processes soon. The [Data and Trust Alliance](https://dataandtrustalliance.org/) standard for [provenance](https://dataandtrustalliance.org/work/data-provenance-standards) will inform our work.
 
 ## Data Quality and &ldquo;Cleanliness&rdquo;
 
