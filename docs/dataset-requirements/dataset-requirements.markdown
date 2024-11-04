@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Dataset Requirements
-nav_order: 20
+nav_order: 30
 has_children: true
 show_contribute_dataset_button: true
 ---
@@ -19,9 +19,7 @@ show_contribute_dataset_button: true
 
 Here are the requirements to contribute a dataset to The AI Alliance Open Trusted Dataset Initiative. If you have any questions or concerns about meeting these requirements, but you are still interested in contributing, please contact us at [data@thealliance.ai](mailto:data@thealliance.ai).
 
-
-https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md
-
+> **TIP:** See the AI Alliance [community page on contributing](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md){:target="contrib"} for complete information on contributing to AI Alliance projects.
 
 ## The Data Is Yours to Contribute
 
@@ -78,8 +76,8 @@ specific applications.
 
 In addition, we will ask you clarify the _modality_ of the data. It may contain one or more of the following:
 
-* **Text Only**
-* **Image:** (still images)
+* **Text**
+* **Image:** (i.e., still images)
 * **Audio:** 
 * **Video:** (including optional audio)
 
@@ -87,7 +85,7 @@ In addition, we will ask you clarify the _modality_ of the data. It may contain 
 
 We support several levels of quality and cleanliness, as follows. This list corresponds to stages in our _ingestion_ process:
 
-* **Raw:** The dataset as submitted, which could already be in good shape. _Our most important criteria at this stage is **unambigious provenance**._ Raw datasets will go through filtering and analysis to remove potential objectionable content. However, the presence of some content in the raw data could have legal implications, such as some forms of PII and company confidential information, which may force us to reject the contribution. (Should this happen, we will discuss mitigation options with you.)
+* **Raw:** The dataset as submitted, which could already be in good shape. _Our most important concern at this stage is **unambigious provenance**._ Raw datasets will go through filtering and analysis to remove potential objectionable content. However, the presence of some content in the raw data could have legal implications, such as some forms of PII and company confidential information, which may force us to reject the contribution. (Should this happen, we will discuss mitigation options with you.)
 * **Filtered:** A _raw_ dataset has gone through our processing pipeline to remove duplicates, filter for objectional content, etc.
 * **Structured:** A _filtered_ dataset has been reformated to be most suitable for model training (LLMs, time series, etc.), RAG patterns, and similar purposes. For example, JSON-formatted data is often desirable. 
 

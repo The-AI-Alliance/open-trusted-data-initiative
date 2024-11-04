@@ -1,7 +1,7 @@
 ---
 layout: default
 title: How We Process Datasets
-nav_order: 30
+nav_order: 40
 has_children: false
 show_contribute_dataset_button: true
 ---
@@ -19,7 +19,7 @@ show_contribute_dataset_button: true
 
 ## Provenance and Governance
 
-Given the importance of provenance and governance for the datasets in this initiative, we will analyze all proposed datasets to ensure they meet our [dataset requirements]({{site.baseurl/dataset-requirements/dataset-requirements}}). We will publish the technical details of these processes soon. The [Data and Trust Alliance](https://dataandtrustalliance.org/) standard for [provenance](https://dataandtrustalliance.org/work/data-provenance-standards) will inform our work.
+Given the importance of provenance and governance for the datasets in this initiative, we will analyze all proposed datasets to ensure they meet our [dataset requirements]({{site.baseurl}}/dataset-requirements/dataset-requirements). We will publish the technical details of these processes soon. The [Data and Trust Alliance](https://dataandtrustalliance.org/){:target="dta"} standard for [provenance](https://dataandtrustalliance.org/work/data-provenance-standards){:target="dta2"} will inform our work.
 
 ## Data Quality and &ldquo;Cleanliness&rdquo;
 

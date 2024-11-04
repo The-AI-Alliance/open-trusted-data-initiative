@@ -1,7 +1,7 @@
 ---
 layout: default
 title: References
-nav_order: 50
+nav_order: 60
 has_children: false
 show_contribute_dataset_button: true
 ---
@@ -14,7 +14,7 @@ Here is an evolving list of writings from other sources about the importance of 
 
 ## A large-scale audit of dataset licensing and attribution in AI
 
-[A large-scale audit of dataset licensing and attribution in AI](https://www.nature.com/articles/s42256-024-00878-8) is a Nature paper from MIT researchers and others. From a corresponding [MIT News article](https://news.mit.edu/2024/study-large-language-models-datasets-lack-transparency-0830), the paper describes their "... systematic audit of more than 1,800 text datasets on popular hosting sites. They found that more than 70 percent of these datasets omitted some licensing information, while about 50 percent had information that contained errors.
+[A large-scale audit of dataset licensing and attribution in AI](https://www.nature.com/articles/s42256-024-00878-8){:target="nature"} is a Nature paper from MIT researchers and others. From a corresponding [MIT News article](https://news.mit.edu/2024/study-large-language-models-datasets-lack-transparency-0830){:target="mit"}, the paper describes their "... systematic audit of more than 1,800 text datasets on popular hosting sites. They found that more than 70 percent of these datasets omitted some licensing information, while about 50 percent had information that contained errors.
 
 "Building off these insights, they developed a user-friendly tool called the Data Provenance Explorer that automatically generates easy-to-read summaries of a dataset’s creators, sources, licenses, and allowable uses."
 
@@ -28,7 +28,7 @@ The [The European AI Office](https://digital-strategy.ec.europa.eu/en/policies/a
 
 ## Data and Trust Alliance - Data Provenance Standards
 
-The [Data and Trust Alliance](https://dataandtrustalliance.org/) has defined a standard for [provenance](https://dataandtrustalliance.org/work/data-provenance-standards), as well as other projects.
+The [Data and Trust Alliance](https://dataandtrustalliance.org/){:target="dta"} has defined a standard for [provenance](https://dataandtrustalliance.org/work/data-provenance-standards){:target="dta2"}, as well as other projects.
 
 Here is their statement about the purpose of this standard, quoted from the project web page:
 

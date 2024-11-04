@@ -13,7 +13,7 @@ If you are uncertain about what a particular section requires, add questions in 
 
 You might have nothing to enter for some sections that are options. If so, just use &ldquo;N/A&rdquo;.
 
-For more information on dataset card metadata, see the [Hugging Face guide](https://huggingface.co/docs/hub/datasets-cards) and their [card specification](https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1), from which this card template is adapted.
+For more information on dataset card metadata, see the [Hugging Face guide](https://huggingface.co/docs/hub/datasets-cards){:target="hf-dc"} and their [card specification](https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1){:target="hf-cs"}, from which this card template is adapted.
 
 > **NOTE:** We intend to turn this template into a form for easier preparation. Apologies in the meantime...
 
@@ -66,7 +66,7 @@ _The link where the dataset lives today. (Preferably one link, but add more if n
 * **Repository (required):** { repo_URL } _e.g., https://huggingface.co/datasets/..._
 * **Paper (optional):** { paper_URL } _e.g., arxiv.org link_
 * **GitHub (optional):** { GitHub_URL } _e.g., for supporting code and documentation_
-* **Other Demo or Documentation Links (optional):** { URL_list } _e.g., a [Just the Docs](https://just-the-docs.com/) link._
+* **Other Demo or Documentation Links (optional):** { URL_list } 
 
 ### Notes on How to Use the Dataset
 
@@ -156,7 +156,7 @@ _Describe any particular recommendations for handling known bias, risk, and tech
 
 ### Licensing Information
 
-The dataset is released under the **Community Data License Agreement – Permissive, Version 2.0** [license](https://cdla.dev/permissive-2-0/).
+The dataset is released under the **Community Data License Agreement – Permissive, Version 2.0**, https://cdla.dev/permissive-2-0/.
 
 ### Future Work
 
