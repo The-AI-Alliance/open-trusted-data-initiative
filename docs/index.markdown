@@ -15,12 +15,12 @@ show_contribute_dataset_button: true
 
 > **News:**
 >
-> November 4, 2024: [pleias](https://pleias.fr){:target="pleias"} joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn](https://www.linkedin.com/posts/pleias_pleias-joins-the-ai-alliance-to-co-lead-open-ugcPost-7259263514542796800-Uphx/){:target="pleias-li"}.
+> November 4, 2024: [pleias](https://pleias.fr){:target="pleias"} joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/pleias_pleias-joins-the-ai-alliance-to-co-lead-open-ugcPost-7259263514542796800-Uphx/){:target="pleias-li"}.
+
+> **Tip:** Use the search box at the top of this page to find specific content.
 
 | **Authors**     | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
 | **Last Update** | V0.0.4, 2024-11-04 |
-
-> **Tip:** Use the search box at the top of this page to find specific content.
 
 # Why Is Trusted Data Important?
 
