@@ -37,3 +37,15 @@ Here is their statement about the purpose of this standard, quoted from the proj
 > Trust in data starts with transparency into provenance; assessing where data comes from, how it’s created, and whether it can be used, legally. Yet the ecosystem needs a common language to provide that transparency.
 > 
 > This is why we developed the first cross-industry data provenance standards. 
+
+## The Linux Foundation - Implementing AI Bill of Materials (AI BOM) with SPDX 3.0
+
+A _bill of materials_ is a traditional concept used to specify for producers and consumers exactly what parts are contained in the whole. They have been used in shipping for a very long time, for example.
+
+Software BoMs have the same goals, to very clearly state what components a software artifact contains.
+
+[This Linux Foundation report](https://www.linuxfoundation.org/research/ai-bom) discusses the concept in the content of AI. A quote from the website:
+
+> A Software Bill of Materials (SBOM) is becoming an increasingly important tool in regulatory and technical spaces to introduce more transparency and security into a project's software supply chain.
+> 
+> Artificial intelligence (AI) projects face unique challenges beyond the security of their software, and thus require a more expansive approach to a bill of materials. In this report, we introduce the concept of an AI-BOM, expanding on the SBOM to include the documentation of algorithms, data collection methods, frameworks and libraries, licensing information, and standard compliance.
