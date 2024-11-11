@@ -72,9 +72,9 @@ specific applications.
 * **Social Sciences:** Social dynamics, political activity and sentiments, etc.
 * **Timeseries:** Data for training, tuning, and testing time series models, including specific applications.
 
-#### Modularity
+#### Modalities
 
-In addition, we will ask you clarify the _modality_ of the data. It may contain one or more of the following:
+In addition, we will ask you clarify the _modalities_ of the data. It may contain one or more of the following:
 
 * **Text**
 * **Image:** (i.e., still images)

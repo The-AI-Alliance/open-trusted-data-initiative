@@ -34,6 +34,8 @@ By contributing the dataset to the Initiative, you grant anyone a license to the
 
 Use this form to tell us about your dataset. We will follow up with next steps.
 
+> **TIP:** See the [dataset requirements]({{site.baseurl}}/dataset-requirements/dataset-requirements/) for details about each of the following fields.
+
 <div class="callout-box centered bold">
   <em>Contributions will be accepted soon!<br/>Contact us at <a href="mailto:data@thealliance.ai?subject=I want to contribute a dataset">data@thealliance.ai</a> for more information.</em>
 </div>
