@@ -35,7 +35,7 @@ By contributing the dataset to the Initiative, you grant anyone a license to the
 Use this form to tell us about your dataset. We will follow up with next steps.
 
 <div class="callout-box centered bold">
-  <em>Contributions will be accepted soon!</em>
+  <em>Contributions will be accepted soon!<br/>Contact us at <a href="mailto:data@thealliance.ai?subject=I want to contribute a dataset">data@thealliance.ai</a> for more information.</em>
 </div>
 <form id="datasets-hubspot-form">
 	<div class="form-dataset disabled" inert>
