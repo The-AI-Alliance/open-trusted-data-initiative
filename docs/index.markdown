@@ -9,9 +9,9 @@ show_contribute_dataset_button: true
 # Building the Future of Open, Trusted Data for AI
 
 {: .hightlight}
-> _Join **The AI Alliance, Open Trusted Data Initiative** (OTDI), where our mission is to create a comprehensive, widely-sourced catalog of datasets with clear licenses for use, explicit provenance guarantees, and governed transformations, intended for AI model training, RAG (retrieval augmented generation), tuning, and other uses._
+> _Join **The AI Alliance, Open Trusted Data Initiative** (OTDI), where our mission is to create a comprehensive, widely-sourced catalog of datasets with clear licenses for use, explicit provenance guarantees, and governed transformations, intended for AI model training, tuning, and application patterns like RAG (retrieval augmented generation) and agents._
 >
-> _In our context_ trusted data _means the provenance and governance of the dataset is clear and unambiguous. The metadata about the dataset provides clarity about its intended purposes, safety, and other considerations, along with any filtering and other processing that were done on the dataset._
+> _In our context_ trusted data _means the provenance and governance of the dataset is clear and unambiguous. The metadata about the dataset provides clarity about its intended purposes, safety, and other considerations, along with any filtering and other processing steps that were done on the dataset._
 
 > **News:**
 >
@@ -36,6 +36,12 @@ What does delivering trust mean? We wish to enable the following:
 * **Data Cleaning:** Datasets processed for specific objectives (e.g., deduplication, hate speech removal, etc.) with open-source data pipelines.
 * **Data Auditing:** End-to-end governance, ie., traceability, of all activity involving the dataset.
 * **Data Documentation:** Metadata that covers all important aspects of a dataset.
+
+Our deliverables to the industry will include the following:
+
+* **Baseline Knowledge Datasets:** Openly accessible, permissively licensed language, code, image, audio, and video data that embodies a diverse range of global knowledge. 
+* **Domain Knowledge:** A rich, comprehensive set of datasets pertinent to tuning foundation models to a set of application domains: legal, finance, chemistry, manufacturing, etc.
+* **Tooling and Platform Engineering:** Hosted pipelines, platform services, and compute capacity for data preparation at the scale needed to achieve the vision. Fully open-source, so you can use these tools as you see fit.
 
 # Contributing Datasets
 
