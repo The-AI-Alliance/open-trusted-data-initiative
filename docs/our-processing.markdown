@@ -54,4 +54,4 @@ The transformations to create **Structured** datasets are TBD, but may include o
 * Conversion to JSON or YAML
 * &ldquo;Chunkification&rdquo; (e.g., for use in RAG data stores)
 
-All steps include auditing provenance and lineage with full visibility available to users of the datasets.
+All steps include full auditing to support data governance requirements, such as provenance and lineage back to original sources, with full visibility available to users of the datasets. This governance metadata will be publically available along with the datasets. For example, it can be used to create _Bills of Material_ by interested parties (see [here]({{site.baseurl}}/references/#ai-bom)).

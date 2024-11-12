@@ -38,6 +38,7 @@ Here is their statement about the purpose of this standard, quoted from the proj
 > 
 > This is why we developed the first cross-industry data provenance standards. 
 
+<a name="ai-bom"></a>
 ## The Linux Foundation - Implementing AI Bill of Materials (AI BOM) with SPDX 3.0
 
 A _bill of materials_ is a traditional concept used to specify for producers and consumers exactly what parts are contained in the whole. They have been used in shipping for a very long time, for example.
@@ -57,7 +58,3 @@ Software BoMs have the same goals, to very clearly state what components a softw
 There mission is to uncover the datasets used to train large language models. From their website:
 
 > The Data Provenance Initiative is a volunteer collective of AI researchers from around the world. We conduct large-scale audits of the massive datasets that power state-of-the-art AI models. We have audited over 4,000 popular text, speech, and video datasets, tracing them from origin to creation, cataloging data sources, licenses, creators, and other metadata, which researchers can examine using our Explorer tool. We recently analyzed 14,000 web domains, to understand the evolving provenance and consent signals behind AI data. The purpose of this work is to map the landscape of AI data, improving transparency, documentation, and informed use of data.
->
-> You can download this data (with filters) directly from the Data Provenance Collection.
->
-> If you wish to contribute or discuss, please feel free to contact the organizers at data.provenance.init@gmail.com.
