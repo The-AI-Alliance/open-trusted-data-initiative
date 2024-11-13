@@ -9,7 +9,7 @@ show_contribute_dataset_button: false
 # Contribute Your Dataset! 
 
 > **NOTE:**
-> Be sure to read all the [Dataset Requirements]({{site.baseurl}}/dataset-requirements/dataset-requirements) before proceeding. Make sure you agree to all the provisions or contact us at [data@thealliance.ai](mailto:data@thealliance.ai) if you have questions.
+> Be sure to read all the [Dataset Requirements]({{site.baseurl}}/dataset-requirements) before proceeding. Make sure you agree to all the requirements described there or [contact us]({{site.baseurl}}/about/#contact-us) if you have questions.
 
 _Contribution_ means adding your dataset to our catalog. You can optionally _donate_ the dataset to the Alliance, where we take ownership of a copy at the time of donation and we host it ourselves. Otherwise, you continue to own and host the dataset.
 
@@ -17,12 +17,12 @@ _Contribution_ means adding your dataset to our catalog. You can optionally _don
 
 The process follows these steps:
 
-1. **Prepare your contribution:** Prepare the [The Dataset Card]({{site.baseurl}}/dataset-requirements/dataset-card-template).
-2. **Complete the contribution form:** The form [below](#contribute-your-dataset) submits your dataset for consideration.
-3. **Receive feedback from us:** We will evaluate the dataset card and the dataset itself, providing feedback and requesting clarifications where needed.
+1. **Prepare your contribution:** Make sure you meet the [Dataset Requirements]({{site.baseurl}}/dataset-requirements/dataset-card-template).
+2. **Complete the contribution form:** Use the form [below](#contribute-your-dataset) to submit your dataset for consideration.
+3. **Receive feedback from us:** After we evaluate the submission, we will provide feedback and request clarifications, where needed.
 4. **Upload the data:** (Optional) Once your contribution is accepted, you can transfer the data to be hosted in [The AI Alliance Hugging Face space](https://huggingface.co/aialliance){:target="aia-hf"} or you can continue to host it yourself, for example, in your own Hugging Face space.
-5. **Review your submission details:** Verify that your data is correctly categorized and labeled in our catalog.
-4. **Monitor usage:** Track how your data is being used by others (Coming soon).
+5. **Review your submission details:** After publication in our catalog, verify that the imformation about your dataset is correct.
+<!-- 6. **Monitor usage:** Track how your data is being used by others (Coming soon). -->
 
 ## License
 
@@ -34,7 +34,7 @@ By contributing the dataset to the Initiative, you grant anyone a license to the
 
 Use this form to tell us about your dataset. We will follow up with next steps. Note that some of the fields are also in the _dataset card_ you are asked to submit.
 
-> **TIP:** See the [dataset requirements]({{site.baseurl}}/dataset-requirements/dataset-requirements/) if you have questions about any of the following fields.
+> **TIP:** See the [dataset requirements]({{site.baseurl}}/dataset-requirements/) if you have questions about any of the following fields.
 
 <div class="callout-box centered bold">
   <em>Contributions will be accepted soon!<br/>Contact us at <a href="mailto:data@thealliance.ai?subject=I want to contribute a dataset">data@thealliance.ai</a> for more information.</em>
@@ -55,15 +55,7 @@ Use this form to tell us about your dataset. We will follow up with next steps. 
 				  <label for="dataset-location">Dataset&nbsp;location:</label>
 				</th>
 				<td class="form-dataset-table-value">
-				  <input type="url" id="dataset-url" name="dataset-url" class="form-dataset-table-input" placeholder="https://example.com" pattern="https://.*" required />
-				</td>
-			</tr>
-			<tr>
-				<th class="form-dataset-table-label">
-				  <label for="dataset-hosting">Hosting:</label>
-				</th>
-				<td class="form-dataset-table-value">
-				  <input type="checkbox" id="dataset-alliance-hosting" name="dataset-alliance-hosting" checked /> I want the AI Alliance to host this dataset.
+				  <input type="url" id="dataset-url" name="dataset-url" class="form-dataset-table-input" placeholder="https://huggingface.co" pattern="https://.*" required />
 				</td>
 			</tr>
 			<tr>
@@ -71,62 +63,74 @@ Use this form to tell us about your dataset. We will follow up with next steps. 
 				  <label for="dataset">Dataset&nbsp;card:</label>
 				</th>
 				<td class="form-dataset-table-value">
-          <div class="form-dataset-table-file-input">
-				    <input type="file" id="dataset-card" name="dataset-card" accept=".txt, .md, .markdown"  required /> (.txt, .md, or .markdown file only)
-          </div>
+                  <input type="url" id="dataset-card" name="dataset-url" class="form-dataset-table-input" placeholder="https://huggingface.co" pattern="https://.*" /> Leave blank if the location README <em>is</em> the dataset card.
 				</td>
 			</tr>
+			<tr>
+				<th class="form-dataset-table-label">
+				  <label for="dataset-hosting">Hosting:</label>
+				</th>
+				<td class="form-dataset-table-value">
+				  <input type="checkbox" id="dataset-alliance-hosting" name="dataset-alliance-hosting" unchecked /> I want the AI Alliance to host this dataset.
+				</td>
+			</tr>
+            <!--
 			<tr>
 				<th class="form-dataset-table-label">
 				  <label for="modality">Modalities:</label>
 				</th>
 				<td class="form-dataset-table-value">
-          <div>
+                    <div>
 					  <input type="checkbox" id="dataset-modality-text" name="dataset-modality-text" class="form-dataset-table-checkbox" checked />
-            <label for="text">Text Only</label>
-          </div>
-          <div>
-            <input type="checkbox" id="dataset-modality-text" name="dataset-modality-text" class="form-dataset-table-checkbox" />
-            <label for="images">Images</label>
-          </div>
-          <div>
-            <input type="checkbox" id="dataset-modality-text" name="dataset-modality-text" class="form-dataset-table-checkbox" />
-            <label for="audio">Audio</label>
-          </div>
-          <div>
-            <input type="checkbox" id="dataset-modality-text" name="dataset-modality-text" class="form-dataset-table-checkbox" />
-            <label for="video">Video (including audio)</label>
-          </div>
+                      <label for="text">Text</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="dataset-modality-text" name="dataset-modality-text" class="form-dataset-table-checkbox" />
+                      <label for="images">Images</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="dataset-modality-text" name="dataset-modality-text" class="form-dataset-table-checkbox" />
+                      <label for="audio">Audio</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="dataset-modality-text" name="dataset-modality-text" class="form-dataset-table-checkbox" />
+                      <label for="video">Video (including audio)</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="dataset-modality-text" name="dataset-modality-text" class="form-dataset-table-checkbox" />
+                      <label for="video">Other (e.g., science data)</label>
+                    </div>
 				</td>
 			</tr>
-      <tr>
-        <th class="form-dataset-table-label">
-          <label for="domain">Domain:</label>
-        </th>
-        <td class="form-dataset-table-value">
-          <select id="dataset-domain" name="dataset-domain" class="form-dataset-table-input">
-            <optgroup label="General Purpose">
-              <option default>Not domain specific</option>
-            </optgroup>
-            <optgroup label="Science & Industrial">
-              <option>Climate</option>
-              <option>Marine</option>
-              <option>Materials</option>
-              <option>Semiconductors</option>
-              <option>Time Series</option>
-              <option>Other Industrial</option>
-            </optgroup>
-            <optgroup label="Other">
-              <option>Finance</option>
-              <option>Healthcare</option>
-              <option>Legal</option>
-              <option>Social Science</option>
-            </optgroup>
-          </select>
-          Or another domain? 
-          <input type="text" id="dataset-other-domain" name="dataset-other-domain" class="form-dataset-table-input-shorter" placeholder="Your domain suggestion" required />
-        </td>
-      </tr>
+            <tr>
+                <th class="form-dataset-table-label">
+                    <label for="domain">Domain:</label>
+                </th>
+                <td class="form-dataset-table-value">
+                  <select id="dataset-domain" name="dataset-domain" class="form-dataset-table-input">
+                    <optgroup label="General Purpose">
+                      <option default>Not domain specific</option>
+                    </optgroup>
+                    <optgroup label="Science & Industrial">
+                      <option>Climate</option>
+                      <option>Marine</option>
+                      <option>Materials</option>
+                      <option>Semiconductors</option>
+                      <option>Time Series</option>
+                      <option>Other Industrial</option>
+                    </optgroup>
+                    <optgroup label="Other">
+                      <option>Finance</option>
+                      <option>Healthcare</option>
+                      <option>Legal</option>
+                      <option>Social Science</option>
+                    </optgroup>
+                  </select>
+                  Or another domain? 
+                  <input type="text" id="dataset-other-domain" name="dataset-other-domain" class="form-dataset-table-input-shorter" placeholder="Your domain suggestion" required />
+                </td>
+            </tr>
+            -->
 			<tr>
 				<th class="form-dataset-table-label">
 				  <label for="email">Email:</label>
@@ -138,7 +142,7 @@ Use this form to tell us about your dataset. We will follow up with next steps. 
 			<tr>
 				<th class="form-dataset-table-label">
     			&nbsp;
-    		</th>
+    		    </th>
 				<td class="form-dataset-table-value">
 				  <input type="checkbox" name="agree-to-terms" required /> I agree to the terms for contribution.
 				</td>
@@ -146,13 +150,13 @@ Use this form to tell us about your dataset. We will follow up with next steps. 
 			<tr>
 				<th class="form-dataset-table-label">
     			&nbsp;
-    		</th>
+    		    </th>
 				<td class="form-dataset-table-value">
-			    <input type="submit" value="Submit!" />
+			      <input type="submit" value="Submit!" />
 				</td>
 			</tr>
 		</table>
-  </div>
+    </div>
 </form>
 <script>
 	<!-- Necessary to have the file browser limit all the allowed sections to what "accept=''" specifies. -->

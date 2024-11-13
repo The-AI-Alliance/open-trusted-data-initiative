@@ -56,21 +56,21 @@ So, why should you get involved?
 
 ## Next Steps
 
-Interested in contributing a dataset to our catalog? First review our [dataset requirements]({{site.baseurl}}/dataset-requirements/dataset-requirements), [how we process datasets]({{site.baseurl}}/our-processing) (i.e., the filtering and analysis steps we perform), and prepare a [dataset card]({{site.baseurl}}/dataset-requirements/dataset-card-template). Then, visit the [contribute]({{site.baseurl}}/contributing) page and let us know.
+Interested in contributing a dataset to our catalog? Follow these steps:
 
-* [Dataset Requirements]({{site.baseurl}}/dataset-requirements/dataset-requirements)
-* [The Dataset Card Template]({{site.baseurl}}/dataset-requirements/dataset-card-template)
-* [How We Process Datasets]({{site.baseurl}}/our-processing)
-* [Contribute Your Dataset!]({{site.baseurl}}/contributing)
+1. Review our [Dataset Requirements]({{site.baseurl}}/dataset-requirements), including creation of a [Hugging Face Dataset Card](https://huggingface.co/docs/hub/datasets-cards){:target="hf-card"}.
+2. See [How We Process Datasets]({{site.baseurl}}/our-processing), i.e., the filtering and analysis steps we perform.
+3. Finally, visit [Contribute Your Dataset]({{site.baseurl}}/contributing) and let us know about your dataset.
 
 ## More Information
 
-* [References]({{site.baseurl}}/references): What others are saying about trusted, open data.
+* [References]({{site.baseurl}}/references): More details and other viewpoints on open, trusted data.
 * [About Us]({{site.baseurl}}/about): More about the AI Alliance and this project.
 
 ### Version History
 
 | **Version** | **Date**   |
+| V0.1.0      | 2024-11-15 |
 | V0.0.4      | 2024-11-04 |
 | V0.0.3      | 2024-09-06 |
 | V0.0.2      | 2024-09-06 |
