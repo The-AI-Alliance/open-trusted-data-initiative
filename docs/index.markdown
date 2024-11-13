@@ -20,7 +20,7 @@ show_contribute_dataset_button: true
 > **Tip:** Use the search box at the top of this page to find specific content.
 
 | **Authors**     | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
-| **Last Update** | V0.0.4, 2024-11-04 |
+| **Last Update** | V0.1.0, 2024-11-13 |
 
 # Why Is Trusted Data Important?
 
@@ -69,9 +69,9 @@ Interested in contributing a dataset to our catalog? Follow these steps:
 
 ### Version History
 
-| **Version** | **Date**   |
-| V0.1.0      | 2024-11-15 |
-| V0.0.4      | 2024-11-04 |
-| V0.0.3      | 2024-09-06 |
-| V0.0.2      | 2024-09-06 |
-| V0.0.1      | 2024-09-01 |
+| **Versions** | **Dates**   |
+| V0.1.0       | 2024-11-13 |
+| V0.0.4       | 2024-11-04 |
+| V0.0.3       | 2024-09-06 |
+| V0.0.2       | 2024-09-06 |
+| V0.0.1       | 2024-09-01 |
