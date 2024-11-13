@@ -22,7 +22,7 @@ url: "https://the-ai-alliance.github.io" # the base hostname & protocol for your
 
 permalink: pretty
 exclude: ["node_modules/", "*.gemspec", "*.gem", "Gemfile", "Gemfile.lock", "package.json", "package-lock.json",  "script/", "LICENSE.txt", "lib/", "bin/", "README.md", "Rakefile", "Makefile"
-, "docs/tests/", "notes.md", "vendor"
+, "notes.md", "vendor"
 ]
 
 # Regression tests

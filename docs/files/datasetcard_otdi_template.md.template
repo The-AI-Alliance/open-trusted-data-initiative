@@ -1,9 +1,14 @@
+<!-- 
+For reference on dataset card metadata, see the spec: https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1
+Doc / guide: https://huggingface.co/docs/hub/datasets-cards
+Note: The double curly braces are replaced by HF tools using the Jinja processor.
+This comment is used to work around an annoyance with Jenkins and
+GitHub pages. If you "feed" this template to a Hugging Face card 
+processor tool, remove this entire comment, but keep the following three lines:
 ---
-# For reference on dataset card metadata, see the spec: https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1
-# Doc / guide: https://huggingface.co/docs/hub/datasets-cards
-# Note: The double curly braces are replaced by HF tools using the Jinja processor.
 {{ card_data }}
 ---
+-->
 
 # Dataset Card for {{ pretty_name | default("Dataset Name", true) }}
 
