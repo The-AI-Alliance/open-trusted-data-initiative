@@ -12,7 +12,7 @@ Here is an evolving list of writings from other sources about the importance of 
 
 > **Help Wanted:** If you have other references you like, please let us know through email, [data@thealliance.ai](mailto:data@thealliance.ai), or [edit this page](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/latest/docs/references.markdown){:target='repo'}!
 
-## A large-scale audit of dataset licensing and attribution in AI
+## A Large-scale Audit of Dataset Licensing and Attribution in AI
 
 [A large-scale audit of dataset licensing and attribution in AI](https://www.nature.com/articles/s42256-024-00878-8){:target="nature"} is a Nature paper from MIT researchers and others. From a corresponding [MIT News article](https://news.mit.edu/2024/study-large-language-models-datasets-lack-transparency-0830){:target="mit"}, the paper describes their "... systematic audit of more than 1,800 text datasets on popular hosting sites. They found that more than 70 percent of these datasets omitted some licensing information, while about 50 percent had information that contained errors.
 
@@ -28,7 +28,7 @@ The [The European AI Office](https://digital-strategy.ec.europa.eu/en/policies/a
 
 ## Data and Trust Alliance - Data Provenance Standards
 
-The [Data and Trust Alliance](https://dataandtrustalliance.org/){:target="dta"} has defined a standard for [provenance](https://dataandtrustalliance.org/work/data-provenance-standards){:target="dta2"}, as well as other projects.
+The [Data and Trust Alliance](https://dataandtrustalliance.org/){:target="dta"} has defined a standard for [provenance](https://dataandtrustalliance.org/work/data-provenance-standards){:target="dta-prov"}, as well as other projects.
 
 Here is their statement about the purpose of this standard, quoted from the project web page:
 
@@ -58,3 +58,10 @@ Software BoMs have the same goals, to very clearly state what components a softw
 There mission is to uncover the datasets used to train large language models. From their website:
 
 > The Data Provenance Initiative is a volunteer collective of AI researchers from around the world. We conduct large-scale audits of the massive datasets that power state-of-the-art AI models. We have audited over 4,000 popular text, speech, and video datasets, tracing them from origin to creation, cataloging data sources, licenses, creators, and other metadata, which researchers can examine using our Explorer tool. We recently analyzed 14,000 web domains, to understand the evolving provenance and consent signals behind AI data. The purpose of this work is to map the landscape of AI data, improving transparency, documentation, and informed use of data.
+
+<a name="data-transparency"></a>
+## Hugging Face: Training Data Transparency in AI: Tools, Trends, and Policy Recommendations
+
+[Blog post](https://huggingface.co/blog/yjernite/data-transparency) by [Yacine Jernite](https://huggingface.co/yjernite).
+
+A call for &ldquo;minimum meaningful public transparency standards to support effective AI regulation.&rdquo;
