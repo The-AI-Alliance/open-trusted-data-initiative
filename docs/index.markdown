@@ -40,8 +40,8 @@ What does delivering trust mean? We wish to enable the following:
 Our deliverables to the industry will include the following:
 
 * **Baseline Knowledge Datasets:** Openly accessible, permissively licensed language, code, image, audio, and video data that embodies a diverse range of global knowledge. 
-* **Domain Knowledge:** A rich, comprehensive set of datasets pertinent to tuning foundation models to a set of application domains: legal, finance, chemistry, manufacturing, etc.
-* **Tooling and Platform Engineering:** Hosted pipelines, platform services, and compute capacity for data preparation at the scale needed to achieve the vision. Fully open-source, so you can use these tools as you see fit.
+* **Domain Knowledge Datasets:** A rich, comprehensive set of datasets pertinent to tuning foundation models to a set of application domains: legal, finance, chemistry, manufacturing, etc.
+* **Tooling and Platform Engineering:** Hosted pipelines, platform services, and compute capacity for synthetic dataset generation and data preparation at the scale needed to achieve the vision. Fully open-source, so you can use these tools as you see fit.
 
 # Contributing Datasets
 
@@ -52,7 +52,7 @@ So, why should you get involved?
 
 * **Collaborate on AI Innovation:** Your data can help build more accurate, fair, versatile, and open AI models. You can also connect with like-minded data scientists, AI researchers, and industry leaders in the AI Alliance.
 * **Transparency & Trust:** Every contribution is transparent, with robust data provenance, governance, and trust mechanisms. We welcome your expertise to help us improve all aspects of these processes.
-* **Tailored Contributions:** The world needs domain-specific datasets to enable model tuning to create open foundation models relevant to domains such as time series, and branches of science and industrial engineering. The world needs more multilingual, including underserved languages, and multimodel datasets.
+* **Tailored Contributions:** The world needs domain-specific datasets to enable model tuning to create open foundation models relevant to domains such as time series, and branches of science and industrial engineering. The world needs more multilingual, including underserved languages, and multimodel datasets. In many areas, the available real-world data is insufficient for the needs to innovate in those areas. Therefore, synthetic datasets are also needed.
 
 ## Next Steps
 
