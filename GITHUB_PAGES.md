@@ -232,7 +232,7 @@ You don't have write permissions for the /Library/Ruby/Gems/2.6.0 directory.
 The commands run by `make setup-jekyll` include the following (a few details omitted for simplification):
 
 ```shell
-gem install bundler jekyll jekyll-footnotes jemoji
+gem install bundler jekyll jemoji
 bundle install
 bundle update html-pipeline
 ```

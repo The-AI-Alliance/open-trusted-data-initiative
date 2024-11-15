@@ -75,13 +75,3 @@ Interested in contributing a dataset to our catalog? Follow these steps:
 | V0.0.3       | 2024-09-06 |
 | V0.0.2       | 2024-09-06 |
 | V0.0.1       | 2024-09-01 |
-
-<!-- A footnote plugin is enabled. To use it, add footnotes to the text using
-	{% fn %}, then add the following (uncommented) code on the page where you want the footnotes to appear:
-
-{% footnotes %}
-   {% fnbody %}
-      <p>salut</p>
-   {% endfnbody %}
-{% endfootnotes %}
--->
