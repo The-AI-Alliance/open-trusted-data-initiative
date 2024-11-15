@@ -1,14 +1,25 @@
 <!-- 
-For reference on dataset card metadata, see the spec: https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1
+Adapted from the Hugging Face dataset card template:
+https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md
+This version adds some additional fields adapted from the Data Provenance
+Standard (https://dataandtrustalliance.org/work/data-provenance-standards) 
+created by the Data and Trust Alliance (https://dataandtrustalliance.org/)
+(search for "DPS") and other sources.
+
+For information on the HF dataset card metadata (what gets inserted by HF
+tools in place of "{{ card data }}" below, see the spec: 
+https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1
 Doc / guide: https://huggingface.co/docs/hub/datasets-cards
+
 Note: The double curly braces are replaced by HF tools using the Jinja processor.
-This comment is used to work around an annoyance with Jenkins and
-GitHub pages. If you "feed" this template to a Hugging Face card 
-processor tool, remove this entire comment, but keep the following three lines:
+
+If you use this this template with Hugging Faces data card processor tool,
+you can remove this comment
+-->
+
 ---
 {{ card_data }}
 ---
--->
 
 # Dataset Card for {{ pretty_name | default("Dataset Name", true) }}
 
