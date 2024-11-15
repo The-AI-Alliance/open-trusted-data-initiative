@@ -62,16 +62,16 @@ Since your dataset is already likely to be available on the [Hugging Face Hub](h
 
 Here are the steps to create your dataset card, summarized. Read the rest of this page for details:
 
-> 1. Download our version of the Hugging Face dataset card template. (If you already have a card in Hugging Face, i.e., the `README.md`, compare our template to your card and add the new fields.)
+> 1. Download our version of the Hugging Face dataset card template, <a href="{{site.baseurl}}/files/datasetcard_otdi_template.md.template" download="datasetcard_otdi_template.md"><code>datasetcard_otdi_template.md</code></a>. (If you already have a card in Hugging Face, i.e., the `README.md`, compare our template to your card and add the new fields.)
 > 2. Edit the Markdown in the template file to provide the details, as described below.
-> 3. [Create the card](https://huggingface.co/docs/datasets/dataset_card){:target="hf-card-create"} in the Hugging Face UI or edit your existing card.
-> 4. Fill in the metadata fields shown in the editor UI. (Described in Table 1 below.)
-> 5. Paste the rest of your prepared Markdown in the file, after the YAML block delimited by `---`.
+> 3. [Create the card](https://huggingface.co/docs/datasets/dataset_card){:target="hf-card-create"} in the Hugging Face UI (or edit your existing card.)
+> 4. Fill in the metadata fields shown in their editor UI. (See [Table 1](#table-1) below.)
+> 5. Paste the rest of your prepared Markdown into the file, after the YAML block delimited by `---`.
 > 6. Commit your changes!
 
 ### Details
 
-Refer to the [`datasetcard.md`](https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1){:target="hf-datasetcard-md"} for details about the metadata fields Hugging Face (and we!) recommend for inclusion in a YAML block at the top of the `README.md`. We comment on these fields below, see Table 1. 
+Refer to the [`datasetcard.md`](https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1){:target="hf-datasetcard-md"} for details about the metadata fields Hugging Face (and we!) recommend for inclusion in a YAML block at the top of the `README.md`. We comment on these fields below, see [Table 1](#table-1). 
 
 The [`templates/README_guide.md`](https://github.com/huggingface/datasets/blob/main/templates/README_guide.md){:target="hf-guide"} provides additional information about the template fields in their Markdown template file, [`datasetcard_template.md`](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md){:target="hf-dataset-card-template"} in the [`huggingface-hub` GitHub repo](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/){:target="hf-hub-repo"}. _However_, we recommend that you use our extended version: <a href="{{site.baseurl}}/files/datasetcard_otdi_template.md.template" download="datasetcard_otdi_template.md"><code>datasetcard_otdi_template.md</code></a>. (You might need to right click on the link…)
 
@@ -88,11 +88,13 @@ All of the fields apply to synthesized data as well as _real_ data, but of cours
 
 ### YAML Metadata Block
 
-> **TIP:** The following tables are long, but starting with the [`datasetcard_template.md`](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md){:target="hf-dataset-card-template"} and the [dataset card process](https://huggingface.co/docs/datasets/dataset_card){:target="hf-card-create"} will handle most of the details. Then you can add the additional fields requested in Table 2, those marked with "DPS".
+> **TIP:** The following tables are long, but starting with the [`datasetcard_template.md`](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md){:target="hf-dataset-card-template"} and the [dataset card process](https://huggingface.co/docs/datasets/dataset_card){:target="hf-card-create"} will handle most of the details. Then you can add the additional fields requested in [Table 2](#table-2), those marked with "DPS".
 
 Our first table describes the metadata encoded in the YAML header block at the beginning of the Hugging Face README format. See [`datasetcard.md`](https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1){:target="hf-datasetcard"} for details. 
 
 For completeness, the optional fields in that block are also shown. The **Required?** column uses &#9745; to indicate the field is required, empty for optional fields (but often recommended), and &#9746; for fields that we don't allow, because they are incompatible with this project.
+
+<a name="table-1"></a>
 
 | **Field Name** | **Description** | **Required?** | 
 | :------------- | :-------------- | :-----------: | 
@@ -127,6 +129,8 @@ Our second table lists content that we require or recommend in the Markdown body
 
 As noted in the following table, many of the fields appear in both the Hugging Face dataset card template and the Data Provenance Standard, but use different names. We ask you to use the Hugging Face names for consistency and convenience. When unique DPS fields are used, we convert their field names to lowercase and use underscores as separators, for consistency.
 
+<a name="table-2"></a>
+
 | **Field Name** | **Description** | **Required?** | **Source** |
 | :------------- | :-------------- | :-----------: | :--------: |
 | `standards_version_used` | (DPS name: `Standards version used`) The DPS schema version. Since our dataset card requirements are not strictly conformant to any DPS schema, this is optional. |  | DPS | 
@@ -135,7 +139,7 @@ As noted in the following table, many of the fields appear in both the Hugging F
 | `dataset_summary` | A concise summary of the dataset and its purpose. | &#9745; | HF | 
 | `dataset_description` | (DPS name: `Description of the Dataset`) Describe the contents, scope, and purpose of the dataset, which helps users understand what the data represents, how it was collected, and any limitations or recommended uses. However, this field should not include redundant information covered elsewhere. | &#9745; | HF, DPS | 
 | `curated_by` | One or more legal entities responsible for creating the dataset, providing accountability and a point of contact for inquiries. Called `Dataset issuer` in DPS. See also `dataset_card_authors` below. | &#9745; | HF, DPS |
-| `dataset_sources` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#dataset-sources-optional){:target="hf-datasetcard-template-sources"} (from [`datasetcard_template.md`](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md){:target="hf-datasetcard-template"}). Complements the information provided above for `source_datasets`. The `Repository` URL &ldquo;subfield&rdquo; is required for each source dataset, _unless_ it was provided by `source_datasets` in Table 1. The `Paper` and `Demo` subfields are optional. See also `source_data` and `source_metadata_for_dataset` next. | &#9745; | HF |
+| `dataset_sources` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#dataset-sources-optional){:target="hf-datasetcard-template-sources"} (from [`datasetcard_template.md`](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md){:target="hf-datasetcard-template"}). Complements the information provided above for `source_datasets`. The `Repository` URL &ldquo;subfield&rdquo; is required for each source dataset, _unless_ it was provided by `source_datasets` in [Table 1](#table-1). The `Paper` and `Demo` subfields are optional. See also `source_data` and `source_metadata_for_dataset` next. | &#9745; | HF |
 | `source_data` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#source-data){:target="hf-datasetcard-template-source-data"}. Use the subsections, described next, `data_collection_and_processing_section` and `source_data_producers_section` to describe important provenance information. Is the data synthetic or not? This section also covers the DPS `Method` and `Source (if different from issuer)` fields. The latter is more explicit about when data comes from third-party sources. Note our requirement above that you can only submit datasets where you have the necessary rights (see also `consent_documentation_location` below). | &#9745; | HF, DPS |
 | `data_collection_and_processing_section` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#source-data){:target="hf-datasetcard-template-source-data"}. Describes the data collection and processing process such as data selection criteria, filtering and normalization methods, tools and libraries used, etc. | &#9745; | HF |
 | `source_data_producers_section` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#source-data){:target="hf-datasetcard-template-source-data"}. This section describes the people or systems who originally created the data. It should also include self-reported demographic or identity information for the source data creators if this information is available. | &#9745; | HF |
@@ -184,6 +188,8 @@ The [dataset card template]({{site.baseurl}}/dataset-requirements/dataset-card-t
 
 We endeavor to be flexible on dataset file formats and how they are organized. For text, we recommend formats like CSV, JSON, Parquet, ORC, AVRO. Supporting PDFs, where extraction will be necessary, can be difficult, but not impossible.
 
+> **NOTE:** Using Parquet has the benefit that [Hugging Face Croissant](https://huggingface.co/docs/dataset-viewer/en/croissant) can be used to automatically extract some metadata. The [`mlcroissant` library](https://huggingface.co/docs/dataset-viewer/en/mlcroissant) supports loading a dataset using the Croissant metadata. 
+
 <a name="diverse-datasets"></a>
 ### Diverse Datasets Desired for Diverse AI Models and Applications
 
@@ -226,6 +232,8 @@ A derived dataset could include a dataset that has been processed to remove dupl
 
 First, consider a new version of an otherwise-identical dataset. You should examine all fields, but the following are most likely to need changing. 
 
+<a name="table-3"></a>
+
 | **Field Name** | **Possible Updates** | **Required?** |
 | :------------- | :------------------- | :-----------: |
 | `tags` | For example, if the expanded dataset covers new domains than its &ldquo;parent&rdquo;. |  |
@@ -254,6 +262,8 @@ First, consider a new version of an otherwise-identical dataset. You should exam
 If other changes were made besides just the addition of new data, consider if the dataset should be considered a different, derived dataset.
 
 Second, consider a new dataset derived from another dataset through a processing pipeline. You should examine all fields, but the following are most likely to need changing. 
+
+<a name="table-4"></a>
 
 | **Field Name** | **Possible Updates** | **Required?** |
 | :------------- | :------------------- | :-----------: |

@@ -10,6 +10,9 @@ MAKEFLAGS_RECURSIVE ?= # --print-directory (only useful for recursive makes...)
 UNAME               ?= $(shell uname)
 ARCHITECTURE        ?= $(shell uname -m)
 
+# Override when running `make view-local` using e.g., `JEKYLL_PORT=8000 make view-local`
+JEKYLL_PORT         ?= 4000
+
 # Used for version tagging release artifacts.
 GIT_HASH            ?= $(shell git show --pretty="%H" --abbrev-commit |head -1)
 TIMESTAMP           ?= $(shell date +"%Y%m%d-%H%M%S")
@@ -21,6 +24,7 @@ make all                # Clean and locally view the document.
 make clean              # Remove built artifacts, etc.
 make view-pages         # View the published GitHub pages in a browser.
 make view-local         # View the pages locally (requires Jekyll).
+                        # Tip: "JEKYLL_PORT=8000 make view-local" uses port 8000 instead of 4000!
 
 Miscellaneous tasks for help, debugging, setup, etc.
 
@@ -29,6 +33,7 @@ make print-info         # Print the current values of some make and env. variabl
 make setup-jekyll       # Install Jekyll. Make sure Ruby is installed. 
                         # (Only needed for local viewing of the document.)
 make run-jekyll         # Used by "view-local"; assumes everything is already built.
+                        # Tip: "JEKYLL_PORT=8000 make run-jekyll" uses port 8000 instead of 4000!
 endef
 
 define missing_shell_command_error_message
@@ -107,6 +112,7 @@ print-info:
 	@echo "ARCHITECTURE:        ${ARCHITECTURE}"
 	@echo "GIT_HASH:            ${GIT_HASH}"
 	@echo "TIMESTAMP:           ${TIMESTAMP}"
+	@echo "JEKYLL_PORT:         ${JEKYLL_PORT}"
 
 clean::
 	rm -rf ${clean_dirs} 
@@ -116,16 +122,15 @@ view-pages::
 		(echo "ERROR: I could not open the GitHub Pages URL. Try ⌘-click or ^-click on this URL instead:" && \
 		 echo "ERROR:   ${pages_url}" && exit 1 )
 
-view-local:: setup-jekyll do-view-local
-do-view-local: clean run-jekyll
+view-local:: setup-jekyll run-jekyll
 
 # Passing --baseurl '' allows us to use `localhost:4000` rather than require
 # `localhost:4000/The-AI-Alliance/trust-safety-user-guide` when -ping locally.
-run-jekyll:
+run-jekyll: clean
 	@echo
-	@echo "Once you see the http://127.0.0.1:4000/ URL printed, open it with command+click..."
+	@echo "Once you see the http://127.0.0.1:${JEKYLL_PORT}/ URL printed, open it with command+click..."
 	@echo
-	cd ${docs_dir} && bundle exec jekyll serve --baseurl '' --incremental || ( echo "ERROR: Failed to run Jekyll. Try running 'make setup-jekyll'." && exit 1 )
+	cd ${docs_dir} && bundle exec jekyll serve --port ${JEKYLL_PORT} --baseurl '' --incremental || ( echo "ERROR: Failed to run Jekyll. Try running 'make setup-jekyll'." && exit 1 )
 
 setup-jekyll:: ruby-installed-check bundle-ruby-command-check
 	@echo "Updating Ruby gems required for local viewing of the docs, including jekyll."

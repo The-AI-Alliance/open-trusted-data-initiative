@@ -5,7 +5,7 @@ The Open Trusted Data Initiative [published website](https://the-ai-alliance.git
 The documentation for this repo is published using [GitHub Pages](https://pages.github.com/). We welcome contributions as PRs. See the AI Alliance [CONTRIBUTING](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md) instructions. Also, you'll need to agree with the AI Alliance [Code of Conduct](https://github.com/The-AI-Alliance/community/blob/main/CODE_OF_CONDUCT.md) and all contributions will be covered by the [LICENSE](https://github.com/The-AI-Alliance/community/blob/main/LICENSE) (which is also in [this repo](LICENSE)).
 
 > [!NOTE]
-> The documentation in this repo is licensed under Creative Commons Attribution 4.0 International. To view a copy of this license, see [LICENSE.CC-BY-4.0](LICENSE.CC-BY-4.0) or visit https://creativecommons.org/licenses/by/4.0/legalcode. All code uses the [Apache 2.0](LICENSE.Apache-2.0) license.
+> The documentation in this repo is licensed under Creative Commons Attribution 4.0 International. To view a copy of this license, see [LICENSE.CC-BY-4.0](LICENSE.CC-BY-4.0) or visit https://creativecommons.org/licenses/by/4.0/legalcode. All code uses the [Apache 2.0](LICENSE.Apache-2.0) license. All data uses the [CDLA 2.0](LICENSE.CDLA-2.0) license.
 
 
 ## Quick Setup
@@ -45,8 +45,11 @@ Server running... press ctrl-c to stop.
 Open the URL in a browser. 
 
 > [!TIP]
+> 
 > 1. On MacOS, use &#8984;-click on the URL to open it in a browser.
-> 2. Run `make help` for a list of commands defined.
+> 2. Run `make help` for a list of the main commands defined.
+> 3. Run `JEKYLL_PORT=4444 make view-local` to use port `4444` instead of `4000`.
+> 4. `view-local` will always check the Ruby and Jekyll installation. To skip this, use `make run-jekyll` instead.
 
 ## Contributing New or Improved Content
 
@@ -88,7 +91,15 @@ The script _does_ check that a specified timestamp uses the correct format, but 
 
 Both strings are printed at the bottom of each page, e.g.:
 
-> Version: 1.0.1. Site last modified: Jun 5 2024 08:13 -0500.
+```
+Version: 1.0.1. Site last modified: Jun 5 2024 08:13 -0500.
+```
+
+> **TIP:** Verify this worked! You should see the new version information in three places:
+> 
+> * `docs/config.yml`: `last_modified_timestamp` and `last_version`.
+> * `docs/index.markdown`: **Last Update** table row near the top, **Version History** near the bottom.
+`
 
 ## Editing Conventions and Tips
 
@@ -102,10 +113,10 @@ For internal cross-references, use the conventional `[title]({{site.baseurl}}/re
 For external links, add a `target` tag using the following syntax, which works for GitHub Markdown and GitHub Pages.
 
 ```markdown
-[title]({{site.baseurl}}/relative_URL){:target="_target"}
+[title]({{site.baseurl}}/relative_URL){:target="label"}
 ```
 
-The `target` value is arbitrary; use whatever you want. While this is a little more tedious to type, it is usually better for users so they don't lose their place in the document. Also, [our stylesheet](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/main/docs/_includes/css/custom.scss.liquid) is configured to put the little up-and-to-the-right arrows after every link that isn't relative, i.e., links that start with `http` or `https`. This provides a visual clue that a new tab will be opened.
+The `label` value is arbitrary; use whatever you want. While adding targets is a little more tedious to type, it is usually better for users so they don't lose their place in the document. Also, [our stylesheet](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/main/docs/_includes/css/custom.scss.liquid) is configured to put the little up-and-to-the-right arrows after every link that isn't relative, i.e., links that start with `http` or `https`. This provides a visual clue that a new tab will be opened.
 
 ### Emojis
 
@@ -143,27 +154,34 @@ If this fails, then see the [Tips and Known Issues](#tips-and-known-issues) belo
 
 ### View the Pages Locally
 
-Once Jekyll is set up, you can serve the pages locally for previewing and editing by running the following command, then open [localhost:4000](http://localhost:4000) in a browser.
+Once Jekyll is set up, you can serve the pages locally for previewing and editing by running one of the following commands, then open [localhost:4000](http://localhost:4000) (default port...) in a browser:
 
 ```shell
-make view-local   # Or use "make all" or just "make"!
+make view-local   # Install all Jekyll dependencies, then make "run-jekyll"
+make run-jekyll   # Run the jekyll server. Avoids dependency setup every time!
+JEKYLL_PORT=4444 make view-local   # Use a different port, 4444 instead of 4000
+JEKYLL_PORT=4444 make run-jekyll
 ```
 
-If this throws an error, see the [Tips and Known Issues](#tips-and-known-issues) below.
+If an error is thrown, see the [Tips and Known Issues](#tips-and-known-issues) below.
 
 > [!TIP]
-> In MacOS terminal windows, you can &#8984;+click any URL printed to open it in a browser!
+> 
+> 1. On MacOS, use &#8984;-click on the URL to open it in a browser.
+> 2. Run `make help` for a list of the main commands defined.
 
-The `make` target runs the following command:
+The `run-jekyll` target runs the following command:
 
 ```shell
-cd docs && bundle exec jekyll serve --baseurl '' --incremental
+cd docs && bundle exec jekyll serve --port ${JEKYLL_PORT} --baseurl '' --incremental
 ```
 
-The `--baseurl` flag effectively supports the simple URL, `localhost:4000`. (Without it, the URL would be `localhost:4000/The-AI-Alliance/open-trusted-data-initiative/`.) The `--incremental` flag lets you edit the pages and refresh the browser tab to see the updates immediately. 
+* `JEKYLL_PORT` for the `--port` flag defaults to `4000`
+* The `--baseurl` flag effectively supports the simple URL, `localhost:$JEKYLL_PORT`. (Without it, the URL would be `localhost:$JEKYLL_PORT/The-AI-Alliance/open-trusted-data-initiative/`.) 
+* The `--incremental` flag lets you edit the pages and refresh the browser tab to see the updates immediately. 
 
 > [!NOTE]
-> Well, more or less immediately. It can take several seconds for new pages to be generated and sometimes you'll get weird behaviors if you change URL paths, etc. So, occasionally it is useful to _control-c_ in the terminal and rerun `make view-local`.
+> Well, more or less immediately. It can take several seconds for new pages to be generated and sometimes you'll get weird behaviors if you change URL paths, etc. So, occasionally it is useful to _control-c_ in the terminal and rerun the `make` command.
 
 > [!TIP]
 > `make view-pages` opens the _published_ GitHub Pages in a browser tab.
@@ -202,19 +220,19 @@ Then in your terminal, either open a new window/tab or run the command `source ~
 Suppose you run the following command and it fails:
 
 ```shell
-make setup-jekyll
+make setup-jekyll  # also executed when making `view-local`
 ```
 
-First, make sure you are using a valid version of `ruby`, as described in the previous section. A symptom you didn't do that? You'll see this error message:
+First, make sure you are using a valid version of `ruby`. A symptom you didn't do that; you'll see this error message:
 
 ```
 You don't have write permissions for the /Library/Ruby/Gems/2.6.0 directory.
 ```
 
-The commands run by `make setup-jekyll` discussed previously include the following (a few details omitted for simplification):
+The commands run by `make setup-jekyll` include the following (a few details omitted for simplification):
 
 ```shell
-gem install jekyll bundler jemoji
+gem install bundler jekyll jekyll-footnotes jemoji
 bundle install
 bundle update html-pipeline
 ```
@@ -245,4 +263,4 @@ gem list | grep jekyll
 
 This section documents the one-time settings changes we did to [configure publication of our GitHub Pages](https://docs.github.com/en/enterprise-server@3.1/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site). We changed the desired branch to use, `latest`, rather than the default `main` branch, and we specified the directory for the website pages, `docs`. This only needs to be done if and when the branch or directory location is changed.
 
-In the repo's _Settings > GitHub Pages_ section, set the branch to be `latest` and the folder to be `/docs`. The reason for using `latest` rather than `main`, is to allow small changes to be made without affecting what is published until we decide to publish an update.
+In the repo's [_Settings > Pages_ section](https://github.com/The-AI-Alliance/open-trusted-data-initiative/settings/pages), set the branch to be `latest` and the folder to be `/docs`. The reason for using `latest` rather than `main`, is to allow small change PRs to be made without affecting what is published until we decide to publish an update.
