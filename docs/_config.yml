@@ -119,6 +119,7 @@ show_contribute_dataset_button: true
 
 plugins:
   - jekyll-seo-tag
+  - jekyll-target-blank
   - jemoji
 
 kramdown:

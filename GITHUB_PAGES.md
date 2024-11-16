@@ -110,13 +110,15 @@ For internal cross-references, use the conventional `[title]({{site.baseurl}}/re
 > [!WARNING]
 > the `{{site.baseurl}}/` prefix is _essential_, because this _prefix_ will be different for local execution vs. published serving.
 
-For external links, add a `target` tag using the following syntax, which works for GitHub Markdown and GitHub Pages.
+For external links (those that start with `http` or `https`), we use the [`jekyll-target-blank` plugin](https://github.com/keithmifsud/jekyll-target-blank) to automatically open them in a new browser tab or window. _Relative_ links within the site are opened in the same tab. 
+
+This plugin effectively adds `target="_blank"` to every anchor tag, i.e., `<a href="" target="_blank">...</a>`. However, this means that if users click on a lot of external links to see all of them, they will be "stacked" in the history of one browser tab. Therefore, you may consider adding explicit targets yourself. You can do this using the following syntax:
 
 ```markdown
-[title]({{site.baseurl}}/relative_URL){:target="label"}
+[`jekyll-target-blank` plugin](https://github.com/keithmifsud/jekyll-target-blank){:target="arbitrary_name"}
 ```
 
-The `label` value is arbitrary; use whatever you want. While adding targets is a little more tedious to type, it is usually better for users so they don't lose their place in the document. Also, [our stylesheet](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/main/docs/_includes/css/custom.scss.liquid) is configured to put the little up-and-to-the-right arrows after every link that isn't relative, i.e., links that start with `http` or `https`. This provides a visual clue that a new tab will be opened.
+Furthermore, as a visual clue to the user, [our stylesheet](https://github.com/The-AI-Alliance/REPO_NAME/blob/main/docs/_includes/css/custom.scss.liquid) is configured to put little up-and-to-the-right arrows after every external link. This provides a visual clue that a new tab will be opened.
 
 ### Emojis
 

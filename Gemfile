@@ -53,3 +53,6 @@ gem "liquid", ">= 4.0.4"
 
 # No longer included in Ruby as of 3.4
 gem "csv"
+
+# Target blank automatically opens all links in a new window.
+gem 'jekyll-target-blank'
