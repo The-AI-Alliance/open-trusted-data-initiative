@@ -17,41 +17,61 @@ show_contribute_dataset_button: true
 {:toc}
 </details>
 
+<!--
+  Possible tools:
+  1. Dolma Toolkit
+  2. DPK
+  3. Various "guardian" tools
+-->
+
 ## Provenance and Governance
 
-Given the importance of provenance and governance for the datasets in this initiative, we will analyze all proposed datasets to ensure they meet our [dataset requirements]({{site.baseurl}}/dataset-requirements). We will publish the technical details of these processes soon. The [Data and Trust Alliance](https://dataandtrustalliance.org/){:target="dta"} standard for [provenance](https://dataandtrustalliance.org/work/data-provenance-standards){:target="dta2"} will inform our work.
+Given the importance of provenance and governance for the datasets in this initiative, we plan to analyze proposed datasets to ensure they meet our [dataset requirements]({{site.baseurl}}/dataset-requirements). _Derived_ datasets that do various forms of filtering are also planned, as discussed below.
+
+We will publish the technical details of these processes as they are developed. We will open source all source code and deployment information for these pipelines under the AI Alliance standard code license: [_Apache 2.0_](https://spdx.org/licenses/Apache-2.0){:target="apache"}. (See the Alliance [`community/CONTRIBUTING` page](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md#licenses){:target="licenses"} for more details about our license conventions.)
 
 ## Data Quality and &ldquo;Cleanliness&rdquo;
 
-In [Dataset Requirements]({{site.baseurl}}/dataset-requirements), we described several levels of quality and cleanliness that we use to categorize datasets. Think of this as a rough outline of our _ingestion_ process:
+In [Dataset Requirements]({{site.baseurl}}/dataset-requirements), we described several levels of quality and cleanliness that guide aspects of how we categorize datasets in our catalog. Think of the following as a rough outline of our _ingestion_ and processing steps:
 
-* **Raw:** The dataset as submitted, which could already be in good shape. _Our most important criteria at this stage is **unambigious provenance**._ Nevertheless, datasets that contain some objectionable content with legal implications, such as some forms of PII and company confidential information, may have to be rejected outright, or we will decide to only include the _filtered_ version of the dataset in our catalog.
-* **Filtered:** A _raw_ dataset has gone through our processing pipeline to remove duplicates, filter for objectional content, etc.
-* **Structured:** A _filtered_ dataset has been reformated to be most suitable for model training (LLMs, time series, etc.), RAG patterns, and similar purposes. For example, JSON-formatted data is often desirable. 
+* **Raw:** The dataset as submitted. _Our most important criteria at this stage is **unambigious provenance**._ Raw datasets may contain some objectionable content, but appropriate labels and usage guidance will be provided. For example, a dataset with hate speech may be suitable for use by researchers studying hate speech and working on detectors for it, but model developers may decide to avoid the dataset. However, in some cases, legal or other considerations may prevent us from accepting some content without additional filtering.
+* **Filtered:** A dataset created by passing a _raw_ dataset through a processing pipeline to perform modifications such as removal of duplicate data, filtering for objectional content, etc.
+* **Structured:** A dataset created from a _filtered_ dataset where the new structure is more suitable for model training (LLMs, time series, etc.), RAG usage, tuning, and other purposes. For example, JSON-formatted data is often desirable. 
 
-## How We Process Datasets
+## How We Process Datasets - Proposed
 
-To go from **Raw** to **Filtered**, we use a process with the following checks (which will evolve over time):
+To go from **Raw** to **Filtered**, we currently plan to use processes with the following checks and filtering steps. These lists will mature over time:
 
-* **An initial quality check:**
-  * Meets the [Dataset Requirements]({{site.baseurl}}/dataset-requirements)
-  * No evident corruption (e.g., PDFs are valid)
-  * No evident inconsistencies in the data vs. the datacard metadata, e.g., in licensing.
-* **Filtering: (Proposed)**
-  * Duplicate removal
-  * Remove low-quality data (e.g., HTML tags)
-  * PII removal
-  * Copyright data removal (where feasible)
-  * Toxic content removal
-  * Bias
-  * Decontamination against known evaluation and benchmark datasets
-  * License verification (where feasible, detect data known to be covered by a different, incompatible license)
-  * Other consistency and quality improvements
+### Raw Data Ingestion
 
-The transformations to create **Structured** datasets are TBD, but may include one or more of the following:
+An initial quality analysis is performed, including the following checks:
+
+* Meets the [Dataset Requirements]({{site.baseurl}}/dataset-requirements) - e.g., license, provenance, etc.
+* No evident corruption - e.g., PDFs, JSON, etc. have valid formats.
+* No detectable inconsistencies between the data vs. the datacard metadata.
+
+### Creating a Filtered Dataset 
+
+There could be several filtered dataset that are derived from a single raw dataset, each of which would use one or more of the following transformations:
+
+* Exact and &ldquo;fuzzy&rdquo; duplication
+* Removal of low-quality content (e.g., HTML tags)
+* PII removal
+* Removal of copyrighted data (where detectable)
+* Removal of data covered by non-open access licenses (where detectable)
+* Toxic content removal (e.g., bias, hate speech, etc.)
+* Decontamination from known, public datasets for benchmarks and other evaluations
+* Other consistency and quality improvements
+
+### Creating a Structured Dataset
+
+The transformations to create one more structured datasets from a filtered dataset may include one or more of the following:
 
 * Tokenization
-* Conversion to JSON or YAML
-* Embedding - e.g., encoded with a popular encoding model for use in RAG-based applications
+* Conversion to JSON, YAML, or other format
+* Conversion of PDFs and other &ldquo;rich&rdquo; formats to text and images
+* Embedding - encoding with an encoding model and chunkifying for use in RAG and similar patterns
 
-All steps include full auditing to support data governance requirements, such as provenance and lineage back to original sources, with full visibility available to users of the datasets. This governance metadata will be publically available along with the datasets. For example, it can be used to create _Bills of Material_ by interested parties (see [here]({{site.baseurl}}/references/#ai-bom)).
+## For All Processing
+
+All ingestion and transformation steps will include full auditing to support data governance requirements, such as provenance and lineage back to original sources, with full visibility available to users of the datasets. _Each_ dataset will have its governance metadata in its own dataset card that is publically available with the dataset. For example, it can be used to create _Bills of Material_ by interested parties (see [here]({{site.baseurl}}/references/#ai-bom)).
