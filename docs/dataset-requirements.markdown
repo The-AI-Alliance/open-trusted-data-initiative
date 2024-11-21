@@ -32,7 +32,8 @@ The requirements are adapted from the following sources:
 * Unique requirements for this project.
 
 Possible additional contributions are TBD from the following examples:
-* BigCode's [dataset card](https://huggingface.co/datasets/bigcode/the-stack#dataset-card-for-the-stack) for The Stack.
+* [MLCommons Croissant](https://mlcommons.org/working-groups/data/croissant/) - Consider using Croissant as the primary or perhaps an alternative format for dataset cards.
+* BigCode's [dataset card](https://huggingface.co/datasets/bigcode/the-stack#dataset-card-for-the-stack) for The Stack - What information is there that we should also use.
 * ...
 
 Most of the details are captured in requirements for the dataset card that _every version_ of a dataset carries (e.g., after various stages of processing). Other requirement described here cover data governance for those processing stages.
