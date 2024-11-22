@@ -28,4 +28,12 @@ Here is the current list of datasets.
 | [PleIAs](https://pleias.fr){:target="pleias"} | _Toxic Commons_, _Finance Commons_, _Bad Data Toolbox_, _Cultural Heritage Collection_ | [Hugging Face](https://huggingface.co/collections/PleIAs){:target="pleias-hf"} |
 | [AI Alliance](https://thealliance.ai){:target="aia"} | SemiKong | [Hugging Face](https://huggingface.co/collections/aialliance/open-trusted-data-coming-soon-66d21b3cb66342762fb6108e){:target="aia-hf"} |
 
+The following organizations are collaborating with us on additional datasets.
+
+| **Organization** | **Kind** | 
+| :--------------- | :------- | 
+| [BrightQuery](https://brightquery.ai/){:target="bq"} | Government datasets (TBD) |
+| [Common Crawl](https://commoncrawl.org/) | Tagged and filtered crawl subsets for English and other languages |
+
+
 To expand this catalog, we not only [welcome contributions], but we plan to seek out qualified datasets leveraging other sources of information about them, such as the [Data Provenance Initiative](https://www.dataprovenance.org/), [Hugging Face](https://huggingface.co/datasets), and others (TBD).

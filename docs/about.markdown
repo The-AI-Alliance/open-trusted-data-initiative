@@ -21,12 +21,17 @@ We are assembling a steering committee of representatives for sponsoring organiz
 
 Coming soon.
 
-## Sponsoring AI Alliance Member Organizations
+## Contributing AI Alliance Member Organizations
 
-* IBM
-* Pleias
-* ServiceNow
-* Aitomatic
+These Alliance member organizations are contributing to OTDI. In alphabetical order:
+
+* [Aitomatic](https://www.aitomatic.com/){:target="aitomatic"}
+* [Arize](https://arize.com/){:target="arize"}
+* [BrightQuery](https://brightquery.ai/){:target="brightquery"}
+* [Common Crawl](https://commoncrawl.org/){:target="common-crawl"}
+* [IBM](https://ibm.com){:target="ibm"}
+* [Pleias](https://pleias.fr/){:target="pleias"}
+* [ServiceNow](https://www.servicenow.com/){:target="servicenow"}
 * ... more coming soon! ...
 
 ## Other Ways to Contribute to This Project

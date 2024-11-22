@@ -31,9 +31,11 @@ The requirements are adapted from the following sources:
 * The [Data Provenance Standard](https://dataandtrustalliance.org/work/data-provenance-standards){:target="dta-prov"} from the [Data and Trust Alliance](https://dataandtrustalliance.org/){:target="dta"}.
 * Unique requirements for this project.
 
-Possible additional contributions are TBD from the following examples:
+Additional contributions are under investigation from the following sources:
+
 * [MLCommons Croissant](https://mlcommons.org/working-groups/data/croissant/) - Consider using Croissant as the primary or perhaps an alternative format for dataset cards.
 * BigCode's [dataset card](https://huggingface.co/datasets/bigcode/the-stack#dataset-card-for-the-stack) for The Stack - What information is there that we should also use.
+* [Common Crawl](https://commoncrawl.org/) - work on provenance tracking, multilingual data, etc.
 * ...
 
 Most of the details are captured in requirements for the dataset card that _every version_ of a dataset carries (e.g., after various stages of processing). Other requirement described here cover data governance for those processing stages.
