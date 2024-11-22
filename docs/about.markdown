@@ -29,9 +29,13 @@ These Alliance member organizations are contributing to OTDI. In alphabetical or
 * [Arize](https://arize.com/){:target="arize"}
 * [BrightQuery](https://brightquery.ai/){:target="brightquery"}
 * [Common Crawl](https://commoncrawl.org/){:target="common-crawl"}
+* [Cornell University](https://www.cornell.edu/){:target="cornell"}
 * [IBM](https://ibm.com){:target="ibm"}
+* [Neo4J](https://neo4j.com){:target="neo4j"}
 * [Pleias](https://pleias.fr/){:target="pleias"}
+* [Salesforce](https://www.salesforce.com/){:target="salesforce"}
 * [ServiceNow](https://www.servicenow.com/){:target="servicenow"}
+* [Sony](https://www.sony.com/){:target="sony"}
 * ... more coming soon! ...
 
 ## Other Ways to Contribute to This Project
