@@ -31,6 +31,7 @@ These Alliance member organizations are contributing to OTDI. In alphabetical or
 * [Common Crawl](https://commoncrawl.org/){:target="common-crawl"}
 * [Cornell University](https://www.cornell.edu/){:target="cornell"}
 * [IBM](https://ibm.com){:target="ibm"}
+* [Meta](https://meta.com){:target="meta"}
 * [Neo4J](https://neo4j.com){:target="neo4j"}
 * [Pleias](https://pleias.fr/){:target="pleias"}
 * [Salesforce](https://www.salesforce.com/){:target="salesforce"}
