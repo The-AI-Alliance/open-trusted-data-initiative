@@ -35,7 +35,7 @@ Additional contributions are under investigation from the following sources:
 
 * [MLCommons Croissant](https://mlcommons.org/working-groups/data/croissant/) - Consider using Croissant as the primary or perhaps an alternative format for dataset cards.
 * BigCode's [dataset card](https://huggingface.co/datasets/bigcode/the-stack#dataset-card-for-the-stack) for The Stack - What information is there that we should also use.
-* [Common Crawl](https://commoncrawl.org/) - work on provenance tracking, multilingual data, etc.
+* [Common Crawl Foundation](https://commoncrawl.org/) - work on provenance tracking, multilingual data, etc.
 * [Coalition for Secure AI](https://www.coalitionforsecureai.org/) - e.g., software supply chain is a growing security concern. 
 * ...
 
