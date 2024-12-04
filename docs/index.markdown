@@ -15,7 +15,9 @@ show_contribute_dataset_button: true
 
 > **News:**
 >
-> November 4, 2024: [pleias](https://pleias.fr){:target="pleias"} joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/pleias_pleias-joins-the-ai-alliance-to-co-lead-open-ugcPost-7259263514542796800-Uphx/){:target="pleias-li"}.
+> * November 20, 2024: [BrightQuery](https://brightquery.com/){:target="bq"} joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/jose-plehn_brightquery-is-proud-to-now-be-a-member-of-activity-7265516443742478338-xjIz/?utm_source=share&utm_medium=member_desktop){:target="bq-li"}.
+> * November 4, 2024: [pleias](https://pleias.fr){:target="pleias"} joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/pleias_pleias-joins-the-ai-alliance-to-co-lead-open-ugcPost-7259263514542796800-Uphx/){:target="pleias-li"}.
+> * October 15, 2024: [Common Crawl Foundation](https://commoncrawl.org/){:target="ccf"} joins the AI Alliance and the Open Trusted Data Initiative.
 
 > **Tip:** Use the search box at the top of this page to find specific content.
 
