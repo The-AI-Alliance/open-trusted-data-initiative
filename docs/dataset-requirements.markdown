@@ -103,7 +103,7 @@ For completeness, the optional fields in that block are also shown. The **Requir
 
 | **Field Name** | **Description** | **Required?** | 
 | :------------- | :-------------- | :-----------: | 
-| `license` | We **strongly recommend** `cdla-permissive-2.0` for the [_Community Data License Agreement – Permissive, Version 2.0_](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md#licenses) and may require it in the future<sup><a href="#footnote-1">1</a></sup>. Use [these names](https://huggingface.co/docs/hub/repositories-licenses){:target="hf-licenses"} for licenses. Also covers the DPS `License to use`. | &#9745; | 
+| `license` | We **strongly recommend** `cdla-permissive-2.0` for the [_Community Data License Agreement – Permissive, Version 2.0_](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md#licenses) and may require it in the future [^1]. Use [these names](https://huggingface.co/docs/hub/repositories-licenses){:target="hf-licenses"} for licenses. Also covers the DPS `License to use`. | &#9745; | 
 | `license_name` | e.g, _Community Data License Agreement – Permissive, Version 2.0_. | &#9745; | 
 | `license_link` | e.g, `LICENSE` or `LICENSE.md` in the same repo or a URL to another location. | &#9745; | 
 | `license_details` | Not needed if you use a standard license. |  | 
@@ -125,8 +125,7 @@ For completeness, the optional fields in that block are also shown. The **Requir
 {: .metadata-table}
 <p class="caption">Table 1: Hugging Face Datacard Metadata</p>
 
-<a name="footnote-1"></a>
-<sup>1</sup> For source code, e.g., the code used for the [data processing pipelines]({{site.baseurl}}/our-processing), the AI Alliance standard code license is [_Apache 2.0_](https://spdx.org/licenses/Apache-2.0){:target="apache"}. For documentation, it is [The Creative Commons License, Version 4.0 (CC BY 4.0)](https://spdx.org/licenses/CC-BY-4.0.html){:target="cc-by-4"}. See the Alliance [`community/CONTRIBUTING` page](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md#licenses){:target="licenses"} for more details about licenses.
+[^1]: For source code, e.g., the code used for the [data processing pipelines]({{site.baseurl}}/our-processing), the AI Alliance standard code license is [_Apache 2.0_](https://spdx.org/licenses/Apache-2.0){:target="apache"}. For documentation, it is _The Creative Commons License, Version 4.0_, [CC BY 4.0](https://spdx.org/licenses/CC-BY-4.0.html){:target="cc-by-4"}. See the Alliance [`community/CONTRIBUTING` page](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md#licenses){:target="licenses"} for more details about licenses.
 
 ## The Markdown Content in the Dataset Card
 
