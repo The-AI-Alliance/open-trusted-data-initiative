@@ -23,7 +23,7 @@ We plan to provide an integrated search and browsing feature, to make it easier 
 
 Here is the current list of datasets.
 
-| **Organization** | **Description** |  **URL** |
+| Organization     | Description     |  URL     |
 | :--------------- | :-------------- | :------- |
 | **[PleIAs](https://pleias.fr){:target="pleias"}** | **Domain-specific, clean datasets** | **[All PleIAs collections](https://huggingface.co/collections/PleIAs){:target="pleias-hf"}** |
 | | Largest multilingual pretraining data | [Common Corpus](https://huggingface.co/collections/PleIAs/common-corpus-6734e0f67ac3f35e44075f93){:target="common-corpus"} |
@@ -36,7 +36,7 @@ Here is the current list of datasets.
 
 The following organizations are collaborating with us on additional datasets.
 
-| **Organization** | **Kind** | 
+| Organization     | Kind     | 
 | :--------------- | :------- | 
 | [BrightQuery](https://brightquery.ai/){:target="bq"} | Government datasets (TBD) |
 | [Common Crawl Foundation](https://commoncrawl.org/) | Tagged and filtered crawl subsets for English and other languages |

@@ -101,7 +101,7 @@ For completeness, the optional fields in that block are also shown. The **Requir
 
 <a name="table-1"></a>
 
-| **Field Name** | **Description** | **Required?** | 
+| Field Name     | Description     | Required?     | 
 | :------------- | :-------------- | :-----------: | 
 | `license` | We **strongly recommend** `cdla-permissive-2.0` for the [_Community Data License Agreement – Permissive, Version 2.0_](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md#licenses) and may require it in the future [^1]. Use [these names](https://huggingface.co/docs/hub/repositories-licenses){:target="hf-licenses"} for licenses. Also covers the DPS `License to use`. | &#9745; | 
 | `license_name` | e.g, _Community Data License Agreement – Permissive, Version 2.0_. | &#9745; | 
@@ -138,7 +138,7 @@ As noted in the following table, many of the fields appear in both the Hugging F
 
 <a name="table-2"></a>
 
-| **Field Name** | **Description** | **Required?** | **Source** |
+| Field Name     | Description     | Required?     | Source     |
 | :------------- | :-------------- | :-----------: | :--------: |
 | `standards_version_used` | (DPS name: `Standards version used`) The DPS schema version. Since our dataset card requirements are not strictly conformant to any DPS schema, this is optional. |  | DPS | 
 | `unique_metadata_identifier` | (DPS name: `Unique Metadata Identifier`) A UUID (DPS allows other choices) that is globally unique. Derived datasets must have their own UUIDs. The UUID is very useful for unambiguous lineage tracking, which is why we require it. | &#9745; | DPS, OTDI |
@@ -241,7 +241,7 @@ First, consider a new version of an otherwise-identical dataset. You should exam
 
 <a name="table-3"></a>
 
-| **Field Name** | **Possible Updates** | **Required?** |
+| Field Name     | Possible Updates     | Required?     |
 | :------------- | :------------------- | :-----------: |
 | `tags` | For example, if the expanded dataset covers new domains than its &ldquo;parent&rdquo;. |  |
 | `language_details` | If new languages were added or existing languages removed. |  |
@@ -272,7 +272,7 @@ Second, consider a new dataset derived from another dataset through a processing
 
 <a name="table-4"></a>
 
-| **Field Name** | **Possible Updates** | **Required?** |
+| Field Name     | Possible Updates     | Required?     |
 | :------------- | :------------------- | :-----------: |
 | `tags` | For example, if the derived dataset is more focused on a domain than its &ldquo;parent&rdquo; or it adds new domains. |  |
 | `pretty_name` | A new name is essential to avoid confusion. | &#9745; |
