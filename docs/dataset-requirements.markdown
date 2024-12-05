@@ -8,7 +8,7 @@ show_contribute_dataset_button: true
 
 # Dataset Requirements
 
-> **Note:** The requirements documented here are a &ldquo;draft V0.1&rdquo; version of what we think will be required. We need and welcome your feedback! Either [contact us]({{site.baseurl}}/about/#contact-us) or consider using [pull requests](https://github.com/The-AI-Alliance/open-trusted-data-initiative/pulls) with your suggestions. See the AI Alliance community page on [contributing](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md){:target="contrib"} for more details.
+> **Note:** The requirements documented here are the &ldquo;V0.1&rdquo; version of what we think will be required. We need and welcome your feedback! Either [contact us]({{site.baseurl}}/about/#contact-us) or consider using [pull requests](https://github.com/The-AI-Alliance/open-trusted-data-initiative/pulls) with your suggestions. See the AI Alliance community page on [contributing](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md){:target="contrib"} for more details.
 >
 > Also [contact us]({{site.baseurl}}/about/#contact-us) if you are interested in contributing a dataset, but you have any questions or concerns about meeting the following requirements.
 
@@ -31,7 +31,7 @@ The requirements are adapted from the following sources:
 * The [Data Provenance Standard](https://dataandtrustalliance.org/work/data-provenance-standards){:target="dta-prov"} from the [Data and Trust Alliance](https://dataandtrustalliance.org/){:target="dta"}.
 * Unique requirements for this project.
 
-Additional contributions are under investigation from the following sources:
+In addition, we are exploring incorporation of the following sources:
 
 * [MLCommons Croissant](https://mlcommons.org/working-groups/data/croissant/) - Consider using Croissant as the primary or perhaps an alternative format for dataset cards.
 * BigCode's [dataset card](https://huggingface.co/datasets/bigcode/the-stack#dataset-card-for-the-stack) for The Stack - What information is there that we should also use.
@@ -43,11 +43,11 @@ Most of the details are captured in requirements for the dataset card that _ever
 
 Let's begin.
 
-## The Data Is Yours to Contribute
+## The Data Must Be Yours to Contribute
 
-To ensure fully-traceable provenance and governance, you must affirm that you are the owner of the dataset or you received the dataset from a source that offers the data for use without restriction, for example, that you have been granted permission by the owner to act on their behalf with respect to the dataset.
+To promote fully-traceable provenance and governance, for all data within the dataset, you must affirm that you are either (a) the owner of the dataset or (b) you have rights from the owner of the data that enables you to provide it to anyone under the CDLA Permissive 2.0 license; for example, you have been granted permission by the owner to act on their behalf with respect to the data and enable others to use it without restriction.
 
-> **WARNING:** Do not contribute any data that was obtained by crawling or scraping public data from the Internet. At this time, we can not accept such datasets because of concerns about verifying the provenance of such data.
+> **WARNING:** Do not contribute any data that was obtained by crawling or scraping public data from the Internet or other public places. At this time, we are not accepting such data because we are seeking to build datasets with a heightened level of clarity around ownership, provenance, and quality.
 
 ## Dataset Hosting
 
@@ -89,7 +89,7 @@ This section describes the minimum set of metadata we require, combining element
 
 All of the fields apply to synthesized data as well as _real_ data, but of course details will be different.
 
-> **NOTE:** In the tables that follow, many of the fields appear in both the Hugging Face dataset card template and the Data Provenance Standard, but use different names. We ask you to use the Hugging Face names for consistency and convenience. When unique DPS fields are specified below, we convert their names to lowercase and use underscores as separators, for consistency.
+> **NOTE:** In the tables that follow, many of the fields appear in both the Hugging Face dataset card template and the Data Provenance Standard, but different names are used. We ask you to use the Hugging Face names for consistency and convenience. When unique DPS fields are specified below, we convert their names to lowercase and use underscores as separators, for consistency.
 
 ### YAML Metadata Block
 
@@ -113,7 +113,7 @@ For completeness, the optional fields in that block are also shown. The **Requir
 | `language_details` | One or more of, for example, `en-US`, `fr-FR`, etc. | &#9745; | 
 | `pretty_name` | E.g., `Common Chemistry`. This is equivalent to the `Dataset title/name` field in the [Data Provenance Standard](https://dataandtrustalliance.org/work/data-provenance-standards){:target="dta-prov"} (DPS). | &#9745; | 
 | `size_categories` | E.g., `n<1K`, `100K<n<1M`. |  | 
-| `source_datasets` | A YAML list; zero or more, e.g., `wikipedia`, `common-crawl`. Recall our emphasis on _provenance_. This list is very important and each source must meet our provenance standards. See also the discussions below. | &#9745; | 
+| `source_datasets` | A YAML list; zero or more. Recall our emphasis on _provenance_. This list is very important, as each source must meet our provenance standards. See also the discussions below. | &#9745; | 
 | `task_categories` | A YAML list; one or more from the list in [this code](https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/pipelines.ts){:target="hf-tasks"}. | &#9745; | 
 | `task_ids` | A YAML list; &ldquo;a unique identifier in the format `lbpp/{idx}`, consistent with HumanEval and MBPP&rdquo; from [here](https://huggingface.co/datasets/CohereForAI/lbpp){:target="cohere"}. See also examples [here](https://huggingface.co/datasets/CohereForAI/lbpp){:target="humaneval"}. |  | 
 | `paperswithcode_id` | Dataset id on PapersWithCode (from the URL). |  | 
@@ -142,7 +142,7 @@ As noted in the following table, many of the fields appear in both the Hugging F
 | :------------- | :-------------- | :-----------: | :--------: |
 | `standards_version_used` | (DPS name: `Standards version used`) The DPS schema version. Since our dataset card requirements are not strictly conformant to any DPS schema, this is optional. |  | DPS | 
 | `unique_metadata_identifier` | (DPS name: `Unique Metadata Identifier`) A UUID (DPS allows other choices) that is globally unique. Derived datasets must have their own UUIDs. The UUID is very useful for unambiguous lineage tracking, which is why we require it. | &#9745; | DPS, OTDI |
-| `metadata_location` | (DPS name: `Metadata Location`) Where the metadata is located, but by definition, we require the `README.md` file, so omit this field. | &#9746; | DPS |
+| `metadata_location` | (DPS name: `Metadata Location`) Where the metadata is located. However, by definition, we require the `README.md` file, so omit this field. | &#9746; | DPS |
 | `dataset_summary` | A concise summary of the dataset and its purpose. | &#9745; | HF | 
 | `dataset_description` | (DPS name: `Description of the Dataset`) Describe the contents, scope, and purpose of the dataset, which helps users understand what the data represents, how it was collected, and any limitations or recommended uses. However, this field should not include redundant information covered elsewhere. | &#9745; | HF, DPS | 
 | `curated_by` | One or more legal entities responsible for creating the dataset, providing accountability and a point of contact for inquiries. Called `Dataset issuer` in DPS. See also `dataset_card_authors` below. | &#9745; | HF, DPS |
@@ -151,13 +151,13 @@ As noted in the following table, many of the fields appear in both the Hugging F
 | `data_collection_and_processing_section` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#source-data){:target="hf-datasetcard-template-source-data"}. Describes the data collection and processing process such as data selection criteria, filtering and normalization methods, tools and libraries used, etc. | &#9745; | HF |
 | `source_data_producers_section` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#source-data){:target="hf-datasetcard-template-source-data"}. This section describes the people or systems who originally created the data. It should also include self-reported demographic or identity information for the source data creators if this information is available. | &#9745; | HF |
 | `source_metadata_for_dataset` | (DPS name: `Source metadata for dataset`) Additional content for `source_data`; if the corresponding metadata for any dataset is not part of that dataset, then it must be explicitly linked here. This information is necessary for lineage tracking, part of our provenance objectives. Marked required, but if all metadata is part of all datasets (e.g., in `README.md` dataset cards), then this field can be omitted. | &#9745; | DPS |
-| `consent_documentation_location` | (DPS name: `Consent documentation location`) &ldquo;Specifies where consent documentation or agreements related to the data can be found, ensuring legal compliance and regulatory use.&rdquo; Required for third-party datasets you are contributing. | &#9745; | DPS |
+| `consent_documentation_location` | (DPS name: `Consent documentation location`) &ldquo;Specifies where consent documentation or agreements related to the data can be found, which help enable legal compliance and regulatory use.&rdquo; Required for third-party datasets you are contributing. | &#9745; | DPS |
 | `data_origin_geography` | (DPS name: `Data origin geography`) &ldquo;The geographical location where the data was originally collected, which can be important for compliance with regional laws and understanding the data's context.&rdquo; Required if restrictions apply. |  | DPS |
 | `data_processing_geography_inclusion_exclusion` | (DPS name: `Data Processing Geography Inclusion/Exclusion`) &ldquo;Defines the geographical boundaries within which the data can or cannot be processed, often for legal or regulatory reasons.&rdquo; Required if restrictions apply. |  | DPS |
 | `data_storage_geography_inclusion_exclusion` | (DPS name: `Data Storage Geography Inclusion/Exclusion`) &ldquo;Specifies where the data is stored and any geographical restrictions on storage locations, crucial for compliance with data sovereignty laws.&rdquo; Required if restrictions apply. |  | DPS |
 | `uses` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#uses){:target="hf-datasetcard-template-uses"}. Optional, but useful for describing `Direct Use` (field name: `direct_use`) and `Out-of-Scope Use` (field name: `out_of_scope_use`) for the dataset. Consider structuring the `Direct Use` as described in the `Supported Tasks and Leaderboards` [section](https://github.com/huggingface/datasets/blob/main/templates/README_guide.md#supported-tasks-and-leaderboards) in the `templates/README_guide.md`. |  | HF |
 | `annotations` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#annotations){:target="hf-datasetcard-template-annotations"}. Add any additional information for the `annotations_creators` above, if any. Subsections are `annotation_process_section` and `who_are_annotators_section`. |  | HF |
-| `annotation_process_section` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#annotations){:target="hf-datasetcard-template-annotations"}. Describes the annotation process such as annotation tools used in the process, the amount of data annotated, annotation guidelines provided to the annotators, interannotator statistics, annotation validation, etc. |  | HF |
+| `annotation_process_section` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#annotations){:target="hf-datasetcard-template-annotations"}. Describes the annotation process such as annotation tools used in the process, the amount of data annotated, annotation guidelines provided to the annotators, inter-annotator statistics, annotation validation, etc. |  | HF |
 | `who_are_annotators_section` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#annotations){:target="hf-datasetcard-template-annotations"}. Describes the people or systems who created the annotations. |  | HF |
 | `bias_risks_limitations` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#bias-risks-and-limitations){:target="hf-datasetcard-template-bias-risks-and-limitations"}. While provenance and governance are the top priorities for OTDI, we also want to communicate to potential users what risks they need to understand about our cataloged datasets. Therefore, we require any information you can provide in this section, along with the `Recommendations` subsection for mitigations, if known. | &#9745; | HF |
 | `personal_and_sensitive_information` | (DPS name: `Confidentiality classification`), State whether the dataset contains data that might be considered personal, sensitive, or private (e.g., data that reveals addresses, uniquely identifiable names or aliases, racial or ethnic origins, sexual orientations, religious beliefs, political opinions, financial or health data, etc.). Consider using one or more  of the values listed below, after this table. If efforts were made to anonymize the data, describe the anonymization process and also fill in `use_of_privacy_enhancing_technologies_pets`. | &#9745; | HF, DPS |
@@ -169,7 +169,7 @@ As noted in the following table, many of the fields appear in both the Hugging F
 | `dataset_issue_date` | (DPS name: `Dataset Issue Date`) When the dataset was compiled or created. (New versions require new dataset cards.) Recommended format: `YYYY-mm-dd:THH:MM:SS` | &#9745; | DPS |
 | `date_previously_issued_version_dataset` | (DPS name: `Date of Previously Issued Version of the Dataset`) Timestamp for previous releases, if applicable. Redundant with other traceability tools, so not recommended. |  | DPS |
 | `range_dates_data_generation` | (DPS name: `Range of dates for data generation`) The span of time during which the data within the dataset was collected or generated, offering insight into the dataset's timeliness and relevance. | &#9745; | DPS |
-| `intended_data_use` | (DPS name: `Intended Data Use`) Covered by other fields, so ommit. | &#9746; | DPS |
+| `intended_data_use` | (DPS name: `Intended Data Use`) Covered by other fields, so omit. | &#9746; | DPS |
 | `proprietary_data_presence` | (DPS name: `Proprietary Data Presence`) Incompatable with OTDI goals, so either omit or always use `no`. | &#9746; | DPS |
 {: .metadata-table}
 <p class="caption">Table 2: Additional Content for the Dataset Card (`README.md`)</p>
@@ -233,78 +233,32 @@ In addition, we welcome datasets with different _modalities_. Hugging Face attem
 
 ## Derived Dataset Requirements
 
-_Every_ dataset that is derived via a processing pipeline from another dataset, or is a new version of an existing dataset (e.g., because of additional data), requires its own dataset card, which must reference all _upstream_ datasets that fed into it.
+_Every_ dataset that is derived via a processing pipeline from one or more other datasets requires its own dataset card, which must reference all _upstream_ datasets that feed into it (and by extension, their dataset cards of metadata). Similarly, each new version of an existing dataset, whre only additional (or removed) data is involved, also needs an updated card, but more of the metadata will be unchanged.
 
-A derived dataset could include a dataset that has been processed to remove duplication, hate speech, etc., or transformed to different formats. Much of the dataset card content will be unchanged, but some fields may or will require updating in the new card. 
+> **Note:** We are considering a way to allow a derived dataset card to just specify what's new or changed and inherit unchanged metadata from its ancestors. Also, when automated pipelines are used to create derived datasets, our [processing pipelines]({{site.baseurl}}/our-processing) will automatically generate some updated metadata, such as timestamps, processing tools and steps, etc.
 
-First, consider a new version of an otherwise-identical dataset. You should examine all fields, but the following are most likely to need changing. 
+When the derived dataset is the filtered output of one or more _raw_ datasets (defined below), where duplication and offensive content removal was performed, the new dataset may support different `uses`, have different `bias_risks_limitations`, and it will need to identify the upstream (ancestor) `source_datasets`, for example.
+
+Table 3 lists the fields that must change (with some exceptions), to avoid ambiguities:
 
 <a name="table-3"></a>
 
 | Field Name     | Possible Updates     | Required?     |
 | :------------- | :------------------- | :-----------: |
-| `tags` | For example, if the expanded dataset covers new domains than its &ldquo;parent&rdquo;. |  |
-| `language_details` | If new languages were added or existing languages removed. |  |
-| `pretty_name` | Consider if a more descriptive name or an added version string is desirable. |  |
-| `size_categories` | If the size changed significantly. | |
-| `source_datasets` | If the source datasets changed. | |
-| `task_categories` | If used and the tasks changed, usually meaning that more are supported. | |
-| `task_ids` | If used and the task ids changed. | |
-| `config_name` | If used and the dataset subsets have changed. | |
-| `dataset_info` | If used and the feature types, etc. for Python usage have changed. | |
+| `pretty_name` | A modified name is strongly recommended to avoid potential confusion. It might just embed a version string. | |
 | `unique_metadata_identifer` | Must be new! | &#9745; |
-| `curated_by` | If different. | |
-| `description_of_the_dataset` | If changed. | |
-| `dataset_sources` | Locations of new sources will be different. | &#9745; |
-| `source_data` | What information has changed about the sources? | &#9745; |
-| `uses` | Have the uses changed? | |
-| `bias_risks_limitations` | Have these concerns changed? | |
-| `dataset_card_authors` | The authors of this new card. | &#9745; |
-| `dataset_card_contact` | Required, if changed. | |
 | `dataset_issue_date`   | The date for this new card. | &#9745; |
-| `range_dates_data_generation` | The date range for this new dataset. | &#9745; |
-{: .metadata-table}
-<p class="caption">Table 3: Possible Dataset Card Changes for a New Dataset Version</p>
-
-If other changes were made besides just the addition of new data, consider if the dataset should be considered a different, derived dataset.
-
-Second, consider a new dataset derived from another dataset through a processing pipeline. You should examine all fields, but the following are most likely to need changing. 
-
-<a name="table-4"></a>
-
-| Field Name     | Possible Updates     | Required?     |
-| :------------- | :------------------- | :-----------: |
-| `tags` | For example, if the derived dataset is more focused on a domain than its &ldquo;parent&rdquo; or it adds new domains. |  |
-| `pretty_name` | A new name is essential to avoid confusion. | &#9745; |
-| `size_categories` | If the size changed significantly. | |
-| `source_datasets` | Effective governance requires careful lineage tracking, so _all_ parent datasets must be identified. | &#9745; |
-| `task_categories` | If used and the tasks changed. | |
-| `task_ids` | If used and the task ids changed. | |
-| `configs` | If used and the parameters to pass to the dataset loaders have changed. | |
-| `config_name` | If used and the dataset subsets have changed. | |
-| `dataset_info` | If used and the feature types, etc. for Python usage have changed. | |
-| `unique_metadata_identifer` | Must be new! | &#9745; |
-| `curated_by` | Most likely different! | &#9745; |
-| `description_of_the_dataset` | Change to reflect the transformations, but it's not recommended to provide information also provided elsewhere. | |
-| `dataset_sources` | New dataset, so new source (location) information. | &#9745; |
-| `source_data` | New dataset, so new information about the sources. | &#9745; |
-| `uses` | New dataset, so the uses are likely to be different. | &#9745; |
-| `bias_risks_limitations` | How have these concerns changed with the processing done to create this dataset? | &#9745; |
-| `dataset_card_authors` | The authors of this new card. | &#9745; |
-| `dataset_card_contact` | Required, if changed. | |
-| `dataset_issue_date`   | The date for this new card. | &#9745; |
-| `range_dates_data_generation` | The date range for this new dataset. | &#9745; |
 
 {: .metadata-table}
-<p class="caption">Table 4: Possible Dataset Card Changes for a Derived Dataset</p>
+<p class="caption">Table 4: Required Dataset Card Changes for a Derived Dataset</p>
 
-## Catagories of Dataset Transformations
+### Categories of Dataset Transformations
 
 At this time, we have the following concepts for original and derived datasets, concerning levels of _quality_ and cleanliness. This list corresponds to stages in our _ingestion_ process and subsequent possible derivations of datasets. This list is subject to change.
 
-* **Raw:** The dataset as submitted, which could already be in &ldquo;good shape&rdquo;. _Our most important concern at this stage is **unambigious provenance**._ Raw datasets may go through filtering and analysis to remove potential objectionable content. However, the presence of some content in the raw data could have legal implications, such as some forms of PII and company confidential information, which may force us to reject the contribution. (Should this happen, we will discuss mitigation options with you.)
+* **Raw:** The dataset as submitted, which could already be in &ldquo;good shape&rdquo;. _Our most important concern at this stage is **unambiguous provenance**._ Raw datasets may go through filtering and analysis to remove potential objectionable content. However, the presence of some content in the raw data could have legal implications, such as some forms of PII and company confidential information, which may force us to reject the contribution. (Should this happen, we will discuss mitigation options with you.)
 * **Filtered:** A _raw_ dataset that has gone through a processing pipeline to remove duplicates, filter for objectional content, etc.
-* **Structured:** A _filtered_ dataset that has been reformated to be most suitable for model training (LLMs, time series, etc.), RAG patterns, and similar purposes. For example, PDFs converted to JSON. 
+* **Structured:** A _filtered_ dataset that has been reformatted to be most suitable for model training (LLMs, time series, etc.), RAG patterns, and similar purposes. For example, PDFs converted to JSON. 
 
 See [How We Process Datasets]({{site.baseurl}}/our-processing) for more details on these levels and how we process datasets.
 
