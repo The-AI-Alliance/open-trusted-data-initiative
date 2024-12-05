@@ -3,7 +3,6 @@ layout: default
 title: Dataset Requirements
 nav_order: 30
 has_children: true
-show_contribute_dataset_button: true
 ---
 
 # Dataset Requirements

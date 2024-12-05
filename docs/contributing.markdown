@@ -3,7 +3,6 @@ layout: default
 title: Contribute Your Dataset!
 nav_order: 50
 has_children: false
-show_contribute_dataset_button: false
 ---
 
 # Contribute Your Dataset! 

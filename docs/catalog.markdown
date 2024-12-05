@@ -3,7 +3,6 @@ layout: default
 title: Dataset Catalog
 nav_order: 20
 has_children: false
-show_contribute_dataset_button: true
 ---
 
 # The Dataset Catalog

@@ -3,8 +3,12 @@ layout: default
 title: About Us
 nav_order: 70
 has_children: false
-show_contribute_dataset_button: true
 ---
+
+<a name="join-us"></a>
+# Join This Initiative!
+
+Want to join one of our projects? Visit [this AI Alliance webpage](https://thealliance.ai/core-projects/open-trusted-data-initiative#foundation-models-working-group-form){:target="join-us-form"} and fill in the form. Thank you for your interest.
 
 <a name="contact-us"></a>
 # How to Contact Us

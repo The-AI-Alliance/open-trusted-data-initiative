@@ -3,7 +3,6 @@ layout: default
 title: Start Here!
 nav_order: 10
 has_children: true
-show_contribute_dataset_button: true
 ---
 
 # Building the Future of Open, Trusted Data for AI

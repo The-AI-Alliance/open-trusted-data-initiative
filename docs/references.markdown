@@ -3,7 +3,6 @@ layout: default
 title: References
 nav_order: 60
 has_children: false
-show_contribute_dataset_button: true
 ---
 
 # References: What Others Are Saying About Trusted, Open Data

@@ -3,7 +3,6 @@ layout: default
 title: How We Process Datasets
 nav_order: 40
 has_children: false
-show_contribute_dataset_button: true
 ---
 
 # How We Process Datasets

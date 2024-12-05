@@ -143,11 +143,9 @@ layout: table_wrappers
         <hr/>
         <a href="{{site.baseurl}}/catalog/" target="hugging-face" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph">Browse the Datasets</a>
         &nbsp;
-        {% if page.show_contribute_dataset_button %}
         <a href="{{site.baseurl}}/contributing" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph">Contribute a new Dataset!</a>
-        {% else %}
-        <a href="#" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph">Contribute a new Dataset!</a>
-        {% endif %}
+        &nbsp;
+        <a href="{{site.baseurl}}/about/#join-us" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph">Join This Initiative!</a>
 
         {% if site.heading_anchors != false %}
           {% include vendor/anchor_headings.html html=content beforeHeading="true" anchorBody="<svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><use xlink:href=\"#svg-link\"></use></svg>" anchorClass="anchor-heading" anchorAttrs="aria-labelledby=\"%html_id%\"" %}
