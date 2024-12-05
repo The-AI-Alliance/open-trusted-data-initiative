@@ -45,7 +45,7 @@ A _bill of materials_ is a traditional concept used to specify for producers and
 
 Software BoMs have the same goals, to very clearly state what components a software artifact contains.
 
-[This Linux Foundation report](https://www.linuxfoundation.org/research/ai-bom) discusses the concept in the content of AI. A quote from the website:
+[This Linux Foundation report](https://www.linuxfoundation.org/research/ai-bom){:target="ai-bom"} discusses the concept in the content of AI. A quote from the website:
 
 > A Software Bill of Materials (SBOM) is becoming an increasingly important tool in regulatory and technical spaces to introduce more transparency and security into a project's software supply chain.
 > 
@@ -53,7 +53,7 @@ Software BoMs have the same goals, to very clearly state what components a softw
 
 ## Data Provenance Initiative
 
-[Website](https://www.dataprovenance.org/), [GitHub](https://github.com/Data-Provenance-Initiative/Data-Provenance-Collection)
+[Website](https://www.dataprovenance.org/){:target="dp-site"}, [GitHub](https://github.com/Data-Provenance-Initiative/Data-Provenance-Collection){:target="dp-repo"}
 
 There mission is to uncover the datasets used to train large language models. From their website:
 
@@ -62,6 +62,6 @@ There mission is to uncover the datasets used to train large language models. Fr
 <a name="data-transparency"></a>
 ## Hugging Face: Training Data Transparency in AI: Tools, Trends, and Policy Recommendations
 
-[Blog post](https://huggingface.co/blog/yjernite/data-transparency) by [Yacine Jernite](https://huggingface.co/yjernite).
+[Blog post](https://huggingface.co/blog/yjernite/data-transparency){:target="hf-data-transparency"} by [Yacine Jernite](https://huggingface.co/yjernite){:target="yacine"}.
 
 A call for &ldquo;minimum meaningful public transparency standards to support effective AI regulation.&rdquo;

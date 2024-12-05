@@ -32,14 +32,14 @@ Here is the current list of datasets.
 | | PleIAs collection of models for the data processing of challenging document and data sources | [Bad Data Toolbox](https://huggingface.co/collections/PleIAs/bad-data-toolbox-66981c2d0df662459252844e){:target="bad-data-toolbox"} |
 | | A multilingual dataset of public domain books and newspapers | [Open Culture](https://huggingface.co/collections/PleIAs/openculture-65d46e3ea3980fdcd66a5613){:target="open-culture"} |
 | **[AI Alliance](https://thealliance.ai){:target="aia"}** | **Miscellaneous open datasets** | **[OTDI Catalog](https://huggingface.co/collections/aialliance/open-trusted-data-coming-soon-66d21b3cb66342762fb6108e){:target="aia-hf"}** |
-| | SemiKong: Open Model training dataset for semiconductor technology | [SemiKong](https://huggingface.co/datasets/pentagoniac/SemiKong_Training_Datset) |
+| | SemiKong: Open Model training dataset for semiconductor technology | [SemiKong](https://huggingface.co/datasets/pentagoniac/SemiKong_Training_Datset){:target="semikong"} |
 
 The following organizations are collaborating with us on additional datasets.
 
 | Organization     | Kind     | 
 | :--------------- | :------- | 
 | [BrightQuery](https://brightquery.ai/){:target="bq"} | Government datasets (TBD) |
-| [Common Crawl Foundation](https://commoncrawl.org/) | Tagged and filtered crawl subsets for English and other languages |
+| [Common Crawl Foundation](https://commoncrawl.org/){:target="ccf"} | Tagged and filtered crawl subsets for English and other languages |
 
 
-To expand this catalog, we not only [welcome contributions], but we plan to seek out qualified datasets leveraging other sources of information about them, such as the [Data Provenance Initiative](https://www.dataprovenance.org/), [Hugging Face](https://huggingface.co/datasets), and others (TBD).
+To expand this catalog, we not only [welcome contributions], but we plan to seek out qualified datasets leveraging other sources of information about them, such as the [Data Provenance Initiative](https://www.dataprovenance.org/){:target="dp"}, [Hugging Face](https://huggingface.co/datasets){:target="hf-datasets"}, and others (TBD).

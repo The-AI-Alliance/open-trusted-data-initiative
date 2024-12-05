@@ -8,7 +8,7 @@ show_contribute_dataset_button: true
 
 # Dataset Requirements
 
-> **Note:** The requirements documented here are the &ldquo;V0.1&rdquo; version of what we think will be required. We need and welcome your feedback! Either [contact us]({{site.baseurl}}/about/#contact-us) or consider using [pull requests](https://github.com/The-AI-Alliance/open-trusted-data-initiative/pulls) with your suggestions. See the AI Alliance community page on [contributing](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md){:target="contrib"} for more details.
+> **Note:** The requirements documented here are the &ldquo;V0.1&rdquo; version of what we think will be required. We need and welcome your feedback! Either [contact us]({{site.baseurl}}/about/#contact-us) or consider using [pull requests](https://github.com/The-AI-Alliance/open-trusted-data-initiative/pulls){:target="prs"} with your suggestions. See the AI Alliance community page on [contributing](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md){:target="contrib"} for more details.
 >
 > Also [contact us]({{site.baseurl}}/about/#contact-us) if you are interested in contributing a dataset, but you have any questions or concerns about meeting the following requirements.
 
@@ -33,10 +33,10 @@ The requirements are adapted from the following sources:
 
 In addition, we are exploring incorporation of the following sources:
 
-* [MLCommons Croissant](https://mlcommons.org/working-groups/data/croissant/) - Consider using Croissant as the primary or perhaps an alternative format for dataset cards.
-* BigCode's [dataset card](https://huggingface.co/datasets/bigcode/the-stack#dataset-card-for-the-stack) for The Stack - What information is there that we should also use.
-* [Common Crawl Foundation](https://commoncrawl.org/) - work on provenance tracking, multilingual data, etc.
-* [Coalition for Secure AI](https://www.coalitionforsecureai.org/) - e.g., software supply chain is a growing security concern. 
+* [MLCommons Croissant](https://mlcommons.org/working-groups/data/croissant/){:target="croissant"} - Consider using Croissant as the primary or perhaps an alternative format for dataset cards. (See also the [Format](#format) section below.)
+* BigCode's [dataset card](https://huggingface.co/datasets/bigcode/the-stack#dataset-card-for-the-stack){:target="hf-dataset-card"} for The Stack - What information is there that we should also use.
+* [Common Crawl Foundation](https://commoncrawl.org/){:target="ccf"} - work on provenance tracking, multilingual data, etc.
+* [Coalition for Secure AI](https://www.coalitionforsecureai.org/){:target="csai"} - e.g., software supply chain is a growing security concern. 
 * ...
 
 Most of the details are captured in requirements for the dataset card that _every version_ of a dataset carries (e.g., after various stages of processing). Other requirement described here cover data governance for those processing stages.
@@ -103,7 +103,7 @@ For completeness, the optional fields in that block are also shown. The **Requir
 
 | Field Name     | Description     | Required?     | 
 | :------------- | :-------------- | :-----------: | 
-| `license` | We **strongly recommend** `cdla-permissive-2.0` for the [_Community Data License Agreement – Permissive, Version 2.0_](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md#licenses) and may require it in the future [^1]. Use [these names](https://huggingface.co/docs/hub/repositories-licenses){:target="hf-licenses"} for licenses. Also covers the DPS `License to use`. | &#9745; | 
+| `license` | We **strongly recommend** `cdla-permissive-2.0` for the [_Community Data License Agreement – Permissive, Version 2.0_](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md#licenses){:target="cdla"} and may require it in the future [^1]. Use [these names](https://huggingface.co/docs/hub/repositories-licenses){:target="hf-licenses"} for licenses. Also covers the DPS `License to use`. | &#9745; | 
 | `license_name` | e.g, _Community Data License Agreement – Permissive, Version 2.0_. | &#9745; | 
 | `license_link` | e.g, `LICENSE` or `LICENSE.md` in the same repo or a URL to another location. | &#9745; | 
 | `license_details` | Not needed if you use a standard license. |  | 
@@ -130,7 +130,7 @@ For completeness, the optional fields in that block are also shown. The **Requir
 ## The Markdown Content in the Dataset Card
 
 Our second table lists content that we require or recommend in the Markdown body of the dataset card, below the YAML header block. The **Source** column in the table contains the following:
-* &ldquo;HF&rdquo; for fields in the Hugging Face [`datasetcard_template.md`](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md){:target="hf-dataset-card-template"}. See the [`README_guide.md`](https://github.com/huggingface/datasets/blob/main/templates/README_guide.md) for descriptions of many of these fields.
+* &ldquo;HF&rdquo; for fields in the Hugging Face [`datasetcard_template.md`](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md){:target="hf-dataset-card-template"}. See the [`README_guide.md`](https://github.com/huggingface/datasets/blob/main/templates/README_guide.md){:target="hf-dataset-card-readme"} for descriptions of many of these fields.
 * &ldquo;DPS&rdquo; for additional fields derived from the [Data Provenance Standard](https://dataandtrustalliance.org/work/data-provenance-standards){:target="dta-prov"} (DPS). Where we require DPS fields, add them to the `README.md` they seem to fit best.
 * &ldquo;OTDI&rdquo; for project-specific requirements. 
 
@@ -155,7 +155,7 @@ As noted in the following table, many of the fields appear in both the Hugging F
 | `data_origin_geography` | (DPS name: `Data origin geography`) &ldquo;The geographical location where the data was originally collected, which can be important for compliance with regional laws and understanding the data's context.&rdquo; Required if restrictions apply. |  | DPS |
 | `data_processing_geography_inclusion_exclusion` | (DPS name: `Data Processing Geography Inclusion/Exclusion`) &ldquo;Defines the geographical boundaries within which the data can or cannot be processed, often for legal or regulatory reasons.&rdquo; Required if restrictions apply. |  | DPS |
 | `data_storage_geography_inclusion_exclusion` | (DPS name: `Data Storage Geography Inclusion/Exclusion`) &ldquo;Specifies where the data is stored and any geographical restrictions on storage locations, crucial for compliance with data sovereignty laws.&rdquo; Required if restrictions apply. |  | DPS |
-| `uses` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#uses){:target="hf-datasetcard-template-uses"}. Optional, but useful for describing `Direct Use` (field name: `direct_use`) and `Out-of-Scope Use` (field name: `out_of_scope_use`) for the dataset. Consider structuring the `Direct Use` as described in the `Supported Tasks and Leaderboards` [section](https://github.com/huggingface/datasets/blob/main/templates/README_guide.md#supported-tasks-and-leaderboards) in the `templates/README_guide.md`. |  | HF |
+| `uses` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#uses){:target="hf-datasetcard-template-uses"}. Optional, but useful for describing `Direct Use` (field name: `direct_use`) and `Out-of-Scope Use` (field name: `out_of_scope_use`) for the dataset. Consider structuring the `Direct Use` as described in the `Supported Tasks and Leaderboards` [section](https://github.com/huggingface/datasets/blob/main/templates/README_guide.md#supported-tasks-and-leaderboards){:target="hf-dataset-card-readme-guide"} in the `templates/README_guide.md`. |  | HF |
 | `annotations` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#annotations){:target="hf-datasetcard-template-annotations"}. Add any additional information for the `annotations_creators` above, if any. Subsections are `annotation_process_section` and `who_are_annotators_section`. |  | HF |
 | `annotation_process_section` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#annotations){:target="hf-datasetcard-template-annotations"}. Describes the annotation process such as annotation tools used in the process, the amount of data annotated, annotation guidelines provided to the annotators, inter-annotator statistics, annotation validation, etc. |  | HF |
 | `who_are_annotators_section` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#annotations){:target="hf-datasetcard-template-annotations"}. Describes the people or systems who created the annotations. |  | HF |
@@ -195,7 +195,7 @@ The [dataset card template]({{site.baseurl}}/dataset-requirements/dataset-card-t
 
 We endeavor to be flexible on dataset file formats and how they are organized. For text, we recommend formats like CSV, JSON, Parquet, ORC, AVRO. Supporting PDFs, where extraction will be necessary, can be difficult, but not impossible.
 
-> **NOTE:** Using Parquet has the benefit that [Hugging Face Croissant](https://huggingface.co/docs/dataset-viewer/en/croissant) can be used to automatically extract some metadata. The [`mlcroissant` library](https://huggingface.co/docs/dataset-viewer/en/mlcroissant) supports loading a dataset using the Croissant metadata. 
+> **NOTE:** Using Parquet has the benefit that [MLCommons Croissant](https://github.com/mlcommons/croissant){:target="mlc-croissant"} can be used to automatically extract some metadata. See [this Hugging Face page](https://huggingface.co/docs/dataset-viewer/en/croissant){:target="hf-croissant"} and the [`mlcroissant` library](https://huggingface.co/docs/dataset-viewer/en/mlcroissant){:target="mlc-lib"}, which supports loading a dataset using the Croissant metadata. 
 
 <a name="diverse-datasets"></a>
 ### Diverse Datasets Desired for Diverse AI Models and Applications
