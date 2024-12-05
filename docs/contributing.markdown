@@ -21,7 +21,6 @@ The process follows these steps:
 3. **Receive feedback from us:** After we evaluate the submission, we will provide feedback and request clarifications, where needed.
 4. **Upload the data:** (Optional) Once your contribution is accepted, you can transfer the data to be hosted in [The AI Alliance Hugging Face space](https://huggingface.co/aialliance){:target="aia-hf"} or you can continue to host it yourself, for example, in your own Hugging Face space.
 5. **Review your submission details:** After publication in our catalog, verify that the imformation about your dataset is correct.
-<!-- 6. **Monitor usage:** Track how your data is being used by others (Coming soon). -->
 
 ## License
 

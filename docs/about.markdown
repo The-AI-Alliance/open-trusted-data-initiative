@@ -8,7 +8,7 @@ has_children: false
 <a name="join-us"></a>
 # Join This Initiative!
 
-Want to join one of our projects? Visit [this AI Alliance webpage](https://thealliance.ai/core-projects/open-trusted-data-initiative#foundation-models-working-group-form){:target="join-us-form"} and fill in the form. Thank you for your interest.
+Want to join one of our initiative projects? Visit [this AI Alliance webpage](https://thealliance.ai/core-projects/open-trusted-data-initiative#foundation-models-working-group-form){:target="join-us"} and fill in the form. Thank you for your interest.
 
 <a name="contact-us"></a>
 # How to Contact Us
