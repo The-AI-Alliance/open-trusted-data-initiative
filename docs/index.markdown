@@ -33,7 +33,7 @@ OTDI aims to address these concerns with an industry wide effort to gather and p
 
 What does delivering trust mean? We wish to enable the following:
 
-* **Data Exploration:** Finding datasets that meet your governance requirements and fully support your needs.
+* **Data Exploration:** Finding datasets that meet your governance specification and fully support your needs.
 * **Data Cleaning:** Datasets processed for specific objectives (e.g., deduplication, hate speech removal, etc.) with open-source data pipelines.
 * **Data Auditing:** End-to-end governance, ie., traceability, of all activity involving the dataset.
 * **Data Documentation:** Metadata that covers all important aspects of a dataset.
@@ -59,7 +59,7 @@ So, why should you get involved?
 
 Interested in contributing a dataset to our catalog? Follow these steps:
 
-1. Review our [Dataset Requirements]({{site.baseurl}}/dataset-requirements), including creation of a [Hugging Face Dataset Card](https://huggingface.co/docs/hub/datasets-cards){:target="hf-card"}.
+1. Review our [Dataset Specification]({{site.baseurl}}/dataset-specification), including creation of a [Hugging Face Dataset Card](https://huggingface.co/docs/hub/datasets-cards){:target="hf-card"}.
 2. See [How We Process Datasets]({{site.baseurl}}/our-processing), i.e., the filtering and analysis steps we perform.
 3. Finally, visit [Contribute Your Dataset]({{site.baseurl}}/contributing) and let us know about your dataset.
 
