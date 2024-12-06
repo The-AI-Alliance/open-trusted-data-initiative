@@ -8,7 +8,7 @@ has_children: false
 # Contribute Your Dataset! 
 
 > **NOTE:**
-> Be sure to read all the [Dataset Requirements]({{site.baseurl}}/dataset-requirements) before proceeding. Make sure you agree to all the requirements described there or [contact us]({{site.baseurl}}/about/#contact-us) if you have questions.
+> Be sure to read the [Dataset Specification]({{site.baseurl}}/dataset-requirements) details before proceeding. If you have questions or concerns about the specification, please [contact us]({{site.baseurl}}/about/#contact-us).
 
 _Contribution_ means adding your dataset to our catalog. You can optionally _donate_ the dataset to the Alliance, where we take ownership of a copy at the time of donation and we host it ourselves. Otherwise, you continue to own and host the dataset.
 
@@ -16,7 +16,7 @@ _Contribution_ means adding your dataset to our catalog. You can optionally _don
 
 The process follows these steps:
 
-1. **Prepare your contribution:** Make sure you meet the [Dataset Requirements]({{site.baseurl}}/dataset-requirements/dataset-card-template).
+1. **Prepare your contribution:** Make sure you meet the [Dataset Specification]({{site.baseurl}}/dataset-requirements) and prepare the dataset card.
 2. **Complete the contribution form:** Use the form [below](#contribute-your-dataset) to submit your dataset for consideration.
 3. **Receive feedback from us:** After we evaluate the submission, we will provide feedback and request clarifications, where needed.
 4. **Upload the data:** (Optional) Once your contribution is accepted, you can transfer the data to be hosted in [The AI Alliance Hugging Face space](https://huggingface.co/aialliance){:target="aia-hf"} or you can continue to host it yourself, for example, in your own Hugging Face space.
@@ -31,8 +31,6 @@ By contributing the dataset to the Initiative, you grant anyone a license to the
 ## Now to Contribute Your Dataset
 
 Use this form to tell us about your dataset. We will follow up with next steps. Note that some of the fields are also in the _dataset card_ you are asked to submit.
-
-> **TIP:** See the [dataset requirements]({{site.baseurl}}/dataset-requirements/) if you have questions about any of the following fields.
 
 <div class="callout-box centered bold">
   <em>Contributions will be accepted soon!<br/>Contact us at <a href="mailto:data@thealliance.ai?subject=I want to contribute a dataset">data@thealliance.ai</a> for more information.</em>
