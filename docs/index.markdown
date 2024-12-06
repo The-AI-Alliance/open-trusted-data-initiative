@@ -21,7 +21,7 @@ has_children: true
 > **Tip:** Use the search box at the top of this page to find specific content.
 
 | **Authors**     | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
-| **Last Update** | V0.2.0, 2024-12-04 |
+| **Last Update** | V0.2.1, 2024-12-05 |
 
 # Why Is Trusted Data Important?
 
@@ -59,7 +59,7 @@ So, why should you get involved?
 
 Interested in contributing a dataset to our catalog? Follow these steps:
 
-1. Review our [Dataset Specification]({{site.baseurl}}/dataset-specification), including creation of a [Hugging Face Dataset Card](https://huggingface.co/docs/hub/datasets-cards){:target="hf-card"}.
+1. Review our [Dataset Specification]({{site.baseurl}}/dataset-requirements), including creation of a [Hugging Face Dataset Card](https://huggingface.co/docs/hub/datasets-cards){:target="hf-card"}.
 2. See [How We Process Datasets]({{site.baseurl}}/our-processing), i.e., the filtering and analysis steps we perform.
 3. Finally, visit [Contribute Your Dataset]({{site.baseurl}}/contributing) and let us know about your dataset.
 
@@ -71,6 +71,7 @@ Interested in contributing a dataset to our catalog? Follow these steps:
 ### Version History
 
 | **Versions** | **Dates**  |
+| V0.2.1       | 2024-12-05 |
 | V0.2.0       | 2024-12-04 |
 | V0.1.0       | 2024-11-13 |
 | V0.0.4       | 2024-11-04 |

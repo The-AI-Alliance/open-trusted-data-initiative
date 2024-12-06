@@ -41,4 +41,6 @@ The following organizations are collaborating with us on additional datasets.
 | [Common Crawl Foundation](https://commoncrawl.org/){:target="ccf"} | Tagged and filtered crawl subsets for English and other languages |
 
 
-To expand this catalog, we not only [welcome contributions], but we plan to seek out qualified datasets leveraging other sources of information about them, such as the [Data Provenance Initiative](https://www.dataprovenance.org/){:target="dp"}, [Hugging Face](https://huggingface.co/datasets){:target="hf-datasets"}, and others (TBD).
+To expand this catalog, we [welcome contributions]({{site.baseurl}}/contributing).
+
+<!-- To expand this catalog, we not only [welcome contributions]({{site.baseurl}}/contributing), but we plan to seek out qualified datasets leveraging other sources of information about them, such as the [Data Provenance Initiative](https://www.dataprovenance.org/){:target="dp"}, [Hugging Face](https://huggingface.co/datasets){:target="hf-datasets"}, and others (TBD). -->

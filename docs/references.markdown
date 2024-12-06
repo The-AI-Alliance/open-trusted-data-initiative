@@ -25,6 +25,7 @@ The [The European AI Office](https://digital-strategy.ec.europa.eu/en/policies/a
 
 > The purpose of the paper we are sharing today is twofold. It clarifies the categories of rights and legitimate interests that justify access to information about training data. In addition to copyright, these include, among others, privacy and personal data protection, scientific freedom, the prohibition of discrimination, and respect for cultural and linguistic diversity. Moreover, it provides a blueprint for the forthcoming template for the &ldquo;sufficiently detailed summary,&rdquo; which is intended to serve these interests while respecting the rights of all parties concerned.
 
+<!-- 
 ## Data and Trust Alliance - Data Provenance Standards
 
 The [Data and Trust Alliance](https://dataandtrustalliance.org/){:target="dta"} has defined a standard for [provenance](https://dataandtrustalliance.org/work/data-provenance-standards){:target="dta-prov"}, as well as other projects.
@@ -36,6 +37,7 @@ Here is their statement about the purpose of this standard, quoted from the proj
 > Trust in data starts with transparency into provenance; assessing where data comes from, how it’s created, and whether it can be used, legally. Yet the ecosystem needs a common language to provide that transparency.
 > 
 > This is why we developed the first cross-industry data provenance standards. 
+-->
 
 <a name="ai-bom"></a>
 ## The Linux Foundation - Implementing AI Bill of Materials (AI BOM) with SPDX 3.0
