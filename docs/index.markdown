@@ -25,7 +25,7 @@ has_children: true
 
 # Why Is Trusted Data Important?
 
-A significant challenge today is the &ldquo;murky&rdquo; provenance of many datasets used for training foundation models (FMs), like large language models (LLMs). Model developers and users risk the potential for models regenerating private, confidential, and copyrighted information that might have been part of the training dataset, among other concerns. This is one of the reasons that most models that allow unrestricted (&ldquo;open&rdquo;) use rarely include publication of their training dataset and the full source code for all the filtering and transformation steps used to create that dataset, from initial acquisition to its final form before training. At best, _open models_ limit themselves to descriptions in general terms of the data sources and methods used.
+A significant challenge today for users of datasets is the desire for clear licenses to use the data, assurances that the data was sourced appropriately (the provenance), and trust that the data has been securely and traceably managed (governance).
 
 OTDI aims to address these concerns with an industry wide effort to gather and process data fully in the open, allowing model developers and users to have full confidence in the provenance and governance of the data they use.
 
