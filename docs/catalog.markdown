@@ -26,9 +26,9 @@ Here is the current list of datasets, organized by owner.
 
 Domain-specific, clean datasets. 
 
-* [PleIAs website](https://pleias.fr){:target="pleias"}
-* [Hugging Face organization](https://huggingface.co/PleIAs){:target="pleias-hf"}.
-* [Collections on Hugging Face](https://huggingface.co/collections/PleIAs){:target="pleias-hf-col"}
+* PleIAs [website](https://pleias.fr){:target="pleias"}
+* PleIAs [Hugging Face organization](https://huggingface.co/PleIAs){:target="pleias-hf"}.
+* PleIAs [Collections on Hugging Face](https://huggingface.co/collections/PleIAs){:target="pleias-hf-col"}
 
 | Name             | Description     |  URL     | Date Added |
 | :--------------- | :-------------- | :------- | :--------- |
@@ -42,8 +42,9 @@ Domain-specific, clean datasets.
 
 Multimodal, code, and other datasets. 
 
-* [ServiceNow website](https://www.servicenow.com){:target="servicenow"}
-* [Hugging Face organization](https://huggingface.co/ServiceNow){:target="servicenow-hf"}
+* ServiceNow [website](https://www.servicenow.com){:target="servicenow"}
+* ServiceNow [Hugging Face organization](https://huggingface.co/ServiceNow){:target="servicenow-hf"}
+* Big Code [Hugging Face organization](https://huggingface.co/bigcode){:target="big-code-hf"}
 
 | Name              | Description     |  URL     | Date Added |
 | :---------------- | :-------------- | :------- | :--------- |
