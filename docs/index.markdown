@@ -14,6 +14,7 @@ has_children: true
 
 > **News:**
 >
+> * December 11, 2024: Added [ServiceNow](https://www.servicenow.com/){:target="sn"} datasets.
 > * November 20, 2024: [BrightQuery](https://brightquery.com/){:target="bq"} joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/jose-plehn_brightquery-is-proud-to-now-be-a-member-of-activity-7265516443742478338-xjIz/?utm_source=share&utm_medium=member_desktop){:target="bq-li"}.
 > * November 4, 2024: [pleias](https://pleias.fr){:target="pleias"} joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/pleias_pleias-joins-the-ai-alliance-to-co-lead-open-ugcPost-7259263514542796800-Uphx/){:target="pleias-li"}.
 > * October 15, 2024: [Common Crawl Foundation](https://commoncrawl.org/){:target="ccf"} joins the AI Alliance and the Open Trusted Data Initiative.
@@ -21,7 +22,7 @@ has_children: true
 > **Tip:** Use the search box at the top of this page to find specific content.
 
 | **Authors**     | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
-| **Last Update** | V0.2.1, 2024-12-05 |
+| **Last Update** | V0.2.2, 2024-12-11 |
 
 # Why Is Trusted Data Important?
 
@@ -71,6 +72,7 @@ Interested in contributing a dataset to our catalog? Follow these steps:
 ### Version History
 
 | **Versions** | **Dates**  |
+| V0.2.2       | 2024-12-11 |
 | V0.2.1       | 2024-12-05 |
 | V0.2.0       | 2024-12-04 |
 | V0.1.0       | 2024-11-13 |

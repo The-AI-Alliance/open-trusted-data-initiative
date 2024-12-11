@@ -7,7 +7,6 @@ has_children: false
 
 # The Dataset Catalog
 
-<!--
 <details open markdown="block">
   <summary>
     Table of contents
@@ -16,24 +15,54 @@ has_children: false
 1. TOC
 {:toc}
 </details>
--->
 
-We plan to provide an integrated search and browsing feature, to make it easier to select the datasets for your particular needs. 
+See also the AI Alliance's [Hugging Face organization](https://huggingface.co/aialliance){:target="aia-hf"} and the [Open Trusted Data Initiative catalog](https://huggingface.co/collections/aialliance/open-trusted-data-catalog-66d21b3cb66342762fb6108e){:target="aia-hf-otdi"} there that includes the datasets listed here.
 
-Here is the current list of datasets.
+> **TODO:** We plan to provide an integrated search and browsing feature, to make it easier to select the datasets for your particular needs. 
 
-| Organization     | Description     |  URL     |
-| :--------------- | :-------------- | :------- |
-| **[PleIAs](https://pleias.fr){:target="pleias"}** | **Domain-specific, clean datasets** | **[All PleIAs collections](https://huggingface.co/collections/PleIAs){:target="pleias-hf"}** |
-| | Largest multilingual pretraining data | [Common Corpus](https://huggingface.co/collections/PleIAs/common-corpus-6734e0f67ac3f35e44075f93){:target="common-corpus"} |
-| | Tools for de-toxifying public domain data, especially multilingual and historical text data and data with OCR errors | [Toxic Commons](https://huggingface.co/collections/PleIAs/toxic-commons-672243e8ce64b6759e79b6dc){:target="toxic-commons"} |
-| | A large collection of multimodal financial documents in open data | [Finance Commons](https://huggingface.co/collections/PleIAs/finance-commons-66925e1095c7fa6e6828e26c){:target="finance-commons"} |
-| | PleIAs collection of models for the data processing of challenging document and data sources | [Bad Data Toolbox](https://huggingface.co/collections/PleIAs/bad-data-toolbox-66981c2d0df662459252844e){:target="bad-data-toolbox"} |
-| | A multilingual dataset of public domain books and newspapers | [Open Culture](https://huggingface.co/collections/PleIAs/openculture-65d46e3ea3980fdcd66a5613){:target="open-culture"} |
-| **[AI Alliance](https://thealliance.ai){:target="aia"}** | **Miscellaneous open datasets** | **[OTDI Catalog](https://huggingface.co/collections/aialliance/open-trusted-data-coming-soon-66d21b3cb66342762fb6108e){:target="aia-hf"}** |
-| | SemiKong: Open Model training dataset for semiconductor technology | [SemiKong](https://huggingface.co/datasets/pentagoniac/SemiKong_Training_Datset){:target="semikong"} |
+Here is the current list of datasets, organized by owner.
 
-The following organizations are collaborating with us on additional datasets.
+## PleIAs
+
+Domain-specific, clean datasets. 
+
+* [PleIAs website](https://pleias.fr){:target="pleias"}
+* [Hugging Face organization](https://huggingface.co/PleIAs){:target="pleias-hf"}.
+* [Collections on Hugging Face](https://huggingface.co/collections/PleIAs){:target="pleias-hf-col"}
+
+| Name             | Description     |  URL     | Date Added |
+| :--------------- | :-------------- | :------- | :--------- |
+| **Common Corpus** | Largest multilingual pretraining data | [Hugging Face](https://huggingface.co/collections/PleIAs/common-corpus-6734e0f67ac3f35e44075f93){:target="common-corpus"} | 2024-11-04 |
+| **Toxic Commons** | Tools for de-toxifying public domain data, especially multilingual and historical text data and data with OCR errors | [Hugging Face](https://huggingface.co/collections/PleIAs/toxic-commons-672243e8ce64b6759e79b6dc){:target="toxic-commons"} | 2024-11-04 |
+| **Finance Commons** | A large collection of multimodal financial documents in open data | [Hugging Face](https://huggingface.co/collections/PleIAs/finance-commons-66925e1095c7fa6e6828e26c){:target="finance-commons"} | 2024-11-04 |
+| **Bad Data Toolbox** | PleIAs collection of models for the data processing of challenging document and data sources | [Hugging Face](https://huggingface.co/collections/PleIAs/bad-data-toolbox-66981c2d0df662459252844e){:target="bad-data-toolbox"} | 2024-11-04 |
+| **Open Culture** | A multilingual dataset of public domain books and newspapers | [Hugging Face](https://huggingface.co/collections/PleIAs/openculture-65d46e3ea3980fdcd66a5613){:target="open-culture"} | 2024-11-04 |
+
+## ServiceNow
+
+Multimodal, code, and other datasets. 
+
+* [ServiceNow website](https://www.servicenow.com){:target="servicenow"}
+* [Hugging Face organization](https://huggingface.co/ServiceNow){:target="servicenow-hf"}
+
+| Name              | Description     |  URL     | Date Added |
+| :---------------- | :-------------- | :------- | :--------- |
+| **BigDocs-Bench** | A dataset for a comprehensive benchmark suite designed to evaluate downstream tasks that transform visual inputs into structured outputs, such as GUI2UserIntent (fine-grained reasoning) and Image2Flow (structured output). We are actively working on releasing additional components of BigDocs-Bench and will update this repository as they become available. | [Hugging Face](https://huggingface.co/datasets/ServiceNow/BigDocs-Bench){:target="bigdocs-bench"} | 2024-12-11 |
+| **The Stack** | Exact deduplicated version of [The Stack](https://www.bigcode-project.org/docs/about/the-stack/){:target="the-stack"} dataset used for the [Big Code project](https://www.bigcode-project.org){:target="big-code"}. | [Hugging Face](https://huggingface.co/datasets/bigcode/the-stack){:target="the-stack-hf"} | 2024-12-11 |
+| **The Stack Dedup** | Near deduplicated version of The Stack (recommended for training). | [Hugging Face](https://huggingface.co/datasets/bigcode/the-stack-dedup){:target="the-stack-dedup"} | 2024-12-11 |
+| **StarCoder Data** | Pretraining dataset of [StarCoder](https://huggingface.co/blog/starcoder){:target="starcoder"}. | [Hugging Face](https://huggingface.co/datasets/bigcode/starcoderdata){:target="starcoderdata"} | 2024-12-11 |
+
+## SemiKong
+
+The training dataset for the [SemiKong](https://www.semikong.ai/) collaboration that trained an open model for the semiconductor industry.
+
+| Name              | Description     |  URL     | Date Added |
+| :---------------- | :-------------- | :------- | :--------- |
+| **SemiKong** | An open model training dataset for semiconductor technology | [Hugging Face](https://huggingface.co/datasets/pentagoniac/SemiKong_Training_Datset){:target="semikong"} | 2024-09-01 |
+
+## Coming Soon
+
+In addition to the above organizations, the following are collaborating with us on additional datasets to be published soon.
 
 | Organization     | Kind     | 
 | :--------------- | :------- | 
