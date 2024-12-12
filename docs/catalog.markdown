@@ -22,6 +22,8 @@ See also the AI Alliance's [Hugging Face organization](https://huggingface.co/ai
 
 Here is the current list of datasets, organized by owner.
 
+> **BETA:** This is a provisional list of datasets. We are not yet validating datasets against our draft [requirements]({{site.baseurl}}/dataset-requirements).
+
 ## PleIAs
 
 Domain-specific, clean datasets. 
