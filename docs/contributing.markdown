@@ -30,7 +30,7 @@ We prefer the [Community Data License Agreement - Permissive, Version 2.0](https
 
 By contributing the dataset to the Initiative, you grant anyone a license to the dataset and its data under the [Developer Certificate of Origin, Version 1.1](https://developercertificate.org/){:target="dco"} (see also our [community contributors page](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md){:target="community"}).  This does not affect your ownership, copyrights and other interests, and rights to and title to the dataset and its data.
 
-## Now to Contribute Your Dataset
+## Contribute Your Dataset
 
 Use this form to tell us about your dataset. We will follow up with next steps. Note that some of the fields are also in the _dataset card_ you are asked to submit.
 
