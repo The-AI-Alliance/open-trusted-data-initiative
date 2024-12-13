@@ -70,7 +70,7 @@ In addition to the above organizations, the following are collaborating with us 
 
 | Organization     | Kind     | 
 | :--------------- | :------- | 
-| [BrightQuery](https://brightquery.ai/){:target="bq"} | Government datasets (TBD) |
+| [BrightQuery](https://brightquery.ai/){:target="bq"} | BrightQuery ("BQ") provides proprietary financial, legal, and employment information on private and public companies derived from regulatory filings and disclosures. BQ proprietary data is used in capital markets for investment decisions, banking and insurance for KYC & credit checks, and enterprises for master data management, sales, and marketing purposes. In addition, BQ provides public information consisting of clean and standardized statistical data from all the major government agencies and NGOs around the world, and is doing so in partnership with the source agencies. BQ public datasets will be published in OTDI spanning all topics: economics, demographics, healthcare, crime, climate, education, sustainability, etc. The data will in general be tabular time series.  (TBD) |
 | [Common Crawl Foundation](https://commoncrawl.org/){:target="ccf"} | Tagged and filtered crawl subsets for English and other languages |
 
 
