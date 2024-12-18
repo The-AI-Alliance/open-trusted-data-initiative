@@ -1,12 +1,15 @@
-# HuggingFace tooling
+# HuggingFace Hub tooling
 
 The Hugging Face Hub is home to a growing collection of [datasets](https://huggingface.co/docs/hub/datasets) that 
 span a variety of domains and tasks.
+
+## HuggingFace datasets
+
 Each dataset in Hugging face is a Git repository that contains the data required to generate splits for 
 training, evaluation, and testing. You can look at these repositories directly through the web:
 
 ```
-https://huggingface.co/datasets/<username>/<model-name>
+https://huggingface.co/datasets/<username>/<dataset-name>
 ```
 
 In addition to this you ca use:
@@ -58,3 +61,20 @@ components. You can also refer to [documentation](https://github.com/huggingface
 or use the hugging face [application](https://huggingface.co/spaces/huggingface/datasets-tagging). The complete spec is
 available [here](https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1)
 
+##  Grouping accounts and datasets management
+
+The HuggingFace Hub offers [Organizations](https://huggingface.co/docs/hub/organizations), which can be used to group 
+accounts and manage datasets, models, and Spaces. The Hub also allows admins to set user roles to control access to 
+repositories 
+
+Similar to a dataset card, you can create an organization card to help users learn more about what your organization 
+is working on and how users can use your libraries, models, datasets, and Spaces.
+
+Additional support for organizations is provided by the enterprise version of huggingface hub.
+
+## Hub API Endpoints
+
+HuggingFace Hub provides a set of API [endpoints](https://huggingface.co/docs/hub/api) that can be used to retrieve 
+information from the Hub as well as perform certain actions such as creating model, dataset or Space repos. For 
+the majority of these APIs HF provides a wrapper Python library, huggingface_hub, that allows easy access to these 
+endpoints. HF hub also provide webhooks to receive real-time incremental info about repos.

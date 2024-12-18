@@ -53,7 +53,14 @@ for more options on filtering, ordering and paging of the search parameters.
 ## Working with the dataset cards
 
 Simple example of reading of dataset card is [here](dataset_card.py)
-The same class `DatasetCard` can also beused for creating of a new card
+The same class `DatasetCard` can also beused for creating of a new card. 
+
+Considering the importance of dataset cards for manging datasets, HF hub provides an ability for 
+setting up [automatic metadata quality review for datasets](https://huggingface.co/docs/hub/webhooks-guide-metadata-review)
+This is done via implementing and setting up [Webhook](https://docs.github.com/en/webhooks/about-webhooks)
+that will be invoked on every repo update. These webhooks can be deployed either in the individual
+user accounts or specialized ones or using huggingface [spaces](https://huggingface.co/docs/hub/spaces-overview)
+In general, webhooks can be extremely useful for implementing any specific logic on new dataset commits.
 
 # Accessing dataset data
 
