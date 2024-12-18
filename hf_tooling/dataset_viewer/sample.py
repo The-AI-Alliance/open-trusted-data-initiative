@@ -56,6 +56,12 @@ data = query(API_URL)
 print(f"Dataset parquet files {data}")
 
 
+# list parquet files using the Hugging Face Hub API
+API_URL = "https://huggingface.co/api/datasets/ibm/duorc/parquet/"
+data = query(API_URL)
+print(f"Dataset parquet files {data}")
+
+
 # Get the number of rows and the size in bytes
 API_URL = "https://datasets-server.huggingface.co/size?dataset=ibm/duorc"
 data = query(API_URL)
