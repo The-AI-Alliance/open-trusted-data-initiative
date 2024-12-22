@@ -1,8 +1,6 @@
-# Dataset viewer API
+# Dataset Viewer API
 
-
-An alternative to the [dataaccess APIs](../data_access) is usage of the the dataset viewer’s REST API. 
-These APIs can be used to:
+An alternative to the [`data_access` APIs](../data_access/README.md) is to use the REST API for the [dataset viewer](https://huggingface.co/docs/dataset-viewer/quick_start). This API can be used to:
 
 * Check whether a dataset on the Hub is functional.
 * Return the subsets and splits of a dataset.
@@ -14,6 +12,4 @@ These APIs can be used to:
 * Get the dataset size (in number of rows or bytes).
 * Get statistics about the dataset.
 
-A simple code demonstrating these APIs is [here](sample.py)
-Consult [documentation](https://huggingface.co/docs/dataset-viewer/quick_start) for the availble
-API endpoints
+The [sample.py](sample.py) code demonstrates the API. Consult the [documentation](https://huggingface.co/docs/dataset-viewer/quick_start) for the available API endpoints.
