@@ -35,7 +35,7 @@ to create, delete and manage repository. This includes support for the following
 
 And many others. Refer to `HfApi` documentation for more details.
 
-## Search Satasets
+## Search Datasets
 
 The library provides simple and straightforward APIs for exploring assets in the Hugging Face hub. 
 
