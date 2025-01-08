@@ -62,3 +62,14 @@ Additional support for organizations is provided by the enterprise version of th
 
 Hugging Face Hub provides a set of [API endpoints](https://huggingface.co/docs/hub/api) that can be used to retrieve information from the Hub as well as perform certain actions such as creating model, dataset, or space repos. For the majority of these APIs HF provides a wrapper Python library, [`huggingface_hub`](https://github.com/huggingface/huggingface_hub), which allows easy access to these 
 endpoints. HF hub also provide webhooks to receive real-time incremental info about repos.
+
+## Try the Examples!
+
+To try the examples in the subdirectories, first install the required libraries:
+
+```shell
+pip install huggingface_hub pyarrow
+```
+
+Then you can run any of the files by moving to the directory that contains it, e.g., `cd data_access`, and running the script with `python`, e.g., `python file_system.py`.
+
