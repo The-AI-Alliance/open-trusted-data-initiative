@@ -21,29 +21,40 @@ has_children: true
 
 > **Tip:** Use the search box at the top of this page to find specific content.
 
-| **Authors**     | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
-| **Last Update** | V0.2.2, 2024-12-11 |
+| **Authors**      | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
+| **Last Update**  | V0.2.3, 2025-01-08 |
 
 # Why Is Trusted Data Important?
 
 A significant challenge today for users of datasets is the desire for clear licenses to use the data, assurances that the data was sourced appropriately (the provenance), and trust that the data has been securely and traceably managed (governance).
 
-OTDI aims to address these concerns with an industry wide effort to gather and process data fully in the open, allowing model developers and users to have full confidence in the provenance and governance of the data they use.
+OTDI aims to address these concerns with an industry wide effort to specify governance requirements and to catalog and process datasets fully in the open, allowing model developers and users to have full confidence in the provenance and governance of the data they use.
 
 ## Delivering Trust
 
 What does delivering trust mean? We wish to enable the following:
 
-* **Data Exploration:** Finding datasets that meet your governance specification and fully support your needs.
+* **Data Exploration:** Finding datasets that meet our governance specification and fully support your needs.
 * **Data Cleaning:** Datasets processed for specific objectives (e.g., deduplication, hate speech removal, etc.) with open-source data pipelines.
 * **Data Auditing:** End-to-end governance, ie., traceability, of all activity involving the dataset.
 * **Data Documentation:** Metadata that covers all important aspects of a dataset.
 
 Our deliverables to the industry will include the following:
 
-* **Baseline Knowledge Datasets:** Openly accessible, permissively licensed language, code, image, audio, and video data that embodies a diverse range of global knowledge. 
+* **Baseline Knowledge Datasets:** Openly accessible, permissively licensed language, code, image, audio, and video data that embodies a diverse range of global knowledge.
 * **Domain Knowledge Datasets:** A rich, comprehensive set of datasets pertinent to tuning foundation models to a set of application domains: legal, finance, chemistry, manufacturing, etc.
 * **Tooling and Platform Engineering:** Hosted pipelines, platform services, and compute capacity for synthetic dataset generation and data preparation at the scale needed to achieve the vision. Fully open-source, so you can use these tools as you see fit.
+
+## The Value of Governance
+
+Governance of datasets delivers these benefits:
+
+* **Strengthens Trust:** Demonstrates a commitment to safeguarding data and enhancing its reputation.
+* **Boosts Operational Efficiency:** Reduces redundancies and inefficiencies by ensuring consistent data management and quality practices.
+* **Supports Innovation:** Having reliable, well-managed data can fuel analytics, AI, and other technological innovations.
+* **Regulatory Compliance:** Helps organizations meet legal and industry-specific requirements (e.g., GDPR, HIPAA) by ensuring data is properly managed.
+* **Facilitates Accountability:** Clarifies stewardship of data, ensuring responsibility for its integrity and usage.
+* **Enhances Decision-Making:** Provides access to trusted, high-quality data, enabling better consumption and outcomes.
 
 # Contributing Datasets
 
@@ -73,6 +84,7 @@ Interested in contributing a dataset to our catalog? Follow these steps:
 
 | Version  | Date       |
 | :------- | :--------- |
+| V0.2.3   | 2025-01-08 |
 | V0.2.2   | 2024-12-11 |
 | V0.2.1   | 2024-12-05 |
 | V0.2.0   | 2024-12-04 |
