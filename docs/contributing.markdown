@@ -17,7 +17,7 @@ _Contribution_ means adding your dataset to our catalog. You can optionally _don
 The process follows these steps:
 
 1. **Prepare your contribution:** Make sure you meet the [Dataset Specification]({{site.baseurl}}/dataset-requirements) and prepare the dataset card.
-2. **Complete the contribution form:** Use the form [below](#contribute-your-dataset) to submit your dataset for consideration.
+2. **Tell us about your dataset:** Follow the instructions in [Contribute Your Dataset](#contribute-your-dataset) below to submit your dataset for consideration.
 3. **Receive feedback from us:** After we evaluate the submission, we will provide feedback and request clarifications, where needed.
 4. **Transfer the data:** (Optional) Once your contribution is accepted, you can transfer the data to be hosted in [The AI Alliance Hugging Face space](https://huggingface.co/aialliance){:target="aia-hf"} or you can continue to host it yourself, for example, in your own Hugging Face space.
 5. **Review your submission details:** After publication in our catalog, verify that the imformation about your dataset is correct. Your dataset will be listed on this website's [Catalog page]({{site.baseurl}}/catalog) and also listed in the [Open Trusted Data Initiative catalog](https://huggingface.co/collections/aialliance/open-trusted-data-catalog-66d21b3cb66342762fb6108e){:target="aia-hf-otdi"} in the AI Alliance Hugging Face space.
@@ -32,192 +32,16 @@ By contributing the dataset to the Initiative, you grant anyone a license to the
 
 ## Contribute Your Dataset
 
-Use this form to tell us about your dataset. We will follow up with next steps. Note that some of the fields are also in the _dataset card_ you are asked to submit.
+Click the next link to send us email, telling us about your dataset. We will follow up with next steps. Please fill in the fields shown in the body of the draft email. Note that some of the fields are also in the _dataset card_ you were asked to prepare.
 
-<div class="callout-box centered bold">
-  <em>Contributions will be accepted soon!<br/>Contact us at <a href="mailto:data@thealliance.ai?subject=I want to contribute a dataset">data@thealliance.ai</a> for more information.</em>
-</div>
-<form id="datasets-hubspot-form">
-	<div class="form-dataset disabled" inert>
-		<table class="form-dataset-table">
-			<tr>
-				<th class="form-dataset-table-label">
-				  <label for="dataset-name">Dataset&nbsp;name:</label>
-				</th>
-				<td class="form-dataset-table-value">
-				  <input type="text" id="dataset-name" name="dataset-name" class="form-dataset-table-input" placeholder="A descriptive and unique name" required />	  
-				</td>
-			</tr>
-			<tr>
-				<th class="form-dataset-table-label">
-				  <label for="dataset-location">Dataset&nbsp;location:</label>
-				</th>
-				<td class="form-dataset-table-value">
-				  <input type="url" id="dataset-url" name="dataset-url" class="form-dataset-table-input" placeholder="https://huggingface.co" pattern="https://.*" required />
-				</td>
-			</tr>
-			<tr>
-				<th class="form-dataset-table-label">
-				  <label for="dataset">Dataset&nbsp;card:</label>
-				</th>
-				<td class="form-dataset-table-value">
-                  <input type="url" id="dataset-card" name="dataset-url" class="form-dataset-table-input" placeholder="https://huggingface.co" pattern="https://.*" /> Leave blank if the location README <em>is</em> the dataset card.
-				</td>
-			</tr>
-			<tr>
-				<th class="form-dataset-table-label">
-				  <label for="dataset-hosting">Hosting:</label>
-				</th>
-				<td class="form-dataset-table-value">
-				  <input type="checkbox" id="dataset-alliance-hosting" name="dataset-alliance-hosting" unchecked /> I want the AI Alliance to host this dataset.
-				</td>
-			</tr>
-            <!--
-			<tr>
-				<th class="form-dataset-table-label">
-				  <label for="modality">Modalities:</label>
-				</th>
-				<td class="form-dataset-table-value">
-                    <div>
-					  <input type="checkbox" id="dataset-modality-text" name="dataset-modality-text" class="form-dataset-table-checkbox" checked />
-                      <label for="text">Text</label>
-                    </div>
-                    <div>
-                      <input type="checkbox" id="dataset-modality-text" name="dataset-modality-text" class="form-dataset-table-checkbox" />
-                      <label for="images">Images</label>
-                    </div>
-                    <div>
-                      <input type="checkbox" id="dataset-modality-text" name="dataset-modality-text" class="form-dataset-table-checkbox" />
-                      <label for="audio">Audio</label>
-                    </div>
-                    <div>
-                      <input type="checkbox" id="dataset-modality-text" name="dataset-modality-text" class="form-dataset-table-checkbox" />
-                      <label for="video">Video (including audio)</label>
-                    </div>
-                    <div>
-                      <input type="checkbox" id="dataset-modality-text" name="dataset-modality-text" class="form-dataset-table-checkbox" />
-                      <label for="video">Other (e.g., science data)</label>
-                    </div>
-				</td>
-			</tr>
-            <tr>
-                <th class="form-dataset-table-label">
-                    <label for="domain">Domain:</label>
-                </th>
-                <td class="form-dataset-table-value">
-                  <select id="dataset-domain" name="dataset-domain" class="form-dataset-table-input">
-                    <optgroup label="General Purpose">
-                      <option default>Not domain specific</option>
-                    </optgroup>
-                    <optgroup label="Science & Industrial">
-                      <option>Climate</option>
-                      <option>Marine</option>
-                      <option>Materials</option>
-                      <option>Semiconductors</option>
-                      <option>Time Series</option>
-                      <option>Other Industrial</option>
-                    </optgroup>
-                    <optgroup label="Other">
-                      <option>Finance</option>
-                      <option>Healthcare</option>
-                      <option>Legal</option>
-                      <option>Social Science</option>
-                    </optgroup>
-                  </select>
-                  Or another domain? 
-                  <input type="text" id="dataset-other-domain" name="dataset-other-domain" class="form-dataset-table-input-shorter" placeholder="Your domain suggestion" required />
-                </td>
-            </tr>
-            -->
-			<tr>
-				<th class="form-dataset-table-label">
-				  <label for="email">Email:</label>
-				</th>
-				<td class="form-dataset-table-value">
-				  <input type="email" id="email" name="email" class="form-dataset-table-input" placeholder="Your email address" required />	  
-				</td>
-			</tr>
-			<tr>
-				<th class="form-dataset-table-label">
-    			&nbsp;
-    		    </th>
-				<td class="form-dataset-table-value">
-				  <input type="checkbox" name="agree-to-terms" required /> I agree to the terms for contribution.
-				</td>
-			</tr>
-			<tr>
-				<th class="form-dataset-table-label">
-    			&nbsp;
-    		    </th>
-				<td class="form-dataset-table-value">
-			      <input type="submit" value="Submit!" />
-				</td>
-			</tr>
-		</table>
-    </div>
-</form>
-<script>
-	<!-- Necessary to have the file browser limit all the allowed sections to what "accept=''" specifies. -->
-  var test = document.querySelector('input');
+* [Submit a dataset](mailto:data@thealliance.ai?subject=I%20want%20to%20contribute%20a%20dataset&body=Dataset%20name%3A%0D%0ADataset%20location%20(URL)%3A%20%0D%0AI%20want%20the%20Alliance%20to%20host%20it%3A%20Yes%2FNo%0D%0AMy%20email%20address%3A%0D%0AI%20agree%20to%20the%20terms%20for%20contribution%3A%20Yes%2FNo)
 
-const form = document.getElementById('datasets-hubspot-form');
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
+In case the email body is empty in your email client, here are the fields we request:
 
-            const formData = {
-                fields: [
-                    {
-                        name: 'dataset-name',
-                        value: document.getElementById('dataset-name').value
-                    },
-                    {
-                        name: 'dataset-url',
-                        value: document.getElementById('dataset-url').value
-                    },
-                    {
-                        name: 'datasert-alliance-hosting',
-                        value: document.getElementById('dataset-alliance-hosting').value
-                    },
-	            {
-                        name: 'dataset-card',
-                        value: document.getElementById('dataset-card').value
-                    },
-		    {
-                        name: 'dataset-domain',
-                        value: document.getElementById('dataset-domain').value
-                    },
-		    {
-                        name: 'email',
-                        value: document.getElementById('email').value
-                    },
-		    {
-      			name: 'agree-to-terms',
-	 		value: document.getElementById('agree-to-terms'),value
-    		    }
-                ],
-                context: {
-                    hutk: document.cookie.match(/hubspotutk=(.*?);/)[1] || ""  // HubSpot tracking cookie (optional)
-                }
-            };
-
-            try {
-              /* https://api.hsforms.com/submissions/v3/integration/submit/:portalId/:formGuid' */
-                const response = await fetch('localhost', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
-                });
-
-                if (response.ok) {
-                    alert('Form successfully submitted!');
-                } else {
-                    console.error('Form submission failed', response);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        });
-</script>
-
+```
+Dataset name:
+Dataset location (URL): 
+I want the Alliance to host it: Yes/No
+My email address:
+I agree to the terms for contribution: Yes/No
+```
