@@ -32,16 +32,152 @@ By contributing the dataset to the Initiative, you grant anyone a license to the
 
 ## Contribute Your Dataset
 
-Click the next link to send us email, telling us about your dataset. We will follow up with next steps. Please fill in the fields shown in the body of the draft email. Note that some of the fields are also in the _dataset card_ you were asked to prepare.
 
-* [Submit a dataset](mailto:data@thealliance.ai?subject=I%20want%20to%20contribute%20a%20dataset&body=Dataset%20name%3A%0D%0ADataset%20location%20(URL)%3A%20%0D%0AI%20want%20the%20Alliance%20to%20host%20it%3A%20Yes%2FNo%0D%0AMy%20email%20address%3A%0D%0AI%20agree%20to%20the%20terms%20for%20contribution%3A%20Yes%2FNo)
+Use this form to tell us about your dataset. It will open your email client with the data added and formatted. After we receive your email, we will follow up with next steps.
 
-In case the email body is empty in your email client, here are the fields we request:
+<div class="callout-box centered bold">
+  <em>For questions, send us email at <a href="mailto:data@thealliance.ai?subject=I%20have%20questions%20about%20contributing%20an%20OTDI%20dataset">data@thealliance.ai</a>.</em>
+</div>
+<form id="datasets-form">
+    <!-- <div class="form-dataset disabled" inert> -->
+    <div class="form-dataset"> 
+        <table class="form-dataset-table">
+            <tr>
+                <th class="form-dataset-table-label">
+                  <label for="dataset-name">Dataset&nbsp;name:</label>
+                </th>
+                <td class="form-dataset-table-value">
+                  <input type="text" id="dataset-name" name="dataset-name" class="form-dataset-table-input" placeholder="A descriptive and unique name" required />   
+                </td>
+            </tr>
+            <tr>
+                <th class="form-dataset-table-label">
+                  <label for="dataset-location">Dataset&nbsp;location:</label>
+                </th>
+                <td class="form-dataset-table-value">
+                  <input type="url" id="dataset-url" name="dataset-url" class="form-dataset-table-input" placeholder="https://huggingface.co" pattern="https://.*" required />
+                </td>
+            </tr>
+            <tr>
+                <th class="form-dataset-table-label">
+                  <label for="dataset">Dataset&nbsp;card:</label>
+                </th>
+                <td class="form-dataset-table-value">
+                  <input type="url" id="dataset-card" name="dataset-url" class="form-dataset-table-input" placeholder="https://huggingface.co" pattern="https://.*" /> Leave blank if the location README <em>is</em> the dataset card.
+                </td>
+            </tr>
+            <tr>
+                <th class="form-dataset-table-label">
+                  <label for="dataset-hosting">Hosting:</label>
+                </th>
+                <td class="form-dataset-table-value">
+                  <input type="checkbox" id="dataset-alliance-hosting" name="dataset-alliance-hosting" unchecked /> I want the AI Alliance to host this dataset.
+                </td>
+            </tr>
+            <!--
+            <tr>
+                <th class="form-dataset-table-label">
+                  <label for="modality">Modalities:</label>
+                </th>
+                <td class="form-dataset-table-value">
+                    <div>
+                      <input type="checkbox" id="dataset-modality-text" name="dataset-modality-text" class="form-dataset-table-checkbox" checked />
+                      <label for="text">Text</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="dataset-modality-text" name="dataset-modality-text" class="form-dataset-table-checkbox" />
+                      <label for="images">Images</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="dataset-modality-text" name="dataset-modality-text" class="form-dataset-table-checkbox" />
+                      <label for="audio">Audio</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="dataset-modality-text" name="dataset-modality-text" class="form-dataset-table-checkbox" />
+                      <label for="video">Video (including audio)</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" id="dataset-modality-text" name="dataset-modality-text" class="form-dataset-table-checkbox" />
+                      <label for="video">Other (e.g., science data)</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th class="form-dataset-table-label">
+                    <label for="domain">Domain:</label>
+                </th>
+                <td class="form-dataset-table-value">
+                  <select id="dataset-domain" name="dataset-domain" class="form-dataset-table-input">
+                    <optgroup label="General Purpose">
+                      <option default>Not domain specific</option>
+                    </optgroup>
+                    <optgroup label="Science & Industrial">
+                      <option>Climate</option>
+                      <option>Marine</option>
+                      <option>Materials</option>
+                      <option>Semiconductors</option>
+                      <option>Time Series</option>
+                      <option>Other Industrial</option>
+                    </optgroup>
+                    <optgroup label="Other">
+                      <option>Finance</option>
+                      <option>Healthcare</option>
+                      <option>Legal</option>
+                      <option>Social Science</option>
+                    </optgroup>
+                  </select>
+                  Or another domain? 
+                  <input type="text" id="dataset-other-domain" name="dataset-other-domain" class="form-dataset-table-input-shorter" placeholder="Your domain suggestion" required />
+                </td>
+            </tr>
+            -->
+            <tr>
+                <th class="form-dataset-table-label">
+                  <label for="email">Email:</label>
+                </th>
+                <td class="form-dataset-table-value">
+                  <input type="email" id="email" name="email" class="form-dataset-table-input" placeholder="Your email address" required />   
+                </td>
+            </tr>
+            <tr>
+                <th class="form-dataset-table-label">
+                &nbsp;
+                </th>
+                <td class="form-dataset-table-value">
+                  <input type="checkbox" id="agree-to-terms" name="agree-to-terms" required /> I agree to the terms for contribution.
+                </td>
+            </tr>
+            <tr>
+                <th class="form-dataset-table-label">
+                &nbsp;
+                </th>
+                <td class="form-dataset-table-value">
+                  <input type="submit" value="Submit!" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+<script>
+  <!-- Necessary to have the file browser limit all the allowed sections to what "accept=''" specifies: -->
+  var test = document.querySelector('input');
 
-```
-Dataset name:
-Dataset location (URL): 
-I want the Alliance to host it: Yes/No
-My email address:
-I agree to the terms for contribution: Yes/No
-```
+  const form = document.getElementById('datasets-form');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const body1 = `body=dataset-name: ${document.getElementById('dataset-name').value}
+dataset-url: ${document.getElementById('dataset-url').value}
+dataset-card: ${document.getElementById('dataset-card').value}
+dataset-alliance-hosting: ${document.getElementById('dataset-alliance-hosting').value}
+email: ${document.getElementById('email').value}
+agree-to-terms: ${document.getElementById('agree-to-terms').value}
+            `;
+            const body = body1.replace(/ /g, '%20').replace(/:/g, '%3A%20').replace(/\n/g, '%0D%0A');
+            const mailto = `mailto:data@thealliance.ai?subject=I%20want%20to%20contribute%20an%20OTDI%20dataset&${body}`
+            try {
+                window.open(mailto, '_contribute_email').focus();
+            } catch (error) {
+                console.error('Error formatting or submitting an email:', error);
+            }
+        });
+</script>
