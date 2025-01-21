@@ -22,7 +22,7 @@ has_children: true
 > **Tip:** Use the search box at the top of this page to find specific content.
 
 | **Authors**      | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
-| **Last Update**  | V0.2.3, 2025-01-08 |
+| **Last Update**  | V0.2.4, 2025-01-21 |
 
 # Why Is Trusted Data Important?
 
@@ -84,6 +84,7 @@ Interested in contributing a dataset to our catalog? Follow these steps:
 
 | Version  | Date       |
 | :------- | :--------- |
+| V0.2.4   | 2025-01-21 |
 | V0.2.3   | 2025-01-08 |
 | V0.2.2   | 2024-12-11 |
 | V0.2.1   | 2024-12-05 |
