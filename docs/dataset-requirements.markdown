@@ -50,7 +50,7 @@ Let's begin.
 
 To promote fully-traceable provenance and governance, for all data within the dataset, you must affirm that you are either (a) the owner of the dataset or (b) you have rights from the owner of the data that enables you to provide it to anyone under the CDLA Permissive 2.0 license; for example, you have been granted permission by the owner to act on their behalf with respect to the data and enable others to use it without restriction.
 
-> **WARNING:** Do not contribute any data that was obtained by crawling or scraping public data from the Internet or other public places. At this time, we are not accepting such data because we are seeking to build datasets with a heightened level of clarity around ownership, provenance, and quality.
+> **Note:** Data that was obtained by crawling the web often has mixed provenance and licenses for use. We are working on tools for carefully filtering crawled data to ensure our requirements are met for ownership, provenance, license for use, and quality. Until these tools are ready, we are limiting acceptance of crawled datasets.
 
 ## Dataset Hosting
 
