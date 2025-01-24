@@ -32,6 +32,7 @@ These Alliance member organizations are contributing to OTDI. In alphabetical or
 * [Aitomatic](https://www.aitomatic.com/){:target="aitomatic"}
 * [BrightQuery](https://brightquery.ai/){:target="brightquery"}
 * [Common Crawl Foundation](https://commoncrawl.org/){:target="common-crawl"}
+* [Hugging Face](https://huggingface.co){:target="hf"}
 * [IBM](https://ibm.com){:target="ibm"}
 * [Pleias](https://pleias.fr/){:target="pleias"}
 * [ServiceNow](https://www.servicenow.com/){:target="servicenow"}
