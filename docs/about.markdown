@@ -6,41 +6,51 @@ has_children: false
 ---
 
 <a name="join-us"></a>
-# Join This Initiative!
+# Join the Open Trusted Data Initiative!
 
 Want to join one of our initiative projects? Visit [this AI Alliance webpage](https://thealliance.ai/core-projects/open-trusted-data-initiative#foundation-models-working-group-form){:target="join-us"} and fill in the form. Thank you for your interest.
 
 <a name="contact-us"></a>
 # How to Contact Us
 
-Send email to [data@thealliance.ai](mailto:data@thealliance.ai?subject=Question about the Open Trusted Data Initiative) or [post issues](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="otdi-issues"} in the project [GitHub repo](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="otdi-repo"}.
+Send email to [data@thealliance.ai](mailto:data@thealliance.ai?subject=Questions about the Open Trusted Data Initiative). 
 
-# About This Project
+If you notice issues with this website or any of our other assets, considering [posting issues](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="otdi-issues"} in the project [GitHub repo](https://github.com/The-AI-Alliance/open-trusted-data-initiative){:target="otdi-repo"}.
+
+# About the Open Trusted Data Initiative
 
 ## Steering Committee
 
-We are assembling a steering committee of representatives for sponsoring organizations and from the broader comunity - coming soon.
+The Steering Committee represents diverse industry experience in open data and AI. The committee guides the strategy of OTDI, oversees the technical projects, and helps expand awareness of our work. 
+
+Here are the committee members, in alphabetical order (by first name):
+
+* Anastasia Stasenko - [Pleias](https://pleias.fr/){:target="pleias"}
+* Christopher Nguyen - [Aitomatic](https://www.aitomatic.com/){:target="aitomatic"}
+* Dean Wampler - [IBM Research](https://research.ibm.com){:target="ibm"}
+* Greg Lindahl - [Common Crawl Foundation](https://commoncrawl.org){:target="commoncrawl"}
+* Jose Plehn-Dujowich - [BrightQuery](https://brightquery.com){:target="brightquery"}
+* Sean Hughes - [ServiceNow](https://www.servicenow.com){:target="servicenow"}
+* Yacine Jernite - [Hugging Face](https://huggingface.co){:target="huggingface"}
+
 
 ## Maintainers
 
-Coming soon.
+The steering committee members contribute to the content published here. For the technical team that contributes to the data pipelines, etc., see the GitHub repo's [contributor list](https://github.com/The-AI-Alliance/open-trusted-data-initiative/graphs/contributors).
 
 ## Contributing AI Alliance Member Organizations
 
-These Alliance member organizations are contributing to OTDI. In alphabetical order:
+These Alliance member organizations are contributing to OTDI in various ways. In alphabetical order:
 
 * [Aitomatic](https://www.aitomatic.com/){:target="aitomatic"}
 * [BrightQuery](https://brightquery.ai/){:target="brightquery"}
-* [Common Crawl Foundation](https://commoncrawl.org/){:target="common-crawl"}
-* [Hugging Face](https://huggingface.co){:target="hf"}
+* [Common Crawl Foundation](https://commoncrawl.org/){:target="commoncrawl"}
+* [Hugging Face](https://huggingface.co){:target="huggingface"}
 * [IBM](https://ibm.com){:target="ibm"}
 * [Pleias](https://pleias.fr/){:target="pleias"}
 * [ServiceNow](https://www.servicenow.com/){:target="servicenow"}
-* ... more coming soon! ...
 
-## Other Ways to Contribute to This Project
-
-We are building data processing pipelines to very dataset metadata and to process datasets for various purposes. If you are interested in helping us in this effort, use the [Become a collaborator](https://thealliance.ai/become-a-collaborator){:target="collaborator"} page to tell us about your interests. Be sure to check the box for &ldquo;Open Trusted Data Initiative&rdquo;.
+Please [join us](#join-us)! We welcome organizations and individuals as collaborators.
 
 # About The AI Alliance
 
