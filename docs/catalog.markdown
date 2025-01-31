@@ -24,6 +24,24 @@ Here is the current list of datasets, organized by owner.
 
 > **BETA:** This is a provisional list of datasets. We are not yet validating datasets against our draft [requirements]({{site.baseurl}}/dataset-requirements).
 
+## BrightQuery
+
+[BrightQuery](https://brightquery.ai/){:target="bq"} ("BQ") provides proprietary financial, legal, and employment information on private and public companies derived from regulatory filings and disclosures. BQ proprietary data is used in capital markets for investment decisions, banking and insurance for KYC & credit checks, and enterprises for master data management, sales, and marketing purposes. In addition, BQ provides public information consisting of clean and standardized statistical data from all the major government agencies and NGOs around the world, and is doing so in partnership with the source agencies. BQ public datasets will be published in OTDI spanning all topics: economics, demographics, healthcare, crime, climate, education, sustainability, etc. Much of the data will be tabular (i.e., structured) time series data, as well as unstructured text.
+
+_More specific information is coming soon._
+
+## Common Crawl Foundation
+
+[Common Crawl Foundation](https://commoncrawl.org/){:target="ccf"} is working on tagged and filtered crawl subsets for English and other languages.
+
+_More specific information is coming soon._
+
+## Meta
+
+[Data for Good at Meta](https://dataforgood.facebook.com/dfg/){:target="dfg"} empowers partners with privacy-preserving data that strengthens communities and advances social issues. Data for Good is helping organizations respond to crises around the world and supporting research that advances economic opportunity.
+
+There are 220 datasets available. See [Meta's page](https://data.humdata.org/organization/meta){:target="humdata"} page at the [Human Data Exchange](https://data.humdata.org/){:target="humdata"} for the full list of datasets.
+
 ## PleIAs
 
 Domain-specific, clean datasets. 
@@ -64,15 +82,7 @@ The training dataset for the [SemiKong](https://www.semikong.ai/){:target="semik
 | :---------------- | :-------------- | :------- | :--------- |
 | **SemiKong** | An open model training dataset for semiconductor technology | [Hugging Face](https://huggingface.co/datasets/pentagoniac/SemiKong_Training_Datset){:target="semikong-dataset"} | 2024-09-01 |
 
-## Coming Soon
-
-In addition to the above organizations, the following are collaborating with us on additional datasets to be published soon.
-
-| Organization     | Kind     | 
-| :--------------- | :------- | 
-| [BrightQuery](https://brightquery.ai/){:target="bq"} | BrightQuery ("BQ") provides proprietary financial, legal, and employment information on private and public companies derived from regulatory filings and disclosures. BQ proprietary data is used in capital markets for investment decisions, banking and insurance for KYC & credit checks, and enterprises for master data management, sales, and marketing purposes. In addition, BQ provides public information consisting of clean and standardized statistical data from all the major government agencies and NGOs around the world, and is doing so in partnership with the source agencies. BQ public datasets will be published in OTDI spanning all topics: economics, demographics, healthcare, crime, climate, education, sustainability, etc. The data will in general be tabular time series.  (TBD) |
-| [Common Crawl Foundation](https://commoncrawl.org/){:target="ccf"} | Tagged and filtered crawl subsets for English and other languages |
-
+## Your Contributions?
 
 To expand this catalog, we [welcome contributions]({{site.baseurl}}/contributing).
 

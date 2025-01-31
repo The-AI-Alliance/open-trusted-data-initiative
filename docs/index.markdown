@@ -14,11 +14,12 @@ has_children: true
 
 > **News:**
 >
+> * January 31, 2025: Added [Data for Good at Meta]({{site.baseurl}}/catalog/#meta) datasets.
 > * January 23, 2025: The initiative [Steering Committee]({{site.baseurl}}/about/#steering-committee) is established.
-> * December 11, 2024: Added [ServiceNow](https://www.servicenow.com/){:target="sn"} datasets.
-> * November 20, 2024: [BrightQuery](https://brightquery.com/){:target="bq"} joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/jose-plehn_brightquery-is-proud-to-now-be-a-member-of-activity-7265516443742478338-xjIz/?utm_source=share&utm_medium=member_desktop){:target="bq-li"}.
-> * November 4, 2024: [pleias](https://pleias.fr){:target="pleias"} joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/pleias_pleias-joins-the-ai-alliance-to-co-lead-open-ugcPost-7259263514542796800-Uphx/){:target="pleias-li"}.
-> * October 15, 2024: [Common Crawl Foundation](https://commoncrawl.org/){:target="ccf"} joins the AI Alliance and the Open Trusted Data Initiative.
+> * December 11, 2024: Added [ServiceNow]({{site.baseurl}}/catalog/#servicenow) datasets.
+> * November 20, 2024: [BrightQuery]({{site.baseurl}}/catalog/#brightquery) joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/jose-plehn_brightquery-is-proud-to-now-be-a-member-of-activity-7265516443742478338-xjIz/?utm_source=share&utm_medium=member_desktop){:target="bq-li"}.
+> * November 4, 2024: [PleIAs]({{site.baseurl}}/catalog/#pleias) joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/pleias_pleias-joins-the-ai-alliance-to-co-lead-open-ugcPost-7259263514542796800-Uphx/){:target="pleias-li"}.
+> * October 15, 2024: [Common Crawl Foundation]({{site.baseurl}}/catalog/#common-crawl-foundation) joins the AI Alliance and the Open Trusted Data Initiative.
 
 > **Tip:** Use the search box at the top of this page to find specific content.
 
