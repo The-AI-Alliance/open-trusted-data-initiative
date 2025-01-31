@@ -40,7 +40,7 @@ _More specific information is coming soon._
 
 [Data for Good at Meta](https://dataforgood.facebook.com/dfg/){:target="dfg"} empowers partners with privacy-preserving data that strengthens communities and advances social issues. Data for Good is helping organizations respond to crises around the world and supporting research that advances economic opportunity.
 
-There are 220 datasets available. See [Meta's page](https://data.humdata.org/organization/meta){:target="humdata"} page at the [Human Data Exchange](https://data.humdata.org/){:target="humdata"} for the full list of datasets.
+There are 220 datasets available. See [Meta's page](https://data.humdata.org/organization/meta){:target="humdata"} at the [Human Data Exchange](https://data.humdata.org/){:target="humdata"} for the full list of datasets.
 
 ## PleIAs
 
