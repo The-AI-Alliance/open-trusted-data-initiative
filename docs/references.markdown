@@ -5,9 +5,9 @@ nav_order: 60
 has_children: false
 ---
 
-# References: What Others Are Saying About Trusted, Open Data
+# References: Other Information About Trusted, Open Data
 
-Here is an evolving list of writings from other sources about the importance of open, trusted data. Note that the opinions expressed do not necessarily reflect the views of the AI Alliance.
+Here is an evolving list of writings from other sources about the importance of open, trusted data, implications, technologies used, etc. Of course, the opinions expressed do not necessarily reflect the views of the AI Alliance.
 
 > **Help Wanted:** If you have other references you like, please let us know through email, [data@thealliance.ai](mailto:data@thealliance.ai), or [edit this page](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/latest/docs/references.markdown){:target='repo'}!
 
@@ -66,3 +66,9 @@ There mission is to uncover the datasets used to train large language models. Fr
 [Blog post](https://huggingface.co/blog/yjernite/data-transparency){:target="hf-data-transparency"} by [Yacine Jernite](https://huggingface.co/yjernite){:target="yacine"}.
 
 A call for &ldquo;minimum meaningful public transparency standards to support effective AI regulation.&rdquo;
+
+## U.S. Department of Commerce
+
+[Generative Artificial Intelligence and Open Data: Guidelines and Best Practices](https://www.commerce.gov/news/blog/2025/01/generative-artificial-intelligence-and-open-data-guidelines-and-best-practices){:target="usdc-pdf"}) ([PDF](https://www.commerce.gov/sites/default/files/2025-01/GenerativeAI-Open-Data.pdf){:target="usdc-pdf"}). This guidance is intended to be used by the department and its bureaus, but it is generally useful. 
+
+Note that it was published January 16, 2025, just before the end of the Biden administration. It is not clear if these guidelines will be retained by the new administration.
