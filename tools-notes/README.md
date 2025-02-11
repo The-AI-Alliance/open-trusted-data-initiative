@@ -2,6 +2,8 @@
 
 This folder is not part of the website or production code. It is used to collect "background" notes on various tools, such as dataset tools from Hugging Face. See the enclosed folders for more details.
 
+See also the `../data-processing-notes`.
+
 Some tools are covered with dedicated folders, e.g., those where sample Python scripts are provided. Others are described here.
 
 ## Presidio
