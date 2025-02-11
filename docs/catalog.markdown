@@ -36,6 +36,12 @@ _More specific information is coming soon._
 
 _More specific information is coming soon._
 
+## EPFL 
+
+The [EPFL LLM team](https://huggingface.co/epfl-llm){:target="epfl-llm"} has curated a dataset to train their [Meditron](https://github.com/epfLLM/meditron){:target="meditron"} models. An open-access subset of the medical guidelines data is published on [Hugging Face](https://huggingface.co/datasets/epfl-llm/guidelines){:target="guidelines"}
+
+See the Meditron GitHub repo [README](https://github.com/epfLLM/meditron?tab=readme-ov-file#medical-training-data){:target="meditron-readme"} for more details about the whole dataset used to train Meditron.
+
 ## Meta
 
 [Data for Good at Meta](https://dataforgood.facebook.com/dfg/){:target="dfg"} empowers partners with privacy-preserving data that strengthens communities and advances social issues. Data for Good is helping organizations respond to crises around the world and supporting research that advances economic opportunity.
