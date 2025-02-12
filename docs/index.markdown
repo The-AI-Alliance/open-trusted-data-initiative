@@ -14,7 +14,7 @@ has_children: true
 
 > **News:**
 >
-> * February 11, 2025: Added an [EPFL]({{site.baseurl}}/catalog/#epfl) dataset.
+> * February 11, 2025: OTDI [announced](https://thealliance.ai/blog/announcing-open-trusted-data-initiative-otdi){:target="aias"} at the AI Action Summit in Paris. Added an [EPFL]({{site.baseurl}}/catalog/#epfl) dataset.
 > * January 31, 2025: Added [Data for Good at Meta]({{site.baseurl}}/catalog/#meta) datasets.
 > * January 23, 2025: The initiative [Steering Committee]({{site.baseurl}}/about/#steering-committee) is established.
 > * December 11, 2024: Added [ServiceNow]({{site.baseurl}}/catalog/#servicenow) datasets.
