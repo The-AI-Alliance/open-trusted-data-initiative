@@ -36,7 +36,7 @@ Here are the committee members, in alphabetical order (by first name):
 
 ## Maintainers
 
-The steering committee members contribute to the content published here. For the technical team that contributes to the data pipelines, etc., see the GitHub repo's [contributor list](https://github.com/The-AI-Alliance/open-trusted-data-initiative/graphs/contributors).
+The steering committee members contribute to the content published here. For the technical team that contributes to the data pipelines, etc., see the GitHub repo's [contributor list](https://github.com/The-AI-Alliance/open-trusted-data-initiative/graphs/contributors){:target="gh-contributors"}.
 
 ## Contributing AI Alliance Member Organizations
 
