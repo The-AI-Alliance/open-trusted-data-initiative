@@ -76,6 +76,12 @@ Here is their statement about the purpose of this standard, quoted from the proj
 
 IBM's [watsonx](https://www.ibm.com/docs/en/watsonx/saas){:target="watson-nlp"}  Natural Language Processing (NLP) system works with a defined taxonomy of [categories](https://www.ibm.com/docs/en/watsonx/saas?topic=categorization-category-types){:target="watson-nlp-categories"}.
 
+## Searching for Datasets
+
+### University of California Berkeley
+
+[It Took Longer than I was Expecting: Why is Dataset Search Still so Hard?](https://dl.acm.org/doi/10.1145/3665939.3665959) analyzes why searching for datasets is harder than it might seem.
+
 <a name="ai-bom"></a>
 ## Bill of Materials
 
