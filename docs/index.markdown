@@ -5,12 +5,15 @@ nav_order: 10
 has_children: true
 ---
 
-# Building the Future of Open, Trusted Data for AI
+# Open Trusted Data Initiative (OTDI) 
+## Building the Future of Trustworthy Data for AI
 
 {: .hightlight}
-> _Join **The AI Alliance, Open Trusted Data Initiative** (OTDI), where our mission is to create a comprehensive, widely-sourced catalog of datasets with clear licenses for use, explicit provenance guarantees, and governed transformations, intended for AI model training, tuning, and application patterns like RAG (retrieval augmented generation) and agents._
->
-> _In our context_ trusted data _means the provenance and governance of the dataset is clear and unambiguous. The metadata about the dataset provides clarity about its intended purposes, safety, and other considerations, along with any filtering and other processing steps that were done on the dataset._
+Join **The AI Alliance, Open Trusted Data Initiative** (OTDI), where our mission is to create a comprehensive, widely-sourced catalog of datasets with clear licenses for use, explicit provenance guarantees, and governed transformations, intended for AI model training, tuning, and application patterns like RAG (retrieval augmented generation) and agents.
+
+In our context _trusted data_ means the provenance and governance of the dataset is clear and unambiguous. The metadata about the dataset provides clarity about its intended purposes, safety, and other considerations, along with any filtering and other processing steps that were done on the dataset.
+
+| See this short [presentation]({{site.baseurl}}/files/OTDI-Overview.pdf) (PDF) about the Open Trusted Data Initiative. |
 
 > **News:**
 >
