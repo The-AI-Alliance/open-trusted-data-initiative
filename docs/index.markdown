@@ -41,13 +41,13 @@ Please [join us]({{site.baseurl}}/about/#join-the-open-trusted-data-initiative)!
 | **Authors**      | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
 | **Last Update**  | V0.2.7, 2025-03-18 |
 
-# Why Is Trusted Data Important?
+## Why Is Trusted Data Important?
 
 A significant challenge today for users of datasets is the desire for clear licenses to use the data, assurances that the data was sourced appropriately (the provenance), and trust that the data has been securely and traceably managed (governance).
 
 OTDI aims to address these concerns with an industry wide effort to specify governance requirements and to catalog and process datasets fully in the open, allowing model developers and users to have full confidence in the provenance and governance of the data they use.
 
-## Delivering Trust
+### Delivering Trust
 
 What does delivering trust mean? We wish to enable the following:
 
@@ -62,7 +62,7 @@ Our deliverables to the industry will include the following:
 * **Domain Knowledge Datasets:** A rich, comprehensive set of datasets pertinent to tuning foundation models to a set of application domains: legal, finance, chemistry, manufacturing, etc.
 * **Tooling and Platform Engineering:** Hosted pipelines, platform services, and compute capacity for synthetic dataset generation and data preparation at the scale needed to achieve the vision. Fully open-source, so you can use these tools as you see fit.
 
-## The Value of Governance
+### The Value of Governance
 
 Governance of datasets delivers these benefits:
 
@@ -73,7 +73,7 @@ Governance of datasets delivers these benefits:
 * **Facilitates Accountability:** Clarifies stewardship of data, ensuring responsibility for its integrity and usage.
 * **Enhances Decision-Making:** Provides access to trusted, high-quality data, enabling better consumption and outcomes.
 
-# Contributing Datasets
+## Contributing Datasets
 
 If you just want to browse the current catalog:<br/>
 <a href="{{site.baseurl}}/catalog/" target="hugging-face" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph">click here</a>.
@@ -84,7 +84,7 @@ So, why should you get involved?
 * **Transparency & Trust:** Every contribution is transparent, with robust data provenance, governance, and trust mechanisms. We welcome your expertise to help us improve all aspects of these processes.
 * **Tailored Contributions:** The world needs domain-specific datasets to enable model tuning to create open foundation models relevant to domains such as time series, and branches of science and industrial engineering. The world needs more multilingual, including underserved languages, and multimodel datasets. In many areas, the available real-world data is insufficient for the needs to innovate in those areas. Therefore, synthetic datasets are also needed.
 
-## Next Steps
+### Next Steps
 
 Interested in contributing a dataset to our catalog? Follow these steps:
 
