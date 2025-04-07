@@ -12,6 +12,17 @@ has_children: false
 
 _Contribution_ means adding your dataset to our catalog. You can optionally _donate_ the dataset to the Alliance, where we take ownership of a copy at the time of donation and we host it ourselves. Otherwise, you continue to own and host the dataset.
 
+## What Kinds of Datasets Do We Want?
+
+We seek a very broad range of datasets, including:
+
+* **Text:** especially under-served language.
+* **Multimedia:** audio, video, images.
+* **Time series:** targeting any domain or application.
+* **Science:** molecular discovery, drug discovery, geospatial, physics, etc., etc.
+* **Domains and use cases:** Industry-specific and use case-specific data.
+* **Synthetic:** datasets for all of the above can be synthetic or "real".
+
 ## The Contribution Process
 
 The process follows these steps:

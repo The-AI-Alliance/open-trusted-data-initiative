@@ -10,6 +10,8 @@ has_children: false
 
 Want to join one of our initiative projects? Visit [this AI Alliance webpage](https://thealliance.ai/core-projects/open-trusted-data-initiative#foundation-models-working-group-form){:target="join-us"} and fill in the form. Thank you for your interest.
 
+Want to contribute datasets to our catalog, go [here]({{site.baseurl}}/contributing).
+
 <a name="contact-us"></a>
 # How to Contact Us
 

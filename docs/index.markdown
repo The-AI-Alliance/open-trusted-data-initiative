@@ -13,7 +13,18 @@ Join **The AI Alliance, Open Trusted Data Initiative** (OTDI), where our mission
 
 In our context _trusted data_ means the provenance and governance of the dataset is clear and unambiguous. The metadata about the dataset provides clarity about its intended purposes, safety, and other considerations, along with any filtering and other processing steps that were done on the dataset.
 
-| See this short [presentation]({{site.baseurl}}/files/OTDI-Overview.pdf) (PDF) about the Open Trusted Data Initiative. |
+OTDI is building a high-quality, trusted, and open catalog of datasets for AI LLM pre-training, fine-tuning, and domain-specific applications. These datasets are amenable to a wide variety of use cases in enterprises, governments, regulated industries, and wherever high trust in the data foundations of AI is essential.
+
+Specifically, the initiative consists of **several projects that welcome your contributions:**
+
+* [Define Openness Criteria]({{site.baseurl}}/dataset-requirements/): What has to be true about a dataset in order for it to be considered truly _open_ for use? This project defines those criteria. See the [list of open issues](https://github.com/orgs/The-AI-Alliance/projects/28/views/1?filterQuery=label%3A%22dataset+requirements%22){:target="github"} for more details about our evolving thinking on the minimally-sufficient criteria.
+* [Find Diverse Datasets]({{site.baseurl}}/contributing/#what-kinds-of-datasets-do-we-want): We seek a very broad range of datasets, including: text (especially under-served language), multimedia (audio, video, images), time series (targeting any domain or application), science (molecular discovery, drug discovery, geospatial, physics, etc., etc), specific domains and use cases (industry-specific and use case-specific data), synthetic (datasets for all of the above can be synthetic or "real"). See our [list of open issues](https://github.com/orgs/The-AI-Alliance/projects/28/views/1?filterQuery=label%3A%22diverse+datasets%22){:target="github"} for a _partial_ list of desired datasets.
+* [Data Pipelines]({{site.baseurl}}/our-processing/): Data pipelines implemented using tools like [DPK](https://github.com/The-AI-Alliance/dpk-alliance){:target="dpk"} are used both to validate datasets proposed for inclusion in our catalog and, eventually, to derive new datasets specialized for particular purposes. See the [list of open issues](https://github.com/orgs/The-AI-Alliance/projects/28/views/1?filterQuery=label%3A%22data+pipelines%22){:target="github"} page for our current work.
+* [Open Dataset Catalog]({{site.baseurl}}/catalog/): A catalog of datasets from many sources that meet our criteria for openness. See the [list of current issues](https://github.com/orgs/The-AI-Alliance/projects/28/views/1?filterQuery=label%3A%22dataset+catalog%22){:target="github"} page for more information.
+
+Please [join us]({{site.baseurl}}/about/#join-the-open-trusted-data-initiative)!
+
+| See this short [presentation]({{site.baseurl}}/files/OTDI-Overview.pdf) (PDF) for more information about the Open Trusted Data Initiative. |
 
 > **News:**
 >
