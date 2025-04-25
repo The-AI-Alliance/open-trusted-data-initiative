@@ -10,7 +10,7 @@ has_children: false
 > **NOTE:**
 > Be sure to read the [Dataset Specification]({{site.baseurl}}/dataset-requirements) details before proceeding. If you have questions or concerns about the specification, please [contact us]({{site.baseurl}}/about/#contact-us).
 
-_Contribution_ means adding your dataset to our catalog. You can optionally _donate_ the dataset to the Alliance, where we take ownership of a copy at the time of donation and we host it ourselves. Otherwise, you continue to own and host the dataset.
+_Contribution_ means adding your dataset to our catalog. You continue to own and host the dataset where you see fit.
 
 ## What Kinds of Datasets Do We Want?
 
@@ -30,19 +30,18 @@ The process follows these steps:
 1. **Prepare your contribution:** Make sure you meet the [Dataset Specification]({{site.baseurl}}/dataset-requirements) and prepare the dataset card.
 2. **Tell us about your dataset:** Follow the instructions in [Contribute Your Dataset](#contribute-your-dataset) below to submit your dataset for consideration.
 3. **Receive feedback from us:** After we evaluate the submission, we will provide feedback and request clarifications, where needed.
-4. **Transfer the data:** (Optional) Once your contribution is accepted, you can transfer the data to be hosted in [The AI Alliance Hugging Face space](https://huggingface.co/aialliance){:target="aia-hf"} or you can continue to host it yourself, for example, in your own Hugging Face space.
-5. **Review your submission details:** After publication in our catalog, verify that the imformation about your dataset is correct. Your dataset will be listed on this website's [Catalog page]({{site.baseurl}}/catalog) and also listed in the [Open Trusted Data Initiative catalog](https://huggingface.co/collections/aialliance/open-trusted-data-catalog-66d21b3cb66342762fb6108e){:target="aia-hf-otdi"} in the AI Alliance Hugging Face space.
+4. **Be added to our dataset catalog:** Once your contribution is accepted, your dataset will be added to our [catalog]({{site.baseurl}}/catalog).
+5. **Review your details:** After publication in our catalog, verify that the information about your dataset is correct.
 
 ## License
 
-The Open Trusted Data Initiative is focused on obtaining datasets from submitters who either own or have a unrestricted, free-to-use license from all owners of data included in the dataset. By contributing a dataset to the Initative, you affirm that with respect to the dataset and all of its data, you are either (1) the owner or (2) you have been granted a license by all owner(s) of the data enabling you to license it to others under an acceptable open license, which gives anyone the right to use, modify, copy, and create derivative works of the data and dataset, among other things. Do not contribute any data that was obtained merely by collecting publicly-visible data from the Internet or from other sources that you do not own or to which you do not have a suitable license.
+The Open Trusted Data Initiative is focused on obtaining datasets from submitters who either own them or have a unrestricted, free-to-use license from all owners of data included in the dataset. By contributing a dataset to the catalog, you affirm that with respect to the dataset and all of its data, you are either (1) the owner or (2) you have been granted a license by all owner(s) of the data enabling you to license it to others under an acceptable open license, which gives anyone the right to use, modify, copy, and create derivative works of the data and dataset, among other things. Do not contribute any data that was obtained merely by collecting publicly-visible data from the Internet or from other sources that you do not own or to which you do not have a suitable license.
 
 We prefer the [Community Data License Agreement - Permissive, Version 2.0](https://cdla.dev/permissive-2-0/){:target="cdla"} although [The Creative Commons License, Version 4.0 - CC BY 4.0](https://chooser-beta.creativecommons.org/){:target="cc-by-4"} is also sometimes used.
 
 By contributing the dataset to the Initiative, you grant anyone a license to the dataset and its data under the [Developer Certificate of Origin, Version 1.1](https://developercertificate.org/){:target="dco"} (see also our [community contributors page](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md){:target="community"}).  This does not affect your ownership, copyrights and other interests, and rights to and title to the dataset and its data.
 
 ## Contribute Your Dataset
-
 
 Use this form to tell us about your dataset. It will open your email client with the data added and formatted. After we receive your email, we will follow up with next steps.
 
@@ -77,6 +76,7 @@ Use this form to tell us about your dataset. It will open your email client with
                   <input type="url" id="dataset-card" name="dataset-url" class="form-dataset-table-input" placeholder="https://huggingface.co" pattern="https://.*" /> Leave blank if the location README <em>is</em> the dataset card.
                 </td>
             </tr>
+            <!--
             <tr>
                 <th class="form-dataset-table-label">
                   <label for="dataset-hosting">Hosting:</label>
@@ -85,7 +85,6 @@ Use this form to tell us about your dataset. It will open your email client with
                   <input type="checkbox" id="dataset-alliance-hosting" name="dataset-alliance-hosting" unchecked /> I want the AI Alliance to host this dataset.
                 </td>
             </tr>
-            <!--
             <tr>
                 <th class="form-dataset-table-label">
                   <label for="modality">Modalities:</label>
@@ -179,7 +178,6 @@ Use this form to tell us about your dataset. It will open your email client with
             const body1 = `body=dataset-name: ${document.getElementById('dataset-name').value}
 dataset-url: ${document.getElementById('dataset-url').value}
 dataset-card: ${document.getElementById('dataset-card').value}
-dataset-alliance-hosting: ${document.getElementById('dataset-alliance-hosting').value}
 email: ${document.getElementById('email').value}
 agree-to-terms: ${document.getElementById('agree-to-terms').value}
             `;
