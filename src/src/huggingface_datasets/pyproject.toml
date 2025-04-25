@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "huggingface_datasets"
+version = "0.0.1"
+description = "Job to collect the list of data sets stored in HuggingFace Hub"
+authors = [
+    {name = "The AI Alliance",email = "data@thealliance.ai"}
+]
+license = {text = "Apache License Version 2.0"}
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+huggingface-hub = "^0.27.1"
+pandas = "^2.2.3"
+awswrangler = "^3.11.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

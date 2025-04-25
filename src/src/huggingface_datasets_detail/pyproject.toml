@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "huggingface_datasets"
+version = "0.0.1"
+description = "Job to collect croissant metadata from data sets stored in HuggingFace Hub"
+authors = [
+    {name = "The AI Alliance",email = "data@thealliance.ai"}
+]
+license = {text = "Apache License Version 2.0"}
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+aiohttp = "^3.11.12"
+pandas = "^2.2.3"
+openpyxl = "^3.1.5"
+asyncio = "^3.4.3"
+boto3 = "^1.36.19"
+awswrangler = "^3.11.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
