@@ -8,6 +8,21 @@ has_children: true
 # Open Trusted Data Initiative (OTDI) 
 ## Building the Future of Trustworthy Data for AI
 
+> **News:**
+>
+> * February 11, 2025: OTDI [announced](https://thealliance.ai/blog/announcing-open-trusted-data-initiative-otdi){:target="aias"} at the AI Action Summit in Paris. Added an [EPFL]({{site.baseurl}}/catalog/#epfl) dataset.
+> * January 31, 2025: Added [Data for Good at Meta]({{site.baseurl}}/catalog/#meta) datasets.
+> * January 23, 2025: The initiative [Steering Committee]({{site.baseurl}}/about/#steering-committee) is established.
+> * December 11, 2024: Added [ServiceNow]({{site.baseurl}}/catalog/#servicenow) datasets.
+> * November 20, 2024: [BrightQuery]({{site.baseurl}}/catalog/#brightquery) joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/jose-plehn_brightquery-is-proud-to-now-be-a-member-of-activity-7265516443742478338-xjIz/?utm_source=share&utm_medium=member_desktop){:target="bq-li"}.
+> * November 4, 2024: [PleIAs]({{site.baseurl}}/catalog/#pleias) joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/pleias_pleias-joins-the-ai-alliance-to-co-lead-open-ugcPost-7259263514542796800-Uphx/){:target="pleias-li"}.
+> * October 15, 2024: [Common Crawl Foundation]({{site.baseurl}}/catalog/#common-crawl-foundation) joins the AI Alliance and the Open Trusted Data Initiative.
+
+> **Tip:** Use the search box at the top of this page to find specific content.
+
+| **Authors**      | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
+| **Last Update**  | V0.2.8, 2025-04-25 |
+
 {: .hightlight}
 Join **The AI Alliance, Open Trusted Data Initiative** (OTDI), where our mission is to create a comprehensive, widely-sourced catalog of datasets with clear licenses for use, explicit provenance guarantees, and governed transformations, intended for AI model training, tuning, and application patterns like RAG (retrieval augmented generation) and agents.
 
@@ -25,21 +40,6 @@ Specifically, the initiative consists of **several projects that welcome your co
 Please [join us]({{site.baseurl}}/about/#join-the-open-trusted-data-initiative)!
 
 | See this short [presentation]({{site.baseurl}}/files/OTDI-Overview.pdf) (PDF) for more information about the Open Trusted Data Initiative. |
-
-> **News:**
->
-> * February 11, 2025: OTDI [announced](https://thealliance.ai/blog/announcing-open-trusted-data-initiative-otdi){:target="aias"} at the AI Action Summit in Paris. Added an [EPFL]({{site.baseurl}}/catalog/#epfl) dataset.
-> * January 31, 2025: Added [Data for Good at Meta]({{site.baseurl}}/catalog/#meta) datasets.
-> * January 23, 2025: The initiative [Steering Committee]({{site.baseurl}}/about/#steering-committee) is established.
-> * December 11, 2024: Added [ServiceNow]({{site.baseurl}}/catalog/#servicenow) datasets.
-> * November 20, 2024: [BrightQuery]({{site.baseurl}}/catalog/#brightquery) joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/jose-plehn_brightquery-is-proud-to-now-be-a-member-of-activity-7265516443742478338-xjIz/?utm_source=share&utm_medium=member_desktop){:target="bq-li"}.
-> * November 4, 2024: [PleIAs]({{site.baseurl}}/catalog/#pleias) joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/pleias_pleias-joins-the-ai-alliance-to-co-lead-open-ugcPost-7259263514542796800-Uphx/){:target="pleias-li"}.
-> * October 15, 2024: [Common Crawl Foundation]({{site.baseurl}}/catalog/#common-crawl-foundation) joins the AI Alliance and the Open Trusted Data Initiative.
-
-> **Tip:** Use the search box at the top of this page to find specific content.
-
-| **Authors**      | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
-| **Last Update**  | V0.2.7, 2025-03-18 |
 
 ## Why Is Trusted Data Important?
 
@@ -101,6 +101,7 @@ Interested in contributing a dataset to our catalog? Follow these steps:
 
 | Version  | Date       |
 | :------- | :--------- |
+| V0.2.8   | 2025-04-25 |
 | V0.2.7   | 2025-03-18 |
 | V0.2.6   | 2025-02-11 |
 | V0.2.5   | 2025-01-31 |
