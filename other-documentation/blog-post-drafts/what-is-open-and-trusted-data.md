@@ -19,7 +19,7 @@ We are pleased to announce the first draft ("V0.1") of our criteria for openness
 
 We have begun the process of finding and cataloging datasets, starting with an analysis of Croissant metadata available for datasets hosted at HuggingFace.
 
-[We need your datasets](https://the-ai-alliance.github.io/open-trusted-data-initiative/contributing/)! Of special interest are domain-specific and use case-specific datasets.
+[We need your datasets!](https://the-ai-alliance.github.io/open-trusted-data-initiative/contributing/) Of special interest are domain-specific and use case-specific datasets.
 
 Oh, and we are starting on the catalog browsing and search tools. We [welcome your help](https://github.com/orgs/The-AI-Alliance/projects/28/views/1?filterQuery=label%3A%22dataset+catalog%22) here, too.
 
