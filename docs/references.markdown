@@ -13,6 +13,15 @@ Here is an evolving list of writings from other sources about the importance of 
 
 This section is organized by topic.
 
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
+
 ## General Data Concerns
 
 <a name="data-transparency"></a>
@@ -35,6 +44,25 @@ The [The European AI Office](https://digital-strategy.ec.europa.eu/en/policies/a
 [Open Future](https://openfuture.eu/){:target="open-future"}, in collaboration with the [Mozilla Foundation](https://foundation.mozilla.org/en/?gad_source=1){:target="mozilla"}, has authored a [white paper](https://openfuture.eu/publication/towards-robust-training-data-transparency/){:target="open-future-paper"} called _Suffiently Detailed? A proposal for implementing the AI Act’s training data transparency specification for GPAI_ (general-purpose AI). This paper discusses new specification for model developers to produce a _sufficiently detailed summary_ of the content used for model training. [The announcement](https://openfuture.eu/publication/towards-robust-training-data-transparency/){:target="open-future-paper"} says the following:
 
 > The purpose of the paper we are sharing today is twofold. It clarifies the categories of rights and legitimate interests that justify access to information about training data. In addition to copyright, these include, among others, privacy and personal data protection, scientific freedom, the prohibition of discrimination, and respect for cultural and linguistic diversity. Moreover, it provides a blueprint for the forthcoming template for the &ldquo;sufficiently detailed summary,&rdquo; which is intended to serve these interests while respecting the rights of all parties concerned.
+
+## FAIR Principles
+
+[Website](https://www.go-fair.org/fair-principles/)
+
+Quoting from the website:
+
+> In 2016, the [FAIR Guiding Principles for scientific data management and stewardship](https://www.nature.com/articles/sdata201618) were published in _Scientific Data_. The authors intended to provide guidelines to improve the Findability, Accessibility, Interoperability, and Reuse of digital assets. The principles emphasize machine-actionability (i.e., the capacity of computational systems to find, access, interoperate, and reuse data with none or minimal human intervention) because humans increasingly rely on computational support to deal with data as a result of the increase in volume, complexity, and creation speed of data.
+
+Both data and metadata must be ***findable*** to be usable, such as storage in known locations. Machine readability is essential for practical use.
+
+Data must be ***accessible*** through established tools (e.g., web APIs), possibly including authentication and authorization.
+
+Datasets often need to be combined, requiring ***interoperable*** tools, storage, etc.
+
+Ultimately, the goal is to make data ***reusable***, leading to requirements for clear licensing, provenance, and governance.
+
+Finally, they define three **types of entities**: "data (or any digital object), metadata (information about that digital object), and infrastructure." For instance, findable means that both metadata and data are registered or indexed in a searchable resource (an infrastructure component).
+
 
 ## Licensing and Attribution
 
