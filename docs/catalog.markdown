@@ -98,7 +98,7 @@ To expand this catalog, we [welcome contributions]({{site.baseurl}}/contributing
 
 Until our catalog search is operational, there are several ways you can search for datasets that match your criteria.
 
-### Hugging Face Hug Search
+### Hugging Face Hub Search
 
 You can do [full-text search](https://huggingface.co/search/full-text?type=dataset){:target="hf-search"} for datasets, models, and organization spaces in the [Hugging Face Hub](https://huggingface.co/){:target="hf-hub"}. Uncheck _models_ and _spaces_ on the left-hand side to limit your search to datasets. 
 
