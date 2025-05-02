@@ -17,7 +17,7 @@ title: Open Trusted Data Initiative
 email: contact@thealliance.ai
 description: >- # this means to ignore newlines until "baseurl:"
   The documentation for the AI Alliance Open Trusted Data Initiative.
-baseurl: "/open-trusted-data-initiative" # the subpath of your site, e.g. /blog
+baseurl: "/otdiv2" # the subpath of your site, e.g. /blog
 url: "https://the-ai-alliance.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Defined to be empty so Jekyll ignores the YAML block at the top of the 
@@ -75,7 +75,7 @@ aux_links:
 
 nav_external_links:
   - title: The AI Alliance Open Trusted Data Initiative Repo"
-    url: "https://github.com/The-AI-Alliance/open-trusted-data-initiative"
+    url: "https://github.com/deanwampler/otdiv2"
     hide_icon: false
 
 # Makes Aux links open in a new tab. Default is false
@@ -101,7 +101,7 @@ last_version: 0.2.8
 # "Edit this page on GitHub" link text
 gh_edit_link: true # show or hide edit this page link
 gh_edit_link_text: "Edit this page on GitHub"
-gh_edit_repository: "https://github.com/The-AI-Alliance/open-trusted-data-initiative/tree/latest/docs" # the github URL for your repo
+gh_edit_repository: "https://github.com/deanwampler/otdiv2/tree/deanw/dataset-centric-redesign/docs" # the github URL for your repo
 gh_edit_branch: "main" # the branch that your docs is served from
 gh_edit_source: "docs" # the source that your files originate from
 gh_edit_view_mode: "tree" # "tree" or "edit" if you want the user to jump into the editor immediately
