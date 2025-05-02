@@ -35,4 +35,4 @@ run_ray_tests::
 
 
 build_ray_image::
-	${DOCKER} build . -t license_validator_python -f Dockerfile_python
+	${DOCKER} build . -t license_validator_python -f Dockerfile_ray
