@@ -18,7 +18,7 @@ email: contact@thealliance.ai
 description: >- # this means to ignore newlines until "baseurl:"
   The documentation for the AI Alliance Open Trusted Data Initiative.
 baseurl: "/otdiv2" # the subpath of your site, e.g. /blog
-url: "https://the-ai-alliance.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://deanwampler.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Defined to be empty so Jekyll ignores the YAML block at the top of the 
 # files/datasetcard_otdi_template.md file.
