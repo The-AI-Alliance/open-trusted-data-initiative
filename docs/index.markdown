@@ -14,7 +14,7 @@ language_tags: English, Molecular
 
 <div class="table-wrapper">
   {% for language in site.language %}
-  <a href="{{site.base_url}}/catalog/#{{language.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{language.name}}</a>
+  <a href="{{site.baseurl}}/catalog/#{{language.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{language.name}}</a>
   {% endfor %}
 </div>
 
@@ -22,7 +22,7 @@ language_tags: English, Molecular
 
 <div class="table-wrapper">
   {% for domain in site.domain %}
-  <a href="{{site.base_url}}/catalog/#{{domain.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{domain.name}}</a>
+  <a href="{{site.baseurl}}/catalog/#{{domain.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{domain.name}}</a>
   {% endfor %}
 </div>
 
@@ -30,7 +30,7 @@ language_tags: English, Molecular
 
 <div class="table-wrapper">
   {% for modality in site.modality %}
-  <a href="{{site.base_url}}/catalog/#{{modality.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{modality.name}}</a>
+  <a href="{{site.baseurl}}/catalog/#{{modality.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{modality.name}}</a>
   {% endfor %}
 </div>
 
