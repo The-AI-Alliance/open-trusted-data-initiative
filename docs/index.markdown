@@ -6,22 +6,57 @@ has_children: true
 ---
 
 # Open Trusted Data Initiative (OTDI) 
-## Building the Future of Trustworthy Data for AI
 
-> **News:**
->
-> * February 11, 2025: OTDI [announced](https://thealliance.ai/blog/announcing-open-trusted-data-initiative-otdi){:target="aias"} at the AI Action Summit in Paris. Added an [EPFL]({{site.baseurl}}/catalog/#epfl) dataset.
-> * January 31, 2025: Added [Data for Good at Meta]({{site.baseurl}}/catalog/#meta) datasets.
-> * January 23, 2025: The initiative [Steering Committee]({{site.baseurl}}/about/#steering-committee) is established.
-> * December 11, 2024: Added [ServiceNow]({{site.baseurl}}/catalog/#servicenow) datasets.
-> * November 20, 2024: [BrightQuery]({{site.baseurl}}/catalog/#brightquery) joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/jose-plehn_brightquery-is-proud-to-now-be-a-member-of-activity-7265516443742478338-xjIz/?utm_source=share&utm_medium=member_desktop){:target="bq-li"}.
-> * November 4, 2024: [PleIAs]({{site.baseurl}}/catalog/#pleias) joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/pleias_pleias-joins-the-ai-alliance-to-co-lead-open-ugcPost-7259263514542796800-Uphx/){:target="pleias-li"}.
-> * October 15, 2024: [Common Crawl Foundation]({{site.baseurl}}/catalog/#common-crawl-foundation) joins the AI Alliance and the Open Trusted Data Initiative.
+## Take me to the data!
 
-> **Tip:** Use the search box at the top of this page to find specific content.
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Languages</th>
+        <th>Domains</th>
+        <th>Modalities</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+   	      <a href="{{site.base_url}}/catalog/?tags=english" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">English</a>
+   	    </td>
+        <td>
+   	      <a href="{{site.base_url}}/catalog/?tags=molecular-discovery" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">Molecular Discovery</a>
+   	    </td>
+        <td>
+   	      <a href="{{site.base_url}}/catalog/?tags=text" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">Text</a>
+   	    </td>
+      </tr>
+      <tr>
+        <td>
+   	      <a href="{{site.base_url}}/catalog/?tags=japanese" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">Japanese</a>
+   	    </td>
+        <td>
+   	      <a href="{{site.base_url}}/catalog/?tags=automation" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">Automation</a>
+   	    </td>
+        <td>
+   	      <a href="{{site.base_url}}/catalog/?tags=images" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">Images</a>
+   	    </td>
+      </tr>
+      <tr>
+        <td>
+   	      <a href="{{site.base_url}}/catalog/?tags=korean" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">Korean</a>
+   	    </td>
+        <td>
+   	      <a href="{{site.base_url}}/catalog/?tags=time-series" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">Time Series</a>
+   	    </td>
+        <td>
+   	      <a href="{{site.base_url}}/catalog/?tags=video" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">Video</a>
+   	    </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-| **Authors**      | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
-| **Last Update**  | V0.2.8, 2025-04-25 |
+## Help Us Build the Future of Trustworthy Data for AI
 
 {: .hightlight}
 Join **The AI Alliance, Open Trusted Data Initiative** (OTDI), where our mission is to create a comprehensive, widely-sourced catalog of datasets with clear licenses for use, explicit provenance guarantees, and governed transformations, intended for AI model training, tuning, and application patterns like RAG (retrieval augmented generation) and agents.
@@ -96,22 +131,3 @@ Interested in contributing a dataset to our catalog? Follow these steps:
 
 * [References]({{site.baseurl}}/references): More details and other viewpoints on open, trusted data.
 * [About Us]({{site.baseurl}}/about): More about the AI Alliance and this project.
-
-### Version History
-
-| Version  | Date       |
-| :------- | :--------- |
-| V0.2.8   | 2025-04-25 |
-| V0.2.7   | 2025-03-18 |
-| V0.2.6   | 2025-02-11 |
-| V0.2.5   | 2025-01-31 |
-| V0.2.4   | 2025-01-21 |
-| V0.2.3   | 2025-01-08 |
-| V0.2.2   | 2024-12-11 |
-| V0.2.1   | 2024-12-05 |
-| V0.2.0   | 2024-12-04 |
-| V0.1.0   | 2024-11-13 |
-| V0.0.4   | 2024-11-04 |
-| V0.0.3   | 2024-09-06 |
-| V0.0.2   | 2024-09-06 |
-| V0.0.1   | 2024-09-01 |

@@ -24,31 +24,35 @@ Here is the current list of datasets, organized by owner.
 
 > **BETA:** This is a provisional list of datasets. We are not yet validating datasets against our draft [requirements]({{site.baseurl}}/dataset-requirements).
 
-## BrightQuery
+## Dataset Sources
+
+The following organizations, shown in alphabetical order, maintain open data sets that are part of our catalog.
+
+### BrightQuery
 
 [BrightQuery](https://brightquery.ai/){:target="bq"} ("BQ") provides proprietary financial, legal, and employment information on private and public companies derived from regulatory filings and disclosures. BQ proprietary data is used in capital markets for investment decisions, banking and insurance for KYC & credit checks, and enterprises for master data management, sales, and marketing purposes. In addition, BQ provides public information consisting of clean and standardized statistical data from all the major government agencies and NGOs around the world, and is doing so in partnership with the source agencies. BQ public datasets will be published in OTDI spanning all topics: economics, demographics, healthcare, crime, climate, education, sustainability, etc. Much of the data will be tabular (i.e., structured) time series data, as well as unstructured text.
 
 _More specific information is coming soon._
 
-## Common Crawl Foundation
+### Common Crawl Foundation
 
 [Common Crawl Foundation](https://commoncrawl.org/){:target="ccf"} is working on tagged and filtered crawl subsets for English and other languages.
 
 _More specific information is coming soon._
 
-## EPFL 
+### EPFL 
 
 The [EPFL LLM team](https://huggingface.co/epfl-llm){:target="epfl-llm"} has curated a dataset to train their [Meditron](https://github.com/epfLLM/meditron){:target="meditron"} models. An open-access subset of the medical guidelines data is published on [Hugging Face](https://huggingface.co/datasets/epfl-llm/guidelines){:target="guidelines"}
 
 See the Meditron GitHub repo [README](https://github.com/epfLLM/meditron?tab=readme-ov-file#medical-training-data){:target="meditron-readme"} for more details about the whole dataset used to train Meditron.
 
-## Meta
+### Meta
 
 [Data for Good at Meta](https://dataforgood.facebook.com/dfg/){:target="dfg"} empowers partners with privacy-preserving data that strengthens communities and advances social issues. Data for Good is helping organizations respond to crises around the world and supporting research that advances economic opportunity.
 
 There are 220 datasets available. See [Meta's page](https://data.humdata.org/organization/meta){:target="humdata"} at the [Humanitarian Data Exchange](https://data.humdata.org/){:target="humdata"} for the full list of datasets.
 
-## PleIAs
+### PleIAs
 
 Domain-specific, clean datasets. 
 
@@ -64,7 +68,7 @@ Domain-specific, clean datasets.
 | **Bad Data Toolbox** | PleIAs collection of models for the data processing of challenging document and data sources | [Hugging Face](https://huggingface.co/collections/PleIAs/bad-data-toolbox-66981c2d0df662459252844e){:target="bad-data-toolbox"} | 2024-11-04 |
 | **Open Culture** | A multilingual dataset of public domain books and newspapers | [Hugging Face](https://huggingface.co/collections/PleIAs/openculture-65d46e3ea3980fdcd66a5613){:target="open-culture"} | 2024-11-04 |
 
-## ServiceNow
+### ServiceNow
 
 Multimodal, code, and other datasets. 
 
@@ -80,7 +84,7 @@ Multimodal, code, and other datasets.
 | **The Stack Dedup** | Near deduplicated version of The Stack (recommended for training). | [Hugging Face](https://huggingface.co/datasets/bigcode/the-stack-dedup){:target="the-stack-dedup"} | 2024-12-11 |
 | **StarCoder Data** | Pretraining dataset of [StarCoder](https://huggingface.co/blog/starcoder){:target="starcoder"}. | [Hugging Face](https://huggingface.co/datasets/bigcode/starcoderdata){:target="starcoderdata"} | 2024-12-11 |
 
-## SemiKong
+### SemiKong
 
 The training dataset for the [SemiKong](https://www.semikong.ai/){:target="semikong"} collaboration that trained an open model for the semiconductor industry.
 
@@ -88,17 +92,17 @@ The training dataset for the [SemiKong](https://www.semikong.ai/){:target="semik
 | :---------------- | :-------------- | :------- | :--------- |
 | **SemiKong** | An open model training dataset for semiconductor technology | [Hugging Face](https://huggingface.co/datasets/pentagoniac/SemiKong_Training_Datset){:target="semikong-dataset"} | 2024-09-01 |
 
-## Your Contributions?
+## Make Your Contributions!
 
 To expand this catalog, we [welcome contributions]({{site.baseurl}}/contributing).
 
 <!-- To expand this catalog, we not only [welcome contributions]({{site.baseurl}}/contributing), but we plan to seek out qualified datasets leveraging other sources of information about them, such as the [Data Provenance Initiative](https://www.dataprovenance.org/){:target="dp"}, [Hugging Face](https://huggingface.co/datasets){:target="hf-datasets"}, and others (TBD). -->
 
-## Searching For Datasets
+## Other Ways to Search For Datasets
 
-Until our catalog search is operational, there are several ways you can search for datasets that match your criteria.
+Until our catalog search is fully operational, there are several ways you can search for datasets that match your criteria.
 
-### Hugging Face Hug Search
+### Hugging Face Hub Search
 
 You can do [full-text search](https://huggingface.co/search/full-text?type=dataset){:target="hf-search"} for datasets, models, and organization spaces in the [Hugging Face Hub](https://huggingface.co/){:target="hf-hub"}. Uncheck _models_ and _spaces_ on the left-hand side to limit your search to datasets. 
 
