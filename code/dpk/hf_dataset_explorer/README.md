@@ -1,7 +1,8 @@
-HF Dataset Explorer Transform
+# HF Dataset Explorer Transform
 The HF dataset explorer transform reads are going through the datasets, rather then a list of
-files, reading Readme file and extracting Dataset card. At the moment it only extracts the license
-information from the card, but can be extended to extract additional information.
+files, reading Readme file for every dataset and extracting Dataset card. At the moment it only 
+extracts the license information from the card, but can be extended to extract additional 
+information.
 
 The following runtimes are available:
 
