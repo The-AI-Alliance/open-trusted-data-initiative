@@ -16,17 +16,69 @@ has_children: false
 {:toc}
 </details>
 
-See also the AI Alliance's [Hugging Face organization](https://huggingface.co/aialliance){:target="aia-hf"} and the [Open Trusted Data Initiative catalog](https://huggingface.co/collections/aialliance/open-trusted-data-catalog-66d21b3cb66342762fb6108e){:target="aia-hf-otdi"} there that includes the datasets listed here.
+> **TODO:** We plan to provide an integrated search and browsing feature, to make it easier to select the datasets for your particular needs. See [below](#searching-for-datasets) for suggestions on how to find open datasets you need in the meantime. Also, the current catalog is a provisional list of datasets; we are not yet validating them against our draft [requirements]({{site.baseurl}}/dataset-requirements).
 
-> **TODO:** We plan to provide an integrated search and browsing feature, to make it easier to select the datasets for your particular needs. See [below](#searching-for-datasets) for suggestions on how to find open datasets you need in the meantime.
+## Datasets by Categories ("Tags")
 
-Here is the current list of datasets, organized by owner.
+### Languages
 
-> **BETA:** This is a provisional list of datasets. We are not yet validating datasets against our draft [requirements]({{site.baseurl}}/dataset-requirements).
+{% for language in site.language %}
+<a name="{{language.tag}}"></a>
+<div class="table-wrapper">
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <a href="{{site.base_url}}/catalog/#{{language.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">{{language.name}}</a>
+          <p>{{language.content | htmlify }}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endfor %}
+
+### Domains
+
+{% for domain in site.domain %}
+<a name="{{domain.tag}}"></a>
+<div class="table-wrapper">
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <a href="{{site.base_url}}/catalog/#{{domain.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">{{domain.name}}</a>
+          <p>{{domain.content | htmlify }}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endfor %}
+
+### Modalities
+
+{% for modality in site.modality %}
+<a name="{{modality.tag}}"></a>
+<div class="table-wrapper">
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <a href="{{site.base_url}}/catalog/#{{modality.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">{{modality.name}}</a>
+          <p>{{modality.content | htmlify }}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endfor %}
 
 ## Dataset Sources
 
 The following organizations, shown in alphabetical order, maintain open data sets that are part of our catalog.
+
+> **NOTE:** See also the AI Alliance's [Hugging Face organization](https://huggingface.co/aialliance){:target="aia-hf"} and the [Open Trusted Data Initiative catalog](https://huggingface.co/collections/aialliance/open-trusted-data-catalog-66d21b3cb66342762fb6108e){:target="aia-hf-otdi"} there that includes the datasets listed here.
 
 ### BrightQuery
 

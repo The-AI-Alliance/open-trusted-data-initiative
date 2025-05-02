@@ -3,58 +3,37 @@ layout: default
 title: Start Here!
 nav_order: 10
 has_children: true
+language_tags: English, Molecular
 ---
 
 # Open Trusted Data Initiative (OTDI) 
 
-## Take me to the data!
+## Take Me to the Data!
+
+### Languages
 
 <div class="table-wrapper">
-  <table>
-    <thead>
-      <tr>
-        <th>Languages</th>
-        <th>Domains</th>
-        <th>Modalities</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-   	      <a href="{{site.base_url}}/catalog/?tags=english" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">English</a>
-   	    </td>
-        <td>
-   	      <a href="{{site.base_url}}/catalog/?tags=molecular-discovery" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">Molecular Discovery</a>
-   	    </td>
-        <td>
-   	      <a href="{{site.base_url}}/catalog/?tags=text" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">Text</a>
-   	    </td>
-      </tr>
-      <tr>
-        <td>
-   	      <a href="{{site.base_url}}/catalog/?tags=japanese" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">Japanese</a>
-   	    </td>
-        <td>
-   	      <a href="{{site.base_url}}/catalog/?tags=automation" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">Automation</a>
-   	    </td>
-        <td>
-   	      <a href="{{site.base_url}}/catalog/?tags=images" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">Images</a>
-   	    </td>
-      </tr>
-      <tr>
-        <td>
-   	      <a href="{{site.base_url}}/catalog/?tags=korean" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">Korean</a>
-   	    </td>
-        <td>
-   	      <a href="{{site.base_url}}/catalog/?tags=time-series" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">Time Series</a>
-   	    </td>
-        <td>
-   	      <a href="{{site.base_url}}/catalog/?tags=video" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">Video</a>
-   	    </td>
-      </tr>
-    </tbody>
-  </table>
+  {% for language in site.language %}
+  <a href="{{site.base_url}}/catalog/#{{language.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{language.name}}</a>
+  {% endfor %}
 </div>
+
+### Domains
+
+<div class="table-wrapper">
+  {% for domain in site.domain %}
+  <a href="{{site.base_url}}/catalog/#{{domain.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{domain.name}}</a>
+  {% endfor %}
+</div>
+
+### Modalities
+
+<div class="table-wrapper">
+  {% for modality in site.modality %}
+  <a href="{{site.base_url}}/catalog/#{{modality.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{modality.name}}</a>
+  {% endfor %}
+</div>
+
 
 ## Help Us Build the Future of Trustworthy Data for AI
 
