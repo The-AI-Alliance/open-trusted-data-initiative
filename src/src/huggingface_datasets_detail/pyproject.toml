@@ -2,10 +2,8 @@
 name = "huggingface_datasets"
 version = "0.0.1"
 description = "Job to collect croissant metadata from data sets stored in HuggingFace Hub"
-authors = [
-    {name = "The AI Alliance",email = "data@thealliance.ai"}
-]
-license = {text = "Apache License Version 2.0"}
+authors = ["AI Alliance Data Team <data@ai_alliance.com>"]
+license = "Apache License Version 2.0"
 readme = "README.md"
 
 [tool.poetry.dependencies]

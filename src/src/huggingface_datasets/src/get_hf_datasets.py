@@ -15,16 +15,16 @@ import os
 # MSCK REPAIR TABLE executed as an Athena query.
 # TODO: Bucket and region will be passed in from aws cdk when we get there
 def repair_table():
-    boto3.setup_default_session(region_name="us-east-1")
+    boto3.setup_default_session(region_name=os.environ["AWS_REGION"])
     client = boto3.client("athena")
 
     config = {
-        "OutputLocation": f"s3://{os.environ("ANALYTICS_BUCKET")}/huggingface/output/",
+        "OutputLocation": f"s3://{os.environ["ANALYTICS_OUTPUT_BUCKET"]}/huggingface/output/",
     }
 
     # Query Execution Parameters
-    sql = "MSCK REPAIR TABLE hf_datasets"
-    context = {"Database": "default"}
+    sql = f"MSCK REPAIR TABLE {os.environ["ATHENA_DATABASE_NAME"]}.datasets"
+    context = {"Database": os.environ["ATHENA_DATABASE_NAME"]}
 
     client.start_query_execution(
         QueryString=sql, QueryExecutionContext=context, ResultConfiguration=config
@@ -34,9 +34,15 @@ def repair_table():
 api = HfApi()
 output_datasets = []
 # TODO: Move this to the param store or pass in via aws cdk
-target_s3_bucket = f"s3://{os.environ("ANALYTICS_BUCKET")}/huggingface/datasets/"
+key = "/service=huggingface/datasets=datasets/"
+target_s3_bucket = f"s3://{os.environ["ANALYTICS_BUCKET"]}{key}"
+
 today = datetime.today().strftime("%Y-%m-%d")
 print(f"Starting run: {today}")
+print(f"ANALYTICS_BUCKET: {os.environ["ANALYTICS_BUCKET"]}")
+print(f"ANALYTICS_OUTPUT_BUCKET: {os.environ["ANALYTICS_OUTPUT_BUCKET"]}")
+print(f"AWS_REGION: {os.environ["AWS_REGION"]}")
+print(f"ATHENA_DATABASE_NAME: {os.environ["ATHENA_DATABASE_NAME"]}")
 
 # Documentation:
 # https://huggingface.co/docs/huggingface_hub/v0.27.1/en/package_reference/hf_api#huggingface_hub.DatasetInfo

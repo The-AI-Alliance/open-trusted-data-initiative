@@ -1,5 +1,5 @@
 #!/bin/bash
-poetry export -f requirements.txt >requirements.txt
-docker build --progress=plain --no-cache -t get_huggingface_datasets_detail .
-docker tag get_huggingface_datasets_detail:$ECR_TARGET/fargate-jobs-01/get_huggingface_datasets_detail:latest
+poetry export -f requirements.txt --without-hashes >requirements.txt
+docker build --network=host --progress=plain --no-cache -t huggingface_datasets_detail .
+docker tag huggingface_datasets_detail:latest $ECR_TARGET/fargate-jobs-01/huggingface_datasets_detail:latest
 rm requirements.txt

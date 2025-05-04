@@ -26,6 +26,8 @@ import sys
 import os
 
 counter = 0
+gateway_timeout_counter = 0
+too_many_requests_counter = 0
 
 
 # AWS Athena implements schema-on-read as Hive, need to execute this
@@ -33,16 +35,16 @@ counter = 0
 # MSCK REPAIR TABLE executed as an Athena query.
 # TODO: Bucket and region will be passed in from aws cdk when we get there
 def repair_table():
-    boto3.setup_default_session(region_name="us-east-1")
+    boto3.setup_default_session(region_name=os.environ["AWS_REGION"])
     client = boto3.client("athena")
 
     config = {
-        "OutputLocation": f"s3://{os.environ("ANALYTICS_BUCKET")}/huggingface/output/",
+        "OutputLocation": f"s3://{os.environ["ANALYTICS_OUTPUT_BUCKET"]}/huggingface/output/",
     }
 
     # Query Execution Parameters
-    sql = "MSCK REPAIR TABLE hf_datasets_detail"
-    context = {"Database": "default"}
+    sql = f"MSCK REPAIR TABLE {os.environ["ATHENA_DATABASE_NAME"]}.datasets_detail"
+    context = {"Database": os.environ["ATHENA_DATABASE_NAME"]}
 
     client.start_query_execution(
         QueryString=sql, QueryExecutionContext=context, ResultConfiguration=config
@@ -74,6 +76,8 @@ async def process_row(id, batch_id, session, limiter):
         await limiter.wait()
         response = await session.request(method="GET", url=url)
         global counter
+        global gateway_timeout_counter
+        global too_many_requests_counter
         counter = counter + 1
 
         this_metadata = {}
@@ -92,6 +96,10 @@ async def process_row(id, batch_id, session, limiter):
             this_metadata["response_reason"] = str(response.reason)
             this_metadata["croissant"] = ""
             this_metadata["croissant"] = await response.text()
+        else:
+            print(f"Response Status: {response.status}")
+            gateway_timeout_counter = gateway_timeout_counter + 1
+            too_many_requests_counter = too_many_requests_counter + 1
 
     except ClientConnectionError as e:
         print(f"Connection error: {e} for {url}")
@@ -121,7 +129,7 @@ async def process_batch(batch_id, batch):
     connector = TCPConnector(limit=1, limit_per_host=1)
     async with ClientSession(connector=connector) as session:
         limiter = RateLimiter(
-            0.2, 0.05
+            float(os.environ["THROTTLE_TIME_SEC"]), float(os.environ["JITTER_TIME_SEC"])
         )  # Throttle to not overload the HF API...Need to avoid the 429 response codes.
         results = await asyncio.gather(
             *[
@@ -139,15 +147,26 @@ async def process_batch(batch_id, batch):
 
 # Let's get croissant data for HF data where we do not already have it today.
 async def main():
-    number_of_partitions = 4
+    global gateway_timeout_counter
+    global too_many_requests_counter
+
+    number_of_partitions = int(os.environ["NUMBER_OF_PARTITIONS"])
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    limit = "limit 100000"
-    query = f"select distinct dataset from hf_datasets where dataset not in (select dataset from hf_datasets_detail where date = CAST('{today}' AS DATE)) and date = CAST('{today}' AS DATE) {limit}"
+    limit = f"limit {os.environ["FETCH_SIZE"]}"
+    query = f"select distinct dataset from {os.environ["ATHENA_DATABASE_NAME"]}.datasets where dataset not in (select dataset from {os.environ["ATHENA_DATABASE_NAME"]}.datasets_detail where date = CAST('{today}' AS DATE)) and date = CAST('{today}' AS DATE) {limit}"
     boto3.setup_default_session(
-        region_name="us-east-1"
+        region_name=os.environ["AWS_REGION"]
     )  # TODO: This limit and region will be passed in from aws cdk when we get there
 
     try:
+        print(f"THROTTLE_TIME_SEC: {float(os.environ["THROTTLE_TIME_SEC"])}")
+        print(f"JITTER_TIME_SEC: {float(os.environ["JITTER_TIME_SEC"])}")
+        print(f"ANALYTICS_BUCKET: {os.environ["ANALYTICS_BUCKET"]}")
+        print(f"ANALYTICS_OUTPUT_BUCKET: {os.environ["ANALYTICS_OUTPUT_BUCKET"]}")
+        print(f"AWS_REGION: {os.environ["AWS_REGION"]}")
+        print(f"ATHENA_DATABASE_NAME: {os.environ["ATHENA_DATABASE_NAME"]}")
+        print(f"NUMBER_OF_PARTITIONS: {number_of_partitions}")
+        print(f"Limit: {limit}")
         input_df = wr.athena.read_sql_query(sql=query, database="default")
         print(f"Input dimensions: {input_df.shape}")
 
@@ -168,10 +187,12 @@ async def main():
     final_df = pd.concat(processed_batches)
     print(f"Final dataframe shape: {final_df.shape}")
     print(f"Final dataframe types: {final_df.dtypes}")
+    print(f"Number of gateway timeout errors: {gateway_timeout_counter}")
+    print(f"Number of too many requests errors: {too_many_requests_counter}")
 
     paths = wr.s3.to_parquet(
         df=final_df,
-        path=f"s3://{os.environ("ANALYTICS_BUCKET")}/huggingface/datasets_detail/",
+        path=f"s3://{os.environ["ANALYTICS_BUCKET"]}/service=huggingface/datasets=datasets_detail/",
         dataset=True,
         partition_cols=["date"],
         mode="append",  # Could be append, overwrite or overwrite_partitions
