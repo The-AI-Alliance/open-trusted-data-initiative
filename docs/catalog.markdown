@@ -29,7 +29,7 @@ has_children: false
     <tbody>
       <tr>
         <td>
-          <a href="{{site.base_url}}/catalog/#{{language.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">{{language.name}}</a>
+          <a href="{{site.baseurl}}/catalog/#{{language.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">{{language.name}}</a>
           <p>{{language.content | htmlify }}</p>
         </td>
       </tr>
@@ -47,7 +47,7 @@ has_children: false
     <tbody>
       <tr>
         <td>
-          <a href="{{site.base_url}}/catalog/#{{domain.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">{{domain.name}}</a>
+          <a href="{{site.baseurl}}/catalog/#{{domain.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">{{domain.name}}</a>
           <p>{{domain.content | htmlify }}</p>
         </td>
       </tr>
@@ -65,7 +65,7 @@ has_children: false
     <tbody>
       <tr>
         <td>
-          <a href="{{site.base_url}}/catalog/#{{modality.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">{{modality.name}}</a>
+          <a href="{{site.baseurl}}/catalog/#{{modality.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">{{modality.name}}</a>
           <p>{{modality.content | htmlify }}</p>
         </td>
       </tr>
