@@ -14,14 +14,43 @@ _Contribution_ means adding your dataset to our catalog. You continue to own and
 
 ## What Kinds of Datasets Do We Want?
 
-We seek a very broad range of datasets, including:
+We seek a very broad range of datasets, including but not limited to the following.
 
-* **Text:** especially under-served language.
-* **Multimedia:** audio, video, images.
-* **Time series:** targeting any domain or application.
-* **Science:** molecular discovery, drug discovery, geospatial, physics, etc., etc.
-* **Domains and use cases:** Industry-specific and use case-specific data.
-* **Synthetic:** datasets for all of the above can be synthetic or "real".
+#### Science and Industry
+
+* `Climate`: Supporting research in climate change, modeling vegetation and water cover, studying agriculture, etc.
+* `Marine`: Supporting research on and applications targeted towards marine environments.
+* `Materials`: Known chemical and mechanical properties of chemicals useful for research into potential new and improved materials. 
+* `Drug Discovery`: Known chemical and medicinal properties of chemicals useful for research into potential new and improved pharmaceuticals. 
+* `Semiconductors`: Specific area of materials research focused on improving the state of the art for semiconductor performance and manufacturing.
+* `Physics`: Data for physical systems.
+* `Software`: Software code bases and supporting datasets, e.g., vulnerability datasets, analyses of software-related failures, etc.
+
+Other science and industrial domains are welcome, too. 
+
+#### Vertical Domains
+
+* `Finance`: Historical market activity and behaviors. Connections to influences like climate, weather events, political events, etc. 
+* `Healthcare`: Everything from synthetic patient data for modeling outcomes, to public literature on known diseases and conditions, to diagnostics results and their analysis.
+* `Legal`: Jurisdiction-specific data about case law, etc.
+specific applications.
+* `Social Sciences`: Social dynamics, political activity and sentiments, etc.
+
+#### Modalities
+
+In addition, we welcome datasets with different _modalities_. Hugging Face attempts to determine the modalities of datasets, but you can also use the `tags` to indicate modalities, such as the following:
+
+* `Text`: especially for under-served language.
+* `Image`: i.e., still images
+* `Audio`: 
+* `Video`: optional including audio
+* `Time series`: Data for training, tuning, and testing time series models, both general-purpose and for domain-specific applications.
+
+In addition, some industry specific datasets have their own custom formats.
+
+#### Synthetic Datasets
+
+For all of the above categories, synthetic data is important for filling gaps, especially in domains where open datasets are hard to find, such as patient data in healthcare.
 
 ## The Contribution Process
 
