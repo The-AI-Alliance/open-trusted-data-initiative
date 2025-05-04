@@ -2,7 +2,7 @@
 layout: default
 title: Dataset Specification
 nav_order: 30
-has_children: true
+has_children: false
 ---
 
 # Dataset Specification

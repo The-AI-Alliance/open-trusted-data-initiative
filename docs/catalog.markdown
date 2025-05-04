@@ -16,7 +16,9 @@ has_children: false
 {:toc}
 </details>
 
-> **TODO:** We plan to provide an integrated search and browsing feature, to make it easier to select the datasets for your particular needs. See [below](#searching-for-datasets) for suggestions on how to find open datasets you need in the meantime. Also, the current catalog is a provisional list of datasets; we are not yet validating them against our draft [requirements]({{site.baseurl}}/dataset-requirements).
+> **NOTES:** 
+> 1. We are working on an interactive browsing and search UI to make it easier to find the datasets for your particular needs. See [below](#searching-for-datasets) for suggestions on how to search for open datasets. 
+> 2. The current catalog is a provisional list of datasets. We are still implementing full validation of our [trustworthiness criteria]({{site.baseurl}}/dataset-requirements).
 
 ## Datasets by Categories ("Tags")
 

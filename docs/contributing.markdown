@@ -16,12 +16,12 @@ _Contribution_ means adding your dataset to our catalog. You continue to own and
 
 We seek a very broad range of datasets, including:
 
-* **Text:** especially under-served language.
-* **Multimedia:** audio, video, images.
-* **Time series:** targeting any domain or application.
-* **Science:** molecular discovery, drug discovery, geospatial, physics, etc., etc.
-* **Domains and use cases:** Industry-specific and use case-specific data.
-* **Synthetic:** datasets for all of the above can be synthetic or "real".
+* **Text:** Especially for under-served language, not just widespread European and Asian languages.
+* **Multimedia:** Images, video, and audio, as well as text.
+* **Time series:** General purpose and domain-specific applications.
+* **Science and Technology:** Materials, drug discovery, geospatial, physics, biology, ecology, semiconductors, mechanical engineering, software, etc.
+* **Specific domains and use cases:** Healthcare, legal, finance, education, chat bots and other assistants, etc.
+* **Synthetic datasets:** For all of the above categories, synthetic data is important for filling gaps, especially in domains where open datasets are hard to find.
 
 ## The Contribution Process
 
