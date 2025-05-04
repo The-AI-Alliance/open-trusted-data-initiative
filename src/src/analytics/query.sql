@@ -30,6 +30,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS huggingface.datasets(
 )
 partitioned by (`date` date)
 STORED AS PARQUET
+/* Replace <bucket> tag below with appropriate bucket name */
 LOCATION "s3://<bucket>/service=huggingface/datasets=datasets/";
 
 /* Add new partitions */
@@ -52,6 +53,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS huggingface.datasets_detail(
 )
 partitioned by (`date` date)
 STORED AS PARQUET
+/* Replace <bucket> tag below with appropriate bucket name */
 LOCATION "s3://<bucket>/service=huggingface/datasets=datasets_detail/";
 
 /* Add new partitions */
