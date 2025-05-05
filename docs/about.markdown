@@ -17,7 +17,7 @@ has_children: false
 | October&nbsp;15,&nbsp;2024 | [Common Crawl Foundation]({{site.baseurl}}/catalog/#common-crawl-foundation) joins the AI Alliance and the Open Trusted Data Initiative. |
 
 | **Authors**      | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
-| **Last Update**  | V0.2.8, 2025-04-25 |
+| **Last Update**  | V0.3.0, 2025-05-06 |
 
 
 <a name="join-us"></a>
@@ -90,3 +90,25 @@ This documentation about OTDI is built with [GitHub Pages](https://pages.github.
 We welcome your contributions to this documentation itself. The sources are in the [`docs` directory](https://github.com/The-AI-Alliance/open-trusted-data-initiative/tree/main/docs){:target="otdi-repo-docs"} of [this GitHub repo](https://github.com/The-AI-Alliance/open-trusted-data-initiative){:target="otdi-repo"}. Please [post issues](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="otdi-repo"} or contribute changes as [pull requests](https://github.com/The-AI-Alliance/open-trusted-data-initiative/pulls){:target="otdi-repo"}. Also, notice that every page has _Edit this page on GitHub_ links, making it easy to go straight to the source of a page to make edits and submit a PR! This is the best way to help us fix typos and make single-page edits.
 
 The repo's [GITHUB_PAGES](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/main/GITHUB_PAGES.md){:target="otdi-repo"} file explains more details for testing the documentation website locally and for creating more extensive changes as PRs.
+
+<!-- 
+### Version History for This Site
+
+| Version  | Date       |
+| :------- | :--------- |
+| V0.3.0   | 2025-05-06 |
+| V0.2.8   | 2025-04-25 |
+| V0.2.7   | 2025-03-18 |
+| V0.2.6   | 2025-02-11 |
+| V0.2.5   | 2025-01-31 |
+| V0.2.4   | 2025-01-21 |
+| V0.2.3   | 2025-01-08 |
+| V0.2.2   | 2024-12-11 |
+| V0.2.1   | 2024-12-05 |
+| V0.2.0   | 2024-12-04 |
+| V0.1.0   | 2024-11-13 |
+| V0.0.4   | 2024-11-04 |
+| V0.0.3   | 2024-09-06 |
+| V0.0.2   | 2024-09-06 |
+| V0.0.1   | 2024-09-01 |
+-->

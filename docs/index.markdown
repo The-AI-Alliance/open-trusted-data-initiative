@@ -3,7 +3,7 @@ layout: default
 title: Start Here!
 nav_order: 10
 has_children: false
-language_tags: English, Molecular
+language_tags: English
 ---
 
 # Open Trusted Data Initiative (OTDI) 
