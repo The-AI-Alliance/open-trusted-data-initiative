@@ -36,6 +36,11 @@ Other science and industrial domains are welcome, too.
 specific applications.
 * `Social Sciences`: Social dynamics, political activity and sentiments, etc.
 
+Across industries, there are general concerns required for success:
+
+* `Security`: Security vulnerabilities, incidents, etc. for software and other systems, including datasets for red teaming, penetration testing, and other security practices.
+* `Safety`: AI safety in all its forms, including suppression of hate speech, assistance with harmful activities, and hallucinations.
+
 #### Modalities
 
 In addition, we welcome datasets with different _modalities_. Hugging Face attempts to determine the modalities of datasets, but you can also use the `tags` to indicate modalities, such as the following:
