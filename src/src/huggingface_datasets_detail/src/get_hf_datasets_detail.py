@@ -24,6 +24,7 @@ import math
 from http import HTTPStatus
 import sys
 import os
+from datetime import datetime, timezone
 
 counter = 0
 gateway_timeout_counter = 0
@@ -97,10 +98,10 @@ async def process_row(id, batch_id, session, limiter):
             this_metadata["croissant"] = ""
             this_metadata["croissant"] = await response.text()
         else:
-            print(f"Response Status: {response.status}")
-            gateway_timeout_counter = gateway_timeout_counter + 1
-            too_many_requests_counter = too_many_requests_counter + 1
-
+            if response.status == HTTPStatus.GATEWAY_TIMEOUT:
+                gateway_timeout_counter = gateway_timeout_counter + 1
+            if response.status == HTTPStatus.TOO_MANY_REQUESTS:
+                too_many_requests_counter = too_many_requests_counter + 1
     except ClientConnectionError as e:
         print(f"Connection error: {e} for {url}")
         pass
@@ -149,7 +150,7 @@ async def process_batch(batch_id, batch):
 async def main():
     global gateway_timeout_counter
     global too_many_requests_counter
-
+    print(f"Starting job: {datetime.now(timezone.utc)}")
     number_of_partitions = int(os.environ["NUMBER_OF_PARTITIONS"])
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     limit = f"limit {os.environ["FETCH_SIZE"]}"
@@ -203,6 +204,7 @@ async def main():
     print("Start repairing table")
     repair_table()
     print("End repairing table")
+    print(f"Ending job: {datetime.now(timezone.utc)}")
 
 
 if __name__ == "__main__":
