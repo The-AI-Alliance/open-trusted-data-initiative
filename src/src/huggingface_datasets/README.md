@@ -6,7 +6,7 @@ The purpose of this project is to capture the entire list of data sets that resi
 ## Implementation
 Code is developed as a Docker job intended to execute once a day, and store the results as a parquet file in an S3 data lake. The data in the data lake is meant to be consumed using SQL powered by AWS Athena.
 
-Project consits of the daily job source code, which includes the write-to-S3 data lake. It also consists of a connection to the AWS Athena service. AWS Athena is based on Apache Hive, and the daily job writes a new file object and inferred partition daily in the form of `date=YYYY-MM-DD` as part of the key to the object. Athena will have to execute `MSCK REPAIR TABLE` to make the new daily partition queryable.
+Project consists of the daily job source code, which includes the write-to-S3 data lake. It also consists of a connection to the AWS Athena service. AWS Athena is based on Apache Hive, and the daily job writes a new file object and inferred partition daily in the form of `date=YYYY-MM-DD` as part of the key to the object. Athena will have to execute `MSCK REPAIR TABLE` to make the new daily partition queryable.
 
 ## Schema
 The database schema definition can be found in `../analytics/query.sql`:

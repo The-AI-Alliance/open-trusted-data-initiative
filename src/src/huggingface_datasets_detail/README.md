@@ -1,7 +1,7 @@
 # HuggingFace Data Sets DETAIL
 
 ## Purpose
-The purpose of this project is to capture the Croissant metadata for a given data sets that reside on HuggingFace Hub. This is accomplished using the HuggingFace Hub REST API, which takes a HuggingFace HUb data set as an argument. 
+The purpose of this project is to capture the Croissant metadata for a given data set that resides on HuggingFace Hub. This is accomplished using the HuggingFace Hub REST API, which takes a HuggingFace Hub data set as an argument. 
 
 ## Implementation
 Code is intended to collect the Croissant metadata for all the data sets in HuggingFace Hub so that it can be analyzed. Due to the large number of data sets in HuggingFace Hub (~400k as of this writing), it is developed as a Docker job intended to execute over the course of a day, and store the results as a parquet file in an S3 data lake. The data in the data lake is meant to be consumed using SQL powered by AWS Athena. The job itself uses the Python `aiohttp` and `asyncio` frameworks to allow REST requests to be performed in parallel. 
