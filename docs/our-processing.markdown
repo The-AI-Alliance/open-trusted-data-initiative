@@ -47,9 +47,9 @@ An initial quality analysis is performed, including the following checks:
 
 * Meets the [Dataset Specification]({{site.baseurl}}/dataset-requirements) - e.g., license, provenance, etc.
 * No evident corruption - e.g., PDFs, JSON, etc. have valid formats.
-* No detectable inconsistencies between the data vs. the datacard metadata.
+* No detectable inconsistencies between the data vs. the dataset card metadata.
 
-### Creating a Filtered Dataset 
+### Creating a Filtered (Derived) Dataset 
 
 There could be several filtered dataset that are derived from a single raw dataset, each of which would use one or more of the following transformations:
 
@@ -62,7 +62,7 @@ There could be several filtered dataset that are derived from a single raw datas
 * Decontamination from known, public datasets for benchmarks and other evaluations
 * Other consistency and quality improvements
 
-### Creating a Structured Dataset
+### Creating a Structured (Derived) Dataset
 
 The transformations to create one more structured datasets from a filtered dataset may include one or more of the following:
 

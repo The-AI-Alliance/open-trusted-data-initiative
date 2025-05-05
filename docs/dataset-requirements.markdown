@@ -7,7 +7,7 @@ has_children: false
 
 # Dataset Specification
 
-> **Note:** The specification documented here is the &ldquo;V0.1&rdquo; version of what we think will be required for cataloged datasets. We need and welcome your feedback! Either [contact us]({{site.baseurl}}/about/#contact-us) or consider using [pull requests](https://github.com/The-AI-Alliance/open-trusted-data-initiative/pulls){:target="prs"} with your suggestions. See the AI Alliance community page on [contributing](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md){:target="contrib"} for more details.
+> **Note:** The specification documented here is the &ldquo;V0.1.5&rdquo; version of the criteria we believe are required for datasets cataloged by OTDI. We need and welcome your feedback! Either [contact us]({{site.baseurl}}/about/#contact-us) or consider using [pull requests](https://github.com/The-AI-Alliance/open-trusted-data-initiative/pulls){:target="prs"} with your suggestions. See the AI Alliance community page on [contributing](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md){:target="contrib"} for more details.
 >
 > Also [contact us]({{site.baseurl}}/about/#contact-us) if you are interested in contributing a dataset, but you have any questions or concerns about meeting the following specification.
 
@@ -24,82 +24,63 @@ has_children: false
 
 The specification attempts to be _minimally sufficient_, to impose just enough constraints to meet our goals for cataloged datasets.
 
-<!--
-The specification is adapted from the following sources:
+### Sources and Inspirations
 
-* [Hugging Face Dataset Card](https://huggingface.co/docs/hub/datasets-cards){:target="hf-card"}
-* The [Data Provenance Standard](https://dataandtrustalliance.org/work/data-provenance-standards){:target="dta-prov"} from the [Data and Trust Alliance](https://dataandtrustalliance.org/){:target="dta"}.
-* Unique specification for this project.
--->
+The details of the specification and how we are implementing it build on the prior and parallel work of several organizations:
 
-The specification is adapted from the [Hugging Face Dataset Card](https://huggingface.co/docs/hub/datasets-cards){:target="hf-card"}, with a few extensions for clearer provenance and governance.
+* The metadata fields and concepts defined for [Hugging Face Dataset Cards](https://huggingface.co/docs/hub/datasets-cards){:target="hf-card"}, with a few extensions and clarifications for our provenance and governance purposes.
+* MLCommons [Croissant](https://mlcommons.org/working-groups/data/croissant/){:target="croissant"} for the metadata storage format. Croissant is an emerging de facto standard for metadata. It is used by Hugging Face and other dataset repositories for cataloging metadata and providing search capabilities.
+* Some defined metadata fields are inspired by the [Data Provenance Standard](https://dataandtrustalliance.org/work/data-provenance-standards){:target="dta-prov"} from the [Data and Trust Alliance](https://dataandtrustalliance.org/){:target="dta"}.
+* [The Stack](https://huggingface.co/datasets/bigcode/the-stack) dataset for the BigCode model project. See the [dataset card](https://huggingface.co/datasets/bigcode/the-stack#dataset-card-for-the-stack){:target="hf-dataset-card"}.
+* [Common Crawl Foundation's](https://commoncrawl.org/){:target="ccf"} current work on provenance tracking, multilingual data, etc.
+* [Coalition for Secure AI](https://www.coalitionforsecureai.org/){:target="csai"} has a work group on software supply chain security concerns. 
 
-In addition, we are exploring incorporation of the following sources:
-
-* [MLCommons Croissant](https://mlcommons.org/working-groups/data/croissant/){:target="croissant"} - Consider using Croissant as the primary or perhaps an alternative format for dataset cards. (See also the [Format](#format) section below.)
-* BigCode's [dataset card](https://huggingface.co/datasets/bigcode/the-stack#dataset-card-for-the-stack){:target="hf-dataset-card"} for The Stack - What information is there that we should also use.
-* [Common Crawl Foundation](https://commoncrawl.org/){:target="ccf"} - work on provenance tracking, multilingual data, etc.
-* [Coalition for Secure AI](https://www.coalitionforsecureai.org/){:target="csai"} - e.g., software supply chain is a growing security concern. 
-* ...
-
-Most of the details are captured in the dataset card that _every version_ of a dataset carries (e.g., after various stages of processing).
+The metadata are captured in the dataset card that _every version_ of a dataset carries, including after various stages of processing.
 
 Let's begin.
 
-## The Data Must Be Yours to Contribute
+## Core Requirements
 
-To promote fully-traceable provenance and governance, for all data within the dataset, you must affirm that you are either (a) the owner of the dataset or (b) you have rights from the owner of the data that enables you to provide it to anyone under the CDLA Permissive 2.0 license; for example, you have been granted permission by the owner to act on their behalf with respect to the data and enable others to use it without restriction.
+### Ownership
 
-> **Note:** Data that was obtained by crawling the web often has mixed provenance and licenses for use. We are working on tools for carefully filtering crawled data to ensure our requirements are met for ownership, provenance, license for use, and quality. Until these tools are ready, we are limiting acceptance of crawled datasets.
+First, to promote fully-traceable provenance and governance, for all data within the dataset, the owner must affirm that they are either (a) the owner of the dataset or (b) you have rights from the owner of the data that enables the dataset to be provided to anyone under the CDLA Permissive 2.0 license. For example, this dataset owner has been granted permission by the source data owners to act on their behalf with respect to enabling others to use it without restriction.
 
-## Dataset Hosting
+This provision is necessary because many datasets contain data that was obtained by crawling the web, which frequently has mixed provenance and licenses for use.
 
-You can either retain your current hosting location or you can have the AI Alliance host it for you.
+> **NOTE:** One of the data processing pipelines we are building will carefully filter datasets for such crawled data to ensure our requirements are met for ownership, provenance, license for use, and quality. Until these tools are ready, we are limiting acceptance of crawled datasets.
 
-## Dataset Card
+### Dataset Hosting
 
-All useful datasets include _metadata_ about their provenance, license(s), target uses, known limitations and risks, etc. To provide a uniform, standardized way of expressing this metadata, we ask you to provide a _dataset card_ (or _data card_) when you [contribute the dataset]({{site.baseurl}}/contributing).
+Almost all datasets we catalog will remain hosted by the owners, but the AI Alliance can host it for you, when desired.
 
-Since your dataset is already likely to be available on the [Hugging Face Hub](https://huggingface.co/){:target="hf"}, we ask you create a &ldquo;complete&rdquo; [Hugging Face Dataset Card](https://huggingface.co/docs/hub/datasets-cards){:target="hf-card"} with the metadata fields they support. The project `README.md` file functions as the card. We provide a list below of the fields we consider necessary to be sufficient for our purposes, including a few additional items we need to know that you should add to the `README.md` you create.
+### A Dataset Card
+
+All useful datasets include _metadata_ about their provenance, license(s), target uses, known limitations and risks, etc. To provide a uniform, standardized way of expressing this metadata, we require every dataset to have a _dataset card_ (or _data card_) that follows the [Hugging Face Dataset Card](https://huggingface.co/docs/hub/datasets-cards){:target="hf-card"} format, where the `README.md` file functions as the dataset card, with our refinements discussed below. This choice reflects the fact that most AI-centric datasets are already likely to be available on the [Hugging Face Hub](https://huggingface.co/){:target="hf"}. 
 
 > **TIP:** For a general introduction to Hugging Face datasets, see [here](https://huggingface.co/docs/datasets){:target="hf-datasets"}.
 
-## Quick Steps
+#### Quick Steps to Create a Dataset Card
 
-Here are the steps to create your dataset card, summarized. Read the rest of this page for details:
+If you need to create a dataset card:
 
 > 1. Download our version of the Hugging Face dataset card template, <a href="{{site.baseurl}}/files/datasetcard_otdi_template.md.template" download="datasetcard_otdi_template.md"><code>datasetcard_otdi_template.md</code></a>. (If you already have a card in Hugging Face, i.e., the `README.md`, compare our template to your card and add the new fields.)
 > 2. Edit the Markdown in the template file to provide the details, as described below.
 > 3. [Create the card](https://huggingface.co/docs/datasets/dataset_card){:target="hf-card-create"} in the Hugging Face UI (or edit your existing card.)
 > 4. Fill in the metadata fields shown in their editor UI. (See [Table 1](#table-1) below.)
 > 5. Paste the rest of your prepared Markdown into the file, after the YAML block delimited by `---`.
-> 6. Commit your changes!
+> 6. Commit your changes.
 
-### Details
+## Required Metadata Fields
 
-Refer to the [`datasetcard.md`](https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1){:target="hf-datasetcard-md"} for details about the metadata fields Hugging Face (and we!) recommend for inclusion in a YAML block at the top of the `README.md`. We comment on these fields below, see [Table 1](#table-1). 
+Refer to the [`datasetcard.md`](https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1){:target="hf-datasetcard-md"} for details about the metadata fields Hugging Face recommends for inclusion in a YAML block at the top of the `README.md`. We comment on these fields below, in [Table 1](#table-1). 
 
-The [`templates/README_guide.md`](https://github.com/huggingface/datasets/blob/main/templates/README_guide.md){:target="hf-guide"} provides additional information about the template fields in their Markdown template file, [`datasetcard_template.md`](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md){:target="hf-dataset-card-template"} in the [`huggingface-hub` GitHub repo](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/){:target="hf-hub-repo"}. _However_, we recommend that you use our extended version: <a href="{{site.baseurl}}/files/datasetcard_otdi_template.md.template" download="datasetcard_otdi_template.md"><code>datasetcard_otdi_template.md</code></a>. (You might need to right click on the link…)
-
-If you want to contribute a dataset that isn't currently hosted in Hugging Face, use the template above to create a dataset card yourself. Manually add the YAML header block, too. Finally, follow the Hugging Face convention of using the `README.md` in the top-level directory as the dataset card.
-
-## Required Metadata
-
-This section describes the minimum set of metadata we expect, including some optional elements of the Hugging Face dataset card that believe are essential.
-
-<!-- This section describes the minimum set of metadata we expect, combining elements of the Hugging Face dataset card, concepts from the [Data Provenance Standard](https://dataandtrustalliance.org/work/data-provenance-standards){:target="dta-prov"} (OTDI) and additional OTDI project specification. -->
-
-All of the fields apply to synthesized data as well as _real_ data, but of course details will be different.
-
-<!-- > **NOTE:** In the tables that follow, many of the fields appear in both the Hugging Face dataset card template and the Data Provenance Standard, but different names are used. We ask you to use the Hugging Face names for consistency and convenience. When unique OTDI fields are specified below, we convert their names to lowercase and use underscores as separators, for consistency. -->
+The [`templates/README_guide.md`](https://github.com/huggingface/datasets/blob/main/templates/README_guide.md){:target="hf-guide"} provides additional information about the template fields in their Markdown template file, [`datasetcard_template.md`](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md){:target="hf-dataset-card-template"} in the [`huggingface-hub` GitHub repo](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/){:target="hf-hub-repo"}. _However_, we recommend that you use our extended version: <a href="{{site.baseurl}}/files/datasetcard_otdi_template.md.template" download="datasetcard_otdi_template.md"><code>datasetcard_otdi_template.md</code></a>.
 
 ### YAML Metadata Block
 
 > **TIP:** The following tables are long, but starting with the [`datasetcard_template.md`](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md){:target="hf-dataset-card-template"} and the [dataset card process](https://huggingface.co/docs/datasets/dataset_card){:target="hf-card-create"} will handle most of the details. Then you can add the additional fields requested in [Table 2](#table-2), those marked with "OTDI".
 
-Our first table describes the metadata encoded in the YAML header block at the beginning of the Hugging Face README format. See [`datasetcard.md`](https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1){:target="hf-datasetcard"} for details. 
-
-For completeness, the optional fields in that block are also shown. The **Required?** column uses &#9745; to indicate the field is required, empty for optional fields (but often recommended), and &#9746; for fields that we don't allow, because they are incompatible with this project.
+Table 1 lists all the fields in the dataset card YAML block. The **Required?** column uses &#9745; to indicate the field is required by us, &#9746; for fields that we don't allow, because they are incompatible with this project, and a blank entry indicates a field is optional.
 
 <a name="table-1"></a>
 
@@ -147,6 +128,7 @@ Our second table lists content that we require or recommend in the Markdown body
 | `dataset_summary` | A concise summary of the dataset and its purpose. | &#9745; | HF | 
 | `dataset_description` | Describe the contents, scope, and purpose of the dataset, which helps users understand what the data represents, how it was collected, and any limitations or recommended uses. However, this field should not include redundant information covered elsewhere. | &#9745; | HF | 
 | `curated_by` | One or more legal entities responsible for creating the dataset, providing accountability and a point of contact for inquiries. See also `dataset_card_authors` below. | &#9745; | HF |
+| `signed_by` | A legal review process has determined the dataset is free of any license or governance concerns, and is therefore potentially more trustworthy. The entities that performed the review are listed. (This is not yet required, but is under consideration.) | | OTDI |
 | `dataset_sources` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#dataset-sources-optional){:target="hf-datasetcard-template-sources"} (from [`datasetcard_template.md`](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md){:target="hf-datasetcard-template"}). Complements the information provided above for `source_datasets`. The `Repository` URL &ldquo;subfield&rdquo; is required for each source dataset, _unless_ it was provided by `source_datasets` in [Table 1](#table-1). The `Paper` and `Demo` subfields are optional. See also `source_data` and `source_metadata_for_dataset` next. | &#9745; | HF |
 | `source_data` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#source-data){:target="hf-datasetcard-template-source-data"}. Use the subsections, described next, `data_collection_and_processing_section` and `source_data_producers_section` to describe important provenance information. Is the data synthetic or not? Note our specification above that you can only submit datasets where you have the necessary rights (see also `consent_documentation_location` below). | &#9745; | HF |
 | `data_collection_and_processing_section` | [HF template section](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#source-data){:target="hf-datasetcard-template-source-data"}. Describes the data collection and processing process such as data selection criteria, filtering and normalization methods, tools and libraries used, etc. | &#9745; | HF |
@@ -175,7 +157,7 @@ Our second table lists content that we require or recommend in the Markdown body
 
 <!-- The `Source Metadata for Dataset` field provides lineage from a dataset to its ancestors. It is not necessary to list the entire lineage, just the immediate &ldquo;parents&rdquo;, because the full lineage can be reconstructed from this information. -->
 
-For the `personal_and_sensitive_information` field, consider using one or more of the following values:
+For the `personal_and_sensitive_information` field, we recommend using one or more of the following values:
 
 * `Personal Information (PI)/Demographic`
 * `Payment Card Industry (PCI)`
@@ -188,7 +170,7 @@ For the `personal_and_sensitive_information` field, consider using one or more o
 
 ## Other Considerations for the Data Itself
 
-The [dataset card template]({{site.baseurl}}/dataset-requirements/dataset-card-template) has sections for all the required and optional information. Here we discuss a few points.
+The [dataset card template]({{site.baseurl}}/dataset-requirements/dataset-card-template) has sections for all the required and optional metadata. This section discusses the data in the dataset.
 
 ### Formats
 
@@ -200,46 +182,19 @@ We endeavor to be flexible on dataset file formats and how they are organized. F
 
 Diverse datasets are desired for creating a variety of AI models and applications with special capabilities.
 
-We are particularly interested in new datasets that can be used to train and tune models to excel in particular domains, although general-purpose datasets are also welcome, of course. 
+We are particularly interested in new datasets that can be used to train and tune models to excel in particular domains, or support them through design patterns like RAG and Agents. See [What Kinds of Datasets Do We Want?]({{site.baseurl}}/contributing/#what-kinds-of-datasets-do-we-want) for more information.
 
-These are the current domains of particular interest. Use the `tags` metadata field discussed above to indicate domains, when applicable.
-
-#### Science and Industrial
-
-* `Climate`: Supporting research in climate change, modeling vegetation and water cover, studying agriculture, etc.
-* `Marine`: Supporting research on and applications targeted towards marine environments.
-* `Materials`: Known chemical and mechanical properties of chemicals useful for research into potential new and existing materials. 
-* `Semiconductors`: Specific area of materials research focused on improving the state of the art for semiconductor performance and manufacturing.
-
-Other science and industrial domains are welcome, too. 
-
-#### Other Domains
-
-* `Finance`: Historical market activity and behaviors. Connections to influences like climate, weather events, political events, etc. 
-* `Healthcare`: Everything from synthetic patient data for modeling outcomes, to public literature on known diseases and conditions, to diagnostics results and their analysis.
-* `Legal`: Jurisdiction-specific data about case law, etc.
-specific applications.
-* `Social Sciences`: Social dynamics, political activity and sentiments, etc.
-* `Timeseries`: Data for training, tuning, and testing time series models, including specific applications.
-
-#### Modalities
-
-In addition, we welcome datasets with different _modalities_. Hugging Face attempts to determine the modalities of datasets, but you can also use the `tags` to indicate modalities, such as the following:
-
-* `Text`:
-* `Image`: i.e., still images
-* `Audio`: 
-* `Video`: including optional audio
+Use the `tags` metadata field discussed above to indicate this information, when applicable.
 
 ## Derived Dataset Specification
 
-_Every_ dataset that is derived via a processing pipeline from one or more other datasets requires its own dataset card, which must reference all _upstream_ datasets that feed into it (and by extension, their dataset cards of metadata). Similarly, each new version of an existing dataset, whre only additional (or removed) data is involved, also needs an updated card, but more of the metadata will be unchanged.
+_Every_ dataset that is _derived_ via a processing pipeline from one or more other datasets requires its own dataset card, which must reference all _upstream_ datasets that feed into it (and by extension, their dataset cards of metadata). 
 
-> **Note:** We are considering a way to allow a derived dataset card to just specify what's new or changed and inherit unchanged metadata from its ancestors. Also, when automated pipelines are used to create derived datasets, our [processing pipelines]({{site.baseurl}}/our-processing) will automatically generate some updated metadata, such as timestamps, processing tools and steps, etc.
+For example, when a derived dataset is the filtered output of one or more _raw_ datasets (defined below), where duplication and offensive content removal was performed, the new dataset may now support different recommended `uses` (i.e., it is now more suitable for model training or more useful for a specific domain), have different `bias_risks_limitations`, and it will need to identify the upstream (ancestor) `source_datasets`.
 
-When the derived dataset is the filtered output of one or more _raw_ datasets (defined below), where duplication and offensive content removal was performed, the new dataset may support different `uses`, have different `bias_risks_limitations`, and it will need to identify the upstream (ancestor) `source_datasets`, for example.
+Suppose a new version of an existing dataset is created, where additional or removed data is involved, but no other changes occur. It also needs a new dataset card, even while most of the metadata will be unchanged.
 
-Table 3 lists the fields that must change (with some exceptions), to avoid ambiguities:
+Table 3 lists the minimum set of metadata fields that must change in a derived dataset:
 
 <a name="table-3"></a>
 
@@ -250,15 +205,16 @@ Table 3 lists the fields that must change (with some exceptions), to avoid ambig
 | `dataset_issue_date`   | The date for this new card. | &#9745; |
 
 {: .metadata-table}
-<p class="caption">Table 4: Required Dataset Card Changes for a Derived Dataset</p>
+<p class="caption">Table 3: Minimum Required Dataset Card Changes for a Derived Dataset</p>
 
 ### Categories of Dataset Transformations
 
-At this time, we have the following concepts for original and derived datasets, concerning levels of _quality_ and cleanliness. This list corresponds to stages in our _ingestion_ process and subsequent possible derivations of datasets. This list is subject to change.
+At this time, we use the following concepts for original and derived datasets, concerning levels of _quality_ and cleanliness. This list corresponds to stages in our _ingestion_ process and subsequent possible derivations of datasets. This list is subject to change.
 
-* **Raw:** The dataset as submitted, which could already be in &ldquo;good shape&rdquo;. _Our most important concern at this stage is **unambiguous provenance**._ Raw datasets may go through filtering and analysis to remove potential objectionable content. However, the presence of some content in the raw data could have legal implications, such as some forms of PII and company confidential information, which may force us to reject the contribution. (Should this happen, we will discuss mitigation options with you.)
-* **Filtered:** A _raw_ dataset that has gone through a processing pipeline to remove duplicates, filter for objectional content, etc.
-* **Structured:** A _filtered_ dataset that has been reformatted to be most suitable for model training (LLMs, time series, etc.), RAG patterns, and similar purposes. For example, PDFs converted to JSON. 
+* **Raw:** A dataset as it is discovered, validated, and cataloged. For all datasets, _our most important concern is **unambiguous provenance** and clear **openness**._ Raw datasets may go through filtering and analysis to remove potential objectionable content.
+* **Filtered:** A _raw_ dataset that has gone through a processing pipeline to make it more suitable for specific purposes. This might include removal of duplicate records, filtering for unacceptable content (e.g., hate speech, PII), or filtered for domain-specific content, etc. Since the presence of some content in the raw data could have legal implications for OTDI, such as the presence of some forms of PII and confidential information, we may reject cataloging an otherwise &ldquo;good&rdquo; _raw_ dataset and only catalog a suitable _filtered_ dataset.
+* **Structured:** A _filtered_ dataset that has also been reformatted to be most suitable for some AI purpose, such as model training, RAG, etc. For example, PDFs are more convenient to use when converted to JSON or YAML. 
+* **Derived:** Any dataset created from one or more other datasets. _Filtered_ and _structured_ datasets are _derived_ datasets.
 
 See [How We Process Datasets]({{site.baseurl}}/our-processing) for more details on these levels and how we process datasets.
 
