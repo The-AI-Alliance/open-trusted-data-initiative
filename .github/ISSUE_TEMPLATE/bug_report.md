@@ -8,6 +8,7 @@ assignees:
   - deanwampler
 project: 
   - The-AI-Alliance/28
+  - FA5: OTDI Tasks
 ---  
 
 ## Bug Description
