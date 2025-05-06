@@ -6,7 +6,8 @@ labels: bug
 issue_type: Bug  
 assignees: 
   - deanwampler
-projects: The-AI-Alliance/28
+projects: 
+  - The-AI-Alliance/28
 ---  
 
 ## Bug Description
