@@ -5,7 +5,8 @@ title: "[Bug] "
 labels: bug  
 assignees: 
   - deanwampler
-projects: ["The-AI-Alliance/28"]
+projects: 
+  - The-AI-Alliance/28
 ---  
 
 ## Bug Description
