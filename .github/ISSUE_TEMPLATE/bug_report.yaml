@@ -2,7 +2,7 @@ name: 🐞 Bug
 description: File a bug/issue
 title: "[BUG] <title>"
 labels: ["Bug", "Needs Triage"]
-assignees: [deanwampler]
+assignees: [deanwampler,hughesthe1st,jolson-ibm]
 projects: [The-AI-Alliance/28]
 body:
 - type: checkboxes
