@@ -3,8 +3,9 @@ name: Bug Report
 about: Report a bug or unexpected behavior  
 title: "[Bug] "  
 labels: bug  
-assignees: ''
-project: "FA5: OTDI Tasks"
+assignees: 
+	deanwampler
+projects: ["The-AI-Alliance/28"]
 ---  
 
 ## Bug Description
