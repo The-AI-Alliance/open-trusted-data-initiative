@@ -31,7 +31,6 @@ body:
     options:
     - label: Documentation files (docs/)
     - label: Website content (website/)
-    multiple: true
 - type: textarea
   attributes:
     label: Proposed Changes
