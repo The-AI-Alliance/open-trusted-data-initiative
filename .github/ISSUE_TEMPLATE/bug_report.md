@@ -5,8 +5,8 @@ title: "[Bug] "
 labels: bug  
 issue_type: Bug  
 assignees: 
-  - "deanwampler"
-project: ["FA5: OTDI Tasks", "The-AI-Alliance/28"]
+  - deanwampler
+project: FA5: OTDI Tasks, The-AI-Alliance/28
 ---  
 
 ## Bug Description
