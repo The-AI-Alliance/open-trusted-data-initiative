@@ -23,7 +23,7 @@ body:
       * Why it needs to be changed?
       * Any relevant context or references?
   validations:
-    required: false
+    required: true
 - type: checkboxes
   attributes:
     label: Affected Areas
