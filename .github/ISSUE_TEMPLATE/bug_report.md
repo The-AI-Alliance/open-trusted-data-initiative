@@ -6,7 +6,7 @@ labels: bug
 issue_type: Bug  
 assignees: 
   - deanwampler
-projects: ["FA5: OTDI Tasks", "The-AI-Alliance/28" ]
+projects: [ The-AI-Alliance/28 ]
 ---  
 
 ## Bug Description
