@@ -1,7 +1,6 @@
 name: Task/Feature Suggestion or Other Issue
 description: Use to request a feature, etc.
 title: "[Task/Feature/Issue] "  
-labels: 
 assignees: 
   - deanwampler
 projects: 
