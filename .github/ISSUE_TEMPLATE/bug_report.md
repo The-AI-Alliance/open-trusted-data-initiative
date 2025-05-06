@@ -3,9 +3,10 @@ name: Bug Report
 about: Report a bug or unexpected behavior  
 title: "[Bug] "  
 labels: bug  
+issue_type: Bug  
 assignees: 
   - "deanwampler"
-projects: ["FA5: OTDI Tasks", "The-AI-Alliance/28"]
+project: ["FA5: OTDI Tasks", "The-AI-Alliance/28"]
 ---  
 
 ## Bug Description
