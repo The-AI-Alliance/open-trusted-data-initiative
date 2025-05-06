@@ -53,7 +53,7 @@ class LicenseValidatorTransform(AbstractTableTransform):
         )
 
     def transform(
-            self, table: pa.Table, file_name: str = None
+        self, table: pa.Table, file_name: str = None
     ) -> tuple[list[pa.Table], dict[str, Any]]:
         """
         Put Transform-specific to convert one Table to 0 or more tables. It also returns

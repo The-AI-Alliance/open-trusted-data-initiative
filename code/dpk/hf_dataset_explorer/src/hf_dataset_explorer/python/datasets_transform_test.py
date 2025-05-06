@@ -15,12 +15,12 @@ class AbstractDataSetsTransformLauncherTest(AbstractTransformLauncherTest):
     """
 
     def test_transform(
-            self,
-            launcher: AbstractTransformLauncher,
-            cli_params: dict[str, Any],
-            in_table_path: str,
-            expected_out_table_path: str,
-            ignore_columns: list[str],
+        self,
+        launcher: AbstractTransformLauncher,
+        cli_params: dict[str, Any],
+        in_table_path: str,
+        expected_out_table_path: str,
+        ignore_columns: list[str],
     ):
         """
         Test the given transform and its runtime using the given CLI arguments, input directory of data files and expected output directory.

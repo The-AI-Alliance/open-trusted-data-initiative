@@ -16,11 +16,11 @@ class RayDataSetsTransformOrchestrator(RayTransformOrchestrator):
     """
 
     def __init__(
-            self,
-            execution_params: RayTransformExecutionConfiguration,
-            data_access_factory: list[DataAccessFactory],
-            runtime_config: RayTransformRuntimeConfiguration,
-            logger: Logger,
+        self,
+        execution_params: RayTransformExecutionConfiguration,
+        data_access_factory: list[DataAccessFactory],
+        runtime_config: RayTransformRuntimeConfiguration,
+        logger: Logger,
     ):
         super().__init__(
             execution_params=execution_params,

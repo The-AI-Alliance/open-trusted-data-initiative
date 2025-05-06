@@ -16,11 +16,11 @@ class PythonDataSetsTransformOrchestrator(PythonTransformOrchestrator):
     """
 
     def __init__(
-            self,
-            execution_params: PythonTransformExecutionConfiguration,
-            data_access_factory: list[DataAccessFactory],
-            runtime_config: PythonTransformRuntimeConfiguration,
-            logger: Logger,
+        self,
+        execution_params: PythonTransformExecutionConfiguration,
+        data_access_factory: list[DataAccessFactory],
+        runtime_config: PythonTransformRuntimeConfiguration,
+        logger: Logger,
     ):
         super().__init__(
             execution_params=execution_params,

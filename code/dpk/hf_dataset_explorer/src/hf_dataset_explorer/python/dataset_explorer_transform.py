@@ -62,7 +62,7 @@ class DatasetExplorerTransform(AbstractBinaryTransform):
         self.logger = get_logger(__name__)
 
     def transform_binary(
-            self, file_name: str, byte_array: bytes
+        self, file_name: str, byte_array: bytes
     ) -> tuple[list[tuple[bytes, str]], dict[str, Any]]:
         """
         Converts input file into o or more output files.
@@ -84,7 +84,9 @@ class DatasetExplorerTransform(AbstractBinaryTransform):
                 license = "none"
             metadata[f"license_{license}"] = 1
         except Exception as e:
-            self.logger.error(f"error getting license info for file {file_name}")
+            self.logger.error(
+                f"error getting license info for file {file_name}, error {e}"
+            )
             metadata["failed to get license"] = 1
         # result
         return [], metadata
