@@ -4,7 +4,7 @@ about: Report a bug or unexpected behavior
 title: "[Bug] "  
 labels: bug  
 assignees: 
-	deanwampler
+  - deanwampler
 projects: ["The-AI-Alliance/28"]
 ---  
 
