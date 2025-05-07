@@ -71,7 +71,7 @@ class RateLimiter(object):
             )
 
 
-async def process_row(id, batch_id, session, limiter):
+async def process_row(id, dataset_date, session, limiter):
     try:
         url = f"https://huggingface.co/api/datasets/{id}/croissant"
         await limiter.wait()
@@ -86,7 +86,7 @@ async def process_row(id, batch_id, session, limiter):
             HTTPStatus.TOO_MANY_REQUESTS,
             HTTPStatus.GATEWAY_TIMEOUT,
         ]:
-            this_metadata["date"] = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+            this_metadata["date"] = dataset_date
             this_metadata["dataset"] = id
             # Athena does not support timestamps with timezones
             # https://docs.aws.amazon.com/athena/latest/ug/data-types.html
@@ -134,7 +134,7 @@ async def process_batch(batch_id, batch):
         )  # Throttle to not overload the HF API...Need to avoid the 429 response codes.
         results = await asyncio.gather(
             *[
-                process_row(row["dataset"], batch_id, session, limiter)
+                process_row(row["dataset"], row["dataset_date"], session, limiter)
                 for index, row in batch.iterrows()
             ],
             return_exceptions=True,
@@ -154,7 +154,16 @@ async def main():
     number_of_partitions = int(os.environ["NUMBER_OF_PARTITIONS"])
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     limit = f"limit {os.environ["FETCH_SIZE"]}"
-    query = f"select distinct dataset from {os.environ["ATHENA_DATABASE_NAME"]}.datasets where dataset not in (select dataset from {os.environ["ATHENA_DATABASE_NAME"]}.datasets_detail where date = CAST('{today}' AS DATE)) and date = CAST('{today}' AS DATE) {limit}"
+    # modified to allow multi-day runs, as the new rate limits + amount of
+    # data is too much to collect in one day, without partitioning the source data set
+    # and running multiple, differently configured jobs.
+    query = f"""select distinct dataset, date as dataset_date 
+                from {os.environ["ATHENA_DATABASE_NAME"]}.datasets 
+                where dataset not in (select dataset from 
+                    {os.environ["ATHENA_DATABASE_NAME"]}.datasets_detail 
+                    where date >= CAST('{today}' AS DATE)- interval '1' day) 
+                and date >= CAST('{today}' AS DATE)- interval '1' day {limit}
+            """
     boto3.setup_default_session(
         region_name=os.environ["AWS_REGION"]
     )  # TODO: This limit and region will be passed in from aws cdk when we get there
