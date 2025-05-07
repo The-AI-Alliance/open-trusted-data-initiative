@@ -33,7 +33,7 @@ Provide a link to a preview of the changes (if applicable) or just say that runn
 - [ ] I have updated any related documentation
 - [ ] I have added/updated tests if applicable
 - [ ] I have included necessary screenshots or examples
-- [ ] I have suggested one or more reviewers (e.g., @deanwampler)
+- [ ] (Optional) I have suggested one or more reviewers (e.g., @deanwampler)
 
 ## Additional Context
 Add any other context or information that might be helpful for reviewers:
