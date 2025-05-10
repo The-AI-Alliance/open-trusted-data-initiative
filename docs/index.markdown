@@ -10,6 +10,7 @@ has_children: true
 
 > **News:**
 >
+> * May 6, 2025: We are actively soliciting datasets covering diverse languages, domains, use cases, etc. Please see our [contributing]({{site.baseurl}}/contributing) page and the [catalog]({{site.baseurl}}/catalog) of available datasets. 
 > * February 11, 2025: OTDI [announced](https://thealliance.ai/blog/announcing-open-trusted-data-initiative-otdi){:target="aias"} at the AI Action Summit in Paris. Added an [EPFL]({{site.baseurl}}/catalog/#epfl) dataset.
 > * January 31, 2025: Added [Data for Good at Meta]({{site.baseurl}}/catalog/#meta) datasets.
 > * January 23, 2025: The initiative [Steering Committee]({{site.baseurl}}/about/#steering-committee) is established.
