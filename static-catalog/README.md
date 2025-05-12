@@ -671,30 +671,30 @@ Let's see which languages we can find.
 Let's save the keywords to a file to search for language entries with other tools (not shown here):
 
 ```sql
-COPY (SELECT keyword FROM hf_keywords ORDER BY keyword) TO 'hf_keywords.csv';
+COPY (SELECT keyword, count FROM hf_keywords ORDER BY keyword) TO 'hf_keywords.csv';
 ```
 
 ```shell
 $ more hf_keywords.csv
-keyword
-#bert
-#intent
-#semantic-relatedness
-#semantic-similarity
-#sentence-relatedness
-'\nsmalltalk class comments'
-'are'are
-'auhelawa
-'finance
-'java class comments'
-'krm'
-'python class comments'
-'source code comments'
-/
-0
-0-bad
-0-deepfake
-0x22almostevil/multilingual-wikihow-qa-16k
+keyword,count
+#bert,1
+#intent,1
+#semantic-relatedness,1
+#semantic-similarity,1
+#sentence-relatedness,1
+'\nsmalltalk class comments',1
+'are'are,3
+'auhelawa,8
+'finance,1
+'java class comments',1
+'krm',1
+'python class comments',1
+'source code comments',1
+/,17
+0,4
+0-bad,8
+0-deepfake,1
+0x22almostevil/multilingual-wikihow-qa-16k,1
 ...
 ```
 
@@ -975,6 +975,23 @@ D SELECT keyword, count FROM hf_keywords WHERE keyword LIKE 'arxiv:%' ORDER BY c
 │ 10 rows        2 columns │
 └──────────────────────────┘
 ```
+
+## Other Keywords of Interest
+
+For the interim static OTDI catalog, there are other keywords of interest:
+
+* `automation` - or `industrial`, `manufacturing`, ...
+* `molecular discovery` - or related terms like `chemistry`, `molecular`, `molecule`, `materials`, or variations thereof. 
+* `time-series` - or variations thereof.
+
+Modalities are interesting, including variations of the following:
+
+* `audio`
+* `image`
+* `video`
+* `text`
+* `multimedia`
+
 
 ## Appendix: Running Some Test Queries
 
