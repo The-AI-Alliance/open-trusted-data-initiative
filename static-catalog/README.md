@@ -305,10 +305,10 @@ The `->>` extracts the value as a basic type, like `VARCHAR`, while `->` extract
 
 Also, note that records without a license field are removed, which leaves only about 60K records (see below), although some of the removed records do list the license in their keywords.
 
-Now create a metadata table:
+Now create a metadata table, called `hf_metadata1`. We'll create a _final_ `hf_metadata` table shortly.:
 
 ```sql
-CREATE OR REPLACE TABLE hf_metadata AS
+CREATE OR REPLACE TABLE hf_metadata1 AS
   WITH metadata AS (
     SELECT  json->>'$.name'            AS name,
             json->>'$.description'     AS description,
@@ -332,7 +332,7 @@ CREATE OR REPLACE TABLE hf_metadata AS
 ```
 
 ```sql
-D DESCRIBE hf_metadata;
+D DESCRIBE hf_metadata1;
 ┌──────────────┬─────────────┬─────────┬─────────┬─────────┬─────────┐
 │ column_name  │ column_type │  null   │   key   │ default │  extra  │
 │   varchar    │   varchar   │ varchar │ varchar │ varchar │ varchar │
@@ -346,7 +346,7 @@ D DESCRIBE hf_metadata;
 │ creator_name │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
 │ creator_url  │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
 └──────────────┴─────────────┴─────────┴─────────┴─────────┴─────────┘
-D SELECT count(*) FROM hf_metadata;
+D SELECT count(*) FROM hf_metadata1;
 ┌──────────────┐
 │ count_star() │
 │    int64     │
@@ -354,6 +354,8 @@ D SELECT count(*) FROM hf_metadata;
 │    60107     │
 └──────────────┘
 ```
+
+### Licenses
 
 So, only 60K out of 261K records (23%) have a license! Not great. Let's see what those licenses are. First, let's tell `duckdb` to not truncate the output at the default of 40 rows. (Only ~75 lines are needed for the next query):
 
@@ -363,7 +365,7 @@ So, only 60K out of 261K records (23%) have a license! Not great. Let's see what
 
 ```sql
 SELECT license, count(license) AS count
-FROM hf_metadata GROUP BY license ORDER BY count DESC NULLS FIRST;
+FROM hf_metadata1 GROUP BY license ORDER BY count DESC NULLS FIRST;
 ```
 
 Apache and MIT (popular with academics) are the most common licenses:
@@ -453,21 +455,217 @@ Apache and MIT (popular with academics) are the most common licenses:
 
 (There are no `NULLS`, but it's generally useful to have...)
 
-Let's create a table of unique licenses. To do this, we need a convenient way to map the license ids in the URL to names. We extracted this information from the `choosealicense` [GitHub repo](https://github.com/github/choosealicense.com/tree/gh-pages/_licenses), specifically the [`_licenses`](https://github.com/github/choosealicense.com/tree/gh-pages/_licenses) directory. A JSON file was created here, ``./data/json/license-id-name-mapping.json`.
+Let's create a table of unique licenses. To do this, we need a convenient way to map the license ids in the URL to names. We extracted this information from the `choosealicense` [GitHub repo](https://github.com/github/choosealicense.com/tree/gh-pages/_licenses), specifically the [`_licenses`](https://github.com/github/choosealicense.com/tree/gh-pages/_licenses) directory. A JSON file was created here with `src/scripts/make-license-id-mapping.sh` from the `_licenses` files and written to `./data/reference/license-id-name-mapping.json`.
 
 ```sql
-CREATE OR REPLACE TABLE hf_license_ids_names AS
-  WITH licenses AS (
-    SELECT * FROM read_json('data/json/ISO-639-1-language.json')
-  )
-  SELECT code, lower(name) AS name
-  FROM licenses;
+CREATE OR REPLACE TABLE hf_licenses AS
+SELECT * FROM read_json('data/reference/license-id-name-mapping.json');
+```
+
+```sql
+D SELECT * FROM hf_licenses LIMIT 5;
+┌──────────────┬────────────────────────────────────────┬──────────────────────────────────────────────────┐
+│      id      │                  name                  │                       url                        │
+│   varchar    │                varchar                 │                     varchar                      │
+├──────────────┼────────────────────────────────────────┼──────────────────────────────────────────────────┤
+│ 0bsd         │ BSD Zero Clause License                │ https://choosealicense.com/licenses/0bsd         │
+│ afl-3.0      │ Academic Free License v3.0             │ https://choosealicense.com/licenses/afl-3.0      │
+│ agpl-3.0     │ GNU Affero General Public License v3.0 │ https://choosealicense.com/licenses/agpl-3.0     │
+│ apache-2.0   │ Apache License 2.0                     │ https://choosealicense.com/licenses/apache-2.0   │
+│ artistic-2.0 │ Artistic License 2.0                   │ https://choosealicense.com/licenses/artistic-2.0 │
+└──────────────┴────────────────────────────────────────┴──────────────────────────────────────────────────┘
+```
+
+Now, let's join this this to `hf_metadata1` to create `hf_metadata`:
+
+```sql
+CREATE OR REPLACE TABLE hf_metadata AS 
+  SELECT 
+    hfm.name          AS name,
+    hfm.description   AS description,
+    lic.name          AS license,
+    lic.id            AS license_id,
+    hfm.license       AS license_url,
+    hfm.language      AS language,
+    hfm.url           AS url,
+    hfm.keywords      AS keywords,
+    hfm.creator_name  AS creator_name,
+    hfm.creator_url   AS creator_url
+  FROM hf_metadata1 hfm
+  JOIN hf_licenses  lic
+  ON hfm.license = lic.url;
+```
+
+```sql
+D DESCRIBE hf_metadata;
+┌──────────────┬─────────────┬─────────┬─────────┬─────────┬─────────┐
+│ column_name  │ column_type │  null   │   key   │ default │  extra  │
+│   varchar    │   varchar   │ varchar │ varchar │ varchar │ varchar │
+├──────────────┼─────────────┼─────────┼─────────┼─────────┼─────────┤
+│ name         │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+│ description  │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+│ license      │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+│ license_id   │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+│ license_url  │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+│ language     │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+│ url          │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+│ keywords     │ VARCHAR[]   │ YES     │ NULL    │ NULL    │ NULL    │
+│ creator_name │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+│ creator_url  │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+├──────────────┴─────────────┴─────────┴─────────┴─────────┴─────────┤
+│ 10 rows                                                  6 columns │
+└────────────────────────────────────────────────────────────────────┘
 ```
 
 ```sql
 SELECT license, count(license) AS count
-FROM hf_metadata GROUP BY license ORDER BY count DESC NULLS FIRST;
+FROM hf_metadata GROUP BY license ORDER BY count DESC;
 ```
+```
+┌────────────────────────────────────────────────────────────┬───────┐
+│                          license                           │ count │
+│                          varchar                           │ int64 │
+├────────────────────────────────────────────────────────────┼───────┤
+│ Apache License 2.0                                         │ 19821 │
+│ MIT License                                                │ 16916 │
+│ Creative Commons Attribution 4.0 International             │  3547 │
+│ Creative Commons Attribution Share Alike 4.0 International │  1589 │
+│ Creative Commons Zero v1.0 Universal                       │  1032 │
+│ GNU General Public License v3.0                            │   513 │
+│ Academic Free License v3.0                                 │   386 │
+│ "Do What The F*ck You Want To Public License"              │   156 │
+│ GNU Affero General Public License v3.0                     │   151 │
+│ The Unlicense                                              │   127 │
+│ BSD 3-Clause "New" or "Revised" License                    │    84 │
+│ Artistic License 2.0                                       │    84 │
+│ GNU General Public License v2.0                            │    54 │
+│ BSD 2-Clause "Simplified" License                          │    32 │
+│ Mozilla Public License 2.0                                 │    24 │
+│ European Union Public License 1.1                          │    24 │
+│ GNU Lesser General Public License v3.0                     │    23 │
+│ Educational Community License v2.0                         │    12 │
+│ Microsoft Public License                                   │    12 │
+│ BSD 3-Clause Clear License                                 │    11 │
+│ PostgreSQL License                                         │     8 │
+│ Boost Software License 1.0                                 │     8 │
+│ Open Software License 3.0                                  │     6 │
+│ GNU Lesser General Public License v2.1                     │     5 │
+│ ISC License                                                │     2 │
+│ SIL Open Font License 1.1                                  │     1 │
+│ zlib License                                               │     1 │
+│ Eclipse Public License 2.0                                 │     1 │
+│ Eclipse Public License 1.0                                 │     1 │
+├────────────────────────────────────────────────────────────┴───────┤
+│ 29 rows                                                  2 columns │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+But notice this:
+
+```sql
+D SELECT count() FROM hf_metadata;
+┌──────────────┐
+│ count_star() │
+│    int64     │
+├──────────────┤
+│    44631     │
+└──────────────┘
+```
+
+So, we lost more records, about 15K! It turns out there are a lot of URLs in the metadata for non-existing pages at [choosealicense.com](https://choosealicense.com/licenses). Many seem legitimate, but poorly specified.
+
+```sql
+COPY (SELECT 
+  hfm.name          AS name,
+  lic.name          AS license,
+  lic.id            AS license_id,
+  hfm.license       AS license_url,
+FROM hf_metadata1 hfm
+LEFT JOIN hf_licenses  lic
+ON hfm.license = lic.url) TO 'toss.json';
+
+SELECT 
+  lic.id            AS license_id,
+  hfm.license       AS license_url,
+FROM hf_metadata1 hfm
+LEFT JOIN hf_licenses  lic
+ON hfm.license = lic.url
+WHERE lic.url IS NULL;
+```
+
+The second query reports 15.4K rows!
+
+```sql
+WITH lics AS (
+  SELECT 
+    lic.id            AS license_id,
+    hfm.license       AS license_url,
+  FROM hf_metadata1 hfm
+  LEFT JOIN hf_licenses  lic
+  ON hfm.license = lic.url
+  WHERE lic.url IS NULL
+  )
+SELECT license_url, count(license_url) AS count
+FROM lics
+GROUP BY license_url
+ORDER BY count DESC;
+```
+```
+┌────────────────────────────────────────────────────────────────┬───────┐
+│                          license_url                           │ count │
+│                            varchar                             │ int64 │
+├────────────────────────────────────────────────────────────────┼───────┤
+│ https://choosealicense.com/licenses/openrail/                  │  4567 │
+│ https://choosealicense.com/licenses/unknown/                   │  1940 │
+│ https://choosealicense.com/licenses/other/                     │  1543 │
+│ https://choosealicense.com/licenses/cc-by-nc-4.0/              │  1245 │
+│ https://choosealicense.com/licenses/cc-by-nc-sa-4.0/           │  1070 │
+│ https://choosealicense.com/licenses/cc/                        │   837 │
+│ https://choosealicense.com/licenses/cc-by-nc-nd-4.0/           │   530 │
+│ https://choosealicense.com/licenses/odc-by/                    │   518 │
+│ https://choosealicense.com/licenses/cc-by-sa-3.0/              │   457 │
+│ https://choosealicense.com/licenses/gpl/                       │   421 │
+│ https://choosealicense.com/licenses/creativeml-openrail-m/     │   281 │
+│ https://choosealicense.com/licenses/llama2/                    │   211 │
+│ https://choosealicense.com/licenses/llama3/                    │   178 │
+│ https://choosealicense.com/licenses/cc-by-3.0/                 │   154 │
+│ https://choosealicense.com/licenses/llama3.1/                  │   144 │
+│ https://choosealicense.com/licenses/cc-by-2.0/                 │   137 │
+│ https://choosealicense.com/licenses/bsd/                       │   130 │
+│ https://choosealicense.com/licenses/cc-by-nc-2.0/              │   117 │
+│ https://choosealicense.com/licenses/undefined/                 │    99 │
+│ https://choosealicense.com/licenses/cc-by-nd-4.0/              │    97 │
+│                         ·                                      │     · │
+│                         ·                                      │     · │
+│                         ·                                      │     · │
+│ https://choosealicense.com/licenses/cc-by-nc-sa-3.0/           │    58 │
+│ https://choosealicense.com/licenses/c-uda/                     │    54 │
+│ https://choosealicense.com/licenses/openrail++/                │    52 │
+│ https://choosealicense.com/licenses/cdla-sharing-1.0/          │    51 │
+│ https://choosealicense.com/licenses/bigscience-openrail-m/     │    51 │
+│ https://choosealicense.com/licenses/cc-by-nc-3.0/              │    49 │
+│ https://choosealicense.com/licenses/llama3.3/                  │    31 │
+│ https://choosealicense.com/licenses/cc-by-nc-sa-2.0/           │    28 │
+│ https://choosealicense.com/licenses/cc-by-nc-nd-3.0/           │    22 │
+│ https://choosealicense.com/licenses/bigcode-openrail-m/        │    22 │
+│ https://choosealicense.com/licenses/gemma/                     │    20 │
+│ https://choosealicense.com/licenses/cc-by-2.5/                 │    20 │
+│ https://choosealicense.com/licenses/gfdl/                      │    19 │
+│ https://choosealicense.com/licenses/etalab-2.0/                │    17 │
+│ https://choosealicense.com/licenses/bigscience-bloom-rail-1.0/ │    13 │
+│ https://choosealicense.com/licenses/cdla-permissive-1.0/       │     7 │
+│ https://choosealicense.com/licenses/lgpl/                      │     7 │
+│ https://choosealicense.com/licenses/apple-amlr/                │     4 │
+│ https://choosealicense.com/licenses/deepfloyd-if-license/      │     1 │
+│ https://choosealicense.com/licenses/lgpl-lr/                   │     1 │
+├────────────────────────────────────────────────────────────────┴───────┤
+│ 44 rows (40 shown)                                           2 columns │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+Okay, for now, we will reject the datasets with invalid URLs for the licenses, even though some clearly intend to reference legitimate license sources.
+
+### Languages
 
 Let's look at `language` and `keywords`:
 
@@ -480,7 +678,7 @@ FROM hf_metadata GROUP BY language ORDER BY count DESC NULLS FIRST;
 │ language │ count │
 │ varchar  │ int64 │
 ├──────────┼───────┤
-│ en       │ 60107 │
+│ en       │ 44631 │
 └──────────┴───────┘
 ```
 
@@ -495,15 +693,15 @@ SELECT keywords FROM hf_metadata LIMIT 10;
 │                                                      varchar[]                                                       │
 ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
 │ [apache-2.0, 100K - 1M, parquet, Text, Datasets, pandas, Croissant, Polars, 🇺🇸 Region: US]                           │
-│ [openrail, < 1K, soundfolder, Audio, Datasets, Croissant, 🇺🇸 Region: US]                                             │
 │ [mit, 10K - 100K, parquet, Text, Datasets, pandas, Croissant, Polars, 🇺🇸 Region: US]                                 │
-│ [openrail, < 1K, soundfolder, Audio, Datasets, Croissant, 🇺🇸 Region: US]                                             │
 │ [mit, 100K - 1M, csv, Text, Datasets, pandas, Croissant, Polars, 🇺🇸 Region: US]                                      │
 │ [question-answering, text-generation, English, apache-2.0, 1M - 10M, parquet, Text, Datasets, Dask, Croissant, Pol…  │
 │ [question-answering, Russian, gpl-3.0, < 1K, csv, Text, Datasets, pandas, Croissant, Polars, 🇺🇸 Region: US, legal]   │
 │ [mit, < 1K, csv, Tabular, Datasets, pandas, Croissant, Polars, 🇺🇸 Region: US]                                        │
 │ [mit, 10K - 100K, csv, Text, Datasets, pandas, Croissant, Polars, 🇺🇸 Region: US]                                     │
 │ [mit, < 1K, csv, Tabular, Datasets, pandas, Croissant, Polars, 🇺🇸 Region: US]                                        │
+│ [apache-2.0, < 1K, parquet, Text, Datasets, pandas, Croissant, Polars, 🇺🇸 Region: US]                                │
+│ [mit, 100K - 1M, json, Tabular, Datasets, pandas, Croissant, Polars, 🇺🇸 Region: US, Imitation Learning, Expert Traj…  │
 ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
 │                                                       10 rows                                                        │
 └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
@@ -528,7 +726,7 @@ SELECT unnest(keywords) AS keyword FROM hf_metadata LIMIT 10;
 │ Croissant     │
 │ Polars        │
 │ 🇺🇸 Region: US │
-│ openrail      │
+│ mit           │
 ├───────────────┤
 │    10 rows    │
 └───────────────┘
@@ -564,116 +762,59 @@ D SELECT count() FROM hf_keywords;
 │ count_star() │
 │    int64     │
 ├──────────────┤
-│    22204     │
+│    19129     │
 └──────────────┘
 D SELECT * FROM hf_keywords ORDER BY count DESC NULLS FIRST LIMIT 100;
-┌─────────────────────────────┬───────┐
-│           keyword           │ count │
-│           varchar           │ int64 │
-├─────────────────────────────┼───────┤
-│ 🇺🇸 region: us               │ 60087 │
-│ croissant                   │ 53602 │
-│ datasets                    │ 53565 │
-│ text                        │ 45302 │
-│ polars                      │ 41101 │
-│ pandas                      │ 33572 │
-│ < 1k                        │ 20500 │
-│ apache-2.0                  │ 19824 │
-│ parquet                     │ 18957 │
-│ mit                         │ 16922 │
-│ english                     │ 14703 │
-│ json                        │ 13438 │
-│ 1k - 10k                    │ 13192 │
-│ 10k - 100k                  │ 10421 │
-│ csv                         │  9680 │
-│ tabular                     │  8697 │
-│ image                       │  8688 │
-│ dask                        │  8478 │
-│ text-generation             │  6405 │
-│ 100k - 1m                   │  5722 │
-│ audio                       │  5661 │
-│ openrail                    │  4568 │
-│ soundfolder                 │  4388 │
-│ question-answering          │  3848 │
-│ text-classification         │  3830 │
-│ imagefolder                 │  3565 │
-│ cc-by-4.0                   │  3560 │
-│ crowdsourced                │  3219 │
-│ monolingual                 │  2689 │
-│ 1m - 10m                    │  2660 │
-│ video                       │  2515 │
-│ robotics                    │  2304 │
-│ time-series                 │  2285 │
-│ lerobot                     │  2211 │
-│ other                       │  2202 │
-│ original                    │  2063 │
-│ unknown                     │  2013 │
-│ cc-by-sa-4.0                │  1595 │
-│ chinese                     │  1563 │
-│ summarization               │  1492 │
-│ found                       │  1315 │
-│ text2text-generation        │  1265 │
-│ cc-by-nc-4.0                │  1250 │
-│ image-to-text               │  1231 │
-│ art                         │  1230 │
-│ text-to-image               │  1224 │
-│ arxiv:2204.07705            │  1176 │
-│ arxiv:2407.00066            │  1173 │
-│ feature-extraction          │  1160 │
-│ synthetic                   │  1138 │
-│ french                      │  1095 │
-│ text-retrieval              │  1082 │
-│ expert-generated            │  1077 │
-│ cc-by-nc-sa-4.0             │  1072 │
-│ token-classification        │  1069 │
-│ multilingual                │  1068 │
-│ cc0-1.0                     │  1034 │
-│ 10m - 100m                  │  1014 │
-│ translation                 │   992 │
-│ tutorial                    │   992 │
-│ russian                     │   988 │
-│ spanish                     │   982 │
-│ code                        │   953 │
-│ japanese                    │   940 │
-│ webdataset                  │   861 │
-│ german                      │   852 │
-│ language-modeling           │   841 │
-│ 1k<n<10k                    │   838 │
-│ cc                          │   838 │
-│ sentence-similarity         │   834 │
-│ image-classification        │   811 │
-│ medical                     │   762 │
-│ so100                       │   688 │
-│ korean                      │   682 │
-│ arabic                      │   673 │
-│ multi-class-classification  │   635 │
-│ infinite-dataset-hub        │   606 │
-│ biology                     │   605 │
-│ portuguese                  │   596 │
-│ extractive-qa               │   592 │
-│ topic-classification        │   578 │
-│ multi-label-classification  │   577 │
-│ italian                     │   564 │
-│ named-entity-recognition    │   556 │
-│ cc-by-nc-nd-4.0             │   531 │
-│ gpl-3.0                     │   524 │
-│ odc-by                      │   518 │
-│ turkish                     │   508 │
-│ machine-generated           │   502 │
-│ legal                       │   498 │
-│ object-detection            │   493 │
-│ text-scoring                │   487 │
-│ sentiment-analysis          │   475 │
-│ hindi                       │   471 │
-│ cc-by-sa-3.0                │   462 │
-│ news-articles-summarization │   461 │
-│ table-question-answering    │   452 │
-│ visual-question-answering   │   449 │
-│ document-retrieval          │   424 │
-│ vietnamese                  │   423 │
-├─────────────────────────────┴───────┤
-│ 100 rows                  2 columns │
-└─────────────────────────────────────┘
+┌──────────────────────────────┬───────┐
+│           keyword            │ count │
+│           varchar            │ int64 │
+├──────────────────────────────┼───────┤
+│ 🇺🇸 region: us                │ 44614 │
+│ croissant                    │ 39476 │
+│ datasets                     │ 39450 │
+│ text                         │ 35865 │
+│ polars                       │ 33350 │
+│ pandas                       │ 27411 │
+│ apache-2.0                   │ 19824 │
+│ mit                          │ 16917 │
+│ parquet                      │ 15242 │
+│ < 1k                         │ 13149 │
+│ english                      │ 11334 │
+│ json                         │ 11050 │
+│ 1k - 10k                     │ 10955 │
+│ 10k - 100k                   │  8140 │
+│ csv                          │  7845 │
+│ tabular                      │  6922 │
+│ dask                         │  6706 │
+│ image                        │  6040 │
+│ text-generation              │  5259 │
+│ 100k - 1m                    │  4530 │
+│     ·                        │    ·  │
+│     ·                        │    ·  │
+│     ·                        │    ·  │
+│ portuguese                   │   404 │
+│ legal                        │   399 │
+│ document-retrieval           │   389 │
+│ afl-3.0                      │   386 │
+│ italian                      │   375 │
+│ table-question-answering     │   371 │
+│ turkish                      │   363 │
+│ visual-question-answering    │   347 │
+│ finance                      │   327 │
+│ sentence-transformers        │   324 │
+│ hindi                        │   323 │
+│ vietnamese                   │   311 │
+│ machine-generated            │   309 │
+│ mteb                         │   301 │
+│ indonesian                   │   297 │
+│ 10k<n<100k                   │   291 │
+│ automatic-speech-recognition │   281 │
+│ dutch                        │   278 │
+│ chemistry                    │   271 │
+│ zero-shot-classification     │   270 │
+├──────────────────────────────┴───────┤
+│ 100 rows (40 shown)        2 columns │
+└──────────────────────────────────────┘
 ```
 
 So there are other languages present! 
@@ -691,37 +832,28 @@ COPY (SELECT keyword, count FROM hf_keywords ORDER BY keyword) TO 'hf_keywords.c
 ```
 
 ```shell
-$ more hf_keywords.csv
+$ head -10 hf_keywords.csv
+head -10 hf_keywords.csv
 keyword,count
 #bert,1
 #intent,1
-#semantic-relatedness,1
-#semantic-similarity,1
-#sentence-relatedness,1
-'\nsmalltalk class comments',1
-'are'are,3
-'auhelawa,8
+'are'are,2
+'auhelawa,4
 'finance,1
-'java class comments',1
-'krm',1
-'python class comments',1
-'source code comments',1
 /,17
 0,4
 0-bad,8
 0-deepfake,1
-0x22almostevil/multilingual-wikihow-qa-16k,1
-...
 ```
 
 There are some funky entries here...
 
-Now, we need a list of the world's languages in a convenient format. Here are two JSON-formatted lists: [one](https://gist.github.com/jrnk/8eb57b065ea0b098d571), which claims to be an ISO list, and [two](https://gist.github.com/rglover/23d9d10d788c87e7fc5f5d7d8629633f). Even though the second list has more entries, ~240 vs. ~180, let's use the ISO list, saved to the file `data/json/ISO-639-1-language.json`:
+Now, we need a list of the world's languages in a convenient format. Here are two JSON-formatted lists: [one](https://gist.github.com/jrnk/8eb57b065ea0b098d571), which claims to be an ISO list, and [two](https://gist.github.com/rglover/23d9d10d788c87e7fc5f5d7d8629633f). Even though the second list has more entries, ~240 vs. ~180, let's use the ISO list, saved to the file `data/reference/ISO-639-1-language.json`:
 
 ```sql
 CREATE OR REPLACE TABLE iso_languages AS
   WITH langs AS (
-    SELECT * FROM read_json('ISO-639-1-language.json')
+    SELECT * FROM read_json('data/reference/ISO-639-1-language.json')
   )
   SELECT code, lower(name) AS name
   FROM langs;
@@ -778,60 +910,56 @@ ORDER BY ks.count DESC;
 ```
 
 ```
-┌─────────┬───────┬─────────┬──────────────────────────────────┐
-│ keyword │ count │  code   │               name               │
-│ varchar │ int64 │ varchar │             varchar              │
-├─────────┼───────┼─────────┼──────────────────────────────────┤
-│ cv      │    13 │ cv      │ chuvash                          │
-│ ga      │    12 │ ga      │ irish                            │
-│ en      │    11 │ en      │ english                          │
-│ ko      │    11 │ ko      │ korean                           │
-│ ml      │     9 │ ml      │ malayalam                        │
-│ mt      │     8 │ mt      │ maltese                          │
-│ it      │     8 │ it      │ italian                          │
-│ ru      │     7 │ ru      │ russian                          │
-│ tt      │     7 │ tt      │ tatar                            │
-│ ho      │     6 │ ho      │ hiri motu                        │
-│ tw      │     6 │ tw      │ twi                              │
-│ wa      │     6 │ wa      │ walloon                          │
-│ tr      │     5 │ tr      │ turkish                          │
-│ cs      │     5 │ cs      │ czech                            │
-│ ik      │     4 │ ik      │ inupiaq                          │
-│ uk      │     4 │ uk      │ ukrainian                        │
-│ uz      │     4 │ uz      │ uzbek                            │
-│ fr      │     4 │ fr      │ french                           │
-│ ja      │     4 │ ja      │ japanese                         │
-│ ha      │     4 │ ha      │ hausa                            │
-│ de      │     3 │ de      │ german                           │
-│ zh      │     3 │ zh      │ chinese                          │
-│ eu      │     3 │ eu      │ basque                           │
-│ sa      │     3 │ sa      │ sanskrit                         │
-│ es      │     3 │ es      │ spanish; castilian               │
-│ hr      │     3 │ hr      │ croatian                         │
-│ pt      │     3 │ pt      │ portuguese                       │
-│ ar      │     3 │ ar      │ arabic                           │
-│ ak      │     3 │ ak      │ akan                             │
-│ hu      │     2 │ hu      │ hungarian                        │
-│ eo      │     2 │ eo      │ esperanto                        │
-│ no      │     2 │ no      │ norwegian                        │
-│ fi      │     2 │ fi      │ finnish                          │
-│ to      │     2 │ to      │ tonga (tonga islands)            │
-│ hi      │     2 │ hi      │ hindi                            │
-│ fa      │     2 │ fa      │ persian                          │
-│ as      │     2 │ as      │ assamese                         │
-│ na      │     1 │ na      │ nauru                            │
-│ sq      │     1 │ sq      │ albanian                         │
-│ lv      │     1 │ lv      │ latvian                          │
-│ kg      │     1 │ kg      │ kongo                            │
-│ kr      │     1 │ kr      │ kanuri                           │
-│ el      │     1 │ el      │ greek, modern (1453-)            │
-│ tg      │     1 │ tg      │ tajik                            │
-│ li      │     1 │ li      │ limburgan; limburger; limburgish │
-│ rm      │     1 │ rm      │ romansh                          │
-│ mk      │     1 │ mk      │ macedonian                       │
-├─────────┴───────┴─────────┴──────────────────────────────────┤
-│ 47 rows                                            4 columns │
-└──────────────────────────────────────────────────────────────┘
+┌─────────┬───────┬─────────┬───────────────────────┐
+│ keyword │ count │  code   │         name          │
+│ varchar │ int64 │ varchar │        varchar        │
+├─────────┼───────┼─────────┼───────────────────────┤
+│ cv      │    11 │ cv      │ chuvash               │
+│ ko      │     9 │ ko      │ korean                │
+│ ga      │     8 │ ga      │ irish                 │
+│ it      │     7 │ it      │ italian               │
+│ tt      │     7 │ tt      │ tatar                 │
+│ mt      │     6 │ mt      │ maltese               │
+│ en      │     6 │ en      │ english               │
+│ ru      │     6 │ ru      │ russian               │
+│ ml      │     6 │ ml      │ malayalam             │
+│ ho      │     4 │ ho      │ hiri motu             │
+│ cs      │     4 │ cs      │ czech                 │
+│ uz      │     4 │ uz      │ uzbek                 │
+│ tr      │     4 │ tr      │ turkish               │
+│ fr      │     4 │ fr      │ french                │
+│ ik      │     3 │ ik      │ inupiaq               │
+│ wa      │     3 │ wa      │ walloon               │
+│ eu      │     3 │ eu      │ basque                │
+│ ja      │     3 │ ja      │ japanese              │
+│ ha      │     3 │ ha      │ hausa                 │
+│ pt      │     3 │ pt      │ portuguese            │
+│ ·       │     · │ ·       │     ·                 │
+│ ·       │     · │ ·       │     ·                 │
+│ ·       │     · │ ·       │     ·                 │
+│ uk      │     2 │ uk      │ ukrainian             │
+│ hu      │     2 │ hu      │ hungarian             │
+│ sa      │     2 │ sa      │ sanskrit              │
+│ es      │     2 │ es      │ spanish; castilian    │
+│ hi      │     2 │ hi      │ hindi                 │
+│ fi      │     2 │ fi      │ finnish               │
+│ eo      │     2 │ eo      │ esperanto             │
+│ ar      │     2 │ ar      │ arabic                │
+│ na      │     1 │ na      │ nauru                 │
+│ el      │     1 │ el      │ greek, modern (1453-) │
+│ no      │     1 │ no      │ norwegian             │
+│ rm      │     1 │ rm      │ romansh               │
+│ lv      │     1 │ lv      │ latvian               │
+│ to      │     1 │ to      │ tonga (tonga islands) │
+│ sq      │     1 │ sq      │ albanian              │
+│ kg      │     1 │ kg      │ kongo                 │
+│ zh      │     1 │ zh      │ chinese               │
+│ kr      │     1 │ kr      │ kanuri                │
+│ tg      │     1 │ tg      │ tajik                 │
+│ mk      │     1 │ mk      │ macedonian            │
+├─────────┴───────┴─────────┴───────────────────────┤
+│ 44 rows (40 shown)                      4 columns │
+└───────────────────────────────────────────────────┘
 ```
 
 Lots of languages, but not a lot of datasets.
@@ -868,35 +996,35 @@ ORDER BY count DESC NULLS FIRST;
 ```
 
 ```
-┌───────────────┬───────┐
-│ lower_keyword │ count │
-│    varchar    │ int64 │
-├───────────────┼───────┤
-│ english       │ 14703 │
-│ chinese       │  1563 │
-│ french        │  1095 │
-│ russian       │   988 │
-│ spanish       │   983 │
-│ japanese      │   940 │
-│ german        │   852 │
-│ korean        │   682 │
-│ arabic        │   675 │
-│ portuguese    │   596 │
-│ italian       │   564 │
-│ turkish       │   508 │
-│ hindi         │   471 │
-│ vietnamese    │   423 │
-│ catalan       │   235 │
-│ hungarian     │   235 │
-│ javanese      │   101 │
-│ xhosa         │   101 │
-│ aragonese     │    30 │
-│ nyanja        │    29 │
-│ volapük       │    26 │
-│ aymara        │    24 │
-├───────────────┴───────┤
-│ 22 rows     2 columns │
-└───────────────────────┘
+┌────────────┬───────┐
+│  keyword   │ count │
+│  varchar   │ int64 │
+├────────────┼───────┤
+│ english    │ 11334 │
+│ chinese    │  1175 │
+│ french     │   777 │
+│ russian    │   758 │
+│ spanish    │   694 │
+│ japanese   │   614 │
+│ german     │   597 │
+│ korean     │   469 │
+│ arabic     │   464 │
+│ portuguese │   404 │
+│ italian    │   375 │
+│ turkish    │   363 │
+│ hindi      │   323 │
+│ vietnamese │   311 │
+│ hungarian  │   160 │
+│ catalan    │   153 │
+│ javanese   │    70 │
+│ xhosa      │    68 │
+│ nyanja     │    18 │
+│ aragonese  │    16 │
+│ aymara     │    15 │
+│ volapük    │    15 │
+├────────────┴───────┤
+│ 22 rows  2 columns │
+└────────────────────┘
 ```
 
 Let's create a variation of `hf_metadata` generate a "concatenated" version of the language files. The first part of teh following query "unnests" the keywords, so we expand the records from, for example, one record with the keywords array `["lang1", "lang2", "lang3"]` to three records with individual `keyword` column values of `"lang1"`, etc.
@@ -956,16 +1084,16 @@ D SELECT * FROM hf_languages LIMIT 10;
 │ language_keyword │         name         │       license        │ … │     creator_url      │     description      │
 │     varchar      │       varchar        │       varchar        │   │       varchar        │       varchar        │
 ├──────────────────┼──────────────────────┼──────────────────────┼───┼──────────────────────┼──────────────────────┤
-│ english          │ tinymistral-hypnos…  │ https://choosealic…  │ … │ https://huggingfac…  │ Dataset created fo…  │
-│ russian          │ dataset-qa-ip-law    │ https://choosealic…  │ … │ https://huggingfac…  │ Датасет для оценки…  │
-│ vietnamese       │ alpaca_multiturns_…  │ https://choosealic…  │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ vietnamese       │ lima_dialogue_vi     │ https://choosealic…  │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ vietnamese       │ itorca_dpo_vi        │ https://choosealic…  │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ english          │ itorca_dpo_en        │ https://choosealic…  │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ english          │ slorca_dialogue_en   │ https://choosealic…  │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ vietnamese       │ oasst_dialogue_vi    │ https://choosealic…  │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ vietnamese       │ oasst_dialogue_base  │ https://choosealic…  │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ english          │ oasst_dialogue_base  │ https://choosealic…  │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ english          │ tinymistral-hypnos…  │ Apache License 2.0   │ … │ https://huggingfac…  │ Dataset created fo…  │
+│ russian          │ dataset-qa-ip-law    │ GNU General Public…  │ … │ https://huggingfac…  │ Датасет для оценки…  │
+│ vietnamese       │ alpaca_multiturns_…  │ MIT License          │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ vietnamese       │ lima_dialogue_vi     │ MIT License          │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ vietnamese       │ itorca_dpo_vi        │ MIT License          │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ english          │ itorca_dpo_en        │ MIT License          │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ english          │ slorca_dialogue_en   │ MIT License          │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ vietnamese       │ oasst_dialogue_vi    │ MIT License          │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ vietnamese       │ oasst_dialogue_base  │ MIT License          │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ english          │ oasst_dialogue_base  │ MIT License          │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
 ├──────────────────┴──────────────────────┴──────────────────────┴───┴──────────────────────┴──────────────────────┤
 │ 10 rows                                                                                      8 columns (5 shown) │
 └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
@@ -974,7 +1102,7 @@ D SELECT count(*) FROM hf_languages;
 │ count_star() │
 │    int64     │
 ├──────────────┤
-│    25511     │
+│    18971     │
 └──────────────┘
 ```
 
@@ -1047,36 +1175,13 @@ do
   ) TO '$output';
 EOF
 done
-ls -l $base
-```
-
-```
-total 124528
--rw-r--r--   1 ...  20M May 12 12:13 hf_all_languages.js
--rw-r--r--   1 ...  21M May 12 12:30 hf_all_languages.json
--rw-r--r--@  1 ... 565K May 12 12:40 hf_arabic.json
--rw-r--r--@  1 ... 204K May 12 12:40 hf_catalan.json
--rw-r--r--@  1 ... 1.3M May 12 12:40 hf_chinese.json
--rw-r--r--@  1 ...  11M May 12 12:40 hf_english.json
--rw-r--r--@  1 ... 915K May 12 12:40 hf_french.json
--rw-r--r--@  1 ... 710K May 12 12:40 hf_german.json
--rw-r--r--@  1 ... 377K May 12 12:40 hf_hindi.json
--rw-r--r--@  1 ... 193K May 12 12:40 hf_hungarian.json
--rw-r--r--@  1 ... 456K May 12 12:40 hf_italian.json
--rw-r--r--@  1 ... 798K May 12 12:40 hf_japanese.json
--rw-r--r--@  1 ... 552K May 12 12:40 hf_korean.json
--rw-r--r--@  1 ... 471K May 12 12:40 hf_portuguese.json
--rw-r--r--@  1 ... 740K May 12 12:40 hf_russian.json
--rw-r--r--@  1 ... 806K May 12 12:40 hf_spanish.json
--rw-r--r--@  1 ... 395K May 12 12:40 hf_turkish.json
--rw-r--r--@  1 ... 327K May 12 12:40 hf_vietnamese.json
 ```
 
 For example,
 
 ```shell
 $ head -1 data/json/processed/2025-05-12/languages/hf_vietnamese.json
-{"name":"alpaca_multiturns_dialogue_vi","description":"\\n\\t\\n\\t\\t\\n\\t\\n\\t\\n\\t\\tDescription\\n\\t\\n\\nThe dataset is from 5CD-AI/Vietnamese-Multi-turn-Chat-Alpaca, formatted as dialogues for speed and ease of use. Many thanks to 5CD-AI for releasing it.\\nImportantly, this format is easy to use via the default chat template of transformers, meaning you can use huggingface/alignment-handbook immediately, unsloth.\\n\\n\\t\\n\\t\\t\\n\\t\\n\\t\\n\\t\\tStructure\\n\\t\\n\\nView online through viewer.\\n\\n\\t\\n\\t\\t\\n\\t\\n\\t\\n\\t\\tNote\\n\\t\\n\\nWe advise you to reconsider before use, thank you. If you find it useful, please like… See the full description on the dataset page: https://huggingface.co/datasets/lamhieu/alpaca_multiturns_dialogue_vi.","license":"https://choosealicense.com/licenses/mit/","language":"en","url":"https://huggingface.co/datasets/lamhieu/alpaca_multiturns_dialogue_vi","creator_name":"Hieu Lam","creator_url":"https://huggingface.co/lamhieu"}
+{"name":"alpaca_multiturns_dialogue_vi","license":"MIT License","language":"en","url":"https://huggingface.co/datasets/lamhieu/alpaca_multiturns_dialogue_vi","creator_name":"Hieu Lam","creator_url":"https://huggingface.co/lamhieu","description":"\\n\\t\\n\\t\\t\\n\\t\\n\\t\\n\\t\\tDescription\\n\\t\\n\\nThe dataset is from 5CD-AI/Vietnamese-Multi-turn-Chat-Alpaca, formatted as dialogues for speed and ease of use. Many thanks to 5CD-AI for releasing it.\\nImportantly, this format is easy to use via the default chat template of transformers, meaning you can use huggingface/alignment-handbook immediately, unsloth.\\n\\n\\t\\n\\t\\t\\n\\t\\n\\t\\n\\t\\tStructure\\n\\t\\n\\nView online through viewer.\\n\\n\\t\\n\\t\\t\\n\\t\\n\\t\\n\\t\\tNote\\n\\t\\n\\nWe advise you to reconsider before use, thank you. If you find it useful, please like… See the full description on the dataset page: https://huggingface.co/datasets/lamhieu/alpaca_multiturns_dialogue_vi."}
 ```
 
 We might still want to replace the `\\` with `\`...
@@ -1118,13 +1223,13 @@ D SELECT keyword, count FROM hf_keywords WHERE keyword LIKE 'arxiv:%' ORDER BY c
 │ arxiv:2204.07705 │  1176 │
 │ arxiv:2407.00066 │  1173 │
 │ arxiv:2208.01009 │    57 │
-│ arxiv:2406.08464 │    52 │
-│ arxiv:2306.02707 │    46 │
+│ arxiv:2306.02707 │    39 │
 │ arxiv:2401.06199 │    36 │
-│ arxiv:2301.13688 │    30 │
-│ arxiv:1606.05250 │    24 │
-│ arxiv:2110.14168 │    21 │
-│ arxiv:2203.02155 │    21 │
+│ arxiv:2301.13688 │    24 │
+│ arxiv:2501.19393 │    21 │
+│ arxiv:1606.05250 │    21 │
+│ arxiv:2110.14168 │    20 │
+│ arxiv:2304.13705 │    20 │
 ├──────────────────┴───────┤
 │ 10 rows        2 columns │
 └──────────────────────────┘
