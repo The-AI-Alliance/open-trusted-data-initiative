@@ -35,7 +35,7 @@ import {TabulatorFull as Tabulator} from 'tabulator-tables';
 <a name="{{language.tag}}"></a>
 <a href="{{site.baseurl}}/catalog/#{{language.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">{{language.name}}</a>
 <div id="{{language.tag}}-table" class="table-wrapper">
-  <script type="text/javascript" src="{{site.baseurl}}/files/data/catalog/languages/hf_{{language.name}}.js"></script>
+  <script type="text/javascript" src="{{site.baseurl}}/files/data/catalog/languages/hf_{{language.tag}}.js"></script>
   <script type="text/javascript">
     var {{language.tag}}_table = new Tabulator("#{{language.tag}}-table", {
       height:205, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
