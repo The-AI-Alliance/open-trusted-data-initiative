@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-. $HOME/bin/.util.sh
+. src/scripts/common.sh
 
 help() {
     cat <<EOF
@@ -22,7 +22,6 @@ let start_line=0
 let num_lines=-1
 num_lines_exp=
 filenames=()
-: ${NOOP:=}
 while [[ $# -gt 0 ]]
 do
 	case $1 in

@@ -453,6 +453,22 @@ Apache and MIT (popular with academics) are the most common licenses:
 
 (There are no `NULLS`, but it's generally useful to have...)
 
+Let's create a table of unique licenses. To do this, we need a convenient way to map the license ids in the URL to names. We extracted this information from the `choosealicense` [GitHub repo](https://github.com/github/choosealicense.com/tree/gh-pages/_licenses), specifically the [`_licenses`](https://github.com/github/choosealicense.com/tree/gh-pages/_licenses) directory. A JSON file was created here, ``./data/json/license-id-name-mapping.json`.
+
+```sql
+CREATE OR REPLACE TABLE hf_license_ids_names AS
+  WITH licenses AS (
+    SELECT * FROM read_json('data/json/ISO-639-1-language.json')
+  )
+  SELECT code, lower(name) AS name
+  FROM licenses;
+```
+
+```sql
+SELECT license, count(license) AS count
+FROM hf_metadata GROUP BY license ORDER BY count DESC NULLS FIRST;
+```
+
 Let's look at `language` and `keywords`:
 
 ```sql
@@ -523,7 +539,7 @@ Let's create a table of unique keywords:
 ```sql
 CREATE OR REPLACE TABLE hf_keywords AS 
   WITH ks AS (
-    SELECT trim(lower(unnest(keywords))) AS keyword 
+    SELECT trim(lower(unnest(keywords))) AS keyword
     FROM hf_metadata
   )
   SELECT keyword, count(keyword) AS count
@@ -700,7 +716,7 @@ keyword,count
 
 There are some funky entries here...
 
-Now, we need a list of the world's languages in a convenient format. Here are two JSON-formatted lists: [one](https://gist.github.com/jrnk/8eb57b065ea0b098d571), which claims to be an ISO list, and [two](https://gist.github.com/rglover/23d9d10d788c87e7fc5f5d7d8629633f). Even though the second list has more entries, ~240 vs. ~180, let's use the ISO list, saved to the file `ISO-639-1-language.json`:
+Now, we need a list of the world's languages in a convenient format. Here are two JSON-formatted lists: [one](https://gist.github.com/jrnk/8eb57b065ea0b098d571), which claims to be an ISO list, and [two](https://gist.github.com/rglover/23d9d10d788c87e7fc5f5d7d8629633f). Even though the second list has more entries, ~240 vs. ~180, let's use the ISO list, saved to the file `data/json/ISO-639-1-language.json`:
 
 ```sql
 CREATE OR REPLACE TABLE iso_languages AS
@@ -883,11 +899,118 @@ ORDER BY count DESC NULLS FIRST;
 └───────────────────────┘
 ```
 
-Finally, let's write a few language datasets, using the following shell command. 
+Let's create a variation of `hf_metadata` generate a "concatenated" version of the language files. The first part of teh following query "unnests" the keywords, so we expand the records from, for example, one record with the keywords array `["lang1", "lang2", "lang3"]` to three records with individual `keyword` column values of `"lang1"`, etc.
+
+```sql
+CREATE OR REPLACE TABLE hf_languages AS
+WITH expanded_keywords AS (
+  SELECT trim(lower(unnest(keywords))) AS language_keyword,
+    name,
+    license,
+    language,
+    url,
+    creator_name,
+    creator_url,
+    description
+  FROM hf_metadata
+)
+SELECT * 
+FROM expanded_keywords
+WHERE language_keyword IN (
+  'arabic',
+  'catalan',
+  'chinese',
+  'english',
+  'french',
+  'german',
+  'hindi',
+  'hungarian',
+  'italian',
+  'japanese',
+  'korean',
+  'portuguese',
+  'russian',
+  'spanish',
+  'turkish',
+  'vietnamese'
+);
+```
+
+```
+D DESCRIBE hf_languages;
+┌──────────────────┬─────────────┬─────────┬─────────┬─────────┬─────────┐
+│   column_name    │ column_type │  null   │   key   │ default │  extra  │
+│     varchar      │   varchar   │ varchar │ varchar │ varchar │ varchar │
+├──────────────────┼─────────────┼─────────┼─────────┼─────────┼─────────┤
+│ language_keyword │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+│ name             │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+│ license          │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+│ language         │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+│ url              │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+│ creator_name     │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+│ creator_url      │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+│ description      │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+└──────────────────┴─────────────┴─────────┴─────────┴─────────┴─────────┘
+D SELECT * FROM hf_languages LIMIT 10;
+┌──────────────────┬──────────────────────┬──────────────────────┬───┬──────────────────────┬──────────────────────┐
+│ language_keyword │         name         │       license        │ … │     creator_url      │     description      │
+│     varchar      │       varchar        │       varchar        │   │       varchar        │       varchar        │
+├──────────────────┼──────────────────────┼──────────────────────┼───┼──────────────────────┼──────────────────────┤
+│ english          │ tinymistral-hypnos…  │ https://choosealic…  │ … │ https://huggingfac…  │ Dataset created fo…  │
+│ russian          │ dataset-qa-ip-law    │ https://choosealic…  │ … │ https://huggingfac…  │ Датасет для оценки…  │
+│ vietnamese       │ alpaca_multiturns_…  │ https://choosealic…  │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ vietnamese       │ lima_dialogue_vi     │ https://choosealic…  │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ vietnamese       │ itorca_dpo_vi        │ https://choosealic…  │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ english          │ itorca_dpo_en        │ https://choosealic…  │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ english          │ slorca_dialogue_en   │ https://choosealic…  │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ vietnamese       │ oasst_dialogue_vi    │ https://choosealic…  │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ vietnamese       │ oasst_dialogue_base  │ https://choosealic…  │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ english          │ oasst_dialogue_base  │ https://choosealic…  │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+├──────────────────┴──────────────────────┴──────────────────────┴───┴──────────────────────┴──────────────────────┤
+│ 10 rows                                                                                      8 columns (5 shown) │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+D SELECT count(*) FROM hf_languages;
+┌──────────────┐
+│ count_star() │
+│    int64     │
+├──────────────┤
+│    25511     │
+└──────────────┘
+```
+
+Now write it to a file:
+
+```sql
+COPY hf_languages TO './data/json/processed/2025-05-12/languages/hf_all_languages.json';
+```
+
+A way to write the individual language files is to use `hf_languages`, e.g.,:
+
+```sql
+COPY (
+  SELECT 
+    name,
+    license,
+    language,
+    url,
+    creator_name,
+    creator_url,
+    description
+  FROM hf_languages
+  WHERE language_keyword = 'arabic'
+) TO './data/json/processed/2025-05-12/languages/hf_arabic.json';
+```
+
+Note that I omitted the `language_keyword` field.
+
+Let's write several language datasets, using the following shell command (see also `src/scripts/write-language-files.sh`. We'll put them in the directory, `./data/json/processed/YYYY-MM-DD/languages`, where the `YYYY-MM-DD` is treated as a "publication" date.
 
 > **NOTE:** Make sure to exit out of `duckdb` first, just in case it might corrupt `croissant.duckdb` to access it from separate instances of `duckdb`.
 
 ```shell
+timestamp=$(date "+%Y-%m-%d")
+base=./data/json/processed/$timestamp/languages
+mkdir -p $base
 langs=(
   "arabic"
   "catalan"
@@ -908,48 +1031,79 @@ langs=(
 )
 for lang in ${langs[@]}
 do
-  echo "language: $lang"
+  output=$base/hf_$lang.json
   cat <<EOF | duckdb croissant.duckdb
   COPY (
-    SELECT name, description, license, url, creator_name, creator_url, keywords
-    FROM hf_metadata
-    WHERE array_contains(keywords, '$lang')
-  ) TO 'hf_$lang.json';
+    SELECT 
+      name,
+      license,
+      language,
+      url,
+      creator_name,
+      creator_url,
+      description
+    FROM hf_languages
+    WHERE language_keyword = '$lang'
+  ) TO '$output';
 EOF
 done
-for lang in ${langs[@]}
-do
-  printf "%15s: %s\n" "$lang" "$(wc hf_$lang.json)"
-done
+ls -l $base
 ```
 
 ```
-         arabic:       15    1047   17208 hf_arabic.json
-        catalan:        2     111    1767 hf_catalan.json
-        chinese:       17     766   18735 hf_chinese.json
-        english:       39    2449   41502 hf_english.json
-         french:        6     406    6049 hf_french.json
-         german:       17    1155   20044 hf_german.json
-          hindi:        9     543    8630 hf_hindi.json
-      hungarian:        1      74    1137 hf_hungarian.json
-        italian:        7     273    5265 hf_italian.json
-       japanese:        8     446    8928 hf_japanese.json
-         korean:       20    1234   22405 hf_korean.json
-     portuguese:       16    1078   18118 hf_portuguese.json
-        russian:       12     542   10396 hf_russian.json
-        spanish:       35    2338   36993 hf_spanish.json
-        turkish:       25    1219   23691 hf_turkish.json
-     vietnamese:       10     548   10122 hf_vietnamese.json
+total 124528
+-rw-r--r--   1 ...  20M May 12 12:13 hf_all_languages.js
+-rw-r--r--   1 ...  21M May 12 12:30 hf_all_languages.json
+-rw-r--r--@  1 ... 565K May 12 12:40 hf_arabic.json
+-rw-r--r--@  1 ... 204K May 12 12:40 hf_catalan.json
+-rw-r--r--@  1 ... 1.3M May 12 12:40 hf_chinese.json
+-rw-r--r--@  1 ...  11M May 12 12:40 hf_english.json
+-rw-r--r--@  1 ... 915K May 12 12:40 hf_french.json
+-rw-r--r--@  1 ... 710K May 12 12:40 hf_german.json
+-rw-r--r--@  1 ... 377K May 12 12:40 hf_hindi.json
+-rw-r--r--@  1 ... 193K May 12 12:40 hf_hungarian.json
+-rw-r--r--@  1 ... 456K May 12 12:40 hf_italian.json
+-rw-r--r--@  1 ... 798K May 12 12:40 hf_japanese.json
+-rw-r--r--@  1 ... 552K May 12 12:40 hf_korean.json
+-rw-r--r--@  1 ... 471K May 12 12:40 hf_portuguese.json
+-rw-r--r--@  1 ... 740K May 12 12:40 hf_russian.json
+-rw-r--r--@  1 ... 806K May 12 12:40 hf_spanish.json
+-rw-r--r--@  1 ... 395K May 12 12:40 hf_turkish.json
+-rw-r--r--@  1 ... 327K May 12 12:40 hf_vietnamese.json
 ```
 
 For example,
 
 ```shell
-$ head -1 hf_vietnamese.json
-{"name":"vietnamese-medical-qa","description":"\\n\\t\\n\\t\\t\\n\\t\\n\\t\\n\\t\\tDataset Summary\\n\\t\\n\\nVietnamese-Medical-QA is a question-answering dataset in the healthcare domain, collected from edoctor and vinmec.\\n\\nSize: After merging data from these two sources, obtained 9335 QA pairs.\\nLanguage: Vietnamese\\n\\n\\n\\t\\n\\t\\t\\n\\t\\n\\t\\n\\t\\tLoad with Datasets\\n\\t\\n\\nfrom datasets import load_dataset\\n\\n# Load dataset from huggingface\\nqa_dataset = load_dataset(\\\"hungnm/vietnamese-medical-qa\\\")\\n\\n# print a QA example\\nprint(qa_dataset['train'][0])\\n\\n\\n{\\n  \\\"question\\\": \\\"Chào bác sĩ,\\\\nRăng cháu… See the full description on the dataset page: https://huggingface.co/datasets/hungnm/vietnamese-medical-qa.","license":"https://choosealicense.com/licenses/apache-2.0/","url":"https://huggingface.co/datasets/hungnm/vietnamese-medical-qa","creator_name":"Huang","creator_url":"https://huggingface.co/hungnm","keywords":["question-answering","Vietnamese","apache-2.0","1K - 10K","parquet","Text","Datasets","pandas","Croissant","Polars","🇺🇸 Region: US","question answering","medical","vietnamese"]}
+$ head -1 data/json/processed/2025-05-12/languages/hf_vietnamese.json
+{"name":"alpaca_multiturns_dialogue_vi","description":"\\n\\t\\n\\t\\t\\n\\t\\n\\t\\n\\t\\tDescription\\n\\t\\n\\nThe dataset is from 5CD-AI/Vietnamese-Multi-turn-Chat-Alpaca, formatted as dialogues for speed and ease of use. Many thanks to 5CD-AI for releasing it.\\nImportantly, this format is easy to use via the default chat template of transformers, meaning you can use huggingface/alignment-handbook immediately, unsloth.\\n\\n\\t\\n\\t\\t\\n\\t\\n\\t\\n\\t\\tStructure\\n\\t\\n\\nView online through viewer.\\n\\n\\t\\n\\t\\t\\n\\t\\n\\t\\n\\t\\tNote\\n\\t\\n\\nWe advise you to reconsider before use, thank you. If you find it useful, please like… See the full description on the dataset page: https://huggingface.co/datasets/lamhieu/alpaca_multiturns_dialogue_vi.","license":"https://choosealicense.com/licenses/mit/","language":"en","url":"https://huggingface.co/datasets/lamhieu/alpaca_multiturns_dialogue_vi","creator_name":"Hieu Lam","creator_url":"https://huggingface.co/lamhieu"}
 ```
 
 We might still want to replace the `\\` with `\`...
+
+#### Making Valid JS Files
+
+We need JavaScript files to import into the website, for example:
+
+```shell
+in=data/json/processed/2025-05-12/languages/hf_all_languages.json
+out=data/json/processed/2025-05-12/languages/hf_all_languages.js
+echo "var by_languages = [" > $out
+first_line=true
+cat $in | while read line
+do
+  if $first_line
+  then
+    first_line=false
+  else
+    printf ",\n" >> $out
+  fi
+  printf "%s" "$line" >> $out
+done
+echo "\n];" >> $out
+```
+
+The script `src/scripts/make-js-files.sh` creates these `*.js` files for all the `hf_*.json` files in `data/json/processed/YYYY-MM-DD/languages/` for today's date.
 
 ### ArXiv References?
 

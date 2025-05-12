@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
+. src/scripts/common.sh
 
-timestamp=$(date "+%Y-%m-%d_%H-%M-%S")
-base=./data/json/$timestamp
+base=./data/json/$(now)
 raw=./data/raw
 out_spark=$base/spark
 
@@ -15,18 +15,18 @@ echo "Input data:  $raw"
 
 # Must disable the VectorizedReader or else you might run out of memory!
 echo "Running spark:"
-cat <<EOF
-spark-submit \
-	-c spark.sql.parquet.enableVectorizedReader=false \
-	src/scripts/parquet-to-json.py \
-	--input $raw \
+cat <<EOF 
+spark-submit \\
+	-c spark.sql.parquet.enableVectorizedReader=false \\
+	src/scripts/parquet-to-json.py \\
+	--input $raw \\
 	--output $out_spark
 EOF
-spark-submit \
+[[ -z $NOOP ]] && spark-submit \
 	-c spark.sql.parquet.enableVectorizedReader=false \
 	src/scripts/parquet-to-json.py \
 	--input $raw \
 	--output $out_spark
 
 echo "Spark output data written to: $out_spark"
-ls -al $out_spark
+$NOOP ls -al $out_spark

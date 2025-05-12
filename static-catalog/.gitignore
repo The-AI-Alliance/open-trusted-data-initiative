@@ -1,7 +1,7 @@
 croissant.duckdb
 dequoted-*.json
 filtered-*.json
-ISO-639-1-language.json
-data/
+data/raw/
+data/json/
 metastore_db/
 src/scripts/temp
