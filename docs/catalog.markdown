@@ -24,19 +24,44 @@ has_children: false
 
 ### Languages
 
+<link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet">
+<script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
+<!-- <script type="text/javascript">
+import {TabulatorFull as Tabulator} from 'tabulator-tables';
+</script>
+ -->
 {% for language in site.language %}
+
 <a name="{{language.tag}}"></a>
-<div class="table-wrapper">
-  <table>
-    <tbody>
-      <tr>
-        <td>
-          <a href="{{site.baseurl}}/catalog/#{{language.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">{{language.name}}</a>
-          <p>{{language.content | htmlify }}</p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<a href="{{site.baseurl}}/catalog/#{{language.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">{{language.name}}</a>
+<div id="{{language.tag}}-table" class="table-wrapper">
+  <script type="text/javascript" src="{{site.baseurl}}/files/data/catalog/languages/hf_{{language.name}}.js"></script>
+  <script type="text/javascript">
+    var {{language.tag}}_table = new Tabulator("#{{language.tag}}-table", {
+      height:205, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
+      data:data_for_{{language.tag}}, //assign data to table
+      layout:"fitColumns", //fit columns to width of table (optional)
+      columns:[ //Define Table Columns
+        {title:"Name", field:"name"},
+        {title:"License", field:"license"},
+        {title:"url", field:"url"},
+        {title:"Creator", field:"creator_name"},
+        {title:"Creator URL", field:"creator_url"},
+      ],
+      // Doesn't appear to work TODO.
+      // tooltips: function (cell) {
+      //     let data = cell.getRow();
+      //     return "Value of " + data.getRow().getData().name;
+      //   }
+    });
+    {{language.tag}}_table.on("rowClick", function(e, row){ 
+      const data = row.getData();
+      const desc = data.description.replace(/\\+[nr]/g, "\n").replace(/\\+t/g, "\t");
+      const message = "Dataset Name: " + data.name + ", description = " + desc;
+      console.log(message);
+      alert(message);
+    });
+  </script>
 </div>
 {% endfor %}
 
