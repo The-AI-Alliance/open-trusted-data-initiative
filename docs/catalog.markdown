@@ -24,6 +24,7 @@ has_children: false
   </ol>
 </blockquote>
 
+<a name="datasets-by-categories-tags"></a>
 <h2>Datasets by Categories ("Tags")</h2>
 
 <a name="about-these-datasets"></a>
@@ -35,11 +36,13 @@ has_children: false
   <li>Of the 350,000 or so datasets, only those queryable using <a href="https://mlcommons.org/working-groups/data/croissant/" target="croissant">Croissant</a> metadata are considered, about 260,000.</li>
   <li>Of those, we discard datasets without a specified license, leaving just 60,000!</li>
   <li>The licenses are specified as URLs at <a href="https://choosealicense.com/licenses/" target="cal">https://choosealicense.com/licenses/</a>. Unfortunately, many undefined URLs are specified, so we discard those datasets leaving 45,000.</li>
+  <li>The groupings are based on the presence of relevant keywords. Note that <em>all</em> the datasets list their language as <code>en</code>, English, but many have keywords for other languages. That's the basis for the <a href="#languages">Languages</a> tables.</li>
   <li><strong>Important:</strong> At this time, we are not yet validating datasets to ensure their metadata accurately reflect the data records themselves.</li>
 </ol>
 
 <p>Some of the bad license links clearly intend to reference known licenses. We'll revisit those cases.</p>
 
+<a name="languages"></a>
 <h3>Languages</h3>
 
 <link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet"/>
@@ -91,6 +94,7 @@ has_children: false
 </div>
 {% endfor %}
 
+<a name="domains"></a>
 <h3>Domains</h3>
 
 {% for domain in site.domain %}
@@ -109,6 +113,7 @@ has_children: false
 </div>
 {% endfor %}
 
+<a name="modalities"></a>
 <h3>Modalities</h3>
 
 {% for modality in site.modality %}
@@ -127,6 +132,7 @@ has_children: false
 </div>
 {% endfor %}
 
+<a name="dataset-sources"></a>
 <h2>Dataset Sources</h2>
 
 <p>The following organizations, shown in alphabetical order, maintain open data sets that are part of our catalog.</p>
@@ -135,30 +141,35 @@ has_children: false
   <p><strong>NOTES:</strong> See also the AI Alliance's <a href="https://huggingface.co/aialliance" target="aia-hf">Hugging Face organization</a> and the <a href="https://huggingface.co/collections/aialliance/open-trusted-data-catalog-66d21b3cb66342762fb6108e" target="aia-hf-otdi">Open Trusted Data Initiative catalog</a> there that includes the datasets listed here.</p>
 </blockquote>
 
+<a name="brightquery"></a>
 <h3>BrightQuery</h3>
 
 <p><a href="https://brightquery.ai/" target="bq">BrightQuery</a> ("BQ") provides proprietary financial, legal, and employment information on private and public companies derived from regulatory filings and disclosures. BQ proprietary data is used in capital markets for investment decisions, banking and insurance for KYC & credit checks, and enterprises for master data management, sales, and marketing purposes. In addition, BQ provides public information consisting of clean and standardized statistical data from all the major government agencies and NGOs around the world, and is doing so in partnership with the source agencies. BQ public datasets will be published in OTDI spanning all topics: economics, demographics, healthcare, crime, climate, education, sustainability, etc. Much of the data will be tabular (i.e., structured) time series data, as well as unstructured text.</p>
 
 <p><em>More specific information is coming soon.</em></p>
 
+<a name="common-crawl-foundation"></a>
 <h3>Common Crawl Foundation</h3>
 
 <p><a href="https://commoncrawl.org/" target="ccf">Common Crawl Foundation</a> is working on tagged and filtered crawl subsets for English and other languages.</p>
 
 <p><em>More specific information is coming soon.</em></p>
 
-<h3>EPFL </h3>
+<a name="epfl"></a>
+<h3>EPFL</h3>
 
 <p>The <a href="https://huggingface.co/epfl-llm" target="epfl-llm">EPFL LLM team</a> has curated a dataset to train their <a href="https://github.com/epfLLM/meditron" target="meditron">Meditron</a> models. An open-access subset of the medical guidelines data is published on <a href="https://huggingface.co/datasets/epfl-llm/guidelines" target="guidelines">Hugging Face</a>.</p>
 
 <p>See the Meditron GitHub repo <a href="https://github.com/epfLLM/meditron?tab=readme-ov-file#medical-training-data" target="meditron-readme">README</a> for more details about the whole dataset used to train Meditron.</p>
 
+<a name="meta"></a>
 <h3>Meta</h3>
 
 [Data for Good at Meta](https://dataforgood.facebook.com/dfg/){:target="dfg"} empowers partners with privacy-preserving data that strengthens communities and advances social issues. Data for Good is helping organizations respond to crises around the world and supporting research that advances economic opportunity.
 
 There are 220 datasets available. See [Meta's page](https://data.humdata.org/organization/meta){:target="humdata"} at the [Humanitarian Data Exchange](https://data.humdata.org/){:target="humdata"} for the full list of datasets.
 
+<a name="pleias"></a>
 <h3>PleIAs</h3>
 
 Domain-specific, clean datasets. 
@@ -175,6 +186,7 @@ Domain-specific, clean datasets.
 | **Bad Data Toolbox** | PleIAs collection of models for the data processing of challenging document and data sources | [Hugging Face](https://huggingface.co/collections/PleIAs/bad-data-toolbox-66981c2d0df662459252844e){:target="bad-data-toolbox"} | 2024-11-04 |
 | **Open Culture** | A multilingual dataset of public domain books and newspapers | [Hugging Face](https://huggingface.co/collections/PleIAs/openculture-65d46e3ea3980fdcd66a5613){:target="open-culture"} | 2024-11-04 |
 
+<a name="servicenow"></a>
 <h3>ServiceNow</h3>
 
 Multimodal, code, and other datasets. 
@@ -191,6 +203,7 @@ Multimodal, code, and other datasets.
 | **The Stack Dedup** | Near deduplicated version of The Stack (recommended for training). | [Hugging Face](https://huggingface.co/datasets/bigcode/the-stack-dedup){:target="the-stack-dedup"} | 2024-12-11 |
 | **StarCoder Data** | Pretraining dataset of [StarCoder](https://huggingface.co/blog/starcoder){:target="starcoder"}. | [Hugging Face](https://huggingface.co/datasets/bigcode/starcoderdata){:target="starcoderdata"} | 2024-12-11 |
 
+<a name="semikong"></a>
 <h3>SemiKong</h3>
 
 The training dataset for the [SemiKong](https://www.semikong.ai/){:target="semikong"} collaboration that trained an open model for the semiconductor industry.
@@ -199,22 +212,26 @@ The training dataset for the [SemiKong](https://www.semikong.ai/){:target="semik
 | :---------------- | :-------------- | :------- | :--------- |
 | **SemiKong** | An open model training dataset for semiconductor technology | [Hugging Face](https://huggingface.co/datasets/pentagoniac/SemiKong_Training_Datset){:target="semikong-dataset"} | 2024-09-01 |
 
+<a name="make-your-contributions"></a>
 <h2>Make Your Contributions!</h2>
 
 To expand this catalog, we [welcome contributions]({{site.baseurl}}/contributing).
 
 <!-- To expand this catalog, we not only [welcome contributions]({{site.baseurl}}/contributing), but we plan to seek out qualified datasets leveraging other sources of information about them, such as the [Data Provenance Initiative](https://www.dataprovenance.org/){:target="dp"}, [Hugging Face](https://huggingface.co/datasets){:target="hf-datasets"}, and others (TBD). -->
 
+<a name="other-ways-to-search-for-datasets"></a>
 <h2>Other Ways to Search For Datasets</h2>
 
 Until our catalog search is fully operational, there are several ways you can search for datasets that match your criteria.
 
+<a name="hugging-face-hub-search"></a>
 <h3>Hugging Face Hub Search</h3>
 
 You can do [full-text search](https://huggingface.co/search/full-text?type=dataset){:target="hf-search"} for datasets, models, and organization spaces in the [Hugging Face Hub](https://huggingface.co/){:target="hf-hub"}. Uncheck _models_ and _spaces_ on the left-hand side to limit your search to datasets. 
 
 For example, searching for _apache croissant_ finds datasets licensed with the Apache 2.0 license that support Croissant metadata. However, using _cdla_ (for Common Data License Agreement) instead of _apache_ also finds a dataset named _CDLA_.
 
+<a name="google-dataset-search"></a>
 <h3>Google Dataset Search</h3>
 
 [Google Dataset Search](https://datasetsearch.research.google.com/){:target="google-ds-search"} is a powerful search engine that finds datasets matching specific criteria across a range of repositories, including Hugging Face.
