@@ -1,5 +1,5 @@
 ---
-name: English
-tag: english
+name: Spanish
+tag: spanish
 parent_tag: language
 ---

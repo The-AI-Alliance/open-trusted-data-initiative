@@ -1,5 +1,5 @@
 ---
-name: English
-tag: english
+name: French
+tag: french
 parent_tag: language
 ---
