@@ -1,0 +1,30 @@
+name: Test hf dataset explorer images
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "code/dpk/hf_dataset_explorer/**"
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - "code/dpk/hf_dataset_explorer/**"
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11"]
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Test hf dataset explorer
+        working-directory: .code/dpk/hf_dataset_explorer
+        run:
+          make images
