@@ -29,9 +29,9 @@
 <div id="{{member.tag}}-table" class="table-wrapper">
   <script type="text/javascript" src="{{site.baseurl}}/files/data/catalog/{{ include.category }}/hf_{{member.tag}}.js"></script>
   <script type="text/javascript">
-    var {{member.tag}}_table = new Tabulator("#{{member.tag}}-table", {
+    var {{member.tag | replace: "-", "_" }}_table = new Tabulator("#{{member.tag}}-table", {
       height:205, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
-      data:data_for_{{member.tag}}, //assign data to table
+      data:data_for_{{member.tag | replace: "-", "_" }}, //assign data to table
       layout:"fitColumns", //fit columns to width of table (optional)
       columns:[ //Define Table Columns
         {title:"Name", field:"name"},
@@ -54,7 +54,7 @@
       //     return "Value of " + data.getRow().getData().name;
       //   }
     });
-    {{member.tag}}_table.on("rowClick", function(e, row){ 
+    {{member.tag | replace: "-", "_" }}_table.on("rowClick", function(e, row){ 
       const data = row.getData();
       const desc = data.description.replace(/\\+[nr]/g, "\n").replace(/\\+t/g, "\t");
       const descDiv = document.getElementById("{{member.tag}}-selected-description");

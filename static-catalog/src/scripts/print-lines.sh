@@ -22,6 +22,7 @@ let start_line=0
 let num_lines=-1
 num_lines_exp=
 filenames=()
+print_exp="{print NR \": \" \$0}"
 while [[ $# -gt 0 ]]
 do
 	case $1 in
@@ -38,9 +39,9 @@ do
 			n=$(echo $1 | cut -d : -f 2)
 			if [[ $m = $1 ]]
 			then
-				pos_substr="{print substr(\$0, $m)}"
+				print_exp="{print NR \": \" substr(\$0, $m)}"
 			else
-				pos_substr="{print substr(\$0, $m, $n)}"
+				print_exp="{print NR \": \" substr(\$0, $m, $n)}"
 			fi
 			;;
 		-s|--start*)
@@ -62,4 +63,4 @@ do
 	shift
 done
 
-$NOOP awk -v start=$start_line -v num_lines=$num_lines "NR>=start $num_lines_exp $pos_substr" "${filenames[@]}"
+$NOOP awk -v start=$start_line -v num_lines=$num_lines "NR>=start $num_lines_exp $print_exp" "${filenames[@]}"

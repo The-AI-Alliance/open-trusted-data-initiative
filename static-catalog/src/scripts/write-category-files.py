@@ -4,12 +4,12 @@ import argparse, os, pathlib, shutil, subprocess, sys
 
 today = datetime.today().strftime("%Y-%m-%d")
 
-# The groups are very high-level, with the categories in them somewhat
-# arbitrary, but based on tags known to be in the data set. We use arrays
-# for the categories to join together related concepts, which will translate
+# The categories are very high-level, with the "topics" in them somewhat
+# arbitrary, but based on keywords known to be in the data set. We use arrays
+# for each topic to join together related keywords, which will translate
 # in WHERE keyword = 'a' OR keyword = 'b' ... query clauses.
 
-groups = {
+categories = {
   "language": [
     ["arabic"],
     ["catalan"],
@@ -148,8 +148,12 @@ special_names = {
   'webdataset': 'Web Dataset',
 }
 
+# Default output directories:
+def_root_dir_md   = f'./markdown/processed/{today}'
+def_root_dir_json = f'./data/json/processed/{today}'
+
 parser = argparse.ArgumentParser(
-                    prog='write-group-files',
+                    prog='write-category-files',
                     description='Writes dataset listing files by keywords, JSON and markdown',
                     epilog='')
 parser.add_argument('--no-json',
@@ -158,6 +162,12 @@ parser.add_argument('--no-json',
 parser.add_argument('--no-markdown', '--no-md',
                     help="Skip writing the markdown files.",
                     action='store_true') 
+parser.add_argument('--json-dir',
+                    help=f"Write the JSON and JavaScript files to this directory. (default: {def_root_dir_json})",
+                    default=def_root_dir_json)
+parser.add_argument('--markdown-dir', '--md-dir',
+                    help=f"Write the markdown files to this directory. (default: {def_root_dir_md})",
+                    default=def_root_dir_md)
 parser.add_argument('-v', '--verbose',
                     help="Show verbose output",
                     action='store_true') 
@@ -179,21 +189,23 @@ def make_directories(path: str, deletefirst=False):
       print(f"Error creating directory: {e}")
       sys.exit(1)
 
-for group in groups.keys():
+for category in categories.keys():
   if args.verbose:
-    print(f"Working on group: {group}")
+    print(f"Working on category: {category}")
   
-  base_dir_md   = f"./markdown/processed/{today}/_{group}" # will be moved to "docs"
-  base_dir_json = f"./data/json/processed/{today}/{group}"
+  base_dir_md   = f"{args.markdown_dir}/_{category}" # will be moved to "docs"
+  base_dir_json = f"{args.json_dir}/{category}"
   if args.no_markdown == False:
+    print(f"Writing markdown files to: {base_dir_md}")
     make_directories(base_dir_md, deletefirst=True)
   if args.no_json == False:
+    print(f"Writing JSON and JavaScript files to: {base_dir_json}")
     make_directories(base_dir_json, deletefirst=True)
   
-  for category_tags in groups[group]:
+  for keywords in categories[category]:
     if args.verbose:
-      print(f"{group} -> {category_tags}")
-    category_main_tag = category_tags[0]
+      print(f"{category} -> {keywords}")
+    category_main_tag = keywords[0]
     # Use a "special name", if defined or else just replace '-' with ' '
     # and capitalize the first letters of each word.
     category_name = special_names.get(
@@ -201,20 +213,21 @@ for group in groups.keys():
 
     if args.no_markdown == False:
       md_output_file = f"{base_dir_md}/{category_main_tag}.markdown"    
-      # WARNING: do not put the --- on a new line after the """. It adds a blank line at
-      # the top of the markdown file and Jekyll simply ignores the whole file!
+      # WARNING: do not put the --- on a new line after the """! It adds a blank line at
+      # the top of the markdown file and Jekyll simply ignores the whole file and doesn't
+      # render it!!
       md_content = f"""---
 name: {category_name}
 tag: {category_main_tag}
-all-tags: {' '.join(category_tags)}
-parent_tag: {group}
+all-tags: {' '.join(keywords)}
+parent_tag: {category}
 ---
 """
       with open(md_output_file, 'w') as md_out:
         print(md_content, file=md_out)
 
     if args.no_json == False:
-      query1      = "' OR keyword = '".join(category_tags)
+      query1      = "' OR keyword = '".join(keywords)
       cat_query   = f"keyword = '{query1}'"
       json_output = f"{base_dir_json}/hf_{category_main_tag}.json"
       js_output   = f"{base_dir_json}/hf_{category_main_tag}.js"
@@ -232,13 +245,12 @@ COPY (
     description
   FROM hf_expanded_metadata
   WHERE {cat_query}
-) TO '{json_output}';
+) TO '{json_output}' (FORMAT json, ARRAY true);
 """
-
       try:
-        command = 'zsh'
         # Open a new process with a pipe for stdin.
-        process = subprocess.Popen(command, stdin=subprocess.PIPE)
+        command = 'zsh'
+        # process = subprocess.Popen(command, stdin=subprocess.PIPE)
         encoded_string = query.encode('utf-8')
         process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
           shell=True, executable="/bin/zsh")
@@ -255,17 +267,15 @@ COPY (
       except Exception as e:
         print(f"An error occurred running the query to create file {json_output}: {e}")
         sys.exit(1)
-
+      
       # Write the corresponding JS file required.
       if args.verbose:
-        print(f"Writing {js_output} for {group} category {category_main_tag}.")
+        print(f"Writing {js_output} for {category} category {category_main_tag}.")
 
       with open(json_output, 'r') as json:
         with open(js_output, 'w') as js:
-          print(f"var data_for_{category_main_tag} = [", file=js)
-          comma=''
+          print(f"var data_for_{category_main_tag.replace('-', '_')} = ", file=js)
           for line in json:
-            print(f"{comma}\n  {line.rstrip()}", end='', file=js)
-            comma=','
-          print("\n];", file=js)
+            print(line.rstrip(), file=js)
+          print(";", file=js)
 

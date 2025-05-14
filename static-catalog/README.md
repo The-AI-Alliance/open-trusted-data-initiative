@@ -582,7 +582,7 @@ COPY (SELECT
   hfm.license       AS license_url,
 FROM hf_metadata1 hfm
 LEFT JOIN hf_licenses  lic
-ON hfm.license = lic.url) TO 'toss.json';
+ON hfm.license = lic.url) TO 'toss.json' (FORMAT json, ARRAY true);
 
 SELECT 
   lic.id            AS license_id,
@@ -1109,7 +1109,7 @@ D SELECT count(*) FROM hf_languages;
 Now write it to a file:
 
 ```sql
-COPY hf_languages TO './data/json/processed/2025-05-12/languages/hf_all_languages.json';
+COPY hf_languages TO './data/json/processed/2025-05-12/languages/hf_all_languages.json'  (FORMAT json, ARRAY true);
 ```
 
 A way to write the individual language files is to use `hf_languages`, e.g.,:
@@ -1208,9 +1208,13 @@ done
 echo "\n];" >> $out
 ```
 
-An obsolete script `src/scripts/make-js-files.sh` was used to create these `*.js` files for all the `hf_*.json` files in `data/json/processed/YYYY-MM-DD/languages/` for today's date. Now it is done with `src/scripts/write-group-files.py`, which creates the JSON data files, the `_<category>/keyword.markdown` files, and also generates the JavaScript files from the JSON files.
+An obsolete script `src/scripts/make-js-files.sh` was used to create these `*.js` files for all the `hf_*.json` files in `data/json/processed/YYYY-MM-DD/languages/` for today's date. Now it is done with `src/scripts/write-category-files.py`, which does the following:
 
-The JavaScript files are copied to `docs` with this set of commands:
+1. Creates the JSON data files for _categories_ `modality`, `domain`, as well as `language`.
+1. Creates the corresponding `_<category>/<keyword>.markdown` files (which are simple _boilerplate_).
+1. Generates the JavaScript files from the JSON files.
+
+The JavaScript files are copied to `docs` with this set of commands similar to the following:
 
 ```shell
 # run from the static-catalog directory!!
@@ -1232,6 +1236,8 @@ do
   cp $d/*.markdown ../docs/_$group
 done
 ```
+
+See the updated script, `src/scripts/copy-files-to-docs.sh` that does this.
 
 ### ArXiv References?
 
@@ -1321,7 +1327,7 @@ copy (SELECT keyword, count FROM hf_keywords WHERE count > 100 ORDER BY count DE
 ```
 
 LEt's 
-Selecting some of those keywords, here is a query similar to what we did for languages above to extract separate datasets for each keyword:
+Selecting some of those keywords, here is a query similar to what we did for languages above to extract separate datasets for each keyword. See `src/scripts/write-category-files.py`.
 
 ```shell
 timestamp=$(date "+%Y-%m-%d")
@@ -1351,7 +1357,7 @@ do
 #         description
 #       FROM hf_languages
 #       WHERE language_keyword = '$lang'
-#     ) TO '$output';
+#     ) TO '$output' (FORMAT json, ARRAY true);
 # EOF
   done
 done
