@@ -1,12 +1,7 @@
 ---
 name: Audio
 tag: audio
+tags: audio
 parent_tag: modality
 ---
-
-The following datasets contain predominantly Audio modality text.
-
-| Name | URL | Comments |
-| :--- | :-- | :------- |
-| TODO | |
 

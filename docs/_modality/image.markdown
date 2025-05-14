@@ -1,12 +1,7 @@
 ---
 name: Image
 tag: image
+tags: image, image-segmentation, image-to-image, object-detection
 parent_tag: modality
 ---
-
-The following datasets contain predominantly Image modality text.
-
-| Name | URL | Comments |
-| :--- | :-- | :------- |
-| TODO | |
 

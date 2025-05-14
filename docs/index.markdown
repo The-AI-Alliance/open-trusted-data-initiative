@@ -10,14 +10,20 @@ language_tags: English
 
 ## Take Me to the Data!
 
-### Languages
+{% for collection in site.collections %}
+{% unless collection.label == "posts" %}  
+
+### {{ collection.label | capitalize }}
 
 <div class="table-wrapper">
-  {% for language in site.language %}
-  <a href="{{site.baseurl}}/catalog/#{{language.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{language.name}}</a>
-  {% endfor %}
+{% for member in site[collection.label] %}
+  <a href="{{site.baseurl}}/catalog/#{{collection.label}}-{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+{% endfor %}
 </div>
+{% endunless %}
+{% endfor %}
 
+<!-- 
 ### Domains
 
 <div class="table-wrapper">
@@ -34,6 +40,7 @@ language_tags: English
   {% endfor %}
 </div>
 
+ -->
 
 ## Help Us Build the Future of Trustworthy Data for AI
 

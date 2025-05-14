@@ -5,135 +5,162 @@ nav_order: 20
 has_children: false
 ---
 
-<h1>The Dataset Catalog</h1>
+<link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet"/>
+<script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
+<script type="text/javascript">
+  function toUpper(str) {
+    return str
+      .toLowerCase()
+      .split(' ')
+      .map(function(word) {
+        return word[0].toUpperCase() + word.substr(1);
+      })
+      .join(' ');
+ }
+</script>
 
-<details open markdown="block">
-  <summary>
+<h1 id="the-dataset-catalog">The Dataset Catalog</h1>
+
+<details open="">
+  <summary class="text-delta">
     Table of contents
   </summary>
-  {: .text-delta }
-1. TOC
-{:toc}
+  <ol id="markdown-toc">
+    <li><a href="#datasets-by-categories-tags" id="markdown-toc-datasets-by-categories">Dataset by Categories</a>
+      <ol>
+        <li><a href="#about-these-datasets" id="markdown-toc-about-these-datasets">About These Datasets</a></li>
+        {% for group in site.collections %}
+        <li>Category: <a href="#{{group.label}}" id="markdown-toc-{{group.label}}">{{group.label | capitalize }}</a></li>
+        {% endfor %}
+      </ol>
+    </li>
+    <li><a href="#dataset-sources" id="markdown-toc-dataset-sources">Dataset Sources</a>
+      <ol>
+        <li><a href="#brightquery" id="markdown-toc-brightquery">BrightQuery</a></li>
+        <li><a href="#common-crawl-foundation" id="markdown-toc-common-crawl-foundation">Common Crawl Foundation</a></li>
+        <li><a href="#epfl" id="markdown-toc-epfl">EPFL</a></li>
+        <li><a href="#meta" id="markdown-toc-meta">Meta</a></li>
+        <li><a href="#pleias" id="markdown-toc-pleias">PleIAs</a></li>
+        <li><a href="#servicenow" id="markdown-toc-servicenow">ServiceNow</a></li>
+        <li><a href="#semikong" id="markdown-toc-semikong">SemiKong</a></li>
+      </ol>
+    </li>
+    <li><a href="#make-your-contributions" id="markdown-toc-make-your-contributions">Make You Contributions!</a></li>
+    <li><a href="#other-ways-to-search-for-datasets" id="markdown-toc-other-ways-to-search-for-datasets">Other Ways to Search For Datasets</a>
+      <ol>
+        <li><a href="#hugging-face-hub-search" id="markdown-toc-hugging-face-hub-search">Hugging Face Hub Search</a></li>
+        <li><a href="#google-dataset-search" id="markdown-toc-google-dataset-search">Google Dataset Search</a></li>
+      </ol>
+    </li>
+  </ol>
 </details>
 
-<blockquote>
+<!-- <blockquote>
   <p><strong>NOTES:</strong></p>
   <ol>
-    <li>We are working on an interactive browsing and search UI to make it easier to find the datasets for your particular needs. See <a href="#searching-for-datasets">below</a> for suggestions on how to search for open datasets.</li>
+    <li>We are working on a richer interactive browsing and search UI to make it easier to find the datasets for your particular needs.</li>
     <li>The current catalog is a provisional list of datasets. We are still implementing full validation of our <a href="/otdiv2/dataset-requirements">trustworthiness criteria</a>.</li>
   </ol>
 </blockquote>
+ -->
+<h2 id="datasets-by-categories-tags">
+  <a href="#datasets-by-categories-tags" class="anchor-heading" aria-labelledby="datasets-by-categories-tags"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a>Datasets by Categories ("Tags")
+</h2>
 
-<a name="datasets-by-categories-tags"></a>
-<h2>Datasets by Categories ("Tags")</h2>
+<h3 id="about-these-datasets">
+  <a href="#about-these-datasets" class="anchor-heading" aria-labelledby="about-these-datasets"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a>About These Datasets
+</h3>
 
-<a name="about-these-datasets"></a>
-<h3>About These Datasets</h3>
-
-<p>The tables below list Hugging Face-hosted datasets that meet the following criteria:</p>
+<p>The tables below list Hugging Face-hosted datasets that were gathered as follows:</p>
 
 <ol>
+  <li>The tables reflect the data as of May 5<sup>th</sup>, 2025.</li>
   <li>Of the 350,000 or so datasets, only those queryable using <a href="https://mlcommons.org/working-groups/data/croissant/" target="croissant">Croissant</a> metadata are considered, about 260,000.</li>
-  <li>Of those, we discard datasets without a specified license, leaving just 60,000!</li>
-  <li>The licenses are specified as URLs at <a href="https://choosealicense.com/licenses/" target="cal">https://choosealicense.com/licenses/</a>. Unfortunately, many undefined URLs are specified, so we discard those datasets leaving 45,000.</li>
-  <li>The groupings are based on the presence of relevant keywords. Note that <em>all</em> the datasets list their language as <code>en</code>, English, but many have keywords for other languages. That's the basis for the <a href="#languages">Languages</a> tables.</li>
+  <li>Of those, we discarded datasets without a specified license, leaving just 60,000!</li>
+  <li>The licenses are specified as URLs at <a href="https://choosealicense.com/licenses/" target="cal">https://choosealicense.com/licenses/</a>. Unfortunately, many undefined URLs are specified, so we discarded those datasets leaving 45,000.</li>
+  <li>The groupings are based on the presence of relevant keywords. Note that <em>all</em> the datasets list their language as <code>en</code>, English, but many have keywords for other languages. That's the basis for the <a href="#language">Languages</a> tables.</li>
   <li><strong>Important:</strong> At this time, we are not yet validating datasets to ensure their metadata accurately reflect the data records themselves.</li>
+  <li>Do you know of any datasets that should be shown, but aren't? <a href="mailto:data@thealliance.ai">Let us know!</a>. See also our </li>
 </ol>
 
 <p>Some of the bad license links clearly intend to reference known licenses. We'll revisit those cases.</p>
 
-<a name="languages"></a>
-<h3>Languages</h3>
+{% for collection in site.collections %}
+{% unless collection.label == "posts" %}  
+<h3 id="{{collection.label}}">
+  <a href="#{{collection.label}}" class="anchor-heading" aria-labelledby="{{collection.label}}"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a>{{ collection.label | capitalize }}
+</h3>
 
-<link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet"/>
-<script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
-
-{% for language in site.language %}
-<a name="{{language.tag}}"></a>
-<a href="{{site.baseurl}}/catalog/#{{language.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">{{language.name}}</a>
-<div id="language-{{language.tag}}-selected-description-div">
-  <blockquote id="language-{{language.tag}}-selected-description">
-    <p>Click a row to see the description. See <a href="#about-these-datasets">About These Datasets</a> for important details.</p>
-  </blockquote>
-</div>
-<div id="{{language.tag}}-table" class="table-wrapper">
-  <script type="text/javascript" src="{{site.baseurl}}/files/data/catalog/languages/hf_{{language.tag}}.js"></script>
-  <script type="text/javascript">
-    var {{language.tag}}_table = new Tabulator("#{{language.tag}}-table", {
-      height:205, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
-      data:data_for_{{language.tag}}, //assign data to table
-      layout:"fitColumns", //fit columns to width of table (optional)
-      columns:[ //Define Table Columns
-        {title:"Name", field:"name"},
-        {title:"License", field:"license"},
-        {title:"url", field:"url", formatter:"link", formatterParams:{
-          labelField:"url",
-          target:"_blank",
-        }},
-        {title:"Creator", field:"creator_name"},
-        {title:"Creator URL", field:"creator_url", formatter:"link", formatterParams:{
-          labelField:"url",
-          target:"_blank",
-        }},
-        // {title:"Description", field:"description", formatter:"textarea"},
-      ],
-      // Doesn't appear to work TODO.
-      // tooltips: function (cell) {
-      //     let data = cell.getRow();
-      //     return "Value of " + data.getRow().getData().name;
-      //   }
-    });
-    {{language.tag}}_table.on("rowClick", function(e, row){ 
-      const data = row.getData();
-      const desc = data.description.replace(/\\+[nr]/g, "\n").replace(/\\+t/g, "\t");
-      const descDiv = document.getElementById("language-{{language.tag}}-selected-description");
-      const message = `<h4>Name: ${data.name}</h4> <h4>URL: <a href="${data.url}" target="hf">${data.url}</a></h4>\n<h4>description</h4><p class="description">${desc}</p>`;
-      descDiv.innerHTML = message;
-    });
-  </script>
-</div>
-{% endfor %}
-
-<a name="domains"></a>
-<h3>Domains</h3>
-
-{% for domain in site.domain %}
-<a name="{{domain.tag}}"></a>
 <div class="table-wrapper">
-  <table>
-    <tbody>
-      <tr>
-        <td>
-          <a href="{{site.baseurl}}/catalog/#{{domain.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">{{domain.name}}</a>
-          <p>{{domain.content | htmlify }}</p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+{% for member in site[collection.label] %}
+  <a href="#{{collection.label}}-{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+{% endfor %}
+</div>
+
+{% for member in site[collection.label] %}
+<div id="{{collection.label}}-{{member.tag}}">
+  <a href="#{{collection.label}}-{{member.tag}}" class="anchor-heading" aria-labelledby="{{collection.label}}-{{member.tag}}"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a>
+  <a href="#{{collection.label}}-{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">{{member.name}}</a>
+  <div id="{{collection.label}}-{{member.tag}}-selected-description-div">
+    <blockquote id="{{collection.label}}-{{member.tag}}-selected-description">
+      <p>Click a row to see the description. See <a href="#about-these-datasets">About These Datasets</a> for important details.</p>
+    </blockquote>
+  </div>
+  <div id="{{collection.label}}-{{member.tag}}-table" class="table-wrapper">
+    <script type="text/javascript" src="{{site.baseurl}}/files/data/catalog/{{collection.label}}/hf_{{member.tag}}.js"></script>
+    <script type="text/javascript">
+      var {{collection.label}}_{{member.tag}}_table = new Tabulator("#{{collection.label}}-{{member.tag}}-table", {
+        height:205, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
+        data:data_for_{{collection.label}}_{{member.tag}}, //assign data to table
+        layout:"fitColumns", //fit columns to width of table (optional)
+        columns:[ //Define Table Columns
+          {title:"Name", field:"name"},
+          {title:"Keyword", field:"keyword"},
+          {title:"License", field:"license"},
+          {title:"url", field:"url", formatter:"link", formatterParams:{
+            labelField:"url",
+            target:"_blank",
+          }},
+          {title:"Creator", field:"creator_name"},
+          {title:"Creator URL", field:"creator_url", formatter:"link", formatterParams:{
+            labelField:"url",
+            target:"_blank",
+          }},
+          // {title:"Description", field:"description", formatter:"textarea"},
+        ],
+        // Doesn't appear to work TODO.
+        // tooltips: function (cell) {
+        //     let data = cell.getRow();
+        //     return "Value of " + data.getRow().getData().name;
+        //   }
+      });
+      {{collection.label}}_{{member.tag}}_table.on("rowClick", function(e, row){ 
+        const data = row.getData();
+        const desc = data.description.replace(/\\+[nr]/g, "\n").replace(/\\+t/g, "\t");
+        const descDiv = document.getElementById("{{collection.label}}-{{member.tag}}-selected-description");
+        const message = `<h4>Name: ${data.name}</h4><h4>URL:</h4> <a href="${data.url}" target="hf">${data.url}</a><h4>Description:</h4><p class="description">${desc}</p>`;
+        descDiv.innerHTML = message;
+      });
+    </script>
+  </div>
 </div>
 {% endfor %}
-
-<a name="modalities"></a>
-<h3>Modalities</h3>
-
-{% for modality in site.modality %}
-<a name="{{modality.tag}}"></a>
-<div class="table-wrapper">
-  <table>
-    <tbody>
-      <tr>
-        <td>
-          <a href="{{site.baseurl}}/catalog/#{{modality.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">{{modality.name}}</a>
-          <p>{{modality.content | htmlify }}</p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+{% endunless %}
 {% endfor %}
 
-<a name="dataset-sources"></a>
-<h2>Dataset Sources</h2>
+<!-- 
+<h3 id="domain">
+  <a href="#domain" class="anchor-heading" aria-labelledby="domain"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a>Domains
+</h3>
+
+<h3 id="modality">
+  <a href="#modality" class="anchor-heading" aria-labelledby="modality"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a>Modalities
+</h3>
+ -->
+
+<h2 id="dataset-sources">
+  <a href="#dataset-sources" class="anchor-heading" aria-labelledby="dataset-sources"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a>Dataset Sources
+</h2>
 
 <p>The following organizations, shown in alphabetical order, maintain open data sets that are part of our catalog.</p>
 
@@ -141,36 +168,41 @@ has_children: false
   <p><strong>NOTES:</strong> See also the AI Alliance's <a href="https://huggingface.co/aialliance" target="aia-hf">Hugging Face organization</a> and the <a href="https://huggingface.co/collections/aialliance/open-trusted-data-catalog-66d21b3cb66342762fb6108e" target="aia-hf-otdi">Open Trusted Data Initiative catalog</a> there that includes the datasets listed here.</p>
 </blockquote>
 
-<a name="brightquery"></a>
-<h3>BrightQuery</h3>
+<h3 id="brightquery">
+  <a href="#brightquery" class="anchor-heading" aria-labelledby="brightquery"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a>BrightQuery
+</h3>
 
 <p><a href="https://brightquery.ai/" target="bq">BrightQuery</a> ("BQ") provides proprietary financial, legal, and employment information on private and public companies derived from regulatory filings and disclosures. BQ proprietary data is used in capital markets for investment decisions, banking and insurance for KYC & credit checks, and enterprises for master data management, sales, and marketing purposes. In addition, BQ provides public information consisting of clean and standardized statistical data from all the major government agencies and NGOs around the world, and is doing so in partnership with the source agencies. BQ public datasets will be published in OTDI spanning all topics: economics, demographics, healthcare, crime, climate, education, sustainability, etc. Much of the data will be tabular (i.e., structured) time series data, as well as unstructured text.</p>
 
 <p><em>More specific information is coming soon.</em></p>
 
-<a name="common-crawl-foundation"></a>
-<h3>Common Crawl Foundation</h3>
+<h3 id="common-crawl-foundation">
+  <a href="#common-crawl-foundation" class="anchor-heading" aria-labelledby="common-crawl-foundation"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a>Common Crawl Foundation
+</h3>
 
 <p><a href="https://commoncrawl.org/" target="ccf">Common Crawl Foundation</a> is working on tagged and filtered crawl subsets for English and other languages.</p>
 
 <p><em>More specific information is coming soon.</em></p>
 
-<a name="epfl"></a>
-<h3>EPFL</h3>
+<h3 id="epfl">
+  <a href="#epfl" class="anchor-heading" aria-labelledby="epfl"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a>EPFL
+</h3>
 
 <p>The <a href="https://huggingface.co/epfl-llm" target="epfl-llm">EPFL LLM team</a> has curated a dataset to train their <a href="https://github.com/epfLLM/meditron" target="meditron">Meditron</a> models. An open-access subset of the medical guidelines data is published on <a href="https://huggingface.co/datasets/epfl-llm/guidelines" target="guidelines">Hugging Face</a>.</p>
 
 <p>See the Meditron GitHub repo <a href="https://github.com/epfLLM/meditron?tab=readme-ov-file#medical-training-data" target="meditron-readme">README</a> for more details about the whole dataset used to train Meditron.</p>
 
-<a name="meta"></a>
-<h3>Meta</h3>
+<h3 id="meta">
+  <a href="#meta" class="anchor-heading" aria-labelledby="meta"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a>Meta
+</h3>
 
 [Data for Good at Meta](https://dataforgood.facebook.com/dfg/){:target="dfg"} empowers partners with privacy-preserving data that strengthens communities and advances social issues. Data for Good is helping organizations respond to crises around the world and supporting research that advances economic opportunity.
 
 There are 220 datasets available. See [Meta's page](https://data.humdata.org/organization/meta){:target="humdata"} at the [Humanitarian Data Exchange](https://data.humdata.org/){:target="humdata"} for the full list of datasets.
 
-<a name="pleias"></a>
-<h3>PleIAs</h3>
+<h3 id="pleias">
+  <a href="#pleias" class="anchor-heading" aria-labelledby="pleias"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a>PleIAs
+</h3>
 
 Domain-specific, clean datasets. 
 
@@ -186,8 +218,9 @@ Domain-specific, clean datasets.
 | **Bad Data Toolbox** | PleIAs collection of models for the data processing of challenging document and data sources | [Hugging Face](https://huggingface.co/collections/PleIAs/bad-data-toolbox-66981c2d0df662459252844e){:target="bad-data-toolbox"} | 2024-11-04 |
 | **Open Culture** | A multilingual dataset of public domain books and newspapers | [Hugging Face](https://huggingface.co/collections/PleIAs/openculture-65d46e3ea3980fdcd66a5613){:target="open-culture"} | 2024-11-04 |
 
-<a name="servicenow"></a>
-<h3>ServiceNow</h3>
+<h3 id="servicenow">
+  <a href="#servicenow" class="anchor-heading" aria-labelledby="servicenow"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a>ServiceNow
+</h3>
 
 Multimodal, code, and other datasets. 
 
@@ -203,8 +236,9 @@ Multimodal, code, and other datasets.
 | **The Stack Dedup** | Near deduplicated version of The Stack (recommended for training). | [Hugging Face](https://huggingface.co/datasets/bigcode/the-stack-dedup){:target="the-stack-dedup"} | 2024-12-11 |
 | **StarCoder Data** | Pretraining dataset of [StarCoder](https://huggingface.co/blog/starcoder){:target="starcoder"}. | [Hugging Face](https://huggingface.co/datasets/bigcode/starcoderdata){:target="starcoderdata"} | 2024-12-11 |
 
-<a name="semikong"></a>
-<h3>SemiKong</h3>
+<h3 id="semikong">
+  <a href="#semikong" class="anchor-heading" aria-labelledby="semikong"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a>SemiKong
+</h3>
 
 The training dataset for the [SemiKong](https://www.semikong.ai/){:target="semikong"} collaboration that trained an open model for the semiconductor industry.
 
@@ -212,27 +246,31 @@ The training dataset for the [SemiKong](https://www.semikong.ai/){:target="semik
 | :---------------- | :-------------- | :------- | :--------- |
 | **SemiKong** | An open model training dataset for semiconductor technology | [Hugging Face](https://huggingface.co/datasets/pentagoniac/SemiKong_Training_Datset){:target="semikong-dataset"} | 2024-09-01 |
 
-<a name="make-your-contributions"></a>
-<h2>Make Your Contributions!</h2>
+<h2 id="make-your-contributions">
+  <a href="#make-your-contributions" class="anchor-heading" aria-labelledby="make-your-contributions"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a>Make Your Contributions!
+</h2>
 
 To expand this catalog, we [welcome contributions]({{site.baseurl}}/contributing).
 
 <!-- To expand this catalog, we not only [welcome contributions]({{site.baseurl}}/contributing), but we plan to seek out qualified datasets leveraging other sources of information about them, such as the [Data Provenance Initiative](https://www.dataprovenance.org/){:target="dp"}, [Hugging Face](https://huggingface.co/datasets){:target="hf-datasets"}, and others (TBD). -->
 
-<a name="other-ways-to-search-for-datasets"></a>
-<h2>Other Ways to Search For Datasets</h2>
+<h2 id="other-ways-to-search-for-datasets">
+  <a href="#other-ways-to-search-for-datasets" class="anchor-heading" aria-labelledby="other-ways-to-search-for-datasets"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a>Other Ways to Search For Datasets
+</h2>
 
 Until our catalog search is fully operational, there are several ways you can search for datasets that match your criteria.
 
-<a name="hugging-face-hub-search"></a>
-<h3>Hugging Face Hub Search</h3>
+<h3 id="hugging-face-hub-search">
+  <a href="#hugging-face-hub-search" class="anchor-heading" aria-labelledby="hugging-face-hub-search"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a>Hugging Face Hub Search
+</h3>
 
 You can do [full-text search](https://huggingface.co/search/full-text?type=dataset){:target="hf-search"} for datasets, models, and organization spaces in the [Hugging Face Hub](https://huggingface.co/){:target="hf-hub"}. Uncheck _models_ and _spaces_ on the left-hand side to limit your search to datasets. 
 
 For example, searching for _apache croissant_ finds datasets licensed with the Apache 2.0 license that support Croissant metadata. However, using _cdla_ (for Common Data License Agreement) instead of _apache_ also finds a dataset named _CDLA_.
 
-<a name="google-dataset-search"></a>
-<h3>Google Dataset Search</h3>
+<h3 id="google-dataset-search">
+  <a href="#google-dataset-search" class="anchor-heading" aria-labelledby="google-dataset-search"><svg viewbox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a>Google Dataset Search
+</h3>
 
 [Google Dataset Search](https://datasetsearch.research.google.com/){:target="google-ds-search"} is a powerful search engine that finds datasets matching specific criteria across a range of repositories, including Hugging Face.
 

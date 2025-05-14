@@ -1208,7 +1208,30 @@ done
 echo "\n];" >> $out
 ```
 
-The script `src/scripts/make-js-files.sh` creates these `*.js` files for all the `hf_*.json` files in `data/json/processed/YYYY-MM-DD/languages/` for today's date.
+An obsolete script `src/scripts/make-js-files.sh` was used to create these `*.js` files for all the `hf_*.json` files in `data/json/processed/YYYY-MM-DD/languages/` for today's date. Now it is done with `src/scripts/write-group-files.py`, which creates the JSON data files, the `_<category>/keyword.markdown` files, and also generates the JavaScript files from the JSON files.
+
+The JavaScript files are copied to `docs` with this set of commands:
+
+```shell
+# run from the static-catalog directory!!
+ymd=$(date +"%Y-%m-%d")
+for d in ./data/json/processed/$ymd/*
+do
+  group=$(basename $d)
+  echo "JS for group: $group"
+  rm -rf ../docs/files/data/catalog/$group
+  mkdir -p ../docs/files/data/catalog/$group
+  cp $d/*.js ../docs/files/data/catalog/$group
+done
+for d in ./markdown/processed/$ymd/*
+do
+  group=$(basename $d)
+  echo "Markdown for group: $group"
+  rm -rf ../docs/_$group
+  mkdir -p ../docs/_$group
+  cp $d/*.markdown ../docs/_$group
+done
+```
 
 ### ArXiv References?
 
@@ -1251,7 +1274,88 @@ Modalities are interesting, including variations of the following:
 * `text`
 * `multimedia`
 
+First, we used a similar query to the following above to get the language keywords, where we expand ("unnest") the array of `keywords`:
 
+```sql
+WITH expanded AS (
+SELECT trim(lower(unnest(keywords))) AS keyword,
+  name,
+  license,
+  language,
+  url,
+  creator_name,
+  creator_url,
+  description
+FROM hf_metadata)
+SELECT count() FROM expanded;
+```
+
+Let's create a table; we'll need it below.
+
+```sql
+CREATE OR REPLACE TABLE hf_expanded_metadata AS (
+  SELECT trim(lower(unnest(keywords))) AS keyword,
+    name,
+    license,
+    language,
+    url,
+    creator_name,
+    creator_url,
+    description
+  FROM hf_metadata
+);
+```
+
+It produces 499948 records from the original 44631 or 11 times as many! (Of course, this tells us the average number of keywords per dataset is 11... _These keywords go to 11!_)
+
+What are the most common keywords? Let's find all of them with > 100 records:
+
+```sql
+SELECT keyword, count FROM hf_keywords WHERE count > 100 ORDER BY count DESC;
+```
+
+There are 164. Let's save to a file:
+
+```sql
+copy (SELECT keyword, count FROM hf_keywords WHERE count > 100 ORDER BY count DESC) 'biggest-keywords.csv'
+```
+
+LEt's 
+Selecting some of those keywords, here is a query similar to what we did for languages above to extract separate datasets for each keyword:
+
+```shell
+timestamp=$(date "+%Y-%m-%d")
+declare -A groups
+groups[modalities]="a,b"
+groups[domains]="c,d,e,f"
+for group in ${(k)groups}
+do
+  echo "Working on group: $group"
+  base=./data/json/processed/$timestamp/$group
+  mkdir -p $base
+   str=part1/part2/part3
+  categories=(${(@s:,:)groups[$group]})
+  for category in ${categories[@]}
+  do
+    echo "$group -> $category"
+#     output=$base/hf_$lang.json
+#     cat <<EOF | duckdb croissant.duckdb
+#     COPY (
+#       SELECT 
+#         name,
+#         license,
+#         language,
+#         url,
+#         creator_name,
+#         creator_url,
+#         description
+#       FROM hf_languages
+#       WHERE language_keyword = '$lang'
+#     ) TO '$output';
+# EOF
+  done
+done
+```
 ## Appendix: Running Some Test Queries
 
 Here are some additional queries tried with DuckDB to look at the original Parquet files and the "raw" output FROM the Spark job. You can see a _lot_ more of them in `duckdb-notes.md`f:
