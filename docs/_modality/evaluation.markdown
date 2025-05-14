@@ -1,7 +1,7 @@
 ---
 name: Evaluation
 tag: evaluation
-tags: evaluation, eval
+all-tags: evaluation eval
 parent_tag: modality
 ---
 

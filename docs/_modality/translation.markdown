@@ -1,7 +1,7 @@
 ---
 name: Translation
 tag: translation
-tags: translation
+all-tags: translation
 parent_tag: modality
 ---
 

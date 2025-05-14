@@ -1,7 +1,7 @@
 ---
 name: Finance
 tag: finance
-tags: finance
+all-tags: finance
 parent_tag: domain
 ---
 

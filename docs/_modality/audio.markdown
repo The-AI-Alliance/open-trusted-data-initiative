@@ -1,7 +1,7 @@
 ---
 name: Audio
 tag: audio
-tags: audio
+all-tags: audio
 parent_tag: modality
 ---
 

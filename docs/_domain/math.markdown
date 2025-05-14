@@ -1,7 +1,7 @@
 ---
 name: Math
 tag: math
-tags: math
+all-tags: math
 parent_tag: domain
 ---
 

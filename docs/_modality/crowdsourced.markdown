@@ -1,7 +1,7 @@
 ---
 name: Crowdsourced
 tag: crowdsourced
-tags: crowdsourced
+all-tags: crowdsourced
 parent_tag: modality
 ---
 

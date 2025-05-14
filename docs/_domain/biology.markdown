@@ -1,7 +1,7 @@
 ---
 name: Biology
 tag: biology
-tags: biology
+all-tags: biology
 parent_tag: domain
 ---
 

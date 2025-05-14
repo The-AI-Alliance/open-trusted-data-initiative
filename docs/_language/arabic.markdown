@@ -1,7 +1,7 @@
 ---
 name: Arabic
 tag: arabic
-tags: arabic
+all-tags: arabic
 parent_tag: language
 ---
 

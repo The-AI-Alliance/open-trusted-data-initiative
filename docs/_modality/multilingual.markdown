@@ -1,7 +1,7 @@
 ---
 name: Multilingual
 tag: multilingual
-tags: multilingual
+all-tags: multilingual
 parent_tag: modality
 ---
 

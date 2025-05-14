@@ -1,7 +1,7 @@
 ---
 name: Legal
 tag: legal
-tags: legal
+all-tags: legal
 parent_tag: domain
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: Hungarian
 tag: hungarian
-tags: hungarian
+all-tags: hungarian
 parent_tag: language
 ---
 

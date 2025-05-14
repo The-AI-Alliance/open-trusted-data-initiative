@@ -1,7 +1,7 @@
 ---
 name: Sentence transformers
 tag: sentence-transformers
-tags: sentence-transformers
+all-tags: sentence-transformers
 parent_tag: modality
 ---
 

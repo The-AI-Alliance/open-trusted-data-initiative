@@ -1,7 +1,7 @@
 ---
 name: Hindi
 tag: hindi
-tags: hindi
+all-tags: hindi
 parent_tag: language
 ---
 

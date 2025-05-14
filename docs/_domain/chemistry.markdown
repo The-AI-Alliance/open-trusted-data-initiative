@@ -1,7 +1,7 @@
 ---
 name: Chemistry
 tag: chemistry
-tags: chemistry
+all-tags: chemistry
 parent_tag: domain
 ---
 

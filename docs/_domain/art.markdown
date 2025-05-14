@@ -1,7 +1,7 @@
 ---
 name: Art
 tag: art
-tags: art
+all-tags: art
 parent_tag: domain
 ---
 

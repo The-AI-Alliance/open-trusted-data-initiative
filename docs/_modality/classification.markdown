@@ -1,7 +1,7 @@
 ---
 name: Classification
 tag: classification
-tags: classification, zero-shot-classification, image-classification, text-classification, multi-class-classification, multi-label-classification, tabular-classification, topic-classification, token-classification, text-scoring
+all-tags: classification image-classification multi-class-classification multi-label-classification tabular-classification text-classification text-scoringtoken-classification topic-classification zero-shot-classification
 parent_tag: modality
 ---
 

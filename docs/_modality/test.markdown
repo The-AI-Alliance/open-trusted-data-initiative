@@ -1,7 +1,7 @@
 ---
 name: Test
 tag: test
-tags: test
+all-tags: test
 parent_tag: modality
 ---
 

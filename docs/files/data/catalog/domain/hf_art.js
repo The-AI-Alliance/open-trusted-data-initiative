@@ -1,4 +1,4 @@
-var data_for_domain_art = [
+var data_for_art = [
 
   {"name":"Penny","keyword":"art","license":"Apache License 2.0","language":"en","url":"https://huggingface.co/datasets/Voice-man-76/Penny","creator_name":"John Paul Bristoe","creator_url":"https://huggingface.co/Voice-man-76","description":"Voice-man-76/Penny dataset hosted on Hugging Face and contributed by the HF Datasets community"},
   {"name":"Fievel","keyword":"art","license":"Apache License 2.0","language":"en","url":"https://huggingface.co/datasets/Voice-man-76/Fievel","creator_name":"John Paul Bristoe","creator_url":"https://huggingface.co/Voice-man-76","description":"Voice-man-76/Fievel dataset hosted on Hugging Face and contributed by the HF Datasets community"},

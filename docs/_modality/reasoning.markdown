@@ -1,7 +1,7 @@
 ---
 name: Reasoning
 tag: reasoning
-tags: reasoning
+all-tags: reasoning
 parent_tag: modality
 ---
 

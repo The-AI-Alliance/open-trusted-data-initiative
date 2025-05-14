@@ -1,7 +1,7 @@
 ---
 name: Italian
 tag: italian
-tags: italian
+all-tags: italian
 parent_tag: language
 ---
 

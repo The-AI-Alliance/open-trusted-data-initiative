@@ -1,7 +1,7 @@
 ---
 name: Korean
 tag: korean
-tags: korean
+all-tags: korean
 parent_tag: language
 ---
 

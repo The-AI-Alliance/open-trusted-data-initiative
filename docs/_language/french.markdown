@@ -1,7 +1,7 @@
 ---
 name: French
 tag: french
-tags: french
+all-tags: french
 parent_tag: language
 ---
 

@@ -17,30 +17,12 @@ language_tags: English
 
 <div class="table-wrapper">
 {% for member in site[collection.label] %}
-  <a href="{{site.baseurl}}/catalog/#{{collection.label}}-{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+  <a href="{{site.baseurl}}/catalog/{{collection.label}}/#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
 {% endfor %}
 </div>
 {% endunless %}
 {% endfor %}
 
-<!-- 
-### Domains
-
-<div class="table-wrapper">
-  {% for domain in site.domain %}
-  <a href="{{site.baseurl}}/catalog/#{{domain.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{domain.name}}</a>
-  {% endfor %}
-</div>
-
-### Modalities
-
-<div class="table-wrapper">
-  {% for modality in site.modality %}
-  <a href="{{site.baseurl}}/catalog/#{{modality.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{modality.name}}</a>
-  {% endfor %}
-</div>
-
- -->
 
 ## Help Us Build the Future of Trustworthy Data for AI
 
@@ -68,7 +50,7 @@ AI models and applications need datasets covering a broad [range of topics]({{si
 * **Specific domains and use cases:** Healthcare, legal, financial, education, chat bots, etc.
 * **Synthetic datasets:** For all of the above categories, synthetic datasets are needed, too.
 
-What datasets [can you add to our catalog?](https://github.com/orgs/The-AI-Alliance/projects/28/views/1?filterQuery=label%3A%22diverse+datasets%22){:target="github"}.
+Add your datasets [to our catalog](https://github.com/orgs/The-AI-Alliance/projects/28/views/1?filterQuery=label%3A%22diverse+datasets%22){:target="github"}.
 
 #### Build Data Processing Pipelines
 
@@ -76,7 +58,7 @@ What datasets [can you add to our catalog?](https://github.com/orgs/The-AI-Allia
 
 #### Build a Searchable Dataset Catalog
 
-Currently, the [Dataset Catalog]({{site.baseurl}}/catalog/) is a static resource. Help us make it [browsable and searchable](https://github.com/orgs/The-AI-Alliance/projects/28/views/1?filterQuery=label%3A%22dataset+catalog%22){:target="github"}.
+Currently, the [Dataset Catalog]({{site.baseurl}}/catalog/catalog) is a static resource. Help us make it [browsable and searchable](https://github.com/orgs/The-AI-Alliance/projects/28/views/1?filterQuery=label%3A%22dataset+catalog%22){:target="github"}.
 
 
 | See this short [presentation]({{site.baseurl}}/files/OTDI-Overview.pdf) (PDF) for more information about the Open Trusted Data Initiative. |

@@ -1,7 +1,7 @@
 ---
 name: German
 tag: german
-tags: german
+all-tags: german
 parent_tag: language
 ---
 

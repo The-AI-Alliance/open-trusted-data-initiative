@@ -1,7 +1,7 @@
 ---
 name: English
 tag: english
-tags: english
+all-tags: english
 parent_tag: language
 ---
 

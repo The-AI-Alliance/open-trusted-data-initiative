@@ -1,7 +1,7 @@
 ---
 name: Turkish
 tag: turkish
-tags: turkish
+all-tags: turkish
 parent_tag: language
 ---
 

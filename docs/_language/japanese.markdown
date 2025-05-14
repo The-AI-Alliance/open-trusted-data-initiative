@@ -1,7 +1,7 @@
 ---
 name: Japanese
 tag: japanese
-tags: japanese
+all-tags: japanese
 parent_tag: language
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: Chinese
 tag: chinese
-tags: chinese
+all-tags: chinese
 parent_tag: language
 ---
 

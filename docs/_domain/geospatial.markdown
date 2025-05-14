@@ -1,7 +1,7 @@
 ---
 name: Geospatial
 tag: geospatial
-tags: geospatial
+all-tags: geospatial
 parent_tag: domain
 ---
 

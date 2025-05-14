@@ -1,7 +1,7 @@
 ---
 name: Climate
 tag: climate
-tags: climate
+all-tags: climate
 parent_tag: domain
 ---
 

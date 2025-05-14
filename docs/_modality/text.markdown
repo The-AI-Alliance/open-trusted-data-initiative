@@ -1,7 +1,7 @@
 ---
 name: Text
 tag: text
-tags: text, monolingual
+all-tags: text monolingual
 parent_tag: modality
 ---
 

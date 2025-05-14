@@ -32,15 +32,15 @@ groups = {
     ["audio"],
     [
       "classification", 
-      "zero-shot-classification", 
       "image-classification", 
-      "text-classification", 
       "multi-class-classification", 
       "multi-label-classification", 
       "tabular-classification",
-      "topic-classification", 
-      "token-classification",
+      "text-classification", 
       "text-scoring"
+      "token-classification",
+      "topic-classification", 
+      "zero-shot-classification", 
     ],
     [
       "benchmark",
@@ -78,8 +78,8 @@ groups = {
       "question-answering",
       "closed-domain-qa",
       "extractive-qa",
-      "qna",
       "q-and-a",
+      "qna",
       "multiple-choice-qa",
       "open-domain-qa",
       "table-question-answering",
@@ -206,7 +206,7 @@ for group in groups.keys():
       md_content = f"""---
 name: {category_name}
 tag: {category_main_tag}
-tags: {', '.join(category_tags)}
+all-tags: {' '.join(category_tags)}
 parent_tag: {group}
 ---
 """
@@ -262,7 +262,7 @@ COPY (
 
       with open(json_output, 'r') as json:
         with open(js_output, 'w') as js:
-          print(f"var data_for_{group}_{category_main_tag} = [", file=js)
+          print(f"var data_for_{category_main_tag} = [", file=js)
           comma=''
           for line in json:
             print(f"{comma}\n  {line.rstrip()}", end='', file=js)

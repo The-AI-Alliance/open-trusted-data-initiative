@@ -1,7 +1,7 @@
 ---
 name: Science
 tag: science
-tags: science
+all-tags: science
 parent_tag: domain
 ---
 

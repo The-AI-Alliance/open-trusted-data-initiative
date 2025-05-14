@@ -1,7 +1,7 @@
 ---
 name: Web
 tag: web
-tags: web, webdataset
+all-tags: web webdataset
 parent_tag: domain
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: Vietnamese
 tag: vietnamese
-tags: vietnamese
+all-tags: vietnamese
 parent_tag: language
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: Spanish
 tag: spanish
-tags: spanish
+all-tags: spanish
 parent_tag: language
 ---
 

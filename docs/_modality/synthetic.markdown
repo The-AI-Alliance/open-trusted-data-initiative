@@ -1,7 +1,7 @@
 ---
 name: Synthetic
 tag: synthetic
-tags: synthetic
+all-tags: synthetic
 parent_tag: modality
 ---
 

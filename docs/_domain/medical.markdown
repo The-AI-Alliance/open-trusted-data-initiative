@@ -1,7 +1,7 @@
 ---
 name: Medical
 tag: medical
-tags: medical
+all-tags: medical
 parent_tag: domain
 ---
 

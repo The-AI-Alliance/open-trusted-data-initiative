@@ -1,7 +1,7 @@
 ---
 name: Tutorial
 tag: tutorial
-tags: tutorial
+all-tags: tutorial
 parent_tag: domain
 ---
 

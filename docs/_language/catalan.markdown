@@ -1,7 +1,7 @@
 ---
 name: Catalan
 tag: catalan
-tags: catalan
+all-tags: catalan
 parent_tag: language
 ---
 

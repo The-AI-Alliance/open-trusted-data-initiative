@@ -1,7 +1,7 @@
 ---
 name: Russian
 tag: russian
-tags: russian
+all-tags: russian
 parent_tag: language
 ---
 

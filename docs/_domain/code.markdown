@@ -1,7 +1,7 @@
 ---
 name: Code
 tag: code
-tags: code
+all-tags: code
 parent_tag: domain
 ---
 

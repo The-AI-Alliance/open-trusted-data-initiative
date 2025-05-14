@@ -1,7 +1,7 @@
 ---
 name: Music
 tag: music
-tags: music
+all-tags: music
 parent_tag: modality
 ---
 
