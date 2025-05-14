@@ -25,12 +25,12 @@ has_children: true
 > * The tables reflect the data as of May 5<sup>th</sup>, 2025.
 > * Of the 350,000 or so datasets, only those queryable using [Croissant](https://mlcommons.org/working-groups/data/croissant/){:target="croissant"} metadata are considered, about 260,000.
 > * Of those, we discarded datasets without a specified license, leaving just 60,000!
-> * The licenses are specified as URLs at [choosealicense.com/licenses/](https://choosealicense.com/licenses/){:target="cal"}. Unfortunately, many undefined URLs are specified, so we discarded those datasets leaving 45,000.
+> * The licenses are specified as URLs at [choosealicense.com/licenses/](https://choosealicense.com/licenses/){:target="cal"}. Unfortunately, many undefined URLs are specified, so we discarded those datasets leaving 45,000.<a href="#footnote1"><sup>1</sup></a>
 > * The groupings are based on the presence of relevant keywords. Note that _all_ the datasets list their language as `en`, English, but many have keywords for other languages. That's the basis for the [Languages](language) tables, for example.
 > * **Important:** At this time, we are not yet validating datasets to ensure their metadata accurately reflect the data records themselves.
 > * Do you know of any datasets that should be shown, but aren't? [Let us know!](mailto:data@thealliance.ai)
 > 
-> Some of the bad license links clearly intend to reference known licenses. We'll revisit those cases.
+> <a name="#footnote1">1</a>: Some of the bad license links clearly intend to reference known licenses. We'll revisit those cases.
 
 ### Language
 
