@@ -19,13 +19,13 @@ parent: Dataset Catalog
 
 {% for member in site.domain %}
 
-## {{member.name}}
+<a name="{{member.tag}}"></a>
+## <a href="#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">{{member.name}} (keyword: {{member.tag}})</a>
 
-This set includes the following keywords: 
-<ul>
-{% assign all_tags = member.all-tags | split: ' ' %}
-  <li>{{ all_tags | join: "</li><li>" }}</li>
-</ul>
+{% assign other-tags = member.all-tags | split: ' ' | slice: 1, 100 %}
+{% if other-tags.size > 0 %}
+This set includes the following additional keywords: **{{ other-tags | join: "**, **" }}**
+{% endif %}
 
 <!-- <a href="#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">{{member.name}}</a> -->
 <div id="{{member.tag}}-selected-description-div">
