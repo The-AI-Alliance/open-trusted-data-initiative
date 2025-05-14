@@ -3,7 +3,7 @@ layout: default
 title: Domain Datasets
 nav_order: 200
 has_children: false
-parent: catalog
+parent: Dataset Catalog
 ---
 
 <link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet"/>

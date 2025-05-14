@@ -3,7 +3,7 @@ layout: default
 title: Language Datasets
 nav_order: 100
 has_children: false
-parent: catalog
+parent: Dataset Catalog
 ---
 
 <link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet"/>

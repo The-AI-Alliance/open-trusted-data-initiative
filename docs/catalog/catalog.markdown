@@ -32,18 +32,29 @@ has_children: true
 > 
 > Some of the bad license links clearly intend to reference known licenses. We'll revisit those cases.
 
-{% for collection in site.collections %}
-{% unless collection.label == "posts" %}  
-
-### {{ collection.label | capitalize }}
+### Language
 
 <div class="table-wrapper">
-{% for member in site[collection.label] %}
-  <a href="{{site.baseurl}}/catalog/{{collection.label}}/#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+{% for member in site.language %}
+  <a href="{{site.baseurl}}/catalog/language/#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
 {% endfor %}
 </div>
-{% endunless %}
+
+### Domain
+
+<div class="table-wrapper">
+{% for member in site.domain %}
+  <a href="{{site.baseurl}}/catalog/domain/#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
 {% endfor %}
+</div>
+
+### Modality
+
+<div class="table-wrapper">
+{% for member in site.modality %}
+  <a href="{{site.baseurl}}/catalog/modality/#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+{% endfor %}
+</div>
 
 ## Dataset Sources
 
