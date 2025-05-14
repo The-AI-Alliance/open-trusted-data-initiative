@@ -1109,7 +1109,7 @@ D SELECT count(*) FROM hf_languages;
 Now write it to a file:
 
 ```sql
-COPY hf_languages TO './data/json/processed/2025-05-12/languages/hf_all_languages.json'  (FORMAT json, ARRAY true);
+COPY hf_languages TO './data/json/processed/2025-05-12/languages/hf_all_languages.json' (FORMAT json, ARRAY true);
 ```
 
 A way to write the individual language files is to use `hf_languages`, e.g.,:
