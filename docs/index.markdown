@@ -10,7 +10,6 @@ language_tags: English
 
 ## Take Me to the Data!
 
-
 ### Language
 
 <div class="table-wrapper">
