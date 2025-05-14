@@ -82,9 +82,21 @@ See the Meditron GitHub repo [README](https://github.com/epfLLM/meditron?tab=rea
 
 ### Meta
 
+#### Data for Good at Meta
+
 [Data for Good at Meta](https://dataforgood.facebook.com/dfg/){:target="dfg"} empowers partners with privacy-preserving data that strengthens communities and advances social issues. Data for Good is helping organizations respond to crises around the world and supporting research that advances economic opportunity.
 
 There are 220 datasets available. See [Meta's page](https://data.humdata.org/organization/meta){:target="humdata"} at the [Humanitarian Data Exchange](https://data.humdata.org/){:target="humdata"} for the full list of datasets.
+
+#### OMol25
+
+[OMol25](https://huggingface.co/facebook/OMol25) is an open dataset for molecules and electrolytes, possibly the largest _ab-initio_ dataset ever released in terms of compute cost and a family of Universal Model for Atoms (UMA) trained against all of the open-science datasets the team has released in the past five years (materials, catalysts, molecules, MOFs, organic crystals).
+
+For more information, including a demo to see how it works on different materials, see the following:
+
+* [Blog post](https://ai.meta.com/blog/meta-fair-science-new-open-source-releases/){:target="omol25-blog"}: including links to the research paper, the dataset, the trained model, and code.
+* [Demo](https://facebook-fairchem-uma-demo.hf.space/){:target="omol25-demo"}
+* Press coverage: [SEMAFOR](https://www.semafor.com/article/05/14/2025/meta-releases-new-data-set-ai-model-aimed-at-speeding-up-scientific-research){:target="omol25-semafor"}
 
 ### PleIAs
 
@@ -101,6 +113,8 @@ Domain-specific, clean datasets.
 | **Finance Commons** | A large collection of multimodal financial documents in open data | [Hugging Face](https://huggingface.co/collections/PleIAs/finance-commons-66925e1095c7fa6e6828e26c){:target="finance-commons"} | 2024-11-04 |
 | **Bad Data Toolbox** | PleIAs collection of models for the data processing of challenging document and data sources | [Hugging Face](https://huggingface.co/collections/PleIAs/bad-data-toolbox-66981c2d0df662459252844e){:target="bad-data-toolbox"} | 2024-11-04 |
 | **Open Culture** | A multilingual dataset of public domain books and newspapers | [Hugging Face](https://huggingface.co/collections/PleIAs/openculture-65d46e3ea3980fdcd66a5613){:target="open-culture"} | 2024-11-04 |
+| **Math PDF** | A collection of open source PDFs on Mathematics | [Hugging Face](https://huggingface.co/datasets/PleIAs/Math-PDF){:target="math-pdf"} | 2025-03-19 |
+
 
 ### ServiceNow
 
