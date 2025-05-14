@@ -31,8 +31,9 @@ do
     SELECT 
       name,
       license,
+      license_url,
       language,
-      url,
+      dataset_url,
       creator_name,
       creator_url,
       description

@@ -34,16 +34,22 @@
       data:data_for_{{member.tag | replace: "-", "_" }}, //assign data to table
       layout:"fitColumns", //fit columns to width of table (optional)
       columns:[ //Define Table Columns
-        {title:"Name", field:"name"},
-        {title:"Keyword", field:"keyword"},
-        {title:"License", field:"license"},
-        {title:"url", field:"url", formatter:"link", formatterParams:{
-          labelField:"url",
+        {title:"Name", field:"name", formatter:"link", formatterParams:{
+          labelField:"name",
+          urlField:"dataset_url",
           target:"_blank",
         }},
-        {title:"Creator", field:"creator_name"},
-        {title:"Creator URL", field:"creator_url", formatter:"link", formatterParams:{
-          labelField:"url",
+        {% if other-tags.size > 0 %}
+        {title:"Keyword", field:"keyword"},
+        {% endif %}
+        {title:"License", field:"license", formatter:"link", formatterParams:{
+          labelField:"license",
+          urlField:"license_url",
+          target:"_blank",
+        }},
+        {title:"Creator", field:"creator_name", formatter:"link", formatterParams:{
+          labelField:"creator_name",
+          urlField:"creator_url",
           target:"_blank",
         }},
         // {title:"Description", field:"description", formatter:"textarea"},
@@ -58,7 +64,7 @@
       const data = row.getData();
       const desc = data.description.replace(/\\+[nr]/g, "\n").replace(/\\+t/g, "\t");
       const descDiv = document.getElementById("{{member.tag}}-selected-description");
-      const message = `<strong>Name:</strong> ${data.name}<br/><strong>Keyword:</strong> ${data.keyword}<br/><strong>URL:</strong> <a href="${data.url}" target="hf">${data.url}</a><br/><strong>Description:</strong><p class="description">${desc}</p>`;
+      const message = `<strong>Name:</strong> <a href="${data.dataset_url}" target="_blank">${data.name}</a><br/><strong>Keyword:</strong> ${data.keyword}<br/><strong>License:</strong> <a href="${data.license_url}" target="_blank">${data.license}</a><br/><strong>Creator:</strong> <a href="${data.creator_url}" target="_blank">${data.creator_name}</a><br/><strong>Description:</strong><p class="description">${desc}</p>`;
       descDiv.innerHTML = message;
     });
   </script>

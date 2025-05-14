@@ -312,7 +312,7 @@ CREATE OR REPLACE TABLE hf_metadata1 AS
   WITH metadata AS (
     SELECT  json->>'$.name'            AS name,
             json->>'$.description'     AS description,
-            json->>'$.url'             AS url,
+            json->>'$.url'             AS dataset_url,
             json->>'$.license'         AS license,
             json->>'$.keywords[*]'     AS keywords,
             json->'$."@context"'       AS context,
@@ -323,7 +323,7 @@ CREATE OR REPLACE TABLE hf_metadata1 AS
             description,
             license,
             context->>'$."@language"'  AS language,
-            url,
+            dataset_url,
             keywords,
             creator->>'$.name'         AS creator_name,
             creator->>'$.url'          AS creator_url,
@@ -341,12 +341,11 @@ D DESCRIBE hf_metadata1;
 │ description  │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
 │ license      │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
 │ language     │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ url          │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+│ dataset_url  │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
 │ keywords     │ VARCHAR[]   │ YES     │ NULL    │ NULL    │ NULL    │
 │ creator_name │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
 │ creator_url  │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-└──────────────┴─────────────┴─────────┴─────────┴─────────┴─────────┘
-D SELECT count(*) FROM hf_metadata1;
+└──────────────┴─────────────┴─────────┴─────────┴─────────┴─────────┘D SELECT count(*) FROM hf_metadata1;
 ┌──────────────┐
 │ count_star() │
 │    int64     │
@@ -487,7 +486,7 @@ CREATE OR REPLACE TABLE hf_metadata AS
     lic.id            AS license_id,
     hfm.license       AS license_url,
     hfm.language      AS language,
-    hfm.url           AS url,
+    hfm.dataset_url   AS dataset_url,
     hfm.keywords      AS keywords,
     hfm.creator_name  AS creator_name,
     hfm.creator_url   AS creator_url
@@ -508,7 +507,7 @@ D DESCRIBE hf_metadata;
 │ license_id   │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
 │ license_url  │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
 │ language     │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ url          │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+│ dataset_url  │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
 │ keywords     │ VARCHAR[]   │ YES     │ NULL    │ NULL    │ NULL    │
 │ creator_name │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
 │ creator_url  │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
@@ -1035,8 +1034,9 @@ WITH expanded_keywords AS (
   SELECT trim(lower(unnest(keywords))) AS language_keyword,
     name,
     license,
+    license_url,
     language,
-    url,
+    dataset_url,
     creator_name,
     creator_url,
     description
@@ -1073,30 +1073,31 @@ D DESCRIBE hf_languages;
 │ language_keyword │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
 │ name             │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
 │ license          │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+│ license_url      │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
 │ language         │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ url              │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
+│ dataset_url      │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
 │ creator_name     │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
 │ creator_url      │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
 │ description      │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
 └──────────────────┴─────────────┴─────────┴─────────┴─────────┴─────────┘
 D SELECT * FROM hf_languages LIMIT 10;
-┌──────────────────┬──────────────────────┬──────────────────────┬───┬──────────────────────┬──────────────────────┐
-│ language_keyword │         name         │       license        │ … │     creator_url      │     description      │
-│     varchar      │       varchar        │       varchar        │   │       varchar        │       varchar        │
-├──────────────────┼──────────────────────┼──────────────────────┼───┼──────────────────────┼──────────────────────┤
-│ english          │ tinymistral-hypnos…  │ Apache License 2.0   │ … │ https://huggingfac…  │ Dataset created fo…  │
-│ russian          │ dataset-qa-ip-law    │ GNU General Public…  │ … │ https://huggingfac…  │ Датасет для оценки…  │
-│ vietnamese       │ alpaca_multiturns_…  │ MIT License          │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ vietnamese       │ lima_dialogue_vi     │ MIT License          │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ vietnamese       │ itorca_dpo_vi        │ MIT License          │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ english          │ itorca_dpo_en        │ MIT License          │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ english          │ slorca_dialogue_en   │ MIT License          │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ vietnamese       │ oasst_dialogue_vi    │ MIT License          │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ vietnamese       │ oasst_dialogue_base  │ MIT License          │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ english          │ oasst_dialogue_base  │ MIT License          │ … │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-├──────────────────┴──────────────────────┴──────────────────────┴───┴──────────────────────┴──────────────────────┤
-│ 10 rows                                                                                      8 columns (5 shown) │
-└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+┌──────────────────┬──────────────────────┬───┬─────────────────────┬──────────────────────┬──────────────────────┐
+│ language_keyword │         name         │ … │    creator_name     │     creator_url      │     description      │
+│     varchar      │       varchar        │   │       varchar       │       varchar        │       varchar        │
+├──────────────────┼──────────────────────┼───┼─────────────────────┼──────────────────────┼──────────────────────┤
+│ english          │ tinymistral-hypnos…  │ … │ James               │ https://huggingfac…  │ Dataset created fo…  │
+│ russian          │ dataset-qa-ip-law    │ … │ lawful-good-project │ https://huggingfac…  │ Датасет для оценки…  │
+│ vietnamese       │ alpaca_multiturns_…  │ … │ Hieu Lam            │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ vietnamese       │ lima_dialogue_vi     │ … │ Hieu Lam            │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ vietnamese       │ itorca_dpo_vi        │ … │ Hieu Lam            │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ english          │ itorca_dpo_en        │ … │ Hieu Lam            │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ english          │ slorca_dialogue_en   │ … │ Hieu Lam            │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ vietnamese       │ oasst_dialogue_vi    │ … │ Hieu Lam            │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ vietnamese       │ oasst_dialogue_base  │ … │ Hieu Lam            │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+│ english          │ oasst_dialogue_base  │ … │ Hieu Lam            │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
+├──────────────────┴──────────────────────┴───┴─────────────────────┴──────────────────────┴──────────────────────┤
+│ 10 rows                                                                                     9 columns (5 shown) │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 D SELECT count(*) FROM hf_languages;
 ┌──────────────┐
 │ count_star() │
@@ -1109,7 +1110,7 @@ D SELECT count(*) FROM hf_languages;
 Now write it to a file:
 
 ```sql
-COPY hf_languages TO './data/json/processed/2025-05-12/languages/hf_all_languages.json' (FORMAT json, ARRAY true);
+COPY hf_languages TO './data/reference/hf_all_languages.json' (FORMAT json, ARRAY true);
 ```
 
 A way to write the individual language files is to use `hf_languages`, e.g.,:
@@ -1119,21 +1120,30 @@ COPY (
   SELECT 
     name,
     license,
+    license_url,
     language,
-    url,
+    dataset_url,
     creator_name,
     creator_url,
     description
   FROM hf_languages
   WHERE language_keyword = 'arabic'
-) TO './data/json/processed/2025-05-12/languages/hf_arabic.json';
+) TO './data/json/processed/2025-05-12/languages/hf_arabic.json'
+ (FORMAT json, ARRAY true);
 ```
 
-Note that I omitted the `language_keyword` field.
+> **NOTES:** 
+>
+> 1. I omitted the `language_keyword` field.
+> 2. The `(FORMAT json, ARRAY true)` lets you use an alternative extension, but it's the default if the extension is `json`. The `ARRAY true` causes `duckdb` to write a JSON array, not just "JSONL" records. This is very useful for converting this output to a JavaScript file, discussed below.
 
-Let's write several language datasets, using the following shell command (see also `src/scripts/write-language-files.sh`. We'll put them in the directory, `./data/json/processed/YYYY-MM-DD/languages`, where the `YYYY-MM-DD` is treated as a "publication" date.
+Let's write several language datasets using `src/scripts/write-language-files.sh`. We'll put them in the directory, `./data/json/processed/YYYY-MM-DD/languages`, where the `YYYY-MM-DD` is treated as a "publication" date.
 
-> **NOTE:** Make sure to exit out of `duckdb` first, just in case it might corrupt `croissant.duckdb` to access it from separate instances of `duckdb`.
+> **NOTE:** Since this section was written, I have moved to `src/scripts/write-category-files.py`, which also writes files for `modality` and `demain`, as well as `language`. Use it instead.
+
+> **WARNING:** Make sure to exit out of `duckdb` first, if you have it running, because second invocations of it will fail in order to prevent possible corruption of `croissant.duckdb` when accessed from concurrent `duckdb` processes.
+
+The script basically runs the following code:
 
 ```shell
 timestamp=$(date "+%Y-%m-%d")
@@ -1172,28 +1182,19 @@ do
       description
     FROM hf_languages
     WHERE language_keyword = '$lang'
-  ) TO '$output';
+  ) TO '$output' (FORMAT json, ARRAY true);
 EOF
 done
 ```
 
-For example,
-
-```shell
-$ head -1 data/json/processed/2025-05-12/languages/hf_vietnamese.json
-{"name":"alpaca_multiturns_dialogue_vi","license":"MIT License","language":"en","url":"https://huggingface.co/datasets/lamhieu/alpaca_multiturns_dialogue_vi","creator_name":"Hieu Lam","creator_url":"https://huggingface.co/lamhieu","description":"\\n\\t\\n\\t\\t\\n\\t\\n\\t\\n\\t\\tDescription\\n\\t\\n\\nThe dataset is from 5CD-AI/Vietnamese-Multi-turn-Chat-Alpaca, formatted as dialogues for speed and ease of use. Many thanks to 5CD-AI for releasing it.\\nImportantly, this format is easy to use via the default chat template of transformers, meaning you can use huggingface/alignment-handbook immediately, unsloth.\\n\\n\\t\\n\\t\\t\\n\\t\\n\\t\\n\\t\\tStructure\\n\\t\\n\\nView online through viewer.\\n\\n\\t\\n\\t\\t\\n\\t\\n\\t\\n\\t\\tNote\\n\\t\\n\\nWe advise you to reconsider before use, thank you. If you find it useful, please like… See the full description on the dataset page: https://huggingface.co/datasets/lamhieu/alpaca_multiturns_dialogue_vi."}
-```
-
-We might still want to replace the `\\` with `\`...
-
 #### Making Valid JS Files
 
-We need JavaScript files to import into the website, for example:
+We need JavaScript files to import into the website. This required careful coding because of the embedded escaped quotes, newlines, etc. The following, for example, doesn't really work, because escapes get evaluated!
 
 ```shell
 in=data/json/processed/2025-05-12/languages/hf_all_languages.json
 out=data/json/processed/2025-05-12/languages/hf_all_languages.js
-echo "var by_languages = [" > $out
+echo "var by_languages = " > $out
 first_line=true
 cat $in | while read line
 do
@@ -1208,13 +1209,13 @@ done
 echo "\n];" >> $out
 ```
 
-An obsolete script `src/scripts/make-js-files.sh` was used to create these `*.js` files for all the `hf_*.json` files in `data/json/processed/YYYY-MM-DD/languages/` for today's date. Now it is done with `src/scripts/write-category-files.py`, which does the following:
+The script `src/scripts/write-category-files.py` properly handles creation of the JS files from the JSON files. It does the following:
 
 1. Creates the JSON data files for _categories_ `modality`, `domain`, as well as `language`.
 1. Creates the corresponding `_<category>/<keyword>.markdown` files (which are simple _boilerplate_).
-1. Generates the JavaScript files from the JSON files.
+1. Generates a JavaScript file from each JSON file.
 
-The JavaScript files are copied to `docs` with this set of commands similar to the following:
+The JavaScript files are copied to `docs` with `src/scripts/copy-files-to-docs.sh` that runs commands similar to the following:
 
 ```shell
 # run from the static-catalog directory!!
@@ -1236,8 +1237,6 @@ do
   cp $d/*.markdown ../docs/_$group
 done
 ```
-
-See the updated script, `src/scripts/copy-files-to-docs.sh` that does this.
 
 ### ArXiv References?
 
@@ -1287,8 +1286,9 @@ WITH expanded AS (
 SELECT trim(lower(unnest(keywords))) AS keyword,
   name,
   license,
+  license_url,
   language,
-  url,
+  dataset_url,
   creator_name,
   creator_url,
   description
@@ -1303,8 +1303,9 @@ CREATE OR REPLACE TABLE hf_expanded_metadata AS (
   SELECT trim(lower(unnest(keywords))) AS keyword,
     name,
     license,
+    license_url,
     language,
-    url,
+    dataset_url,
     creator_name,
     creator_url,
     description
@@ -1326,45 +1327,11 @@ There are 164. Let's save to a file:
 copy (SELECT keyword, count FROM hf_keywords WHERE count > 100 ORDER BY count DESC) 'biggest-keywords.csv'
 ```
 
-LEt's 
-Selecting some of those keywords, here is a query similar to what we did for languages above to extract separate datasets for each keyword. See `src/scripts/write-category-files.py`.
+As discussed above, we use `src/scripts/write-category-files.py` to write all the files for all the "popular" keywords we care about.
 
-```shell
-timestamp=$(date "+%Y-%m-%d")
-declare -A groups
-groups[modalities]="a,b"
-groups[domains]="c,d,e,f"
-for group in ${(k)groups}
-do
-  echo "Working on group: $group"
-  base=./data/json/processed/$timestamp/$group
-  mkdir -p $base
-   str=part1/part2/part3
-  categories=(${(@s:,:)groups[$group]})
-  for category in ${categories[@]}
-  do
-    echo "$group -> $category"
-#     output=$base/hf_$lang.json
-#     cat <<EOF | duckdb croissant.duckdb
-#     COPY (
-#       SELECT 
-#         name,
-#         license,
-#         language,
-#         url,
-#         creator_name,
-#         creator_url,
-#         description
-#       FROM hf_languages
-#       WHERE language_keyword = '$lang'
-#     ) TO '$output' (FORMAT json, ARRAY true);
-# EOF
-  done
-done
-```
 ## Appendix: Running Some Test Queries
 
-Here are some additional queries tried with DuckDB to look at the original Parquet files and the "raw" output FROM the Spark job. You can see a _lot_ more of them in `duckdb-notes.md`f:
+Here are some additional queries tried with DuckDB to look at the original Parquet files and the "raw" output FROM the Spark job. You can see a _lot_ more of them in `duckdb-notes.md`. Note that some of the details below may not match current table schemas:
 
 ```sql
 DESCRIBE
