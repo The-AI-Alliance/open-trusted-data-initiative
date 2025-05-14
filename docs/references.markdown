@@ -47,11 +47,11 @@ The [The European AI Office](https://digital-strategy.ec.europa.eu/en/policies/a
 
 ## FAIR Principles
 
-[Website](https://www.go-fair.org/fair-principles/)
+[Website](https://www.go-fair.org/fair-principles/){:target="fair"}
 
 Quoting from the website:
 
-> In 2016, the [FAIR Guiding Principles for scientific data management and stewardship](https://www.nature.com/articles/sdata201618) were published in _Scientific Data_. The authors intended to provide guidelines to improve the Findability, Accessibility, Interoperability, and Reuse of digital assets. The principles emphasize machine-actionability (i.e., the capacity of computational systems to find, access, interoperate, and reuse data with none or minimal human intervention) because humans increasingly rely on computational support to deal with data as a result of the increase in volume, complexity, and creation speed of data.
+> In 2016, the [FAIR Guiding Principles for scientific data management and stewardship](https://www.nature.com/articles/sdata201618){:target="fair2"} were published in _Scientific Data_. The authors intended to provide guidelines to improve the Findability, Accessibility, Interoperability, and Reuse of digital assets. The principles emphasize machine-actionability (i.e., the capacity of computational systems to find, access, interoperate, and reuse data with none or minimal human intervention) because humans increasingly rely on computational support to deal with data as a result of the increase in volume, complexity, and creation speed of data.
 
 Both data and metadata must be ***findable*** to be usable, such as storage in known locations. Machine readability is essential for practical use.
 
@@ -108,7 +108,7 @@ IBM's [watsonx](https://www.ibm.com/docs/en/watsonx/saas){:target="watson-nlp"} 
 
 ### University of California Berkeley
 
-[It Took Longer than I was Expecting: Why is Dataset Search Still so Hard?](https://dl.acm.org/doi/10.1145/3665939.3665959) analyzes why searching for datasets is harder than it might seem.
+[It Took Longer than I was Expecting: Why is Dataset Search Still so Hard?](https://dl.acm.org/doi/10.1145/3665939.3665959){:target="hard"} analyzes why searching for datasets is harder than it might seem.
 
 <a name="ai-bom"></a>
 ## Bill of Materials
