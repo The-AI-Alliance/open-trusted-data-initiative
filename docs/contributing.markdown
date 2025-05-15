@@ -13,7 +13,6 @@ has_children: false
 _Contribution_ means adding your dataset to our catalog. You continue to own and host the dataset where you see fit.
 
 ## What Kinds of Datasets Do We Want?
-
 We seek a very broad range of datasets, including but not limited to the following.
 
 #### Science and Industry
@@ -79,8 +78,8 @@ By contributing the dataset to the Initiative, you grant anyone a license to the
 
 Use this form to tell us about your dataset. It will open your email client with the data added and formatted. After we receive your email, we will follow up with next steps.
 
-<div class="callout-box centered bold">
-  <em>For questions, send us email at <a href="mailto:data@thealliance.ai?subject=I%20have%20questions%20about%20contributing%20an%20OTDI%20dataset">data@thealliance.ai</a>.</em>
+<div class="callout-box centered">
+  <strong>For questions, send us email at <a href="mailto:data@thealliance.ai?subject=I%20have%20questions%20about%20contributing%20an%20OTDI%20dataset">data@thealliance.ai</a>.</strong>
 </div>
 <form id="datasets-form">
     <!-- <div class="form-dataset disabled" inert> -->

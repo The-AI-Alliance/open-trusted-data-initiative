@@ -1,9 +1,25 @@
 ---
 layout: default
 title: About Us
-nav_order: 70
+nav_order: 60
 has_children: false
 ---
+
+# News
+
+| :--- | :--- |
+| May&nbsp;6,&nbsp;2025 | We are actively soliciting datasets covering diverse languages, domains, use cases, etc. Please see our [contributing]({{site.baseurl}}/contributing) page and the [catalog]({{site.baseurl}}/catalog) of available datasets. |
+| February&nbsp;11,&nbsp;2025 | OTDI [announced](https://thealliance.ai/blog/announcing-open-trusted-data-initiative-otdi){:target="aias"} at the AI Action Summit in Paris. Added an [EPFL]({{site.baseurl}}/catalog/#epfl) dataset. |
+| January&nbsp;31,&nbsp;2025 | Added [Data for Good at Meta]({{site.baseurl}}/catalog/#meta) datasets. |
+| January&nbsp;23,&nbsp;2025 | The initiative [Steering Committee]({{site.baseurl}}/about/#steering-committee) is established. |
+| December&nbsp;11,&nbsp;2024 | Added [ServiceNow]({{site.baseurl}}/catalog/#servicenow) datasets. |
+| November&nbsp;20,&nbsp;2024 | [BrightQuery]({{site.baseurl}}/catalog/#brightquery) joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/jose-plehn_brightquery-is-proud-to-now-be-a-member-of-activity-7265516443742478338-xjIz/?utm_source=share&utm_medium=member_desktop){:target="bq-li"}. |
+| November&nbsp;4,&nbsp;2024 | [PleIAs]({{site.baseurl}}/catalog/#pleias) joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/pleias_pleias-joins-the-ai-alliance-to-co-lead-open-ugcPost-7259263514542796800-Uphx/){:target="pleias-li"}.  |
+| October&nbsp;15,&nbsp;2024 | [Common Crawl Foundation]({{site.baseurl}}/catalog/#common-crawl-foundation) joins the AI Alliance and the Open Trusted Data Initiative. |
+
+| **Authors**      | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
+| **Last Update**  | V0.3.0, 2025-05-06 |
+
 
 <a name="join-us"></a>
 # Join the Open Trusted Data Initiative!
@@ -64,7 +80,7 @@ The AI Alliance's [core projects](https://thealliance.ai/core-projects){:target=
 ## Other AI Alliance Information
 
 * [More About the AI Alliance](https://thealliance.ai/about-aia){:target="ai-alliance"}
-* Follow us on [LinkedIn](https://www.linkedin.com/company/the-aialliance/){:target="linkedin"} and [Bluesky](https://bsky.app/profile/aialliance.bsky.social)
+* Follow us on [LinkedIn](https://www.linkedin.com/company/the-aialliance/){:target="linkedin"} and [Bluesky](https://bsky.app/profile/aialliance.bsky.social){:target="bluesky"}
 
 # About This Documentation
 
@@ -75,3 +91,25 @@ This documentation about OTDI is built with [GitHub Pages](https://pages.github.
 We welcome your contributions to this documentation itself. The sources are in the [`docs` directory](https://github.com/The-AI-Alliance/open-trusted-data-initiative/tree/main/docs){:target="otdi-repo-docs"} of [this GitHub repo](https://github.com/The-AI-Alliance/open-trusted-data-initiative){:target="otdi-repo"}. Please [post issues](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="otdi-repo"} or contribute changes as [pull requests](https://github.com/The-AI-Alliance/open-trusted-data-initiative/pulls){:target="otdi-repo"}. Also, notice that every page has _Edit this page on GitHub_ links, making it easy to go straight to the source of a page to make edits and submit a PR! This is the best way to help us fix typos and make single-page edits.
 
 The repo's [GITHUB_PAGES](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/main/GITHUB_PAGES.md){:target="otdi-repo"} file explains more details for testing the documentation website locally and for creating more extensive changes as PRs.
+
+<!-- 
+### Version History for This Site
+
+| Version  | Date       |
+| :------- | :--------- |
+| V0.3.0   | 2025-05-06 |
+| V0.2.8   | 2025-04-25 |
+| V0.2.7   | 2025-03-18 |
+| V0.2.6   | 2025-02-11 |
+| V0.2.5   | 2025-01-31 |
+| V0.2.4   | 2025-01-21 |
+| V0.2.3   | 2025-01-08 |
+| V0.2.2   | 2024-12-11 |
+| V0.2.1   | 2024-12-05 |
+| V0.2.0   | 2024-12-04 |
+| V0.1.0   | 2024-11-13 |
+| V0.0.4   | 2024-11-04 |
+| V0.0.3   | 2024-09-06 |
+| V0.0.2   | 2024-09-06 |
+| V0.0.1   | 2024-09-01 |
+-->

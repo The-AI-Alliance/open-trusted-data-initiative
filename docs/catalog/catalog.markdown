@@ -2,7 +2,7 @@
 layout: default
 title: Dataset Catalog
 nav_order: 20
-has_children: false
+has_children: true
 ---
 
 # The Dataset Catalog
@@ -16,39 +16,91 @@ has_children: false
 {:toc}
 </details>
 
-See also the AI Alliance's [Hugging Face organization](https://huggingface.co/aialliance){:target="aia-hf"} and the [Open Trusted Data Initiative catalog](https://huggingface.co/collections/aialliance/open-trusted-data-catalog-66d21b3cb66342762fb6108e){:target="aia-hf-otdi"} there that includes the datasets listed here.
+## Datasets by Categories
 
-> **TODO:** We plan to provide an integrated search and browsing feature, to make it easier to select the datasets for your particular needs. See [below](#searching-for-datasets) for suggestions on how to find open datasets you need in the meantime.
+> **About These Datasets**
+>
+> The tables below list Hugging Face-hosted datasets that were gathered as follows:
+> 
+> * The tables reflect the data as of May 5<sup>th</sup>, 2025.
+> * Of the 350,000 or so datasets, only those queryable using [Croissant](https://mlcommons.org/working-groups/data/croissant/){:target="croissant"} metadata are considered, about 260,000.
+> * Of those, we discarded datasets without a specified license, leaving just 60,000!
+> * The licenses are specified as URLs at [choosealicense.com/licenses/](https://choosealicense.com/licenses/){:target="cal"}. Unfortunately, many undefined URLs are specified, so we discarded those datasets leaving 45,000.<a href="#footnote1"><sup>1</sup></a>
+> * The groupings are based on the presence of relevant keywords. Note that _all_ the datasets list their language as `en`, English, but many have keywords for other languages. That's the basis for the [Languages](language) tables, for example.
+> * **Important:** At this time, we are not yet validating datasets to ensure their metadata accurately reflect the data records themselves.
+> * Do you know of any datasets that should be shown, but aren't? [Let us know!](mailto:data@thealliance.ai)
+> 
+> <a name="#footnote1">1</a>: Some of the bad license links clearly intend to reference known licenses. We'll revisit those cases.
 
-Here is the current list of datasets, organized by owner.
+### Language
 
-> **BETA:** This is a provisional list of datasets. We are not yet validating datasets against our draft [requirements]({{site.baseurl}}/dataset-requirements).
+<div class="table-wrapper">
+{% for member in site.language %}
+  <a href="{{site.baseurl}}/catalog/language/#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+{% endfor %}
+</div>
 
-## BrightQuery
+### Domain
 
-[BrightQuery](https://brightquery.ai/){:target="bq"} ("BQ") provides proprietary financial, legal, and employment information on private and public companies derived from regulatory filings and disclosures. BQ proprietary data is used in capital markets for investment decisions, banking and insurance for KYC & credit checks, and enterprises for master data management, sales, and marketing purposes. In addition, BQ provides public information consisting of clean and standardized statistical data from all the major government agencies and NGOs around the world, and is doing so in partnership with the source agencies. BQ public datasets will be published in OTDI spanning all topics: economics, demographics, healthcare, crime, climate, education, sustainability, etc. Much of the data will be tabular (i.e., structured) time series data, as well as unstructured text.
+<div class="table-wrapper">
+{% for member in site.domain %}
+  <a href="{{site.baseurl}}/catalog/domain/#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+{% endfor %}
+</div>
+
+### Modality
+
+<div class="table-wrapper">
+{% for member in site.modality %}
+  <a href="{{site.baseurl}}/catalog/modality/#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+{% endfor %}
+</div>
+
+## Dataset Sources
+
+The following organizations, shown in alphabetical order, maintain open data sets that are becoming part of our catalog.
+
+> **NOTES:** See also the AI Alliance's [Hugging Face organization](https://huggingface.co/aialliance){:target="aia-hf"} and the [Open Trusted Data Initiative catalog](https://huggingface.co/collections/aialliance/open-trusted-data-catalog-66d21b3cb66342762fb6108e){:target="aia-hf-otdi"} there that includes the datasets listed here.
+
+### BrightQuery
+
+[BrightQuery](https://brightquery.ai/){:target="bq"} ("BQ") provides proprietary financial, legal, and employment information on private and public companies derived from regulatory filings and disclosures. BQ proprietary data is used in capital markets for investment decisions, banking and insurance for KYC & credit checks, and enterprises for master data management, sales, and marketing purposes. 
+
+In addition, BQ provides public information consisting of clean and standardized statistical data from all the major government agencies and NGOs around the world, and is doing so in partnership with the source agencies. BQ public datasets will be published at [opendata.org/](https://opendata.org/){:target="od"} and cataloged in OTDI spanning all topics: economics, demographics, healthcare, crime, climate, education, sustainability, etc. See also their [documentation](https://docs.brightquery.com/index.html) about the datasets they are building. Much of the data will be tabular (i.e., structured) time series data, as well as unstructured text.
 
 _More specific information is coming soon._
 
-## Common Crawl Foundation
+### Common Crawl Foundation
 
 [Common Crawl Foundation](https://commoncrawl.org/){:target="ccf"} is working on tagged and filtered crawl subsets for English and other languages.
 
 _More specific information is coming soon._
 
-## EPFL 
+### EPFL 
 
 The [EPFL LLM team](https://huggingface.co/epfl-llm){:target="epfl-llm"} has curated a dataset to train their [Meditron](https://github.com/epfLLM/meditron){:target="meditron"} models. An open-access subset of the medical guidelines data is published on [Hugging Face](https://huggingface.co/datasets/epfl-llm/guidelines){:target="guidelines"}
 
 See the Meditron GitHub repo [README](https://github.com/epfLLM/meditron?tab=readme-ov-file#medical-training-data){:target="meditron-readme"} for more details about the whole dataset used to train Meditron.
 
-## Meta
+### Meta
+
+#### Data for Good at Meta
 
 [Data for Good at Meta](https://dataforgood.facebook.com/dfg/){:target="dfg"} empowers partners with privacy-preserving data that strengthens communities and advances social issues. Data for Good is helping organizations respond to crises around the world and supporting research that advances economic opportunity.
 
 There are 220 datasets available. See [Meta's page](https://data.humdata.org/organization/meta){:target="humdata"} at the [Humanitarian Data Exchange](https://data.humdata.org/){:target="humdata"} for the full list of datasets.
 
-## PleIAs
+#### OMol25
+
+[OMol25](https://huggingface.co/facebook/OMol25) is an open dataset for molecules and electrolytes, possibly the largest _ab-initio_ dataset ever released in terms of compute cost and a family of Universal Model for Atoms (UMA) trained against all of the open-science datasets the team has released in the past five years (materials, catalysts, molecules, MOFs, organic crystals).
+
+For more information, including a demo to see how it works on different materials, see the following:
+
+* [Blog post](https://ai.meta.com/blog/meta-fair-science-new-open-source-releases/){:target="omol25-blog"}: including links to the research paper, the dataset, the trained model, and code.
+* [Demo](https://facebook-fairchem-uma-demo.hf.space/){:target="omol25-demo"}
+* Press coverage: [SEMAFOR](https://www.semafor.com/article/05/14/2025/meta-releases-new-data-set-ai-model-aimed-at-speeding-up-scientific-research){:target="omol25-semafor"}
+
+### PleIAs
 
 Domain-specific, clean datasets. 
 
@@ -63,8 +115,10 @@ Domain-specific, clean datasets.
 | **Finance Commons** | A large collection of multimodal financial documents in open data | [Hugging Face](https://huggingface.co/collections/PleIAs/finance-commons-66925e1095c7fa6e6828e26c){:target="finance-commons"} | 2024-11-04 |
 | **Bad Data Toolbox** | PleIAs collection of models for the data processing of challenging document and data sources | [Hugging Face](https://huggingface.co/collections/PleIAs/bad-data-toolbox-66981c2d0df662459252844e){:target="bad-data-toolbox"} | 2024-11-04 |
 | **Open Culture** | A multilingual dataset of public domain books and newspapers | [Hugging Face](https://huggingface.co/collections/PleIAs/openculture-65d46e3ea3980fdcd66a5613){:target="open-culture"} | 2024-11-04 |
+| **Math PDF** | A collection of open source PDFs on Mathematics | [Hugging Face](https://huggingface.co/datasets/PleIAs/Math-PDF){:target="math-pdf"} | 2025-03-19 |
 
-## ServiceNow
+
+### ServiceNow
 
 Multimodal, code, and other datasets. 
 
@@ -80,7 +134,7 @@ Multimodal, code, and other datasets.
 | **The Stack Dedup** | Near deduplicated version of The Stack (recommended for training). | [Hugging Face](https://huggingface.co/datasets/bigcode/the-stack-dedup){:target="the-stack-dedup"} | 2024-12-11 |
 | **StarCoder Data** | Pretraining dataset of [StarCoder](https://huggingface.co/blog/starcoder){:target="starcoder"}. | [Hugging Face](https://huggingface.co/datasets/bigcode/starcoderdata){:target="starcoderdata"} | 2024-12-11 |
 
-## SemiKong
+### SemiKong
 
 The training dataset for the [SemiKong](https://www.semikong.ai/){:target="semikong"} collaboration that trained an open model for the semiconductor industry.
 
@@ -88,15 +142,13 @@ The training dataset for the [SemiKong](https://www.semikong.ai/){:target="semik
 | :---------------- | :-------------- | :------- | :--------- |
 | **SemiKong** | An open model training dataset for semiconductor technology | [Hugging Face](https://huggingface.co/datasets/pentagoniac/SemiKong_Training_Datset){:target="semikong-dataset"} | 2024-09-01 |
 
-## Your Contributions?
+### Your Contributions?
 
 To expand this catalog, we [welcome contributions]({{site.baseurl}}/contributing).
 
-<!-- To expand this catalog, we not only [welcome contributions]({{site.baseurl}}/contributing), but we plan to seek out qualified datasets leveraging other sources of information about them, such as the [Data Provenance Initiative](https://www.dataprovenance.org/){:target="dp"}, [Hugging Face](https://huggingface.co/datasets){:target="hf-datasets"}, and others (TBD). -->
+## Others Ways to Search For Datasets
 
-## Searching For Datasets
-
-Until our catalog search is operational, there are several ways you can search for datasets that match your criteria.
+There are several other ways you can search for datasets that match your criteria.
 
 ### Hugging Face Hub Search
 

@@ -2,7 +2,7 @@
 layout: default
 title: Dataset Specification
 nav_order: 30
-has_children: true
+has_children: false
 ---
 
 # Dataset Specification
@@ -31,7 +31,7 @@ The details of the specification and how we are implementing it build on the pri
 * The metadata fields and concepts defined for [Hugging Face Dataset Cards](https://huggingface.co/docs/hub/datasets-cards){:target="hf-card"}, with a few extensions and clarifications for our provenance and governance purposes.
 * MLCommons [Croissant](https://mlcommons.org/working-groups/data/croissant/){:target="croissant"} for the metadata storage format. Croissant is an emerging de facto standard for metadata. It is used by Hugging Face and other dataset repositories for cataloging metadata and providing search capabilities.
 * Some defined metadata fields are inspired by the [Data Provenance Standard](https://dataandtrustalliance.org/work/data-provenance-standards){:target="dta-prov"} from the [Data and Trust Alliance](https://dataandtrustalliance.org/){:target="dta"}.
-* [The Stack](https://huggingface.co/datasets/bigcode/the-stack) dataset for the BigCode model project. See the [dataset card](https://huggingface.co/datasets/bigcode/the-stack#dataset-card-for-the-stack){:target="hf-dataset-card"}.
+* [The Stack](https://huggingface.co/datasets/bigcode/the-stack){:target="thestack"} dataset for the BigCode model project. See the [dataset card](https://huggingface.co/datasets/bigcode/the-stack#dataset-card-for-the-stack){:target="hf-dataset-card"}.
 * [Common Crawl Foundation's](https://commoncrawl.org/){:target="ccf"} current work on provenance tracking, multilingual data, etc.
 * [Coalition for Secure AI](https://www.coalitionforsecureai.org/){:target="csai"} has a work group on software supply chain security concerns. 
 

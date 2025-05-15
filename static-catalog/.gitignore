@@ -1,0 +1,8 @@
+croissant.duckdb
+dequoted-*.json
+filtered-*.json
+data/raw/
+data/json/
+markdown/
+metastore_db/
+src/scripts/temp

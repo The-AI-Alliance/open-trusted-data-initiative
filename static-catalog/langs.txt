@@ -1,0 +1,184 @@
+afar
+abkhazian
+avestan
+afrikaans
+akan
+amharic
+aragonese
+arabic
+assamese
+avaric
+aymara
+azerbaijani
+bashkir
+belarusian
+bulgarian
+bihari languages
+bislama
+bambara
+bengali
+tibetan
+breton
+bosnian
+catalan; valencian
+chechen
+chamorro
+corsican
+cree
+czech
+church slavic; old slavonic; church slavonic; old bulgarian; old church slavonic
+chuvash
+welsh
+danish
+german
+divehi; dhivehi; maldivian
+dzongkha
+ewe
+greek, modern (1453-)
+english
+esperanto
+spanish; castilian
+estonian
+basque
+persian
+fulah
+finnish
+fijian
+faroese
+french
+western frisian
+irish
+gaelic; scomttish gaelic
+galician
+guarani
+gujarati
+manx
+hausa
+hebrew
+hindi
+hiri motu
+croatian
+haitian; haitian creole
+hungarian
+armenian
+herero
+interlingua (international auxiliary language association)
+indonesian
+interlingue; occidental
+igbo
+sichuan yi; nuosu
+inupiaq
+ido
+icelandic
+italian
+inuktitut
+japanese
+javanese
+georgian
+kongo
+kikuyu; gikuyu
+kuanyama; kwanyama
+kazakh
+kalaallisut; greenlandic
+central khmer
+kannada
+korean
+kanuri
+kashmiri
+kurdish
+komi
+cornish
+kirghiz; kyrgyz
+latin
+luxembourgish; letzeburgesch
+ganda
+limburgan; limburger; limburgish
+lingala
+lao
+lithuanian
+luba-katanga
+latvian
+malagasy
+marshallese
+maori
+macedonian
+malayalam
+mongolian
+marathi
+malay
+maltese
+burmese
+nauru
+bokmål, norwegian; norwegian bokmål
+ndebele, north; north ndebele
+nepali
+ndonga
+dutch; flemish
+norwegian nynorsk; nynorsk, norwegian
+norwegian
+ndebele, south; south ndebele
+navajo; navaho
+chichewa; chewa; nyanja
+occitan (post 1500)
+ojibwa
+oromo
+oriya
+ossetian; ossetic
+panjabi; punjabi
+pali
+polish
+pushto; pashto
+portuguese
+quechua
+romansh
+rundi
+romanian; moldavian; moldovan
+russian
+kinyarwanda
+sanskrit
+sardinian
+sindhi
+northern sami
+sango
+sinhala; sinhalese
+slovak
+slovenian
+samoan
+shona
+somali
+albanian
+serbian
+swati
+sotho, southern
+sundanese
+swedish
+swahili
+tamil
+telugu
+tajik
+thai
+tigrinya
+turkmen
+tagalog
+tswana
+tonga (tonga islands)
+turkish
+tsonga
+tatar
+twi
+tahitian
+uighur; uyghur
+ukrainian
+urdu
+uzbek
+venda
+vietnamese
+volapük
+walloon
+wolof
+xhosa
+yiddish
+yoruba
+zhuang; chuang
+chinese
+zulu
