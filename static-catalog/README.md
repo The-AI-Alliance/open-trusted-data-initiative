@@ -353,6 +353,7 @@ D DESCRIBE hf_metadata1;
 │    60107     │
 └──────────────┘
 ```
+> **NOTE:** To investigate datasets with `NULL` licenses, I later created `hf_metadata1_with_null_licenses`, where the `WHERE license IS NULL` clause was removed, and similarly `hf_metadata_with_all_licenses`, using modifications to the query below used to create `hf-metadata`. See the discussion there.
 
 ### Licenses
 
@@ -663,6 +664,30 @@ ORDER BY count DESC;
 ```
 
 Okay, for now, we will reject the datasets with invalid URLs for the licenses, even though some clearly intend to reference legitimate license sources.
+
+#### Keeping "Bad" Licenses
+
+As discussed above, we later created a second set of tables that kept the "bad" licenses, for further analysis. Using the same query to create `hf_metadata`, but with `hf_metadata1_with_null_licenses` instead of `hf_metadata1` and a `LEFT JOIN` with `hf_licenses`, instead of just `JOIN`:
+
+```sql
+CREATE OR REPLACE TABLE hf_metadata_with_all_licenses AS 
+  SELECT 
+    hfm.name          AS name,
+    hfm.description   AS description,
+    lic.name          AS license,
+    lic.id            AS license_id,
+    hfm.license       AS license_url,
+    hfm.language      AS language,
+    hfm.dataset_url   AS dataset_url,
+    hfm.keywords      AS keywords,
+    hfm.creator_name  AS creator_name,
+    hfm.creator_url   AS creator_url
+  FROM hf_metadata1_with_null_licenses hfm
+  LEFT JOIN hf_licenses lic
+  ON hfm.license = lic.url;
+```
+
+This table has 261495, as we would expect. 
 
 ### Languages
 
