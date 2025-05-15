@@ -63,7 +63,7 @@ The process follows these steps:
 1. **Prepare your contribution:** Make sure you meet the [Dataset Specification]({{site.baseurl}}/dataset-requirements) and prepare the dataset card.
 2. **Tell us about your dataset:** Follow the instructions in [Contribute Your Dataset](#contribute-your-dataset) below to submit your dataset for consideration.
 3. **Receive feedback from us:** After we evaluate the submission, we will provide feedback and request clarifications, where needed.
-4. **Be added to our dataset catalog:** Once your contribution is accepted, your dataset will be added to our [catalog]({{site.baseurl}}/catalog).
+4. **Be added to our dataset catalog:** Once your contribution is accepted, your dataset will be added to our [catalog]({{site.baseurl}}/catalog/catalog/).
 5. **Review your details:** After publication in our catalog, verify that the information about your dataset is correct.
 
 ## License

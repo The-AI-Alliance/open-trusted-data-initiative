@@ -42,7 +42,7 @@ Our deliverables to the industry include the following:
 
 <!-- 
 If you just want to browse the current catalog:<br/>
-<a href="{{site.baseurl}}/catalog/" target="hugging-face" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph">click here</a>.
+<a href="{{site.baseurl}}/catalog/catalog/" target="hugging-face" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph">click here</a>.
 
 So, why should you get involved?
 

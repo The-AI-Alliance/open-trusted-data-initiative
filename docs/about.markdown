@@ -8,14 +8,14 @@ has_children: false
 # News
 
 | :--- | :--- |
-| May&nbsp;6,&nbsp;2025 | We are actively soliciting datasets covering diverse languages, domains, use cases, etc. Please see our [contributing]({{site.baseurl}}/contributing) page and the [catalog]({{site.baseurl}}/catalog) of available datasets. |
-| February&nbsp;11,&nbsp;2025 | OTDI [announced](https://thealliance.ai/blog/announcing-open-trusted-data-initiative-otdi){:target="aias"} at the AI Action Summit in Paris. Added an [EPFL]({{site.baseurl}}/catalog/#epfl) dataset. |
-| January&nbsp;31,&nbsp;2025 | Added [Data for Good at Meta]({{site.baseurl}}/catalog/#meta) datasets. |
+| May&nbsp;6,&nbsp;2025 | We are actively soliciting datasets covering diverse languages, domains, use cases, etc. Please see our [contributing]({{site.baseurl}}/contributing) page and the [catalog]({{site.baseurl}}/catalog/catalog/) of available datasets. |
+| February&nbsp;11,&nbsp;2025 | OTDI [announced](https://thealliance.ai/blog/announcing-open-trusted-data-initiative-otdi){:target="aias"} at the AI Action Summit in Paris. Added an [EPFL]({{site.baseurl}}/catalog/catalog/#epfl) dataset. |
+| January&nbsp;31,&nbsp;2025 | Added [Data for Good at Meta]({{site.baseurl}}/catalog/catalog/#meta) datasets. |
 | January&nbsp;23,&nbsp;2025 | The initiative [Steering Committee]({{site.baseurl}}/about/#steering-committee) is established. |
-| December&nbsp;11,&nbsp;2024 | Added [ServiceNow]({{site.baseurl}}/catalog/#servicenow) datasets. |
-| November&nbsp;20,&nbsp;2024 | [BrightQuery]({{site.baseurl}}/catalog/#brightquery) joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/jose-plehn_brightquery-is-proud-to-now-be-a-member-of-activity-7265516443742478338-xjIz/?utm_source=share&utm_medium=member_desktop){:target="bq-li"}. |
-| November&nbsp;4,&nbsp;2024 | [PleIAs]({{site.baseurl}}/catalog/#pleias) joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/pleias_pleias-joins-the-ai-alliance-to-co-lead-open-ugcPost-7259263514542796800-Uphx/){:target="pleias-li"}.  |
-| October&nbsp;15,&nbsp;2024 | [Common Crawl Foundation]({{site.baseurl}}/catalog/#common-crawl-foundation) joins the AI Alliance and the Open Trusted Data Initiative. |
+| December&nbsp;11,&nbsp;2024 | Added [ServiceNow]({{site.baseurl}}/catalog/catalog/#servicenow) datasets. |
+| November&nbsp;20,&nbsp;2024 | [BrightQuery]({{site.baseurl}}/catalog/catalog/#brightquery) joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/jose-plehn_brightquery-is-proud-to-now-be-a-member-of-activity-7265516443742478338-xjIz/?utm_source=share&utm_medium=member_desktop){:target="bq-li"}. |
+| November&nbsp;4,&nbsp;2024 | [PleIAs]({{site.baseurl}}/catalog/catalog/#pleias) joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/pleias_pleias-joins-the-ai-alliance-to-co-lead-open-ugcPost-7259263514542796800-Uphx/){:target="pleias-li"}.  |
+| October&nbsp;15,&nbsp;2024 | [Common Crawl Foundation]({{site.baseurl}}/catalog/catalog/#common-crawl-foundation) joins the AI Alliance and the Open Trusted Data Initiative. |
 
 | **Authors**      | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
 | **Last Update**  | V0.3.0, 2025-05-06 |
