@@ -1,0 +1,2335 @@
+[
+    {
+    "name": "language",
+    "context": "Datasets with different human languages.",
+    "topics": [
+      {
+        "name": "languages-americas",
+        "title": "Languages of the Americas",
+        "subtopics": [          
+          {
+            "name": "achuar-shiwiar"
+          },
+          {
+            "name": "algonquin"
+          },
+          {
+            "name": "arabela"
+          },
+          {
+            "name": "asháninka"
+          },
+          {
+            "name": "ayacucho quechua"
+          },
+          {
+            "name": "aymara"
+          },
+          {
+            "name": "bora"
+          },
+          {
+            "name": "cajamarca quechua"
+          },
+          {
+            "name": "candoshi-shapra"
+          },
+          {
+            "name": "caquinte"
+          },
+          {
+            "name": "caribbean hindustani"
+          },
+          {
+            "name": "cashibo-cacataibo"
+          },
+          {
+            "name": "cashinahua"
+          },
+          {
+            "name": "central aymara"
+          },
+          {
+            "name": "central bikol"
+          },
+          {
+            "name": "central bontok"
+          },
+          {
+            "name": "central mazahua"
+          },
+          {
+            "name": "chachi"
+          },
+          {
+            "name": "chayahuita"
+          },
+          {
+            "name": "cherokee"
+          },
+          {
+            "name": "chimborazo highland quichua"
+          },
+          {
+            "name": "chácobo"
+          },
+          {
+            "name": "cofán"
+          },
+          {
+            "name": "cree"
+          },
+          {
+            "name": "cusco quechua"
+          },
+          {
+            "name": "eastern huasteca nahuatl"
+          },
+          {
+            "name": "eastern maroon creole"
+          },
+          {
+            "name": "galibi carib"
+          },
+          {
+            "name": "garifuna"
+          }
+        ]
+      },
+      {
+        "name": "african-languages",
+        "subtopics": [          
+          {
+            "name": "afar"
+          },
+          {
+            "name": "afrikaans"
+          },
+          {
+            "name": "akan"
+          },
+          {
+            "name": "amharic"
+          },
+          {
+            "name": "baatonum"
+          },
+          {
+            "name": "bambara"
+          },
+          {
+            "name": "bemba (zambia)"
+          },
+          {
+            "name": "ber"
+          },
+          {
+            "name": "central atlas tamazight"
+          },
+          {
+            "name": "central kanuri"
+          },
+          {
+            "name": "chichewa"
+          },
+          {
+            "name": "chokwe"
+          },
+          {
+            "name": "dagbani"
+          },
+          {
+            "name": "dinka"
+          },
+          {
+            "name": "dyula"
+          },
+          {
+            "name": "egyptian (ancient)"
+          },
+          {
+            "name": "egyptian arabic"
+          },
+          {
+            "name": "fanti"
+          },
+          {
+            "name": "fulah"
+          },
+          {
+            "name": "ganda"
+          }
+        ]
+      },
+      {
+        "name": "asian-languages",
+        "subtopics": [          
+          {
+            "name": "abkhaz"
+          },
+          {
+            "name": "achinese"
+          },
+          {
+            "name": "amis"
+          },
+          {
+            "name": "angika"
+          },
+          {
+            "name": "armenian"
+          },
+          {
+            "name": "assamese"
+          },
+          {
+            "name": "avaric"
+          },
+          {
+            "name": "awadhi"
+          },
+          {
+            "name": "azerbaijani"
+          },
+          {
+            "name": "balinese"
+          },
+          {
+            "name": "baluchi"
+          },
+          {
+            "name": "bashkir"
+          },
+          {
+            "name": "bengali"
+          },
+          {
+            "name": "bishnupriya"
+          },
+          {
+            "name": "bodo (india)"
+          },
+          {
+            "name": "bolinao"
+          },
+          {
+            "name": "burmese"
+          },
+          {
+            "name": "carpathian romani"
+          },
+          {
+            "name": "cebuano"
+          },
+          {
+            "name": "central kurdish"
+          },
+          {
+            "name": "chechen"
+          },
+          {
+            "name": "chhattisgarhi"
+          },
+          {
+            "name": "chinese"
+          },
+          {
+            "name": "chuvash"
+          },
+          {
+            "name": "crimean tatar"
+          },
+          {
+            "name": "dari"
+          },
+          {
+            "name": "dhivehi"
+          },
+          {
+            "name": "dimli (individual language)"
+          },
+          {
+            "name": "divehi"
+          },
+          {
+            "name": "dogri (macrolanguage)"
+          },
+          {
+            "name": "dzongkha"
+          },
+          {
+            "name": "eastern tamang"
+          },
+          {
+            "name": "erzya"
+          },
+          {
+            "name": "farsi"
+          },
+          {
+            "name": "filipino"
+          },
+          {
+            "name": "hindi"
+          },
+          {
+            "name": "japanese"
+          },
+          {
+            "name": "korean"
+          },
+          {
+            "name": "turkish"
+          },
+          {
+            "name": "vietnamese"
+          }
+        ]
+      },
+      {
+        "name": "european-languages",
+        "subtopics": [          
+          {
+            "name": "adyghe"
+          },
+          {
+            "name": "albanian"
+          },
+          {
+            "name": "ancient greek (to 1453)",
+            "title": "Ancient Greek (to 1453)"
+          },
+          {
+            "name": "aragonese"
+          },
+          {
+            "name": "arpitan"
+          },
+          {
+            "name": "asturian"
+          },
+          {
+            "name": "basque"
+          },
+          {
+            "name": "bavarian"
+          },
+          {
+            "name": "belarusian"
+          },
+          {
+            "name": "bosnian"
+          },
+          {
+            "name": "breton"
+          },
+          {
+            "name": "bulgarian"
+          },
+          {
+            "name": "catalan"
+          },
+          {
+            "name": "cornish"
+          },
+          {
+            "name": "corsican"
+          },
+          {
+            "name": "croatian"
+          },
+          {
+            "name": "czech"
+          },
+          {
+            "name": "danish"
+          },
+          {
+            "name": "dutch"
+          },
+          {
+            "name": "eastern mari"
+          },
+          {
+            "name": "eastern yiddish"
+          },
+          {
+            "name": "english",
+            "all-tags": [
+              {
+                "name": "emoji"
+              }
+            ]
+          },
+          {
+            "name": "esperanto"
+          },
+          {
+            "name": "estonian"
+          },
+          {
+            "name": "faroese"
+          },
+          {
+            "name": "finnish"
+          },
+          {
+            "name": "french",
+            "all-tags": [
+              {
+                "name": "droit français"
+              },
+              {
+                "name": "french law"
+              },
+              {
+                "name": "french prompts"
+              },
+              {
+                "name": "squad_v2_french_translated"
+              }
+            ]
+          },
+          {
+            "name": "friulian"
+          },
+          {
+            "name": "gagauz"
+          },
+          {
+            "name": "galician"
+          },
+          {
+            "name": "german"
+          },
+          {
+            "name": "georgian"
+          },
+          {
+            "name": "hungarian"
+          },
+          {
+            "name": "italian"
+          },
+          {
+            "name": "portuguese"
+          },
+          {
+            "name": "russian"
+          },
+          {
+            "name": "spanish",
+            "all-tags": [
+              {
+                "name": "ciempiess"
+              }
+            ]
+          },
+          {
+            "name": "turkish"
+          }
+        ]
+      },
+      {
+        "name": "middle-eastern-languages",
+        "subtopics": [          
+          {
+            "name": "arabic"
+          },
+          {
+            "name": "akkadian"
+          },
+          {
+            "name": "ancient hebrew"
+          },
+          {
+            "name": "assyrian neo-aramaic"
+          }
+        ]
+      },
+      {
+        "name": "pacific-languages",
+        "context": "Languages in the Pacific islands, Australia, and New Zealand.",
+        "subtopics": [          
+          {
+            "name": "ambulas"
+          },
+          {
+            "name": "banjar"
+          },
+          {
+            "name": "batak toba"
+          },
+          {
+            "name": "benabena"
+          },
+          {
+            "name": "betawi"
+          },
+          {
+            "name": "bhojpuri"
+          },
+          {
+            "name": "bine"
+          },
+          {
+            "name": "bislama"
+          },
+          {
+            "name": "buginese"
+          },
+          {
+            "name": "bunama"
+          },
+          {
+            "name": "burarra"
+          },
+          {
+            "name": "chamorro"
+          },
+          {
+            "name": "chuukese"
+          },
+          {
+            "name": "dhao"
+          },
+          {
+            "name": "doromu-koki"
+          },
+          {
+            "name": "fiji hindi"
+          },
+          {
+            "name": "fijian"
+          },
+          {
+            "name": "indonesian"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "modality",
+    "context": "Datasets with different modalities (like text vs. video) or broad purposes, like classification.",
+    "topics": [
+      {
+        "name": "3d",
+        "context": "Three dimensional data",
+        "title": "3D",
+        "all-tags": [
+          {
+            "name": "depth-estimation"
+          },
+          {
+            "name": "image-to-3d"
+          },
+          {
+            "name": "text-to-3d"
+          }
+        ]
+      },
+      {
+        "name": "agents",
+        "all-tags": [
+          {
+            "name": "agent"
+          },
+          {
+            "name": "downstream-task"
+          },
+          {
+            "name": "downstream-tasks"
+          },
+          {
+            "name": "function-calling"
+          },
+          {
+            "name": "language-agent"
+          }
+        ]
+      },
+      {
+        "name": "alignment",
+        "all-tags": [
+          {
+            "name": "acceptability-classification"
+          },
+          {
+            "name": "alignment-lab-ai"
+          },
+          {
+            "name": "explainability"
+          },
+          {
+            "name": "fairness"
+          },
+          {
+            "name": "grounding"
+          },
+          {
+            "name": "hallucination"
+          },
+          {
+            "name": "relevance"
+          }
+        ]
+      },
+      {
+        "name": "arrow",
+        "context": "Arrow formatted data"
+      },
+      {
+        "name": "arxiv",
+        "like-clause": "arxiv%",
+        "context": "References to arXiv articles. (Many keywords starting with 'arxiv:'.)"
+      },
+      {
+        "name": "audio",
+        "all-tags": [
+          {
+            "name": "audio-classification"
+          },
+          {
+            "name": "audio-to-audio"
+          },
+          {
+            "name": "speaker-identification"
+          },
+          {
+            "name": "text-to-audio"
+          },
+          {
+            "name": "voice"
+          },
+          {
+            "name": "voice-activity-detection"
+          }
+        ]
+      },
+      {
+        "name": "benchmark",
+        "context": "Datasets associated with benchmarks of any kind.",
+        "all-tags": [
+          {
+            "name": "alignment"
+          },
+          {
+            "name": "aveni-bench"
+          },
+          {
+            "name": "benchmarks"
+          },
+          {
+            "name": "gsm8k",
+            "title": "GSM8K"
+          },
+          {
+            "name": "mteb",
+            "title": "MTEB"
+          },
+          {
+            "name": "test"
+          },
+          {
+            "name": "testing"
+          }
+        ]
+      },
+      {
+        "name": "classification",
+        "context": "All aspects of classification: text, images, etc.",
+        "all-tags": [
+          {
+            "name": "acceptability-classification"
+          },
+          {
+            "name": "audio-classification"
+          },
+          {
+            "name": "entity-linking-classification"
+          },
+          {
+            "name": "image-classification"
+          },
+          {
+            "name": "intent-classification"
+          },
+          {
+            "name": "multi-class-classification"
+          },
+          {
+            "name": "multi-class-image-classification"
+          },
+          {
+            "name": "multi-input-text-classification"
+          },
+          {
+            "name": "multi-label-classification"
+          },
+          {
+            "name": "multi-label-image-classification"
+          },
+          {
+            "name": "segmentation"
+          },
+          {
+            "name": "semantic-segmentation"
+          },
+          {
+            "name": "semantic-similarity-classification"
+          },
+          {
+            "name": "semantic-similarity-scoring"
+          },
+          {
+            "name": "sentiment-classification"
+          },
+          {
+            "name": "sentiment-scoring"
+          },
+          {
+            "name": "tabular-classification"
+          },
+          {
+            "name": "tabular-multi-class-classification"
+          },
+          {
+            "name": "tabular-multi-label-classification"
+          },
+          {
+            "name": "text-classification"
+          },
+          {
+            "name": "text-scoring"
+          },
+          {
+            "name": "token classification"
+          },
+          {
+            "name": "token-classification"
+          },
+          {
+            "name": "topic-classification"
+          },
+          {
+            "name": "video-classification"
+          },
+          {
+            "name": "zero-shot-classification"
+          },
+          {
+            "name": "zero-shot-image-classification"
+          }
+        ]
+      },
+      {
+        "name": "chain-of-thought",
+        "all-tags": [
+          {
+            "name": "cot",
+            "title": "COT"
+          }
+        ]
+      },
+      {
+        "name": "chat",
+        "all-tags": [
+          {
+            "name": "argument"
+          },
+          {
+            "name": "argumentation"
+          },
+          {
+            "name": "chat-dataset"
+          },
+          {
+            "name": "conversation"
+          },
+          {
+            "name": "conversational"
+          },
+          {
+            "name": "conversational-ai"
+          },
+          {
+            "name": "conversations"
+          },
+          {
+            "name": "debate"
+          },
+          {
+            "name": "dialog"
+          },
+          {
+            "name": "dialogue"
+          },
+          {
+            "name": "dialogue-modeling"
+          },
+          {
+            "name": "discussion"
+          },
+          {
+            "name": "fictitious dialogues"
+          },
+          {
+            "name": "multiple-turn-dialogue"
+          },
+          {
+            "name": "roleplay",
+            "title": "Role Play"
+          },
+          {
+            "name": "role-play"
+          }
+        ]
+      },
+      {
+        "name": "crowdsourced",
+        "title": "Crowd Sourced"
+      },
+      {
+        "name": "csv",
+        "context": "CSV formatted data",
+        "title": "CSV"
+      },
+      {
+        "name": "embeddings",
+        "all-tags": [
+          {
+            "name": "embedding"
+          }
+        ]
+      },
+      {
+        "name": "evaluation",
+        "all-tags": [
+          {
+            "name": "eval"
+          },
+          {
+            "name": "quality"
+          }
+        ]
+      },
+      {
+        "name": "finetuning",
+        "context": "Post training refinement of models for alignment, safety, etc.",
+        "title": "Fine Tuning",
+        "all-tags": [
+          {
+            "name": "finetune",
+            "title": "Fine Tune"
+          },
+          {
+            "name": "fine-tune"
+          },
+          {
+            "name": "fine-tuning"
+          },
+          {
+            "name": "instruct"
+          },
+          {
+            "name": "instruction-finetuning",
+            "title": "Instruction Fine Tuning"
+          },
+          {
+            "name": "instruction-fine-tuning"
+          },
+          {
+            "name": "instruction-following"
+          },
+          {
+            "name": "instruction tuning"
+          },
+          {
+            "name": "instruction-tuning"
+          },
+          {
+          "name": "preference"
+          },
+          {
+          "name": "preferences"
+          },
+          {
+            "name": "sft",
+            "title": "SFT"
+          },
+          {
+            "name": "structured-fine-tuning"
+          }
+        ]
+      },
+      {
+        "name": "generated-data",
+        "context": "Datasets that were generated by humans or automation.",
+        "all-tags": [
+          {
+            "name": "ai-generated"
+          },
+          {
+            "name": "conditional-text-generation"
+          },
+          {
+            "name": "code-generation"
+          },
+          {
+            "name": "dialog-generation"
+          },
+          {
+            "name": "explanation-generation"
+          },
+          {
+            "name": "generation"
+          },
+          {
+            "name": "generated"
+          },
+          {
+            "name": "expert-generated"
+          },
+          {
+            "name": "machine-generated"
+          },
+          {
+            "name": "ocr",
+            "title": "OCR"
+          },
+          {
+            "name": "text generation"
+          },
+          {
+            "name": "text-generation"
+          },
+          {
+            "name": "text2text-generation",
+            "title": "Text-to-Text Generation"
+          },
+          {
+            "name": "synthetic"
+          },
+          {
+            "name": "synthetic-captions"
+          },
+          {
+            "name": "synthetic-data"
+          },
+          {
+            "name": "synthetic-dataset"
+          }
+        ]
+      },
+      {
+        "name": "feature-extraction",
+        "all-tags": [
+          {
+            "name": "image-feature-extraction"
+          }
+        ]
+      },
+      {
+        "name": "graph",
+        "all-tags": [
+          {
+            "name": "graphs"
+          },
+          {
+            "name": "graph-ml"
+          },
+          {
+            "name": "knowledge graph"
+          },
+          {
+            "name": "knowledge-graph"
+          },
+          {
+            "name": "knowledge graphs"
+          },
+          {
+            "name": "knowledge-graphs"
+          }
+        ]
+      },
+      {
+        "name": "handwritten"
+      },
+      {
+        "name": "image",
+        "context": "Datasets of images and analysis of them, such as object detection.",
+        "all-tags": [
+          {
+            "name": "anime"
+          },
+          {
+            "name": "chart"
+          },
+          {
+            "name": "caption"
+          },
+          {
+            "name": "danbooru"
+          },
+          {
+            "name": "diagram"
+          },
+          {
+            "name": "geometry-diagram"
+          },
+          {
+            "name": "images"
+          },
+          {
+            "name": "image-captioning"
+          },
+          {
+            "name": "image-captions"
+          },
+          {
+            "name": "image-caption pairs"
+          },
+          {
+            "name": "image-caption-pairs"
+          },
+          {
+            "name": "image classification"
+          },
+          {
+            "name": "image-classification"
+          },
+          {
+            "name": "image-data"
+          },
+          {
+            "name": "image-feature-extraction"
+          },
+          {
+            "name": "image-generation"
+          },
+          {
+            "name": "image-segmentation"
+          },
+          {
+            "name": "image-text-dataset"
+          },
+          {
+            "name": "image-text-to-text"
+          },
+          {
+            "name": "image-to-image"
+          },
+          {
+            "name": "image-to-text"
+          },
+          {
+            "name": "image-to-video"
+          },
+          {
+            "name": "multi-class-image-classification"
+          },
+          {
+            "name": "object detection"
+          },
+          {
+            "name": "object-detection"
+          },
+          {
+            "name": "photo"
+          },
+          {
+            "name": "photos"
+          },
+          {
+            "name": "photograph"
+          },
+          {
+            "name": "photographs"
+          },
+          {
+            "name": "scientific-figure"
+          },
+          {
+            "name": "super-resolution"
+          },
+          {
+            "name": "text-to-image"
+          },
+          {
+            "name": "unconditional-image-generation"
+          }
+        ]
+      },
+      {
+        "name": "instruction-following",
+        "all-tags": [
+          {
+            "name": "instruct"
+          },
+          {
+            "name": "instruction"
+          },
+          {
+            "name": "instruction-finetuning",
+            "title": "Instruction Fine Tuning"
+          },
+          {
+            "name": "instruction-fine-tuning"
+          },
+          {
+            "name": "instruction-tuning"
+          },
+          {
+            "name": "multiturn",
+            "title": "Multi Turn"
+          },
+          {
+            "name": "multi-turn"
+          }
+        ]
+      },
+      {
+        "name": "llm",
+        "title": "LLM",
+        "all-tags": [
+          {
+            "name": "alpaca"
+          },
+          {
+            "name": "large-language-model"
+          },
+          {
+            "name": "large-language-models"
+          },
+          {
+            "name": "language model"
+          },
+          {
+            "name": "language-modeling"
+          },
+          {
+            "name": "llms",
+            "title": "LLMs"
+          },
+          {
+            "name": "masked-language-modeling"
+          }
+        ]
+      },
+      {
+        "name": "json",
+        "context": "JSON formatted data",
+        "title": "JSON",
+        "all-tags": [
+          {
+            "name": "jsonl",
+            "title": "JSONL"
+          }
+        ]
+      },
+      {
+        "name": "monolingual",
+        "context": "Primarily one language."
+      },
+      {
+        "name": "multilingual",
+        "context": "Datasets with more than one language.",
+        "title": "Multi Lingual",
+        "all-tags": [
+          {
+            "name": "machine translation"
+          },          
+          {
+            "name": "multi-lingual"
+          },
+          {
+            "name": "squad_v2_french_translated"
+          },
+          {
+            "name": "translated"
+          }
+        ]
+      },
+      {
+        "name": "multimodal",
+        "all-tags": [
+          {
+            "name": "multimodality"
+          },
+          {
+            "name": "multi-modal"
+          },
+          {
+            "name": "multi-modal-qa"
+          }
+        ]
+      },
+      {
+        "name": "multiple-choice"
+      },
+      {
+        "name": "music",
+        "all-tags": [
+          {
+            "name": "midi"
+          }
+        ]
+      },
+      {
+        "name": "named-entity-recognition"
+      },
+      {
+        "name": "news",
+        "all-tags": [
+          {
+            "name": "news-articles-summarization"
+          }
+        ]
+      },
+      {
+        "name": "nlp",
+        "title": "NLP",
+        "all-tags": [
+          {
+            "name": "explanation"
+          },
+          {
+            "name": "explanation-generation"
+          },
+          {
+            "name": "natural-language-inference"
+          },
+          {
+            "name": "natural-language-processing"
+          },
+          {
+            "name": "natural-language-understanding"
+          }
+        ]
+      },
+      {
+        "name": "planning"
+      },
+      {
+        "name": "pretraining",
+        "context": "Training of foundation modals, before (or 'pre') tuning for alignment, safety, etc.",
+        "title": "Pretraining",
+        "all-tags": [
+          {
+            "name": "long context"
+          },
+          {
+            "name": "long-context"
+          },
+          {
+            "name": "distillation"
+          },
+          {
+            "name": "pretrain"
+          },
+          {
+            "name": "preservation-loss-training"
+          }
+        ]
+      },
+      {
+        "name": "problem-solving"
+      },
+      {
+        "name": "prompt",
+        "all-tags": [
+          {
+            "name": "dfp",
+            "title": "DFP"
+          },
+          {
+            "name": "french prompts"
+          },
+          {
+            "name": "prompts"
+          },
+          {
+            "name": "prompt engineering"
+          },
+          {
+            "name": "prompt-generation"
+          }
+        ]
+      },
+      {
+        "name": "question-answering",
+        "context": "Datasets with question and answer pairs and related content.",
+        "all-tags": [
+          {
+            "name": "abstractive-qa",
+            "title": "Abstractive Q&A"
+          },
+          {
+            "name": "camel",
+            "title": "Closed Book Q&A"
+          },
+          {
+            "name": "closed-book-qa",
+            "title": "Closed Book Q&A"
+          },
+          {
+            "name": "closed-domain-qa",
+            "title": "Closed Domain Q&A"
+          },
+          {
+            "name": "document-question-answering"
+          },
+          {
+            "name": "extractive-qa",
+            "title": "Extractive Q&A"
+          },
+          {
+            "name": "figure-qa",
+            "name": "Figure Q&A"
+          },
+          {
+            "name": "math-qa",
+            "name": "Math Q&A"
+          },
+          {
+            "name": "multiple-choice-qa",
+            "title": "Multiple Choice Q&A"
+          },
+          {
+            "name": "multi-modal-qa",
+            "title": "Multi Modal Q&A"
+          },
+          {
+            "name": "open-domain-qa",
+            "title": "Open Domain Q&A"
+          },
+          {
+            "name": "open-book-qa",
+            "title": "Open Book Q&A"
+          },
+          {
+            "name": "q-and-a",
+            "title": "Q-and-A"
+          },
+          {
+            "name": "qa",
+            "title": "Q&A"
+          },
+          {
+            "name": "qna",
+            "title": "Q&A"
+          },
+          {
+            "name": "q&a",
+            "title": "Q&A"
+          },
+          {
+            "name": "questions"
+          },
+          {
+            "name": "question-generation"
+          },
+          {
+            "name": "table-question-answering"
+          },
+          {
+            "name": "visual-question-answering"
+          },
+          {
+            "name": "vqa",
+            "title": "VQ&A"
+          }
+        ]
+      },
+      {
+        "name": "rag",
+        "title": "RAG",
+        "context": "Retrieval Augmented Generation",
+        "all-tags": [
+          {
+            "name": "retrieval augmented generation"
+          },
+          {
+            "name": "retrieval-augmented-generation"
+          }
+        ]
+      },
+      {
+        "name": "reasoning",
+        "context": "Datasets to improve model's abilities to reason.",
+        "all-tags": [
+          {
+            "name": "reflection"
+          },
+          {
+            "name": "step-by-step"
+          },
+          {
+            "name": "logical-reasoning"
+          },
+          {
+            "name": "mathematical-reasoning"
+          }
+        ]
+      },
+      {
+        "name": "regression",
+        "all-tags": [
+          {
+            "name": "tabular-regression"
+              }
+        ]
+      },
+      {
+        "name": "reinforcement-learning",
+        "all-tags": [
+          {
+            "name": "dpo",
+            "title": "DPO"
+          },
+          {
+            "name": "expert trajectory"
+          },
+          {
+            "name": "human-feedback"
+          },
+          {
+            "name": "rl",
+            "title": "RL"
+          },
+          {
+            "name": "rlhf",
+            "title": "RLHF"
+          },
+          {
+            "name": "rlaif",
+            "title": "RLAIF"
+          }
+        ]
+      },
+      {
+        "name": "safety",
+        "all-tags": [
+          {
+            "name": "deepfake",
+            "title": "Deep Fake"
+          },
+          {
+            "name": "deep-fake"
+          },
+          {
+            "name": "fairness"
+          },
+          {
+            "name": "hallucination"
+          },
+          {
+            "name": "hate-speech"
+          },
+          {
+            "name": "hate-speech-detection"
+          },
+          {
+            "name": "misinformation"
+          },
+          {
+            "name": "red-teaming"
+          },
+          {
+            "name": "toxicity"
+          }
+        ]
+      },
+      {
+        "name": "search",
+        "all-tags": [
+          {
+            "name": "codesearchnet"
+          },
+          {
+            "name": "search-queries"
+          },          
+          {
+            "name": "semantic-search"
+          }
+        ]
+      },
+      {
+        "name": "security",
+        "all-tags": [
+          {
+            "name": "cybersecurity"
+          },
+          {
+            "name": "jailbreak"
+          },
+          {
+            "name": "red-teaming"
+          }
+        ]
+      },
+      {
+        "name": "sentence-similarity"
+      },
+      {
+        "name": "sentence-transformers"
+      },
+      {
+        "name": "sentiment-analysis",
+        "all-tags": [
+          {
+            "name": "emotion"
+          },
+          {
+            "name": "emotions"
+          },
+          {
+            "name": "sentiment-classification"
+          },
+          {
+            "name": "sentiment"
+          },
+          {
+            "name": "sentiments"
+          }
+        ]
+      },
+      {
+        "name": "speech",
+        "all-tags": [
+          {
+            "name": "automatic-speech-recognition"
+          },
+          {
+            "name": "grammar"
+          },
+          {
+            "name": "hate-speech"
+          },
+          {
+            "name": "hate-speech-detection"
+          },
+          {
+            "name": "linguistics"
+          },
+          {
+            "name": "parts-of-speech"
+          },
+          {
+            "name": "sarcasm-detection"
+          },
+          {
+            "name": "speech-detection"
+          },
+          {
+            "name": "speech-recognition"
+          },
+          {
+            "name": "text-to-speech"
+          }
+        ]
+      },
+      {
+        "name": "summarization",
+        "all-tags": [
+          {
+            "name": "news-articles-summarization"
+          },
+          {
+            "name": "paraphrase"
+          },
+          {
+            "name": "paraphrase-identification"
+          },
+          {
+            "name": "summary"
+          },
+          {
+            "name": "text-simplification"
+          }
+        ]
+      },
+      {
+        "name": "tabular",
+        "context": "Data in table formats.",
+        "all-tags": [
+          {
+            "name": "table"
+          },
+          {
+            "name": "table-to-text"
+          }
+        ]
+      },
+      {
+        "name": "retrieval",
+        "all-tags": [
+          {
+            "name": "document-retrieval"
+          },
+          {
+            "name": "entity-linking-retrieval"
+          },
+          {
+            "name": "fact-checking"
+          },
+          {
+            "name": "fact-checking-retrieval"
+          },
+          {
+            "name": "information-retrieval"
+          },
+          {
+            "name": "text-retrieval"
+          }
+        ]
+      },
+      {
+        "name": "text-to-...",
+        "context": "Generating images, videos, etc. from text.",
+        "all-tags": [
+          {
+            "name": "image-text-to-text"
+          },
+          {
+            "name": "text-to-audio"
+          },
+          {
+            "name": "text-to-image"
+          },
+          {
+            "name": "text-to-speech"
+          },
+          {
+            "name": "text-to-sql"
+          },
+          {
+            "name": "text2video",
+            "name": "Text to Video"
+          },
+          {
+            "name": "text-to-video"
+          },
+          {
+            "name": "video-text-to-text"
+          }
+        ]
+      },
+      {
+        "name": "to-text",
+        "context": "Datasets for generating text from different data sources.",
+        "all-tags": [
+          {
+            "name": "data-to-text"
+          },
+          {
+            "name": "image-caption pairs"
+          },
+          {
+            "name": "image-caption-pairs"
+          },
+          {
+            "name": "image-text-to-text"
+          },
+          {
+            "name": "image-to-text"
+          },
+          {
+            "name": "table-to-text"
+          },
+          {
+            "name": "video-text-to-text"
+          },
+          {
+            "name": "video-to-text"
+          }
+        ]
+      },
+      {
+        "name": "translation",
+        "all-tags": [
+          {
+            "name": "machine translation"
+          },          
+          {
+            "name": "translated"
+          }          
+        ]
+      },
+      {
+        "name": "tutorial"
+      },
+      {
+        "name": "unlearning",
+        "all-tags": [
+          {
+            "name": "tofu"
+          }
+        ]
+      },
+      {
+        "name": "video",
+        "all-tags": [
+          {
+            "name": "drone"
+          },
+          {
+            "name": "image-to-video"
+          },
+          {
+            "name": "lvlm",
+            "title": "LVLM"
+          },
+          {
+            "name": "movie"
+          },
+          {
+            "name": "movies"
+          },
+          {
+            "name": "synthetic-captions"
+          },
+          {
+            "name": "text2video",
+            "name": "Text to Video"
+          },
+          {
+            "name": "text-to-video"
+          },
+          {
+            "name": "video-classification"
+          },
+          {
+            "name": "video-text-to-text"
+          },
+          {
+            "name": "video-to-text"
+          },
+          {
+            "name": "vision-language"
+          },
+          {
+            "name": "vlm",
+            "title": "VLM"
+          },
+          {
+            "name": "vlms",
+            "title": "VLMs"
+          },
+          {
+            "name": "youtube",
+            "title": "YouTube"
+          }
+        ]
+      },
+      {
+        "name": "vision",
+        "all-tags": [
+          {
+            "name": "computer-vision"
+          },
+          {
+            "name": "computer vision"
+          }
+        ]
+      },
+      {
+        "name": "wikipedia",
+        "all-tags": [
+          {
+            "name": "nanodbpedia"
+          },
+          {
+            "name": "extended|wikipedia",
+            "title": "Extended | Wikipedia"
+          },
+          {
+            "name": "wiki"
+          },
+          {
+            "name": "wikidata"
+          },
+          {
+            "name": "wikimedia/wit_base",
+            "title": "Wikimedia / Wit_base"
+          },
+          {
+            "name": "wikisql",
+            "title": "WikiSQL"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "domain",
+    "context": "Domains like chemistry, healthcare, etc.",
+    "topics": [
+      {
+        "name": "advertising",
+        "all-tags": [
+          {
+            "name": "openx",
+            "title": "OpenX"
+          }
+        ]
+      },
+      {
+        "name": "agriculture"
+      },
+      {
+        "name": "art"
+      },
+      {
+        "name": "astronomy"
+      },
+      {
+        "name": "automation"
+      },
+      {
+        "name": "banking",
+        "all-tags": [
+          {
+            "name": "banking-digital-services"
+          },
+          {
+            "name": "investment-ai-analysis"
+          }
+        ]
+      },
+      {
+        "name": "biology",
+        "all-tags": [
+          {
+            "name": "animals"
+          },
+          {
+            "name": "bio"
+          },
+          {
+            "name": "bio-chem"
+          },
+          {
+            "name": "biology`",
+            "title": "Biology",
+            "context": "At least 11 datasets have 'biology`' as a keyword, with the '`'."
+          },
+          {
+            "name": "biomedical"
+          },
+          {
+            "name": "biophysics"
+          }
+        ]
+      },
+      {
+        "name": "chemistry",
+        "all-tags": [
+          {
+            "name": "bio-chem"
+          },
+          {
+            "name": "multimolecule",
+            "like-clause": "multimol%",
+            "context": "Datasets for molecular discovery."
+          },
+          {
+            "name": "molnet",
+            "title": "MolNet"
+          },
+          {
+            "name": "molecule-net"
+          },
+
+          {
+            "name": "protein"
+          },
+          {
+            "name": "protein structure"
+          },
+          {
+            "name": "rna",
+            "title": "RNA"
+          },
+          {
+            "name": "smiles",
+            "title": "SMILES"
+          }
+        ]
+      },
+      {
+        "name": "climate"
+      },
+      {
+        "name": "code",
+        "all-tags": [
+          {
+            "name": "astra"
+          },
+          {
+            "name": "bug-reporting-automation"
+          },
+          {
+            "name": "codesearchnet"
+          },
+          {
+            "name": "code-generation"
+          },
+          {
+            "name": "code-style"
+          },
+          {
+            "name": "coding"
+          },
+          {
+            "name": "collaborative-dev-environments"
+          },
+          {
+            "name": "computer_science"
+          },
+          {
+            "name": "context-sql"
+          },
+          {
+            "name": "development"
+          },
+          {
+            "name": "formal-methods"
+          },
+          {
+            "name": "function calling"
+          },
+          {
+            "name": "function-calling"
+          },
+          {
+            "name": "go"
+          },
+          {
+            "name": "golang"
+          },
+          {
+            "name": "java"
+          },
+          {
+            "name": "linux"
+          },
+          {
+            "name": "open-source"
+          },
+          {
+            "name": "oss",
+            "title": "OSS"
+          },
+          {
+            "name": "postgresql",
+            "title": "PostgreSQL"
+          },
+          {
+            "name": "python"
+          },
+          {
+            "name": "sqlglot",
+            "title": "SQLGlot"
+          },
+          {
+            "name": "wikisql",
+            "title": "WikiSQL"
+          },
+          {
+            "name": "programming"
+          },
+          {
+            "name": "software"
+          },
+          {
+            "name": "software-development"
+          },
+          {
+            "name": "spider"
+          },
+          {
+            "name": "sql"
+          },
+          {
+            "name": "text-to-sql"
+          },
+          {
+            "name": "ubuntu"
+          }
+        ]
+      },
+      {
+        "name": "economics"
+      },
+      {
+        "name": "education",
+        "all-tags": [
+          {
+            "name": "educational"
+          },
+          {
+            "name": "intelligent_tutoring_system"
+          },
+          {
+            "name": "ncert",
+            "title": "NCERT"
+          }
+        ]
+      },
+      {
+        "name": "environment",
+        "all-tags": [
+          {
+            "name": "ecology"
+          },
+          {
+            "name": "environmental-data"
+          },
+          {
+            "name": "environmental science"
+          },
+          {
+            "name": "environmental simulations"
+          },
+          {
+            "name": "environmental"
+          },
+          {
+            "name": "environmental-analysis"
+          },
+          {
+            "name": "environmental, social, and governance"
+          },
+          {
+            "name": "sustainability"
+          }
+        ]
+      },
+      {
+        "name": "fashion"
+      },
+      {
+        "name": "finance",
+        "all-tags": [
+          {
+            "name": "aveni-bench"
+          },
+          {
+            "name": "financial"
+          },
+          {
+            "name": "finnlp"
+          },
+          {
+            "name": "investment"
+          }
+        ]
+      },
+      {
+        "name": "food"
+      },
+      {
+        "name": "game",
+        "all-tags": [
+          {
+            "name": "chess"
+          },
+          {
+            "name": "games"
+          },
+          {
+            "name": "gaming"
+          },
+          {
+            "name": "midjourney"
+          },
+          {
+            "name": "minecraft"
+          }
+        ]
+      },
+      {
+        "name": "geospatial",
+        "all-tags": [
+          {
+            "name": "earth-observation"
+          },
+          {
+            "name": "geography"
+          },
+          {
+            "name": "remote-sensing"
+          }
+        ]
+      },
+      {
+        "name": "government",
+        "all-tags": [
+          {
+            "name": "ccdv/govreport-summarization"
+          },
+          {
+            "name": "corporate governance"
+          },
+          {
+            "name": "environmental, social, and governance"
+          },
+          {
+            "name": "extended|projecte-aina/catalan_government_crawling"
+          },
+          {
+            "name": "gov"
+          },
+          {
+            "name": "government"
+          },
+          {
+            "name": "government data"
+          },
+          {
+            "name": "government-services-automation"
+          },
+          {
+            "name": "govreport"
+          },
+          {
+            "name": "government reports"
+          },
+          {
+            "name": "https://www.cms.gov/medicare/",
+            "title": "www.cms.gov/medicare/%",
+            "context": "References to URLs at the U.S. government's Medicare site.",
+            "like-clause": "%www.cms.gov/medicare%/"
+          },
+          {
+            "name": "https://download.bls.gov/pub/time.series/compressed/tape.format"
+          },
+          {
+            "name": "launch/gov_report"
+          },
+          {
+            "name": "local government"
+          },
+          {
+            "name": "opengov",
+            "title": "Open Gov"
+          },
+          {
+            "name": "policy"
+          }
+        ]
+      },
+      {
+        "name": "history",
+        "all-tags": [
+          {
+            "name": "historical"
+          }
+        ]
+      },
+      {
+        "name": "insurance"
+      },
+      {
+        "name": "legal",
+        "all-tags": [
+          {
+            "name": "droit"
+          },
+          {
+            "name": "droit français"
+          },
+          {
+            "name": "french law"
+          },
+          {
+            "name": "law"
+          },
+          {
+            "name": "regulations"
+          }
+        ]
+      },
+        {
+          "name": "logic",
+          "all-tags": [
+            {
+              "name": "logical reasoning"
+            },
+            {
+              "name": "logical-reasoning"
+            }
+          ]
+        },
+      {
+        "name": "mathematics",
+        "all-tags": [
+          {
+            "name": "algebra"
+          },
+          {
+            "name": "coq"
+          },
+          {
+            "name": "gsm8k",
+            "title": "GSM8K"
+          },
+          {
+            "name": "math"
+          },
+          {
+            "name": "maths"
+          },
+          {
+            "name": "math-qa",
+            "name": "Math Q&A"
+          },
+          {
+            "name": "mathematical-reasoning"
+          },
+          {
+            "name": "math-word-problems"
+          },
+          {
+            "name": "statistics"
+          },
+          {
+            "name": "theorem-proving"
+          }
+        ]
+      },
+      {
+        "name": "medical",
+        "context": "Includes keywords for healthcare, biomedical, genomics, etc.",
+        "all-tags": [
+          {
+            "name": "biomedical"
+          },
+          {
+            "name": "clinical"
+          },
+          {
+            "name": "covid-19",
+            "title": "COVID-19"
+          },
+          {
+            "name": "dna",
+            "title": "DNA"
+          },
+          {
+            "name": "diagnosis"
+          },
+          {
+            "name": "genomics"
+          },
+          {
+            "name": "health"
+          },
+          {
+            "name": "healthcare"
+          },
+          {
+            "name": "medicine"
+          },
+          {
+            "name": "mental health"
+          },
+          {
+            "name": "nutrition"
+          },
+          {
+            "name": "pubmed"
+          },
+          {
+            "name": "symptoms"
+          },
+          {
+            "name": "treatment"
+          },
+          {
+            "name": "https://www.cms.gov/medicare/",
+            "title": "%www.cms.gov/medicare/%",
+            "context": "References to URLs at the U.S. government's Medicare site.",
+            "like-clause": "%www.cms.gov/medicare%/"
+          }
+        ]
+      },
+      {
+        "name": "philosophy",
+        "all-tags": [
+          {
+            "name": "ethics"
+          }
+        ]
+      },
+      {
+        "name": "physics",
+        "all-tags": [
+          {
+            "name": "biophysics"
+          }
+        ]
+      },
+      {
+        "name": "politics"
+      },
+      {
+        "name": "psychology",
+        "all-tags": [
+          {
+            "name": "personality"
+          }
+        ]
+      },
+      {
+        "name": "robotics",
+        "all-tags": [
+          {
+            "name": "lerobot",
+            "title": "Le Robot"
+          }
+        ]
+      },
+      {
+        "name": "science",
+        "all-tags": [
+          {
+            "name": "reviews"
+          }
+        ]
+      },
+      {
+        "name": "sports"
+      },
+      {
+        "name": "time-series",
+        "all-tags": [
+          {
+            "name": "https://download.bls.gov/pub/time.series/compressed/tape.format",
+            "title": "bls.gov/pub/time.series/compressed/"
+          },
+          {
+            "name": "time-series-forecasting"
+          },
+          {
+            "name": "timeseries"
+          }
+        ]
+      },
+      {
+        "name": "web",
+        "all-tags": [
+          {
+            "name": "webdataset",
+            "title": "Web Dataset"
+          },
+          {
+            "name": "website"
+          }
+        ]
+      }
+    ]
+  }
+]
