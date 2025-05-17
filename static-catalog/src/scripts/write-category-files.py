@@ -1,160 +1,17 @@
 #!/usr/bin/env python
 from datetime import datetime, timezone
-import argparse, os, pathlib, shutil, subprocess, sys
+import argparse, json, os, pathlib, shutil, subprocess, sys
 
 today = datetime.today().strftime("%Y-%m-%d")
 
-# The categories are very high-level, with the "topics" in them somewhat
-# arbitrary, but based on keywords known to be in the data set. We use arrays
-# for each topic to join together related keywords, which will translate
-# in WHERE keyword = 'a' OR keyword = 'b' ... query clauses.
-
-categories = {
-  "language": [
-    ["arabic"],
-    ["catalan"],
-    ["chinese"],
-    ["english"],
-    ["french"],
-    ["german"],
-    ["hindi"],
-    ["hungarian"],
-    ["italian"],
-    ["japanese"],
-    ["korean"],
-    ["portuguese"],
-    ["russian"],
-    ["spanish"],
-    ["turkish"],
-    ["vietnamese"],
-  ],
-  "modality": [
-    ["audio"],
-    [
-      "classification", 
-      "image-classification", 
-      "multi-class-classification", 
-      "multi-label-classification", 
-      "tabular-classification",
-      "text-classification", 
-      "text-scoring"
-      "token-classification",
-      "topic-classification", 
-      "zero-shot-classification", 
-    ],
-    [
-      "benchmark",
-      "benchmarks"
-    ],
-    ["crowdsourced"],
-    [
-      "evaluation",
-      "eval"
-    ],
-    ["expert-generated"],
-    ["feature-extraction"],
-    [
-      "image",
-      "image-segmentation",
-      "image-to-image",
-      "object-detection",
-    ],
-    ["image-to-text"],
-    [
-      "language-modeling", 
-      "llm"
-    ],
-    ["machine-generated"],
-    ["multilingual"],
-    ["multiple-choice"],
-    ["music"],
-    ["named-entity-recognition"],
-    [
-      "nlp",
-      "natural-language-processing",
-      "natural-language-inference",
-    ],
-    [
-      "question-answering",
-      "closed-domain-qa",
-      "extractive-qa",
-      "q-and-a",
-      "qna",
-      "multiple-choice-qa",
-      "open-domain-qa",
-      "table-question-answering",
-      "visual-question-answering",
-    ],
-    ["reasoning"],
-    ["sentence-similarity"],
-    ["sentence-transformers"],
-    ["sentiment-analysis"],
-    [
-      "speech-recognition",
-      "automatic-speech-recognition"
-    ],
-    [
-      "summarization",
-      "news-articles-summarization"
-    ],
-    ["synthetic"],
-    ["test"],
-    ["text", "monolingual"],
-    [
-      "text-generation",
-      "text2text-generation"
-    ],
-    [
-      "text-retrieval",
-      "document-retrieval"
-    ],
-    ["text-to-image"],
-    ["text-to-speech"],
-    ["translation"],
-    ["video"],
-  ],
-  "domain": [
-    ["art"],
-    ["biology"],
-    ["chemistry"],
-    ["climate"],
-    ["code"],
-    ["finance"],
-    ["geospatial"],
-    ["legal"],
-    ["math"],
-    ["medical"],
-    [
-      "robotics", 
-      "lerobot"
-    ],
-    ["science"],
-    ["time-series"],
-    ["tutorial"],
-    [
-      "web",
-      "webdataset"
-    ],
-  ],
-}
-
-# Some of the tags shouldn't simply be capitalized, but converted to upper case, e.g., acronyms,
-# or otherwise treated differently.
-special_names = {
-  'llm': 'LLM',
-  'nlp': 'NLP',
-  'qna': 'QnA',
-  'q-and-a': 'Q and A',
-  'webdataset': 'Web Dataset',
-}
-
 # Default output directories:
-def_root_dir_md   = f'./markdown/processed/{today}'
-def_root_dir_json = f'./data/json/processed/{today}'
+def_root_dir_md     = f'./markdown/processed/{today}'
+def_root_dir_json   = f'./data/json/processed/{today}'
+def_categories_file = './data/reference/keyword-categories.json'
 
 parser = argparse.ArgumentParser(
                     prog='write-category-files',
-                    description='Writes dataset listing files by keywords, JSON and markdown',
+                    description='Writes dataset listing files by topics (keywords), JSON and markdown',
                     epilog='')
 parser.add_argument('--no-json',
                     help="Skip writing the JSON files.",
@@ -168,6 +25,9 @@ parser.add_argument('--json-dir',
 parser.add_argument('--markdown-dir', '--md-dir',
                     help=f"Write the markdown files to this directory. (default: {def_root_dir_md})",
                     default=def_root_dir_md)
+parser.add_argument('--categories',
+                    help=f"Read the categories and topics from this file. (default: {def_categories_file})",
+                    default=def_categories_file)
 parser.add_argument('-v', '--verbose',
                     help="Show verbose output",
                     action='store_true') 
@@ -189,9 +49,57 @@ def make_directories(path: str, deletefirst=False):
       print(f"Error creating directory: {e}")
       sys.exit(1)
 
-for category in categories.keys():
+def load_json(filename: str):
+  with open(filename) as f_in:
+      return json.load(f_in)
+
+def error(message: str):
+  print(f"ERROR! {message}")
+  sys.exit(1)
+
+def make_title(dict) -> str:
+  words = dict.get('name').split('-')
+  alt   = ' '.join([word.capitalize() for word in words])
+  return dict.get('title', alt)
+
+
+
+# The categories are very high-level, with the "topics" in them somewhat
+# arbitrary, but based on topics known to be in the data set. We use arrays
+# for each topic to join together related topics, which will translate
+# in WHERE keyword = 'a' OR keyword = 'b' ... query clauses.
+# The extra "context" text is written as "content" to the generated markdown
+# files that will be rendered before each table.
+# For human-readable titles, etc., we convert a keyword like this:
+#   foo-bar-baz ==> Foo Bar Baz
+# For some topics, this is not the right thing to do, like acronyms,
+# the "title" field in the JSON is used instead, when present.
+# When a topic has a "like-clause" defined, it means the SQL query is constructed
+# as "keyword LIKE '<like-clause>'" instead of "keyword = '<name>'". If defined,
+# the "like-clause" has to include the appropriate "%" for desired query.
+if args.verbose:
+  print(f"Reading categories from {args.categories}...")
+
+categories = load_json(args.categories)
+
+for category in categories:
+  category_name = category.get('name')
+  if category_name == None: 
+    error(f"category name not found! ({category.get('name')}) category keys = {category.keys()} category=\n{str(category)[:1000]}")
+  category_title = make_title(category)
+  category_context = category.get('context', "")
+  subcategories = category.get('subcategories')
+  if subcategories == None: 
+    error(f"subcategories name not found for category {category_name}!")
+  subcategory_names = [f"{make_title(sub)} (keyword: {sub.get('name')})" for sub in subcategories]
   if args.verbose:
-    print(f"Working on category: {category}")
+    print(f"""
+Category:      {category_name}
+Title:         {category_title}
+Context:       {category_context}
+Subcategories: {subcategory_names}
+""")
+  continue
   
   base_dir_md   = f"{args.markdown_dir}/_{category}" # will be moved to "docs"
   base_dir_json = f"{args.json_dir}/{category}"
@@ -202,10 +110,10 @@ for category in categories.keys():
     print(f"Writing JSON and JavaScript files to: {base_dir_json}")
     make_directories(base_dir_json, deletefirst=True)
   
-  for keywords in categories[category]:
+  for topics in categories[category]:
     if args.verbose:
-      print(f"{category} -> {keywords}")
-    category_main_tag = keywords[0]
+      print(f"{category} -> {topics}")
+    category_main_tag = topics[0]
     # Use a "special name", if defined or else just replace '-' with ' '
     # and capitalize the first letters of each word.
     category_name = special_names.get(
@@ -219,7 +127,7 @@ for category in categories.keys():
       md_content = f"""---
 name: {category_name}
 tag: {category_main_tag}
-all-tags: {' '.join(keywords)}
+all-tags: {' '.join(topics)}
 parent_tag: {category}
 ---
 """
@@ -227,7 +135,7 @@ parent_tag: {category}
         print(md_content, file=md_out)
 
     if args.no_json == False:
-      query1      = "' OR keyword = '".join(keywords)
+      query1      = "' OR keyword = '".join(topics)
       cat_query   = f"keyword = '{query1}'"
       json_output = f"{base_dir_json}/hf_{category_main_tag}.json"
       js_output   = f"{base_dir_json}/hf_{category_main_tag}.js"

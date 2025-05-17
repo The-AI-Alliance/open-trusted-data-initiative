@@ -2,11 +2,355 @@
     {
     "name": "language",
     "context": "Datasets with different human languages.",
-    "topics": [
+    "subcategories": [
+      {
+        "name": "languages-africa",
+        "title": "African Languages",
+        "context": "Ancient and modern languages in Africa.",
+        "topics": [
+          {
+            "name": "afar"
+          },
+          {
+            "name": "afrikaans"
+          },
+          {
+            "name": "akan"
+          },
+          {
+            "name": "amharic"
+          },
+          {
+            "name": "baatonum"
+          },
+          {
+            "name": "bambara"
+          },
+          {
+            "name": "bemba (zambia)"
+          },
+          {
+            "name": "ber"
+          },
+          {
+            "name": "birwa",
+            "alt-tags": [
+              {
+                "name": "northern sotho"
+              },
+              {
+                "name": "southern sotho"
+              }
+            ]
+          },
+          {
+            "name": "central kanuri"
+          },
+          {
+            "name": "chichewa",
+            "alt-tags": [
+              {
+                "name": "nyanja"
+              }
+            ]
+          },
+          {
+            "name": "chokwe"
+          },
+          {
+            "name": "cwi bwamu",
+            "alt-tags": [
+              {
+                "name": "bwamu, cwi"
+              },
+              {
+                "name": "twi"
+              }
+            ]
+          },
+          {
+            "name": "dagbani"
+          },
+          {
+            "name": "dinka",
+            "alt-tags": [
+              {
+                "name": "southwestern dinka"
+              }
+            ]
+          },
+          {
+            "name": "dyula"
+          },
+          {
+            "name": "egyptian (ancient)"
+          },
+          {
+            "name": "fanti"
+          },
+          {
+            "name": "fulah"
+          },
+          {
+            "name": "ganda"
+          },
+          {
+            "name": "ghomálá'"
+          },
+          {
+            "name": "hausa"
+          },
+          {
+            "name": "herero"
+          },
+          {
+            "name": "igbo"
+          },
+          {
+            "name": "kabiyè"
+          },
+          {
+            "name": "kabuverdianu"
+          },
+          {
+            "name": "kabyle"
+          },
+          {
+            "name": "kachin"
+          },
+          {
+            "name": "kamba (kenya)"
+          },
+          {
+            "name": "kanuri"
+          },
+          {
+            "name": "kikuyu"
+          },
+          {
+            "name": "kimbundu"
+          },
+          {
+            "name": "kinyarwanda"
+          },
+          {
+            "name": "ko"
+          },
+          {
+            "name": "kongo"
+          },
+          {
+            "name": "koyraboro senni songhai"
+          },
+          {
+            "name": "kutu"
+          },
+          {
+            "name": "kwere"
+          },
+          {
+            "name": "lingala"
+          },
+          {
+            "name": "luba-katanga"
+          },
+          {
+            "name": "luba-lulua",
+            "alt-tags": [
+              {
+                "name": "luba-kasai"
+              }
+            ]
+          },
+          {
+            "name": "luo (kenya and tanzania)"
+          },
+          {
+            "name": "makhuwa"
+          },
+          {
+            "name": "makonde"
+          },
+          {
+            "name": "malagasy"
+          },
+          {
+            "name": "mamara senoufo"
+          },
+          {
+            "name": "mossi",
+            "alt-tags": [
+              {
+                "name": "moore"
+              }
+            ]
+          },
+          {
+            "name": "n'ko"
+          },
+          {
+            "name": "ndonga"
+          },
+          {
+            "name": "nigerian fulfulde",
+            "alt-tags": [
+              {
+                "name": "western nigerian fulfulde"
+              }
+            ]
+          },
+          {
+            "name": "nigerian pidgin"
+          },
+          {
+            "name": "ndebele",
+            "alt-tags": [
+              {
+                "name": "northern ndebele"
+              },
+              {
+                "name": "south ndebele"
+              }
+            ]
+          },
+          {
+            "name": "nuer"
+          },
+          {
+            "name": "nyankole",
+            "alt-tags": [
+              {
+                "name": "nyankore"
+              }
+            ]
+          },
+          {
+            "name": "oromo"
+          },
+          {
+            "name": "plateau malagasy"
+          },
+          {
+            "name": "rundi",
+              "alt-tags": [
+                {
+                  "name": "kirundi"
+                }
+              ]
+          },
+          {
+            "name": "sango"
+          },
+          {
+            "name": "sar"
+          },
+          {
+            "name": "seselwa creole french",
+            "alt-tags": [
+              {
+                "name": "seychelles french creole"
+              }
+            ]
+          },
+          {
+            "name": "shona"
+          },
+          {
+            "name": "somali"
+          },
+          {
+            "name": "suba"
+          },
+          {
+            "name": "swahili",
+            "alt-tags": [
+              {
+                "name": "swahili (individual language)"
+              },
+              {
+                "name": "swahili (macrolanguage)"
+              }
+            ]
+          },
+          {
+            "name": "susu"
+          },
+          {
+            "name": "swati"
+          },
+          {
+            "name": "tachelhit"
+          },
+          {
+            "name": "tamasheq"
+          },
+          {
+            "name": "tamazight",
+            "alt-tags": [
+              {
+                "name": "central atlas tamazight"
+              },
+              {
+                "name": "moroccan tamazight"
+              },
+              {
+                "name": "standard moroccan tamazight"
+              }
+            ]
+          },
+          {
+            "name": "tigrigna",
+            "alt-tags": [
+              {
+                "name": "tigrinya"
+              }
+            ]
+          },
+          {
+            "name": "tsonga"
+          },
+          {
+            "name": "setswana",
+            "alt-tags": [
+              {
+                "name": "tswana"
+              }
+            ]
+          },
+          {
+            "name": "tumbuka"
+          },
+          {
+            "name": "umbundu"
+          },
+          {
+            "name": "venda"
+          },
+          {
+            "name": "west central oromo"
+          },
+          {
+            "name": "wolaytta"
+          },
+          {
+            "name": "wolof"
+          },
+          {
+            "name": "xhosa"
+          },
+          {
+            "name": "yoruba"
+          },
+          {
+            "name": "zulu"
+          }
+        ]
+      },
       {
         "name": "languages-americas",
-        "title": "Languages of the Americas",
-        "subtopics": [          
+        "title": "Languages in the Americas",
+        "context": "Ancient and modern languages in the Americas.",
+        "topics": [
           {
             "name": "achuar-shiwiar"
           },
@@ -20,16 +364,10 @@
             "name": "asháninka"
           },
           {
-            "name": "ayacucho quechua"
-          },
-          {
             "name": "aymara"
           },
           {
             "name": "bora"
-          },
-          {
-            "name": "cajamarca quechua"
           },
           {
             "name": "candoshi-shapra"
@@ -80,9 +418,6 @@
             "name": "cree"
           },
           {
-            "name": "cusco quechua"
-          },
-          {
             "name": "eastern huasteca nahuatl"
           },
           {
@@ -93,82 +428,191 @@
           },
           {
             "name": "garifuna"
+          },
+          {
+            "name": "guarani",
+            "alt-tags": [
+              {
+                "name": "guaraní"
+              }
+            ]
+          },
+          {
+            "name": "haitian"
+          },
+          {
+            "name": "highland puebla nahuatl"
+          },
+          {
+            "name": "huastec"
+          },
+          {
+            "name": "huichol"
+          },
+          {
+            "name": "imbabura highland quichua"
+          },
+          {
+            "name": "inuktitut"
+          },
+          {
+            "name": "inupiaq"
+          },
+          {
+            "name": "ixil"
+          },
+          {
+            "name": "jamaican creole english"
+          },
+          {
+            "name": "k'iche'"
+          },
+          {
+            "name": "kalaallisut"
+          },
+          {
+            "name": "kaqchikel"
+          },
+          {
+            "name": "kekchí"
+          },
+          {
+            "name": "mapudungun"
+          },
+          {
+            "name": "mezquital otomi"
+          },
+          {
+            "name": "mi'kmaq"
+          },
+          {
+            "name": "murui huitoto",
+            "alt-tags": [
+              {
+                "name": "murui witoto"
+              }
+            ]
+          },
+          {
+            "name": "navajo"
+          },
+          {
+            "name": "ngäbere"
+          },
+          {
+            "name": "nomatsiguenga",
+            "alt-tags": [
+              {
+                "name": "nomatsigenga"
+              }
+            ]
+          },
+          {
+            "name": "orpo"
+          },
+          {
+            "name": "quechua",
+            "alt-tags": [
+              {
+                "name": "ayacucho quechua"
+              },
+              {
+                "name": "cajamarca quechua"
+              },
+              {
+                "name": "cusco quechua"
+              },
+              {
+                "name": "huallaga huánuco quechua"
+              },
+              {
+                "name": "huaylla wanca quechua"
+              },
+              {
+                "name": "north bolivian quechua"
+              },
+              {
+                "name": "north junín quechua"
+              },
+              {
+                "name": "northern conchucos ancash quechua"
+              },
+              {
+                "name": "san martín quechua"
+              },
+              {
+                "name": "south bolivian quechua"
+              }
+            ]
+          },
+          {
+            "name": "papantla totonac"
+          },
+          {
+            "name": "purepecha"
+          },
+          {
+            "name": "saramaccan"
+          },
+          {
+            "name": "sharanahua"
+          },
+          {
+            "name": "shipibo-conibo"
+          },
+          {
+            "name": "shuar"
+          },
+          {
+            "name": "siona"
+          },
+          {
+            "name": "sirionó"
+          },
+          {
+            "name": "sranan tongo"
+          },
+          {
+            "name": "ticuna"
+          },
+          {
+            "name": "tzotzil"
+          },
+          {
+            "name": "wayuu"
+          },
+          {
+            "name": "yine"
+          },
+          {
+            "name": "yosondúa mixtec"
+          },
+          {
+            "name": "yucateco"
+          },
+          {
+            "name": "zapotec"
           }
         ]
       },
       {
-        "name": "african-languages",
-        "subtopics": [          
-          {
-            "name": "afar"
-          },
-          {
-            "name": "afrikaans"
-          },
-          {
-            "name": "akan"
-          },
-          {
-            "name": "amharic"
-          },
-          {
-            "name": "baatonum"
-          },
-          {
-            "name": "bambara"
-          },
-          {
-            "name": "bemba (zambia)"
-          },
-          {
-            "name": "ber"
-          },
-          {
-            "name": "central atlas tamazight"
-          },
-          {
-            "name": "central kanuri"
-          },
-          {
-            "name": "chichewa"
-          },
-          {
-            "name": "chokwe"
-          },
-          {
-            "name": "dagbani"
-          },
-          {
-            "name": "dinka"
-          },
-          {
-            "name": "dyula"
-          },
-          {
-            "name": "egyptian (ancient)"
-          },
-          {
-            "name": "egyptian arabic"
-          },
-          {
-            "name": "fanti"
-          },
-          {
-            "name": "fulah"
-          },
-          {
-            "name": "ganda"
-          }
-        ]
-      },
-      {
-        "name": "asian-languages",
-        "subtopics": [          
+        "name": "languages-asia",
+        "title": "Asian Languages",
+        "context": "Ancient and modern languages in Asia.",
+        "topics": [
           {
             "name": "abkhaz"
           },
           {
-            "name": "achinese"
+            "name": "altai",
+            "alt-tags": [
+              {
+                "name": "northern altai"
+              },
+              {
+                "name": "southern altai"
+              }
+            ]
           },
           {
             "name": "amis"
@@ -177,7 +621,12 @@
             "name": "angika"
           },
           {
-            "name": "armenian"
+            "name": "armenian",
+            "alt-tags": [
+              {
+                "name": "western armenian"
+              }
+            ]
           },
           {
             "name": "assamese"
@@ -195,7 +644,29 @@
             "name": "balinese"
           },
           {
-            "name": "baluchi"
+            "name": "balochi",
+            "alt-tags": [
+              {
+                "name": "baluchi"
+              },
+              {
+                "name": "eastern balochi"
+              },
+              {
+                "name": "northern balochi"
+              },
+              {
+                "name": "southern balochi",
+                "alt-tags": [
+                  {
+                    "name": "balóchi"
+                  }
+                ]
+              },
+              {
+                "name": "western balochi"
+              }
+            ]
           },
           {
             "name": "bashkir"
@@ -231,7 +702,30 @@
             "name": "chhattisgarhi"
           },
           {
-            "name": "chinese"
+            "name": "chinese",
+            "alt-tags": [
+              {
+              "name": "achinese"
+              },
+              {
+              "name": "literary chinese"
+              },
+              {
+                "name": "mandarin chinese"
+              },
+              {
+                "name": "min nan chinese"
+              },
+              {
+                "name": "wu chinese"
+              },
+              {
+                "name": "yue chinese"
+              },
+              {
+                "name": "zhuang"
+              }
+            ]
           },
           {
             "name": "chuvash"
@@ -270,34 +764,367 @@
             "name": "filipino"
           },
           {
+            "name": "gilaki"
+          },
+          {
+            "name": "goan konkani"
+          },
+          {
+            "name": "gujarati"
+          },
+          {
+            "name": "hakha chin"
+          },
+          {
+            "name": "hakka chinese"
+          },
+          {
+            "name": "halh mongolian"
+          },
+          {
             "name": "hindi"
+          },
+          {
+            "name": "hinglish"
+          },
+          {
+            "name": "iloko"
+          },
+          {
+            "name": "ingush"
+          },
+          {
+            "name": "iranian persian"
           },
           {
             "name": "japanese"
           },
           {
+            "name": "kalmyk"
+          },
+          {
+            "name": "kankanaey"
+          },
+          {
+            "name": "kannada"
+          },
+          {
+            "name": "karachay-balkar"
+          },
+          {
+            "name": "karelian"
+          },
+          {
+            "name": "kashmiri"
+          },
+          {
+            "name": "kazakh"
+          },
+          {
+            "name": "khmer"
+          },
+          {
+            "name": "kirghiz"
+          },
+          {
+            "name": "kirmanjki (individual language)"
+          },
+          {
+            "name": "komi",
+            "alt-tags": [
+              {
+                "name": "komi-permyak"
+              },
+              {
+                "name": "komi-zyrian"
+              }
+            ]
+          },
+          {
             "name": "korean"
           },
           {
-            "name": "turkish"
+            "name": "kurdish"
+          },
+          {
+            "name": "kyrgyz"
+          },
+          {
+            "name": "lak"
+          },
+          {
+            "name": "lao"
+          },
+          {
+            "name": "lezghian",
+            "alt-tags": [
+              {
+                "name": "lezgi"
+              }
+            ]
+          },
+          {
+            "name": "limbu"
+          },
+          {
+            "name": "lushai",
+            "alt-tags": [
+              {
+                "name": "mizo"
+              }
+            ]
+          },
+          {
+            "name": "magahi"
+          },
+          {
+            "name": "maithili"
+          },
+          {
+            "name": "malay",
+            "alt-tags": [
+              {
+                "name": "kupang malay"
+              },
+              {
+                "name": "malay (individual language)"
+              },
+              {
+                "name": "malay (macrolanguage)"
+              },
+              {
+                "name": "standard malay"
+              }
+            ]
+          },
+          {
+            "name": "malayalam"
+          },
+          {
+            "name": "manipuri",
+            "alt-tags": [
+              {
+                "name": "meitei"
+              }
+            ]
+          },
+          {
+            "name": "mansi"
+          },
+          {
+            "name": "marathi"
+          },
+          {
+            "name": "mari (russia)"
+          },
+          {
+            "name": "mazanderani",
+            "alt-tags": [
+              {
+                "name": "mazandarani"
+              }
+            ]
+          },
+          {
+            "name": "mingrelian"
+          },
+          {
+            "name": "mongolian"
+          },
+          {
+            "name": "nepali"
+          },
+          {
+            "name": "nepali (individual language)"
+          },
+          {
+            "name": "newari",
+            "alt-tags": [
+              {
+                "name": "newari"
+              }
+            ]
+          },
+          {
+            "name": "north azerbaijani"
+          },
+          {
+            "name": "northern kurdish"
+          },
+          {
+            "name": "northern uzbek"
+          },
+          {
+            "name": "odia"
+          },
+          {
+            "name": "oriya"
+          },
+          {
+            "name": "oriya (macrolanguage)"
+          },
+          {
+            "name": "ossetian",
+            "alt-tags": [
+              {
+                "name": "ossetic"
+              }
+            ]
+          },
+          {
+            "name": "pampanga",
+            "alt-tags": [
+              {
+                "name": "kapampangan"
+              },
+              {
+                "name": "pampangan"
+              }
+            ]
+          },
+          {
+            "name": "pangasinan"
+          },
+          {
+            "name": "panjabi",
+            "alt-tags": [
+              {
+                "name": "punjabi"
+              }
+            ]
+          },
+          {
+            "name": "pashto",
+            "alt-tags": [
+              {
+                "name": "pushto"
+              },
+              {
+                "name": "southern pashto"
+              }
+            ]
+          },
+          {
+            "name": "persian"
+          },
+          {
+            "name": "russia buriat"
+          },
+          {
+            "name": "sanskrit"
+          },
+          {
+            "name": "santali"
+          },
+          {
+            "name": "saraiki"
+          },
+          {
+            "name": "sediq"
+          },
+          {
+            "name": "shan"
+          },
+          {
+            "name": "sindhi"
+          },
+          {
+            "name": "sinhala"
+          },
+          {
+            "name": "south azerbaijani"
+          },
+          {
+            "name": "tagalog"
+          },
+          {
+            "name": "tajik"
+          },
+          {
+            "name": "tamil"
+          },
+          {
+            "name": "tatar"
+          },
+          {
+            "name": "telugu"
+          },
+          {
+            "name": "thai"
+          },
+          {
+            "name": "tibetan"
+          },
+          {
+            "name": "turkish",
+            "alt-tags": [
+              {
+                "name": "ottoman turkish (1500-1928)"
+              },
+              {
+                "name": "zaza"
+              }
+            ]
+          },
+          {
+            "name": "turkmen"
+          },
+          {
+            "name": "tuvan",
+            "alt-tags": [
+              {
+                "name": "tuvinian"
+              }
+            ]
+          },
+          {
+            "name": "udmurt"
+          },
+          {
+            "name": "uyghur",
+            "alt-tags": [
+              {
+                "name": "uighur"
+              }
+            ]
+          },
+          {
+            "name": "uzbek"
           },
           {
             "name": "vietnamese"
+          },
+          {
+            "name": "waray (philippines)"
+          },
+          {
+            "name": "western bukidnon manobo"
+          },
+          {
+            "name": "yakut"
           }
         ]
       },
       {
-        "name": "european-languages",
-        "subtopics": [          
+        "name": "languages-europe",
+        "title": "European Languages",
+        "context": "Ancient and modern languages in Europe.",
+        "topics": [
           {
-            "name": "adyghe"
+            "name": "adyghe",
+            "alt-tags": [
+              {
+                "name": "kabardian"
+              }
+            ]
           },
           {
-            "name": "albanian"
-          },
-          {
-            "name": "ancient greek (to 1453)",
-            "title": "Ancient Greek (to 1453)"
+            "name": "albanian",
+            "alt-tags": [
+              {
+                "name": "tosk albanian"
+              }
+            ]
           },
           {
             "name": "aragonese"
@@ -348,14 +1175,8 @@
             "name": "dutch"
           },
           {
-            "name": "eastern mari"
-          },
-          {
-            "name": "eastern yiddish"
-          },
-          {
             "name": "english",
-            "all-tags": [
+            "alt-tags": [
               {
                 "name": "emoji"
               }
@@ -375,7 +1196,7 @@
           },
           {
             "name": "french",
-            "all-tags": [
+            "alt-tags": [
               {
                 "name": "droit français"
               },
@@ -391,6 +1212,14 @@
             ]
           },
           {
+            "name": "frisian",
+            "alt-tags": [
+              {
+                "name": "western frisian"
+              }
+            ]
+          },
+          {
             "name": "friulian"
           },
           {
@@ -400,41 +1229,312 @@
             "name": "galician"
           },
           {
-            "name": "german"
+            "name": "german",
+            "alt-tags": [
+              {
+                "name": "swiss german"
+              }
+            ]
           },
           {
             "name": "georgian"
           },
           {
+            "name": "greek",
+            "alt-tags": [
+              {
+                "name": "ancient greek (to 1453)",
+                "title": "Ancient Greek (to 1453)"
+              },
+              {
+                "name": "modern greek (1453-)"
+              }
+            ]
+          },
+          {
             "name": "hungarian"
+          },
+          {
+            "name": "icelandic"
+          },
+          {
+            "name": "ido"
+          },
+          {
+            "name": "irish"
           },
           {
             "name": "italian"
           },
           {
+            "name": "kashubian"
+          },
+          {
+            "name": "kölsch",
+            "alt-tags": [
+              {
+                "name": "ripuarian"
+              }
+            ]
+          },
+          {
+            "name": "ladin"
+          },
+          {
+            "name": "ladino"
+          },
+          {
+            "name": "latgalian"
+          },
+          {
+            "name": "latin"
+          },
+          {
+            "name": "latvian",
+            "alt-tags": [
+              {
+                "name": "standard latvian"
+              }
+            ]
+          },
+          {
+            "name": "ligurian"
+          },
+          {
+            "name": "limburgan"
+          },
+          {
+            "name": "limburgish"
+          },
+          {
+            "name": "lithuanian"
+          },
+          {
+            "name": "liv"
+          },
+          {
+            "name": "livvi",
+            "alt-tags": [
+              {
+                "name": "livvi-Karelian"
+              }
+            ]
+          },
+          {
+            "name": "lombard"
+          },
+          {
+            "name": "low german"
+          },
+          {
+            "name": "lower sorbian"
+          },
+          {
+            "name": "luxembourgish"
+          },
+          {
+            "name": "macedonian"
+          },
+          {
+            "name": "maltese"
+          },
+          {
+            "name": "manx"
+          },
+          {
+            "name": "mari",
+            "alt-tags": [
+              {
+                "name": "eastern mari"
+              },
+              {
+                "name": "western mari"
+              }
+            ]
+          },
+          {
+            "name": "mirandese"
+          },
+          {
+            "name": "moksha"
+          },
+          {
+            "name": "neapolitan"
+          },
+          {
+            "name": "northern sami"
+          },
+          {
+            "name": "norwegian",
+            "alt-tags": [
+              {
+                "name": "norwegian bokmål"
+              },
+              {
+                "name": "norwegian nynorsk"
+              }
+            ]
+          },
+          {
+            "name": "occitan"
+          },
+          {
+            "name": "occitan (post 1500)"
+          },
+          {
+            "name": "old church slavonic"
+          },
+          {
+            "name": "old english (ca. 450-1100)",
+            "alt-tags": [
+              {
+                "name": "anglo-saxon"
+              }
+            ]
+          },
+          {
+            "name": "old norse"
+          },
+            {
+            "name": "picard"
+          },
+          {
+            "name": "piemontese"
+          },
+          {
+            "name": "polish"
+          },
+          {
             "name": "portuguese"
+          },
+          {
+            "name": "romanian"
+          },
+          {
+            "name": "romansh,"
+          },
+          {
+            "name": "romany"
           },
           {
             "name": "russian"
           },
           {
             "name": "spanish",
-            "all-tags": [
+            "alt-tags": [
               {
                 "name": "ciempiess"
               }
             ]
           },
           {
-            "name": "turkish"
+            "name": "sardinian"
+          },
+          {
+            "name": "saterfriesisch"
+          },
+          {
+            "name": "scots"
+          },
+          {
+            "name": "scottish gaelic"
+          },
+          {
+            "name": "serbian"
+          },
+          {
+            "name": "serbo-croatian"
+          },
+          {
+            "name": "sicilian"
+          },
+          {
+            "name": "silesian"
+          },
+          {
+            "name": "slovak"
+          },
+          {
+            "name": "slovenian"
+          },
+          {
+            "name": "swedish"
+          },
+          {
+            "name": "turkish",
+            "alt-tags": [
+              {
+                "name": "ottoman turkish (1500-1928)"
+              },
+              {
+                "name": "zaza"
+              }
+            ]
+          },
+          {
+            "name": "ukrainian"
+          },
+          {
+            "name": "upper sorbian"
+          },
+          {
+            "name": "venetian"
+          },
+          {
+            "name": "vlax romani"
+          },
+          {
+            "name": "volapük"
+          },
+          {
+            "name": "walloon"
+          },
+          {
+            "name": "welsh"
+          },
+          {
+            "name": "yiddish",
+            "alt-tags": [
+              {
+                "name": "eastern yiddish"
+              }
+            ]
           }
         ]
       },
       {
-        "name": "middle-eastern-languages",
-        "subtopics": [          
+        "name": "languages-middle-east",
+        "title": "languages in the Middle East",
+        "context": "Ancient and modern languages from the Middle East.",
+        "topics": [
           {
-            "name": "arabic"
+            "name": "arabic",
+            "alt-tags": [
+              {
+                "name": "egyptian arabic"
+              },
+              {
+                "name": "levantine arabic"
+              },
+              {
+                "name": "mesopotamian arabic"
+              },
+              {
+                "name": "moroccan arabic"
+              },
+              {
+                "name": "najdi arabic"
+              },
+              {
+                "name": "standard arabic"
+              },
+              {
+                "name": "ta'izzi-adeni arabic"
+              },
+              {
+                "name": "tunisian arabic"
+              }
+            ]
           },
           {
             "name": "akkadian"
@@ -444,13 +1544,16 @@
           },
           {
             "name": "assyrian neo-aramaic"
+          },
+          {
+            "name": "hebrew"
           }
         ]
       },
       {
-        "name": "pacific-languages",
-        "context": "Languages in the Pacific islands, Australia, and New Zealand.",
-        "subtopics": [          
+        "name": "languages-pacific",
+        "context": "Ancient and modern languages in the Pacific islands, Australia, and New Zealand.",
+        "topics": [
           {
             "name": "ambulas"
           },
@@ -503,7 +1606,164 @@
             "name": "fijian"
           },
           {
+            "name": "halia"
+          },
+          {
+            "name": "hawaiian"
+          },
+          {
+            "name": "highland popoluca"
+          },
+          {
+            "name": "hiri motu"
+          },
+          {
+            "name": "iamalele"
+          },
+          {
             "name": "indonesian"
+          },
+          {
+            "name": "javanese"
+          },
+          {
+            "name": "kriol"
+          },
+          {
+            "name": "kto"
+          },
+          {
+            "name": "kâte"
+          },
+          {
+            "name": "madurese"
+          },
+          {
+            "name": "makasar"
+          },
+          {
+            "name": "maori",
+            "alt-tags": [
+              {
+                "name": "māori"
+              }
+            ]
+          },
+          {
+            "name": "marshallese"
+          },
+          {
+            "name": "mende (papua new guinea)"
+          },
+          {
+            "name": "minangkabau"
+          },
+          {
+            "name": "mountain koiali",
+            "alt-tags": [
+              {
+                "name": "mountain koiari"
+              }
+            ]
+          },
+          {
+            "name": "musi"
+          },
+          {
+            "name": "muyuw"
+          },
+          {
+            "name": "nauru"
+          },
+          {
+            "name": "ngaju"
+          },
+          {
+            "name": "nias"
+          },
+          {
+            "name": "novial",
+            "alt-tags": [
+              {
+                "name": "lisabata-nuniali"
+              }
+            ]
+          },
+          {
+            "name": "pele-ata",
+            "alt-tags": [
+              {
+                "name": "peleata"
+              },
+              {
+                "name": "pele"
+              }
+            ]
+          },
+          {
+            "name": "pohnpeian"
+          },
+          {
+            "name": "pular"
+          },
+          {
+            "name": "rejang"
+          },
+          {
+            "name": "samoan"
+          },
+          {
+            "name": "sinaugoro"
+          },
+          {
+            "name": "somba-siawari"
+          },
+          {
+            "name": "sundanese",
+            "alt-tags": [
+              {
+                "name": "sunda"
+              }
+            ]
+          },
+          {
+            "name": "tahitian"
+          },
+          {
+            "name": "tetun dili",
+            "alt-tags": [
+              {
+                "name": "tetum"
+              }
+            ]
+          },
+          {
+            "name": "tok pisin"
+          },
+          {
+            "name": "tonga",
+            "alt-tags": [
+              {
+                "name": "tonga (tonga islands)"
+              }
+            ]
+          },
+          {
+            "name": "warlpiri"
+          },
+          {
+            "name": "west kewa",
+            "alt-tags": [
+              {
+                "name": "west kewapi"
+              }
+            ]
+          },
+          {
+            "name": "yapese"
+          },
+          {
+            "name": "yele"
           }
         ]
       }
@@ -512,12 +1772,12 @@
   {
     "name": "modality",
     "context": "Datasets with different modalities (like text vs. video) or broad purposes, like classification.",
-    "topics": [
+    "subcategories": [
       {
         "name": "3d",
         "context": "Three dimensional data",
         "title": "3D",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "depth-estimation"
           },
@@ -531,7 +1791,7 @@
       },
       {
         "name": "agents",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "agent"
           },
@@ -551,7 +1811,7 @@
       },
       {
         "name": "alignment",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "acceptability-classification"
           },
@@ -586,7 +1846,7 @@
       },
       {
         "name": "audio",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "audio-classification"
           },
@@ -610,7 +1870,7 @@
       {
         "name": "benchmark",
         "context": "Datasets associated with benchmarks of any kind.",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "alignment"
           },
@@ -629,6 +1889,9 @@
             "title": "MTEB"
           },
           {
+            "name": "nli"
+          },
+          {
             "name": "test"
           },
           {
@@ -639,7 +1902,7 @@
       {
         "name": "classification",
         "context": "All aspects of classification: text, images, etc.",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "acceptability-classification"
           },
@@ -725,7 +1988,7 @@
       },
       {
         "name": "chain-of-thought",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "cot",
             "title": "COT"
@@ -734,7 +1997,7 @@
       },
       {
         "name": "chat",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "argument"
           },
@@ -797,7 +2060,7 @@
       },
       {
         "name": "embeddings",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "embedding"
           }
@@ -805,7 +2068,7 @@
       },
       {
         "name": "evaluation",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "eval"
           },
@@ -818,7 +2081,7 @@
         "name": "finetuning",
         "context": "Post training refinement of models for alignment, safety, etc.",
         "title": "Fine Tuning",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "finetune",
             "title": "Fine Tune"
@@ -866,7 +2129,7 @@
       {
         "name": "generated-data",
         "context": "Datasets that were generated by humans or automation.",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "ai-generated"
           },
@@ -919,12 +2182,15 @@
           },
           {
             "name": "synthetic-dataset"
+          },
+          {
+            "name": "synthgenai"
           }
         ]
       },
       {
         "name": "feature-extraction",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "image-feature-extraction"
           }
@@ -932,7 +2198,7 @@
       },
       {
         "name": "graph",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "graphs"
           },
@@ -959,7 +2225,7 @@
       {
         "name": "image",
         "context": "Datasets of images and analysis of them, such as object detection.",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "anime"
           },
@@ -1063,7 +2329,7 @@
       },
       {
         "name": "instruction-following",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "instruct"
           },
@@ -1092,7 +2358,7 @@
       {
         "name": "llm",
         "title": "LLM",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "alpaca"
           },
@@ -1121,7 +2387,7 @@
         "name": "json",
         "context": "JSON formatted data",
         "title": "JSON",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "jsonl",
             "title": "JSONL"
@@ -1136,10 +2402,10 @@
         "name": "multilingual",
         "context": "Datasets with more than one language.",
         "title": "Multi Lingual",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "machine translation"
-          },          
+          },
           {
             "name": "multi-lingual"
           },
@@ -1153,7 +2419,7 @@
       },
       {
         "name": "multimodal",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "multimodality"
           },
@@ -1170,7 +2436,7 @@
       },
       {
         "name": "music",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "midi"
           }
@@ -1181,7 +2447,7 @@
       },
       {
         "name": "news",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "news-articles-summarization"
           }
@@ -1190,7 +2456,7 @@
       {
         "name": "nlp",
         "title": "NLP",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "explanation"
           },
@@ -1215,7 +2481,7 @@
         "name": "pretraining",
         "context": "Training of foundation modals, before (or 'pre') tuning for alignment, safety, etc.",
         "title": "Pretraining",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "long context"
           },
@@ -1238,7 +2504,7 @@
       },
       {
         "name": "prompt",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "dfp",
             "title": "DFP"
@@ -1260,7 +2526,7 @@
       {
         "name": "question-answering",
         "context": "Datasets with question and answer pairs and related content.",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "abstractive-qa",
             "title": "Abstractive Q&A"
@@ -1346,7 +2612,7 @@
         "name": "rag",
         "title": "RAG",
         "context": "Retrieval Augmented Generation",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "retrieval augmented generation"
           },
@@ -1358,7 +2624,7 @@
       {
         "name": "reasoning",
         "context": "Datasets to improve model's abilities to reason.",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "reflection"
           },
@@ -1375,7 +2641,7 @@
       },
       {
         "name": "regression",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "tabular-regression"
               }
@@ -1383,7 +2649,7 @@
       },
       {
         "name": "reinforcement-learning",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "dpo",
             "title": "DPO"
@@ -1410,7 +2676,7 @@
       },
       {
         "name": "safety",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "deepfake",
             "title": "Deep Fake"
@@ -1443,13 +2709,13 @@
       },
       {
         "name": "search",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "codesearchnet"
           },
           {
             "name": "search-queries"
-          },          
+          },
           {
             "name": "semantic-search"
           }
@@ -1457,7 +2723,7 @@
       },
       {
         "name": "security",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "cybersecurity"
           },
@@ -1477,7 +2743,7 @@
       },
       {
         "name": "sentiment-analysis",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "emotion"
           },
@@ -1497,7 +2763,7 @@
       },
       {
         "name": "speech",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "automatic-speech-recognition"
           },
@@ -1532,7 +2798,7 @@
       },
       {
         "name": "summarization",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "news-articles-summarization"
           },
@@ -1553,7 +2819,7 @@
       {
         "name": "tabular",
         "context": "Data in table formats.",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "table"
           },
@@ -1564,7 +2830,7 @@
       },
       {
         "name": "retrieval",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "document-retrieval"
           },
@@ -1588,7 +2854,7 @@
       {
         "name": "text-to-...",
         "context": "Generating images, videos, etc. from text.",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "image-text-to-text"
           },
@@ -1619,7 +2885,7 @@
       {
         "name": "to-text",
         "context": "Datasets for generating text from different data sources.",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "data-to-text"
           },
@@ -1648,13 +2914,13 @@
       },
       {
         "name": "translation",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "machine translation"
-          },          
+          },
           {
             "name": "translated"
-          }          
+          }
         ]
       },
       {
@@ -1662,7 +2928,7 @@
       },
       {
         "name": "unlearning",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "tofu"
           }
@@ -1670,12 +2936,15 @@
       },
       {
         "name": "video",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "drone"
           },
           {
             "name": "image-to-video"
+          },
+          {
+            "name": "likert"
           },
           {
             "name": "lvlm",
@@ -1725,7 +2994,7 @@
       },
       {
         "name": "vision",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "computer-vision"
           },
@@ -1736,7 +3005,7 @@
       },
       {
         "name": "wikipedia",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "nanodbpedia"
           },
@@ -1765,10 +3034,10 @@
   {
     "name": "domain",
     "context": "Domains like chemistry, healthcare, etc.",
-    "topics": [
+    "subcategories": [
       {
         "name": "advertising",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "openx",
             "title": "OpenX"
@@ -1789,7 +3058,7 @@
       },
       {
         "name": "banking",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "banking-digital-services"
           },
@@ -1800,7 +3069,7 @@
       },
       {
         "name": "biology",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "animals"
           },
@@ -1825,7 +3094,7 @@
       },
       {
         "name": "chemistry",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "bio-chem"
           },
@@ -1863,7 +3132,7 @@
       },
       {
         "name": "code",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "astra"
           },
@@ -1965,7 +3234,7 @@
       },
       {
         "name": "education",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "educational"
           },
@@ -1980,7 +3249,7 @@
       },
       {
         "name": "environment",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "ecology"
           },
@@ -2012,7 +3281,7 @@
       },
       {
         "name": "finance",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "aveni-bench"
           },
@@ -2032,9 +3301,12 @@
       },
       {
         "name": "game",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "chess"
+          },
+          {
+            "name": "lichess"
           },
           {
             "name": "games"
@@ -2052,12 +3324,15 @@
       },
       {
         "name": "geospatial",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "earth-observation"
           },
           {
             "name": "geography"
+          },
+          {
+            "name": "poi"
           },
           {
             "name": "remote-sensing"
@@ -2066,7 +3341,7 @@
       },
       {
         "name": "government",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "ccdv/govreport-summarization"
           },
@@ -2123,7 +3398,7 @@
       },
       {
         "name": "history",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "historical"
           }
@@ -2134,7 +3409,7 @@
       },
       {
         "name": "legal",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "droit"
           },
@@ -2154,7 +3429,10 @@
       },
         {
           "name": "logic",
-          "all-tags": [
+          "alt-tags": [
+            {
+              "name": "lojban"
+            },
             {
               "name": "logical reasoning"
             },
@@ -2165,7 +3443,7 @@
         },
       {
         "name": "mathematics",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "algebra"
           },
@@ -2203,7 +3481,7 @@
       {
         "name": "medical",
         "context": "Includes keywords for healthcare, biomedical, genomics, etc.",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "biomedical"
           },
@@ -2258,7 +3536,7 @@
       },
       {
         "name": "philosophy",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "ethics"
           }
@@ -2266,7 +3544,7 @@
       },
       {
         "name": "physics",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "biophysics"
           }
@@ -2277,7 +3555,7 @@
       },
       {
         "name": "psychology",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "personality"
           }
@@ -2285,7 +3563,7 @@
       },
       {
         "name": "robotics",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "lerobot",
             "title": "Le Robot"
@@ -2294,7 +3572,7 @@
       },
       {
         "name": "science",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "reviews"
           }
@@ -2305,7 +3583,7 @@
       },
       {
         "name": "time-series",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "https://download.bls.gov/pub/time.series/compressed/tape.format",
             "title": "bls.gov/pub/time.series/compressed/"
@@ -2320,7 +3598,7 @@
       },
       {
         "name": "web",
-        "all-tags": [
+        "alt-tags": [
           {
             "name": "webdataset",
             "title": "Web Dataset"
