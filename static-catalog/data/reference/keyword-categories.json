@@ -1,3030 +1,3031 @@
 [
     {
-    "name": "language",
+    "keyword": "language",
     "context": "Datasets with different human languages.",
     "subcategories": [
       {
-        "name": "languages-africa",
+        "keyword": "africa",
         "title": "African Languages",
         "context": "Ancient and modern languages in Africa.",
         "topics": [
           {
-            "name": "afar"
+            "keyword": "afar"
           },
           {
-            "name": "afrikaans"
+            "keyword": "afrikaans"
           },
           {
-            "name": "akan"
+            "keyword": "akan"
           },
           {
-            "name": "amharic"
+            "keyword": "amharic"
           },
           {
-            "name": "baatonum"
+            "keyword": "baatonum"
           },
           {
-            "name": "bambara"
+            "keyword": "bambara"
           },
           {
-            "name": "bemba (zambia)"
+            "keyword": "bemba (zambia)"
           },
           {
-            "name": "ber"
+            "keyword": "ber"
           },
           {
-            "name": "birwa",
+            "keyword": "birwa",
             "alt-tags": [
               {
-                "name": "northern sotho"
+                "keyword": "northern sotho"
               },
               {
-                "name": "southern sotho"
+                "keyword": "southern sotho"
               }
             ]
           },
           {
-            "name": "central kanuri"
+            "keyword": "central kanuri"
           },
           {
-            "name": "chichewa",
+            "keyword": "chichewa",
             "alt-tags": [
               {
-                "name": "nyanja"
+                "keyword": "nyanja"
               }
             ]
           },
           {
-            "name": "chokwe"
+            "keyword": "chokwe"
           },
           {
-            "name": "cwi bwamu",
+            "keyword": "cwi bwamu",
             "alt-tags": [
               {
-                "name": "bwamu, cwi"
+                "keyword": "bwamu, cwi"
               },
               {
-                "name": "twi"
+                "keyword": "twi"
               }
             ]
           },
           {
-            "name": "dagbani"
+            "keyword": "dagbani"
           },
           {
-            "name": "dinka",
+            "keyword": "dinka",
             "alt-tags": [
               {
-                "name": "southwestern dinka"
+                "keyword": "southwestern dinka"
               }
             ]
           },
           {
-            "name": "dyula"
+            "keyword": "dyula"
           },
           {
-            "name": "egyptian (ancient)"
+            "keyword": "egyptian (ancient)"
           },
           {
-            "name": "fanti"
+            "keyword": "fanti"
           },
           {
-            "name": "fulah"
+            "keyword": "fulah"
           },
           {
-            "name": "ganda"
+            "keyword": "ganda"
           },
           {
-            "name": "ghomálá'"
+            "keyword": "ghomálá'"
           },
           {
-            "name": "hausa"
+            "keyword": "hausa"
           },
           {
-            "name": "herero"
+            "keyword": "herero"
           },
           {
-            "name": "igbo"
+            "keyword": "igbo"
           },
           {
-            "name": "kabiyè"
+            "keyword": "kabiyè"
           },
           {
-            "name": "kabuverdianu"
+            "keyword": "kabuverdianu"
           },
           {
-            "name": "kabyle"
+            "keyword": "kabyle"
           },
           {
-            "name": "kachin"
+            "keyword": "kachin"
           },
           {
-            "name": "kamba (kenya)"
+            "keyword": "kamba (kenya)"
           },
           {
-            "name": "kanuri"
+            "keyword": "kanuri"
           },
           {
-            "name": "kikuyu"
+            "keyword": "kikuyu"
           },
           {
-            "name": "kimbundu"
+            "keyword": "kimbundu"
           },
           {
-            "name": "kinyarwanda"
+            "keyword": "kinyarwanda"
           },
           {
-            "name": "ko"
+            "keyword": "ko"
           },
           {
-            "name": "kongo"
+            "keyword": "kongo"
           },
           {
-            "name": "koyraboro senni songhai"
+            "keyword": "koyraboro senni songhai"
           },
           {
-            "name": "kutu"
+            "keyword": "kutu"
           },
           {
-            "name": "kwere"
+            "keyword": "kwere"
           },
           {
-            "name": "lingala"
+            "keyword": "lingala"
           },
           {
-            "name": "luba-katanga"
+            "keyword": "luba-katanga"
           },
           {
-            "name": "luba-lulua",
+            "keyword": "luba-lulua",
             "alt-tags": [
               {
-                "name": "luba-kasai"
+                "keyword": "luba-kasai"
               }
             ]
           },
           {
-            "name": "luo (kenya and tanzania)"
+            "keyword": "luo (kenya and tanzania)"
           },
           {
-            "name": "makhuwa"
+            "keyword": "makhuwa"
           },
           {
-            "name": "makonde"
+            "keyword": "makonde"
           },
           {
-            "name": "malagasy"
+            "keyword": "malagasy"
           },
           {
-            "name": "mamara senoufo"
+            "keyword": "mamara senoufo"
           },
           {
-            "name": "mossi",
+            "keyword": "mossi",
             "alt-tags": [
               {
-                "name": "moore"
+                "keyword": "moore"
               }
             ]
           },
           {
-            "name": "n'ko"
+            "keyword": "n'ko"
           },
           {
-            "name": "ndonga"
+            "keyword": "ndonga"
           },
           {
-            "name": "nigerian fulfulde",
+            "keyword": "nigerian fulfulde",
             "alt-tags": [
               {
-                "name": "western nigerian fulfulde"
+                "keyword": "western nigerian fulfulde"
               }
             ]
           },
           {
-            "name": "nigerian pidgin"
+            "keyword": "nigerian pidgin"
           },
           {
-            "name": "ndebele",
+            "keyword": "ndebele",
             "alt-tags": [
               {
-                "name": "northern ndebele"
+                "keyword": "northern ndebele"
               },
               {
-                "name": "south ndebele"
+                "keyword": "south ndebele"
               }
             ]
           },
           {
-            "name": "nuer"
+            "keyword": "nuer"
           },
           {
-            "name": "nyankole",
+            "keyword": "nyankole",
             "alt-tags": [
               {
-                "name": "nyankore"
+                "keyword": "nyankore"
               }
             ]
           },
           {
-            "name": "oromo"
+            "keyword": "oromo"
           },
           {
-            "name": "plateau malagasy"
+            "keyword": "plateau malagasy"
           },
           {
-            "name": "rundi",
+            "keyword": "rundi",
               "alt-tags": [
                 {
-                  "name": "kirundi"
+                  "keyword": "kirundi"
                 }
               ]
           },
           {
-            "name": "sango"
+            "keyword": "sango"
           },
           {
-            "name": "sar"
+            "keyword": "sar"
           },
           {
-            "name": "seselwa creole french",
+            "keyword": "seselwa creole french",
             "alt-tags": [
               {
-                "name": "seychelles french creole"
+                "keyword": "seychelles french creole"
               }
             ]
           },
           {
-            "name": "shona"
+            "keyword": "shona"
           },
           {
-            "name": "somali"
+            "keyword": "somali"
           },
           {
-            "name": "suba"
+            "keyword": "suba"
           },
           {
-            "name": "swahili",
+            "keyword": "swahili",
             "alt-tags": [
               {
-                "name": "swahili (individual language)"
+                "keyword": "swahili (individual language)"
               },
               {
-                "name": "swahili (macrolanguage)"
+                "keyword": "swahili (macrolanguage)"
               }
             ]
           },
           {
-            "name": "susu"
+            "keyword": "susu"
           },
           {
-            "name": "swati"
+            "keyword": "swati"
           },
           {
-            "name": "tachelhit"
+            "keyword": "tachelhit"
           },
           {
-            "name": "tamasheq"
+            "keyword": "tamasheq"
           },
           {
-            "name": "tamazight",
+            "keyword": "tamazight",
             "alt-tags": [
               {
-                "name": "central atlas tamazight"
+                "keyword": "central atlas tamazight"
               },
               {
-                "name": "moroccan tamazight"
+                "keyword": "moroccan tamazight"
               },
               {
-                "name": "standard moroccan tamazight"
+                "keyword": "standard moroccan tamazight"
               }
             ]
           },
           {
-            "name": "tigrigna",
+            "keyword": "tigrigna",
             "alt-tags": [
               {
-                "name": "tigrinya"
+                "keyword": "tigrinya"
               }
             ]
           },
           {
-            "name": "tsonga"
+            "keyword": "tsonga"
           },
           {
-            "name": "setswana",
+            "keyword": "setswana",
             "alt-tags": [
               {
-                "name": "tswana"
+                "keyword": "tswana"
               }
             ]
           },
           {
-            "name": "tumbuka"
+            "keyword": "tumbuka"
           },
           {
-            "name": "umbundu"
+            "keyword": "umbundu"
           },
           {
-            "name": "venda"
+            "keyword": "venda"
           },
           {
-            "name": "west central oromo"
+            "keyword": "west central oromo"
           },
           {
-            "name": "wolaytta"
+            "keyword": "wolaytta"
           },
           {
-            "name": "wolof"
+            "keyword": "wolof"
           },
           {
-            "name": "xhosa"
+            "keyword": "xhosa"
           },
           {
-            "name": "yoruba"
+            "keyword": "yoruba"
           },
           {
-            "name": "zulu"
+            "keyword": "zulu"
           }
         ]
       },
       {
-        "name": "languages-americas",
+        "keyword": "americas",
         "title": "Languages in the Americas",
         "context": "Ancient and modern languages in the Americas.",
         "topics": [
           {
-            "name": "achuar-shiwiar"
+            "keyword": "achuar-shiwiar"
           },
           {
-            "name": "algonquin"
+            "keyword": "algonquin"
           },
           {
-            "name": "arabela"
+            "keyword": "arabela"
           },
           {
-            "name": "asháninka"
+            "keyword": "asháninka"
           },
           {
-            "name": "aymara"
+            "keyword": "aymara"
           },
           {
-            "name": "bora"
+            "keyword": "bora"
           },
           {
-            "name": "candoshi-shapra"
+            "keyword": "candoshi-shapra"
           },
           {
-            "name": "caquinte"
+            "keyword": "caquinte"
           },
           {
-            "name": "caribbean hindustani"
+            "keyword": "caribbean hindustani"
           },
           {
-            "name": "cashibo-cacataibo"
+            "keyword": "cashibo-cacataibo"
           },
           {
-            "name": "cashinahua"
+            "keyword": "cashinahua"
           },
           {
-            "name": "central aymara"
+            "keyword": "central aymara"
           },
           {
-            "name": "central bikol"
+            "keyword": "central bikol"
           },
           {
-            "name": "central bontok"
+            "keyword": "central bontok"
           },
           {
-            "name": "central mazahua"
+            "keyword": "central mazahua"
           },
           {
-            "name": "chachi"
+            "keyword": "chachi"
           },
           {
-            "name": "chayahuita"
+            "keyword": "chayahuita"
           },
           {
-            "name": "cherokee"
+            "keyword": "cherokee"
           },
           {
-            "name": "chimborazo highland quichua"
+            "keyword": "chimborazo highland quichua"
           },
           {
-            "name": "chácobo"
+            "keyword": "chácobo"
           },
           {
-            "name": "cofán"
+            "keyword": "cofán"
           },
           {
-            "name": "cree"
+            "keyword": "cree"
           },
           {
-            "name": "eastern huasteca nahuatl"
+            "keyword": "eastern huasteca nahuatl"
           },
           {
-            "name": "eastern maroon creole"
+            "keyword": "eastern maroon creole"
           },
           {
-            "name": "galibi carib"
+            "keyword": "galibi carib"
           },
           {
-            "name": "garifuna"
+            "keyword": "garifuna"
           },
           {
-            "name": "guarani",
+            "keyword": "guarani",
             "alt-tags": [
               {
-                "name": "guaraní"
+                "keyword": "guaraní"
               }
             ]
           },
           {
-            "name": "haitian"
+            "keyword": "haitian"
           },
           {
-            "name": "highland puebla nahuatl"
+            "keyword": "highland puebla nahuatl"
           },
           {
-            "name": "huastec"
+            "keyword": "huastec"
           },
           {
-            "name": "huichol"
+            "keyword": "huichol"
           },
           {
-            "name": "imbabura highland quichua"
+            "keyword": "imbabura highland quichua"
           },
           {
-            "name": "inuktitut"
+            "keyword": "inuktitut"
           },
           {
-            "name": "inupiaq"
+            "keyword": "inupiaq"
           },
           {
-            "name": "ixil"
+            "keyword": "ixil"
           },
           {
-            "name": "jamaican creole english"
+            "keyword": "jamaican creole english"
           },
           {
-            "name": "k'iche'"
+            "keyword": "k'iche'"
           },
           {
-            "name": "kalaallisut"
+            "keyword": "kalaallisut"
           },
           {
-            "name": "kaqchikel"
+            "keyword": "kaqchikel"
           },
           {
-            "name": "kekchí"
+            "keyword": "kekchí"
           },
           {
-            "name": "mapudungun"
+            "keyword": "mapudungun"
           },
           {
-            "name": "mezquital otomi"
+            "keyword": "mezquital otomi"
           },
           {
-            "name": "mi'kmaq"
+            "keyword": "mi'kmaq"
           },
           {
-            "name": "murui huitoto",
+            "keyword": "murui huitoto",
             "alt-tags": [
               {
-                "name": "murui witoto"
+                "keyword": "murui witoto"
               }
             ]
           },
           {
-            "name": "navajo"
+            "keyword": "navajo"
           },
           {
-            "name": "ngäbere"
+            "keyword": "ngäbere"
           },
           {
-            "name": "nomatsiguenga",
+            "keyword": "nomatsiguenga",
             "alt-tags": [
               {
-                "name": "nomatsigenga"
+                "keyword": "nomatsigenga"
               }
             ]
           },
           {
-            "name": "orpo"
+            "keyword": "orpo"
           },
           {
-            "name": "quechua",
+            "keyword": "quechua",
             "alt-tags": [
               {
-                "name": "ayacucho quechua"
+                "keyword": "ayacucho quechua"
               },
               {
-                "name": "cajamarca quechua"
+                "keyword": "cajamarca quechua"
               },
               {
-                "name": "cusco quechua"
+                "keyword": "cusco quechua"
               },
               {
-                "name": "huallaga huánuco quechua"
+                "keyword": "huallaga huánuco quechua"
               },
               {
-                "name": "huaylla wanca quechua"
+                "keyword": "huaylla wanca quechua"
               },
               {
-                "name": "north bolivian quechua"
+                "keyword": "north bolivian quechua"
               },
               {
-                "name": "north junín quechua"
+                "keyword": "north junín quechua"
               },
               {
-                "name": "northern conchucos ancash quechua"
+                "keyword": "northern conchucos ancash quechua"
               },
               {
-                "name": "san martín quechua"
+                "keyword": "san martín quechua"
               },
               {
-                "name": "south bolivian quechua"
+                "keyword": "south bolivian quechua"
               }
             ]
           },
           {
-            "name": "papantla totonac"
+            "keyword": "papantla totonac"
           },
           {
-            "name": "purepecha"
+            "keyword": "purepecha"
           },
           {
-            "name": "saramaccan"
+            "keyword": "saramaccan"
           },
           {
-            "name": "sharanahua"
+            "keyword": "sharanahua"
           },
           {
-            "name": "shipibo-conibo"
+            "keyword": "shipibo-conibo"
           },
           {
-            "name": "shuar"
+            "keyword": "shuar"
           },
           {
-            "name": "siona"
+            "keyword": "siona"
           },
           {
-            "name": "sirionó"
+            "keyword": "sirionó"
           },
           {
-            "name": "sranan tongo"
+            "keyword": "sranan tongo"
           },
           {
-            "name": "ticuna"
+            "keyword": "ticuna"
           },
           {
-            "name": "tzotzil"
+            "keyword": "tzotzil"
           },
           {
-            "name": "wayuu"
+            "keyword": "wayuu"
           },
           {
-            "name": "yine"
+            "keyword": "yine"
           },
           {
-            "name": "yosondúa mixtec"
+            "keyword": "yosondúa mixtec"
           },
           {
-            "name": "yucateco"
+            "keyword": "yucateco"
           },
           {
-            "name": "zapotec"
+            "keyword": "zapotec"
           }
         ]
       },
       {
-        "name": "languages-asia",
+        "keyword": "asia",
         "title": "Asian Languages",
         "context": "Ancient and modern languages in Asia.",
         "topics": [
           {
-            "name": "abkhaz"
+            "keyword": "abkhaz"
           },
           {
-            "name": "altai",
+            "keyword": "altai",
             "alt-tags": [
               {
-                "name": "northern altai"
+                "keyword": "northern altai"
               },
               {
-                "name": "southern altai"
+                "keyword": "southern altai"
               }
             ]
           },
           {
-            "name": "amis"
+            "keyword": "amis"
           },
           {
-            "name": "angika"
+            "keyword": "angika"
           },
           {
-            "name": "armenian",
+            "keyword": "armenian",
             "alt-tags": [
               {
-                "name": "western armenian"
+                "keyword": "western armenian"
               }
             ]
           },
           {
-            "name": "assamese"
+            "keyword": "assamese"
           },
           {
-            "name": "avaric"
+            "keyword": "avaric"
           },
           {
-            "name": "awadhi"
+            "keyword": "awadhi"
           },
           {
-            "name": "azerbaijani"
+            "keyword": "azerbaijani"
           },
           {
-            "name": "balinese"
+            "keyword": "balinese"
           },
           {
-            "name": "balochi",
+            "keyword": "balochi",
             "alt-tags": [
               {
-                "name": "baluchi"
+                "keyword": "baluchi"
               },
               {
-                "name": "eastern balochi"
+                "keyword": "eastern balochi"
               },
               {
-                "name": "northern balochi"
+                "keyword": "northern balochi"
               },
               {
-                "name": "southern balochi",
+                "keyword": "southern balochi",
                 "alt-tags": [
                   {
-                    "name": "balóchi"
+                    "keyword": "balóchi"
                   }
                 ]
               },
               {
-                "name": "western balochi"
+                "keyword": "western balochi"
               }
             ]
           },
           {
-            "name": "bashkir"
+            "keyword": "bashkir"
           },
           {
-            "name": "bengali"
+            "keyword": "bengali"
           },
           {
-            "name": "bishnupriya"
+            "keyword": "bishnupriya"
           },
           {
-            "name": "bodo (india)"
+            "keyword": "bodo (india)"
           },
           {
-            "name": "bolinao"
+            "keyword": "bolinao"
           },
           {
-            "name": "burmese"
+            "keyword": "burmese"
           },
           {
-            "name": "carpathian romani"
+            "keyword": "carpathian romani"
           },
           {
-            "name": "cebuano"
+            "keyword": "cebuano"
           },
           {
-            "name": "central kurdish"
+            "keyword": "central kurdish"
           },
           {
-            "name": "chechen"
+            "keyword": "chechen"
           },
           {
-            "name": "chhattisgarhi"
+            "keyword": "chhattisgarhi"
           },
           {
-            "name": "chinese",
+            "keyword": "chinese",
             "alt-tags": [
               {
-              "name": "achinese"
+              "keyword": "achinese"
               },
               {
-              "name": "literary chinese"
+              "keyword": "literary chinese"
               },
               {
-                "name": "mandarin chinese"
+                "keyword": "mandarin chinese"
               },
               {
-                "name": "min nan chinese"
+                "keyword": "min nan chinese"
               },
               {
-                "name": "wu chinese"
+                "keyword": "wu chinese"
               },
               {
-                "name": "yue chinese"
+                "keyword": "yue chinese"
               },
               {
-                "name": "zhuang"
+                "keyword": "zhuang"
               }
             ]
           },
           {
-            "name": "chuvash"
+            "keyword": "chuvash"
           },
           {
-            "name": "crimean tatar"
+            "keyword": "crimean tatar"
           },
           {
-            "name": "dari"
+            "keyword": "dari"
           },
           {
-            "name": "dhivehi"
+            "keyword": "dhivehi"
           },
           {
-            "name": "dimli (individual language)"
+            "keyword": "dimli (individual language)"
           },
           {
-            "name": "divehi"
+            "keyword": "divehi"
           },
           {
-            "name": "dogri (macrolanguage)"
+            "keyword": "dogri (macrolanguage)"
           },
           {
-            "name": "dzongkha"
+            "keyword": "dzongkha"
           },
           {
-            "name": "eastern tamang"
+            "keyword": "eastern tamang"
           },
           {
-            "name": "erzya"
+            "keyword": "erzya"
           },
           {
-            "name": "farsi"
+            "keyword": "farsi"
           },
           {
-            "name": "filipino"
+            "keyword": "filipino"
           },
           {
-            "name": "gilaki"
+            "keyword": "gilaki"
           },
           {
-            "name": "goan konkani"
+            "keyword": "goan konkani"
           },
           {
-            "name": "gujarati"
+            "keyword": "gujarati"
           },
           {
-            "name": "hakha chin"
+            "keyword": "hakha chin"
           },
           {
-            "name": "hakka chinese"
+            "keyword": "hakka chinese"
           },
           {
-            "name": "halh mongolian"
+            "keyword": "halh mongolian"
           },
           {
-            "name": "hindi"
+            "keyword": "hindi"
           },
           {
-            "name": "hinglish"
+            "keyword": "hinglish"
           },
           {
-            "name": "iloko"
+            "keyword": "iloko"
           },
           {
-            "name": "ingush"
+            "keyword": "ingush"
           },
           {
-            "name": "iranian persian"
+            "keyword": "iranian persian"
           },
           {
-            "name": "japanese"
+            "keyword": "japanese"
           },
           {
-            "name": "kalmyk"
+            "keyword": "kalmyk"
           },
           {
-            "name": "kankanaey"
+            "keyword": "kankanaey"
           },
           {
-            "name": "kannada"
+            "keyword": "kannada"
           },
           {
-            "name": "karachay-balkar"
+            "keyword": "karachay-balkar"
           },
           {
-            "name": "karelian"
+            "keyword": "karelian"
           },
           {
-            "name": "kashmiri"
+            "keyword": "kashmiri"
           },
           {
-            "name": "kazakh"
+            "keyword": "kazakh"
           },
           {
-            "name": "khmer"
+            "keyword": "khmer"
           },
           {
-            "name": "kirghiz"
+            "keyword": "kirghiz"
           },
           {
-            "name": "kirmanjki (individual language)"
+            "keyword": "kirmanjki (individual language)"
           },
           {
-            "name": "komi",
+            "keyword": "komi",
             "alt-tags": [
               {
-                "name": "komi-permyak"
+                "keyword": "komi-permyak"
               },
               {
-                "name": "komi-zyrian"
+                "keyword": "komi-zyrian"
               }
             ]
           },
           {
-            "name": "korean"
+            "keyword": "korean"
           },
           {
-            "name": "kurdish"
+            "keyword": "kurdish"
           },
           {
-            "name": "kyrgyz"
+            "keyword": "kyrgyz"
           },
           {
-            "name": "lak"
+            "keyword": "lak"
           },
           {
-            "name": "lao"
+            "keyword": "lao"
           },
           {
-            "name": "lezghian",
+            "keyword": "lezghian",
             "alt-tags": [
               {
-                "name": "lezgi"
+                "keyword": "lezgi"
               }
             ]
           },
           {
-            "name": "limbu"
+            "keyword": "limbu"
           },
           {
-            "name": "lushai",
+            "keyword": "lushai",
             "alt-tags": [
               {
-                "name": "mizo"
+                "keyword": "mizo"
               }
             ]
           },
           {
-            "name": "magahi"
+            "keyword": "magahi"
           },
           {
-            "name": "maithili"
+            "keyword": "maithili"
           },
           {
-            "name": "malay",
+            "keyword": "malay",
             "alt-tags": [
               {
-                "name": "kupang malay"
+                "keyword": "kupang malay"
               },
               {
-                "name": "malay (individual language)"
+                "keyword": "malay (individual language)"
               },
               {
-                "name": "malay (macrolanguage)"
+                "keyword": "malay (macrolanguage)"
               },
               {
-                "name": "standard malay"
+                "keyword": "standard malay"
               }
             ]
           },
           {
-            "name": "malayalam"
+            "keyword": "malayalam"
           },
           {
-            "name": "manipuri",
+            "keyword": "manipuri",
             "alt-tags": [
               {
-                "name": "meitei"
+                "keyword": "meitei"
               }
             ]
           },
           {
-            "name": "mansi"
+            "keyword": "mansi"
           },
           {
-            "name": "marathi"
+            "keyword": "marathi"
           },
           {
-            "name": "mari (russia)"
+            "keyword": "mari (russia)"
           },
           {
-            "name": "mazanderani",
+            "keyword": "mazanderani",
             "alt-tags": [
               {
-                "name": "mazandarani"
+                "keyword": "mazandarani"
               }
             ]
           },
           {
-            "name": "mingrelian"
+            "keyword": "mingrelian"
           },
           {
-            "name": "mongolian"
+            "keyword": "mongolian"
           },
           {
-            "name": "nepali"
+            "keyword": "nepali"
           },
           {
-            "name": "nepali (individual language)"
+            "keyword": "nepali (individual language)"
           },
           {
-            "name": "newari",
+            "keyword": "newari",
             "alt-tags": [
               {
-                "name": "newari"
+                "keyword": "newari"
               }
             ]
           },
           {
-            "name": "north azerbaijani"
+            "keyword": "north azerbaijani"
           },
           {
-            "name": "northern kurdish"
+            "keyword": "northern kurdish"
           },
           {
-            "name": "northern uzbek"
+            "keyword": "northern uzbek"
           },
           {
-            "name": "odia"
+            "keyword": "odia"
           },
           {
-            "name": "oriya"
+            "keyword": "oriya"
           },
           {
-            "name": "oriya (macrolanguage)"
+            "keyword": "oriya (macrolanguage)"
           },
           {
-            "name": "ossetian",
+            "keyword": "ossetian",
             "alt-tags": [
               {
-                "name": "ossetic"
+                "keyword": "ossetic"
               }
             ]
           },
           {
-            "name": "pampanga",
+            "keyword": "pampanga",
             "alt-tags": [
               {
-                "name": "kapampangan"
+                "keyword": "kapampangan"
               },
               {
-                "name": "pampangan"
+                "keyword": "pampangan"
               }
             ]
           },
           {
-            "name": "pangasinan"
+            "keyword": "pangasinan"
           },
           {
-            "name": "panjabi",
+            "keyword": "panjabi",
             "alt-tags": [
               {
-                "name": "punjabi"
+                "keyword": "punjabi"
               }
             ]
           },
           {
-            "name": "pashto",
+            "keyword": "pashto",
             "alt-tags": [
               {
-                "name": "pushto"
+                "keyword": "pushto"
               },
               {
-                "name": "southern pashto"
+                "keyword": "southern pashto"
               }
             ]
           },
           {
-            "name": "persian"
+            "keyword": "persian"
           },
           {
-            "name": "russia buriat"
+            "keyword": "russia buriat"
           },
           {
-            "name": "sanskrit"
+            "keyword": "sanskrit"
           },
           {
-            "name": "santali"
+            "keyword": "santali"
           },
           {
-            "name": "saraiki"
+            "keyword": "saraiki"
           },
           {
-            "name": "sediq"
+            "keyword": "sediq"
           },
           {
-            "name": "shan"
+            "keyword": "shan"
           },
           {
-            "name": "sindhi"
+            "keyword": "sindhi"
           },
           {
-            "name": "sinhala"
+            "keyword": "sinhala"
           },
           {
-            "name": "south azerbaijani"
+            "keyword": "south azerbaijani"
           },
           {
-            "name": "tagalog"
+            "keyword": "tagalog"
           },
           {
-            "name": "tajik"
+            "keyword": "tajik"
           },
           {
-            "name": "tamil"
+            "keyword": "tamil"
           },
           {
-            "name": "tatar"
+            "keyword": "tatar"
           },
           {
-            "name": "telugu"
+            "keyword": "telugu"
           },
           {
-            "name": "thai"
+            "keyword": "thai"
           },
           {
-            "name": "tibetan"
+            "keyword": "tibetan"
           },
           {
-            "name": "turkish",
+            "keyword": "turkish",
             "alt-tags": [
               {
-                "name": "ottoman turkish (1500-1928)"
+                "keyword": "ottoman turkish (1500-1928)"
               },
               {
-                "name": "zaza"
+                "keyword": "zaza"
               }
             ]
           },
           {
-            "name": "turkmen"
+            "keyword": "turkmen"
           },
           {
-            "name": "tuvan",
+            "keyword": "tuvan",
             "alt-tags": [
               {
-                "name": "tuvinian"
+                "keyword": "tuvinian"
               }
             ]
           },
           {
-            "name": "udmurt"
+            "keyword": "udmurt"
           },
           {
-            "name": "uyghur",
+            "keyword": "uyghur",
             "alt-tags": [
               {
-                "name": "uighur"
+                "keyword": "uighur"
               }
             ]
           },
           {
-            "name": "uzbek"
+            "keyword": "uzbek"
           },
           {
-            "name": "vietnamese"
+            "keyword": "vietnamese"
           },
           {
-            "name": "waray (philippines)"
+            "keyword": "waray (philippines)"
           },
           {
-            "name": "western bukidnon manobo"
+            "keyword": "western bukidnon manobo"
           },
           {
-            "name": "yakut"
+            "keyword": "yakut"
           }
         ]
       },
       {
-        "name": "languages-europe",
+        "keyword": "europe",
         "title": "European Languages",
         "context": "Ancient and modern languages in Europe.",
         "topics": [
           {
-            "name": "adyghe",
+            "keyword": "adyghe",
             "alt-tags": [
               {
-                "name": "kabardian"
+                "keyword": "kabardian"
               }
             ]
           },
           {
-            "name": "albanian",
+            "keyword": "albanian",
             "alt-tags": [
               {
-                "name": "tosk albanian"
+                "keyword": "tosk albanian"
               }
             ]
           },
           {
-            "name": "aragonese"
+            "keyword": "aragonese"
           },
           {
-            "name": "arpitan"
+            "keyword": "arpitan"
           },
           {
-            "name": "asturian"
+            "keyword": "asturian"
           },
           {
-            "name": "basque"
+            "keyword": "basque"
           },
           {
-            "name": "bavarian"
+            "keyword": "bavarian"
           },
           {
-            "name": "belarusian"
+            "keyword": "belarusian"
           },
           {
-            "name": "bosnian"
+            "keyword": "bosnian"
           },
           {
-            "name": "breton"
+            "keyword": "breton"
           },
           {
-            "name": "bulgarian"
+            "keyword": "bulgarian"
           },
           {
-            "name": "catalan"
+            "keyword": "catalan"
           },
           {
-            "name": "cornish"
+            "keyword": "cornish"
           },
           {
-            "name": "corsican"
+            "keyword": "corsican"
           },
           {
-            "name": "croatian"
+            "keyword": "croatian"
           },
           {
-            "name": "czech"
+            "keyword": "czech"
           },
           {
-            "name": "danish"
+            "keyword": "danish"
           },
           {
-            "name": "dutch"
+            "keyword": "dutch"
           },
           {
-            "name": "english",
+            "keyword": "english",
             "alt-tags": [
               {
-                "name": "emoji"
+                "keyword": "emoji"
               }
             ]
           },
           {
-            "name": "esperanto"
+            "keyword": "esperanto"
           },
           {
-            "name": "estonian"
+            "keyword": "estonian"
           },
           {
-            "name": "faroese"
+            "keyword": "faroese"
           },
           {
-            "name": "finnish"
+            "keyword": "finnish"
           },
           {
-            "name": "french",
+            "keyword": "french",
             "alt-tags": [
               {
-                "name": "droit français"
+                "keyword": "droit français"
               },
               {
-                "name": "french law"
+                "keyword": "french law"
               },
               {
-                "name": "french prompts"
+                "keyword": "french prompts"
               },
               {
-                "name": "squad_v2_french_translated"
+                "keyword": "squad_v2_french_translated"
               }
             ]
           },
           {
-            "name": "frisian",
+            "keyword": "frisian",
             "alt-tags": [
               {
-                "name": "western frisian"
+                "keyword": "western frisian"
               }
             ]
           },
           {
-            "name": "friulian"
+            "keyword": "friulian"
           },
           {
-            "name": "gagauz"
+            "keyword": "gagauz"
           },
           {
-            "name": "galician"
+            "keyword": "galician"
           },
           {
-            "name": "german",
+            "keyword": "german",
             "alt-tags": [
               {
-                "name": "swiss german"
+                "keyword": "swiss german"
               }
             ]
           },
           {
-            "name": "georgian"
+            "keyword": "georgian"
           },
           {
-            "name": "greek",
+            "keyword": "greek",
             "alt-tags": [
               {
-                "name": "ancient greek (to 1453)",
+                "keyword": "ancient greek (to 1453)",
                 "title": "Ancient Greek (to 1453)"
               },
               {
-                "name": "modern greek (1453-)"
+                "keyword": "modern greek (1453-)"
               }
             ]
           },
           {
-            "name": "hungarian"
+            "keyword": "hungarian"
           },
           {
-            "name": "icelandic"
+            "keyword": "icelandic"
           },
           {
-            "name": "ido"
+            "keyword": "ido"
           },
           {
-            "name": "irish"
+            "keyword": "irish"
           },
           {
-            "name": "italian"
+            "keyword": "italian"
           },
           {
-            "name": "kashubian"
+            "keyword": "kashubian"
           },
           {
-            "name": "kölsch",
+            "keyword": "kölsch",
             "alt-tags": [
               {
-                "name": "ripuarian"
+                "keyword": "ripuarian"
               }
             ]
           },
           {
-            "name": "ladin"
+            "keyword": "ladin"
           },
           {
-            "name": "ladino"
+            "keyword": "ladino"
           },
           {
-            "name": "latgalian"
+            "keyword": "latgalian"
           },
           {
-            "name": "latin"
+            "keyword": "latin"
           },
           {
-            "name": "latvian",
+            "keyword": "latvian",
             "alt-tags": [
               {
-                "name": "standard latvian"
+                "keyword": "standard latvian"
               }
             ]
           },
           {
-            "name": "ligurian"
+            "keyword": "ligurian"
           },
           {
-            "name": "limburgan"
+            "keyword": "limburgan"
           },
           {
-            "name": "limburgish"
+            "keyword": "limburgish"
           },
           {
-            "name": "lithuanian"
+            "keyword": "lithuanian"
           },
           {
-            "name": "liv"
+            "keyword": "liv"
           },
           {
-            "name": "livvi",
+            "keyword": "livvi",
             "alt-tags": [
               {
-                "name": "livvi-Karelian"
+                "keyword": "livvi-Karelian"
               }
             ]
           },
           {
-            "name": "lombard"
+            "keyword": "lombard"
           },
           {
-            "name": "low german"
+            "keyword": "low german"
           },
           {
-            "name": "lower sorbian"
+            "keyword": "lower sorbian"
           },
           {
-            "name": "luxembourgish"
+            "keyword": "luxembourgish"
           },
           {
-            "name": "macedonian"
+            "keyword": "macedonian"
           },
           {
-            "name": "maltese"
+            "keyword": "maltese"
           },
           {
-            "name": "manx"
+            "keyword": "manx"
           },
           {
-            "name": "mari",
+            "keyword": "mari",
             "alt-tags": [
               {
-                "name": "eastern mari"
+                "keyword": "eastern mari"
               },
               {
-                "name": "western mari"
+                "keyword": "western mari"
               }
             ]
           },
           {
-            "name": "mirandese"
+            "keyword": "mirandese"
           },
           {
-            "name": "moksha"
+            "keyword": "moksha"
           },
           {
-            "name": "neapolitan"
+            "keyword": "neapolitan"
           },
           {
-            "name": "northern sami"
+            "keyword": "northern sami"
           },
           {
-            "name": "norwegian",
+            "keyword": "norwegian",
             "alt-tags": [
               {
-                "name": "norwegian bokmål"
+                "keyword": "norwegian bokmål"
               },
               {
-                "name": "norwegian nynorsk"
+                "keyword": "norwegian nynorsk"
               }
             ]
           },
           {
-            "name": "occitan"
+            "keyword": "occitan"
           },
           {
-            "name": "occitan (post 1500)"
+            "keyword": "occitan (post 1500)"
           },
           {
-            "name": "old church slavonic"
+            "keyword": "old church slavonic"
           },
           {
-            "name": "old english (ca. 450-1100)",
+            "keyword": "old english (ca. 450-1100)",
             "alt-tags": [
               {
-                "name": "anglo-saxon"
+                "keyword": "anglo-saxon"
               }
             ]
           },
           {
-            "name": "old norse"
+            "keyword": "old norse"
           },
             {
-            "name": "picard"
+            "keyword": "picard"
           },
           {
-            "name": "piemontese"
+            "keyword": "piemontese"
           },
           {
-            "name": "polish"
+            "keyword": "polish"
           },
           {
-            "name": "portuguese"
+            "keyword": "portuguese"
           },
           {
-            "name": "romanian"
+            "keyword": "romanian"
           },
           {
-            "name": "romansh,"
+            "keyword": "romansh,"
           },
           {
-            "name": "romany"
+            "keyword": "romany"
           },
           {
-            "name": "russian"
+            "keyword": "russian"
           },
           {
-            "name": "spanish",
+            "keyword": "spanish",
             "alt-tags": [
               {
-                "name": "ciempiess"
+                "keyword": "ciempiess"
               }
             ]
           },
           {
-            "name": "sardinian"
+            "keyword": "sardinian"
           },
           {
-            "name": "saterfriesisch"
+            "keyword": "saterfriesisch"
           },
           {
-            "name": "scots"
+            "keyword": "scots"
           },
           {
-            "name": "scottish gaelic"
+            "keyword": "scottish gaelic"
           },
           {
-            "name": "serbian"
+            "keyword": "serbian"
           },
           {
-            "name": "serbo-croatian"
+            "keyword": "serbo-croatian"
           },
           {
-            "name": "sicilian"
+            "keyword": "sicilian"
           },
           {
-            "name": "silesian"
+            "keyword": "silesian"
           },
           {
-            "name": "slovak"
+            "keyword": "slovak"
           },
           {
-            "name": "slovenian"
+            "keyword": "slovenian"
           },
           {
-            "name": "swedish"
+            "keyword": "swedish"
           },
           {
-            "name": "turkish",
+            "keyword": "turkish",
             "alt-tags": [
               {
-                "name": "ottoman turkish (1500-1928)"
+                "keyword": "ottoman turkish (1500-1928)"
               },
               {
-                "name": "zaza"
+                "keyword": "zaza"
               }
             ]
           },
           {
-            "name": "ukrainian"
+            "keyword": "ukrainian"
           },
           {
-            "name": "upper sorbian"
+            "keyword": "upper sorbian"
           },
           {
-            "name": "venetian"
+            "keyword": "venetian"
           },
           {
-            "name": "vlax romani"
+            "keyword": "vlax romani"
           },
           {
-            "name": "volapük"
+            "keyword": "volapük"
           },
           {
-            "name": "walloon"
+            "keyword": "walloon"
           },
           {
-            "name": "welsh"
+            "keyword": "welsh"
           },
           {
-            "name": "yiddish",
+            "keyword": "yiddish",
             "alt-tags": [
               {
-                "name": "eastern yiddish"
+                "keyword": "eastern yiddish"
               }
             ]
           }
         ]
       },
       {
-        "name": "languages-middle-east",
-        "title": "languages in the Middle East",
+        "keyword": "middle-east",
+        "title": "Languages in the Middle East",
         "context": "Ancient and modern languages from the Middle East.",
         "topics": [
           {
-            "name": "arabic",
+            "keyword": "arabic",
             "alt-tags": [
               {
-                "name": "egyptian arabic"
+                "keyword": "egyptian arabic"
               },
               {
-                "name": "levantine arabic"
+                "keyword": "levantine arabic"
               },
               {
-                "name": "mesopotamian arabic"
+                "keyword": "mesopotamian arabic"
               },
               {
-                "name": "moroccan arabic"
+                "keyword": "moroccan arabic"
               },
               {
-                "name": "najdi arabic"
+                "keyword": "najdi arabic"
               },
               {
-                "name": "standard arabic"
+                "keyword": "standard arabic"
               },
               {
-                "name": "ta'izzi-adeni arabic"
+                "keyword": "ta'izzi-adeni arabic"
               },
               {
-                "name": "tunisian arabic"
+                "keyword": "tunisian arabic"
               }
             ]
           },
           {
-            "name": "akkadian"
+            "keyword": "akkadian"
           },
           {
-            "name": "ancient hebrew"
+            "keyword": "ancient hebrew"
           },
           {
-            "name": "assyrian neo-aramaic"
+            "keyword": "assyrian neo-aramaic"
           },
           {
-            "name": "hebrew"
+            "keyword": "hebrew"
           }
         ]
       },
       {
-        "name": "languages-pacific",
+        "keyword": "pacific",
+        "title": "Languages of the Pacific Islands and Nations",
         "context": "Ancient and modern languages in the Pacific islands, Australia, and New Zealand.",
         "topics": [
           {
-            "name": "ambulas"
+            "keyword": "ambulas"
           },
           {
-            "name": "banjar"
+            "keyword": "banjar"
           },
           {
-            "name": "batak toba"
+            "keyword": "batak toba"
           },
           {
-            "name": "benabena"
+            "keyword": "benabena"
           },
           {
-            "name": "betawi"
+            "keyword": "betawi"
           },
           {
-            "name": "bhojpuri"
+            "keyword": "bhojpuri"
           },
           {
-            "name": "bine"
+            "keyword": "bine"
           },
           {
-            "name": "bislama"
+            "keyword": "bislama"
           },
           {
-            "name": "buginese"
+            "keyword": "buginese"
           },
           {
-            "name": "bunama"
+            "keyword": "bunama"
           },
           {
-            "name": "burarra"
+            "keyword": "burarra"
           },
           {
-            "name": "chamorro"
+            "keyword": "chamorro"
           },
           {
-            "name": "chuukese"
+            "keyword": "chuukese"
           },
           {
-            "name": "dhao"
+            "keyword": "dhao"
           },
           {
-            "name": "doromu-koki"
+            "keyword": "doromu-koki"
           },
           {
-            "name": "fiji hindi"
+            "keyword": "fiji hindi"
           },
           {
-            "name": "fijian"
+            "keyword": "fijian"
           },
           {
-            "name": "halia"
+            "keyword": "halia"
           },
           {
-            "name": "hawaiian"
+            "keyword": "hawaiian"
           },
           {
-            "name": "highland popoluca"
+            "keyword": "highland popoluca"
           },
           {
-            "name": "hiri motu"
+            "keyword": "hiri motu"
           },
           {
-            "name": "iamalele"
+            "keyword": "iamalele"
           },
           {
-            "name": "indonesian"
+            "keyword": "indonesian"
           },
           {
-            "name": "javanese"
+            "keyword": "javanese"
           },
           {
-            "name": "kriol"
+            "keyword": "kriol"
           },
           {
-            "name": "kto"
+            "keyword": "kto"
           },
           {
-            "name": "kâte"
+            "keyword": "kâte"
           },
           {
-            "name": "madurese"
+            "keyword": "madurese"
           },
           {
-            "name": "makasar"
+            "keyword": "makasar"
           },
           {
-            "name": "maori",
+            "keyword": "maori",
             "alt-tags": [
               {
-                "name": "māori"
+                "keyword": "māori"
               }
             ]
           },
           {
-            "name": "marshallese"
+            "keyword": "marshallese"
           },
           {
-            "name": "mende (papua new guinea)"
+            "keyword": "mende (papua new guinea)"
           },
           {
-            "name": "minangkabau"
+            "keyword": "minangkabau"
           },
           {
-            "name": "mountain koiali",
+            "keyword": "mountain koiali",
             "alt-tags": [
               {
-                "name": "mountain koiari"
+                "keyword": "mountain koiari"
               }
             ]
           },
           {
-            "name": "musi"
+            "keyword": "musi"
           },
           {
-            "name": "muyuw"
+            "keyword": "muyuw"
           },
           {
-            "name": "nauru"
+            "keyword": "nauru"
           },
           {
-            "name": "ngaju"
+            "keyword": "ngaju"
           },
           {
-            "name": "nias"
+            "keyword": "nias"
           },
           {
-            "name": "novial",
+            "keyword": "novial",
             "alt-tags": [
               {
-                "name": "lisabata-nuniali"
+                "keyword": "lisabata-nuniali"
               }
             ]
           },
           {
-            "name": "pele-ata",
+            "keyword": "pele-ata",
             "alt-tags": [
               {
-                "name": "peleata"
+                "keyword": "peleata"
               },
               {
-                "name": "pele"
+                "keyword": "pele"
               }
             ]
           },
           {
-            "name": "pohnpeian"
+            "keyword": "pohnpeian"
           },
           {
-            "name": "pular"
+            "keyword": "pular"
           },
           {
-            "name": "rejang"
+            "keyword": "rejang"
           },
           {
-            "name": "samoan"
+            "keyword": "samoan"
           },
           {
-            "name": "sinaugoro"
+            "keyword": "sinaugoro"
           },
           {
-            "name": "somba-siawari"
+            "keyword": "somba-siawari"
           },
           {
-            "name": "sundanese",
+            "keyword": "sundanese",
             "alt-tags": [
               {
-                "name": "sunda"
+                "keyword": "sunda"
               }
             ]
           },
           {
-            "name": "tahitian"
+            "keyword": "tahitian"
           },
           {
-            "name": "tetun dili",
+            "keyword": "tetun dili",
             "alt-tags": [
               {
-                "name": "tetum"
+                "keyword": "tetum"
               }
             ]
           },
           {
-            "name": "tok pisin"
+            "keyword": "tok pisin"
           },
           {
-            "name": "tonga",
+            "keyword": "tonga",
             "alt-tags": [
               {
-                "name": "tonga (tonga islands)"
+                "keyword": "tonga (tonga islands)"
               }
             ]
           },
           {
-            "name": "warlpiri"
+            "keyword": "warlpiri"
           },
           {
-            "name": "west kewa",
+            "keyword": "west kewa",
             "alt-tags": [
               {
-                "name": "west kewapi"
+                "keyword": "west kewapi"
               }
             ]
           },
           {
-            "name": "yapese"
+            "keyword": "yapese"
           },
           {
-            "name": "yele"
+            "keyword": "yele"
           }
         ]
       }
     ]
   },
   {
-    "name": "modality",
+    "keyword": "modality",
     "context": "Datasets with different modalities (like text vs. video) or broad purposes, like classification.",
-    "subcategories": [
+    "topics": [
       {
-        "name": "3d",
+        "keyword": "3d",
         "context": "Three dimensional data",
         "title": "3D",
         "alt-tags": [
           {
-            "name": "depth-estimation"
+            "keyword": "depth-estimation"
           },
           {
-            "name": "image-to-3d"
+            "keyword": "image-to-3d"
           },
           {
-            "name": "text-to-3d"
+            "keyword": "text-to-3d"
           }
         ]
       },
       {
-        "name": "agents",
+        "keyword": "agents",
         "alt-tags": [
           {
-            "name": "agent"
+            "keyword": "agent"
           },
           {
-            "name": "downstream-task"
+            "keyword": "downstream-task"
           },
           {
-            "name": "downstream-tasks"
+            "keyword": "downstream-tasks"
           },
           {
-            "name": "function-calling"
+            "keyword": "function-calling"
           },
           {
-            "name": "language-agent"
+            "keyword": "language-agent"
           }
         ]
       },
       {
-        "name": "alignment",
+        "keyword": "alignment",
         "alt-tags": [
           {
-            "name": "acceptability-classification"
+            "keyword": "acceptability-classification"
           },
           {
-            "name": "alignment-lab-ai"
+            "keyword": "alignment-lab-ai"
           },
           {
-            "name": "explainability"
+            "keyword": "explainability"
           },
           {
-            "name": "fairness"
+            "keyword": "fairness"
           },
           {
-            "name": "grounding"
+            "keyword": "grounding"
           },
           {
-            "name": "hallucination"
+            "keyword": "hallucination"
           },
           {
-            "name": "relevance"
+            "keyword": "relevance"
           }
         ]
       },
       {
-        "name": "arrow",
+        "keyword": "arrow",
         "context": "Arrow formatted data"
       },
       {
-        "name": "arxiv",
+        "keyword": "arxiv",
         "like-clause": "arxiv%",
         "context": "References to arXiv articles. (Many keywords starting with 'arxiv:'.)"
       },
       {
-        "name": "audio",
+        "keyword": "audio",
         "alt-tags": [
           {
-            "name": "audio-classification"
+            "keyword": "audio-classification"
           },
           {
-            "name": "audio-to-audio"
+            "keyword": "audio-to-audio"
           },
           {
-            "name": "speaker-identification"
+            "keyword": "speaker-identification"
           },
           {
-            "name": "text-to-audio"
+            "keyword": "text-to-audio"
           },
           {
-            "name": "voice"
+            "keyword": "voice"
           },
           {
-            "name": "voice-activity-detection"
+            "keyword": "voice-activity-detection"
           }
         ]
       },
       {
-        "name": "benchmark",
+        "keyword": "benchmark",
         "context": "Datasets associated with benchmarks of any kind.",
         "alt-tags": [
           {
-            "name": "alignment"
+            "keyword": "alignment"
           },
           {
-            "name": "aveni-bench"
+            "keyword": "aveni-bench"
           },
           {
-            "name": "benchmarks"
+            "keyword": "benchmarks"
           },
           {
-            "name": "gsm8k",
+            "keyword": "gsm8k",
             "title": "GSM8K"
           },
           {
-            "name": "mteb",
+            "keyword": "mteb",
             "title": "MTEB"
           },
           {
-            "name": "nli"
+            "keyword": "nli"
           },
           {
-            "name": "test"
+            "keyword": "test"
           },
           {
-            "name": "testing"
+            "keyword": "testing"
           }
         ]
       },
       {
-        "name": "classification",
+        "keyword": "classification",
         "context": "All aspects of classification: text, images, etc.",
         "alt-tags": [
           {
-            "name": "acceptability-classification"
+            "keyword": "acceptability-classification"
           },
           {
-            "name": "audio-classification"
+            "keyword": "audio-classification"
           },
           {
-            "name": "entity-linking-classification"
+            "keyword": "entity-linking-classification"
           },
           {
-            "name": "image-classification"
+            "keyword": "image-classification"
           },
           {
-            "name": "intent-classification"
+            "keyword": "intent-classification"
           },
           {
-            "name": "multi-class-classification"
+            "keyword": "multi-class-classification"
           },
           {
-            "name": "multi-class-image-classification"
+            "keyword": "multi-class-image-classification"
           },
           {
-            "name": "multi-input-text-classification"
+            "keyword": "multi-input-text-classification"
           },
           {
-            "name": "multi-label-classification"
+            "keyword": "multi-label-classification"
           },
           {
-            "name": "multi-label-image-classification"
+            "keyword": "multi-label-image-classification"
           },
           {
-            "name": "segmentation"
+            "keyword": "segmentation"
           },
           {
-            "name": "semantic-segmentation"
+            "keyword": "semantic-segmentation"
           },
           {
-            "name": "semantic-similarity-classification"
+            "keyword": "semantic-similarity-classification"
           },
           {
-            "name": "semantic-similarity-scoring"
+            "keyword": "semantic-similarity-scoring"
           },
           {
-            "name": "sentiment-classification"
+            "keyword": "sentiment-classification"
           },
           {
-            "name": "sentiment-scoring"
+            "keyword": "sentiment-scoring"
           },
           {
-            "name": "tabular-classification"
+            "keyword": "tabular-classification"
           },
           {
-            "name": "tabular-multi-class-classification"
+            "keyword": "tabular-multi-class-classification"
           },
           {
-            "name": "tabular-multi-label-classification"
+            "keyword": "tabular-multi-label-classification"
           },
           {
-            "name": "text-classification"
+            "keyword": "text-classification"
           },
           {
-            "name": "text-scoring"
+            "keyword": "text-scoring"
           },
           {
-            "name": "token classification"
+            "keyword": "token classification"
           },
           {
-            "name": "token-classification"
+            "keyword": "token-classification"
           },
           {
-            "name": "topic-classification"
+            "keyword": "topic-classification"
           },
           {
-            "name": "video-classification"
+            "keyword": "video-classification"
           },
           {
-            "name": "zero-shot-classification"
+            "keyword": "zero-shot-classification"
           },
           {
-            "name": "zero-shot-image-classification"
+            "keyword": "zero-shot-image-classification"
           }
         ]
       },
       {
-        "name": "chain-of-thought",
+        "keyword": "chain-of-thought",
         "alt-tags": [
           {
-            "name": "cot",
+            "keyword": "cot",
             "title": "COT"
           }
         ]
       },
       {
-        "name": "chat",
+        "keyword": "chat",
         "alt-tags": [
           {
-            "name": "argument"
+            "keyword": "argument"
           },
           {
-            "name": "argumentation"
+            "keyword": "argumentation"
           },
           {
-            "name": "chat-dataset"
+            "keyword": "chat-dataset"
           },
           {
-            "name": "conversation"
+            "keyword": "conversation"
           },
           {
-            "name": "conversational"
+            "keyword": "conversational"
           },
           {
-            "name": "conversational-ai"
+            "keyword": "conversational-ai"
           },
           {
-            "name": "conversations"
+            "keyword": "conversations"
           },
           {
-            "name": "debate"
+            "keyword": "debate"
           },
           {
-            "name": "dialog"
+            "keyword": "dialog"
           },
           {
-            "name": "dialogue"
+            "keyword": "dialogue"
           },
           {
-            "name": "dialogue-modeling"
+            "keyword": "dialogue-modeling"
           },
           {
-            "name": "discussion"
+            "keyword": "discussion"
           },
           {
-            "name": "fictitious dialogues"
+            "keyword": "fictitious dialogues"
           },
           {
-            "name": "multiple-turn-dialogue"
+            "keyword": "multiple-turn-dialogue"
           },
           {
-            "name": "roleplay",
+            "keyword": "roleplay",
             "title": "Role Play"
           },
           {
-            "name": "role-play"
+            "keyword": "role-play"
           }
         ]
       },
       {
-        "name": "crowdsourced",
+        "keyword": "crowdsourced",
         "title": "Crowd Sourced"
       },
       {
-        "name": "csv",
+        "keyword": "csv",
         "context": "CSV formatted data",
         "title": "CSV"
       },
       {
-        "name": "embeddings",
+        "keyword": "embeddings",
         "alt-tags": [
           {
-            "name": "embedding"
+            "keyword": "embedding"
           }
         ]
       },
       {
-        "name": "evaluation",
+        "keyword": "evaluation",
         "alt-tags": [
           {
-            "name": "eval"
+            "keyword": "eval"
           },
           {
-            "name": "quality"
+            "keyword": "quality"
           }
         ]
       },
       {
-        "name": "finetuning",
+        "keyword": "finetuning",
         "context": "Post training refinement of models for alignment, safety, etc.",
         "title": "Fine Tuning",
         "alt-tags": [
           {
-            "name": "finetune",
+            "keyword": "finetune",
             "title": "Fine Tune"
           },
           {
-            "name": "fine-tune"
+            "keyword": "fine-tune"
           },
           {
-            "name": "fine-tuning"
+            "keyword": "fine-tuning"
           },
           {
-            "name": "instruct"
+            "keyword": "instruct"
           },
           {
-            "name": "instruction-finetuning",
+            "keyword": "instruction-finetuning",
             "title": "Instruction Fine Tuning"
           },
           {
-            "name": "instruction-fine-tuning"
+            "keyword": "instruction-fine-tuning"
           },
           {
-            "name": "instruction-following"
+            "keyword": "instruction-following"
           },
           {
-            "name": "instruction tuning"
+            "keyword": "instruction tuning"
           },
           {
-            "name": "instruction-tuning"
+            "keyword": "instruction-tuning"
           },
           {
-          "name": "preference"
+          "keyword": "preference"
           },
           {
-          "name": "preferences"
+          "keyword": "preferences"
           },
           {
-            "name": "sft",
+            "keyword": "sft",
             "title": "SFT"
           },
           {
-            "name": "structured-fine-tuning"
+            "keyword": "structured-fine-tuning"
           }
         ]
       },
       {
-        "name": "generated-data",
+        "keyword": "generated-data",
         "context": "Datasets that were generated by humans or automation.",
         "alt-tags": [
           {
-            "name": "ai-generated"
+            "keyword": "ai-generated"
           },
           {
-            "name": "conditional-text-generation"
+            "keyword": "conditional-text-generation"
           },
           {
-            "name": "code-generation"
+            "keyword": "code-generation"
           },
           {
-            "name": "dialog-generation"
+            "keyword": "dialog-generation"
           },
           {
-            "name": "explanation-generation"
+            "keyword": "explanation-generation"
           },
           {
-            "name": "generation"
+            "keyword": "generation"
           },
           {
-            "name": "generated"
+            "keyword": "generated"
           },
           {
-            "name": "expert-generated"
+            "keyword": "expert-generated"
           },
           {
-            "name": "machine-generated"
+            "keyword": "machine-generated"
           },
           {
-            "name": "ocr",
+            "keyword": "ocr",
             "title": "OCR"
           },
           {
-            "name": "text generation"
+            "keyword": "text generation"
           },
           {
-            "name": "text-generation"
+            "keyword": "text-generation"
           },
           {
-            "name": "text2text-generation",
+            "keyword": "text2text-generation",
             "title": "Text-to-Text Generation"
           },
           {
-            "name": "synthetic"
+            "keyword": "synthetic"
           },
           {
-            "name": "synthetic-captions"
+            "keyword": "synthetic-captions"
           },
           {
-            "name": "synthetic-data"
+            "keyword": "synthetic-data"
           },
           {
-            "name": "synthetic-dataset"
+            "keyword": "synthetic-dataset"
           },
           {
-            "name": "synthgenai"
+            "keyword": "synthgenai"
           }
         ]
       },
       {
-        "name": "feature-extraction",
+        "keyword": "feature-extraction",
         "alt-tags": [
           {
-            "name": "image-feature-extraction"
+            "keyword": "image-feature-extraction"
           }
         ]
       },
       {
-        "name": "graph",
+        "keyword": "graph",
         "alt-tags": [
           {
-            "name": "graphs"
+            "keyword": "graphs"
           },
           {
-            "name": "graph-ml"
+            "keyword": "graph-ml"
           },
           {
-            "name": "knowledge graph"
+            "keyword": "knowledge graph"
           },
           {
-            "name": "knowledge-graph"
+            "keyword": "knowledge-graph"
           },
           {
-            "name": "knowledge graphs"
+            "keyword": "knowledge graphs"
           },
           {
-            "name": "knowledge-graphs"
+            "keyword": "knowledge-graphs"
           }
         ]
       },
       {
-        "name": "handwritten"
+        "keyword": "handwritten"
       },
       {
-        "name": "image",
+        "keyword": "image",
         "context": "Datasets of images and analysis of them, such as object detection.",
         "alt-tags": [
           {
-            "name": "anime"
+            "keyword": "anime"
           },
           {
-            "name": "chart"
+            "keyword": "chart"
           },
           {
-            "name": "caption"
+            "keyword": "caption"
           },
           {
-            "name": "danbooru"
+            "keyword": "danbooru"
           },
           {
-            "name": "diagram"
+            "keyword": "diagram"
           },
           {
-            "name": "geometry-diagram"
+            "keyword": "geometry-diagram"
           },
           {
-            "name": "images"
+            "keyword": "images"
           },
           {
-            "name": "image-captioning"
+            "keyword": "image-captioning"
           },
           {
-            "name": "image-captions"
+            "keyword": "image-captions"
           },
           {
-            "name": "image-caption pairs"
+            "keyword": "image-caption pairs"
           },
           {
-            "name": "image-caption-pairs"
+            "keyword": "image-caption-pairs"
           },
           {
-            "name": "image classification"
+            "keyword": "image classification"
           },
           {
-            "name": "image-classification"
+            "keyword": "image-classification"
           },
           {
-            "name": "image-data"
+            "keyword": "image-data"
           },
           {
-            "name": "image-feature-extraction"
+            "keyword": "image-feature-extraction"
           },
           {
-            "name": "image-generation"
+            "keyword": "image-generation"
           },
           {
-            "name": "image-segmentation"
+            "keyword": "image-segmentation"
           },
           {
-            "name": "image-text-dataset"
+            "keyword": "image-text-dataset"
           },
           {
-            "name": "image-text-to-text"
+            "keyword": "image-text-to-text"
           },
           {
-            "name": "image-to-image"
+            "keyword": "image-to-image"
           },
           {
-            "name": "image-to-text"
+            "keyword": "image-to-text"
           },
           {
-            "name": "image-to-video"
+            "keyword": "image-to-video"
           },
           {
-            "name": "multi-class-image-classification"
+            "keyword": "multi-class-image-classification"
           },
           {
-            "name": "object detection"
+            "keyword": "object detection"
           },
           {
-            "name": "object-detection"
+            "keyword": "object-detection"
           },
           {
-            "name": "photo"
+            "keyword": "photo"
           },
           {
-            "name": "photos"
+            "keyword": "photos"
           },
           {
-            "name": "photograph"
+            "keyword": "photograph"
           },
           {
-            "name": "photographs"
+            "keyword": "photographs"
           },
           {
-            "name": "scientific-figure"
+            "keyword": "scientific-figure"
           },
           {
-            "name": "super-resolution"
+            "keyword": "super-resolution"
           },
           {
-            "name": "text-to-image"
+            "keyword": "text-to-image"
           },
           {
-            "name": "unconditional-image-generation"
+            "keyword": "unconditional-image-generation"
           }
         ]
       },
       {
-        "name": "instruction-following",
+        "keyword": "instruction-following",
         "alt-tags": [
           {
-            "name": "instruct"
+            "keyword": "instruct"
           },
           {
-            "name": "instruction"
+            "keyword": "instruction"
           },
           {
-            "name": "instruction-finetuning",
+            "keyword": "instruction-finetuning",
             "title": "Instruction Fine Tuning"
           },
           {
-            "name": "instruction-fine-tuning"
+            "keyword": "instruction-fine-tuning"
           },
           {
-            "name": "instruction-tuning"
+            "keyword": "instruction-tuning"
           },
           {
-            "name": "multiturn",
+            "keyword": "multiturn",
             "title": "Multi Turn"
           },
           {
-            "name": "multi-turn"
+            "keyword": "multi-turn"
           }
         ]
       },
       {
-        "name": "llm",
+        "keyword": "llm",
         "title": "LLM",
         "alt-tags": [
           {
-            "name": "alpaca"
+            "keyword": "alpaca"
           },
           {
-            "name": "large-language-model"
+            "keyword": "large-language-model"
           },
           {
-            "name": "large-language-models"
+            "keyword": "large-language-models"
           },
           {
-            "name": "language model"
+            "keyword": "language model"
           },
           {
-            "name": "language-modeling"
+            "keyword": "language-modeling"
           },
           {
-            "name": "llms",
+            "keyword": "llms",
             "title": "LLMs"
           },
           {
-            "name": "masked-language-modeling"
+            "keyword": "masked-language-modeling"
           }
         ]
       },
       {
-        "name": "json",
+        "keyword": "json",
         "context": "JSON formatted data",
         "title": "JSON",
         "alt-tags": [
           {
-            "name": "jsonl",
+            "keyword": "jsonl",
             "title": "JSONL"
           }
         ]
       },
       {
-        "name": "monolingual",
+        "keyword": "monolingual",
         "context": "Primarily one language."
       },
       {
-        "name": "multilingual",
+        "keyword": "multilingual",
         "context": "Datasets with more than one language.",
         "title": "Multi Lingual",
         "alt-tags": [
           {
-            "name": "machine translation"
+            "keyword": "machine translation"
           },
           {
-            "name": "multi-lingual"
+            "keyword": "multi-lingual"
           },
           {
-            "name": "squad_v2_french_translated"
+            "keyword": "squad_v2_french_translated"
           },
           {
-            "name": "translated"
+            "keyword": "translated"
           }
         ]
       },
       {
-        "name": "multimodal",
+        "keyword": "multimodal",
         "alt-tags": [
           {
-            "name": "multimodality"
+            "keyword": "multimodality"
           },
           {
-            "name": "multi-modal"
+            "keyword": "multi-modal"
           },
           {
-            "name": "multi-modal-qa"
+            "keyword": "multi-modal-qa"
           }
         ]
       },
       {
-        "name": "multiple-choice"
+        "keyword": "multiple-choice"
       },
       {
-        "name": "music",
+        "keyword": "music",
         "alt-tags": [
           {
-            "name": "midi"
+            "keyword": "midi"
           }
         ]
       },
       {
-        "name": "named-entity-recognition"
+        "keyword": "named-entity-recognition"
       },
       {
-        "name": "news",
+        "keyword": "news",
         "alt-tags": [
           {
-            "name": "news-articles-summarization"
+            "keyword": "news-articles-summarization"
           }
         ]
       },
       {
-        "name": "nlp",
+        "keyword": "nlp",
         "title": "NLP",
         "alt-tags": [
           {
-            "name": "explanation"
+            "keyword": "explanation"
           },
           {
-            "name": "explanation-generation"
+            "keyword": "explanation-generation"
           },
           {
-            "name": "natural-language-inference"
+            "keyword": "natural-language-inference"
           },
           {
-            "name": "natural-language-processing"
+            "keyword": "natural-language-processing"
           },
           {
-            "name": "natural-language-understanding"
+            "keyword": "natural-language-understanding"
           }
         ]
       },
       {
-        "name": "planning"
+        "keyword": "planning"
       },
       {
-        "name": "pretraining",
+        "keyword": "pretraining",
         "context": "Training of foundation modals, before (or 'pre') tuning for alignment, safety, etc.",
         "title": "Pretraining",
         "alt-tags": [
           {
-            "name": "long context"
+            "keyword": "long context"
           },
           {
-            "name": "long-context"
+            "keyword": "long-context"
           },
           {
-            "name": "distillation"
+            "keyword": "distillation"
           },
           {
-            "name": "pretrain"
+            "keyword": "pretrain"
           },
           {
-            "name": "preservation-loss-training"
+            "keyword": "preservation-loss-training"
           }
         ]
       },
       {
-        "name": "problem-solving"
+        "keyword": "problem-solving"
       },
       {
-        "name": "prompt",
+        "keyword": "prompt",
         "alt-tags": [
           {
-            "name": "dfp",
+            "keyword": "dfp",
             "title": "DFP"
           },
           {
-            "name": "french prompts"
+            "keyword": "french prompts"
           },
           {
-            "name": "prompts"
+            "keyword": "prompts"
           },
           {
-            "name": "prompt engineering"
+            "keyword": "prompt engineering"
           },
           {
-            "name": "prompt-generation"
+            "keyword": "prompt-generation"
           }
         ]
       },
       {
-        "name": "question-answering",
+        "keyword": "question-answering",
         "context": "Datasets with question and answer pairs and related content.",
         "alt-tags": [
           {
-            "name": "abstractive-qa",
+            "keyword": "abstractive-qa",
             "title": "Abstractive Q&A"
           },
           {
-            "name": "camel",
+            "keyword": "camel",
             "title": "Closed Book Q&A"
           },
           {
-            "name": "closed-book-qa",
+            "keyword": "closed-book-qa",
             "title": "Closed Book Q&A"
           },
           {
-            "name": "closed-domain-qa",
+            "keyword": "closed-domain-qa",
             "title": "Closed Domain Q&A"
           },
           {
-            "name": "document-question-answering"
+            "keyword": "document-question-answering"
           },
           {
-            "name": "extractive-qa",
+            "keyword": "extractive-qa",
             "title": "Extractive Q&A"
           },
           {
-            "name": "figure-qa",
-            "name": "Figure Q&A"
+            "keyword": "figure-qa",
+            "keyword": "Figure Q&A"
           },
           {
-            "name": "math-qa",
-            "name": "Math Q&A"
+            "keyword": "math-qa",
+            "keyword": "Math Q&A"
           },
           {
-            "name": "multiple-choice-qa",
+            "keyword": "multiple-choice-qa",
             "title": "Multiple Choice Q&A"
           },
           {
-            "name": "multi-modal-qa",
+            "keyword": "multi-modal-qa",
             "title": "Multi Modal Q&A"
           },
           {
-            "name": "open-domain-qa",
+            "keyword": "open-domain-qa",
             "title": "Open Domain Q&A"
           },
           {
-            "name": "open-book-qa",
+            "keyword": "open-book-qa",
             "title": "Open Book Q&A"
           },
           {
-            "name": "q-and-a",
+            "keyword": "q-and-a",
             "title": "Q-and-A"
           },
           {
-            "name": "qa",
+            "keyword": "qa",
             "title": "Q&A"
           },
           {
-            "name": "qna",
+            "keyword": "qna",
             "title": "Q&A"
           },
           {
-            "name": "q&a",
+            "keyword": "q&a",
             "title": "Q&A"
           },
           {
-            "name": "questions"
+            "keyword": "questions"
           },
           {
-            "name": "question-generation"
+            "keyword": "question-generation"
           },
           {
-            "name": "table-question-answering"
+            "keyword": "table-question-answering"
           },
           {
-            "name": "visual-question-answering"
+            "keyword": "visual-question-answering"
           },
           {
-            "name": "vqa",
+            "keyword": "vqa",
             "title": "VQ&A"
           }
         ]
       },
       {
-        "name": "rag",
+        "keyword": "rag",
         "title": "RAG",
         "context": "Retrieval Augmented Generation",
         "alt-tags": [
           {
-            "name": "retrieval augmented generation"
+            "keyword": "retrieval augmented generation"
           },
           {
-            "name": "retrieval-augmented-generation"
+            "keyword": "retrieval-augmented-generation"
           }
         ]
       },
       {
-        "name": "reasoning",
+        "keyword": "reasoning",
         "context": "Datasets to improve model's abilities to reason.",
         "alt-tags": [
           {
-            "name": "reflection"
+            "keyword": "reflection"
           },
           {
-            "name": "step-by-step"
+            "keyword": "step-by-step"
           },
           {
-            "name": "logical-reasoning"
+            "keyword": "logical-reasoning"
           },
           {
-            "name": "mathematical-reasoning"
+            "keyword": "mathematical-reasoning"
           }
         ]
       },
       {
-        "name": "regression",
+        "keyword": "regression",
         "alt-tags": [
           {
-            "name": "tabular-regression"
+            "keyword": "tabular-regression"
               }
         ]
       },
       {
-        "name": "reinforcement-learning",
+        "keyword": "reinforcement-learning",
         "alt-tags": [
           {
-            "name": "dpo",
+            "keyword": "dpo",
             "title": "DPO"
           },
           {
-            "name": "expert trajectory"
+            "keyword": "expert trajectory"
           },
           {
-            "name": "human-feedback"
+            "keyword": "human-feedback"
           },
           {
-            "name": "rl",
+            "keyword": "rl",
             "title": "RL"
           },
           {
-            "name": "rlhf",
+            "keyword": "rlhf",
             "title": "RLHF"
           },
           {
-            "name": "rlaif",
+            "keyword": "rlaif",
             "title": "RLAIF"
           }
         ]
       },
       {
-        "name": "safety",
+        "keyword": "safety",
         "alt-tags": [
           {
-            "name": "deepfake",
+            "keyword": "deepfake",
             "title": "Deep Fake"
           },
           {
-            "name": "deep-fake"
+            "keyword": "deep-fake"
           },
           {
-            "name": "fairness"
+            "keyword": "fairness"
           },
           {
-            "name": "hallucination"
+            "keyword": "hallucination"
           },
           {
-            "name": "hate-speech"
+            "keyword": "hate-speech"
           },
           {
-            "name": "hate-speech-detection"
+            "keyword": "hate-speech-detection"
           },
           {
-            "name": "misinformation"
+            "keyword": "misinformation"
           },
           {
-            "name": "red-teaming"
+            "keyword": "red-teaming"
           },
           {
-            "name": "toxicity"
+            "keyword": "toxicity"
           }
         ]
       },
       {
-        "name": "search",
+        "keyword": "search",
         "alt-tags": [
           {
-            "name": "codesearchnet"
+            "keyword": "codesearchnet"
           },
           {
-            "name": "search-queries"
+            "keyword": "search-queries"
           },
           {
-            "name": "semantic-search"
+            "keyword": "semantic-search"
           }
         ]
       },
       {
-        "name": "security",
+        "keyword": "security",
         "alt-tags": [
           {
-            "name": "cybersecurity"
+            "keyword": "cybersecurity"
           },
           {
-            "name": "jailbreak"
+            "keyword": "jailbreak"
           },
           {
-            "name": "red-teaming"
+            "keyword": "red-teaming"
           }
         ]
       },
       {
-        "name": "sentence-similarity"
+        "keyword": "sentence-similarity"
       },
       {
-        "name": "sentence-transformers"
+        "keyword": "sentence-transformers"
       },
       {
-        "name": "sentiment-analysis",
+        "keyword": "sentiment-analysis",
         "alt-tags": [
           {
-            "name": "emotion"
+            "keyword": "emotion"
           },
           {
-            "name": "emotions"
+            "keyword": "emotions"
           },
           {
-            "name": "sentiment-classification"
+            "keyword": "sentiment-classification"
           },
           {
-            "name": "sentiment"
+            "keyword": "sentiment"
           },
           {
-            "name": "sentiments"
+            "keyword": "sentiments"
           }
         ]
       },
       {
-        "name": "speech",
+        "keyword": "speech",
         "alt-tags": [
           {
-            "name": "automatic-speech-recognition"
+            "keyword": "automatic-speech-recognition"
           },
           {
-            "name": "grammar"
+            "keyword": "grammar"
           },
           {
-            "name": "hate-speech"
+            "keyword": "hate-speech"
           },
           {
-            "name": "hate-speech-detection"
+            "keyword": "hate-speech-detection"
           },
           {
-            "name": "linguistics"
+            "keyword": "linguistics"
           },
           {
-            "name": "parts-of-speech"
+            "keyword": "parts-of-speech"
           },
           {
-            "name": "sarcasm-detection"
+            "keyword": "sarcasm-detection"
           },
           {
-            "name": "speech-detection"
+            "keyword": "speech-detection"
           },
           {
-            "name": "speech-recognition"
+            "keyword": "speech-recognition"
           },
           {
-            "name": "text-to-speech"
+            "keyword": "text-to-speech"
           }
         ]
       },
       {
-        "name": "summarization",
+        "keyword": "summarization",
         "alt-tags": [
           {
-            "name": "news-articles-summarization"
+            "keyword": "news-articles-summarization"
           },
           {
-            "name": "paraphrase"
+            "keyword": "paraphrase"
           },
           {
-            "name": "paraphrase-identification"
+            "keyword": "paraphrase-identification"
           },
           {
-            "name": "summary"
+            "keyword": "summary"
           },
           {
-            "name": "text-simplification"
+            "keyword": "text-simplification"
           }
         ]
       },
       {
-        "name": "tabular",
+        "keyword": "tabular",
         "context": "Data in table formats.",
         "alt-tags": [
           {
-            "name": "table"
+            "keyword": "table"
           },
           {
-            "name": "table-to-text"
+            "keyword": "table-to-text"
           }
         ]
       },
       {
-        "name": "retrieval",
+        "keyword": "retrieval",
         "alt-tags": [
           {
-            "name": "document-retrieval"
+            "keyword": "document-retrieval"
           },
           {
-            "name": "entity-linking-retrieval"
+            "keyword": "entity-linking-retrieval"
           },
           {
-            "name": "fact-checking"
+            "keyword": "fact-checking"
           },
           {
-            "name": "fact-checking-retrieval"
+            "keyword": "fact-checking-retrieval"
           },
           {
-            "name": "information-retrieval"
+            "keyword": "information-retrieval"
           },
           {
-            "name": "text-retrieval"
+            "keyword": "text-retrieval"
           }
         ]
       },
       {
-        "name": "text-to-...",
+        "keyword": "text-to-...",
         "context": "Generating images, videos, etc. from text.",
         "alt-tags": [
           {
-            "name": "image-text-to-text"
+            "keyword": "image-text-to-text"
           },
           {
-            "name": "text-to-audio"
+            "keyword": "text-to-audio"
           },
           {
-            "name": "text-to-image"
+            "keyword": "text-to-image"
           },
           {
-            "name": "text-to-speech"
+            "keyword": "text-to-speech"
           },
           {
-            "name": "text-to-sql"
+            "keyword": "text-to-sql"
           },
           {
-            "name": "text2video",
-            "name": "Text to Video"
+            "keyword": "text2video",
+            "keyword": "Text to Video"
           },
           {
-            "name": "text-to-video"
+            "keyword": "text-to-video"
           },
           {
-            "name": "video-text-to-text"
+            "keyword": "video-text-to-text"
           }
         ]
       },
       {
-        "name": "to-text",
+        "keyword": "to-text",
         "context": "Datasets for generating text from different data sources.",
         "alt-tags": [
           {
-            "name": "data-to-text"
+            "keyword": "data-to-text"
           },
           {
-            "name": "image-caption pairs"
+            "keyword": "image-caption pairs"
           },
           {
-            "name": "image-caption-pairs"
+            "keyword": "image-caption-pairs"
           },
           {
-            "name": "image-text-to-text"
+            "keyword": "image-text-to-text"
           },
           {
-            "name": "image-to-text"
+            "keyword": "image-to-text"
           },
           {
-            "name": "table-to-text"
+            "keyword": "table-to-text"
           },
           {
-            "name": "video-text-to-text"
+            "keyword": "video-text-to-text"
           },
           {
-            "name": "video-to-text"
+            "keyword": "video-to-text"
           }
         ]
       },
       {
-        "name": "translation",
+        "keyword": "translation",
         "alt-tags": [
           {
-            "name": "machine translation"
+            "keyword": "machine translation"
           },
           {
-            "name": "translated"
+            "keyword": "translated"
           }
         ]
       },
       {
-        "name": "tutorial"
+        "keyword": "tutorial"
       },
       {
-        "name": "unlearning",
+        "keyword": "unlearning",
         "alt-tags": [
           {
-            "name": "tofu"
+            "keyword": "tofu"
           }
         ]
       },
       {
-        "name": "video",
+        "keyword": "video",
         "alt-tags": [
           {
-            "name": "drone"
+            "keyword": "drone"
           },
           {
-            "name": "image-to-video"
+            "keyword": "image-to-video"
           },
           {
-            "name": "likert"
+            "keyword": "likert"
           },
           {
-            "name": "lvlm",
+            "keyword": "lvlm",
             "title": "LVLM"
           },
           {
-            "name": "movie"
+            "keyword": "movie"
           },
           {
-            "name": "movies"
+            "keyword": "movies"
           },
           {
-            "name": "synthetic-captions"
+            "keyword": "synthetic-captions"
           },
           {
-            "name": "text2video",
-            "name": "Text to Video"
+            "keyword": "text2video",
+            "keyword": "Text to Video"
           },
           {
-            "name": "text-to-video"
+            "keyword": "text-to-video"
           },
           {
-            "name": "video-classification"
+            "keyword": "video-classification"
           },
           {
-            "name": "video-text-to-text"
+            "keyword": "video-text-to-text"
           },
           {
-            "name": "video-to-text"
+            "keyword": "video-to-text"
           },
           {
-            "name": "vision-language"
+            "keyword": "vision-language"
           },
           {
-            "name": "vlm",
+            "keyword": "vlm",
             "title": "VLM"
           },
           {
-            "name": "vlms",
+            "keyword": "vlms",
             "title": "VLMs"
           },
           {
-            "name": "youtube",
+            "keyword": "youtube",
             "title": "YouTube"
           }
         ]
       },
       {
-        "name": "vision",
+        "keyword": "vision",
         "alt-tags": [
           {
-            "name": "computer-vision"
+            "keyword": "computer-vision"
           },
           {
-            "name": "computer vision"
+            "keyword": "computer vision"
           }
         ]
       },
       {
-        "name": "wikipedia",
+        "keyword": "wikipedia",
         "alt-tags": [
           {
-            "name": "nanodbpedia"
+            "keyword": "nanodbpedia"
           },
           {
-            "name": "extended|wikipedia",
+            "keyword": "extended|wikipedia",
             "title": "Extended | Wikipedia"
           },
           {
-            "name": "wiki"
+            "keyword": "wiki"
           },
           {
-            "name": "wikidata"
+            "keyword": "wikidata"
           },
           {
-            "name": "wikimedia/wit_base",
+            "keyword": "wikimedia/wit_base",
             "title": "Wikimedia / Wit_base"
           },
           {
-            "name": "wikisql",
+            "keyword": "wikisql",
             "title": "WikiSQL"
           }
         ]
@@ -3032,502 +3033,502 @@
     ]
   },
   {
-    "name": "domain",
+    "keyword": "domain",
     "context": "Domains like chemistry, healthcare, etc.",
-    "subcategories": [
+    "topics": [
       {
-        "name": "advertising",
+        "keyword": "advertising",
         "alt-tags": [
           {
-            "name": "openx",
+            "keyword": "openx",
             "title": "OpenX"
           }
         ]
       },
       {
-        "name": "agriculture"
+        "keyword": "agriculture"
       },
       {
-        "name": "art"
+        "keyword": "art"
       },
       {
-        "name": "astronomy"
+        "keyword": "astronomy"
       },
       {
-        "name": "automation"
+        "keyword": "automation"
       },
       {
-        "name": "banking",
+        "keyword": "banking",
         "alt-tags": [
           {
-            "name": "banking-digital-services"
+            "keyword": "banking-digital-services"
           },
           {
-            "name": "investment-ai-analysis"
+            "keyword": "investment-ai-analysis"
           }
         ]
       },
       {
-        "name": "biology",
+        "keyword": "biology",
         "alt-tags": [
           {
-            "name": "animals"
+            "keyword": "animals"
           },
           {
-            "name": "bio"
+            "keyword": "bio"
           },
           {
-            "name": "bio-chem"
+            "keyword": "bio-chem"
           },
           {
-            "name": "biology`",
+            "keyword": "biology`",
             "title": "Biology",
             "context": "At least 11 datasets have 'biology`' as a keyword, with the '`'."
           },
           {
-            "name": "biomedical"
+            "keyword": "biomedical"
           },
           {
-            "name": "biophysics"
+            "keyword": "biophysics"
           }
         ]
       },
       {
-        "name": "chemistry",
+        "keyword": "chemistry",
         "alt-tags": [
           {
-            "name": "bio-chem"
+            "keyword": "bio-chem"
           },
           {
-            "name": "multimolecule",
+            "keyword": "multimolecule",
             "like-clause": "multimol%",
             "context": "Datasets for molecular discovery."
           },
           {
-            "name": "molnet",
+            "keyword": "molnet",
             "title": "MolNet"
           },
           {
-            "name": "molecule-net"
+            "keyword": "molecule-net"
           },
 
           {
-            "name": "protein"
+            "keyword": "protein"
           },
           {
-            "name": "protein structure"
+            "keyword": "protein structure"
           },
           {
-            "name": "rna",
+            "keyword": "rna",
             "title": "RNA"
           },
           {
-            "name": "smiles",
+            "keyword": "smiles",
             "title": "SMILES"
           }
         ]
       },
       {
-        "name": "climate"
+        "keyword": "climate"
       },
       {
-        "name": "code",
+        "keyword": "code",
         "alt-tags": [
           {
-            "name": "astra"
+            "keyword": "astra"
           },
           {
-            "name": "bug-reporting-automation"
+            "keyword": "bug-reporting-automation"
           },
           {
-            "name": "codesearchnet"
+            "keyword": "codesearchnet"
           },
           {
-            "name": "code-generation"
+            "keyword": "code-generation"
           },
           {
-            "name": "code-style"
+            "keyword": "code-style"
           },
           {
-            "name": "coding"
+            "keyword": "coding"
           },
           {
-            "name": "collaborative-dev-environments"
+            "keyword": "collaborative-dev-environments"
           },
           {
-            "name": "computer_science"
+            "keyword": "computer_science"
           },
           {
-            "name": "context-sql"
+            "keyword": "context-sql"
           },
           {
-            "name": "development"
+            "keyword": "development"
           },
           {
-            "name": "formal-methods"
+            "keyword": "formal-methods"
           },
           {
-            "name": "function calling"
+            "keyword": "function calling"
           },
           {
-            "name": "function-calling"
+            "keyword": "function-calling"
           },
           {
-            "name": "go"
+            "keyword": "go"
           },
           {
-            "name": "golang"
+            "keyword": "golang"
           },
           {
-            "name": "java"
+            "keyword": "java"
           },
           {
-            "name": "linux"
+            "keyword": "linux"
           },
           {
-            "name": "open-source"
+            "keyword": "open-source"
           },
           {
-            "name": "oss",
+            "keyword": "oss",
             "title": "OSS"
           },
           {
-            "name": "postgresql",
+            "keyword": "postgresql",
             "title": "PostgreSQL"
           },
           {
-            "name": "python"
+            "keyword": "python"
           },
           {
-            "name": "sqlglot",
+            "keyword": "sqlglot",
             "title": "SQLGlot"
           },
           {
-            "name": "wikisql",
+            "keyword": "wikisql",
             "title": "WikiSQL"
           },
           {
-            "name": "programming"
+            "keyword": "programming"
           },
           {
-            "name": "software"
+            "keyword": "software"
           },
           {
-            "name": "software-development"
+            "keyword": "software-development"
           },
           {
-            "name": "spider"
+            "keyword": "spider"
           },
           {
-            "name": "sql"
+            "keyword": "sql"
           },
           {
-            "name": "text-to-sql"
+            "keyword": "text-to-sql"
           },
           {
-            "name": "ubuntu"
+            "keyword": "ubuntu"
           }
         ]
       },
       {
-        "name": "economics"
+        "keyword": "economics"
       },
       {
-        "name": "education",
+        "keyword": "education",
         "alt-tags": [
           {
-            "name": "educational"
+            "keyword": "educational"
           },
           {
-            "name": "intelligent_tutoring_system"
+            "keyword": "intelligent_tutoring_system"
           },
           {
-            "name": "ncert",
+            "keyword": "ncert",
             "title": "NCERT"
           }
         ]
       },
       {
-        "name": "environment",
+        "keyword": "environment",
         "alt-tags": [
           {
-            "name": "ecology"
+            "keyword": "ecology"
           },
           {
-            "name": "environmental-data"
+            "keyword": "environmental-data"
           },
           {
-            "name": "environmental science"
+            "keyword": "environmental science"
           },
           {
-            "name": "environmental simulations"
+            "keyword": "environmental simulations"
           },
           {
-            "name": "environmental"
+            "keyword": "environmental"
           },
           {
-            "name": "environmental-analysis"
+            "keyword": "environmental-analysis"
           },
           {
-            "name": "environmental, social, and governance"
+            "keyword": "environmental, social, and governance"
           },
           {
-            "name": "sustainability"
+            "keyword": "sustainability"
           }
         ]
       },
       {
-        "name": "fashion"
+        "keyword": "fashion"
       },
       {
-        "name": "finance",
+        "keyword": "finance",
         "alt-tags": [
           {
-            "name": "aveni-bench"
+            "keyword": "aveni-bench"
           },
           {
-            "name": "financial"
+            "keyword": "financial"
           },
           {
-            "name": "finnlp"
+            "keyword": "finnlp"
           },
           {
-            "name": "investment"
+            "keyword": "investment"
           }
         ]
       },
       {
-        "name": "food"
+        "keyword": "food"
       },
       {
-        "name": "game",
+        "keyword": "game",
         "alt-tags": [
           {
-            "name": "chess"
+            "keyword": "chess"
           },
           {
-            "name": "lichess"
+            "keyword": "lichess"
           },
           {
-            "name": "games"
+            "keyword": "games"
           },
           {
-            "name": "gaming"
+            "keyword": "gaming"
           },
           {
-            "name": "midjourney"
+            "keyword": "midjourney"
           },
           {
-            "name": "minecraft"
+            "keyword": "minecraft"
           }
         ]
       },
       {
-        "name": "geospatial",
+        "keyword": "geospatial",
         "alt-tags": [
           {
-            "name": "earth-observation"
+            "keyword": "earth-observation"
           },
           {
-            "name": "geography"
+            "keyword": "geography"
           },
           {
-            "name": "poi"
+            "keyword": "poi"
           },
           {
-            "name": "remote-sensing"
+            "keyword": "remote-sensing"
           }
         ]
       },
       {
-        "name": "government",
+        "keyword": "government",
         "alt-tags": [
           {
-            "name": "ccdv/govreport-summarization"
+            "keyword": "ccdv/govreport-summarization"
           },
           {
-            "name": "corporate governance"
+            "keyword": "corporate governance"
           },
           {
-            "name": "environmental, social, and governance"
+            "keyword": "environmental, social, and governance"
           },
           {
-            "name": "extended|projecte-aina/catalan_government_crawling"
+            "keyword": "extended|projecte-aina/catalan_government_crawling"
           },
           {
-            "name": "gov"
+            "keyword": "gov"
           },
           {
-            "name": "government"
+            "keyword": "government"
           },
           {
-            "name": "government data"
+            "keyword": "government data"
           },
           {
-            "name": "government-services-automation"
+            "keyword": "government-services-automation"
           },
           {
-            "name": "govreport"
+            "keyword": "govreport"
           },
           {
-            "name": "government reports"
+            "keyword": "government reports"
           },
           {
-            "name": "https://www.cms.gov/medicare/",
+            "keyword": "https://www.cms.gov/medicare/",
             "title": "www.cms.gov/medicare/%",
             "context": "References to URLs at the U.S. government's Medicare site.",
             "like-clause": "%www.cms.gov/medicare%/"
           },
           {
-            "name": "https://download.bls.gov/pub/time.series/compressed/tape.format"
+            "keyword": "https://download.bls.gov/pub/time.series/compressed/tape.format"
           },
           {
-            "name": "launch/gov_report"
+            "keyword": "launch/gov_report"
           },
           {
-            "name": "local government"
+            "keyword": "local government"
           },
           {
-            "name": "opengov",
+            "keyword": "opengov",
             "title": "Open Gov"
           },
           {
-            "name": "policy"
+            "keyword": "policy"
           }
         ]
       },
       {
-        "name": "history",
+        "keyword": "history",
         "alt-tags": [
           {
-            "name": "historical"
+            "keyword": "historical"
           }
         ]
       },
       {
-        "name": "insurance"
+        "keyword": "insurance"
       },
       {
-        "name": "legal",
+        "keyword": "legal",
         "alt-tags": [
           {
-            "name": "droit"
+            "keyword": "droit"
           },
           {
-            "name": "droit français"
+            "keyword": "droit français"
           },
           {
-            "name": "french law"
+            "keyword": "french law"
           },
           {
-            "name": "law"
+            "keyword": "law"
           },
           {
-            "name": "regulations"
+            "keyword": "regulations"
           }
         ]
       },
         {
-          "name": "logic",
+          "keyword": "logic",
           "alt-tags": [
             {
-              "name": "lojban"
+              "keyword": "lojban"
             },
             {
-              "name": "logical reasoning"
+              "keyword": "logical reasoning"
             },
             {
-              "name": "logical-reasoning"
+              "keyword": "logical-reasoning"
             }
           ]
         },
       {
-        "name": "mathematics",
+        "keyword": "mathematics",
         "alt-tags": [
           {
-            "name": "algebra"
+            "keyword": "algebra"
           },
           {
-            "name": "coq"
+            "keyword": "coq"
           },
           {
-            "name": "gsm8k",
+            "keyword": "gsm8k",
             "title": "GSM8K"
           },
           {
-            "name": "math"
+            "keyword": "math"
           },
           {
-            "name": "maths"
+            "keyword": "maths"
           },
           {
-            "name": "math-qa",
-            "name": "Math Q&A"
+            "keyword": "math-qa",
+            "keyword": "Math Q&A"
           },
           {
-            "name": "mathematical-reasoning"
+            "keyword": "mathematical-reasoning"
           },
           {
-            "name": "math-word-problems"
+            "keyword": "math-word-problems"
           },
           {
-            "name": "statistics"
+            "keyword": "statistics"
           },
           {
-            "name": "theorem-proving"
+            "keyword": "theorem-proving"
           }
         ]
       },
       {
-        "name": "medical",
+        "keyword": "medical",
         "context": "Includes keywords for healthcare, biomedical, genomics, etc.",
         "alt-tags": [
           {
-            "name": "biomedical"
+            "keyword": "biomedical"
           },
           {
-            "name": "clinical"
+            "keyword": "clinical"
           },
           {
-            "name": "covid-19",
+            "keyword": "covid-19",
             "title": "COVID-19"
           },
           {
-            "name": "dna",
+            "keyword": "dna",
             "title": "DNA"
           },
           {
-            "name": "diagnosis"
+            "keyword": "diagnosis"
           },
           {
-            "name": "genomics"
+            "keyword": "genomics"
           },
           {
-            "name": "health"
+            "keyword": "health"
           },
           {
-            "name": "healthcare"
+            "keyword": "healthcare"
           },
           {
-            "name": "medicine"
+            "keyword": "medicine"
           },
           {
-            "name": "mental health"
+            "keyword": "mental health"
           },
           {
-            "name": "nutrition"
+            "keyword": "nutrition"
           },
           {
-            "name": "pubmed"
+            "keyword": "pubmed"
           },
           {
-            "name": "symptoms"
+            "keyword": "symptoms"
           },
           {
-            "name": "treatment"
+            "keyword": "treatment"
           },
           {
-            "name": "https://www.cms.gov/medicare/",
+            "keyword": "https://www.cms.gov/medicare/",
             "title": "%www.cms.gov/medicare/%",
             "context": "References to URLs at the U.S. government's Medicare site.",
             "like-clause": "%www.cms.gov/medicare%/"
@@ -3535,76 +3536,76 @@
         ]
       },
       {
-        "name": "philosophy",
+        "keyword": "philosophy",
         "alt-tags": [
           {
-            "name": "ethics"
+            "keyword": "ethics"
           }
         ]
       },
       {
-        "name": "physics",
+        "keyword": "physics",
         "alt-tags": [
           {
-            "name": "biophysics"
+            "keyword": "biophysics"
           }
         ]
       },
       {
-        "name": "politics"
+        "keyword": "politics"
       },
       {
-        "name": "psychology",
+        "keyword": "psychology",
         "alt-tags": [
           {
-            "name": "personality"
+            "keyword": "personality"
           }
         ]
       },
       {
-        "name": "robotics",
+        "keyword": "robotics",
         "alt-tags": [
           {
-            "name": "lerobot",
+            "keyword": "lerobot",
             "title": "Le Robot"
           }
         ]
       },
       {
-        "name": "science",
+        "keyword": "science",
         "alt-tags": [
           {
-            "name": "reviews"
+            "keyword": "reviews"
           }
         ]
       },
       {
-        "name": "sports"
+        "keyword": "sports"
       },
       {
-        "name": "time-series",
+        "keyword": "time-series",
         "alt-tags": [
           {
-            "name": "https://download.bls.gov/pub/time.series/compressed/tape.format",
+            "keyword": "https://download.bls.gov/pub/time.series/compressed/tape.format",
             "title": "bls.gov/pub/time.series/compressed/"
           },
           {
-            "name": "time-series-forecasting"
+            "keyword": "time-series-forecasting"
           },
           {
-            "name": "timeseries"
+            "keyword": "timeseries"
           }
         ]
       },
       {
-        "name": "web",
+        "keyword": "web",
         "alt-tags": [
           {
-            "name": "webdataset",
+            "keyword": "webdataset",
             "title": "Web Dataset"
           },
           {
-            "name": "website"
+            "keyword": "website"
           }
         ]
       }

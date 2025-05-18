@@ -17,6 +17,15 @@ mkdir -p data/raw
 mv *.parquet data/raw
 mkdir -p data/json
 ```
+
+## Python Dependencies
+
+You'll need these packages. PySpark is discussed next.
+
+```shell
+pip install py4j pyspark psutil
+```
+
 ## Starting with Spark
 
 We start with [PySpark](https://spark.apache.org) to do the initial conversion from Parquet to JSON. In fact, this step could be done with DuckDB. 
