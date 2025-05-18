@@ -1,4 +1,4 @@
-var data_for_medical = 
+var data_for_domain_medical = 
 [
 	{"name":"tinymistral-hypnosis-instruct-preprocessed","keyword":"medical","license":"Apache License 2.0","license_url":"https://choosealicense.com/licenses/apache-2.0/","language":"en","dataset_url":"https://huggingface.co/datasets/jtatman/tinymistral-hypnosis-instruct-preprocessed","creator_name":"James","creator_url":"https://huggingface.co/jtatman","description":"Dataset created for accelerated processing. Embeddings from this fine model:\\n\\nLocutusque/TinyMistral-248M-Instruct\\n\\n"},
 	{"name":"MsitralTrix-test-dpo","keyword":"medical","license":"Apache License 2.0","license_url":"https://choosealicense.com/licenses/apache-2.0/","language":"en","dataset_url":"https://huggingface.co/datasets/CultriX/MsitralTrix-test-dpo","creator_name":"CultriX","creator_url":"https://huggingface.co/CultriX","description":"CultriX/MsitralTrix-test-dpo dataset hosted on Hugging Face and contributed by the HF Datasets community"},

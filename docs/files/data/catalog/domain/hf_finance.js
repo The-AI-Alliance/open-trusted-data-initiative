@@ -1,4 +1,4 @@
-var data_for_finance = 
+var data_for_domain_finance = 
 [
 	{"name":"Fashion_Shop_Consultant","keyword":"finance","license":"Apache License 2.0","license_url":"https://choosealicense.com/licenses/apache-2.0/","language":"en","dataset_url":"https://huggingface.co/datasets/Quangnguyen711/Fashion_Shop_Consultant","creator_name":"Nguyễn Minh Quang","creator_url":"https://huggingface.co/Quangnguyen711","description":"Quangnguyen711/Fashion_Shop_Consultant dataset hosted on Hugging Face and contributed by the HF Datasets community"},
 	{"name":"consumer-finance-complaints","keyword":"finance","license":"Creative Commons Zero v1.0 Universal","license_url":"https://choosealicense.com/licenses/cc0-1.0/","language":"en","dataset_url":"https://huggingface.co/datasets/BEE-spoke-data/consumer-finance-complaints","creator_name":"BEEspoke Data","creator_url":"https://huggingface.co/BEE-spoke-data","description":"\\n\\t\\n\\t\\t\\n\\t\\n\\t\\n\\t\\tBEE-spoke-data/consumer-finance-complaints\\n\\t\\n\\nconsumer-finance-complaints but in a format that actually works.  \\nPulled Feb 2024\\n"},

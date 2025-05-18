@@ -11,33 +11,16 @@ do
   group=$(basename $source)
   js_sources+=($group)
   echo "JS for group: $group"
-  target="../docs/files/data/catalog/$group"
+  cat_dir="../docs/files/data/catalog"
+  target="$cat_dir/$group"
   rm -rf $target
   mkdir -p $target
-  cp $source/*.js $target
-done
-for source in ./markdown/processed/$ymd/*
-do
-  group=$(basename $source)
-  md_sources+=($group)
-  echo "Markdown for group: $group"
-  target="../docs/$group"
-  rm -rf $target
-  mkdir -p $target
-  cp $source/*.markdown $target
+  cp -r $source $cat_dir
+  find $target -name '*.json' -exec rm {} \;
 done
 
 echo "In ../docs/files/data/catalog/:"
-for d in ${js_sources[@]}
-do
-  echo "../docs/files/data/catalog/$d:"
-  ls -l ../docs/files/data/catalog/$d
+find ../docs/files/data/catalog/ -ls
 done
-echo
-echo "In ../docs/_*"
-for d in ${md_sources[@]}
-do
-  echo "../docs/$d:"
-  ls -l ../docs/$d
-done
+find ../docs/files/data/catalog -type d
 

@@ -1,4 +1,4 @@
-var data_for_code = 
+var data_for_domain_code = 
 [
 	{"name":"c-to-rust","keyword":"code","license":"Apache License 2.0","license_url":"https://choosealicense.com/licenses/apache-2.0/","language":"en","dataset_url":"https://huggingface.co/datasets/yijunyu/c-to-rust","creator_name":"Yu","creator_url":"https://huggingface.co/yijunyu","description":"yijunyu/c-to-rust dataset hosted on Hugging Face and contributed by the HF Datasets community"},
 	{"name":"Nepali","keyword":"code","license":"MIT License","license_url":"https://choosealicense.com/licenses/mit/","language":"en","dataset_url":"https://huggingface.co/datasets/SunilC/Nepali","creator_name":"Sunil Chaudhary","creator_url":"https://huggingface.co/SunilC","description":"SunilC/Nepali dataset hosted on Hugging Face and contributed by the HF Datasets community"},
