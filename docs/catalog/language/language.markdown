@@ -8,4 +8,9 @@ parent: Dataset Catalog
 
 Datasets with different human languages.
 
-{% include catalog-data-tables.html category="language" %}
+* [African Languages](africa)
+* [Languages in the Americas](americas)
+* [Asian Languages](asia)
+* [European Languages](europe)
+* [Languages in the Middle East](middle-east)
+* [Languages of the Pacific Islands and Nations](pacific)
