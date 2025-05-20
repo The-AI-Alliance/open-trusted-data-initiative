@@ -13,31 +13,39 @@
 
 <blockquote id="{{ unique_id }}-selected-description">
   <div id="{{ unique_id }}-selected-description-div">
-    <p>Click a row to see the description. See <a href="{{site.baseurl}}/catalog/catalog/#about-these-datasets">About These Datasets</a> for important details.</p>
+    <p>Click a row to see the description. Use the line below the table to resize it. See <a href="{{site.baseurl}}/catalog/catalog/#about-these-datasets">About These Datasets</a> for important details.</p>
   </div>
 </blockquote>
 <p>
-  <a onclick="save_json(data_for_{{ unique_id }}, '{{ unique_id }}.json', '{{ unique_id }}-message');" href="javascript:;">Download this data (JSON).</a>
+  <a onclick="saveJSON(data_for_{{ unique_id }}, '{{ unique_id }}.json', '{{ unique_id }}-message');" href="javascript:;">Download this data (JSON).</a>
   <span id="{{ unique_id }}-message"></span>
 </p>
-<div id="{{unique_id}}-table" class="table-wrapper">
-
-  {% comment %} 
-  The next import will define a JS array "data_for_{{ unique_id }}". 
-  It also expects the outer div to have id "{{unique_id}}-table".
-  {% endcomment %}
-  <script type="text/javascript" src="{{site.baseurl}}/files/data/catalog/{{ include.parent_path }}/hf_{{include.cleaned_keyword}}.js"></script>
-  <script type="text/javascript">
-    make_catalog_table(
-      "{{ unique_id }}",
-      data_for_{{ unique_id }},
-      {% if other_keywords.size > 0 %}
-      true,
-      {% else %}
-      false,
-      {% endif %}
-      "{{ unique_id }}-selected-description-div",
-      "{{ unique_id }}.json"
-    );
-  </script>
+<div id="{{unique_id}}-table-div-resizable" class="resizable">
+  <div class="resizers">
+    <div id="{{unique_id}}-table" class="table-wrapper">
+      {% comment %} 
+      The next import will define a JS array "data_for_{{ unique_id }}". 
+      It also expects the outer div to have id "{{unique_id}}-table".
+      {% endcomment %}
+      <script type="text/javascript" src="{{site.baseurl}}/files/data/catalog/{{ include.parent_path }}/hf_{{include.cleaned_keyword}}.js"></script>
+      <script type="text/javascript">
+        var idAndTable = make_catalog_table(
+          "{{ unique_id }}",
+          data_for_{{ unique_id }},
+          {% if other_keywords.size > 0 %}
+          true,
+          {% else %}
+          false,
+          {% endif %}
+          "{{ unique_id }}-selected-description-div",
+          "{{ unique_id }}.json"
+        );
+        dataTables[idAndTable.id] = idAndTable.table;
+      </script>
+    </div>
+    <div class="resizer-line bottom-line"></div>
+    <script type="text/javascript">
+      makeResizableTableDiv("{{unique_id}}-table-div-resizable", idAndTable.id);
+    </script>
+  </div>
 </div>

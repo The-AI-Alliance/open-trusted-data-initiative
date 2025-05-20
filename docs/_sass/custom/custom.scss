@@ -35,3 +35,28 @@ blockquote {
 	@extend .keyword-btn;
 	@extend .btn-blue;
 }
+
+.resizable {
+  position: relative;
+  background: white;
+}
+
+.resizable .resizers {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.resizable .resizers .resizer-line {
+  position: relative;
+}
+
+.resizable .resizers .resizer-line.bottom-line {
+  height: 30px;
+  border-top: 1px solid #51899C;
+  cursor: ns-resize;
+}
+
+.resizable .resizers .resizer-line.bottom-line:hover {
+  border-top: 1px solid #83bbce;
+}

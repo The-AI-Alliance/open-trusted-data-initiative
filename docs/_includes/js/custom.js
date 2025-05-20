@@ -15,11 +15,16 @@ function make_catalog_table(uniqueID, data, showKeywordCol, detailsID, saveJSONF
   if (showKeywordCol) {
     keywordArray = [{title:"Keyword", field:"keyword"}];
   };
-  const tableID = `#${uniqueID}-table`;
-  const dataTable = new Tabulator(tableID, {
-    height:305, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
+  const tableID = `${uniqueID}-table`;
+  const dataTable = new Tabulator(`#${tableID}`, {
     data: data, 
-    layout: "fitColumns", //fit columns to width of table (optional)
+    height: 300, // Set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value).
+    layout: "fitColumns", // Fit columns to width of table (optional).
+    responsizeLayout: "hide", // Hide columns that don't fit on the table.
+    tooltips: true,
+    history: true,  // When table is editable, allow undo and redo actions.
+    addRowPos: "top", // When editable, new elements go on top.
+    movableColumns: true, // Allow columns to be reordered.
     columns: Array.prototype.concat( [ //Define Table Columns
       {title:"Name", field:"name", formatter:"link", formatterParams:{
         labelField:"name",
@@ -45,9 +50,10 @@ function make_catalog_table(uniqueID, data, showKeywordCol, detailsID, saveJSONF
     const message = `<strong>Name:</strong> <a href="${data.dataset_url}" target="_blank">${data.name}</a><br/><strong>Keyword:</strong> ${data.keyword}<br/><strong>License:</strong> <a href="${data.license_url}" target="_blank">${data.license}</a><br/><strong>Creator:</strong> <a href="${data.creator_url}" target="_blank">${data.creator_name}</a><br/><strong>Description:</strong><p class="description">${desc}</p>`;
     descDiv.innerHTML = message;
   });
+  return {"id": tableID, "table": dataTable};
 }
 
-function save_json(data, fileName, messageSpanID) {
+function saveJSON(data, fileName, messageSpanID) {
   var jsonToSave = new Blob([JSON.stringify(data, undefined, 2)], {
     type: 'application/json'
   });
@@ -60,3 +66,57 @@ function save_json(data, fileName, messageSpanID) {
     span.innerHTML = `Writing "${fileName}" to your downloads folder.`;
   }
 }
+
+dataTables = {};
+
+/**
+ * Functions to make a resizable div surrounding a Tabulator table.
+ * The only place the table is assumed is in the "resize" method,
+ * so this code could be generalized for other objects...
+ * Adapted from https://stackoverflow.com/questions/64854699/change-table-height-resize-by-dragging-the-bottom-border
+ */
+function makeResizableTableDiv(divID, tableID) {
+  const element  = document.getElementById(divID);
+  const table    = dataTables[tableID];
+  const resizers = element.querySelectorAll('.resizer-line')
+  const minimum_size = 90;
+  let original_width = 0;
+  let original_height = 0;
+  let original_x = 0;
+  let original_y = 0;
+  let original_mouse_x = 0;
+  let original_mouse_y = 0;
+  for (let i = 0; i < resizers.length; i++) {
+    const currentResizer = resizers[i];
+    currentResizer.addEventListener('mousedown', function(e) {
+      e.preventDefault()
+      original_width = parseFloat(getComputedStyle(element, null).getPropertyValue('width').replace('px', ''));
+      original_height = parseFloat(getComputedStyle(element, null).getPropertyValue('height').replace('px', ''));
+      original_x = element.getBoundingClientRect().left;
+      original_y = element.getBoundingClientRect().top;
+      original_mouse_x = e.pageX;
+      original_mouse_y = e.pageY;
+      window.addEventListener('mousemove', resize)
+      window.addEventListener('mouseup', stopResize)
+    })
+    
+    function resize(e) {
+      if (currentResizer.classList.contains('bottom-line')) {
+        const height = original_height + (e.pageY - original_mouse_y);
+        if (height > minimum_size) {
+          table.setHeight(height - 23);
+          element.style.height = height + 'px';
+        }
+      }
+    }
+    
+    function stopResize() {
+      window.removeEventListener('mousemove', resize)
+    }
+  }
+}
+
+// Calls the following after all DOM elements 
+// have been defined.
+// document.addEventListener("DOMContentLoaded", function(event) { 
+// });
