@@ -14,7 +14,9 @@ language_tags: English
 
 <div class="table-wrapper">
 {% for member in site.language %}
-  <a href="{{site.baseurl}}/catalog/language/#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+  {% if member.tag == "language" %}
+    {{member.content}}
+  {% endif %}
 {% endfor %}
 </div>
 
@@ -22,7 +24,9 @@ language_tags: English
 
 <div class="table-wrapper">
 {% for member in site.domain %}
-  <a href="{{site.baseurl}}/catalog/domain/#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+  {% if member.tag == "domain" %}
+    {{member.content}}
+  {% endif %}
 {% endfor %}
 </div>
 
@@ -30,7 +34,9 @@ language_tags: English
 
 <div class="table-wrapper">
 {% for member in site.modality %}
-  <a href="{{site.baseurl}}/catalog/modality/#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+  {% if member.tag == "modality" %}
+    {{member.content}}
+  {% endif %}
 {% endfor %}
 </div>
 

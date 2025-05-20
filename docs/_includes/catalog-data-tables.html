@@ -1,19 +1,68 @@
 <link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet"/>
 <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
+<script type="text/javascript">
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 
-<a name="{{ include.category }}-datasets"></a>
-<h1>{{ include.category | capitalize }} Datasets</h1>
+  function get_title(obj) {
+    if (!!obj.title) {
+      return obj.title
+    } else {
+      const regex = new RegExp('[-_]+', 'g');
+      const alt_title1 = obj.keyword.replace(regex, ' ');
+      const alt_title = alt_title1.split(' ').map(word => capitalize(word)).join(' ');
+      return alt_title;
+    }
+  }
 
-<div class="table-wrapper">
-{% for member in site[include.category] %}
-  <a href="#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
-{% endfor %}
-</div>
+  function write_buttons(items, label, color) {
+    if (!!items) {
+      document.write(`<h2>${label}</h2>`);      
+      items.forEach((item) => 
+          document.write(`<a href="${item.keyword}" class="btn btn-${color} fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">${get_title(item)} (keyword: ${item.keyword})</a>`));
+    }
+  }
+
+  const category = global_categories_index.find(
+    function(o){ return o.keyword === "{{ include.category }}" });
+
+  const category_title = get_title(category);
+  const subcategories = category.subcategories;
+  if (!!subcategories) {
+    if ("{{ include.subcategory }}" != "") {
+      const subcategory = category.subcategories.find(
+        function(o){ return o.keyword === "{{ include.subcategory }}" });
+      if (!!subcategory) {
+        const subcategory_title = get_title(subcategory);
+        document.write(`<a name="${category_keyword}-${subcategory_keyword}-datasets"></a>`);
+        document.write(`<h1>${category_title}: ${subcategory_title} Datasets</h1>`);
+      }
+    } else {
+      write_buttons(subcategories, 'Subcategories', 'purple');
+      document.write(`<a name="${category_keyword}-datasets"></a>`);
+      document.write(`<h1>${category_title} Datasets</h1>`);      
+      document.write(`<h2>Subcategories</h2>`);      
+      subcategories.forEach((subcategory) =>
+        document.write(`<a href="${subcategory.keyword}" class="btn btn-purple fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">${get_title(subcategory)} (keyword: ${subcategory.keyword})</a>`));
+    }
+  }
+  if (!!category.topics && category.topics.length > 0) {
+    write_buttons(category.topics, 'Keywords', 'blue');
+    category.topics.forEach((topic) => 
+      document.write(`<a name="${topic.keyword}"></a>`);
+      document.write(`<h2><a href="#${topic.keyword}" class="btn btn-blue fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">${get_title(topic)} (keyword: ${topic.keyword})</a></h2>`);
+        if (!!topic.alt_tags && topic.alt_tags.length > 0) {
+          document.write(`<p>This set includes the following additional keywords: ${topic.alt_tags.for}<strong>{{ other-tags | join: "</strong>, <strong>" }}</strong></p>
+
+        }
+      );
+</script>
 
 {% for member in site[include.category] %}
 
 <a name="{{member.tag}}"></a>
-<h2><a href="#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">{{member.name}} (keyword: {{member.tag}})</a></h2>
+<h2><a href="#{{member.tag}}" class="btn btn-blue fs-5 mb-4 mb-md-0 mr-2 no-glyph width-100 text-center">{{member.name}} (keyword: {{member.tag}})</a></h2>
 
 {% assign other-tags = member.all-tags | split: ' ' | slice: 1, 100 %}
 {% if other-tags.size > 0 %}

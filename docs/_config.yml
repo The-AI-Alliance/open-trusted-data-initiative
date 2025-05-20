@@ -142,5 +142,11 @@ mermaid:
 
 collections:
   language:
+    africa:
+    americas:
+    asia:
+    europe:
+    middle-east:
+    pacific:
   domain:
   modality:

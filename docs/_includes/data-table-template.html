@@ -1,0 +1,43 @@
+
+<a name="{{include.cleaned_keyword}}"></a>
+<h2><a href="#{{include.cleaned_keyword}}" class="topic-btn width-100">{{include.title}} (keyword: {{include.keyword}})</a></h2>
+
+{{include.context}}
+
+{% capture unique_id %}{{include.parent_path}}_{{include.cleaned_keyword}}{% endcapture %}
+
+{% assign other_keywords = include.alt_keywords | split: '|' %}
+{% if other_keywords.size > 0 %}
+<p>This set includes the following additional keywords: <strong>{{ other_keywords | join: "</strong>, <strong>" }}</strong><p>
+{% endif %}
+
+<blockquote id="{{ unique_id }}-selected-description">
+  <div id="{{ unique_id }}-selected-description-div">
+    <p>Click a row to see the description. See <a href="{{site.baseurl}}/catalog/catalog/#about-these-datasets">About These Datasets</a> for important details.</p>
+  </div>
+</blockquote>
+<p>
+  <a onclick="save_json(data_for_{{ unique_id }}, '{{ unique_id }}.json', '{{ unique_id }}-message');" href="javascript:;">Download this data (JSON).</a>
+  <span id="{{ unique_id }}-message"></span>
+</p>
+<div id="{{unique_id}}-table" class="table-wrapper">
+
+  {% comment %} 
+  The next import will define a JS array "data_for_{{ unique_id }}". 
+  It also expects the outer div to have id "{{unique_id}}-table".
+  {% endcomment %}
+  <script type="text/javascript" src="{{site.baseurl}}/files/data/catalog/{{ include.parent_path }}/hf_{{include.cleaned_keyword}}.js"></script>
+  <script type="text/javascript">
+    make_catalog_table(
+      "{{ unique_id }}",
+      data_for_{{ unique_id }},
+      {% if other_keywords.size > 0 %}
+      true,
+      {% else %}
+      false,
+      {% endif %}
+      "{{ unique_id }}-selected-description-div",
+      "{{ unique_id }}.json"
+    );
+  </script>
+</div>
