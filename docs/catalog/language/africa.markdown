@@ -15,8 +15,20 @@ Some are _pidgins_ or _creoles_ derived from languages originating elsewhere.
 
 > **NOTE:** We have endeavored to place languages in their correct geographic location. Some languages cross geographic boundaries. Please report any errors! Thank you.
 
+## Keywords
+
+<div class="table-wrapper">
 {% for member in site.language %}
-  {% if member.parent_tag == 'africa' %}
+  {% if member.parent_tag == "africa" %} 
+    <a href="#{{member.cleaned_tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+  {% endif %}
+{% endfor %}
+</div>
+
+## Datasets for the Keywords
+
+{% for member in site.language %}
+  {% if member.parent_tag == "africa" %}
     {{ member.content }}
   {% endif %}
 {% endfor %}
