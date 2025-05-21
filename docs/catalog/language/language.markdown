@@ -20,9 +20,8 @@ Datasets with different human languages, organized by geographic region in the &
   </p>
   <h3>{{member.parent_title}}</h3>
   <p>
-    {% else %}
-      <a href="{{site.baseurl}}/catalog/language/{{member.parent_tag}}/#{{member.cleaned_tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
     {% endif %}
+    <a href="{{site.baseurl}}/catalog/language/{{member.parent_tag}}/#{{member.cleaned_tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
   {% endif %}
 {% endfor %}
 </p>

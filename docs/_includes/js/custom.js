@@ -9,16 +9,21 @@
  *                 than one keyword. Otherwise, it's wasted space!
  * detailsID:      The HTML object that is replaced by a record's
  *                 details when the corresponding row is clicked.
+ * Notes:
+ * 1. Using minHeight and maxHeight doesn't permit user resizing beyond those limits.
+ * 2. A fixed height of 300 means that short tables have an empty gray area at the bottom
+ *    so we use a "hack" calculation to estimate the size.
  */
 function make_catalog_table(uniqueID, data, showKeywordCol, detailsID, saveJSONFileName) {
   var keywordArray = [];
   if (showKeywordCol) {
     keywordArray = [{title:"Keyword", field:"keyword"}];
   };
+  const startingHeight = data.length * 35 < 300? data.length * 35: 300;
   const tableID = `${uniqueID}-table`;
   const dataTable = new Tabulator(`#${tableID}`, {
     data: data, 
-    height: 300, // Set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value).
+    height: startingHeight, // Set the height of the table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value).
     layout: "fitColumns", // Fit columns to width of table (optional).
     responsizeLayout: "hide", // Hide columns that don't fit on the table.
     tooltips: true,
