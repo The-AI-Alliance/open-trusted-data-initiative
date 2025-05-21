@@ -78,6 +78,10 @@ dataTables = {};
 function makeResizableTableDiv(divID, tableID) {
   const element  = document.getElementById(divID);
   const table    = dataTables[tableID];
+  if (!element || !table) { 
+    console.log(`Warning: div (id = ${divID}) and/or table (id = ${tableID}) are null!`);
+    return; 
+  }
   const resizers = element.querySelectorAll('.resizer-line')
   const minimum_size = 90;
   let original_width = 0;

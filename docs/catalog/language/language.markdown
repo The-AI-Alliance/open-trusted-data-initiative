@@ -6,14 +6,25 @@ has_children: true
 parent: Dataset Catalog
 ---
 
-<link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet"/>
-<script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
+Datasets with different human languages, organized by geographic region in the &ldquo;child&rdquo; pages:
 
-Datasets with different human languages.
+<div class="table-wrapper">
+<p>
+{% assign current_region = "" %}
+{% for member in site.language %}
+  {% if member.tag != "language" %} 
+    {% comment %} Skip the "index" markdown file {% endcomment %}
+    {% assign region = member.parent_tag %}
+    {% if region != current_region %}
+      {% assign current_region = region %}
+  </p>
+  <h3>{{member.parent_title}}</h3>
+  <p>
+    {% else %}
+      <a href="{{site.baseurl}}/catalog/language/{{member.parent_tag}}/#{{member.cleaned_tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+    {% endif %}
+  {% endif %}
+{% endfor %}
+</p>
+</div>
 
-* [African Languages]({{site.baseurl}}/catalog/africa)
-* [Languages in the Americas]({{site.baseurl}}/catalog/americas)
-* [Asian Languages]({{site.baseurl}}/catalog/asia)
-* [European Languages]({{site.baseurl}}/catalog/europe)
-* [Languages in the Middle East]({{site.baseurl}}/catalog/middle-east)
-* [Languages of the Pacific Islands and Nations]({{site.baseurl}}/catalog/pacific)

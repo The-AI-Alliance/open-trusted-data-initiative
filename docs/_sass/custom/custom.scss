@@ -24,6 +24,7 @@ blockquote {
 	@extend .mr-2;
 	@extend .no-glyph;
 	@extend .text-center;
+	font: 0.75rem;
 }
 
 .category-btn {
@@ -36,9 +37,14 @@ blockquote {
 	@extend .btn-blue;
 }
 
+.resize-btn {
+	@extend .keyword-btn;
+	@extend .btn-green;
+	width: 100%;
+}
+
 .resizable {
   position: relative;
-  background: white;
 }
 
 .resizable .resizers {
@@ -52,11 +58,19 @@ blockquote {
 }
 
 .resizable .resizers .resizer-line.bottom-line {
-  height: 30px;
-  border-top: 1px solid #51899C;
+  height: 6px;
+  border-top: 5px solid #6D6F5D; /* #51899C; */
+  cursor: ns-resize;
+}
+.resizable .resizers .resizer-box.bottom-box {
+  height: 10px;
+  border: 5px solid #6D6F5D; /* #51899C; */
   cursor: ns-resize;
 }
 
 .resizable .resizers .resizer-line.bottom-line:hover {
-  border-top: 1px solid #83bbce;
+  border-top: 5px solid #AD94A2;
+}
+.resizable .resizers .resizer-box.bottom-box:hover {
+  border: 5px solid #AD94A2;
 }

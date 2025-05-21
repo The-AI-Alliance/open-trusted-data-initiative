@@ -1,8 +1,11 @@
 ---
-name: Modality
+name: Modalities
 tag: modality
 cleaned_tag: modality
 parent_tag: catalog
+parent_title: Catalog
+grand_parent_tag: None
+grand_parent_title: None
 alt_tags: 
 subcategories: 
 ---

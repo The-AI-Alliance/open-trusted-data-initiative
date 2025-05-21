@@ -86,13 +86,16 @@ def make_var_name(str: str) -> str:
 
 def print_metadata(keyword, title, alt_keywords, like_clause, context, indent_count=0):
   if args.verbose > 0:
-    print(f"{indent_count*'  '}Keyword:          {keyword}")
-    print(f"{indent_count*'  '}Title:            {title}")
-    if alt_keywords:
-      print(f"{indent_count*'  '}'alt' tags:       {[kw['keyword'] for kw in alt_keywords]}")
-    if like_clause:
-      print(f"{indent_count*'  '}'like' clause:    {like_clause}")
-    print(f"{indent_count*'  '}Context:          {context}")
+    alt_keywords_str = ''
+    if alt_keywords and len(alt_keywords) > 0:
+     alt_keywords_str = f", Alt keywords = {[kw['keyword'] for kw in alt_keywords]}"
+    like_clause_str = ''
+    if like_clause and len(like_clause) > 0:
+      like_clause_str = f", 'like' clause = {like_clause}"
+    context_str = ''
+    if context and len(context) > 0:
+      context_str = f", Context = {context}"
+    print(f"{indent_count*'  '}Keyword = {keyword}, Title = {title}{alt_keywords_str}{context_str}{like_clause_str}")
 
 def get_data(dict):
   """
@@ -154,12 +157,13 @@ def write_js_file(json_file, js_file, var_name):
         print(line.rstrip(), file=js)
       print(";", file=js)
 
-def write_topic_json_js(directory, parent_keyword, keyword, title, alt_keywords, like_clause, context):
-  query_prefix = make_keyword_query(keyword, like_clause)
-  query_suffix = [f" OR {make_keyword_query(kw['keyword'], None)}" for kw in alt_keywords]
-  kw_query    = f"{query_prefix}{' '.join(query_suffix)}"
-  js_output   = f"{directory}/hf_{make_var_name(keyword)}.js"
-  json_output = f"{js_output}on"
+def write_topic_json_js(directory, keyword, title, parent_keyword, parent_title, ancestor_path, alt_keywords, like_clause, context):
+  ancestor_prefix = ancestor_path.replace('/', '_')
+  query_prefix    = make_keyword_query(keyword, like_clause)
+  query_suffix    = [f" OR {make_keyword_query(kw['keyword'], None)}" for kw in alt_keywords]
+  kw_query        = f"{query_prefix}{' '.join(query_suffix)}"
+  js_output       = f"{directory}/{make_var_name(keyword)}.js"
+  json_output     = f"{js_output}on"
   query = f"""
 duckdb croissant.duckdb
 COPY (
@@ -202,7 +206,7 @@ COPY (
     sys.exit(1)
 
   write_js_file(json_output, js_output, 
-    make_var_name(f'data_for_{parent_keyword}_{keyword}'))
+    make_var_name(f'data_for_{ancestor_prefix}_{keyword}'))
 
 def make_alt_keywords_str(alt_keywords, delim=' '):
   if alt_keywords and len(alt_keywords):
@@ -219,8 +223,18 @@ def make_md_link(dict, mid_path, css_class="", use_hash=False):
     css_class_str=f'{{:class="{css_class}"}}'
   return f'[{make_title(dict)}]({{{{site.baseurl}}}}/{mid_path}/{hash}{dict["keyword"]}){css_class_str}'
 
-def write_category_markdown(directory, parent_keyword, keyword, title, alt_keywords, context,
-    subcategories, topics):
+def write_category_markdown(
+  directory, 
+  keyword, 
+  title, 
+  parent_keyword, 
+  parent_title, 
+  grand_parent_keyword, 
+  grand_parent_title, 
+  alt_keywords, 
+  context,
+  subcategories, 
+  topics):
   md_output_file = f"{directory}/{keyword}.markdown"    
   with open(md_output_file, 'w') as md_out:
     alt_tags_str = make_alt_keywords_str(alt_keywords, delim='|')
@@ -233,6 +247,9 @@ name: {title}
 tag: {keyword}
 cleaned_tag: {cleaned_keyword}
 parent_tag: {parent_keyword}
+parent_title: {parent_title}
+grand_parent_tag: {grand_parent_keyword}
+grand_parent_title: {grand_parent_title}
 alt_tags: {alt_tags_str}
 subcategories: {'|'.join([s['keyword'] for s in subcategories])}
 ---
@@ -254,9 +271,21 @@ subcategories: {'|'.join([s['keyword'] for s in subcategories])}
       print('<link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet"/>')
       print('<script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>')
 
-def write_topic_markdown(directory, parent_path, parent_keyword, keyword, title, alt_keywords, like_clause, context):
-  md_output_file   = f"{directory}/{keyword}.markdown"    
+def write_topic_markdown(
+    directory, 
+    keyword, 
+    title, 
+    parent_keyword, 
+    parent_title, 
+    grand_parent_keyword, 
+    grand_parent_title, 
+    ancestor_path, 
+    alt_keywords, 
+    like_clause, 
+    context):
+  ancestor_prefix  = ancestor_path.replace('/', '_')
   cleaned_keyword  = make_var_name(keyword)
+  md_output_file   = f"{directory}/{ancestor_prefix}_{cleaned_keyword}.markdown"    
   alt_tags_str     = make_alt_keywords_str(alt_keywords)
   alt_keywords_str = make_alt_keywords_str(alt_keywords, delim="|")
   # WARNING: do not put the --- on a new line after the """! It adds a blank line at
@@ -267,14 +296,19 @@ name: {title}
 tag: {keyword}
 cleaned_tag: {cleaned_keyword}
 parent_tag: {parent_keyword}
+parent_title: {parent_title}
+grand_parent_tag: {grand_parent_keyword}
+grand_parent_title: {grand_parent_title}
 alt_tags: {alt_tags_str}
 ---
 
 {{% include data-table-template.html 
-  parent_path="{parent_path}" 
   keyword="{keyword}" 
   cleaned_keyword="{cleaned_keyword}" 
   title="{title}"
+  ancestor_path="{ancestor_path}" 
+  parent_title = "{parent_title}"
+  grand_parent_title = "{grand_parent_title}"
   alt_keywords="{alt_keywords_str}"
   context="{context}"
 %}}
@@ -282,15 +316,15 @@ alt_tags: {alt_tags_str}
   with open(md_output_file, 'w') as md_out:
     print(md_content, file=md_out)
 
-def process_topic(md_dir, json_dir, parent_path, parent_keyword, topic, indent_count=0):
+def process_topic(topic, parent_keyword, parent_title, grand_parent_keyword, grand_parent_title, ancestor_path, md_dir, json_dir, indent_count=0):
   keyword, title, alt_keywords, like_clause, context = \
     get_data(topic)
   print_metadata(keyword, title, alt_keywords, like_clause, context, indent_count)
   if args.no_markdown == False:
-    write_topic_markdown(md_dir, parent_path, parent_keyword, keyword, title, alt_keywords, like_clause, context)
+    write_topic_markdown(md_dir, keyword, title, parent_keyword, parent_title, grand_parent_keyword, grand_parent_title, ancestor_path, alt_keywords, like_clause, context)
   if args.no_json == False:
-    write_topic_json_js(json_dir, parent_keyword, keyword, title, alt_keywords, like_clause, context)
-  
+    write_topic_json_js(json_dir, keyword, title, parent_keyword, parent_title, ancestor_path, alt_keywords, like_clause, context)
+
 if __name__ == "__main__":
 
   if is_process_running('duckdb'):
@@ -313,9 +347,12 @@ if __name__ == "__main__":
     print(f"Reading data from file: {args.cat_file}")
   categories = load_json(args.cat_file)
 
-  make_directories(args.markdown_dir, deletefirst=True)
-  make_directories(args.json_dir, deletefirst=True)
-  write_all_categories_index_js_file(args.cat_file)
+  if args.no_markdown == False:
+    make_directories(args.markdown_dir, deletefirst=True)
+  if args.no_json == False:
+    make_directories(args.json_dir, deletefirst=True)
+  # We aren't currently using this:
+  # write_all_categories_index_js_file(args.cat_file)
 
   categories_list = args.categories
   user_specified_categories = categories_list and len(categories_list) > 0
@@ -334,18 +371,20 @@ if __name__ == "__main__":
     category_path     = category_var_name
     category_md_dir   = f"{args.markdown_dir}/_{category_var_name}" # will be moved to "docs"
     category_json_dir = f"{args.json_dir}/{category_var_name}"
-    make_directories(category_md_dir,   deletefirst=False)
-    make_directories(category_json_dir, deletefirst=False)
+    if args.no_markdown == False:
+      make_directories(category_md_dir,   deletefirst=False)
+    if args.no_json == False:
+      make_directories(category_json_dir, deletefirst=False)
 
     category_topics = category.get('topics', [])
     category_subcategories = category.get('subcategories', [])
 
     if args.no_markdown == False:
-      write_category_markdown(category_md_dir, 'catalog', category_keyword, category_title, category_alt_keywords, category_context,
+      write_category_markdown(category_md_dir, category_keyword, category_title, 'catalog', 'Catalog', None, None, category_alt_keywords, category_context,
       category_subcategories, category_topics)
 
     for topic in category_topics:
-      process_topic(category_md_dir, category_json_dir, category_var_name, category_keyword, topic, indent_count=1)
+      process_topic(topic, category_var_name, category_title, category_keyword, None, category_path, category_md_dir, category_json_dir, indent_count=1)
 
     for subcategory in category_subcategories:
       subcategory_keyword, subcategory_title, subcategory_alt_keywords, subcategory_like_clause, subcategory_context = \
@@ -353,12 +392,14 @@ if __name__ == "__main__":
       print_metadata(subcategory_keyword, subcategory_title, subcategory_alt_keywords, subcategory_like_clause, subcategory_context, indent_count=1)
 
       subcategory_var_name = make_var_name(subcategory_keyword)
-      subcategory_path     = f"{category_path}/{subcategory_var_name}"
-      subcategory_key      = f"{category_var_name}_{subcategory_var_name}"
-      subcategory_md_dir   = f"{category_md_dir}/_{subcategory_var_name}"
+      subcategory_key      = subcategory_var_name
+      ancestor_path        = f"{category_path}/{subcategory_var_name}"
+      subcategory_md_dir   = category_md_dir # same as category -- hack.
       subcategory_json_dir = f"{category_json_dir}/{subcategory_var_name}"
-      make_directories(subcategory_md_dir, deletefirst=False)
-      make_directories(subcategory_json_dir, deletefirst=False)
+      if args.no_markdown == False:
+        make_directories(subcategory_md_dir, deletefirst=False)
+      if args.no_json == False:
+        make_directories(subcategory_json_dir, deletefirst=False)
 
       for topic in subcategory.get('topics', []):
-        process_topic(subcategory_md_dir, subcategory_json_dir, subcategory_path, subcategory_key, topic, indent_count=2)
+        process_topic(topic, subcategory_key, subcategory_title, category_keyword, category_title, ancestor_path, subcategory_md_dir, subcategory_json_dir, indent_count=2)

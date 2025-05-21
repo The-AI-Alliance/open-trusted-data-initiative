@@ -4,7 +4,7 @@
 
 {{include.context}}
 
-{% capture unique_id %}{{include.parent_path}}_{{include.cleaned_keyword}}{% endcapture %}
+{% capture unique_id %}{{include.ancestor_path | replace: "/", "_"}}_{{include.cleaned_keyword}}{% endcapture %}
 
 {% assign other_keywords = include.alt_keywords | split: '|' %}
 {% if other_keywords.size > 0 %}
@@ -27,7 +27,7 @@
       The next import will define a JS array "data_for_{{ unique_id }}". 
       It also expects the outer div to have id "{{unique_id}}-table".
       {% endcomment %}
-      <script type="text/javascript" src="{{site.baseurl}}/files/data/catalog/{{ include.parent_path }}/hf_{{include.cleaned_keyword}}.js"></script>
+      <script type="text/javascript" src="{{site.baseurl}}/files/data/catalog/{{ include.ancestor_path }}/{{include.cleaned_keyword}}.js"></script>
       <script type="text/javascript">
         var idAndTable = make_catalog_table(
           "{{ unique_id }}",

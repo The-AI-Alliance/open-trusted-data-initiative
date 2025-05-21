@@ -120,6 +120,14 @@ layout: table_wrappers
                   {%- if page.url == child.url or page.parent == child.title -%}
                     {%- assign second_level_url = child.url | absolute_url -%}
                   {%- endif -%}
+                  {%- if child.has_children -%}
+                    {%- assign grand_children_list = pages_list | where: "parent", child.title -%}
+                    {%- for grand_child in grand_children_list -%}
+                      {%- if page.url == grand_child.url or page.parent == grand_child.title -%}
+                        {%- assign third_level_url = grand_child.url | absolute_url -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                  {%- endif -%}
                 {%- endfor -%}
               {%- endif -%}
             {%- endif -%}

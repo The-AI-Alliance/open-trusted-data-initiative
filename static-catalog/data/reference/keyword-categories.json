@@ -1,6 +1,7 @@
 [
     {
     "keyword": "language",
+    "title":   "Languages",
     "context": "Datasets with different human languages.",
     "subcategories": [
       {
@@ -1503,7 +1504,7 @@
         ]
       },
       {
-        "keyword": "middle-east",
+        "keyword": "middle_east",
         "title": "Languages in the Middle East",
         "context": "Ancient and modern languages from the Middle East.",
         "topics": [
@@ -1772,6 +1773,7 @@
   },
   {
     "keyword": "modality",
+    "title":   "Modalities",
     "context": "Datasets with different modalities (like text vs. video) or broad purposes, like classification.",
     "topics": [
       {
@@ -3034,6 +3036,7 @@
   },
   {
     "keyword": "domain",
+    "title":   "Domains",
     "context": "Domains like chemistry, healthcare, etc.",
     "topics": [
       {
