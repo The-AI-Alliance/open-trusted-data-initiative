@@ -7,7 +7,7 @@ language_tags: English
 ---
 
 # Open Trusted Data Initiative (OTDI) 
-We are building the largest, most diverse high quality open data set for AI. Come join us!
+### We are building the largest, most diverse high quality open data set for AI. Come join us!
 
 ## Take Me to the Data!
 
