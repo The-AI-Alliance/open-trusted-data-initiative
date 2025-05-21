@@ -84,7 +84,7 @@ def make_title(dict) -> str:
 def make_var_name(str: str) -> str:
   return re.sub("""[-\\s,./|'"()]+""", '_', str)
 
-def print_metadata(keyword, title, alt_keywords, like_clause, context, indent_count=0):
+def print_metadata(label, keyword, title, alt_keywords, like_clause, context, indent_count=0):
   if args.verbose > 0:
     alt_keywords_str = ''
     if alt_keywords and len(alt_keywords) > 0:
@@ -95,7 +95,7 @@ def print_metadata(keyword, title, alt_keywords, like_clause, context, indent_co
     context_str = ''
     if context and len(context) > 0:
       context_str = f", Context = {context}"
-    print(f"{indent_count*'  '}Keyword = {keyword}, Title = {title}{alt_keywords_str}{context_str}{like_clause_str}")
+    print(f"{indent_count*'  '}{label}: Keyword = {keyword}, Title = {title}{alt_keywords_str}{context_str}{like_clause_str}")
 
 def get_data(dict):
   """
@@ -158,6 +158,11 @@ def write_js_file(json_file, js_file, var_name):
       print(";", file=js)
 
 def write_topic_json_js(directory, keyword, title, parent_keyword, parent_title, ancestor_path, alt_keywords, like_clause, context):
+  """
+  Runs a duckdb query to extract the topic/keyword data and write it to a JSON file, 
+  and then convert that file to a JavaScript file for importing into the web pages.
+  Note: We don't write _all_ the keywords, because some lists are huge. The largest is ~8000!
+  """
   ancestor_prefix = ancestor_path.replace('/', '_')
   query_prefix    = make_keyword_query(keyword, like_clause)
   query_suffix    = [f" OR {make_keyword_query(kw['keyword'], None)}" for kw in alt_keywords]
@@ -176,7 +181,10 @@ COPY (
     dataset_url,
     creator_name,
     creator_url,
-    description
+    description,
+    5 AS first_N,
+    keywords[0:5] AS first_N_keywords,
+    len(keywords) > 5 AS keywords_longer_than_N
   FROM hf_expanded_metadata
   WHERE {kw_query}
 ) TO '{json_output}' (FORMAT json, ARRAY true);
@@ -319,7 +327,7 @@ alt_tags: {alt_tags_str}
 def process_topic(topic, parent_keyword, parent_title, grand_parent_keyword, grand_parent_title, ancestor_path, md_dir, json_dir, indent_count=0):
   keyword, title, alt_keywords, like_clause, context = \
     get_data(topic)
-  print_metadata(keyword, title, alt_keywords, like_clause, context, indent_count)
+  print_metadata("Topic", keyword, title, alt_keywords, like_clause, context, indent_count)
   if args.no_markdown == False:
     write_topic_markdown(md_dir, keyword, title, parent_keyword, parent_title, grand_parent_keyword, grand_parent_title, ancestor_path, alt_keywords, like_clause, context)
   if args.no_json == False:
@@ -329,6 +337,8 @@ if __name__ == "__main__":
 
   if is_process_running('duckdb'):
     error("It appears that 'duckdb' is already running. Please stop it then rerun this script.")
+
+  print("\n**** NOTE: This program runs for several minutes! ***\n")
 
   # The high-level categories and subcategories are somewhat arbitrary.
   # The "topics" are found in the data set. We use arrays
@@ -365,7 +375,7 @@ if __name__ == "__main__":
     if user_specified_categories and category_keyword not in categories_list:
       continue
 
-    print_metadata(category_keyword, category_title, category_alt_keywords, category_like_clause, category_context, indent_count=0)
+    print_metadata("Category", category_keyword, category_title, category_alt_keywords, category_like_clause, category_context, indent_count=0)
 
     category_var_name = make_var_name(category_keyword)
     category_path     = category_var_name
@@ -389,7 +399,7 @@ if __name__ == "__main__":
     for subcategory in category_subcategories:
       subcategory_keyword, subcategory_title, subcategory_alt_keywords, subcategory_like_clause, subcategory_context = \
         get_data(subcategory)
-      print_metadata(subcategory_keyword, subcategory_title, subcategory_alt_keywords, subcategory_like_clause, subcategory_context, indent_count=1)
+      print_metadata("Subcategory", subcategory_keyword, subcategory_title, subcategory_alt_keywords, subcategory_like_clause, subcategory_context, indent_count=1)
 
       subcategory_var_name = make_var_name(subcategory_keyword)
       subcategory_key      = subcategory_var_name

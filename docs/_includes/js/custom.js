@@ -50,9 +50,22 @@ function make_catalog_table(uniqueID, data, showKeywordCol, detailsID, saveJSONF
   });
   dataTable.on("rowClick", function(e, row){ 
     const data = row.getData();
+    var   keywords_str = data.first_N_keywords.join(', ')
+    if (data.keywords_longer_than_N) {
+        keywords_str += "... (see dataset for all keywords)";
+    };
     const desc = data.description.replace(/\\+[nr]/g, "\n").replace(/\\+t/g, "\t"); // clean up escape quoting!
     const descDiv = document.getElementById(detailsID);
-    const message = `<strong>Name:</strong> <a href="${data.dataset_url}" target="_blank">${data.name}</a><br/><strong>Keyword:</strong> ${data.keyword}<br/><strong>License:</strong> <a href="${data.license_url}" target="_blank">${data.license}</a><br/><strong>Creator:</strong> <a href="${data.creator_url}" target="_blank">${data.creator_name}</a><br/><strong>Description:</strong><p class="description">${desc}</p>`;
+    const message = `
+      <table>      
+        <tr><td><strong>Name:</strong></td><td><a href="${data.dataset_url}" target="_blank">${data.name}</a></td></tr>
+        <tr><td><strong>Keyword:</strong></td><td>${data.keyword}</td></tr>      
+        <tr><td><strong>Other Keywords:</strong></td><td>${keywords_str}</td></tr>      
+        <tr><td><strong>License:</strong></td><td><a href="${data.license_url}" target="_blank">${data.license}</a></td></tr>
+        <tr><td><strong>Creator:</strong></td><td><a href="${data.creator_url}" target="_blank">${data.creator_name}</a></td></tr>
+        <tr><td><strong>Description:</strong></td><td><p class="description">${desc}</p></td></tr>
+      </table>
+    `;
     descDiv.innerHTML = message;
   });
   return {"id": tableID, "table": dataTable};
