@@ -8,6 +8,29 @@ Dean Wampler, May 11, 2025
 
 We start with the metadata files created by Joe Olson's nightly job that queries Hugging Face for Croissant metadata. The format of those files is Parquet with a flat schema, with one column containing the entire JSON document for the metadata. Parsing that metadata proved difficult, because of deep "escape quoting". It was necessary to put together a set of tools to extract this metadata and load it into  [DuckDB](https://duckdb.org) for further analysis and processing.
 
+We start with what most people need to see, the commands to rebuild the catalog data for the website, then discuss in detail how we "got here".
+
+## Rebuilding the Catalog
+
+Ask Dean Wampler for help, if needed.
+
+Steps:
+
+* Parse a snapshot of data gathered from Hugging Face (short description TBD; see the rest of this README for details!)
+* `cd static-catalog` where most of the following work is done:
+* Update `data/reference/keyword-categories.json` with any changes to the hierarchy or keywords.
+* Run `src/scripts/write-category-files.py`. 
+  * It starts with a _shebang_, `/usr/bin/env python`, so you don't need to do `python src/...`. Try the `--help` option. Use `--verbose` to see what's happening. This script takes about 30 seconds to run. It writes one markdown file _for each topic_ under `markdown/processed/YYYY-MM-DD`. It writes one JavaScript and one JSON file _for each topic_ under `data/json/processed/YYYY-MM-DD`. 
+* Run `src/scripts/copy-files-to-docs.sh` to copy the files created.
+* Commit the changes and push upstream!
+
+Notes:
+* The markdown files copied to `../docs` (i.e., `../docs` is relative to our current working directory, `static-catalog`) correspond to _collections_ defined in `../docs/_config.yaml`; there is a subfolder for each collection, currently `_language`, `_domain`, and `_modality` (the `_` is required)
+* The JavaScript files are copied to `../docs/files/data/catalog`. They contain the static data, defined as JS arrays of objects. 
+* The markdown and JSON directory hierarchies are _different_. The markdown files need to be flat, only _collection_ subfolders (currently `_language`, `_domain`, and `_modality`). We tried making hierarchical directories here, but this isn't supported by Jekyll/Liquid. In contrast, the JavaScript files written to `../docs/files/data/catalog` are hierarchical, because they use our own convention and are handled appropriately by the JavaScript code used (see `../docs/_includes/data_table_template.html`). 
+
+The rest of this README covers how to parse the raw data into usable JSON. It doesn't cover editing of `static-catalog/data/reference/keyword-categories.json`, which was created manually!!
+
 ## Initial Setup
 
 Get a copy of the Parquet files with the Croissant metadata and use it as follows. Let's assume those Parquet files are in the current directory:
