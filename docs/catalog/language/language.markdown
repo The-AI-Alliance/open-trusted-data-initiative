@@ -6,7 +6,11 @@ has_children: true
 parent: Dataset Catalog
 ---
 
+# Datasets for Different Languages
+
 Datasets with different human languages, organized by geographic region in the &ldquo;child&rdquo; pages:
+
+## Keywords for the Langauges
 
 <div class="table-wrapper">
 <p>
@@ -18,10 +22,10 @@ Datasets with different human languages, organized by geographic region in the &
     {% if region != current_region %}
       {% assign current_region = region %}
   </p>
-  <h3>{{member.parent_title}}</h3>
+  <h3><a href="{{site.baseurl}}/catalog/language/{{member.parent_tag}}/">{{member.parent_title}}</a></h3>
   <p>
     {% endif %}
-    <a href="{{site.baseurl}}/catalog/language/{{member.parent_tag}}/#{{member.cleaned_tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+    <a href="{{site.baseurl}}/catalog/language/{{member.parent_tag}}/#{{member.cleaned_tag}}" class="topic-btn">{{member.name}}</a>
   {% endif %}
 {% endfor %}
 </p>

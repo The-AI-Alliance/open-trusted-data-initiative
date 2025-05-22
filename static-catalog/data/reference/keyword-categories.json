@@ -2438,14 +2438,6 @@
         "keyword": "multiple-choice"
       },
       {
-        "keyword": "music",
-        "alt-keywords": [
-          {
-            "keyword": "midi"
-          }
-        ]
-      },
-      {
         "keyword": "named-entity-recognition"
       },
       {
@@ -3535,6 +3527,14 @@
             "title": "%www.cms.gov/medicare/%",
             "context": "References to URLs at the U.S. government's Medicare site.",
             "like-clause": "%www.cms.gov/medicare%/"
+          }
+        ]
+      },
+      {
+        "keyword": "music",
+        "alt-keywords": [
+          {
+            "keyword": "midi"
           }
         ]
       },

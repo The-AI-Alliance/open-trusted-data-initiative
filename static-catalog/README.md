@@ -46,7 +46,7 @@ mkdir -p data/json
 You'll need these packages. PySpark is discussed next.
 
 ```shell
-pip install py4j pyspark psutil
+pip install psutil py4j pyspark
 ```
 
 ## Starting with Spark

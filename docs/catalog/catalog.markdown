@@ -30,7 +30,7 @@ has_children: true
 > 
 > <a name="#footnote1">1</a>: Some of the bad license links clearly intend to reference known licenses. We'll revisit those cases.
 
-## Languages
+## [For Languages]({{site.baseurl}}/catalog/language/language)
 
 <div class="table-wrapper">
 {% assign current_region = "" %}
@@ -41,30 +41,30 @@ has_children: true
     {% if region != current_region %}
       {% assign current_region = region %}
 </div>
-<h3>{{member.parent_title}}</h3>
+<h3><a href="{{site.baseurl}}/catalog/language/{{member.parent_tag}}/">{{member.parent_title}}</a></h3>
 <div class="table-wrapper">
     {% endif %}
-    <a href="{{site.baseurl}}/catalog/language/{{member.parent_tag}}/#{{member.cleaned_tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+    <a href="{{site.baseurl}}/catalog/language/{{member.parent_tag}}/#{{member.cleaned_tag}}" class="topic-btn">{{member.name}}</a>
   {% endif %}
 {% endfor %}
 </div>
 
-### Domains
+## [For Domains]({{site.baseurl}}/catalog/domain/)
 
 <div class="table-wrapper">
 {% for member in site.domain %}
   {% if member.tag != "domain" %}
-    <a href="{{site.baseurl}}/catalog/domain/#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+    <a href="{{site.baseurl}}/catalog/domain/#{{member.tag}}" class="topic-btn">{{member.name}}</a>
   {% endif %}
 {% endfor %}
 </div>
 
-### Modalities
+## [For Modalities]({{site.baseurl}}/catalog/modality/)
 
 <div class="table-wrapper">
 {% for member in site.modality %}
   {% if member.tag != "domain" %}
-    <a href="{{site.baseurl}}/catalog/modality/#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+    <a href="{{site.baseurl}}/catalog/modality/#{{member.tag}}" class="topic-btn">{{member.name}}</a>
   {% endif %}
 {% endfor %}
 </div>

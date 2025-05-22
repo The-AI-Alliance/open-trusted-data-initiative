@@ -8,9 +8,9 @@ language_tags: English
 
 # Open Trusted Data Initiative (OTDI) 
 
-## Take Me to the Data!
+## [Take Me to the Data!]({{site.baseurl}}/catalog/catalog)
 
-### Language
+### [For Languages]({{site.baseurl}}/catalog/language/language)
 
 <div class="table-wrapper">
 {% for member in site.language %}
@@ -20,7 +20,7 @@ language_tags: English
 {% endfor %}
 </div>
 
-### Domain
+### [For Domains]({{site.baseurl}}/catalog/domain)
 
 <div class="table-wrapper">
 {% for member in site.domain %}
@@ -30,7 +30,7 @@ language_tags: English
 {% endfor %}
 </div>
 
-### Modality
+### [For Modalities]({{site.baseurl}}/catalog/modality)
 
 <div class="table-wrapper">
 {% for member in site.modality %}

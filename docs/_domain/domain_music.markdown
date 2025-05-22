@@ -2,9 +2,9 @@
 name: Music
 tag: music
 cleaned_tag: music
-parent_tag: modality
-parent_title: Modalities
-grand_parent_tag: modality
+parent_tag: domain
+parent_title: Domains
+grand_parent_tag: domain
 grand_parent_title: None
 alt_tags: midi
 ---
@@ -13,8 +13,8 @@ alt_tags: midi
   keyword="music" 
   cleaned_keyword="music" 
   title="Music"
-  ancestor_path="modality" 
-  parent_title = "Modalities"
+  ancestor_path="domain" 
+  parent_title = "Domains"
   grand_parent_title = "None"
   alt_keywords="midi"
   context=""
