@@ -138,6 +138,50 @@ function makeResizableTableDiv(divID, tableID) {
   }
 }
 
+function enableTableFilter(id_prefix, table) {
+
+  // Define variables for input elements
+  var fieldEl = document.getElementById(`${id_prefix}-filter-field`);
+  var typeEl  = document.getElementById(`${id_prefix}-filter-type`);
+  var valueEl = document.getElementById(`${id_prefix}-filter-value`);
+  var clearEl = document.getElementById(`${id_prefix}-filter-clear`);
+
+  // Trigger setFilter function with correct parameters
+  function updateFilter(){
+    var filterVal = fieldEl.options[fieldEl.selectedIndex].value;
+    var typeVal = typeEl.options[typeEl.selectedIndex].value;
+    table.setFilter(filterVal, typeVal, valueEl.value);
+  }
+
+  //Update filters on value change
+  fieldEL.addEventListener("change", updateFilter);
+  typeEL.addEventListener("change", updateFilter);
+  valueEL.addEventListener("keyup", updateFilter);
+
+  //Clear filters on "Clear Filters" button click
+  clearEL.addEventListener("click", function(){
+    fieldEl.value = "";
+    typeEl.value = "=";
+    valueEl.value = "";
+    table.clearFilter();
+  });
+}
+
+//Build Tabulator
+var table = new Tabulator("#example-table", {
+    height:"311px",
+    layout:"fitColumns",
+    columns:[
+        {title:"Name", field:"name", width:200},
+        {title:"Progress", field:"progress", formatter:"progress", sorter:"number"},
+        {title:"Gender", field:"gender"},
+        {title:"Rating", field:"rating", formatter:"star", hozAlign:"center", width:100},
+        {title:"Favourite Color", field:"col"},
+        {title:"Date Of Birth", field:"dob", hozAlign:"center", sorter:"date"},
+        {title:"Driver", field:"car", hozAlign:"center", formatter:"tickCross"},
+    ],
+});
+
 // Calls the following after all DOM elements 
 // have been defined.
 // document.addEventListener("DOMContentLoaded", function(event) { 

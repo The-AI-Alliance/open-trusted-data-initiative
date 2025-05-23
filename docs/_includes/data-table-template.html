@@ -8,7 +8,10 @@
 
 {% assign other_keywords = include.alt_keywords | split: '|' %}
 {% if other_keywords.size > 0 %}
-<p>This set includes the following additional keywords: <strong>{{ other_keywords | join: "</strong>, <strong>" }}</strong><p>
+  <p>This set includes the following additional keywords: <strong>{{ other_keywords | join: "</strong>, <strong>" }}</strong><p>
+  var showKeywordColumn_{{ unique_id }} = true;
+{% else %} 
+  var showKeywordColumn_{{ unique_id }} = false;
 {% endif %}
 
 <blockquote id="{{ unique_id }}-selected-description">
@@ -21,6 +24,29 @@
   <a onclick="saveJSON(data_for_{{ unique_id }}, '{{ unique_id }}.json', '{{ unique_id }}-message');" href="javascript:;">Download this data (JSON).</a>
   <span id="{{ unique_id }}-message"></span>
 </p>
+<div id="{{ unique_id }}-filter-div">
+  <select id="filter-field">
+    <option></option>
+    <option value="name">Name</option>
+    {% if other_keywords.size > 0 %}
+    <option value="keyword">Keyword</option>
+    {% endif %}
+    <option value="license">License</option>
+    <option value="gender">Creator's Name</option>
+  </select>
+  <select id="{{ unique_id }}-filter-type">
+    <option value="=">=</option>
+    <option value="<"><</option>
+    <option value="<="><=</option>
+    <option value=">">></option>
+    <option value=">=">>=</option>
+    <option value="!=">!=</option>
+    <option value="like">like</option>
+  </select>
+  <input id="{{ unique_id }}-filter-value" type="text" placeholder="value to filter">
+  <button id="{{ unique_id }}-filter-clear">Clear Filter</button>
+</div>
+<div id="example-table"></div>
 <div id="{{unique_id}}-table-div-resizable" class="resizable">
   <div class="resizers">
     <div id="{{unique_id}}-table" class="table-wrapper">
@@ -51,6 +77,7 @@
     <div class="resizer-line bottom-line"></div>
     <script type="text/javascript">
       makeResizableTableDiv("{{unique_id}}-table-div-resizable", idTableRowCount.id);
+      enableTableFilters("{{ unique_id }}", idTableRowCount.table);
     </script>
   </div>
 </div>
