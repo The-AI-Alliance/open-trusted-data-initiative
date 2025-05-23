@@ -68,7 +68,7 @@ function make_catalog_table(uniqueID, data, showKeywordCol, detailsID, saveJSONF
     `;
     descDiv.innerHTML = message;
   });
-  return {"id": tableID, "table": dataTable};
+  return {"id": tableID, "table": dataTable, "numRows": data.length};
 }
 
 function saveJSON(data, fileName, messageSpanID) {

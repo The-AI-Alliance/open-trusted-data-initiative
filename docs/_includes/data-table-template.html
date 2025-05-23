@@ -17,6 +17,7 @@
   </div>
 </blockquote>
 <p>
+  <span id="{{ unique_id }}-num-rows"></span>
   <a onclick="saveJSON(data_for_{{ unique_id }}, '{{ unique_id }}.json', '{{ unique_id }}-message');" href="javascript:;">Download this data (JSON).</a>
   <span id="{{ unique_id }}-message"></span>
 </p>
@@ -29,7 +30,7 @@
       {% endcomment %}
       <script type="text/javascript" src="{{site.baseurl}}/files/data/catalog/{{ include.ancestor_path }}/{{include.cleaned_keyword}}.js"></script>
       <script type="text/javascript">
-        var idAndTable = make_catalog_table(
+        var idTableRowCount = make_catalog_table(
           "{{ unique_id }}",
           data_for_{{ unique_id }},
           {% if other_keywords.size > 0 %}
@@ -40,12 +41,17 @@
           "{{ unique_id }}-selected-description-div",
           "{{ unique_id }}.json"
         );
-        dataTables[idAndTable.id] = idAndTable.table;
+        dataTables[idTableRowCount.id] = idTableRowCount.table;
+        var numRowsSpan = document.getElementById("{{ unique_id }}-num-rows");
+        console.log(idTableRowCount.numRows, numRowsSpan);
+        if (numRowsSpan) {
+          numRowsSpan.innerHTML = `${idTableRowCount.numRows} rows.`;
+        }
       </script>
     </div>
     <div class="resizer-line bottom-line"></div>
     <script type="text/javascript">
-      makeResizableTableDiv("{{unique_id}}-table-div-resizable", idAndTable.id);
+      makeResizableTableDiv("{{unique_id}}-table-div-resizable", idTableRowCount.id);
     </script>
   </div>
 </div>
