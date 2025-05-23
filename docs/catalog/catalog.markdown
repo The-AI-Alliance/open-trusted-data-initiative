@@ -30,7 +30,9 @@ has_children: true
 > 
 > <a name="#footnote1">1</a>: Some of the bad license links clearly intend to reference known licenses. We'll revisit those cases.
 
-## [For Languages]({{site.baseurl}}/catalog/language/language)
+## The Current Keywords Cataloged
+
+### [For Languages]({{site.baseurl}}/catalog/language/language)
 
 <div class="table-wrapper">
 {% assign current_region = "" %}
@@ -49,7 +51,7 @@ has_children: true
 {% endfor %}
 </div>
 
-## [For Domains]({{site.baseurl}}/catalog/domain/)
+### [For Domains]({{site.baseurl}}/catalog/domain/)
 
 <div class="table-wrapper">
 {% for member in site.domain %}
@@ -59,7 +61,7 @@ has_children: true
 {% endfor %}
 </div>
 
-## [For Modalities]({{site.baseurl}}/catalog/modality/)
+### [For Modalities]({{site.baseurl}}/catalog/modality/)
 
 <div class="table-wrapper">
 {% for member in site.modality %}
@@ -69,7 +71,7 @@ has_children: true
 {% endfor %}
 </div>
 
-## Dataset Sources
+## Participating Organizations and Their Main Datasets
 
 The following organizations, shown in alphabetical order, maintain open data sets that are becoming part of our catalog.
 

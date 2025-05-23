@@ -12,8 +12,11 @@ has_children: false
 
 _Contribution_ means adding your dataset to our catalog. You continue to own and host the dataset where you see fit.
 
-## What Kinds of Datasets Do We Want?
-We seek a very broad range of datasets, including but not limited to the following.
+## What Kinds of Datasets Do We Seek?
+
+Broad, effective use of AI requires datasets covering the breadth of human languages, domains, modalities, and target applications. See the current [list of keywords]({{site.baseurl}}/catalog/catalog#the-current-keywords-cataloged) we have cataloged. 
+
+We have particular interests in these areas:
 
 #### Science and Industry
 
