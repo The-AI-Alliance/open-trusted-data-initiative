@@ -1,0 +1,22 @@
+---
+name: Aragonese
+tag: aragonese
+cleaned_tag: aragonese
+parent_tag: europe
+parent_title: European Languages
+grand_parent_tag: language
+grand_parent_title: Languages
+alt_tags: 
+---
+
+{% include data-table-template.html 
+  keyword="aragonese" 
+  cleaned_keyword="aragonese" 
+  title="Aragonese"
+  ancestor_path="language/europe" 
+  parent_title = "European Languages"
+  grand_parent_title = "Languages"
+  alt_keywords=""
+  context=""
+%}
+

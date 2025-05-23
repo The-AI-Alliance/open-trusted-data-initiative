@@ -8,6 +8,7 @@ has_children: false
 # News
 
 | :--- | :--- |
+| May&nbsp;21,&nbsp;2025 | We have added a &ldquo;static&rdquo; [catalog]({{site.baseurl}}/catalog/catalog/) of Hugging Face datasets with licenses, organized by the most common keywords. This is a temporary implementation while we work on a more feature-rich, interactive catalog |
 | May&nbsp;6,&nbsp;2025 | We are actively soliciting datasets covering diverse languages, domains, use cases, etc. Please see our [contributing]({{site.baseurl}}/contributing) page and the [catalog]({{site.baseurl}}/catalog/catalog/) of available datasets. |
 | February&nbsp;11,&nbsp;2025 | OTDI [announced](https://thealliance.ai/blog/announcing-open-trusted-data-initiative-otdi){:target="aias"} at the AI Action Summit in Paris. Added an [EPFL]({{site.baseurl}}/catalog/catalog/#epfl) dataset. |
 | January&nbsp;31,&nbsp;2025 | Added [Data for Good at Meta]({{site.baseurl}}/catalog/catalog/#meta) datasets. |
@@ -18,7 +19,7 @@ has_children: false
 | October&nbsp;15,&nbsp;2024 | [Common Crawl Foundation]({{site.baseurl}}/catalog/catalog/#common-crawl-foundation) joins the AI Alliance and the Open Trusted Data Initiative. |
 
 | **Authors**      | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
-| **Last Update**  | V0.3.0, 2025-05-06 |
+| **Last Update**  | V0.3.1, 2025-05-21 |
 
 
 <a name="join-us"></a>
@@ -97,6 +98,7 @@ The repo's [GITHUB_PAGES](https://github.com/The-AI-Alliance/open-trusted-data-i
 
 | Version  | Date       |
 | :------- | :--------- |
+| V0.3.1   | 2025-05-21 |
 | V0.3.0   | 2025-05-06 |
 | V0.2.8   | 2025-04-25 |
 | V0.2.7   | 2025-03-18 |

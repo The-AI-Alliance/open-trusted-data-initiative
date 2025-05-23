@@ -6,3 +6,5 @@ data/json/
 markdown/
 metastore_db/
 src/scripts/temp
+data/reference/keyword-categories.js
+tmp/

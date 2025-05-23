@@ -1,0 +1,3617 @@
+[
+    {
+    "keyword": "language",
+    "title":   "Languages",
+    "context": "Datasets with different human languages.",
+    "subcategories": [
+      {
+        "keyword": "africa",
+        "title": "African Languages",
+        "context": "Ancient and modern languages in Africa.",
+        "topics": [
+          {
+            "keyword": "afar"
+          },
+          {
+            "keyword": "afrikaans"
+          },
+          {
+            "keyword": "akan"
+          },
+          {
+            "keyword": "amharic"
+          },
+          {
+            "keyword": "baatonum"
+          },
+          {
+            "keyword": "bambara"
+          },
+          {
+            "keyword": "bemba (zambia)"
+          },
+          {
+            "keyword": "ber"
+          },
+          {
+            "keyword": "birwa",
+            "alt-keywords": [
+              {
+                "keyword": "northern sotho"
+              },
+              {
+                "keyword": "southern sotho"
+              }
+            ]
+          },
+          {
+            "keyword": "central kanuri"
+          },
+          {
+            "keyword": "chichewa",
+            "alt-keywords": [
+              {
+                "keyword": "nyanja"
+              }
+            ]
+          },
+          {
+            "keyword": "chokwe"
+          },
+          {
+            "keyword": "cwi bwamu",
+            "alt-keywords": [
+              {
+                "keyword": "bwamu, cwi"
+              },
+              {
+                "keyword": "twi"
+              }
+            ]
+          },
+          {
+            "keyword": "dagbani"
+          },
+          {
+            "keyword": "dinka",
+            "alt-keywords": [
+              {
+                "keyword": "southwestern dinka"
+              }
+            ]
+          },
+          {
+            "keyword": "dyula"
+          },
+          {
+            "keyword": "egyptian (ancient)"
+          },
+          {
+            "keyword": "fanti"
+          },
+          {
+            "keyword": "fulah"
+          },
+          {
+            "keyword": "ganda"
+          },
+          {
+            "keyword": "ghomálá'"
+          },
+          {
+            "keyword": "hausa"
+          },
+          {
+            "keyword": "herero"
+          },
+          {
+            "keyword": "igbo"
+          },
+          {
+            "keyword": "kabiyè"
+          },
+          {
+            "keyword": "kabuverdianu"
+          },
+          {
+            "keyword": "kabyle"
+          },
+          {
+            "keyword": "kachin"
+          },
+          {
+            "keyword": "kamba (kenya)"
+          },
+          {
+            "keyword": "kanuri"
+          },
+          {
+            "keyword": "kikuyu"
+          },
+          {
+            "keyword": "kimbundu"
+          },
+          {
+            "keyword": "kinyarwanda"
+          },
+          {
+            "keyword": "ko"
+          },
+          {
+            "keyword": "kongo"
+          },
+          {
+            "keyword": "koyraboro senni songhai"
+          },
+          {
+            "keyword": "kutu"
+          },
+          {
+            "keyword": "kwere"
+          },
+          {
+            "keyword": "lingala"
+          },
+          {
+            "keyword": "luba-katanga"
+          },
+          {
+            "keyword": "luba-lulua",
+            "alt-keywords": [
+              {
+                "keyword": "luba-kasai"
+              }
+            ]
+          },
+          {
+            "keyword": "luo (kenya and tanzania)"
+          },
+          {
+            "keyword": "makhuwa"
+          },
+          {
+            "keyword": "makonde"
+          },
+          {
+            "keyword": "malagasy"
+          },
+          {
+            "keyword": "mamara senoufo"
+          },
+          {
+            "keyword": "mossi",
+            "alt-keywords": [
+              {
+                "keyword": "moore"
+              }
+            ]
+          },
+          {
+            "keyword": "n'ko"
+          },
+          {
+            "keyword": "ndonga"
+          },
+          {
+            "keyword": "nigerian fulfulde",
+            "alt-keywords": [
+              {
+                "keyword": "western nigerian fulfulde"
+              }
+            ]
+          },
+          {
+            "keyword": "nigerian pidgin"
+          },
+          {
+            "keyword": "ndebele",
+            "alt-keywords": [
+              {
+                "keyword": "northern ndebele"
+              },
+              {
+                "keyword": "south ndebele"
+              }
+            ]
+          },
+          {
+            "keyword": "nuer"
+          },
+          {
+            "keyword": "nyankole",
+            "alt-keywords": [
+              {
+                "keyword": "nyankore"
+              }
+            ]
+          },
+          {
+            "keyword": "oromo"
+          },
+          {
+            "keyword": "plateau malagasy"
+          },
+          {
+            "keyword": "rundi",
+              "alt-keywords": [
+                {
+                  "keyword": "kirundi"
+                }
+              ]
+          },
+          {
+            "keyword": "sango"
+          },
+          {
+            "keyword": "sar"
+          },
+          {
+            "keyword": "seselwa creole french",
+            "alt-keywords": [
+              {
+                "keyword": "seychelles french creole"
+              }
+            ]
+          },
+          {
+            "keyword": "shona"
+          },
+          {
+            "keyword": "somali"
+          },
+          {
+            "keyword": "suba"
+          },
+          {
+            "keyword": "swahili",
+            "alt-keywords": [
+              {
+                "keyword": "swahili (individual language)"
+              },
+              {
+                "keyword": "swahili (macrolanguage)"
+              }
+            ]
+          },
+          {
+            "keyword": "susu"
+          },
+          {
+            "keyword": "swati"
+          },
+          {
+            "keyword": "tachelhit"
+          },
+          {
+            "keyword": "tamasheq"
+          },
+          {
+            "keyword": "tamazight",
+            "alt-keywords": [
+              {
+                "keyword": "central atlas tamazight"
+              },
+              {
+                "keyword": "moroccan tamazight"
+              },
+              {
+                "keyword": "standard moroccan tamazight"
+              }
+            ]
+          },
+          {
+            "keyword": "tigrigna",
+            "alt-keywords": [
+              {
+                "keyword": "tigrinya"
+              }
+            ]
+          },
+          {
+            "keyword": "tsonga"
+          },
+          {
+            "keyword": "setswana",
+            "alt-keywords": [
+              {
+                "keyword": "tswana"
+              }
+            ]
+          },
+          {
+            "keyword": "tumbuka"
+          },
+          {
+            "keyword": "umbundu"
+          },
+          {
+            "keyword": "venda"
+          },
+          {
+            "keyword": "west central oromo"
+          },
+          {
+            "keyword": "wolaytta"
+          },
+          {
+            "keyword": "wolof"
+          },
+          {
+            "keyword": "xhosa"
+          },
+          {
+            "keyword": "yoruba"
+          },
+          {
+            "keyword": "zulu"
+          }
+        ]
+      },
+      {
+        "keyword": "americas",
+        "title": "Languages in the Americas",
+        "context": "Ancient and modern languages in the Americas.",
+        "topics": [
+          {
+            "keyword": "achuar-shiwiar"
+          },
+          {
+            "keyword": "algonquin"
+          },
+          {
+            "keyword": "arabela"
+          },
+          {
+            "keyword": "asháninka"
+          },
+          {
+            "keyword": "aymara"
+          },
+          {
+            "keyword": "bora"
+          },
+          {
+            "keyword": "candoshi-shapra"
+          },
+          {
+            "keyword": "caquinte"
+          },
+          {
+            "keyword": "caribbean hindustani"
+          },
+          {
+            "keyword": "cashibo-cacataibo"
+          },
+          {
+            "keyword": "cashinahua"
+          },
+          {
+            "keyword": "central aymara"
+          },
+          {
+            "keyword": "central bikol"
+          },
+          {
+            "keyword": "central bontok"
+          },
+          {
+            "keyword": "central mazahua"
+          },
+          {
+            "keyword": "chachi"
+          },
+          {
+            "keyword": "chayahuita"
+          },
+          {
+            "keyword": "cherokee"
+          },
+          {
+            "keyword": "chimborazo highland quichua"
+          },
+          {
+            "keyword": "chácobo"
+          },
+          {
+            "keyword": "cofán"
+          },
+          {
+            "keyword": "cree"
+          },
+          {
+            "keyword": "eastern huasteca nahuatl"
+          },
+          {
+            "keyword": "eastern maroon creole"
+          },
+          {
+            "keyword": "galibi carib"
+          },
+          {
+            "keyword": "garifuna"
+          },
+          {
+            "keyword": "guarani",
+            "alt-keywords": [
+              {
+                "keyword": "guaraní"
+              }
+            ]
+          },
+          {
+            "keyword": "haitian"
+          },
+          {
+            "keyword": "highland puebla nahuatl"
+          },
+          {
+            "keyword": "huastec"
+          },
+          {
+            "keyword": "huichol"
+          },
+          {
+            "keyword": "imbabura highland quichua"
+          },
+          {
+            "keyword": "inuktitut"
+          },
+          {
+            "keyword": "inupiaq"
+          },
+          {
+            "keyword": "ixil"
+          },
+          {
+            "keyword": "jamaican creole english"
+          },
+          {
+            "keyword": "k'iche'"
+          },
+          {
+            "keyword": "kalaallisut"
+          },
+          {
+            "keyword": "kaqchikel"
+          },
+          {
+            "keyword": "kekchí"
+          },
+          {
+            "keyword": "mapudungun"
+          },
+          {
+            "keyword": "mezquital otomi"
+          },
+          {
+            "keyword": "mi'kmaq"
+          },
+          {
+            "keyword": "murui huitoto",
+            "alt-keywords": [
+              {
+                "keyword": "murui witoto"
+              }
+            ]
+          },
+          {
+            "keyword": "navajo"
+          },
+          {
+            "keyword": "ngäbere"
+          },
+          {
+            "keyword": "nomatsiguenga",
+            "alt-keywords": [
+              {
+                "keyword": "nomatsigenga"
+              }
+            ]
+          },
+          {
+            "keyword": "orpo"
+          },
+          {
+            "keyword": "quechua",
+            "alt-keywords": [
+              {
+                "keyword": "ayacucho quechua"
+              },
+              {
+                "keyword": "cajamarca quechua"
+              },
+              {
+                "keyword": "cusco quechua"
+              },
+              {
+                "keyword": "huallaga huánuco quechua"
+              },
+              {
+                "keyword": "huaylla wanca quechua"
+              },
+              {
+                "keyword": "north bolivian quechua"
+              },
+              {
+                "keyword": "north junín quechua"
+              },
+              {
+                "keyword": "northern conchucos ancash quechua"
+              },
+              {
+                "keyword": "san martín quechua"
+              },
+              {
+                "keyword": "south bolivian quechua"
+              }
+            ]
+          },
+          {
+            "keyword": "papantla totonac"
+          },
+          {
+            "keyword": "purepecha"
+          },
+          {
+            "keyword": "saramaccan"
+          },
+          {
+            "keyword": "sharanahua"
+          },
+          {
+            "keyword": "shipibo-conibo"
+          },
+          {
+            "keyword": "shuar"
+          },
+          {
+            "keyword": "siona"
+          },
+          {
+            "keyword": "sirionó"
+          },
+          {
+            "keyword": "sranan tongo"
+          },
+          {
+            "keyword": "ticuna"
+          },
+          {
+            "keyword": "tzotzil"
+          },
+          {
+            "keyword": "wayuu"
+          },
+          {
+            "keyword": "yine"
+          },
+          {
+            "keyword": "yosondúa mixtec"
+          },
+          {
+            "keyword": "yucateco"
+          },
+          {
+            "keyword": "zapotec"
+          }
+        ]
+      },
+      {
+        "keyword": "asia",
+        "title": "Asian Languages",
+        "context": "Ancient and modern languages in Asia.",
+        "topics": [
+          {
+            "keyword": "abkhaz"
+          },
+          {
+            "keyword": "altai",
+            "alt-keywords": [
+              {
+                "keyword": "northern altai"
+              },
+              {
+                "keyword": "southern altai"
+              }
+            ]
+          },
+          {
+            "keyword": "amis"
+          },
+          {
+            "keyword": "angika"
+          },
+          {
+            "keyword": "armenian",
+            "alt-keywords": [
+              {
+                "keyword": "western armenian"
+              }
+            ]
+          },
+          {
+            "keyword": "assamese"
+          },
+          {
+            "keyword": "avaric"
+          },
+          {
+            "keyword": "awadhi"
+          },
+          {
+            "keyword": "azerbaijani"
+          },
+          {
+            "keyword": "balinese"
+          },
+          {
+            "keyword": "balochi",
+            "alt-keywords": [
+              {
+                "keyword": "baluchi"
+              },
+              {
+                "keyword": "eastern balochi"
+              },
+              {
+                "keyword": "northern balochi"
+              },
+              {
+                "keyword": "southern balochi",
+                "alt-keywords": [
+                  {
+                    "keyword": "balóchi"
+                  }
+                ]
+              },
+              {
+                "keyword": "western balochi"
+              }
+            ]
+          },
+          {
+            "keyword": "bashkir"
+          },
+          {
+            "keyword": "bengali"
+          },
+          {
+            "keyword": "bishnupriya"
+          },
+          {
+            "keyword": "bodo (india)"
+          },
+          {
+            "keyword": "bolinao"
+          },
+          {
+            "keyword": "burmese"
+          },
+          {
+            "keyword": "carpathian romani"
+          },
+          {
+            "keyword": "cebuano"
+          },
+          {
+            "keyword": "central kurdish"
+          },
+          {
+            "keyword": "chechen"
+          },
+          {
+            "keyword": "chhattisgarhi"
+          },
+          {
+            "keyword": "chinese",
+            "alt-keywords": [
+              {
+              "keyword": "achinese"
+              },
+              {
+              "keyword": "literary chinese"
+              },
+              {
+                "keyword": "mandarin chinese"
+              },
+              {
+                "keyword": "min nan chinese"
+              },
+              {
+                "keyword": "wu chinese"
+              },
+              {
+                "keyword": "yue chinese"
+              },
+              {
+                "keyword": "zhuang"
+              }
+            ]
+          },
+          {
+            "keyword": "chuvash"
+          },
+          {
+            "keyword": "crimean tatar"
+          },
+          {
+            "keyword": "dari"
+          },
+          {
+            "keyword": "dhivehi"
+          },
+          {
+            "keyword": "dimli (individual language)"
+          },
+          {
+            "keyword": "divehi"
+          },
+          {
+            "keyword": "dogri (macrolanguage)"
+          },
+          {
+            "keyword": "dzongkha"
+          },
+          {
+            "keyword": "eastern tamang"
+          },
+          {
+            "keyword": "erzya"
+          },
+          {
+            "keyword": "farsi"
+          },
+          {
+            "keyword": "filipino"
+          },
+          {
+            "keyword": "gilaki"
+          },
+          {
+            "keyword": "goan konkani"
+          },
+          {
+            "keyword": "gujarati"
+          },
+          {
+            "keyword": "hakha chin"
+          },
+          {
+            "keyword": "hakka chinese"
+          },
+          {
+            "keyword": "halh mongolian"
+          },
+          {
+            "keyword": "hindi"
+          },
+          {
+            "keyword": "hinglish"
+          },
+          {
+            "keyword": "iloko"
+          },
+          {
+            "keyword": "ingush"
+          },
+          {
+            "keyword": "iranian persian"
+          },
+          {
+            "keyword": "japanese"
+          },
+          {
+            "keyword": "kalmyk"
+          },
+          {
+            "keyword": "kankanaey"
+          },
+          {
+            "keyword": "kannada"
+          },
+          {
+            "keyword": "karachay-balkar"
+          },
+          {
+            "keyword": "karelian"
+          },
+          {
+            "keyword": "kashmiri"
+          },
+          {
+            "keyword": "kazakh"
+          },
+          {
+            "keyword": "khmer"
+          },
+          {
+            "keyword": "kirghiz"
+          },
+          {
+            "keyword": "kirmanjki (individual language)"
+          },
+          {
+            "keyword": "komi",
+            "alt-keywords": [
+              {
+                "keyword": "komi-permyak"
+              },
+              {
+                "keyword": "komi-zyrian"
+              }
+            ]
+          },
+          {
+            "keyword": "korean"
+          },
+          {
+            "keyword": "kurdish"
+          },
+          {
+            "keyword": "kyrgyz"
+          },
+          {
+            "keyword": "lak"
+          },
+          {
+            "keyword": "lao"
+          },
+          {
+            "keyword": "lezghian",
+            "alt-keywords": [
+              {
+                "keyword": "lezgi"
+              }
+            ]
+          },
+          {
+            "keyword": "limbu"
+          },
+          {
+            "keyword": "lushai",
+            "alt-keywords": [
+              {
+                "keyword": "mizo"
+              }
+            ]
+          },
+          {
+            "keyword": "magahi"
+          },
+          {
+            "keyword": "maithili"
+          },
+          {
+            "keyword": "malay",
+            "alt-keywords": [
+              {
+                "keyword": "kupang malay"
+              },
+              {
+                "keyword": "malay (individual language)"
+              },
+              {
+                "keyword": "malay (macrolanguage)"
+              },
+              {
+                "keyword": "standard malay"
+              }
+            ]
+          },
+          {
+            "keyword": "malayalam"
+          },
+          {
+            "keyword": "manipuri",
+            "alt-keywords": [
+              {
+                "keyword": "meitei"
+              }
+            ]
+          },
+          {
+            "keyword": "mansi"
+          },
+          {
+            "keyword": "marathi"
+          },
+          {
+            "keyword": "mari (russia)"
+          },
+          {
+            "keyword": "mazanderani",
+            "alt-keywords": [
+              {
+                "keyword": "mazandarani"
+              }
+            ]
+          },
+          {
+            "keyword": "mingrelian"
+          },
+          {
+            "keyword": "mongolian"
+          },
+          {
+            "keyword": "nepali"
+          },
+          {
+            "keyword": "nepali (individual language)"
+          },
+          {
+            "keyword": "newari",
+            "alt-keywords": [
+              {
+                "keyword": "newari"
+              }
+            ]
+          },
+          {
+            "keyword": "north azerbaijani"
+          },
+          {
+            "keyword": "northern kurdish"
+          },
+          {
+            "keyword": "northern uzbek"
+          },
+          {
+            "keyword": "odia"
+          },
+          {
+            "keyword": "oriya"
+          },
+          {
+            "keyword": "oriya (macrolanguage)"
+          },
+          {
+            "keyword": "ossetian",
+            "alt-keywords": [
+              {
+                "keyword": "ossetic"
+              }
+            ]
+          },
+          {
+            "keyword": "pampanga",
+            "alt-keywords": [
+              {
+                "keyword": "kapampangan"
+              },
+              {
+                "keyword": "pampangan"
+              }
+            ]
+          },
+          {
+            "keyword": "pangasinan"
+          },
+          {
+            "keyword": "panjabi",
+            "alt-keywords": [
+              {
+                "keyword": "punjabi"
+              }
+            ]
+          },
+          {
+            "keyword": "pashto",
+            "alt-keywords": [
+              {
+                "keyword": "pushto"
+              },
+              {
+                "keyword": "southern pashto"
+              }
+            ]
+          },
+          {
+            "keyword": "persian"
+          },
+          {
+            "keyword": "russia buriat"
+          },
+          {
+            "keyword": "sanskrit"
+          },
+          {
+            "keyword": "santali"
+          },
+          {
+            "keyword": "saraiki"
+          },
+          {
+            "keyword": "sediq"
+          },
+          {
+            "keyword": "shan"
+          },
+          {
+            "keyword": "sindhi"
+          },
+          {
+            "keyword": "sinhala"
+          },
+          {
+            "keyword": "south azerbaijani"
+          },
+          {
+            "keyword": "tagalog"
+          },
+          {
+            "keyword": "tajik"
+          },
+          {
+            "keyword": "tamil"
+          },
+          {
+            "keyword": "tatar"
+          },
+          {
+            "keyword": "telugu"
+          },
+          {
+            "keyword": "thai"
+          },
+          {
+            "keyword": "tibetan"
+          },
+          {
+            "keyword": "turkish",
+            "alt-keywords": [
+              {
+                "keyword": "ottoman turkish (1500-1928)"
+              },
+              {
+                "keyword": "zaza"
+              }
+            ]
+          },
+          {
+            "keyword": "turkmen"
+          },
+          {
+            "keyword": "tuvan",
+            "alt-keywords": [
+              {
+                "keyword": "tuvinian"
+              }
+            ]
+          },
+          {
+            "keyword": "udmurt"
+          },
+          {
+            "keyword": "uyghur",
+            "alt-keywords": [
+              {
+                "keyword": "uighur"
+              }
+            ]
+          },
+          {
+            "keyword": "uzbek"
+          },
+          {
+            "keyword": "vietnamese"
+          },
+          {
+            "keyword": "waray (philippines)"
+          },
+          {
+            "keyword": "western bukidnon manobo"
+          },
+          {
+            "keyword": "yakut"
+          }
+        ]
+      },
+      {
+        "keyword": "europe",
+        "title": "European Languages",
+        "context": "Ancient and modern languages in Europe.",
+        "topics": [
+          {
+            "keyword": "adyghe",
+            "alt-keywords": [
+              {
+                "keyword": "kabardian"
+              }
+            ]
+          },
+          {
+            "keyword": "albanian",
+            "alt-keywords": [
+              {
+                "keyword": "tosk albanian"
+              }
+            ]
+          },
+          {
+            "keyword": "aragonese"
+          },
+          {
+            "keyword": "arpitan"
+          },
+          {
+            "keyword": "asturian"
+          },
+          {
+            "keyword": "basque"
+          },
+          {
+            "keyword": "bavarian"
+          },
+          {
+            "keyword": "belarusian"
+          },
+          {
+            "keyword": "bosnian"
+          },
+          {
+            "keyword": "breton"
+          },
+          {
+            "keyword": "bulgarian"
+          },
+          {
+            "keyword": "catalan"
+          },
+          {
+            "keyword": "cornish"
+          },
+          {
+            "keyword": "corsican"
+          },
+          {
+            "keyword": "croatian"
+          },
+          {
+            "keyword": "czech"
+          },
+          {
+            "keyword": "danish"
+          },
+          {
+            "keyword": "dutch"
+          },
+          {
+            "keyword": "english",
+            "alt-keywords": [
+              {
+                "keyword": "emoji"
+              }
+            ]
+          },
+          {
+            "keyword": "esperanto"
+          },
+          {
+            "keyword": "estonian"
+          },
+          {
+            "keyword": "faroese"
+          },
+          {
+            "keyword": "finnish"
+          },
+          {
+            "keyword": "french",
+            "alt-keywords": [
+              {
+                "keyword": "droit français"
+              },
+              {
+                "keyword": "french law"
+              },
+              {
+                "keyword": "french prompts"
+              },
+              {
+                "keyword": "squad_v2_french_translated"
+              }
+            ]
+          },
+          {
+            "keyword": "frisian",
+            "alt-keywords": [
+              {
+                "keyword": "western frisian"
+              }
+            ]
+          },
+          {
+            "keyword": "friulian"
+          },
+          {
+            "keyword": "gagauz"
+          },
+          {
+            "keyword": "galician"
+          },
+          {
+            "keyword": "german",
+            "alt-keywords": [
+              {
+                "keyword": "swiss german"
+              }
+            ]
+          },
+          {
+            "keyword": "georgian"
+          },
+          {
+            "keyword": "greek",
+            "alt-keywords": [
+              {
+                "keyword": "ancient greek (to 1453)",
+                "title": "Ancient Greek (to 1453)"
+              },
+              {
+                "keyword": "modern greek (1453-)"
+              }
+            ]
+          },
+          {
+            "keyword": "hungarian"
+          },
+          {
+            "keyword": "icelandic"
+          },
+          {
+            "keyword": "ido"
+          },
+          {
+            "keyword": "irish"
+          },
+          {
+            "keyword": "italian"
+          },
+          {
+            "keyword": "kashubian"
+          },
+          {
+            "keyword": "kölsch",
+            "alt-keywords": [
+              {
+                "keyword": "ripuarian"
+              }
+            ]
+          },
+          {
+            "keyword": "ladin"
+          },
+          {
+            "keyword": "ladino"
+          },
+          {
+            "keyword": "latgalian"
+          },
+          {
+            "keyword": "latin"
+          },
+          {
+            "keyword": "latvian",
+            "alt-keywords": [
+              {
+                "keyword": "standard latvian"
+              }
+            ]
+          },
+          {
+            "keyword": "ligurian"
+          },
+          {
+            "keyword": "limburgan"
+          },
+          {
+            "keyword": "limburgish"
+          },
+          {
+            "keyword": "lithuanian"
+          },
+          {
+            "keyword": "liv"
+          },
+          {
+            "keyword": "livvi",
+            "alt-keywords": [
+              {
+                "keyword": "livvi-Karelian"
+              }
+            ]
+          },
+          {
+            "keyword": "lombard"
+          },
+          {
+            "keyword": "low german"
+          },
+          {
+            "keyword": "lower sorbian"
+          },
+          {
+            "keyword": "luxembourgish"
+          },
+          {
+            "keyword": "macedonian"
+          },
+          {
+            "keyword": "maltese"
+          },
+          {
+            "keyword": "manx"
+          },
+          {
+            "keyword": "mari",
+            "alt-keywords": [
+              {
+                "keyword": "eastern mari"
+              },
+              {
+                "keyword": "western mari"
+              }
+            ]
+          },
+          {
+            "keyword": "mirandese"
+          },
+          {
+            "keyword": "moksha"
+          },
+          {
+            "keyword": "neapolitan"
+          },
+          {
+            "keyword": "northern sami"
+          },
+          {
+            "keyword": "norwegian",
+            "alt-keywords": [
+              {
+                "keyword": "norwegian bokmål"
+              },
+              {
+                "keyword": "norwegian nynorsk"
+              }
+            ]
+          },
+          {
+            "keyword": "occitan"
+          },
+          {
+            "keyword": "occitan (post 1500)"
+          },
+          {
+            "keyword": "old church slavonic"
+          },
+          {
+            "keyword": "old english (ca. 450-1100)",
+            "alt-keywords": [
+              {
+                "keyword": "anglo-saxon"
+              }
+            ]
+          },
+          {
+            "keyword": "old norse"
+          },
+            {
+            "keyword": "picard"
+          },
+          {
+            "keyword": "piemontese"
+          },
+          {
+            "keyword": "polish"
+          },
+          {
+            "keyword": "portuguese"
+          },
+          {
+            "keyword": "romanian"
+          },
+          {
+            "keyword": "romansh,"
+          },
+          {
+            "keyword": "romany"
+          },
+          {
+            "keyword": "russian"
+          },
+          {
+            "keyword": "spanish",
+            "alt-keywords": [
+              {
+                "keyword": "ciempiess"
+              }
+            ]
+          },
+          {
+            "keyword": "sardinian"
+          },
+          {
+            "keyword": "saterfriesisch"
+          },
+          {
+            "keyword": "scots"
+          },
+          {
+            "keyword": "scottish gaelic"
+          },
+          {
+            "keyword": "serbian"
+          },
+          {
+            "keyword": "serbo-croatian"
+          },
+          {
+            "keyword": "sicilian"
+          },
+          {
+            "keyword": "silesian"
+          },
+          {
+            "keyword": "slovak"
+          },
+          {
+            "keyword": "slovenian"
+          },
+          {
+            "keyword": "swedish"
+          },
+          {
+            "keyword": "turkish",
+            "alt-keywords": [
+              {
+                "keyword": "ottoman turkish (1500-1928)"
+              },
+              {
+                "keyword": "zaza"
+              }
+            ]
+          },
+          {
+            "keyword": "ukrainian"
+          },
+          {
+            "keyword": "upper sorbian"
+          },
+          {
+            "keyword": "venetian"
+          },
+          {
+            "keyword": "vlax romani"
+          },
+          {
+            "keyword": "volapük"
+          },
+          {
+            "keyword": "walloon"
+          },
+          {
+            "keyword": "welsh"
+          },
+          {
+            "keyword": "yiddish",
+            "alt-keywords": [
+              {
+                "keyword": "eastern yiddish"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "keyword": "middle_east",
+        "title": "Languages in the Middle East",
+        "context": "Ancient and modern languages from the Middle East.",
+        "topics": [
+          {
+            "keyword": "arabic",
+            "alt-keywords": [
+              {
+                "keyword": "egyptian arabic"
+              },
+              {
+                "keyword": "levantine arabic"
+              },
+              {
+                "keyword": "mesopotamian arabic"
+              },
+              {
+                "keyword": "moroccan arabic"
+              },
+              {
+                "keyword": "najdi arabic"
+              },
+              {
+                "keyword": "standard arabic"
+              },
+              {
+                "keyword": "ta'izzi-adeni arabic"
+              },
+              {
+                "keyword": "tunisian arabic"
+              }
+            ]
+          },
+          {
+            "keyword": "akkadian"
+          },
+          {
+            "keyword": "ancient hebrew"
+          },
+          {
+            "keyword": "assyrian neo-aramaic"
+          },
+          {
+            "keyword": "hebrew"
+          }
+        ]
+      },
+      {
+        "keyword": "pacific",
+        "title": "Languages of the Pacific Islands and Nations",
+        "context": "Ancient and modern languages in the Pacific islands, Australia, and New Zealand.",
+        "topics": [
+          {
+            "keyword": "ambulas"
+          },
+          {
+            "keyword": "banjar"
+          },
+          {
+            "keyword": "batak toba"
+          },
+          {
+            "keyword": "benabena"
+          },
+          {
+            "keyword": "betawi"
+          },
+          {
+            "keyword": "bhojpuri"
+          },
+          {
+            "keyword": "bine"
+          },
+          {
+            "keyword": "bislama"
+          },
+          {
+            "keyword": "buginese"
+          },
+          {
+            "keyword": "bunama"
+          },
+          {
+            "keyword": "burarra"
+          },
+          {
+            "keyword": "chamorro"
+          },
+          {
+            "keyword": "chuukese"
+          },
+          {
+            "keyword": "dhao"
+          },
+          {
+            "keyword": "doromu-koki"
+          },
+          {
+            "keyword": "fiji hindi"
+          },
+          {
+            "keyword": "fijian"
+          },
+          {
+            "keyword": "halia"
+          },
+          {
+            "keyword": "hawaiian"
+          },
+          {
+            "keyword": "highland popoluca"
+          },
+          {
+            "keyword": "hiri motu"
+          },
+          {
+            "keyword": "iamalele"
+          },
+          {
+            "keyword": "indonesian"
+          },
+          {
+            "keyword": "javanese"
+          },
+          {
+            "keyword": "kriol"
+          },
+          {
+            "keyword": "kto"
+          },
+          {
+            "keyword": "kâte"
+          },
+          {
+            "keyword": "madurese"
+          },
+          {
+            "keyword": "makasar"
+          },
+          {
+            "keyword": "maori",
+            "alt-keywords": [
+              {
+                "keyword": "māori"
+              }
+            ]
+          },
+          {
+            "keyword": "marshallese"
+          },
+          {
+            "keyword": "mende (papua new guinea)"
+          },
+          {
+            "keyword": "minangkabau"
+          },
+          {
+            "keyword": "mountain koiali",
+            "alt-keywords": [
+              {
+                "keyword": "mountain koiari"
+              }
+            ]
+          },
+          {
+            "keyword": "musi"
+          },
+          {
+            "keyword": "muyuw"
+          },
+          {
+            "keyword": "nauru"
+          },
+          {
+            "keyword": "ngaju"
+          },
+          {
+            "keyword": "nias"
+          },
+          {
+            "keyword": "novial",
+            "alt-keywords": [
+              {
+                "keyword": "lisabata-nuniali"
+              }
+            ]
+          },
+          {
+            "keyword": "pele-ata",
+            "alt-keywords": [
+              {
+                "keyword": "peleata"
+              },
+              {
+                "keyword": "pele"
+              }
+            ]
+          },
+          {
+            "keyword": "pohnpeian"
+          },
+          {
+            "keyword": "pular"
+          },
+          {
+            "keyword": "rejang"
+          },
+          {
+            "keyword": "samoan"
+          },
+          {
+            "keyword": "sinaugoro"
+          },
+          {
+            "keyword": "somba-siawari"
+          },
+          {
+            "keyword": "sundanese",
+            "alt-keywords": [
+              {
+                "keyword": "sunda"
+              }
+            ]
+          },
+          {
+            "keyword": "tahitian"
+          },
+          {
+            "keyword": "tetun dili",
+            "alt-keywords": [
+              {
+                "keyword": "tetum"
+              }
+            ]
+          },
+          {
+            "keyword": "tok pisin"
+          },
+          {
+            "keyword": "tonga",
+            "alt-keywords": [
+              {
+                "keyword": "tonga (tonga islands)"
+              }
+            ]
+          },
+          {
+            "keyword": "warlpiri"
+          },
+          {
+            "keyword": "west kewa",
+            "alt-keywords": [
+              {
+                "keyword": "west kewapi"
+              }
+            ]
+          },
+          {
+            "keyword": "yapese"
+          },
+          {
+            "keyword": "yele"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "keyword": "modality",
+    "title":   "Modalities",
+    "context": "Datasets with different modalities (like text vs. video) or broad purposes, like classification.",
+    "topics": [
+      {
+        "keyword": "3d",
+        "context": "Three dimensional data",
+        "title": "3D",
+        "alt-keywords": [
+          {
+            "keyword": "depth-estimation"
+          },
+          {
+            "keyword": "image-to-3d"
+          },
+          {
+            "keyword": "text-to-3d"
+          }
+        ]
+      },
+      {
+        "keyword": "agents",
+        "alt-keywords": [
+          {
+            "keyword": "agent"
+          },
+          {
+            "keyword": "downstream-task"
+          },
+          {
+            "keyword": "downstream-tasks"
+          },
+          {
+            "keyword": "function-calling"
+          },
+          {
+            "keyword": "language-agent"
+          }
+        ]
+      },
+      {
+        "keyword": "alignment",
+        "alt-keywords": [
+          {
+            "keyword": "acceptability-classification"
+          },
+          {
+            "keyword": "alignment-lab-ai"
+          },
+          {
+            "keyword": "explainability"
+          },
+          {
+            "keyword": "fairness"
+          },
+          {
+            "keyword": "grounding"
+          },
+          {
+            "keyword": "hallucination"
+          },
+          {
+            "keyword": "relevance"
+          }
+        ]
+      },
+      {
+        "keyword": "arrow",
+        "context": "Arrow formatted data"
+      },
+      {
+        "keyword": "arxiv",
+        "like-clause": "arxiv%",
+        "context": "References to arXiv articles. (Many keywords starting with 'arxiv:'.)"
+      },
+      {
+        "keyword": "audio",
+        "alt-keywords": [
+          {
+            "keyword": "audio-classification"
+          },
+          {
+            "keyword": "audio-to-audio"
+          },
+          {
+            "keyword": "speaker-identification"
+          },
+          {
+            "keyword": "text-to-audio"
+          },
+          {
+            "keyword": "voice"
+          },
+          {
+            "keyword": "voice-activity-detection"
+          }
+        ]
+      },
+      {
+        "keyword": "benchmark",
+        "context": "Datasets associated with benchmarks of any kind.",
+        "alt-keywords": [
+          {
+            "keyword": "alignment"
+          },
+          {
+            "keyword": "aveni-bench"
+          },
+          {
+            "keyword": "benchmarks"
+          },
+          {
+            "keyword": "gsm8k",
+            "title": "GSM8K"
+          },
+          {
+            "keyword": "mteb",
+            "title": "MTEB"
+          },
+          {
+            "keyword": "nli"
+          },
+          {
+            "keyword": "test"
+          },
+          {
+            "keyword": "testing"
+          }
+        ]
+      },
+      {
+        "keyword": "classification",
+        "context": "All aspects of classification: text, images, etc.",
+        "alt-keywords": [
+          {
+            "keyword": "acceptability-classification"
+          },
+          {
+            "keyword": "audio-classification"
+          },
+          {
+            "keyword": "entity-linking-classification"
+          },
+          {
+            "keyword": "image-classification"
+          },
+          {
+            "keyword": "intent-classification"
+          },
+          {
+            "keyword": "multi-class-classification"
+          },
+          {
+            "keyword": "multi-class-image-classification"
+          },
+          {
+            "keyword": "multi-input-text-classification"
+          },
+          {
+            "keyword": "multi-label-classification"
+          },
+          {
+            "keyword": "multi-label-image-classification"
+          },
+          {
+            "keyword": "segmentation"
+          },
+          {
+            "keyword": "semantic-segmentation"
+          },
+          {
+            "keyword": "semantic-similarity-classification"
+          },
+          {
+            "keyword": "semantic-similarity-scoring"
+          },
+          {
+            "keyword": "sentiment-classification"
+          },
+          {
+            "keyword": "sentiment-scoring"
+          },
+          {
+            "keyword": "tabular-classification"
+          },
+          {
+            "keyword": "tabular-multi-class-classification"
+          },
+          {
+            "keyword": "tabular-multi-label-classification"
+          },
+          {
+            "keyword": "text-classification"
+          },
+          {
+            "keyword": "text-scoring"
+          },
+          {
+            "keyword": "token classification"
+          },
+          {
+            "keyword": "token-classification"
+          },
+          {
+            "keyword": "topic-classification"
+          },
+          {
+            "keyword": "video-classification"
+          },
+          {
+            "keyword": "zero-shot-classification"
+          },
+          {
+            "keyword": "zero-shot-image-classification"
+          }
+        ]
+      },
+      {
+        "keyword": "chain-of-thought",
+        "alt-keywords": [
+          {
+            "keyword": "cot",
+            "title": "COT"
+          }
+        ]
+      },
+      {
+        "keyword": "chat",
+        "alt-keywords": [
+          {
+            "keyword": "argument"
+          },
+          {
+            "keyword": "argumentation"
+          },
+          {
+            "keyword": "chat-dataset"
+          },
+          {
+            "keyword": "conversation"
+          },
+          {
+            "keyword": "conversational"
+          },
+          {
+            "keyword": "conversational-ai"
+          },
+          {
+            "keyword": "conversations"
+          },
+          {
+            "keyword": "debate"
+          },
+          {
+            "keyword": "dialog"
+          },
+          {
+            "keyword": "dialogue"
+          },
+          {
+            "keyword": "dialogue-modeling"
+          },
+          {
+            "keyword": "discussion"
+          },
+          {
+            "keyword": "fictitious dialogues"
+          },
+          {
+            "keyword": "multiple-turn-dialogue"
+          },
+          {
+            "keyword": "roleplay",
+            "title": "Role Play"
+          },
+          {
+            "keyword": "role-play"
+          }
+        ]
+      },
+      {
+        "keyword": "crowdsourced",
+        "title": "Crowd Sourced"
+      },
+      {
+        "keyword": "csv",
+        "context": "CSV formatted data",
+        "title": "CSV"
+      },
+      {
+        "keyword": "embeddings",
+        "alt-keywords": [
+          {
+            "keyword": "embedding"
+          }
+        ]
+      },
+      {
+        "keyword": "evaluation",
+        "alt-keywords": [
+          {
+            "keyword": "eval"
+          },
+          {
+            "keyword": "quality"
+          }
+        ]
+      },
+      {
+        "keyword": "finetuning",
+        "context": "Post training refinement of models for alignment, safety, etc.",
+        "title": "Fine Tuning",
+        "alt-keywords": [
+          {
+            "keyword": "finetune",
+            "title": "Fine Tune"
+          },
+          {
+            "keyword": "fine-tune"
+          },
+          {
+            "keyword": "fine-tuning"
+          },
+          {
+            "keyword": "instruct"
+          },
+          {
+            "keyword": "instruction-finetuning",
+            "title": "Instruction Fine Tuning"
+          },
+          {
+            "keyword": "instruction-fine-tuning"
+          },
+          {
+            "keyword": "instruction-following"
+          },
+          {
+            "keyword": "instruction tuning"
+          },
+          {
+            "keyword": "instruction-tuning"
+          },
+          {
+          "keyword": "preference"
+          },
+          {
+          "keyword": "preferences"
+          },
+          {
+            "keyword": "sft",
+            "title": "SFT"
+          },
+          {
+            "keyword": "structured-fine-tuning"
+          }
+        ]
+      },
+      {
+        "keyword": "generated-data",
+        "context": "Datasets that were generated by humans or automation.",
+        "alt-keywords": [
+          {
+            "keyword": "ai-generated"
+          },
+          {
+            "keyword": "conditional-text-generation"
+          },
+          {
+            "keyword": "code-generation"
+          },
+          {
+            "keyword": "dialog-generation"
+          },
+          {
+            "keyword": "explanation-generation"
+          },
+          {
+            "keyword": "generation"
+          },
+          {
+            "keyword": "generated"
+          },
+          {
+            "keyword": "expert-generated"
+          },
+          {
+            "keyword": "machine-generated"
+          },
+          {
+            "keyword": "ocr",
+            "title": "OCR"
+          },
+          {
+            "keyword": "text generation"
+          },
+          {
+            "keyword": "text-generation"
+          },
+          {
+            "keyword": "text2text-generation",
+            "title": "Text-to-Text Generation"
+          },
+          {
+            "keyword": "synthetic"
+          },
+          {
+            "keyword": "synthetic-captions"
+          },
+          {
+            "keyword": "synthetic-data"
+          },
+          {
+            "keyword": "synthetic-dataset"
+          },
+          {
+            "keyword": "synthgenai"
+          }
+        ]
+      },
+      {
+        "keyword": "feature-extraction",
+        "alt-keywords": [
+          {
+            "keyword": "image-feature-extraction"
+          }
+        ]
+      },
+      {
+        "keyword": "graph",
+        "alt-keywords": [
+          {
+            "keyword": "graphs"
+          },
+          {
+            "keyword": "graph-ml"
+          },
+          {
+            "keyword": "knowledge graph"
+          },
+          {
+            "keyword": "knowledge-graph"
+          },
+          {
+            "keyword": "knowledge graphs"
+          },
+          {
+            "keyword": "knowledge-graphs"
+          }
+        ]
+      },
+      {
+        "keyword": "handwritten"
+      },
+      {
+        "keyword": "image",
+        "context": "Datasets of images and analysis of them, such as object detection.",
+        "alt-keywords": [
+          {
+            "keyword": "anime"
+          },
+          {
+            "keyword": "chart"
+          },
+          {
+            "keyword": "caption"
+          },
+          {
+            "keyword": "danbooru"
+          },
+          {
+            "keyword": "diagram"
+          },
+          {
+            "keyword": "geometry-diagram"
+          },
+          {
+            "keyword": "images"
+          },
+          {
+            "keyword": "image-captioning"
+          },
+          {
+            "keyword": "image-captions"
+          },
+          {
+            "keyword": "image-caption pairs"
+          },
+          {
+            "keyword": "image-caption-pairs"
+          },
+          {
+            "keyword": "image classification"
+          },
+          {
+            "keyword": "image-classification"
+          },
+          {
+            "keyword": "image-data"
+          },
+          {
+            "keyword": "image-feature-extraction"
+          },
+          {
+            "keyword": "image-generation"
+          },
+          {
+            "keyword": "image-segmentation"
+          },
+          {
+            "keyword": "image-text-dataset"
+          },
+          {
+            "keyword": "image-text-to-text"
+          },
+          {
+            "keyword": "image-to-image"
+          },
+          {
+            "keyword": "image-to-text"
+          },
+          {
+            "keyword": "image-to-video"
+          },
+          {
+            "keyword": "multi-class-image-classification"
+          },
+          {
+            "keyword": "object detection"
+          },
+          {
+            "keyword": "object-detection"
+          },
+          {
+            "keyword": "photo"
+          },
+          {
+            "keyword": "photos"
+          },
+          {
+            "keyword": "photograph"
+          },
+          {
+            "keyword": "photographs"
+          },
+          {
+            "keyword": "scientific-figure"
+          },
+          {
+            "keyword": "super-resolution"
+          },
+          {
+            "keyword": "text-to-image"
+          },
+          {
+            "keyword": "unconditional-image-generation"
+          }
+        ]
+      },
+      {
+        "keyword": "instruction-following",
+        "alt-keywords": [
+          {
+            "keyword": "instruct"
+          },
+          {
+            "keyword": "instruction"
+          },
+          {
+            "keyword": "instruction-finetuning",
+            "title": "Instruction Fine Tuning"
+          },
+          {
+            "keyword": "instruction-fine-tuning"
+          },
+          {
+            "keyword": "instruction-tuning"
+          },
+          {
+            "keyword": "multiturn",
+            "title": "Multi Turn"
+          },
+          {
+            "keyword": "multi-turn"
+          }
+        ]
+      },
+      {
+        "keyword": "llm",
+        "title": "LLM",
+        "alt-keywords": [
+          {
+            "keyword": "alpaca"
+          },
+          {
+            "keyword": "large-language-model"
+          },
+          {
+            "keyword": "large-language-models"
+          },
+          {
+            "keyword": "language model"
+          },
+          {
+            "keyword": "language-modeling"
+          },
+          {
+            "keyword": "llms",
+            "title": "LLMs"
+          },
+          {
+            "keyword": "masked-language-modeling"
+          }
+        ]
+      },
+      {
+        "keyword": "json",
+        "context": "JSON formatted data",
+        "title": "JSON",
+        "alt-keywords": [
+          {
+            "keyword": "jsonl",
+            "title": "JSONL"
+          }
+        ]
+      },
+      {
+        "keyword": "monolingual",
+        "context": "Primarily one language."
+      },
+      {
+        "keyword": "multilingual",
+        "context": "Datasets with more than one language.",
+        "title": "Multi Lingual",
+        "alt-keywords": [
+          {
+            "keyword": "machine translation"
+          },
+          {
+            "keyword": "multi-lingual"
+          },
+          {
+            "keyword": "squad_v2_french_translated"
+          },
+          {
+            "keyword": "translated"
+          }
+        ]
+      },
+      {
+        "keyword": "multimodal",
+        "alt-keywords": [
+          {
+            "keyword": "multimodality"
+          },
+          {
+            "keyword": "multi-modal"
+          },
+          {
+            "keyword": "multi-modal-qa"
+          }
+        ]
+      },
+      {
+        "keyword": "multiple-choice"
+      },
+      {
+        "keyword": "named-entity-recognition"
+      },
+      {
+        "keyword": "news",
+        "alt-keywords": [
+          {
+            "keyword": "news-articles-summarization"
+          }
+        ]
+      },
+      {
+        "keyword": "nlp",
+        "title": "NLP",
+        "alt-keywords": [
+          {
+            "keyword": "explanation"
+          },
+          {
+            "keyword": "explanation-generation"
+          },
+          {
+            "keyword": "natural-language-inference"
+          },
+          {
+            "keyword": "natural-language-processing"
+          },
+          {
+            "keyword": "natural-language-understanding"
+          }
+        ]
+      },
+      {
+        "keyword": "planning"
+      },
+      {
+        "keyword": "pretraining",
+        "context": "Training of foundation modals, before (or 'pre') tuning for alignment, safety, etc.",
+        "title": "Pretraining",
+        "alt-keywords": [
+          {
+            "keyword": "long context"
+          },
+          {
+            "keyword": "long-context"
+          },
+          {
+            "keyword": "distillation"
+          },
+          {
+            "keyword": "pretrain"
+          },
+          {
+            "keyword": "preservation-loss-training"
+          }
+        ]
+      },
+      {
+        "keyword": "problem-solving"
+      },
+      {
+        "keyword": "prompt",
+        "alt-keywords": [
+          {
+            "keyword": "dfp",
+            "title": "DFP"
+          },
+          {
+            "keyword": "french prompts"
+          },
+          {
+            "keyword": "prompts"
+          },
+          {
+            "keyword": "prompt engineering"
+          },
+          {
+            "keyword": "prompt-generation"
+          }
+        ]
+      },
+      {
+        "keyword": "question-answering",
+        "context": "Datasets with question and answer pairs and related content.",
+        "alt-keywords": [
+          {
+            "keyword": "abstractive-qa",
+            "title": "Abstractive Q&A"
+          },
+          {
+            "keyword": "camel",
+            "title": "Closed Book Q&A"
+          },
+          {
+            "keyword": "closed-book-qa",
+            "title": "Closed Book Q&A"
+          },
+          {
+            "keyword": "closed-domain-qa",
+            "title": "Closed Domain Q&A"
+          },
+          {
+            "keyword": "document-question-answering"
+          },
+          {
+            "keyword": "extractive-qa",
+            "title": "Extractive Q&A"
+          },
+          {
+            "keyword": "figure-qa",
+            "keyword": "Figure Q&A"
+          },
+          {
+            "keyword": "math-qa",
+            "keyword": "Math Q&A"
+          },
+          {
+            "keyword": "multiple-choice-qa",
+            "title": "Multiple Choice Q&A"
+          },
+          {
+            "keyword": "multi-modal-qa",
+            "title": "Multi Modal Q&A"
+          },
+          {
+            "keyword": "open-domain-qa",
+            "title": "Open Domain Q&A"
+          },
+          {
+            "keyword": "open-book-qa",
+            "title": "Open Book Q&A"
+          },
+          {
+            "keyword": "q-and-a",
+            "title": "Q-and-A"
+          },
+          {
+            "keyword": "qa",
+            "title": "Q&A"
+          },
+          {
+            "keyword": "qna",
+            "title": "Q&A"
+          },
+          {
+            "keyword": "q&a",
+            "title": "Q&A"
+          },
+          {
+            "keyword": "questions"
+          },
+          {
+            "keyword": "question-generation"
+          },
+          {
+            "keyword": "table-question-answering"
+          },
+          {
+            "keyword": "visual-question-answering"
+          },
+          {
+            "keyword": "vqa",
+            "title": "VQ&A"
+          }
+        ]
+      },
+      {
+        "keyword": "rag",
+        "title": "RAG",
+        "context": "Retrieval Augmented Generation",
+        "alt-keywords": [
+          {
+            "keyword": "retrieval augmented generation"
+          },
+          {
+            "keyword": "retrieval-augmented-generation"
+          }
+        ]
+      },
+      {
+        "keyword": "reasoning",
+        "context": "Datasets to improve model's abilities to reason.",
+        "alt-keywords": [
+          {
+            "keyword": "reflection"
+          },
+          {
+            "keyword": "step-by-step"
+          },
+          {
+            "keyword": "logical-reasoning"
+          },
+          {
+            "keyword": "mathematical-reasoning"
+          }
+        ]
+      },
+      {
+        "keyword": "regression",
+        "alt-keywords": [
+          {
+            "keyword": "tabular-regression"
+              }
+        ]
+      },
+      {
+        "keyword": "reinforcement-learning",
+        "alt-keywords": [
+          {
+            "keyword": "dpo",
+            "title": "DPO"
+          },
+          {
+            "keyword": "expert trajectory"
+          },
+          {
+            "keyword": "human-feedback"
+          },
+          {
+            "keyword": "rl",
+            "title": "RL"
+          },
+          {
+            "keyword": "rlhf",
+            "title": "RLHF"
+          },
+          {
+            "keyword": "rlaif",
+            "title": "RLAIF"
+          }
+        ]
+      },
+      {
+        "keyword": "safety",
+        "alt-keywords": [
+          {
+            "keyword": "deepfake",
+            "title": "Deep Fake"
+          },
+          {
+            "keyword": "deep-fake"
+          },
+          {
+            "keyword": "fairness"
+          },
+          {
+            "keyword": "hallucination"
+          },
+          {
+            "keyword": "hate-speech"
+          },
+          {
+            "keyword": "hate-speech-detection"
+          },
+          {
+            "keyword": "misinformation"
+          },
+          {
+            "keyword": "red-teaming"
+          },
+          {
+            "keyword": "toxicity"
+          }
+        ]
+      },
+      {
+        "keyword": "search",
+        "alt-keywords": [
+          {
+            "keyword": "codesearchnet"
+          },
+          {
+            "keyword": "search-queries"
+          },
+          {
+            "keyword": "semantic-search"
+          }
+        ]
+      },
+      {
+        "keyword": "security",
+        "alt-keywords": [
+          {
+            "keyword": "cybersecurity"
+          },
+          {
+            "keyword": "jailbreak"
+          },
+          {
+            "keyword": "red-teaming"
+          }
+        ]
+      },
+      {
+        "keyword": "sentence-similarity"
+      },
+      {
+        "keyword": "sentence-transformers"
+      },
+      {
+        "keyword": "sentiment-analysis",
+        "alt-keywords": [
+          {
+            "keyword": "emotion"
+          },
+          {
+            "keyword": "emotions"
+          },
+          {
+            "keyword": "sentiment-classification"
+          },
+          {
+            "keyword": "sentiment"
+          },
+          {
+            "keyword": "sentiments"
+          }
+        ]
+      },
+      {
+        "keyword": "speech",
+        "alt-keywords": [
+          {
+            "keyword": "automatic-speech-recognition"
+          },
+          {
+            "keyword": "grammar"
+          },
+          {
+            "keyword": "hate-speech"
+          },
+          {
+            "keyword": "hate-speech-detection"
+          },
+          {
+            "keyword": "linguistics"
+          },
+          {
+            "keyword": "parts-of-speech"
+          },
+          {
+            "keyword": "sarcasm-detection"
+          },
+          {
+            "keyword": "speech-detection"
+          },
+          {
+            "keyword": "speech-recognition"
+          },
+          {
+            "keyword": "text-to-speech"
+          }
+        ]
+      },
+      {
+        "keyword": "summarization",
+        "alt-keywords": [
+          {
+            "keyword": "news-articles-summarization"
+          },
+          {
+            "keyword": "paraphrase"
+          },
+          {
+            "keyword": "paraphrase-identification"
+          },
+          {
+            "keyword": "summary"
+          },
+          {
+            "keyword": "text-simplification"
+          }
+        ]
+      },
+      {
+        "keyword": "tabular",
+        "context": "Data in table formats.",
+        "alt-keywords": [
+          {
+            "keyword": "table"
+          },
+          {
+            "keyword": "table-to-text"
+          }
+        ]
+      },
+      {
+        "keyword": "retrieval",
+        "alt-keywords": [
+          {
+            "keyword": "document-retrieval"
+          },
+          {
+            "keyword": "entity-linking-retrieval"
+          },
+          {
+            "keyword": "fact-checking"
+          },
+          {
+            "keyword": "fact-checking-retrieval"
+          },
+          {
+            "keyword": "information-retrieval"
+          },
+          {
+            "keyword": "text-retrieval"
+          }
+        ]
+      },
+      {
+        "keyword": "text-to-...",
+        "context": "Generating images, videos, etc. from text.",
+        "alt-keywords": [
+          {
+            "keyword": "image-text-to-text"
+          },
+          {
+            "keyword": "text-to-audio"
+          },
+          {
+            "keyword": "text-to-image"
+          },
+          {
+            "keyword": "text-to-speech"
+          },
+          {
+            "keyword": "text-to-sql"
+          },
+          {
+            "keyword": "text2video",
+            "keyword": "Text to Video"
+          },
+          {
+            "keyword": "text-to-video"
+          },
+          {
+            "keyword": "video-text-to-text"
+          }
+        ]
+      },
+      {
+        "keyword": "to-text",
+        "context": "Datasets for generating text from different data sources.",
+        "alt-keywords": [
+          {
+            "keyword": "data-to-text"
+          },
+          {
+            "keyword": "image-caption pairs"
+          },
+          {
+            "keyword": "image-caption-pairs"
+          },
+          {
+            "keyword": "image-text-to-text"
+          },
+          {
+            "keyword": "image-to-text"
+          },
+          {
+            "keyword": "table-to-text"
+          },
+          {
+            "keyword": "video-text-to-text"
+          },
+          {
+            "keyword": "video-to-text"
+          }
+        ]
+      },
+      {
+        "keyword": "translation",
+        "alt-keywords": [
+          {
+            "keyword": "machine translation"
+          },
+          {
+            "keyword": "translated"
+          }
+        ]
+      },
+      {
+        "keyword": "tutorial"
+      },
+      {
+        "keyword": "unlearning",
+        "alt-keywords": [
+          {
+            "keyword": "tofu"
+          }
+        ]
+      },
+      {
+        "keyword": "video",
+        "alt-keywords": [
+          {
+            "keyword": "drone"
+          },
+          {
+            "keyword": "image-to-video"
+          },
+          {
+            "keyword": "likert"
+          },
+          {
+            "keyword": "lvlm",
+            "title": "LVLM"
+          },
+          {
+            "keyword": "movie"
+          },
+          {
+            "keyword": "movies"
+          },
+          {
+            "keyword": "synthetic-captions"
+          },
+          {
+            "keyword": "text2video",
+            "keyword": "Text to Video"
+          },
+          {
+            "keyword": "text-to-video"
+          },
+          {
+            "keyword": "video-classification"
+          },
+          {
+            "keyword": "video-text-to-text"
+          },
+          {
+            "keyword": "video-to-text"
+          },
+          {
+            "keyword": "vision-language"
+          },
+          {
+            "keyword": "vlm",
+            "title": "VLM"
+          },
+          {
+            "keyword": "vlms",
+            "title": "VLMs"
+          },
+          {
+            "keyword": "youtube",
+            "title": "YouTube"
+          }
+        ]
+      },
+      {
+        "keyword": "vision",
+        "alt-keywords": [
+          {
+            "keyword": "computer-vision"
+          },
+          {
+            "keyword": "computer vision"
+          }
+        ]
+      },
+      {
+        "keyword": "wikipedia",
+        "alt-keywords": [
+          {
+            "keyword": "nanodbpedia"
+          },
+          {
+            "keyword": "extended|wikipedia",
+            "title": "Extended | Wikipedia"
+          },
+          {
+            "keyword": "wiki"
+          },
+          {
+            "keyword": "wikidata"
+          },
+          {
+            "keyword": "wikimedia/wit_base",
+            "title": "Wikimedia / Wit_base"
+          },
+          {
+            "keyword": "wikisql",
+            "title": "WikiSQL"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "keyword": "domain",
+    "title":   "Domains",
+    "context": "Domains like chemistry, healthcare, etc.",
+    "topics": [
+      {
+        "keyword": "advertising",
+        "alt-keywords": [
+          {
+            "keyword": "openx",
+            "title": "OpenX"
+          }
+        ]
+      },
+      {
+        "keyword": "agriculture"
+      },
+      {
+        "keyword": "art"
+      },
+      {
+        "keyword": "astronomy"
+      },
+      {
+        "keyword": "automation"
+      },
+      {
+        "keyword": "banking",
+        "alt-keywords": [
+          {
+            "keyword": "banking-digital-services"
+          },
+          {
+            "keyword": "investment-ai-analysis"
+          }
+        ]
+      },
+      {
+        "keyword": "biology",
+        "alt-keywords": [
+          {
+            "keyword": "animals"
+          },
+          {
+            "keyword": "bio"
+          },
+          {
+            "keyword": "bio-chem"
+          },
+          {
+            "keyword": "biology`",
+            "title": "Biology",
+            "context": "At least 11 datasets have 'biology`' as a keyword, with the '`'."
+          },
+          {
+            "keyword": "biomedical"
+          },
+          {
+            "keyword": "biophysics"
+          }
+        ]
+      },
+      {
+        "keyword": "chemistry",
+        "alt-keywords": [
+          {
+            "keyword": "bio-chem"
+          },
+          {
+            "keyword": "multimolecule",
+            "like-clause": "multimol%",
+            "context": "Datasets for molecular discovery."
+          },
+          {
+            "keyword": "molnet",
+            "title": "MolNet"
+          },
+          {
+            "keyword": "molecule-net"
+          },
+
+          {
+            "keyword": "protein"
+          },
+          {
+            "keyword": "protein structure"
+          },
+          {
+            "keyword": "rna",
+            "title": "RNA"
+          },
+          {
+            "keyword": "smiles",
+            "title": "SMILES"
+          }
+        ]
+      },
+      {
+        "keyword": "climate"
+      },
+      {
+        "keyword": "code",
+        "alt-keywords": [
+          {
+            "keyword": "astra"
+          },
+          {
+            "keyword": "bug-reporting-automation"
+          },
+          {
+            "keyword": "codesearchnet"
+          },
+          {
+            "keyword": "code-generation"
+          },
+          {
+            "keyword": "code-style"
+          },
+          {
+            "keyword": "coding"
+          },
+          {
+            "keyword": "collaborative-dev-environments"
+          },
+          {
+            "keyword": "computer_science"
+          },
+          {
+            "keyword": "context-sql"
+          },
+          {
+            "keyword": "development"
+          },
+          {
+            "keyword": "formal-methods"
+          },
+          {
+            "keyword": "function calling"
+          },
+          {
+            "keyword": "function-calling"
+          },
+          {
+            "keyword": "go"
+          },
+          {
+            "keyword": "golang"
+          },
+          {
+            "keyword": "java"
+          },
+          {
+            "keyword": "linux"
+          },
+          {
+            "keyword": "open-source"
+          },
+          {
+            "keyword": "oss",
+            "title": "OSS"
+          },
+          {
+            "keyword": "postgresql",
+            "title": "PostgreSQL"
+          },
+          {
+            "keyword": "python"
+          },
+          {
+            "keyword": "sqlglot",
+            "title": "SQLGlot"
+          },
+          {
+            "keyword": "wikisql",
+            "title": "WikiSQL"
+          },
+          {
+            "keyword": "programming"
+          },
+          {
+            "keyword": "software"
+          },
+          {
+            "keyword": "software-development"
+          },
+          {
+            "keyword": "spider"
+          },
+          {
+            "keyword": "sql"
+          },
+          {
+            "keyword": "text-to-sql"
+          },
+          {
+            "keyword": "ubuntu"
+          }
+        ]
+      },
+      {
+        "keyword": "economics"
+      },
+      {
+        "keyword": "education",
+        "alt-keywords": [
+          {
+            "keyword": "educational"
+          },
+          {
+            "keyword": "intelligent_tutoring_system"
+          },
+          {
+            "keyword": "ncert",
+            "title": "NCERT"
+          }
+        ]
+      },
+      {
+        "keyword": "environment",
+        "alt-keywords": [
+          {
+            "keyword": "ecology"
+          },
+          {
+            "keyword": "environmental-data"
+          },
+          {
+            "keyword": "environmental science"
+          },
+          {
+            "keyword": "environmental simulations"
+          },
+          {
+            "keyword": "environmental"
+          },
+          {
+            "keyword": "environmental-analysis"
+          },
+          {
+            "keyword": "environmental, social, and governance"
+          },
+          {
+            "keyword": "sustainability"
+          }
+        ]
+      },
+      {
+        "keyword": "fashion"
+      },
+      {
+        "keyword": "finance",
+        "alt-keywords": [
+          {
+            "keyword": "aveni-bench"
+          },
+          {
+            "keyword": "financial"
+          },
+          {
+            "keyword": "finnlp"
+          },
+          {
+            "keyword": "investment"
+          }
+        ]
+      },
+      {
+        "keyword": "food"
+      },
+      {
+        "keyword": "game",
+        "alt-keywords": [
+          {
+            "keyword": "chess"
+          },
+          {
+            "keyword": "lichess"
+          },
+          {
+            "keyword": "games"
+          },
+          {
+            "keyword": "gaming"
+          },
+          {
+            "keyword": "midjourney"
+          },
+          {
+            "keyword": "minecraft"
+          }
+        ]
+      },
+      {
+        "keyword": "geospatial",
+        "alt-keywords": [
+          {
+            "keyword": "earth-observation"
+          },
+          {
+            "keyword": "geography"
+          },
+          {
+            "keyword": "poi"
+          },
+          {
+            "keyword": "remote-sensing"
+          }
+        ]
+      },
+      {
+        "keyword": "government",
+        "alt-keywords": [
+          {
+            "keyword": "ccdv/govreport-summarization"
+          },
+          {
+            "keyword": "corporate governance"
+          },
+          {
+            "keyword": "environmental, social, and governance"
+          },
+          {
+            "keyword": "extended|projecte-aina/catalan_government_crawling"
+          },
+          {
+            "keyword": "gov"
+          },
+          {
+            "keyword": "government"
+          },
+          {
+            "keyword": "government data"
+          },
+          {
+            "keyword": "government-services-automation"
+          },
+          {
+            "keyword": "govreport"
+          },
+          {
+            "keyword": "government reports"
+          },
+          {
+            "keyword": "https://www.cms.gov/medicare/",
+            "title": "www.cms.gov/medicare/%",
+            "context": "References to URLs at the U.S. government's Medicare site.",
+            "like-clause": "%www.cms.gov/medicare%/"
+          },
+          {
+            "keyword": "https://download.bls.gov/pub/time.series/compressed/tape.format"
+          },
+          {
+            "keyword": "launch/gov_report"
+          },
+          {
+            "keyword": "local government"
+          },
+          {
+            "keyword": "opengov",
+            "title": "Open Gov"
+          },
+          {
+            "keyword": "policy"
+          }
+        ]
+      },
+      {
+        "keyword": "history",
+        "alt-keywords": [
+          {
+            "keyword": "historical"
+          }
+        ]
+      },
+      {
+        "keyword": "insurance"
+      },
+      {
+        "keyword": "legal",
+        "alt-keywords": [
+          {
+            "keyword": "droit"
+          },
+          {
+            "keyword": "droit français"
+          },
+          {
+            "keyword": "french law"
+          },
+          {
+            "keyword": "law"
+          },
+          {
+            "keyword": "regulations"
+          }
+        ]
+      },
+        {
+          "keyword": "logic",
+          "alt-keywords": [
+            {
+              "keyword": "lojban"
+            },
+            {
+              "keyword": "logical reasoning"
+            },
+            {
+              "keyword": "logical-reasoning"
+            }
+          ]
+        },
+      {
+        "keyword": "mathematics",
+        "alt-keywords": [
+          {
+            "keyword": "algebra"
+          },
+          {
+            "keyword": "coq"
+          },
+          {
+            "keyword": "gsm8k",
+            "title": "GSM8K"
+          },
+          {
+            "keyword": "math"
+          },
+          {
+            "keyword": "maths"
+          },
+          {
+            "keyword": "math-qa",
+            "keyword": "Math Q&A"
+          },
+          {
+            "keyword": "mathematical-reasoning"
+          },
+          {
+            "keyword": "math-word-problems"
+          },
+          {
+            "keyword": "statistics"
+          },
+          {
+            "keyword": "theorem-proving"
+          }
+        ]
+      },
+      {
+        "keyword": "medical",
+        "context": "Includes keywords for healthcare, biomedical, genomics, etc.",
+        "alt-keywords": [
+          {
+            "keyword": "biomedical"
+          },
+          {
+            "keyword": "clinical"
+          },
+          {
+            "keyword": "covid-19",
+            "title": "COVID-19"
+          },
+          {
+            "keyword": "dna",
+            "title": "DNA"
+          },
+          {
+            "keyword": "diagnosis"
+          },
+          {
+            "keyword": "genomics"
+          },
+          {
+            "keyword": "health"
+          },
+          {
+            "keyword": "healthcare"
+          },
+          {
+            "keyword": "medicine"
+          },
+          {
+            "keyword": "mental health"
+          },
+          {
+            "keyword": "nutrition"
+          },
+          {
+            "keyword": "pubmed"
+          },
+          {
+            "keyword": "symptoms"
+          },
+          {
+            "keyword": "treatment"
+          },
+          {
+            "keyword": "https://www.cms.gov/medicare/",
+            "title": "%www.cms.gov/medicare/%",
+            "context": "References to URLs at the U.S. government's Medicare site.",
+            "like-clause": "%www.cms.gov/medicare%/"
+          }
+        ]
+      },
+      {
+        "keyword": "music",
+        "alt-keywords": [
+          {
+            "keyword": "midi"
+          }
+        ]
+      },
+      {
+        "keyword": "philosophy",
+        "alt-keywords": [
+          {
+            "keyword": "ethics"
+          }
+        ]
+      },
+      {
+        "keyword": "physics",
+        "alt-keywords": [
+          {
+            "keyword": "biophysics"
+          }
+        ]
+      },
+      {
+        "keyword": "politics"
+      },
+      {
+        "keyword": "psychology",
+        "alt-keywords": [
+          {
+            "keyword": "personality"
+          }
+        ]
+      },
+      {
+        "keyword": "robotics",
+        "alt-keywords": [
+          {
+            "keyword": "lerobot",
+            "title": "Le Robot"
+          }
+        ]
+      },
+      {
+        "keyword": "science",
+        "alt-keywords": [
+          {
+            "keyword": "reviews"
+          }
+        ]
+      },
+      {
+        "keyword": "sports"
+      },
+      {
+        "keyword": "time-series",
+        "alt-keywords": [
+          {
+            "keyword": "https://download.bls.gov/pub/time.series/compressed/tape.format",
+            "title": "bls.gov/pub/time.series/compressed/"
+          },
+          {
+            "keyword": "time-series-forecasting"
+          },
+          {
+            "keyword": "timeseries"
+          }
+        ]
+      },
+      {
+        "keyword": "web",
+        "alt-keywords": [
+          {
+            "keyword": "webdataset",
+            "title": "Web Dataset"
+          },
+          {
+            "keyword": "website"
+          }
+        ]
+      }
+    ]
+  }
+]
