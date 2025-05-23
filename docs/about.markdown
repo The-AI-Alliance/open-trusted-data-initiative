@@ -25,9 +25,11 @@ has_children: false
 <a name="join-us"></a>
 # Join the Open Trusted Data Initiative!
 
-Want to join one of our initiative projects? Visit [this AI Alliance webpage](https://thealliance.ai/core-projects/open-trusted-data-initiative#foundation-models-working-group-form){:target="join-us"} and fill in the form. Thank you for your interest.
+Want to contribute datasets to our catalog, [go here!]({{site.baseurl}}/contributing)
 
-Want to contribute datasets to our catalog, go [here]({{site.baseurl}}/contributing).
+Want to join one this initiative's projects? You can see our backlog [here](https://github.com/orgs/The-AI-Alliance/projects/28){:target="_blank"}. To join us, either Send email to [data@thealliance.ai](mailto:data@thealliance.ai?subject=I want to join the Open Trusted Data Initiative) or visit the [work group webpage](https://thealliance.ai/core-projects/open-trusted-data-initiative#foundation-models-working-group-form){:target="join-us"} and fill in the form. This [CONTRIBUTING](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/main/CONTRIBUTING.md){:target="_blank"} page has some specific information for developer contributions. 
+
+Thank you for your interest!
 
 <a name="contact-us"></a>
 # How to Contact Us

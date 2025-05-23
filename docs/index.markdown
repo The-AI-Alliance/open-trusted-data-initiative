@@ -7,7 +7,8 @@ language_tags: English
 ---
 
 # Open Trusted Data Initiative (OTDI) 
-### We are building the largest, most diverse high quality open data set for AI. Come join us!
+
+> **We are cataloging the world's largest, most diverse collection of open datasets for AI. [Join us!]({{site.baseurl}}/about/#join-us)**
 
 ## [Take Me to the Data!]({{site.baseurl}}/catalog/catalog)
 
@@ -83,5 +84,5 @@ Currently, the [Dataset Catalog]({{site.baseurl}}/catalog/catalog) is a static r
 # More Information
 
 * What [trustworthiness]({{site.baseurl}}/trustworthiness) means to us.
-* [About Us]({{site.baseurl}}/about): More about the AI Alliance and this project.
+* [About Us]({{site.baseurl}}/about): More about the AI Alliance, this initiative, how to get involved, and how to contact us.
 * [References]({{site.baseurl}}/references): Other viewpoints on open, trusted data.
