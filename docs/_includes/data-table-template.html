@@ -9,9 +9,6 @@
 {% assign other_keywords = include.alt_keywords | split: '|' %}
 {% if other_keywords.size > 0 %}
   <p>This set includes the following additional keywords: <strong>{{ other_keywords | join: "</strong>, <strong>" }}</strong><p>
-  var showKeywordColumn_{{ unique_id }} = true;
-{% else %} 
-  var showKeywordColumn_{{ unique_id }} = false;
 {% endif %}
 
 <blockquote id="{{ unique_id }}-selected-description">
@@ -25,7 +22,7 @@
   <span id="{{ unique_id }}-message"></span>
 </p>
 <div id="{{ unique_id }}-filter-div">
-  <select id="filter-field">
+  <select id="{{ unique_id }}-filter-field">
     <option></option>
     <option value="name">Name</option>
     {% if other_keywords.size > 0 %}
