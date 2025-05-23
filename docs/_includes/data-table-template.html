@@ -43,7 +43,6 @@
         );
         dataTables[idTableRowCount.id] = idTableRowCount.table;
         var numRowsSpan = document.getElementById("{{ unique_id }}-num-rows");
-        console.log(idTableRowCount.numRows, numRowsSpan);
         if (numRowsSpan) {
           numRowsSpan.innerHTML = `${idTableRowCount.numRows} rows.`;
         }
