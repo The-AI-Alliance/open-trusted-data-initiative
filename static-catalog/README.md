@@ -8,6 +8,29 @@ Dean Wampler, May 11, 2025
 
 We start with the metadata files created by Joe Olson's nightly job that queries Hugging Face for Croissant metadata. The format of those files is Parquet with a flat schema, with one column containing the entire JSON document for the metadata. Parsing that metadata proved difficult, because of deep "escape quoting". It was necessary to put together a set of tools to extract this metadata and load it into  [DuckDB](https://duckdb.org) for further analysis and processing.
 
+We start with what most people need to see, the commands to rebuild the catalog data for the website, then discuss in detail how we "got here".
+
+## Rebuilding the Catalog
+
+Ask Dean Wampler for help, if needed.
+
+Steps:
+
+* Parse a snapshot of data gathered from Hugging Face (short description TBD; see the rest of this README for details!)
+* `cd static-catalog` where most of the following work is done:
+* Update `data/reference/keyword-categories.json` with any changes to the hierarchy or keywords.
+* Run `src/scripts/write-category-files.py`. 
+  * It starts with a _shebang_, `/usr/bin/env python`, so you don't need to do `python src/...`. Try the `--help` option. Use `--verbose` to see what's happening. This script takes about 30 seconds to run. It writes one markdown file _for each topic_ under `markdown/processed/YYYY-MM-DD`. It writes one JavaScript and one JSON file _for each topic_ under `data/json/processed/YYYY-MM-DD`. 
+* Run `src/scripts/copy-files-to-docs.sh` to copy the files created.
+* Commit the changes and push upstream!
+
+Notes:
+* The markdown files copied to `../docs` (i.e., `../docs` is relative to our current working directory, `static-catalog`) correspond to _collections_ defined in `../docs/_config.yaml`; there is a subfolder for each collection, currently `_language`, `_domain`, and `_modality` (the `_` is required)
+* The JavaScript files are copied to `../docs/files/data/catalog`. They contain the static data, defined as JS arrays of objects. 
+* The markdown and JSON directory hierarchies are _different_. The markdown files need to be flat, only _collection_ subfolders (currently `_language`, `_domain`, and `_modality`). We tried making hierarchical directories here, but this isn't supported by Jekyll/Liquid. In contrast, the JavaScript files written to `../docs/files/data/catalog` are hierarchical, because they use our own convention and are handled appropriately by the JavaScript code used (see `../docs/_includes/data_table_template.html`). 
+
+The rest of this README covers how to parse the raw data into usable JSON. It doesn't cover editing of `static-catalog/data/reference/keyword-categories.json`, which was created manually!!
+
 ## Initial Setup
 
 Get a copy of the Parquet files with the Croissant metadata and use it as follows. Let's assume those Parquet files are in the current directory:
@@ -17,6 +40,15 @@ mkdir -p data/raw
 mv *.parquet data/raw
 mkdir -p data/json
 ```
+
+## Python Dependencies
+
+You'll need these packages. PySpark is discussed next.
+
+```shell
+pip install psutil py4j pyspark
+```
+
 ## Starting with Spark
 
 We start with [PySpark](https://spark.apache.org) to do the initial conversion from Parquet to JSON. In fact, this step could be done with DuckDB. 
@@ -1333,12 +1365,173 @@ CREATE OR REPLACE TABLE hf_expanded_metadata AS (
     dataset_url,
     creator_name,
     creator_url,
-    description
+    description,
+    keywords
   FROM hf_metadata
 );
 ```
 
-It produces 499948 records from the original 44631 or 11 times as many! (Of course, this tells us the average number of keywords per dataset is 11... _These keywords go to 11!_)
+It produces 499948 records from the original 44631 or 11 times as many! Of course, this tells us the average number of keywords per dataset is 11... _These keywords go to 11!_
+
+#### Aside: The Lengths of the Keywords; A Pareto Distribution?
+
+Actually, 11 is not quite right...
+
+The lengths of the keyword arrays probably follow a Pareto distribution. Notice the following:
+
+```sql
+SELECT name, len(keywords) AS len, keywords[0:4] 
+FROM hf_metadata 
+ORDER BY len DESC;
+```
+
+```
+┌──────────────────────┬───────┬───────────────────────────────────────────────────────────────────────────────────────┐
+│         name         │  len  │                                     keywords[0:4]                                     │
+│       varchar        │ int64 │                                       varchar[]                                       │
+├──────────────────────┼───────┼───────────────────────────────────────────────────────────────────────────────────────┤
+│ language_tags        │  7918 │ [Afade, Pará Arára, Afar, Aka-Bea]                                                    │
+│ panlex               │  6162 │ [Ghotuo, Alumu-Tesu, Ari, Amal]                                                       │
+│ GlotCC-V1            │  1405 │ [multilingual, Abau, Amarasi, Abkhaz]                                                 │
+│ panlex-meanings      │  1023 │ [translation, Afar, Western Abnaki, Abkhazian]                                        │
+│ biblenlp-corpus-mm…  │   875 │ [no-annotation, expert-generated, translation, multilingual]                          │
+│ biblenlp-corpus-mm…  │   874 │ [no-annotation, expert-generated, translation, multilingual]                          │
+│ udhr-lid             │   436 │ [multilingual, Tigrinya, Balkan Romani, Standard Arabic]                              │
+│ ParaNames            │   389 │ [token-classification, Nias, Kotava, Banjar]                                          │
+│ wikianc              │   336 │ [token-classification, machine-generated, crowdsourced, machine-generated]            │
+│ V1Q                  │   243 │ [text-classification, token-classification, table-question-answering, question-answ…  │
+│ Pontoon-Translations │   241 │ [translation, text2text-generation, crowdsourced, Abkhaz]                             │
+│ xP3x-Kongo           │   235 │ [other, translation, expert-generated, crowdsourced]                                  │
+│ xP3x-sample          │   230 │ [other, expert-generated, crowdsourced, multilingual]                                 │
+│ smol                 │   223 │ [translation, Afar, Abkhaz, Achinese]                                                 │
+│ opus_ubuntu          │   221 │ [translation, crowdsourced, expert-generated, found]                                  │
+│ sib-fleurs           │   218 │ [audio-classification, automatic-speech-recognition, audio-text-to-text, text-to-sp…  │
+│ sib200               │   216 │ [text-classification, topic-classification, found, expert-generated]                  │
+│ muri-it-language-s…  │   215 │ [text2text-generation, text-generation, question-answering, summarization]            │
+│ muri-it              │   215 │ [text2text-generation, text-generation, question-answering, summarization]            │
+│ sib200               │   211 │ [text-classification, topic-classification, found, expert-generated]                  │
+│   ·                  │     · │              ·                                                                        │
+│   ·                  │     · │              ·                                                                        │
+│   ·                  │     · │              ·                                                                        │
+│ octo_language_table  │     2 │ [apache-2.0, 🇺🇸 Region: US]                                                           │
+│ octo_stanford_hydra  │     2 │ [apache-2.0, 🇺🇸 Region: US]                                                           │
+│ octo_taco_play       │     2 │ [apache-2.0, 🇺🇸 Region: US]                                                           │
+│ octo_toto            │     2 │ [apache-2.0, 🇺🇸 Region: US]                                                           │
+│ UNSW_TON-IoT_Train…  │     2 │ [afl-3.0, 🇺🇸 Region: US]                                                              │
+│ UNSW_TON-IoT_Train…  │     2 │ [afl-3.0, 🇺🇸 Region: US]                                                              │
+│ hku_test             │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
+│ CveVulFunctions      │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
+│ Fpm-app              │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
+│ Corpus               │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
+│ articles2            │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
+│ Vitap                │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
+│ skin_cancer_captio…  │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
+│ Future_Track         │     2 │ [apache-2.0, 🇺🇸 Region: US]                                                           │
+│ Computational-adme   │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
+│ Roshambo             │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
+│ Language-Model-Bas…  │     2 │ [cc-by-sa-4.0, 🇺🇸 Region: US]                                                         │
+│ ArchonView           │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
+│ autodel              │     2 │ [apache-2.0, 🇺🇸 Region: US]                                                           │
+│ bc_z_lerobot         │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
+├──────────────────────┴───────┴───────────────────────────────────────────────────────────────────────────────────────┤
+│ 44631 rows (40 shown)                                                                                      3 columns │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+So, datasets `language_tags` and `panlex` have by the keywords, which means they appear all over the OTDI catalog!
+
+```sql
+SELECT len(keywords) AS len, count() AS count
+FROM hf_metadata 
+GROUP BY len 
+ORDER BY len DESC;
+```
+
+```
+┌───────┬───────┐
+│  len  │ count │
+│ int64 │ int64 │
+├───────┼───────┤
+│  7918 │     1 │
+│  6162 │     1 │
+│  1405 │     1 │
+│  1023 │     1 │
+│   875 │     1 │
+│   874 │     1 │
+│   436 │     1 │
+│   389 │     1 │
+│   336 │     1 │
+│   243 │     1 │
+│   241 │     1 │
+│   235 │     1 │
+│   230 │     1 │
+│   223 │     1 │
+│   221 │     1 │
+│   218 │     1 │
+│   216 │     1 │
+│   215 │     2 │
+│   211 │     1 │
+│   209 │     1 │
+│     · │     · │
+│     · │     · │
+│     · │     · │
+│    21 │   447 │
+│    20 │   187 │
+│    19 │   286 │
+│    18 │   383 │
+│    17 │   609 │
+│    16 │   875 │
+│    15 │  3031 │
+│    14 │  1761 │
+│    13 │  2478 │
+│    12 │  3329 │
+│    11 │  3391 │
+│    10 │  4922 │
+│     9 │ 12990 │
+│     8 │  1492 │
+│     7 │  2672 │
+│     6 │   812 │
+│     5 │   587 │
+│     4 │   364 │
+│     3 │   653 │
+│     2 │  2162 │
+├───────┴───────┤
+│   110 rows    │
+│  (40 shown)   │
+└───────────────┘
+```
+
+```sql
+WITH kc AS (
+  SELECT len(keywords) AS len, count() AS count
+  FROM hf_metadata 
+  GROUP BY len 
+)
+SELECT 
+  round(avg(len), 2) AS len_avg, min(len), max(len), round(median(len), 2) AS len_median,
+  round(avg(count), 2) AS count_avg, min(count), max(count), round(median(count), 2) AS count_median
+FROM kc;
+```
+
+```
+┌─────────┬──────────┬──────────┬────────────┬───────────┬────────────┬────────────┬──────────────┐
+│ len_avg │ min(len) │ max(len) │ len_median │ count_avg │ min(count) │ max(count) │ count_median │
+│ double  │  int64   │  int64   │   double   │  double   │   int64    │   int64    │    double    │
+├─────────┼──────────┼──────────┼────────────┼───────────┼────────────┼────────────┼──────────────┤
+│ 245.84  │    2     │   7918   │    59.5    │  405.74   │     1      │   12990    │     2.0      │
+└─────────┴──────────┴──────────┴────────────┴───────────┴────────────┴────────────┴──────────────┘
+```
+
+Which tells us the following:
+
+* The length average, 245.8, means that, on average, the records have 246 keywords!
+* The minimum number is 2, as we from the query before this one.
+* The long tails are one record with _7918_ keywords(!) and _12990_ records with a unique keyword count. Note from the previous query that 2162 records have exactly 2 keywords.
+* _Half_ the records have 60 or less keywords and most keywords lengths are unique, so half of those counts are 2 or less.
+
+I won't take the time to plot the distribution, but I suspect it will be log-log, like a typical Pareto distribution...
+
+#### Most Common Keywords
 
 What are the most common keywords? Let's find all of them with > 100 records:
 

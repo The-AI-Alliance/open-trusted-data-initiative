@@ -9,29 +9,35 @@ language_tags: English
 # Open Trusted Data Initiative (OTDI) 
 ### We are building the largest, most diverse high quality open data set for AI. Come join us!
 
-## Take Me to the Data!
+## [Take Me to the Data!]({{site.baseurl}}/catalog/catalog)
 
-### Language
+### [For Languages]({{site.baseurl}}/catalog/language/language)
 
 <div class="table-wrapper">
 {% for member in site.language %}
-  <a href="{{site.baseurl}}/catalog/language/#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+  {% if member.tag == "language" %}
+    {{member.content}}
+  {% endif %}
 {% endfor %}
 </div>
 
-### Domain
+### [For Domains]({{site.baseurl}}/catalog/domain)
 
 <div class="table-wrapper">
 {% for member in site.domain %}
-  <a href="{{site.baseurl}}/catalog/domain/#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+  {% if member.tag == "domain" %}
+    {{member.content}}
+  {% endif %}
 {% endfor %}
 </div>
 
-### Modality
+### [For Modalities]({{site.baseurl}}/catalog/modality)
 
 <div class="table-wrapper">
 {% for member in site.modality %}
-  <a href="{{site.baseurl}}/catalog/modality/#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+  {% if member.tag == "modality" %}
+    {{member.content}}
+  {% endif %}
 {% endfor %}
 </div>
 

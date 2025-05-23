@@ -61,3 +61,38 @@ MSCK REPAIR TABLE huggingface.datasets_detail
 
 /* Execute a query based on a date */
 select * from huggingface.datasets_detail where date = CAST('2025-02-13' AS DATE) limit 100
+
+
+/* Since the datasets_detail job takes so long to run, these views will return */
+/* the last, most complete data set */
+/* For both views, use the row count in datasets_details to determine which date to use*/
+
+/* drop view*/
+drop view huggingface.v_datasets as
+
+/* Create view*/
+create view huggingface.v_datasets as
+select * from huggingface.datasets where date in 
+	(select date from huggingface.datasets_detail where date in 
+		(select distinct date from huggingface.datasets_detail order by date desc limit 2)
+	group by date order by count(*) desc limit 1)
+
+/* Get the counts */
+select date, count(*) as total from huggingface.v_datasets group by date
+/* Get the data */
+select * from huggingface.v_datasets limit 100
+
+/* drop view*/
+drop view huggingface.v_datasets_detail
+
+/* Create view*/
+create view huggingface.v_datasets_detail as
+select * from huggingface.datasets_detail where date in 
+	(select date from huggingface.datasets_detail where date in 
+		(select distinct date from huggingface.datasets_detail order by date desc limit 2)
+	group by date order by count(*) desc limit 1)
+
+/* Get the counts */
+select date, count(*) as total from huggingface.v_datasets_detail group by date
+/* Get the data */
+select * from huggingface.v_datasets_detail limit 100

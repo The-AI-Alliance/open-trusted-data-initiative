@@ -16,10 +16,8 @@ has_children: true
 {:toc}
 </details>
 
-## Datasets by Categories
+## About These Datasets
 
-> **About These Datasets**
->
 > The tables below list Hugging Face-hosted datasets that were gathered as follows:
 > 
 > * The tables reflect the data as of May 5<sup>th</sup>, 2025.
@@ -32,27 +30,42 @@ has_children: true
 > 
 > <a name="#footnote1">1</a>: Some of the bad license links clearly intend to reference known licenses. We'll revisit those cases.
 
-### Language
+## [For Languages]({{site.baseurl}}/catalog/language/language)
 
 <div class="table-wrapper">
+{% assign current_region = "" %}
 {% for member in site.language %}
-  <a href="{{site.baseurl}}/catalog/language/#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+  {% if member.tag != "language" %} 
+    {% comment %} Skip the "index" markdown file {% endcomment %}
+    {% assign region = member.parent_tag %}
+    {% if region != current_region %}
+      {% assign current_region = region %}
+</div>
+<h3><a href="{{site.baseurl}}/catalog/language/{{member.parent_tag}}/">{{member.parent_title}}</a></h3>
+<div class="table-wrapper">
+    {% endif %}
+    <a href="{{site.baseurl}}/catalog/language/{{member.parent_tag}}/#{{member.cleaned_tag}}" class="topic-btn">{{member.name}}</a>
+  {% endif %}
 {% endfor %}
 </div>
 
-### Domain
+## [For Domains]({{site.baseurl}}/catalog/domain/)
 
 <div class="table-wrapper">
 {% for member in site.domain %}
-  <a href="{{site.baseurl}}/catalog/domain/#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+  {% if member.tag != "domain" %}
+    <a href="{{site.baseurl}}/catalog/domain/#{{member.tag}}" class="topic-btn">{{member.name}}</a>
+  {% endif %}
 {% endfor %}
 </div>
 
-### Modality
+## [For Modalities]({{site.baseurl}}/catalog/modality/)
 
 <div class="table-wrapper">
 {% for member in site.modality %}
-  <a href="{{site.baseurl}}/catalog/modality/#{{member.tag}}" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph text-center">{{member.name}}</a>
+  {% if member.tag != "domain" %}
+    <a href="{{site.baseurl}}/catalog/modality/#{{member.tag}}" class="topic-btn">{{member.name}}</a>
+  {% endif %}
 {% endfor %}
 </div>
 

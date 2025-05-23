@@ -1,6 +1,17 @@
 keyword,count
+text,35865
+polars,33350
+pandas,27411
+apache-2.0,19824
+mit,16917
+parquet,15242
+english,11334
+json,11050
+csv,7845
+tabular,6922
 image,6040
 text-generation,5259
+cc-by-4.0,3554
 question-answering,3171
 crowdsourced,2806
 text-classification,2789
@@ -10,9 +21,12 @@ time-series,2264
 lerobot,2211
 monolingual,1641
 audio,1495
+original,1342
+chinese,1175
 summarization,1125
 synthetic,1070
 art,1065
+cc0-1.0,1034
 text2text-generation,994
 tutorial,992
 text-to-image,984
@@ -21,49 +35,977 @@ image-to-text,953
 feature-extraction,917
 token-classification,883
 multilingual,846
+french,777
 sentence-similarity,777
+russian,758
 expert-generated,741
 code,708
 language-modeling,707
+spanish,694
 translation,662
 webdataset,654
+japanese,614
+german,597
 medical,583
 extractive-qa,569
 multi-class-classification,564
+soundfolder,544
 multi-label-classification,539
 topic-classification,536
+gpl-3.0,513
 named-entity-recognition,489
 biology,472
+korean,469
+arabic,464
 text-scoring,460
 sentiment-analysis,457
 news-articles-summarization,439
 image-classification,417
+portuguese,404
 legal,399
 document-retrieval,389
+afl-3.0,386
+italian,375
 table-question-answering,371
+turkish,363
 visual-question-answering,347
 finance,327
 sentence-transformers,324
+hindi,323
+vietnamese,311
 machine-generated,309
+mteb,301
+indonesian,297
 automatic-speech-recognition,281
+dutch,278
 chemistry,271
 zero-shot-classification,270
+thai,268
+bengali,256
+persian,239
+polish,232
 multiple-choice,227
+arrow,218
+tamil,207
 math,202
 text-to-speech,201
 nlp,201
 fill-mask,193
+czech,189
+danish,180
+telugu,179
+finnish,173
+ukrainian,171
+swedish,170
+romanian,169
+hungarian,160
+wtfpl,156
 open-domain-qa,153
 multiple-choice-qa,151
 object-detection,150
 eval,150
 llm,147
 reasoning,143
+dpo,142
+malayalam,141
+swahili,141
 music,139
 natural-language-inference,139
+welsh,135
+marathi,133
+hebrew,133
+bulgarian,130
+serbian,129
+greek,128
 image-segmentation,128
+kannada,125
 climate,120
+distilabel,118
+gujarati,115
 geospatial,114
+slovak,114
 tabular-classification,114
 closed-domain-qa,111
 image-to-image,111
+lithuanian,105
+norwegian,105
+slovenian,104
+croatian,103
+panjabi,103
+estonian,102
+yoruba,100
+finetuning,99
+amharic,98
+basque,98
+masked-language-modeling,94
+audio-classification,92
+multimodal,91
+nepali,91
+hausa,90
+kazakh,88
+igbo,87
+research,87
+icelandic,86
+latvian,86
+bsd-3-clause,84
+artistic-2.0,84
+afrikaans,83
+macedonian,83
+sinhala,82
+uzbek,82
+tagalog,81
+french law,80
+droit français,80
+zulu,78
+speech recognition,78
+galician,78
+latin,78
+burmese,77
+curator,76
+norwegian bokmål,75
+assamese,73
+maltese,73
+sentiment-classification,73
+belarusian,72
+python,72
+sanskrit,71
+irish,71
+javanese,70
+ocr,70
+azerbaijani,69
+video-classification,69
+rlhf,69
+xhosa,68
+science,67
+georgian,67
+malay,67
+ai,67
+wolof,66
+open-book-qa,65
+image-feature-extraction,65
+tabular-multi-label-classification,65
+tabular-multi-class-classification,64
+somali,64
+physics,63
+text-to-video,63
+retrieval,63
+closed-book-qa,63
+news,62
+kashmiri,61
+benchmark,61
+instruction-finetuning,61
+khmer,61
+health,60
+qa,60
+shona,59
+conversational,59
+reinforcement-learning,59
+esperanto,58
+kinyarwanda,58
+armenian,58
+rna,58
+oriya,57
+3d,56
+wikipedia,56
+fact-checking-retrieval,56
+entity-linking-retrieval,55
+aloha,55
+time-series-forecasting,54
+history,54
+human-feedback,54
+gpl-2.0,54
+sindhi,53
+albanian,53
+text-to-audio,52
+kurdish,52
+bosnian,52
+tabular-regression,51
+ganda,50
+evaluation,49
+sundanese,49
+norwegian nynorsk,49
+luxembourgish,49
+chat,49
+instruction,48
+lingala,48
+twi,47
+education,47
+lao,47
+tajik,46
+audio-to-audio,46
+southern sotho,45
+tatar,44
+camel,44
+mongolian,44
+mathematics,44
+speech,44
+graph-ml,43
+haitian,43
+yue chinese,43
+alpaca,43
+classification,43
+rlaif,41
+tswana,41
+roleplay,41
+sentiment,41
+cebuano,40
+scottish gaelic,39
+chatgpt,39
+protein,39
+faroese,39
+maithili,39
+oromo,39
+bambara,39
+images,39
+breton,39
+sft,38
+alignment,37
+rag,37
+game,37
+manipuri,37
+tigrinya,37
+law,36
+academic,36
+orpo,36
+tibetan,36
+anime,36
+educational,35
+hate-speech-detection,35
+medicine,35
+tsonga,35
+ncert,34
+openx,34
+chess,34
+sql,34
+text-to-sql,34
+swati,33
+intelligent_tutoring_system,33
+bhojpuri,33
+pretraining,33
+dfp,32
+healthcare,32
+problem-solving,32
+preference,32
+french prompts,32
+bsd-2-clause,32
+downstream task,32
+red teaming,31
+food,31
+kyrgyz,31
+awadhi,31
+code-generation,31
+video-text-to-text,31
+information,30
+instruct,30
+logic,30
+malagasy,30
+bashkir,30
+gpt,29
+image-captioning,29
+corpus,29
+turkmen,29
+samoan,29
+safety,29
+pashto,29
+chichewa,28
+kikuyu,28
+conditional-text-generation,28
+akan,28
+vision,28
+document-question-answering,28
+chhattisgarhi,28
+magahi,28
+central kurdish,28
+dialogue,28
+multi-input-text-classification,27
+achinese,27
+image-text-to-text,27
+crimean tatar,27
+question answering,27
+conversation,27
+balinese,26
+prompts,26
+language,26
+programming,26
+guaraní,26
+machine learning,26
+dataset-rewriter,26
+hdf5,26
+semantic-similarity-classification,26
+minangkabau,26
+cot,26
+māori,26
+afar,26
+machine-translation,26
+sardinian,25
+shan,25
+embeddings,25
+asturian,25
+twitter,25
+literature,25
+chamorro,25
+psychology,25
+fijian,25
+zero-shot-image-classification,25
+dzongkha,25
+math-word-problems,25
+buginese,25
+mpl-2.0,24
+security,24
+documents,24
+insurance,24
+eupl-1.1,24
+quechua,24
+spider,24
+kongo,24
+semantic-similarity-scoring,24
+chuvash,24
+coding,24
+luo (kenya and tanzania),24
+instruction-tuning,24
+question-generation,24
+ligurian,24
+lgpl-3.0,23
+software,23
+emotion,23
+papers,23
+data-juicer,23
+iloko,23
+venetian,23
+computer-vision,23
+clinical,23
+llama-factory,23
+waray (philippines),23
+cybersecurity,23
+multi-class-image-classification,23
+agriculture,23
+yiddish,23
+western frisian,23
+unlearning,23
+nanohotpotqa,22
+nanomsmarco,22
+economics,22
+friulian,22
+venda,22
+machine-learning,22
+nanodbpedia,22
+extended|wikipedia,22
+nanonq,22
+nanoarguana,22
+nanonfcorpus,22
+nanoclimatefever,22
+nanofever,22
+nanotouche2020,22
+papiamento,22
+nanofiqa2018,22
+extended,22
+nanoquoraretrieval,22
+sango,22
+occitan,22
+nanoscidocs,22
+filipino,22
+santali,22
+natural-language-processing,22
+nanoscifact,22
+iranian persian,21
+tok pisin,21
+remote-sensing,21
+arxiv:2501.19393,21
+test,21
+egyptian arabic,21
+arxiv,21
+franka,21
+kabuverdianu,21
+human,21
+arxiv:1606.05250,21
+fine-tuning,21
+translated,20
+chatml,20
+diagnosis,20
+unconditional-image-generation,20
+swahili (individual language),20
+uyghur,20
+historical,20
+treatment,20
+sicilian,20
+silesian,20
+culture,20
+arxiv:2304.13705,20
+banjar,20
+lombard,20
+function-calling,20
+llms,20
+koch,20
+nutrition,20
+arxiv:2110.14168,20
+modern greek (1453-),19
+queries,19
+politics,19
+coverage,19
+south azerbaijani,19
+preferences,19
+depth-estimation,19
+reviews,19
+technology,19
+traces,19
+tumbuka,19
+vqa,19
+nepali (individual language),19
+genomics,19
+sentiment analysis,19
+kirundi,19
+wikimedia/wit_base,19
+movies,19
+parsing,19
+training,19
+arxiv:2406.08464,19
+bemba (zambia),19
+sharegpt,19
+mossi,19
+e-commerce,19
+knowledge,18
+handwritten,18
+books,18
+poetry,18
+nyanja,18
+odia,18
+orca,18
+arxiv:2308.09597,18
+kabyle,18
+business,18
+kamba (kenya),18
+kirghiz,18
+part-of-speech,18
+tosk albanian,18
+ido,18
+biomedical,18
+dna,18
+arxiv:2110.03546,18
+arxiv:2012.10309,18
+moroccan arabic,18
+corsican,18
+umbundu,18
+arxiv:2306.14256,18
+pangasinan,18
+step-by-step,18
+latgalian,18
+tamasheq,18
+intent-classification,17
+explanation-generation,17
+lushai,17
+gan,17
+quality,17
+arxiv:2401.00368,17
+🇪🇺 region: eu,17
+query,17
+arxiv:2309.12284,17
+north azerbaijani,17
+regulations,17
+kabiyè,17
+document,17
+code generation,17
+argilla,16
+engineering,16
+chechen,16
+tofu,16
+dyula,16
+games,16
+aragonese,16
+reddit,16
+arxiv:2406.06462,16
+satellite,16
+jsonl,16
+maori,16
+image-text-dataset,16
+generation,16
+nli,16
+walloon,16
+limburgish,16
+abkhaz,16
+llama,16
+ayacucho quechua,15
+environment,15
+open-source,15
+erzya,15
+central atlas tamazight,15
+arxiv:2009.03300,15
+conversational-ai,15
+math-qa,15
+geography,15
+aymara,15
+volapük,15
+arxiv:2304.06364,15
+arxiv:2109.07958,15
+huggingnft,15
+central aymara,15
+nigerian pidgin,15
+yakut,15
+crypto,15
+central aymara,15
+nigerian pidgin,15
+yakut,15
+crypto,15
+atr,15
+arxiv:2412.08329,15
+makhuwa,15
+debate,15
+stable-diffusion,15
+huggan,15
+philosophy,15
+table-to-text,15
+ai-generated,15
+manx,15
+luba-lulua,15
+toxicity,15
+synthetic-dataset,15
+kabardian,15
+northern kurdish,15
+blockchain,15
+nft,15
+cornish,15
+fact-checking,15
+romansh,14
+image-to-video,14
+standard latvian,14
+northern uzbek,14
+eastern yiddish,14
+southwestern dinka,14
+imitation learning,14
+arxiv:2402.14830,14
+analysis,14
+detection,14
+earth-observation,14
+arxiv:1903.01435,14
+lichess,14
+arxiv:2303.18103,14
+avaric,14
+halh mongolian,14
+ossetian,14
+synthetic data,14
+alignment-lab-ai,14
+arxiv:2401.06121,14
+pampanga,14
+madurese,14
+arxiv:2403.08763,14
+synthetic-data,14
+low german,14
+arxiv:1712.07628,14
+argumentation,14
+bodo (india),14
+malay (macrolanguage),14
+plateau malagasy,14
+dari,14
+northern sami,14
+language-agent,14
+kalaallisut,14
+central kanuri,14
+navajo,14
+stocks,14
+arxiv:2310.05914,14
+maths,14
+synthgenai,14
+mandarin chinese,14
+west central oromo,14
+astronomy,14
+arxiv:2311.05657,14
+occitan (post 1500),13
+data-to-text,13
+gammacorpus,13
+text-simplification,13
+large language model,13
+stable diffusion,13
+extended|other-cochrane,13
+bio,13
+najdi arabic,13
+southern pashto,13
+expert trajectory,13
+levantine arabic,13
+nigerian fulfulde,13
+mathematical-reasoning,13
+photos,13
+chokwe,13
+standard malay,13
+ubuntu,13
+simpletuner,13
+standard moroccan tamazight,13
+computer vision,13
+dialogue-generation,13
+nuer,13
+agent,13
+smiles,13
+goan konkani,13
+kimbundu,13
+chatbot,13
+image-to-3d,13
+ancient greek (to 1453),13
+tuvinian,13
+extended|other-ms^2,13
+udmurt,13
+lexyr,13
+arxiv:2210.03992,13
+sports,13
+midjourney,13
+grounding,13
+acceptability-classification,13
+kachin,13
+amazon,13
+hawaiian,12
+deepfake,12
+inuktitut,12
+story,12
+government,12
+pushto,12
+drone,12
+mask-generation,12
+advice,12
+writing,12
+india,12
+multi-modal-qa,12
+instruct-tune,12
+interlingue,12
+mmlu,12
+relevance,12
+vlm,12
+arxiv:1803.05457,12
+mllm,12
+bislama,12
+upper sorbian,12
+standard arabic,12
+tetum,12
+ecl-2.0,12
+arxiv:2311.09122,12
+chart,12
+divehi,12
+ta'izzi-adeni arabic,12
+banking,12
+argument,12
+photographs,12
+image-caption pairs,12
+graph,12
+arxiv:2304.07327,12
+java,12
+image-data,12
+long context,12
+tahitian,12
+komi,12
+semantic-segmentation,12
+tunisian arabic,11
+ecommerce,11
+text2video,11
+ber,11
+instruction-following,11
+marshallese,11
+finetune,11
+multi-label-image-classification,11
+wikidata,11
+description,11
+arxiv:2407.01449,11
+youtube,11
+theorem-proving,11
+chat-dataset,11
+biology`,11
+eastern mari,11
+scots,11
+sustainability,11
+bsd-3-clause-clear,11
+fine-tune,11
+fula,11
+interlingua,11
+lezghian,11
+large language models,11
+hiligaynon,11
+nepali (macrolanguage),11
+information-retrieval,11
+poi,11
+moksha,11
+natural language processing,11
+adyghe,11
+novel,11
+structure-prediction,11
+articles,11
+multi-turn,11
+information retrieval,11
+named entity recognition,11
+tonga,11
+thinking,11
+statistics,11
+prompt,11
+kanuri,11
+arxiv:2306.05685,11
+discussion,10
+simulation,10
+newari,10
+summary,10
+automation,10
+multimolecule/rfam,10
+farsi,10
+mesopotamian arabic,10
+batak toba,10
+arxiv:2304.12244,10
+knowledge graph,10
+synthetic-captions,10
+fashion,10
+protein structure,10
+arxiv:2402.06619,10
+swahili (macrolanguage),10
+mapudungun,10
+variant-effect-prediction,10
+scientific,10
+reflection,10
+class-instance,10
+kara-kalpak,10
+distillation,10
+arxiv:2405.01886,10
+arxiv:2502.07346,10
+arxiv:2206.09917,10
+gpt-4v,10
+chain-of-thought,10
+preservation-loss-training,10
+token classification,10
+natural-language-understanding,10
+entity-linking-classification,10
+jailbreak,10
+deep-learning,10
+regularization-images,10
+tachelhit,10
+uighur,10
+abstractive-qa,10
+function calling,10
+financial,10
+development,10
+arxiv:2406.11271,10
+baluchi,10
+wayuu,10
+jamaican creole english,10
+sranan tongo,10
+newspapers,10
+verification,10
+danbooru,10
+gilaki,9
+hiri motu,9
+editing,9
+lam,9
+southern altai,9
+k'iche',9
+poem,9
+coherence,9
+parallel-corpus,9
+arxiv:1809.08887,9
+multimolecule/pdb,9
+arxiv:1703.00564,9
+molnet,9
+molecule-net,9
+old english (ca. 450-1100),9
+ko,9
+github,9
+arxiv:2305.18802,9
+arxiv:2212.10560,9
+arxiv:1907.04307,9
+lojban,9
+south ndebele,9
+multimolecule/crw,9
+biophysics,9
+symptoms,9
+questions,9
+bavarian,9
+pretrain,9
+space,9
+arxiv:2308.09583,9
+multimolecule/srpdb,9
+arxiv:2406.18518,9
+cherokee,9
+ladino,9
+planning,9
+formal-methods,9
+table,9
+bio-chem,9
+conversations,9
+logical-reasoning,9
+voice,9
+gsm8k,9
+search,9
+speaker-identification,9
+multimolecule/tmrna_website,9
+llama3,9
+scientific-figure,9
+n'ko,9
+tonga (tonga islands),9
+kalmyk,9
+ecology,9
+vision-language,9
+arxiv:2402.09668,9
+go,9
+paraphrase,9
+dinka,8
+neapolitan,8
+rundi,8
+language model,8
+satellite-imagery,8
+arxiv:2503.05236,8
+serbo-croatian,8
+saraiki,8
+tetun dili,8
+zhuang,8
+gpt-4,8
+arxiv:2401.09003,8
+bishnupriya,8
+arxiv:2311.07911,8
+segmentation,8
+ghomálá',8
+betawi,8
+ladin,8
+chuukese,8
+bsl-1.0,8
+arpitan,8
+fiji hindi,8
+karachay-balkar,8
+oriya (macrolanguage),8
+shipibo-conibo,8
+movie,8
+arxiv:2406.20094,8
+kashubian,8
+piemontese,8
+investment,8
+animals,8
+central bikol,8
+speech-recognition,8
+olympiads,8
+dialogue-modeling,8
+makasar,8
+cusco quechua,8
+linguistics,8
+yolo,8
+arxiv:2309.06085,8
+geometry-diagram,8
+fanti,8
+hakka chinese,8
+ngaju,8
+hallucination,8
+arxiv:2402.01912,8
+finnlp,8
+likert,8
+retrieval augmented generation,8
+dogri (macrolanguage),8
+lower sorbian,8
+fulah,8
+shuar,8
+kekchí,8
+vlax romani,8
+malay (individual language),8
+extended|common_voice,8
+sentiment-scoring,8
+droit,8
+arxiv:2103.03874,8
+postgresql,8
+arxiv:2203.04955,8
+wikisql,8
+explanation,8
+wiki,8
+customer_service,8
+arxiv:2306.09237,8
+amis,8
+pular,8
+nyankole,8
+machine translation,8
+aveni-bench,8
+russia buriat,8
+western armenian,8
+nias,8
+saterfriesisch,8
+emotions,8
+arxiv:2305.14233,8
+gaming,8
+testing,8
+garifuna,7
+chachi,7
+lak,7
+banking-digital-services,7
+investment-ai-analysis,7
+policy,7
+grammar,7
+min nan chinese,7
+arxiv:2309.02791,7
+assyrian neo-aramaic,7
+bora,7
+cashibo-cacataibo,7
+liv,7
+mirandese,7
+siona,7
+text generation,7
+arxiv:2404.09785,7
+arxiv:2203.02155,7
+image classification,7
+multimolecule/ensembl_fungi,7
+multimolecule/snopy,7
+multi-modal,7
+inupiaq,7
+makonde,7
+south bolivian quechua,7
+papantla totonac,7
+mobile-app-dev-tech,7
+voice-activity-detection,7
+caption,7
+arxiv:2107.03374,7
+benchmarks,7
+multimolecule/ena,7
+multimolecule/ensembl_plants,7
+multimolecule/intact,7
+multimolecule/plncdb,7
+multimolecule/rgd,7
+extraction,7
+egyptian (ancient),7
+kölsch,7
+sar,7
+arxiv:2403.02884,7
+sqlglot,7
+multimolecule/modomics,7
+multimolecule/pirbase,7
+logical reasoning,7
+deep learning,7
+bible,7
+embedding,7
+squad_v2_french_translated,7
+mari (russia),7
+murui huitoto,7
+search-queries,7
+codesearchnet,7
+multimolecule/5srrnadb,7
+multimolecule/expression_atlas,7
+multimolecule/mgi,7
+arxiv:2410.16107,7
+keyword-spotting,7
+figure-qa,7
+arxiv:1912.06670,7
+large-language-model,7
+multimolecule/ensembl_metazoa,7
+multimolecule/mirbase,7
+multimolecule/psicquic,7
+multimolecule/rdp,7
+multimolecule/snodb,7
+multimolecule/bprna,7
+kaqchikel,7
+dhivehi,7
+gagauz,7
+sharanahua,7
+cajamarca quechua,7
+tzotzil,7
+yucateco,7
+bug-reporting-automation,7
+collaborative-dev-environments,7
+energy,7
+multimolecule/ensembl,7
+multimolecule/flybase,7
+multimolecule/lncbase,7
+multimolecule/mgnify,7
+multimolecule/tarbase,7
+multimolecule/zwd,7
+videos,7
+arxiv:2107.07903,7
+susu,7
+retrieval-augmented-generation,7
+multimolecule/greengenes,7
+multimolecule/noncode,7
+super-resolution,7
+akkadian,7
+arabela,7
+zapotec,7

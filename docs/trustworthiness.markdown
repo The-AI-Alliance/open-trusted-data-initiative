@@ -41,9 +41,6 @@ Our deliverables to the industry include the following:
 # Add Your Dataset to the Catalog
 
 <!-- 
-If you just want to browse the current catalog:<br/>
-<a href="{{site.baseurl}}/catalog/catalog/" target="hugging-face" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2 no-glyph">click here</a>.
-
 So, why should you get involved?
 
 * **Collaborate on AI Innovation:** Your data can help build more accurate, fair, versatile, and open AI models. You can also connect with like-minded data scientists, AI researchers, and industry leaders in the AI Alliance.

@@ -25,6 +25,8 @@ The website is published using [GitHub Pages](https://pages.github.com/), where 
 
 See [GITHUB_PAGES.md](GITHUB_PAGES.md) for more information, especially for instructions on  previewing changes locally using `jekyll`.
 
+See the [`static-catalog/README.md`](static_catalog) for details about building the current "static" catalog.
+
 > [!NOTE]
 > All documentation is licensed under Creative Commons Attribution 4.0 International. See [LICENSE.CDLA-2.0](LICENSE.CDLA-2.0).
 
