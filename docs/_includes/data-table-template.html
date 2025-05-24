@@ -16,11 +16,6 @@
     <p>Click a row to see the description. Use the line below the table to resize it. See <a href="{{site.baseurl}}/catalog/catalog/#about-these-datasets">About These Datasets</a> for important details.</p>
   </div>
 </blockquote>
-<p>
-  <span id="{{ unique_id }}-num-rows"></span>
-  <a onclick="saveJSON(data_for_{{ unique_id }}, '{{ unique_id }}.json', '{{ unique_id }}-message');" href="javascript:;">Download this data (JSON).</a>
-  <span id="{{ unique_id }}-message"></span>
-</p>
 <div id="{{ unique_id }}-filter-div">
   <select id="{{ unique_id }}-filter-field">
     <option></option>
@@ -42,8 +37,9 @@
   </select>
   <input id="{{ unique_id }}-filter-value" type="text" placeholder="value to filter">
   <button id="{{ unique_id }}-filter-clear">Clear Filter</button>
-  <!-- <span class="width-100 text-small text-right"><a href="#keywords-at-top" id="back-to-keywords">Back to the top</a></span> -->
-  <!-- <span title="Go to the top" class="width-100 text-right"><a href="#keywords-at-top" id="back-to-keywords">&#8593;</a></span> -->
+  <span id="{{ unique_id }}-num-rows"></span>
+  <button id="{{ unique_id }}-download-data" onclick="saveTableAsJSON('{{ unique_id }}', '{{ unique_id }}-download-message');">Download</button>
+  <span id="{{ unique_id }}-download-message"></span>
 </div>
 <div id="{{unique_id}}-table-div-resizable" class="resizable">
   <div class="resizers">
@@ -54,7 +50,7 @@
       {% endcomment %}
       <script type="text/javascript" src="{{site.baseurl}}/files/data/catalog/{{ include.ancestor_path }}/{{include.cleaned_keyword}}.js"></script>
       <script type="text/javascript">
-        var idTableRowCount = make_catalog_table(
+        var idTable = makeCatalogTable(
           "{{ unique_id }}",
           data_for_{{ unique_id }},
           {% if other_keywords.size > 0 %}
@@ -65,17 +61,13 @@
           "{{ unique_id }}-selected-description-div",
           "{{ unique_id }}.json"
         );
-        dataTables[idTableRowCount.id] = idTableRowCount.table;
-        var numRowsSpan = document.getElementById("{{ unique_id }}-num-rows");
-        if (numRowsSpan) {
-          numRowsSpan.innerHTML = `${idTableRowCount.numRows} rows.`;
-        }
       </script>
     </div>
     <div class="resizer-line bottom-line"></div>
     <script type="text/javascript">
-      makeResizableTableDiv("{{unique_id}}-table-div-resizable", idTableRowCount.id);
-      enableTableFilters("{{ unique_id }}", idTableRowCount.table);
+      makeResizableTableDiv("{{unique_id}}-table-div-resizable", idTable.table);
+      enableTableFilters("{{ unique_id }}", idTable.table);
+      setNumRows("{{ unique_id }}", idTable.table, num=data_for_{{ unique_id }}.length);
     </script>
   </div>
 </div>

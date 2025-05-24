@@ -1,3 +1,8 @@
+/** 
+ * All the catalog tables on this page. 
+ */
+var dataTables = {};
+
 /**
  * Function to render a Tabulator table for a keyword's data.
  * uniqueID:       For defining a unique id for the table object.
@@ -14,7 +19,7 @@
  * 2. A fixed height of 300 means that short tables have an empty gray area at the bottom
  *    so we use a "hack" calculation to estimate the size.
  */
-function make_catalog_table(uniqueID, data, showKeywordCol, detailsID, saveJSONFileName) {
+function makeCatalogTable(uniqueID, data, showKeywordCol, detailsID, saveJSONFileName) {
   var keywordArray = [];
   if (showKeywordCol) {
     keywordArray = [{title:"Keyword", field:"keyword"}];
@@ -48,6 +53,8 @@ function make_catalog_table(uniqueID, data, showKeywordCol, detailsID, saveJSONF
         target:"_blank",
       }}])
   });
+  dataTables[uniqueID] = dataTable;
+
   dataTable.on("rowClick", function(e, row){ 
     const data = row.getData();
     var   keywords_str = data.first_N_keywords.join(', ')
@@ -55,7 +62,6 @@ function make_catalog_table(uniqueID, data, showKeywordCol, detailsID, saveJSONF
         keywords_str += "... (see dataset for all keywords)";
     };
     const desc = data.description.replace(/\\+[nr]/g, "\n").replace(/\\+t/g, "\t"); // clean up escape quoting!
-    const descDiv = document.getElementById(detailsID);
     const message = `
       <table>      
         <tr><td><strong>Name:</strong></td><td><a href="${data.dataset_url}" target="_blank">${data.name}</a></td></tr>
@@ -66,26 +72,50 @@ function make_catalog_table(uniqueID, data, showKeywordCol, detailsID, saveJSONF
         <tr><td><strong>Description:</strong></td><td><p class="description">${desc}</p></td></tr>
       </table>
     `;
-    descDiv.innerHTML = message;
+    setInnerHTML(detailsID, message);
   });
   return {"id": tableID, "table": dataTable, "numRows": data.length};
 }
 
-function saveJSON(data, fileName, messageSpanID) {
+function setInnerHTML(id, content, ignoreMissing = false) {
+  const elem = document.getElementById(id);
+  if (elem) {
+    elem.innerHTML = content;
+  } else if (! ignoreMissing) {
+    console.log(`ERROR: setInnerHTML(): no element found with id ${id}.`);
+  }
+}
+
+function setDownloadMessage(id_prefix, message) {
+  setInnerHTML(`${id_prefix}-download-message`, message);
+}
+
+function saveTableAsJSON(id_prefix, id_message) {
+  let table = dataTables[id_prefix];
+  if (! table) {
+    console.log(`ERROR: No table for id ${id_prefix}!`);
+  } else {
+    allData = table.getData();
+    filteredData = table.getData("active");
+    filteredStr = allData.length != filteredData.length ? "_filtered" : "";
+    filteredMsg = allData.length != filteredData.length ? "filtered" : "all";
+    fileName = `${id_prefix}${filteredStr}.json`;
+    message = `Writing ${filteredMsg} data to "${fileName}" in your downloads folder.`;
+    setDownloadMessage(id_prefix, message);
+    setInnerHTML(id_message, message);
+    saveJSON(filteredData, fileName);
+  }
+}
+
+function saveJSON(data, fileName, id_message, message) {
   var jsonToSave = new Blob([JSON.stringify(data, undefined, 2)], {
     type: 'application/json'
   });
   var a = document.createElement("a");
   a.href = window.URL.createObjectURL(jsonToSave);
   a.download = fileName;
-  const span = messageSpanID ? document.getElementById(messageSpanID) : null;
   a.click();
-  if (span) {
-    span.innerHTML = `Writing "${fileName}" to your downloads folder.`;
-  }
 }
-
-dataTables = {};
 
 /**
  * Functions to make a resizable div surrounding a Tabulator table.
@@ -93,11 +123,14 @@ dataTables = {};
  * so this code could be generalized for other objects...
  * Adapted from https://stackoverflow.com/questions/64854699/change-table-height-resize-by-dragging-the-bottom-border
  */
-function makeResizableTableDiv(divID, tableID) {
+function makeResizableTableDiv(divID, table) {
+  if (!table) { 
+    console.log(`Warning: makeResizableTableDiv(): input table is null!`);
+    return; 
+  }
   const element  = document.getElementById(divID);
-  const table    = dataTables[tableID];
-  if (!element || !table) { 
-    console.log(`Warning: div (id = ${divID}) and/or table (id = ${tableID}) are null!`);
+  if (!element) { 
+    console.log(`Warning: makeResizableTableDiv(): no element found for id = ${divID}!`);
     return; 
   }
   const resizers = element.querySelectorAll('.resizer-line')
@@ -138,6 +171,20 @@ function makeResizableTableDiv(divID, tableID) {
   }
 }
 
+/**
+ * The num argument is a hack; we apparently call this function during setup before
+ * table.getData("active") has "active" rows, so 0 is returned.
+ */
+function setNumRows(id_prefix, table, num = -1) {
+  const id = `${id_prefix}-num-rows`;
+  const length = num < 0? table.getData("active").length: num;
+  if (length == 0) {
+    console.log("0 rows");
+  }
+  numRowsMessage = length == 1 ? `${length} row.`: `${length} rows.`;
+  setInnerHTML(id, numRowsMessage);
+}
+
 function enableTableFilters(id_prefix, table) {
 
   // Define variables for input elements
@@ -151,6 +198,8 @@ function enableTableFilters(id_prefix, table) {
     var filterVal = fieldElem.options[fieldElem.selectedIndex].value;
     var typeVal = typeElem.options[typeElem.selectedIndex].value;
     table.setFilter(filterVal, typeVal, valueElem.value);
+    setNumRows(id_prefix, table);
+    setDownloadMessage(id_prefix, "");
   }
 
   //Update filters on value change
@@ -163,11 +212,9 @@ function enableTableFilters(id_prefix, table) {
     fieldElem.value = "";
     typeElem.value = "=";
     valueElem.value = "";
-    table.clearFilter();
+    table.clearFilter()
+    setNumRows(id_prefix, table);
+    setDownloadMessage(id_prefix, "");
   });
+  clearElem.click
 }
-
-// Calls the following after all DOM elements 
-// have been defined.
-// document.addEventListener("DOMContentLoaded", function(event) { 
-// });
