@@ -6,6 +6,7 @@ var dataTables = {};
 /**
  * Function to render a Tabulator table for a keyword's data.
  * uniqueID:       For defining a unique id for the table object.
+ * keyword:        The primary keyword for data in this table.
  * data:           The JS array to show in the table. See how the
  *                 columns are set up for documentation on the 
  *                 expected fields in the objects in "data".
@@ -19,7 +20,7 @@ var dataTables = {};
  * 2. A fixed height of 300 means that short tables have an empty gray area at the bottom
  *    so we use a "hack" calculation to estimate the size.
  */
-function makeCatalogTable(uniqueID, data, showKeywordCol, detailsID, saveJSONFileName) {
+function makeCatalogTable(uniqueID, keyword, data, showKeywordCol, detailsID, saveJSONFileName) {
   var keywordArray = [];
   if (showKeywordCol) {
     keywordArray = [{title:"Keyword", field:"keyword"}];
@@ -66,11 +67,12 @@ function makeCatalogTable(uniqueID, data, showKeywordCol, detailsID, saveJSONFil
       <table>      
         <tr><td><strong>Name:</strong></td><td><a href="${data.dataset_url}" target="_blank">${data.name}</a></td></tr>
         <tr><td><strong>Keyword:</strong></td><td>${data.keyword}</td></tr>      
-        <tr><td><strong>Other Keywords:</strong></td><td>${keywords_str}</td></tr>      
+        <tr><td><strong>Other Keywords:<sup>1</sup></strong></td><td>${keywords_str}</td></tr>      
         <tr><td><strong>License:</strong></td><td><a href="${data.license_url}" target="_blank">${data.license}</a></td></tr>
         <tr><td><strong>Creator:</strong></td><td><a href="${data.creator_url}" target="_blank">${data.creator_name}</a></td></tr>
         <tr><td><strong>Description:</strong></td><td><p class="description">${desc}</p></td></tr>
       </table>
+      <span class="text-small text-grey-dk-100 mb-0">1: The list of keywords in the dataset itself, not the &ldquo;additional keywords&rdquo; (if any) grouped with <code>${keyword}</code>.</span>
     `;
     setInnerHTML(detailsID, message);
   });

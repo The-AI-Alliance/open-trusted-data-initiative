@@ -54,6 +54,7 @@
       <script type="text/javascript">
         var idTable = makeCatalogTable(
           "{{ unique_id }}",
+          "{{include.keyword}}",
           data_for_{{ unique_id }},
           {% if other_keywords.size > 0 %}
           true,
