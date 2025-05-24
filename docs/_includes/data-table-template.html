@@ -17,17 +17,17 @@
   </div>
 </blockquote>
 <div id="{{ unique_id }}-filter-div">
-  <form>
-    <select id="{{ unique_id }}-filter-field">
+  <form onsubmit="function doNothing(event) {event.stopPropagation(); };">
+    <select id="{{ unique_id }}-filter-field" type="select">
       <!-- <option selected="selected"></option> no field selected by default -->
       <option value="name" selected="selected">Name</option>
       {% if other_keywords.size > 0 %}
       <option value="keyword">Keyword</option>
       {% endif %}
       <option value="license">License</option>
-      <option value="gender">Creator's Name</option>
+      <option value="creator_name">Creator Name</option>
     </select>
-    <select id="{{ unique_id }}-filter-type">
+    <select id="{{ unique_id }}-filter-type" type="select">
       <option value="like" selected="selected">like</option>
       <option value="=">=</option>
       <option value="<"><</option>
