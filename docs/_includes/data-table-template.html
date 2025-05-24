@@ -39,7 +39,7 @@
     <input id="{{ unique_id }}-filter-value" type="text" placeholder="value to filter">
     <button id="{{ unique_id }}-filter-clear" type="reset" value="reset">Clear Filter</button>
     <span id="{{ unique_id }}-num-rows"></span>
-    <button id="{{ unique_id }}-download-data" onclick="saveTableAsJSON('{{ unique_id }}', '{{ unique_id }}-download-message');">Download</button>
+    <button id="{{ unique_id }}-download-data" type="button" onclick="saveTableAsJSON('{{ unique_id }}', '{{ unique_id }}-download-message');">Download</button>
     <span id="{{ unique_id }}-download-message"></span>
   </form>
 </div>
