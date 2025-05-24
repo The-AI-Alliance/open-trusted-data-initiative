@@ -126,7 +126,7 @@ function makeResizableTableDiv(divID, tableID) {
       if (currentResizer.classList.contains('bottom-line')) {
         const height = original_height + (e.pageY - original_mouse_y);
         if (height > minimum_size) {
-          table.setHeight(height - 23);
+          table.setHeight(height - 23); // TODO: This magic number was in the example. What is it??
           element.style.height = height + 'px';
         }
       }

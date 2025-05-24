@@ -15,6 +15,8 @@ Some are _pidgins_ or _creoles_ derived from languages originating elsewhere.
 
 > **NOTE:** We have endeavored to place languages in their correct geographic location. Some languages cross geographic boundaries. Please report any errors! Thank you.
 
+<a name="keywords-at-top"></a>
+
 ## Keywords for these Languages
 
 <div class="table-wrapper">

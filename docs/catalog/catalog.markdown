@@ -18,13 +18,14 @@ has_children: true
 
 ## About These Datasets
 
-> The tables below list Hugging Face-hosted datasets that were gathered as follows:
+> The tables in the catalog list the metadata for Hugging Face-hosted datasets that were gathered as follows:
 > 
-> * The tables reflect the data as of May 5<sup>th</sup>, 2025.
+> * The tables reflect a snapshot of the datasets as of May 5<sup>th</sup>, 2025.
 > * Of the 350,000 or so datasets, only those queryable using [Croissant](https://mlcommons.org/working-groups/data/croissant/){:target="croissant"} metadata are considered, about 260,000.
 > * Of those, we discarded datasets without a specified license, leaving just 60,000!
-> * The licenses are specified as URLs at [choosealicense.com/licenses/](https://choosealicense.com/licenses/){:target="cal"}. Unfortunately, many undefined URLs are specified, so we discarded those datasets leaving 45,000.<a href="#footnote1"><sup>1</sup></a>
-> * The groupings are based on the presence of relevant keywords. Note that _all_ the datasets list their language as `en`, English, but many have keywords for other languages. That's the basis for the [Languages](language) tables, for example.
+> * The licenses are specified as corresponding [choosealicense.com/licenses/](https://choosealicense.com/licenses/){:target="cal"} URLs. Unfortunately, many undefined (&ldquo;404&rdquo;) URLs are specified. We discarded those datasets leaving 45,000.<a href="#footnote1"><sup>1</sup></a>
+> * The groupings are based on the presence of relevant keywords. Note that _all_ the datasets list their language as `en` (English), but many have keywords for other languages. Those keywords are the basis for the [Languages]({{site.baseurl}}/catalog/language/language) tables, including the one for [English]({{site.baseurl}}/catalog/language/europe#english)!.
+> * All keywords were converted to lower case before &ldquo;grouping&rdquo;. When a keyword entry lists _additional keywords_, it means we grouped together different keywords that we believe are related to the same topic, including synonyms. In these cases, we also show a **Keyword** column in the tables, so you can see which keyword corresponded to the the dataset listed.
 > * **Important:** At this time, we are not yet validating datasets to ensure their metadata accurately reflect the data records themselves.
 > * Do you know of any datasets that should be shown, but aren't? [Let us know!](mailto:data@thealliance.ai)
 > 

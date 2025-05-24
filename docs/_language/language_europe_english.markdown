@@ -17,6 +17,6 @@ alt_tags: emoji
   parent_title = "European Languages"
   grand_parent_title = "Languages"
   alt_keywords="emoji"
-  context=""
+  context="<strong>All</strong> the Hugging Face datasets cataloged here have the metadata entry <code>language:en</code>. This table shows datasets that include <code>english</code> (or <code>emoji</code> :smile: as a keyword)."
 %}
 

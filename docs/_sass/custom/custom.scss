@@ -3,7 +3,7 @@ td {
 }
 
 .width-100 {
-	width: 100%;
+	width: 100% !important;
 }
 
 blockquote {
@@ -37,10 +37,12 @@ blockquote {
 	@extend .btn-blue;
 }
 
-.resize-btn {
-	@extend .keyword-btn;
-	@extend .btn-green;
-	width: 100%;
+h3.topic-btn {
+	@extend .topic-btn;
+	@extend .text-left;
+}
+h3.topic {
+	@extend .btn-blue;
 }
 
 .resizable {

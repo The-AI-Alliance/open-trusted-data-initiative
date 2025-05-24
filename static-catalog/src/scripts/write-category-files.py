@@ -275,9 +275,6 @@ subcategories: {'|'.join([s['keyword'] for s in subcategories])}
       topics_links_btns = [make_md_link(t, f'{parent_keyword}/{cleaned_keyword}', css_class="topic-btn", use_hash=True) for t in topics]
       print("#### Topics", file=md_out)
       print(' '.join(topics_links_btns), file=md_out)
-      print('') 
-      print('<link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet"/>')
-      print('<script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>')
 
 def write_topic_markdown(
     directory, 
