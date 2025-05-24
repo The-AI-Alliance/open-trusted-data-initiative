@@ -210,7 +210,7 @@ function enableTableFilters(id_prefix, table) {
   //Clear filters on "Clear Filters" button click
   clearElem.addEventListener("click", function(){
     fieldElem.value = "";
-    typeElem.value = "=";
+    typeElem.value = "Like";
     valueElem.value = "";
     table.clearFilter()
     setNumRows(id_prefix, table);

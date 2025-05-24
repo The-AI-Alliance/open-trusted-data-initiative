@@ -17,29 +17,31 @@
   </div>
 </blockquote>
 <div id="{{ unique_id }}-filter-div">
-  <select id="{{ unique_id }}-filter-field">
-    <option></option>
-    <option value="name">Name</option>
-    {% if other_keywords.size > 0 %}
-    <option value="keyword">Keyword</option>
-    {% endif %}
-    <option value="license">License</option>
-    <option value="gender">Creator's Name</option>
-  </select>
-  <select id="{{ unique_id }}-filter-type">
-    <option value="=">=</option>
-    <option value="<"><</option>
-    <option value="<="><=</option>
-    <option value=">">></option>
-    <option value=">=">>=</option>
-    <option value="!=">!=</option>
-    <option value="like">like</option>
-  </select>
-  <input id="{{ unique_id }}-filter-value" type="text" placeholder="value to filter">
-  <button id="{{ unique_id }}-filter-clear">Clear Filter</button>
-  <span id="{{ unique_id }}-num-rows"></span>
-  <button id="{{ unique_id }}-download-data" onclick="saveTableAsJSON('{{ unique_id }}', '{{ unique_id }}-download-message');">Download</button>
-  <span id="{{ unique_id }}-download-message"></span>
+  <form>
+    <select id="{{ unique_id }}-filter-field">
+      <!-- <option selected="selected"></option> no field selected by default -->
+      <option value="name" selected="selected">Name</option>
+      {% if other_keywords.size > 0 %}
+      <option value="keyword">Keyword</option>
+      {% endif %}
+      <option value="license">License</option>
+      <option value="gender">Creator's Name</option>
+    </select>
+    <select id="{{ unique_id }}-filter-type">
+      <option value="like" selected="selected">like</option>
+      <option value="=">=</option>
+      <option value="<"><</option>
+      <option value="<="><=</option>
+      <option value=">">></option>
+      <option value=">=">>=</option>
+      <option value="!=">!=</option>
+    </select>
+    <input id="{{ unique_id }}-filter-value" type="text" placeholder="value to filter">
+    <button id="{{ unique_id }}-filter-clear" type="reset" value="reset">Clear Filter</button>
+    <span id="{{ unique_id }}-num-rows"></span>
+    <button id="{{ unique_id }}-download-data" onclick="saveTableAsJSON('{{ unique_id }}', '{{ unique_id }}-download-message');">Download</button>
+    <span id="{{ unique_id }}-download-message"></span>
+  </form>
 </div>
 <div id="{{unique_id}}-table-div-resizable" class="resizable">
   <div class="resizers">
