@@ -1,6 +1,7 @@
 ---
 name: Nuer
 tag: nuer
+context: ""
 cleaned_tag: nuer
 parent_tag: africa
 parent_title: African Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="nuer" 
   cleaned_keyword="nuer" 
   title="Nuer"
+  context=""
   ancestor_path="language/africa" 
   parent_title = "African Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

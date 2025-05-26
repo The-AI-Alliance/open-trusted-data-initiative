@@ -1,6 +1,7 @@
 ---
 name: Bunama
 tag: bunama
+context: ""
 cleaned_tag: bunama
 parent_tag: pacific
 parent_title: Languages of the Pacific Islands and Nations
@@ -13,10 +14,10 @@ alt_tags:
   keyword="bunama" 
   cleaned_keyword="bunama" 
   title="Bunama"
+  context=""
   ancestor_path="language/pacific" 
   parent_title = "Languages of the Pacific Islands and Nations"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

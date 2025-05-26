@@ -1,6 +1,7 @@
 ---
 name: Kyrgyz
 tag: kyrgyz
+context: ""
 cleaned_tag: kyrgyz
 parent_tag: asia
 parent_title: Asian Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="kyrgyz" 
   cleaned_keyword="kyrgyz" 
   title="Kyrgyz"
+  context=""
   ancestor_path="language/asia" 
   parent_title = "Asian Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

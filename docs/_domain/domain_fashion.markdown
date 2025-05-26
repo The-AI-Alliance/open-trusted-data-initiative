@@ -1,6 +1,7 @@
 ---
 name: Fashion
 tag: fashion
+context: ""
 cleaned_tag: fashion
 parent_tag: domain
 parent_title: Domains
@@ -13,10 +14,10 @@ alt_tags:
   keyword="fashion" 
   cleaned_keyword="fashion" 
   title="Fashion"
+  context=""
   ancestor_path="domain" 
   parent_title = "Domains"
   grand_parent_title = "None"
   alt_keywords=""
-  context=""
 %}
 

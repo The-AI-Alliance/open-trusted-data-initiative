@@ -1,6 +1,7 @@
 ---
 name: Yapese
 tag: yapese
+context: ""
 cleaned_tag: yapese
 parent_tag: pacific
 parent_title: Languages of the Pacific Islands and Nations
@@ -13,10 +14,10 @@ alt_tags:
   keyword="yapese" 
   cleaned_keyword="yapese" 
   title="Yapese"
+  context=""
   ancestor_path="language/pacific" 
   parent_title = "Languages of the Pacific Islands and Nations"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

@@ -33,7 +33,15 @@ has_children: true
 
 ## The Current Keywords Cataloged
 
-### [For Languages]({{site.baseurl}}/catalog/language/language)
+### [Datasets For Languages]({{site.baseurl}}/catalog/language/language)
+
+<div>
+{% for member in site.language %}
+  {% if member.tag == "language" %}
+    {{member.content}}
+  {% endif %}
+{% endfor %}
+</div>
 
 <div class="table-wrapper">
 {% assign current_region = "" %}
@@ -52,7 +60,15 @@ has_children: true
 {% endfor %}
 </div>
 
-### [For Domains]({{site.baseurl}}/catalog/domain/)
+### [Datasets For Domains]({{site.baseurl}}/catalog/domain/)
+
+<div>
+{% for member in site.domain %}
+  {% if member.tag == "domain" %}
+    {{member.content}}
+  {% endif %}
+{% endfor %}
+</div>
 
 <div class="table-wrapper">
 {% for member in site.domain %}
@@ -62,11 +78,19 @@ has_children: true
 {% endfor %}
 </div>
 
-### [For Modalities]({{site.baseurl}}/catalog/modality/)
+### [Datasets For Modalities]({{site.baseurl}}/catalog/modality/)
+
+<div>
+{% for member in site.modality %}
+  {% if member.tag == "modality" %}
+    {{member.content}}
+  {% endif %}
+{% endfor %}
+</div>
 
 <div class="table-wrapper">
 {% for member in site.modality %}
-  {% if member.tag != "domain" %}
+  {% if member.tag != "modality" %}
     <a href="{{site.baseurl}}/catalog/modality/#{{member.tag}}" class="topic-btn">{{member.name}}</a>
   {% endif %}
 {% endfor %}

@@ -1,6 +1,7 @@
 ---
 name: Pele Ata
 tag: pele-ata
+context: ""
 cleaned_tag: pele_ata
 parent_tag: pacific
 parent_title: Languages of the Pacific Islands and Nations
@@ -13,10 +14,10 @@ alt_tags: peleata pele
   keyword="pele-ata" 
   cleaned_keyword="pele_ata" 
   title="Pele Ata"
+  context=""
   ancestor_path="language/pacific" 
   parent_title = "Languages of the Pacific Islands and Nations"
   grand_parent_title = "Languages"
   alt_keywords="peleata|pele"
-  context=""
 %}
 

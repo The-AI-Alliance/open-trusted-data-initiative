@@ -1,6 +1,7 @@
 ---
 name: Ber
 tag: ber
+context: ""
 cleaned_tag: ber
 parent_tag: africa
 parent_title: African Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="ber" 
   cleaned_keyword="ber" 
   title="Ber"
+  context=""
   ancestor_path="language/africa" 
   parent_title = "African Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

@@ -1,6 +1,7 @@
 ---
 name: News
 tag: news
+context: ""
 cleaned_tag: news
 parent_tag: modality
 parent_title: Modalities
@@ -13,10 +14,10 @@ alt_tags: news-articles-summarization
   keyword="news" 
   cleaned_keyword="news" 
   title="News"
+  context=""
   ancestor_path="modality" 
   parent_title = "Modalities"
   grand_parent_title = "None"
   alt_keywords="news-articles-summarization"
-  context=""
 %}
 

@@ -1,6 +1,7 @@
 ---
 name: Kanuri
 tag: kanuri
+context: ""
 cleaned_tag: kanuri
 parent_tag: africa
 parent_title: African Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="kanuri" 
   cleaned_keyword="kanuri" 
   title="Kanuri"
+  context=""
   ancestor_path="language/africa" 
   parent_title = "African Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

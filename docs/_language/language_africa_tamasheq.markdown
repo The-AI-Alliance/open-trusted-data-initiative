@@ -1,6 +1,7 @@
 ---
 name: Tamasheq
 tag: tamasheq
+context: ""
 cleaned_tag: tamasheq
 parent_tag: africa
 parent_title: African Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="tamasheq" 
   cleaned_keyword="tamasheq" 
   title="Tamasheq"
+  context=""
   ancestor_path="language/africa" 
   parent_title = "African Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

@@ -1,6 +1,7 @@
 ---
 name: Cofán
 tag: cofán
+context: ""
 cleaned_tag: cofán
 parent_tag: americas
 parent_title: Languages in the Americas
@@ -13,10 +14,10 @@ alt_tags:
   keyword="cofán" 
   cleaned_keyword="cofán" 
   title="Cofán"
+  context=""
   ancestor_path="language/americas" 
   parent_title = "Languages in the Americas"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

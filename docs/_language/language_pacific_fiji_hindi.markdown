@@ -1,6 +1,7 @@
 ---
 name: Fiji hindi
 tag: fiji hindi
+context: ""
 cleaned_tag: fiji_hindi
 parent_tag: pacific
 parent_title: Languages of the Pacific Islands and Nations
@@ -13,10 +14,10 @@ alt_tags:
   keyword="fiji hindi" 
   cleaned_keyword="fiji_hindi" 
   title="Fiji hindi"
+  context=""
   ancestor_path="language/pacific" 
   parent_title = "Languages of the Pacific Islands and Nations"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

@@ -1,6 +1,7 @@
 ---
 name: Ticuna
 tag: ticuna
+context: ""
 cleaned_tag: ticuna
 parent_tag: americas
 parent_title: Languages in the Americas
@@ -13,10 +14,10 @@ alt_tags:
   keyword="ticuna" 
   cleaned_keyword="ticuna" 
   title="Ticuna"
+  context=""
   ancestor_path="language/americas" 
   parent_title = "Languages in the Americas"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

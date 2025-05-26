@@ -1,6 +1,7 @@
 ---
 name: West kewa
 tag: west kewa
+context: ""
 cleaned_tag: west_kewa
 parent_tag: pacific
 parent_title: Languages of the Pacific Islands and Nations
@@ -13,10 +14,10 @@ alt_tags: west kewapi
   keyword="west kewa" 
   cleaned_keyword="west_kewa" 
   title="West kewa"
+  context=""
   ancestor_path="language/pacific" 
   parent_title = "Languages of the Pacific Islands and Nations"
   grand_parent_title = "Languages"
   alt_keywords="west kewapi"
-  context=""
 %}
 

@@ -1,6 +1,7 @@
 ---
 name: Igbo
 tag: igbo
+context: ""
 cleaned_tag: igbo
 parent_tag: africa
 parent_title: African Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="igbo" 
   cleaned_keyword="igbo" 
   title="Igbo"
+  context=""
   ancestor_path="language/africa" 
   parent_title = "African Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

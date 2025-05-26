@@ -1,6 +1,7 @@
 ---
 name: Setswana
 tag: setswana
+context: ""
 cleaned_tag: setswana
 parent_tag: africa
 parent_title: African Languages
@@ -13,10 +14,10 @@ alt_tags: tswana
   keyword="setswana" 
   cleaned_keyword="setswana" 
   title="Setswana"
+  context=""
   ancestor_path="language/africa" 
   parent_title = "African Languages"
   grand_parent_title = "Languages"
   alt_keywords="tswana"
-  context=""
 %}
 

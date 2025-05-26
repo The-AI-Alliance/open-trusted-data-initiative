@@ -1,6 +1,7 @@
 ---
 name: Wikipedia
 tag: wikipedia
+context: ""
 cleaned_tag: wikipedia
 parent_tag: modality
 parent_title: Modalities
@@ -13,10 +14,10 @@ alt_tags: nanodbpedia extended|wikipedia wiki wikidata wikimedia/wit_base wikisq
   keyword="wikipedia" 
   cleaned_keyword="wikipedia" 
   title="Wikipedia"
+  context=""
   ancestor_path="modality" 
   parent_title = "Modalities"
   grand_parent_title = "None"
   alt_keywords="nanodbpedia|extended|wikipedia|wiki|wikidata|wikimedia/wit_base|wikisql"
-  context=""
 %}
 

@@ -1,6 +1,7 @@
 ---
 name: Tetun dili
 tag: tetun dili
+context: ""
 cleaned_tag: tetun_dili
 parent_tag: pacific
 parent_title: Languages of the Pacific Islands and Nations
@@ -13,10 +14,10 @@ alt_tags: tetum
   keyword="tetun dili" 
   cleaned_keyword="tetun_dili" 
   title="Tetun dili"
+  context=""
   ancestor_path="language/pacific" 
   parent_title = "Languages of the Pacific Islands and Nations"
   grand_parent_title = "Languages"
   alt_keywords="tetum"
-  context=""
 %}
 

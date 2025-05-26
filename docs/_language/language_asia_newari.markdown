@@ -1,6 +1,7 @@
 ---
 name: Newari
 tag: newari
+context: ""
 cleaned_tag: newari
 parent_tag: asia
 parent_title: Asian Languages
@@ -13,10 +14,10 @@ alt_tags: newari
   keyword="newari" 
   cleaned_keyword="newari" 
   title="Newari"
+  context=""
   ancestor_path="language/asia" 
   parent_title = "Asian Languages"
   grand_parent_title = "Languages"
   alt_keywords="newari"
-  context=""
 %}
 

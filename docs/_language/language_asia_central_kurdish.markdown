@@ -1,6 +1,7 @@
 ---
 name: Central kurdish
 tag: central kurdish
+context: ""
 cleaned_tag: central_kurdish
 parent_tag: asia
 parent_title: Asian Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="central kurdish" 
   cleaned_keyword="central_kurdish" 
   title="Central kurdish"
+  context=""
   ancestor_path="language/asia" 
   parent_title = "Asian Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

@@ -1,6 +1,7 @@
 ---
 name: Akan
 tag: akan
+context: ""
 cleaned_tag: akan
 parent_tag: africa
 parent_title: African Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="akan" 
   cleaned_keyword="akan" 
   title="Akan"
+  context=""
   ancestor_path="language/africa" 
   parent_title = "African Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

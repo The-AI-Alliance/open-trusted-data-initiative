@@ -1,6 +1,7 @@
 ---
 name: Nepali
 tag: nepali
+context: ""
 cleaned_tag: nepali
 parent_tag: asia
 parent_title: Asian Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="nepali" 
   cleaned_keyword="nepali" 
   title="Nepali"
+  context=""
   ancestor_path="language/asia" 
   parent_title = "Asian Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

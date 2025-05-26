@@ -1,6 +1,7 @@
 ---
 name: Imbabura highland quichua
 tag: imbabura highland quichua
+context: ""
 cleaned_tag: imbabura_highland_quichua
 parent_tag: americas
 parent_title: Languages in the Americas
@@ -13,10 +14,10 @@ alt_tags:
   keyword="imbabura highland quichua" 
   cleaned_keyword="imbabura_highland_quichua" 
   title="Imbabura highland quichua"
+  context=""
   ancestor_path="language/americas" 
   parent_title = "Languages in the Americas"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

@@ -10,16 +10,12 @@ parent: Dataset Catalog
 
 <a name="keywords-at-top"></a>
 
-## Keywords for the Domains
-
-<div class="table-wrapper">
-<p>
+<div>
 {% for member in site.domain %}
-  {% if member.tag != "domain" %}
-    <a href="{{site.baseurl}}/catalog/domain/#{{member.cleaned_tag}}" class="topic-btn">{{member.name}}</a>
+  {% if member.tag == "domain" %}
+    {{ member.content }}
   {% endif %}
 {% endfor %}
-</p>
 </div>
 
 ## Datasets for the Keywords

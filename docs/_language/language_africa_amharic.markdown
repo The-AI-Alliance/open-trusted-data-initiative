@@ -1,6 +1,7 @@
 ---
 name: Amharic
 tag: amharic
+context: ""
 cleaned_tag: amharic
 parent_tag: africa
 parent_title: African Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="amharic" 
   cleaned_keyword="amharic" 
   title="Amharic"
+  context=""
   ancestor_path="language/africa" 
   parent_title = "African Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

@@ -1,6 +1,7 @@
 ---
 name: Nigerian pidgin
 tag: nigerian pidgin
+context: ""
 cleaned_tag: nigerian_pidgin
 parent_tag: africa
 parent_title: African Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="nigerian pidgin" 
   cleaned_keyword="nigerian_pidgin" 
   title="Nigerian pidgin"
+  context=""
   ancestor_path="language/africa" 
   parent_title = "African Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

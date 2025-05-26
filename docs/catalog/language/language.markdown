@@ -8,11 +8,17 @@ parent: Dataset Catalog
 
 # Datasets for Different Languages
 
-Datasets with different human languages, organized by geographic region in the &ldquo;child&rdquo; pages:
-
 <a name="keywords-at-top"></a>
 
-## Keywords for the Languages
+<div>
+{% for member in site.language %}
+  {% if member.tag == "language" %}
+    {{ member.content }}
+  {% endif %}
+{% endfor %}
+</div>
+
+## Datasets for the Language Keywords
 
 <div class="table-wrapper">
 <p>

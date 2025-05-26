@@ -1,6 +1,7 @@
 ---
 name: Koyraboro senni songhai
 tag: koyraboro senni songhai
+context: ""
 cleaned_tag: koyraboro_senni_songhai
 parent_tag: africa
 parent_title: African Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="koyraboro senni songhai" 
   cleaned_keyword="koyraboro_senni_songhai" 
   title="Koyraboro senni songhai"
+  context=""
   ancestor_path="language/africa" 
   parent_title = "African Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

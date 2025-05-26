@@ -1,6 +1,7 @@
 ---
 name: Mamara senoufo
 tag: mamara senoufo
+context: ""
 cleaned_tag: mamara_senoufo
 parent_tag: africa
 parent_title: African Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="mamara senoufo" 
   cleaned_keyword="mamara_senoufo" 
   title="Mamara senoufo"
+  context=""
   ancestor_path="language/africa" 
   parent_title = "African Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

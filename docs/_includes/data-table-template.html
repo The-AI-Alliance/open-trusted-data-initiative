@@ -2,8 +2,10 @@
 <a name="{{include.cleaned_keyword}}"></a>
 <h3 class="width-100 topic"><a href="#{{include.cleaned_keyword}}" class="topic-btn">{{include.title}} (keyword: {{include.keyword}})</a><span style="float:right;"><a title="Go to the top" href="#keywords-at-top" class="topic-btn">&#8593;</a></span></h3>
 
+<div>
 {{include.context | htmlify}}
-
+</div>
+ 
 {% capture unique_id %}{{include.ancestor_path | replace: "/", "_"}}_{{include.cleaned_keyword}}{% endcapture %}
 
 {% assign other_keywords = include.alt_keywords | split: '|' %}

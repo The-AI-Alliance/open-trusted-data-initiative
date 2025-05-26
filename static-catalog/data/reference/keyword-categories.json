@@ -1775,11 +1775,11 @@
   {
     "keyword": "modality",
     "title":   "Modalities",
-    "context": "Datasets with different modalities (like text vs. video) or broad purposes, like classification.",
+    "context": "Modalities include <code>text</code>, <code>video</code>, different widely-applicable concepts, like data formats, how the data was collected or transformed from other data (e.g., see <code>text-to-...</code>), etc., and general usage guidance like data intended for <code>pretraining</code>, <code>reinforcement-learning</code>, <code>chain of thought</code>, etc.",
     "topics": [
       {
         "keyword": "3d",
-        "context": "Three dimensional data",
+        "context": "Three-dimensional data.",
         "title": "3D",
         "alt-keywords": [
           {
@@ -1841,12 +1841,12 @@
       },
       {
         "keyword": "arrow",
-        "context": "Arrow formatted data"
+        "context": "Arrow formatted data."
       },
       {
         "keyword": "arxiv",
         "like-clause": "arxiv%",
-        "context": "References to arXiv articles. (Many keywords starting with 'arxiv:'.)"
+        "context": "References to arXiv articles. (There are many keywords starting with <code>arxiv:</code>.)"
       },
       {
         "keyword": "audio",
@@ -2059,7 +2059,7 @@
       },
       {
         "keyword": "csv",
-        "context": "CSV formatted data",
+        "context": "CSV formatted data.",
         "title": "CSV"
       },
       {
@@ -2389,7 +2389,7 @@
       },
       {
         "keyword": "json",
-        "context": "JSON formatted data",
+        "context": "JSON formatted data.",
         "title": "JSON",
         "alt-keywords": [
           {
@@ -2607,7 +2607,7 @@
       {
         "keyword": "rag",
         "title": "RAG",
-        "context": "Retrieval Augmented Generation",
+        "context": "Retrieval-Augmented Generation.",
         "alt-keywords": [
           {
             "keyword": "retrieval augmented generation"

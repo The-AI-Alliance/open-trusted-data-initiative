@@ -1,6 +1,7 @@
 ---
 name: Eastern huasteca nahuatl
 tag: eastern huasteca nahuatl
+context: ""
 cleaned_tag: eastern_huasteca_nahuatl
 parent_tag: americas
 parent_title: Languages in the Americas
@@ -13,10 +14,10 @@ alt_tags:
   keyword="eastern huasteca nahuatl" 
   cleaned_keyword="eastern_huasteca_nahuatl" 
   title="Eastern huasteca nahuatl"
+  context=""
   ancestor_path="language/americas" 
   parent_title = "Languages in the Americas"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

@@ -253,6 +253,7 @@ def write_category_markdown(
     md_content_start = f"""---
 name: {title}
 tag: {keyword}
+context: "{context}"
 cleaned_tag: {cleaned_keyword}
 parent_tag: {parent_keyword}
 parent_title: {parent_title}
@@ -262,18 +263,22 @@ alt_tags: {alt_tags_str}
 subcategories: {'|'.join([s['keyword'] for s in subcategories])}
 ---
 
+<div>
+{context}
+</div>
+
 """
     print(md_content_start, file=md_out)
 
     if subcategories and len(subcategories) > 0:
       subs_links_btns = [make_md_link(s, f'{parent_keyword}/{cleaned_keyword}', css_class="category-btn") for s in subcategories]
-      print("#### Subcategories\n", file=md_out)
+      print("### Subcategories\n", file=md_out)
       print(' '.join(subs_links_btns), file=md_out)
       print('\n')
 
     if topics and len(topics) > 0:
       topics_links_btns = [make_md_link(t, f'{parent_keyword}/{cleaned_keyword}', css_class="topic-btn", use_hash=True) for t in topics]
-      print("#### Topics", file=md_out)
+      print("### Keywords", file=md_out)
       print(' '.join(topics_links_btns), file=md_out)
 
 def write_topic_markdown(
@@ -299,6 +304,7 @@ def write_topic_markdown(
   md_content = f"""---
 name: {title}
 tag: {keyword}
+context: "{context}"
 cleaned_tag: {cleaned_keyword}
 parent_tag: {parent_keyword}
 parent_title: {parent_title}
@@ -311,11 +317,11 @@ alt_tags: {alt_tags_str}
   keyword="{keyword}" 
   cleaned_keyword="{cleaned_keyword}" 
   title="{title}"
+  context="{context}"
   ancestor_path="{ancestor_path}" 
   parent_title = "{parent_title}"
   grand_parent_title = "{grand_parent_title}"
   alt_keywords="{alt_keywords_str}"
-  context="{context}"
 %}}
 """
   with open(md_output_file, 'w') as md_out:

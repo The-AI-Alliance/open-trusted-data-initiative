@@ -1,6 +1,7 @@
 ---
 name: Yiddish
 tag: yiddish
+context: ""
 cleaned_tag: yiddish
 parent_tag: europe
 parent_title: European Languages
@@ -13,10 +14,10 @@ alt_tags: eastern yiddish
   keyword="yiddish" 
   cleaned_keyword="yiddish" 
   title="Yiddish"
+  context=""
   ancestor_path="language/europe" 
   parent_title = "European Languages"
   grand_parent_title = "Languages"
   alt_keywords="eastern yiddish"
-  context=""
 %}
 

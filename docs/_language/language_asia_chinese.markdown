@@ -1,6 +1,7 @@
 ---
 name: Chinese
 tag: chinese
+context: ""
 cleaned_tag: chinese
 parent_tag: asia
 parent_title: Asian Languages
@@ -13,10 +14,10 @@ alt_tags: achinese literary chinese mandarin chinese min nan chinese wu chinese 
   keyword="chinese" 
   cleaned_keyword="chinese" 
   title="Chinese"
+  context=""
   ancestor_path="language/asia" 
   parent_title = "Asian Languages"
   grand_parent_title = "Languages"
   alt_keywords="achinese|literary chinese|mandarin chinese|min nan chinese|wu chinese|yue chinese|zhuang"
-  context=""
 %}
 

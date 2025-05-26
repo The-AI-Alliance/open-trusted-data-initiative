@@ -93,7 +93,7 @@ done
 
 info "In $js_target..."
 info "Any non .js files in $js_target?"
-$NOOP find $js_target -type -f -not -name '*.js'
+$NOOP find $js_target -type f -not -name '*.js'
 info "Directories under $js_target:"
 $NOOP find $js_target -type d
 info "Size of $js_target:"
@@ -104,7 +104,7 @@ do
   md_tdir=$md_target/$md_dir
   info "In $md_tdir: ..."
   info "Any non .markdown files in $md_tdir?"
-  $NOOP find $md_tdir -type -f -not -name '*.markdown'
+  $NOOP find $md_tdir -type f -not -name '*.markdown'
   info "Directories under $md_tdir:"
   $NOOP find $md_tdir -type d
   info "Size of $md_tdir:"

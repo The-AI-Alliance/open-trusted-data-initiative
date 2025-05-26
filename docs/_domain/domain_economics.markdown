@@ -1,6 +1,7 @@
 ---
 name: Economics
 tag: economics
+context: ""
 cleaned_tag: economics
 parent_tag: domain
 parent_title: Domains
@@ -13,10 +14,10 @@ alt_tags:
   keyword="economics" 
   cleaned_keyword="economics" 
   title="Economics"
+  context=""
   ancestor_path="domain" 
   parent_title = "Domains"
   grand_parent_title = "None"
   alt_keywords=""
-  context=""
 %}
 

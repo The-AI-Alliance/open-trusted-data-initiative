@@ -1,6 +1,7 @@
 ---
 name: Maltese
 tag: maltese
+context: ""
 cleaned_tag: maltese
 parent_tag: europe
 parent_title: European Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="maltese" 
   cleaned_keyword="maltese" 
   title="Maltese"
+  context=""
   ancestor_path="language/europe" 
   parent_title = "European Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

@@ -1,6 +1,7 @@
 ---
 name: Fanti
 tag: fanti
+context: ""
 cleaned_tag: fanti
 parent_tag: africa
 parent_title: African Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="fanti" 
   cleaned_keyword="fanti" 
   title="Fanti"
+  context=""
   ancestor_path="language/africa" 
   parent_title = "African Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

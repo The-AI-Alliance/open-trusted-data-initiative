@@ -1,6 +1,7 @@
 ---
 name: Inupiaq
 tag: inupiaq
+context: ""
 cleaned_tag: inupiaq
 parent_tag: americas
 parent_title: Languages in the Americas
@@ -13,10 +14,10 @@ alt_tags:
   keyword="inupiaq" 
   cleaned_keyword="inupiaq" 
   title="Inupiaq"
+  context=""
   ancestor_path="language/americas" 
   parent_title = "Languages in the Americas"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

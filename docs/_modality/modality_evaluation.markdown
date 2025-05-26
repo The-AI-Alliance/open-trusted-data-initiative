@@ -1,6 +1,7 @@
 ---
 name: Evaluation
 tag: evaluation
+context: ""
 cleaned_tag: evaluation
 parent_tag: modality
 parent_title: Modalities
@@ -13,10 +14,10 @@ alt_tags: eval quality
   keyword="evaluation" 
   cleaned_keyword="evaluation" 
   title="Evaluation"
+  context=""
   ancestor_path="modality" 
   parent_title = "Modalities"
   grand_parent_title = "None"
   alt_keywords="eval|quality"
-  context=""
 %}
 

@@ -1,6 +1,7 @@
 ---
 name: Wolof
 tag: wolof
+context: ""
 cleaned_tag: wolof
 parent_tag: africa
 parent_title: African Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="wolof" 
   cleaned_keyword="wolof" 
   title="Wolof"
+  context=""
   ancestor_path="language/africa" 
   parent_title = "African Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

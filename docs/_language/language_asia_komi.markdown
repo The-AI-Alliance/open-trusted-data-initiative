@@ -1,6 +1,7 @@
 ---
 name: Komi
 tag: komi
+context: ""
 cleaned_tag: komi
 parent_tag: asia
 parent_title: Asian Languages
@@ -13,10 +14,10 @@ alt_tags: komi-permyak komi-zyrian
   keyword="komi" 
   cleaned_keyword="komi" 
   title="Komi"
+  context=""
   ancestor_path="language/asia" 
   parent_title = "Asian Languages"
   grand_parent_title = "Languages"
   alt_keywords="komi-permyak|komi-zyrian"
-  context=""
 %}
 

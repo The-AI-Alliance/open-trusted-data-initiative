@@ -1,6 +1,7 @@
 ---
 name: Philosophy
 tag: philosophy
+context: ""
 cleaned_tag: philosophy
 parent_tag: domain
 parent_title: Domains
@@ -13,10 +14,10 @@ alt_tags: ethics
   keyword="philosophy" 
   cleaned_keyword="philosophy" 
   title="Philosophy"
+  context=""
   ancestor_path="domain" 
   parent_title = "Domains"
   grand_parent_title = "None"
   alt_keywords="ethics"
-  context=""
 %}
 
