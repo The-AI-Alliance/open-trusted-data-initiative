@@ -12,6 +12,15 @@ Datasets with different human languages, organized by geographic region in the &
 
 <a name="keywords-at-top"></a>
 
+<div class="table-wrapper">
+{% assign current_region = "" %}
+{% for member in site.language %}
+  {% if member.tag == "language" %} 
+    {{ member.content }}
+  {% endif %}
+{% endfor %}
+</div>
+
 ## Keywords for the Languages
 
 <div class="table-wrapper">

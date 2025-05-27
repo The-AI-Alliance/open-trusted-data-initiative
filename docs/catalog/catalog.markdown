@@ -38,13 +38,22 @@ has_children: true
 <div class="table-wrapper">
 {% assign current_region = "" %}
 {% for member in site.language %}
+  {% if member.tag == "language" %} 
+    {{ member.content }}
+  {% endif %}
+{% endfor %}
+</div>
+
+<div class="table-wrapper">
+{% assign current_region = "" %}
+{% for member in site.language %}
   {% if member.tag != "language" %} 
     {% comment %} Skip the "index" markdown file {% endcomment %}
     {% assign region = member.parent_tag %}
     {% if region != current_region %}
       {% assign current_region = region %}
 </div>
-<h3><a href="{{site.baseurl}}/catalog/language/{{member.parent_tag}}/">{{member.parent_title}}</a></h3>
+<h4><a href="{{site.baseurl}}/catalog/language/{{member.parent_tag}}/">{{member.parent_title}}</a></h4>
 <div class="table-wrapper">
     {% endif %}
     <a href="{{site.baseurl}}/catalog/language/{{member.parent_tag}}/#{{member.cleaned_tag}}" class="topic-btn">{{member.name}}</a>
@@ -56,8 +65,8 @@ has_children: true
 
 <div class="table-wrapper">
 {% for member in site.domain %}
-  {% if member.tag != "domain" %}
-    <a href="{{site.baseurl}}/catalog/domain/#{{member.tag}}" class="topic-btn">{{member.name}}</a>
+  {% if member.tag == "domain" %}
+    {{ member.content }}
   {% endif %}
 {% endfor %}
 </div>
@@ -66,8 +75,8 @@ has_children: true
 
 <div class="table-wrapper">
 {% for member in site.modality %}
-  {% if member.tag != "domain" %}
-    <a href="{{site.baseurl}}/catalog/modality/#{{member.tag}}" class="topic-btn">{{member.name}}</a>
+  {% if member.tag == "modality" %}
+    {{ member.content }}
   {% endif %}
 {% endfor %}
 </div>
