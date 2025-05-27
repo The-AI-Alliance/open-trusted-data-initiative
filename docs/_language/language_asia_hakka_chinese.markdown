@@ -1,6 +1,7 @@
 ---
 name: Hakka chinese
 tag: hakka chinese
+context: ""
 cleaned_tag: hakka_chinese
 parent_tag: asia
 parent_title: Asian Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="hakka chinese" 
   cleaned_keyword="hakka_chinese" 
   title="Hakka chinese"
+  context=""
   ancestor_path="language/asia" 
   parent_title = "Asian Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

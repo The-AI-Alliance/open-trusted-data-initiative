@@ -1,6 +1,7 @@
 ---
 name: Waray (philippines)
 tag: waray (philippines)
+context: ""
 cleaned_tag: waray_philippines_
 parent_tag: asia
 parent_title: Asian Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="waray (philippines)" 
   cleaned_keyword="waray_philippines_" 
   title="Waray (philippines)"
+  context=""
   ancestor_path="language/asia" 
   parent_title = "Asian Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

@@ -1,6 +1,7 @@
 ---
 name: Advertising
 tag: advertising
+context: ""
 cleaned_tag: advertising
 parent_tag: domain
 parent_title: Domains
@@ -13,10 +14,10 @@ alt_tags: openx
   keyword="advertising" 
   cleaned_keyword="advertising" 
   title="Advertising"
+  context=""
   ancestor_path="domain" 
   parent_title = "Domains"
   grand_parent_title = "None"
   alt_keywords="openx"
-  context=""
 %}
 

@@ -1,6 +1,7 @@
 ---
 name: Northern uzbek
 tag: northern uzbek
+context: ""
 cleaned_tag: northern_uzbek
 parent_tag: asia
 parent_title: Asian Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="northern uzbek" 
   cleaned_keyword="northern_uzbek" 
   title="Northern uzbek"
+  context=""
   ancestor_path="language/asia" 
   parent_title = "Asian Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

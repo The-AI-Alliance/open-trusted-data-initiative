@@ -1,6 +1,7 @@
 ---
 name: Hakha chin
 tag: hakha chin
+context: ""
 cleaned_tag: hakha_chin
 parent_tag: asia
 parent_title: Asian Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="hakha chin" 
   cleaned_keyword="hakha_chin" 
   title="Hakha chin"
+  context=""
   ancestor_path="language/asia" 
   parent_title = "Asian Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

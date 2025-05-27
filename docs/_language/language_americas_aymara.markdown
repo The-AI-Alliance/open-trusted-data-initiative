@@ -1,6 +1,7 @@
 ---
 name: Aymara
 tag: aymara
+context: ""
 cleaned_tag: aymara
 parent_tag: americas
 parent_title: Languages in the Americas
@@ -13,10 +14,10 @@ alt_tags:
   keyword="aymara" 
   cleaned_keyword="aymara" 
   title="Aymara"
+  context=""
   ancestor_path="language/americas" 
   parent_title = "Languages in the Americas"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

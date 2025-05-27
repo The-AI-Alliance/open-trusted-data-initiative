@@ -2,8 +2,10 @@
 <a name="{{include.cleaned_keyword}}"></a>
 <h3 class="width-100 topic"><a href="#{{include.cleaned_keyword}}" class="topic-btn">{{include.title}} (keyword: {{include.keyword}})</a><span style="float:right;"><a title="Go to the top" href="#keywords-at-top" class="topic-btn">&#8593;</a></span></h3>
 
+<div>
 {{include.context | htmlify}}
-
+</div>
+ 
 {% capture unique_id %}{{include.ancestor_path | replace: "/", "_"}}_{{include.cleaned_keyword}}{% endcapture %}
 
 {% assign other_keywords = include.alt_keywords | split: '|' %}
@@ -17,9 +19,8 @@
   </div>
 </blockquote>
 <div id="{{ unique_id }}-filter-div">
-  <form onsubmit="function doNothing(event) {event.stopPropagation(); };">
+  <form>
     <select id="{{ unique_id }}-filter-field" type="select">
-      <!-- <option selected="selected"></option> no field selected by default -->
       <option value="name" selected="selected">Name</option>
       {% if other_keywords.size > 0 %}
       <option value="keyword">Keyword</option>
@@ -36,10 +37,10 @@
       <option value=">=">>=</option>
       <option value="!=">!=</option>
     </select>
-    <input id="{{ unique_id }}-filter-value" type="text" placeholder="value to filter">
+    <input id="{{ unique_id }}-filter-value" type="text" placeholder="value to filter" form="none">
     <button id="{{ unique_id }}-filter-clear" type="reset" value="reset">Clear Filter</button>
     <span id="{{ unique_id }}-num-rows"></span>
-    <button id="{{ unique_id }}-download-data" type="button" onclick="saveTableAsJSON('{{ unique_id }}', '{{ unique_id }}-download-message');">Download</button>
+    <button id="{{ unique_id }}-download-data" type="button" onclick="saveTableAsJSON('{{ unique_id }}', '{{ unique_id }}-download-message');">Download</button><br/> <!-- <br> makes it wrap, but with less vertical space than using <p>...</p>. -->
     <span id="{{ unique_id }}-download-message"></span>
   </form>
 </div>

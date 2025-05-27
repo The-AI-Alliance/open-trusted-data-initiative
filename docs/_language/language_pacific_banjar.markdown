@@ -1,6 +1,7 @@
 ---
 name: Banjar
 tag: banjar
+context: ""
 cleaned_tag: banjar
 parent_tag: pacific
 parent_title: Languages of the Pacific Islands and Nations
@@ -13,10 +14,10 @@ alt_tags:
   keyword="banjar" 
   cleaned_keyword="banjar" 
   title="Banjar"
+  context=""
   ancestor_path="language/pacific" 
   parent_title = "Languages of the Pacific Islands and Nations"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

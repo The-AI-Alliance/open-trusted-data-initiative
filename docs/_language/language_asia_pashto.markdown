@@ -1,6 +1,7 @@
 ---
 name: Pashto
 tag: pashto
+context: ""
 cleaned_tag: pashto
 parent_tag: asia
 parent_title: Asian Languages
@@ -13,10 +14,10 @@ alt_tags: pushto southern pashto
   keyword="pashto" 
   cleaned_keyword="pashto" 
   title="Pashto"
+  context=""
   ancestor_path="language/asia" 
   parent_title = "Asian Languages"
   grand_parent_title = "Languages"
   alt_keywords="pushto|southern pashto"
-  context=""
 %}
 

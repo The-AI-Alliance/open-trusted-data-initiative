@@ -1,6 +1,7 @@
 ---
 name: Benchmark
 tag: benchmark
+context: "Datasets associated with benchmarks of any kind."
 cleaned_tag: benchmark
 parent_tag: modality
 parent_title: Modalities
@@ -13,10 +14,10 @@ alt_tags: alignment aveni-bench benchmarks gsm8k mteb nli test testing
   keyword="benchmark" 
   cleaned_keyword="benchmark" 
   title="Benchmark"
+  context="Datasets associated with benchmarks of any kind."
   ancestor_path="modality" 
   parent_title = "Modalities"
   grand_parent_title = "None"
   alt_keywords="alignment|aveni-bench|benchmarks|gsm8k|mteb|nli|test|testing"
-  context="Datasets associated with benchmarks of any kind."
 %}
 

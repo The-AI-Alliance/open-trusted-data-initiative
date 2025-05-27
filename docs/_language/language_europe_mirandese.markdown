@@ -1,6 +1,7 @@
 ---
 name: Mirandese
 tag: mirandese
+context: ""
 cleaned_tag: mirandese
 parent_tag: europe
 parent_title: European Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="mirandese" 
   cleaned_keyword="mirandese" 
   title="Mirandese"
+  context=""
   ancestor_path="language/europe" 
   parent_title = "European Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

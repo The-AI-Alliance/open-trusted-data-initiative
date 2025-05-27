@@ -24,8 +24,8 @@ has_children: true
 > * Of the 350,000 or so datasets, only those queryable using [Croissant](https://mlcommons.org/working-groups/data/croissant/){:target="croissant"} metadata are considered, about 260,000.
 > * Of those, we discarded datasets without a specified license, leaving just 60,000!
 > * The licenses are specified as corresponding [choosealicense.com/licenses/](https://choosealicense.com/licenses/){:target="cal"} URLs. Unfortunately, many undefined (&ldquo;404&rdquo;) URLs are specified. We discarded those datasets leaving 45,000.<a href="#footnote1"><sup>1</sup></a>
-> * The groupings are based on the presence of relevant keywords. Note that _all_ the datasets list their language as `en` (English), but many have keywords for other languages. Those keywords are the basis for the [Languages]({{site.baseurl}}/catalog/language/language) tables, including the one for [English]({{site.baseurl}}/catalog/language/europe#english)!.
-> * All keywords were converted to lower case before &ldquo;grouping&rdquo;. When a keyword entry lists _additional keywords_, it means we grouped together different keywords that we believe are related to the same topic, including synonyms. In these cases, we also show a **Keyword** column in the tables, so you can see which keyword corresponded to the the dataset listed.
+> * The groupings are based on the presence of relevant keywords. Note that _all_ the datasets list their language as `en` (English), but many have keywords for other languages. Those keywords are the basis for the [Languages]({{site.baseurl}}/catalog/language/language) tables, including the one for [English]({{site.baseurl}}/catalog/language/europe#english)!
+> * All keywords were converted to lower case before &ldquo;grouping&rdquo;. When a keyword entry lists _additional keywords_, it means we grouped together different keywords that we believe are related to the same topic, including synonyms. In these cases, we also show a **Keyword** column in the tables, so you can see which keyword corresponded to the dataset listed.
 > * **Important:** At this time, we are not yet validating datasets to ensure their metadata accurately reflect the data records themselves.
 > * Do you know of any datasets that should be shown, but aren't? [Let us know!](mailto:data@thealliance.ai)
 > 
@@ -33,7 +33,15 @@ has_children: true
 
 ## The Current Keywords Cataloged
 
-### [For Languages]({{site.baseurl}}/catalog/language/language)
+### [Datasets For Languages]({{site.baseurl}}/catalog/language/language)
+
+<div>
+{% for member in site.language %}
+  {% if member.tag == "language" %}
+    {{member.content}}
+  {% endif %}
+{% endfor %}
+</div>
 
 <div class="table-wrapper">
 {% assign current_region = "" %}
@@ -61,7 +69,15 @@ has_children: true
 {% endfor %}
 </div>
 
-### [For Domains]({{site.baseurl}}/catalog/domain/)
+### [Datasets For Domains]({{site.baseurl}}/catalog/domain/)
+
+<div>
+{% for member in site.domain %}
+  {% if member.tag == "domain" %}
+    {{member.content}}
+  {% endif %}
+{% endfor %}
+</div>
 
 <div class="table-wrapper">
 {% for member in site.domain %}
@@ -71,12 +87,12 @@ has_children: true
 {% endfor %}
 </div>
 
-### [For Modalities]({{site.baseurl}}/catalog/modality/)
+### [Datasets For Modalities]({{site.baseurl}}/catalog/modality/)
 
 <div class="table-wrapper">
 {% for member in site.modality %}
   {% if member.tag == "modality" %}
-    {{ member.content }}
+    {{member.content}}
   {% endif %}
 {% endfor %}
 </div>

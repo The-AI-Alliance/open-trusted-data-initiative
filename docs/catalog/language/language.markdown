@@ -8,8 +8,6 @@ parent: Dataset Catalog
 
 # Datasets for Different Languages
 
-Datasets with different human languages, organized by geographic region in the &ldquo;child&rdquo; pages:
-
 <a name="keywords-at-top"></a>
 
 <div class="table-wrapper">
@@ -21,7 +19,7 @@ Datasets with different human languages, organized by geographic region in the &
 {% endfor %}
 </div>
 
-## Keywords for the Languages
+## Datasets for the Language Keywords
 
 <div class="table-wrapper">
 <p>

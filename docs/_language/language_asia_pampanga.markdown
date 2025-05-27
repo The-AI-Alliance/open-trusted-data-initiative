@@ -1,6 +1,7 @@
 ---
 name: Pampanga
 tag: pampanga
+context: ""
 cleaned_tag: pampanga
 parent_tag: asia
 parent_title: Asian Languages
@@ -13,10 +14,10 @@ alt_tags: kapampangan pampangan
   keyword="pampanga" 
   cleaned_keyword="pampanga" 
   title="Pampanga"
+  context=""
   ancestor_path="language/asia" 
   parent_title = "Asian Languages"
   grand_parent_title = "Languages"
   alt_keywords="kapampangan|pampangan"
-  context=""
 %}
 

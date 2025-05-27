@@ -1,6 +1,7 @@
 ---
 name: Kirmanjki (individual language)
 tag: kirmanjki (individual language)
+context: ""
 cleaned_tag: kirmanjki_individual_language_
 parent_tag: asia
 parent_title: Asian Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="kirmanjki (individual language)" 
   cleaned_keyword="kirmanjki_individual_language_" 
   title="Kirmanjki (individual language)"
+  context=""
   ancestor_path="language/asia" 
   parent_title = "Asian Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

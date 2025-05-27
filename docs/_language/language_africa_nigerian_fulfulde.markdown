@@ -1,6 +1,7 @@
 ---
 name: Nigerian fulfulde
 tag: nigerian fulfulde
+context: ""
 cleaned_tag: nigerian_fulfulde
 parent_tag: africa
 parent_title: African Languages
@@ -13,10 +14,10 @@ alt_tags: western nigerian fulfulde
   keyword="nigerian fulfulde" 
   cleaned_keyword="nigerian_fulfulde" 
   title="Nigerian fulfulde"
+  context=""
   ancestor_path="language/africa" 
   parent_title = "African Languages"
   grand_parent_title = "Languages"
   alt_keywords="western nigerian fulfulde"
-  context=""
 %}
 

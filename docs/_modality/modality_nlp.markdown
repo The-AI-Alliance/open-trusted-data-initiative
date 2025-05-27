@@ -1,6 +1,7 @@
 ---
 name: NLP
 tag: nlp
+context: ""
 cleaned_tag: nlp
 parent_tag: modality
 parent_title: Modalities
@@ -13,10 +14,10 @@ alt_tags: explanation explanation-generation natural-language-inference natural-
   keyword="nlp" 
   cleaned_keyword="nlp" 
   title="NLP"
+  context=""
   ancestor_path="modality" 
   parent_title = "Modalities"
   grand_parent_title = "None"
   alt_keywords="explanation|explanation-generation|natural-language-inference|natural-language-processing|natural-language-understanding"
-  context=""
 %}
 

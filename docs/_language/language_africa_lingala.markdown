@@ -1,6 +1,7 @@
 ---
 name: Lingala
 tag: lingala
+context: ""
 cleaned_tag: lingala
 parent_tag: africa
 parent_title: African Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="lingala" 
   cleaned_keyword="lingala" 
   title="Lingala"
+  context=""
   ancestor_path="language/africa" 
   parent_title = "African Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

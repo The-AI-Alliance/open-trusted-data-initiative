@@ -1,6 +1,7 @@
 ---
 name: Regression
 tag: regression
+context: ""
 cleaned_tag: regression
 parent_tag: modality
 parent_title: Modalities
@@ -13,10 +14,10 @@ alt_tags: tabular-regression
   keyword="regression" 
   cleaned_keyword="regression" 
   title="Regression"
+  context=""
   ancestor_path="modality" 
   parent_title = "Modalities"
   grand_parent_title = "None"
   alt_keywords="tabular-regression"
-  context=""
 %}
 

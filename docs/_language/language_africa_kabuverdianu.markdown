@@ -1,6 +1,7 @@
 ---
 name: Kabuverdianu
 tag: kabuverdianu
+context: ""
 cleaned_tag: kabuverdianu
 parent_tag: africa
 parent_title: African Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="kabuverdianu" 
   cleaned_keyword="kabuverdianu" 
   title="Kabuverdianu"
+  context=""
   ancestor_path="language/africa" 
   parent_title = "African Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

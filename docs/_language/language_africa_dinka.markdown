@@ -1,6 +1,7 @@
 ---
 name: Dinka
 tag: dinka
+context: ""
 cleaned_tag: dinka
 parent_tag: africa
 parent_title: African Languages
@@ -13,10 +14,10 @@ alt_tags: southwestern dinka
   keyword="dinka" 
   cleaned_keyword="dinka" 
   title="Dinka"
+  context=""
   ancestor_path="language/africa" 
   parent_title = "African Languages"
   grand_parent_title = "Languages"
   alt_keywords="southwestern dinka"
-  context=""
 %}
 

@@ -1,6 +1,7 @@
 ---
 name: Retrieval
 tag: retrieval
+context: ""
 cleaned_tag: retrieval
 parent_tag: modality
 parent_title: Modalities
@@ -13,10 +14,10 @@ alt_tags: document-retrieval entity-linking-retrieval fact-checking fact-checkin
   keyword="retrieval" 
   cleaned_keyword="retrieval" 
   title="Retrieval"
+  context=""
   ancestor_path="modality" 
   parent_title = "Modalities"
   grand_parent_title = "None"
   alt_keywords="document-retrieval|entity-linking-retrieval|fact-checking|fact-checking-retrieval|information-retrieval|text-retrieval"
-  context=""
 %}
 

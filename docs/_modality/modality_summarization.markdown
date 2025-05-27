@@ -1,6 +1,7 @@
 ---
 name: Summarization
 tag: summarization
+context: ""
 cleaned_tag: summarization
 parent_tag: modality
 parent_title: Modalities
@@ -13,10 +14,10 @@ alt_tags: news-articles-summarization paraphrase paraphrase-identification summa
   keyword="summarization" 
   cleaned_keyword="summarization" 
   title="Summarization"
+  context=""
   ancestor_path="modality" 
   parent_title = "Modalities"
   grand_parent_title = "None"
   alt_keywords="news-articles-summarization|paraphrase|paraphrase-identification|summary|text-simplification"
-  context=""
 %}
 

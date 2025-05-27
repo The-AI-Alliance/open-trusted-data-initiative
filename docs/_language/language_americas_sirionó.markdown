@@ -1,6 +1,7 @@
 ---
 name: Sirionó
 tag: sirionó
+context: ""
 cleaned_tag: sirionó
 parent_tag: americas
 parent_title: Languages in the Americas
@@ -13,10 +14,10 @@ alt_tags:
   keyword="sirionó" 
   cleaned_keyword="sirionó" 
   title="Sirionó"
+  context=""
   ancestor_path="language/americas" 
   parent_title = "Languages in the Americas"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

@@ -1,6 +1,7 @@
 ---
 name: Nyankole
 tag: nyankole
+context: ""
 cleaned_tag: nyankole
 parent_tag: africa
 parent_title: African Languages
@@ -13,10 +14,10 @@ alt_tags: nyankore
   keyword="nyankole" 
   cleaned_keyword="nyankole" 
   title="Nyankole"
+  context=""
   ancestor_path="language/africa" 
   parent_title = "African Languages"
   grand_parent_title = "Languages"
   alt_keywords="nyankore"
-  context=""
 %}
 

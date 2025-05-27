@@ -1,6 +1,7 @@
 ---
 name: Insurance
 tag: insurance
+context: ""
 cleaned_tag: insurance
 parent_tag: domain
 parent_title: Domains
@@ -13,10 +14,10 @@ alt_tags:
   keyword="insurance" 
   cleaned_keyword="insurance" 
   title="Insurance"
+  context=""
   ancestor_path="domain" 
   parent_title = "Domains"
   grand_parent_title = "None"
   alt_keywords=""
-  context=""
 %}
 

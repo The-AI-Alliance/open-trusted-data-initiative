@@ -1,6 +1,7 @@
 ---
 name: Problem Solving
 tag: problem-solving
+context: ""
 cleaned_tag: problem_solving
 parent_tag: modality
 parent_title: Modalities
@@ -13,10 +14,10 @@ alt_tags:
   keyword="problem-solving" 
   cleaned_keyword="problem_solving" 
   title="Problem Solving"
+  context=""
   ancestor_path="modality" 
   parent_title = "Modalities"
   grand_parent_title = "None"
   alt_keywords=""
-  context=""
 %}
 

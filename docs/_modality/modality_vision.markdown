@@ -1,6 +1,7 @@
 ---
 name: Vision
 tag: vision
+context: ""
 cleaned_tag: vision
 parent_tag: modality
 parent_title: Modalities
@@ -13,10 +14,10 @@ alt_tags: computer-vision computer vision
   keyword="vision" 
   cleaned_keyword="vision" 
   title="Vision"
+  context=""
   ancestor_path="modality" 
   parent_title = "Modalities"
   grand_parent_title = "None"
   alt_keywords="computer-vision|computer vision"
-  context=""
 %}
 

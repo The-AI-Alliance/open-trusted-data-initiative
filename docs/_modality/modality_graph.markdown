@@ -1,6 +1,7 @@
 ---
 name: Graph
 tag: graph
+context: ""
 cleaned_tag: graph
 parent_tag: modality
 parent_title: Modalities
@@ -13,10 +14,10 @@ alt_tags: graphs graph-ml knowledge graph knowledge-graph knowledge graphs knowl
   keyword="graph" 
   cleaned_keyword="graph" 
   title="Graph"
+  context=""
   ancestor_path="modality" 
   parent_title = "Modalities"
   grand_parent_title = "None"
   alt_keywords="graphs|graph-ml|knowledge graph|knowledge-graph|knowledge graphs|knowledge-graphs"
-  context=""
 %}
 

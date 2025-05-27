@@ -1,6 +1,7 @@
 ---
 name: Zulu
 tag: zulu
+context: ""
 cleaned_tag: zulu
 parent_tag: africa
 parent_title: African Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="zulu" 
   cleaned_keyword="zulu" 
   title="Zulu"
+  context=""
   ancestor_path="language/africa" 
   parent_title = "African Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

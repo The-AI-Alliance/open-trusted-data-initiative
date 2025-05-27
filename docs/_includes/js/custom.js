@@ -102,7 +102,7 @@ function saveTableAsJSON(id_prefix, id_message) {
     filteredStr = allData.length != filteredData.length ? "_filtered" : "";
     filteredMsg = allData.length != filteredData.length ? "filtered" : "all";
     fileName = `${id_prefix}${filteredStr}.json`;
-    message = `Writing ${filteredMsg} data to "${fileName}" in your downloads folder.`;
+    message = `<span>Writing ${filteredMsg} data to <code>${fileName}</code> in your downloads folder.</span>`;
     setDownloadMessage(id_prefix, message);
     setInnerHTML(id_message, message);
     saveJSON(filteredData, fileName);

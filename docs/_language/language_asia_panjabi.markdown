@@ -1,6 +1,7 @@
 ---
 name: Panjabi
 tag: panjabi
+context: ""
 cleaned_tag: panjabi
 parent_tag: asia
 parent_title: Asian Languages
@@ -13,10 +14,10 @@ alt_tags: punjabi
   keyword="panjabi" 
   cleaned_keyword="panjabi" 
   title="Panjabi"
+  context=""
   ancestor_path="language/asia" 
   parent_title = "Asian Languages"
   grand_parent_title = "Languages"
   alt_keywords="punjabi"
-  context=""
 %}
 

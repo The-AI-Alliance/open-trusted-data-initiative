@@ -1,6 +1,7 @@
 ---
 name: Logic
 tag: logic
+context: ""
 cleaned_tag: logic
 parent_tag: domain
 parent_title: Domains
@@ -13,10 +14,10 @@ alt_tags: lojban logical reasoning logical-reasoning
   keyword="logic" 
   cleaned_keyword="logic" 
   title="Logic"
+  context=""
   ancestor_path="domain" 
   parent_title = "Domains"
   grand_parent_title = "None"
   alt_keywords="lojban|logical reasoning|logical-reasoning"
-  context=""
 %}
 

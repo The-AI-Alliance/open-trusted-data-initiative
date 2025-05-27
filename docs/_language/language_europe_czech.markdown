@@ -1,6 +1,7 @@
 ---
 name: Czech
 tag: czech
+context: ""
 cleaned_tag: czech
 parent_tag: europe
 parent_title: European Languages
@@ -13,10 +14,10 @@ alt_tags:
   keyword="czech" 
   cleaned_keyword="czech" 
   title="Czech"
+  context=""
   ancestor_path="language/europe" 
   parent_title = "European Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
-  context=""
 %}
 

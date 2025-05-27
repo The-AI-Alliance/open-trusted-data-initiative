@@ -1,6 +1,7 @@
 ---
 name: Arrow
 tag: arrow
+context: "Arrow formatted data."
 cleaned_tag: arrow
 parent_tag: modality
 parent_title: Modalities
@@ -13,10 +14,10 @@ alt_tags:
   keyword="arrow" 
   cleaned_keyword="arrow" 
   title="Arrow"
+  context="Arrow formatted data."
   ancestor_path="modality" 
   parent_title = "Modalities"
   grand_parent_title = "None"
   alt_keywords=""
-  context="Arrow formatted data"
 %}
 
