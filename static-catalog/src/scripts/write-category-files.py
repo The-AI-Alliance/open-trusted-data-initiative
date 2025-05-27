@@ -262,6 +262,10 @@ alt_tags: {alt_tags_str}
 subcategories: {'|'.join([s['keyword'] for s in subcategories])}
 ---
 
+<div>
+{context}
+</div>
+
 """
     print(md_content_start, file=md_out)
 
@@ -273,7 +277,7 @@ subcategories: {'|'.join([s['keyword'] for s in subcategories])}
 
     if topics and len(topics) > 0:
       topics_links_btns = [make_md_link(t, f'{parent_keyword}/{cleaned_keyword}', css_class="topic-btn", use_hash=True) for t in topics]
-      print("#### Topics", file=md_out)
+      print("#### Keywords", file=md_out)
       print(' '.join(topics_links_btns), file=md_out)
 
 def write_topic_markdown(
@@ -335,7 +339,7 @@ if __name__ == "__main__":
   if is_process_running('duckdb'):
     error("It appears that 'duckdb' is already running. Please stop it then rerun this script.")
 
-  print("\n**** NOTE: This program runs for several minutes! ***\n")
+  print("\n**** NOTE: This program runs for several minutes! (Invoke with '-v 1' to see progress.) ****\n")
 
   # The high-level categories and subcategories are somewhat arbitrary.
   # The "topics" are found in the data set. We use arrays
