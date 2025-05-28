@@ -8,9 +8,9 @@ language_tags: English
 
 # Open Trusted Data Initiative (OTDI) 
 
-> **We are [cataloging]({{site.baseurl}}/catalog/catalog) the world's largest, most diverse collection of open datasets for AI. [Join us!]({{site.baseurl}}/about/#join-us)**
+**_We are [cataloging]({{site.baseurl}}/catalog/catalog) the world's largest, most diverse collection of open datasets for AI. [Join us!]({{site.baseurl}}/about/#join-us))_**
 
-# [Datasets for Languages]({{site.baseurl}}/catalog/language/language)
+## [Datasets for Languages]({{site.baseurl}}/catalog/language/language)
 
 <div>
 {% for member in site.language %}
@@ -20,7 +20,7 @@ language_tags: English
 {% endfor %}
 </div>
 
-# [Datasets for Domains]({{site.baseurl}}/catalog/domain)
+## [Datasets for Domains]({{site.baseurl}}/catalog/domain)
 
 <div>
 {% for member in site.domain %}
@@ -30,7 +30,7 @@ language_tags: English
 {% endfor %}
 </div>
 
-# [Datasets for Modalities]({{site.baseurl}}/catalog/modality)
+## [Datasets for Modalities]({{site.baseurl}}/catalog/modality)
 
 <div>
 {% for member in site.modality %}
@@ -40,7 +40,7 @@ language_tags: English
 {% endfor %}
 </div>
 
-# Help Us Build the Future of Trustworthy Data for AI
+## Help Us Build the Future of Trustworthy Data for AI
 
 {: .hightlight}
 The mission of **Open Trusted Data Initiative** (OTDI) is to create a comprehensive, widely-sourced **catalog of datasets** with **clear licenses for use**, **explicit provenance guarantees**, and **governed lifecycles**. These datasets are suitable for AI model training, tuning, and application patterns like RAG (retrieval augmented generation) and agents.
@@ -78,7 +78,7 @@ Currently, the [Dataset Catalog]({{site.baseurl}}/catalog/catalog) is a static r
 
 > See this short [presentation]({{site.baseurl}}/files/OTDI-Overview.pdf) (PDF) for more information about the Open Trusted Data Initiative.
 
-# More Information
+## More Information
 
 * What [trustworthiness]({{site.baseurl}}/trustworthiness) means to us.
 * [About Us]({{site.baseurl}}/about): More about the AI Alliance, this initiative, how to get involved, and how to contact us.
