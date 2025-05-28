@@ -15,28 +15,18 @@ parent: Dataset Catalog
 {% for member in site.language %}
   {% if member.tag == "language" %} 
     {{ member.content }}
+  
+    <h2>Language Keywords for the Geographic Regions</h2>
+
+    {% assign subcategories = member.subcategories | split: '|' %}
+    {% for sub in subcategories %}
+      {% for member2 in site.language %}
+        {% if member2.tag == sub %} 
+          <h3><a href="{{site.baseurl}}/catalog/language/{{member2.tag}}/">{{member2.name}}</a></h3>
+          {{ member2.content }}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
   {% endif %}
 {% endfor %}
 </div>
-
-## Datasets for the Language Keywords
-
-<div>
-<p>
-{% assign current_region = "" %}
-{% for member in site.language %}
-  {% if member.tag != "language" %} 
-    {% comment %} Skip the "index" markdown file {% endcomment %}
-    {% assign region = member.parent_tag %}
-    {% if region != current_region %}
-      {% assign current_region = region %}
-  </p>
-  <h3><a href="{{site.baseurl}}/catalog/language/{{member.parent_tag}}/">{{member.parent_title}}</a></h3>
-  <p>
-    {% endif %}
-    <a href="{{site.baseurl}}/catalog/language/{{member.parent_tag}}/#{{member.cleaned_tag}}" class="topic-btn">{{member.name}}</a>
-  {% endif %}
-{% endfor %}
-</p>
-</div>
-

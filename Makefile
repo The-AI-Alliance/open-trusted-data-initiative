@@ -17,6 +17,10 @@ JEKYLL_PORT         ?= 4000
 GIT_HASH            ?= $(shell git show --pretty="%H" --abbrev-commit |head -1)
 TIMESTAMP           ?= $(shell date +"%Y%m%d-%H%M%S")
 
+# For the static catalog generation.
+STATIC_CATALOG_DIR     ?= static-catalog
+STATIC_CATALOG_VERBOSE ?= 1
+
 define help_message
 Quick help for trust-safety-user-guide make process.
 
@@ -25,6 +29,18 @@ make clean              # Remove built artifacts, etc.
 make view-pages         # View the published GitHub pages in a browser.
 make view-local         # View the pages locally (requires Jekyll).
                         # Tip: "JEKYLL_PORT=8000 make view-local" uses port 8000 instead of 4000!
+
+Tasks for building and deploying the static catalog.
+
+make catalog            # Makes "catalog-clean", "catalog-build" and "catalog-install".
+make catalog-build      # Process static-catalog/data/reference/keyword-categories.json to create
+                        # the catalog files in static-catalog/markdown/processed/YYYY-MM-DD and
+                        # static-catalog/data/json/processed/YYYY-MM-DD.
+make catalog-json       # Same as "make catalog", but only builds the JSON files.
+make catalog-markdown   # Same as "make catalog", but only builds the Markdown files.
+make catalog-clean      # Deletes all static-catalog/markdown/processed/YYYY-MM-DD and
+                        # static-catalog/data/json/processed/YYYY-MM-DD directories.
+make catalog-install    # Copies the catalog files created by "catalog-build" to "_docs" locations.
 
 Miscellaneous tasks for help, debugging, setup, etc.
 
@@ -143,6 +159,26 @@ ruby-installed-check:
 		( echo "ERROR: ${ruby_and_gem_required_message}" && exit 1 )
 	@command -v gem  > /dev/null || \
 		( echo "ERROR: ${gem_required_message}" && exit 1 )
+
+.PHONY: catalog catalog-build catalog-json catalog-markdown catalog-clean catalog-install
+
+catalog:: catalog-clean catalog-build catalog-install
+
+catalog-clean::
+	@echo "Cleaning targets under static-catalog, not docs. The docs files are cleaned by catalog-install."
+	rm -rf static-catalog/markdown/processed
+	rm -rf static-catalog/data/json/processed
+
+catalog-build::
+	${STATIC_CATALOG_DIR}/src/scripts/write-category-files.py --verbose ${STATIC_CATALOG_VERBOSE}
+catalog-json::
+	${STATIC_CATALOG_DIR}/src/scripts/write-category-files.py --verbose ${STATIC_CATALOG_VERBOSE} --no-markdown
+catalog-markdown::
+	${STATIC_CATALOG_DIR}/src/scripts/write-category-files.py --verbose ${STATIC_CATALOG_VERBOSE} --no-json
+
+catalog-install::
+	${STATIC_CATALOG_DIR}/src/scripts/copy-files-to-docs.sh --verbose ${STATIC_CATALOG_VERBOSE}
+
 
 %-error:
 	$(error ${${@}-message})

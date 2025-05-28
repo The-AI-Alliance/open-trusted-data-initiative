@@ -4,6 +4,7 @@
 
 # A "temporary" place to put stuff...
 tmp/
+temp/
 
 # Releases
 releases/*.temp

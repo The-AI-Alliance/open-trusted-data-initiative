@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
-. src/scripts/common.sh
+. static-catalog/src/scripts/common.sh
 
-base=./data/json/$(now)
-raw=./data/raw
+base=static-catalog/data/json/$(now)
+raw=static-catalog/data/raw
 out_spark=$base/spark
 
 if [[ ! -d $raw ]] 
@@ -18,13 +18,13 @@ echo "Running spark:"
 cat <<EOF 
 spark-submit \\
 	-c spark.sql.parquet.enableVectorizedReader=false \\
-	src/scripts/parquet-to-json.py \\
+	static-catalog/src/scripts/parquet-to-json.py \\
 	--input $raw \\
 	--output $out_spark
 EOF
 [[ -z $NOOP ]] && spark-submit \
 	-c spark.sql.parquet.enableVectorizedReader=false \
-	src/scripts/parquet-to-json.py \
+	static-catalog/src/scripts/parquet-to-json.py \
 	--input $raw \
 	--output $out_spark
 

@@ -6,7 +6,7 @@ Dean Wampler, May 11, 2025
 
 ## Introduction
 
-We start with the metadata files created by Joe Olson's nightly job that queries Hugging Face for Croissant metadata. The format of those files is Parquet with a flat schema, with one column containing the entire JSON document for the metadata. Parsing that metadata proved difficult, because of deep "escape quoting". It was necessary to put together a set of tools to extract this metadata and load it into  [DuckDB](https://duckdb.org) for further analysis and processing.
+We start with the metadata files created by Joe Olson's nightly job that queries Hugging Face for Croissant metadata. The format of those files is Parquet with a flat schema, with one column containing the entire JSON document for the metadata. Parsing that metadata proved difficult, because of deep "escape quoting". It was necessary to put together a set of tools to extract this metadata and load it into [DuckDB](https://duckdb.org) for further analysis and processing.
 
 We start with what most people need to see, the commands to rebuild the catalog data for the website, then discuss in detail how we "got here".
 
@@ -17,19 +17,20 @@ Ask Dean Wampler for help, if needed.
 Steps:
 
 * Parse a snapshot of data gathered from Hugging Face (short description TBD; see the rest of this README for details!)
-* `cd static-catalog` where most of the following work is done:
-* Update `data/reference/keyword-categories.json` with any changes to the hierarchy or keywords.
-* Run `src/scripts/write-category-files.py`. 
-  * It starts with a _shebang_, `/usr/bin/env python`, so you don't need to do `python src/...`. Try the `--help` option. Use `--verbose` to see what's happening. This script takes about 30 seconds to run. It writes one markdown file _for each topic_ under `markdown/processed/YYYY-MM-DD`. It writes one JavaScript and one JSON file _for each topic_ under `data/json/processed/YYYY-MM-DD`. 
-* Run `src/scripts/copy-files-to-docs.sh` to copy the files created.
+* Update `static-catalog/data/reference/keyword-categories.json` with any changes to the hierarchy or keywords.
+* Run `make catalog`, which does the following:
+  * Runs `src/scripts/write-category-files.py`. (It starts with a _shebang_, `/usr/bin/env python`, so you don't need to do `python src/...`.) It runs for several minutes. You can run this script separately; use `--help` to see options. It writes one markdown file _for each topic_ under `markdown/processed/YYYY-MM-DD`. It writes one JavaScript and one JSON file _for each topic_ under `data/json/processed/YYYY-MM-DD`. 
+  * Runs `src/scripts/copy-files-to-docs.sh` to copy the files created over to the correct locations in `docs`.
 * Commit the changes and push upstream!
 
 Notes:
-* The markdown files copied to `../docs` (i.e., `../docs` is relative to our current working directory, `static-catalog`) correspond to _collections_ defined in `../docs/_config.yaml`; there is a subfolder for each collection, currently `_language`, `_domain`, and `_modality` (the `_` is required)
-* The JavaScript files are copied to `../docs/files/data/catalog`. They contain the static data, defined as JS arrays of objects. 
-* The markdown and JSON directory hierarchies are _different_. The markdown files need to be flat, only _collection_ subfolders (currently `_language`, `_domain`, and `_modality`). We tried making hierarchical directories here, but this isn't supported by Jekyll/Liquid. In contrast, the JavaScript files written to `../docs/files/data/catalog` are hierarchical, because they use our own convention and are handled appropriately by the JavaScript code used (see `../docs/_includes/data_table_template.html`). 
+* `write-category-files.py` requires DuckDB to be installed (see [Using DuckDB](#using-duckdb)) _and_ it requires a database file named `static-catalog/croissant.duckdb`. This file is very large, so we don't version it in the git repo. Talk to Dean Wampler or Joe Olson to get a copy of this file and put it in the `static-catalog` directory.
+* The markdown files copied to `docs` correspond to _collections_ defined in `docs/_config.yaml`; there is a subfolder for each collection, currently `_language`, `_domain`, and `_modality` (the `_` is required)
+* The JavaScript files are copied to `docs/files/data/catalog`. They contain the static data, defined as JS arrays of objects. 
+* The markdown and JSON directory hierarchies are _different_. The markdown files need to be flat, only _collection_ subfolders (currently `_language`, `_domain`, and `_modality`). We tried making hierarchical directories here, but this isn't supported by Jekyll/Liquid. In contrast, the JavaScript files written to `../docs/files/data/catalog` are hierarchical, because they use our own convention and are handled appropriately by the JavaScript code that loads them, `docs/_includes/data_table_template.html`. 
 
-The rest of this README covers how to parse the raw data into usable JSON. It doesn't cover editing of `static-catalog/data/reference/keyword-categories.json`, which was created manually!!
+The rest of this README covers how to parse the raw data into usable JSON. It doesn't cover editing of `data/reference/keyword-categories.json`, which was created manually!!
+
 
 ## Initial Setup
 
@@ -53,13 +54,13 @@ pip install psutil py4j pyspark
 
 We start with [PySpark](https://spark.apache.org) to do the initial conversion from Parquet to JSON. In fact, this step could be done with DuckDB. 
 
-Follow the installation instructions for Spark. The PySpark codeused is in `src/scripts/parquet-to-json.py` and it is invoked by `src/scripts/parquet-to-json.sh`. which reads the data from `./data/raw` and writes the results to `.data/json/<timestamp>/*.json` files (one file per _partition_). One script run executed this command:
+Follow the installation instructions for Spark. The PySpark codeused is in `static-catalog/src/scripts/parquet-to-json.py` and it is invoked by `static-catalog/src/scripts/parquet-to-json.sh`. which reads the data from `static-catalog//data/raw` and writes the results to `static-catalog/data/json/<timestamp>/*.json` files (one file per _partition_). One script run executed this command:
 
 ```shell
 spark-submit -c spark.sql.parquet.enableVectorizedReader=false \ 
-  src/scripts/parquet-to-json.py \ 
-  --input ./data/raw \ 
-  --output ./data/json/2025-05-10_16-02-30/spark
+  static-catalog/src/scripts/parquet-to-json.py \ 
+  --input static-catalog//data/raw \ 
+  --output static-catalog//data/json/2025-05-10_16-02-30/spark
 ```
 
 The output JSON files have single-line JSON docs. Basically _JSONL_ format, but the partitions aren't structured as arrays of JSON objects. Fortunately DuckDB handles this fine.
@@ -85,20 +86,20 @@ TLDR: This approach successfully cleaned up all but 19 of > 260K JSON records, w
 Here is the sequence of transformations that produce usable JSON for loading into DuckDB. First, for convenience, copy the Spark output partition files to a convenient place with shorter names:
 
 ```shell
-rm -rf ./data/json/temp
-mkdir ./data/json/temp
-for f in ./data/json/2025-05-10_16-02-30/spark/*.json
+rm -rf static-catalog/data/json/temp
+mkdir static-catalog/data/json/temp
+for f in static-catalog/data/json/2025-05-10_16-02-30/spark/*.json
 do 
   base=$(basename $f)
   number=$(echo $base | cut -d - -f 2)
-  target=./data/json/temp/$number.json
+  target=static-catalog/data/json/temp/$number.json
   echo cp $f $target
   cp $f $target
 done
 ```
 
 ```shell
-$ ll ./data/json/temp
+$ ll static-catalog/data/json/temp
 total 5672552
 drwxr-xr-x  7 me  staff   224B May 10 16:26 ./
 drwxr-xr-x@ 7 me  staff   224B May 10 16:26 ../
@@ -115,11 +116,12 @@ Next, use `jq` to extract the JSON string for the single field, `croissant`. (Th
 2. Replace all `\"` with `"`, but don't match on `\\"`, which are for _nested_ quotes. In other words, replace all the top-level escaped quotes. For example, `{\"foo\":\"1 \\"2\\" 3\"}` should become `{"foo":"1 \\"2\\" 3"}`. (Arguably, the `\\"2\\"` should become `\"2\"`, but we'll pursue this later, if necessary.)
 
 ```shell
-jq .croissant ./data/json/sample/*.json | sed -e 's/^"//'  -e 's/"$//' -e 's/\([^\\]\)\\"/\1"/g' > dequoted-1.json
-wc dequoted-1.json
+mkdir static-catalog/temp # park temporary files
+jq .croissant static-catalog/data/json/temp/*.json | sed -e 's/^"//'  -e 's/"$//' -e 's/\([^\\]\)\\"/\1"/g' > static-catalog/temp/dequoted-1.json
+wc static-catalog/temp/dequoted-1.json
 ```
 
-`wc` prints `261495 52099629 2604796536 dequoted-1.json`.
+`wc` prints `261495 52099629 2604796536 static-catalog/temp/dequoted-1.json`.
 
 Use of DuckDB will be discussed shortly, but the process Dean followed at this point was to attempt to load this JSON file as a table, see what corrupt JSON DuckDB detected, then fix those errors by adding more regex replacements to the `sed` command. The first round went like this:
 
@@ -129,18 +131,18 @@ Try to a create a table in DuckDB:
 CREATE OR REPLACE TABLE hf_croissant AS
   FROM (
     SELECT *
-    FROM read_ndjson_objects('dequoted-1.json')
+    FROM read_ndjson_objects('static-catalog/temp/dequoted-1.json')
   );
 ```
 
 ```
-Malformed JSON in file "dequoted-1.json", at byte 5824 in line 271: unexpected character.
+Malformed JSON in file "static-catalog/temp/dequoted-1.json", at byte 5824 in line 271: unexpected character.
 ```
 
-Because the lines can be very long, Dean found it useful to write a shell script that could print a range of lines and only a specified range of character positions within those lines, called `src/scripts/print-lines.sh`. Use the `--help` option to see how to use it. In what follows, we won't show the invocations used as Dean worked through the malformed records, but here is an example invocation for an error on line 270, where `270:1` means print one line starting at 270, and print `100` characters from position `5800` (i.e., a range around the reported error around `5850`), in `dequoted-1.json`: 
+Because the lines can be very long, Dean found it useful to write a shell script that could print a range of lines and only a specified range of character positions within those lines, called `static-catalog/src/scripts/print-lines.sh`. Use the `--help` option to see how to use it. In what follows, we won't show the invocations used as Dean worked through the malformed records, but here is an example invocation for an error on line 270, where `270:1` means print one line starting at 270, and print `100` characters from position `5800` (i.e., a range around the reported error around `5850`), in `dequoted-1.json`: 
 
 ```shell
-$ src/scripts/print-lines.sh --start 270:1 --pos 5800:100 dequoted-1.json
+$ static-catalog/src/scripts/print-lines.sh --start 270:1 --pos 5800:100 static-catalog/temp/dequoted-1.json
 -sa-4.0/","sameAs":"\","url":"https://huggingface.co/datasets/chenghao/sec-material-contracts"}
 ```
 
@@ -149,8 +151,8 @@ The problem here is the `\` in `"sameAs":"\","url"`. Note that DuckDB reported t
 After many rounds of detecting these errors and attempting to fix them with `sed`, this is the final `sed` command we will use, where the `dequoted-5.json` was the output file used. We'll keep that name for consistency with `duckdb-notes.md`, where you'll see that dean actually went three more steps, to `dequoted-8.json`, but after "5", he was just adding very specific fixes for individual lines. Only a few bad lines were left, so it was better to just discard them at this point.
 
 ```shell
-$ jq .croissant ./data/json/sample/*.json | \
-  sed -e 's/^"//'  -e 's/"$//' -e 's/\\"\\"/""/g' -e 's/\([^\\]\)\\"/\1"/g' -e 's/"\\\\\\"/"/g' -e 's/\\\\""/"/g' -e 's/\([:,]\)\s*"\\[\\]*"/\1""/g' > dequoted-5.json
+jq .croissant static-catalog/data/json/temp/*.json | \
+  sed -e 's/^"//'  -e 's/"$//' -e 's/\\"\\"/""/g' -e 's/\([^\\]\)\\"/\1"/g' -e 's/"\\\\\\"/"/g' -e 's/\\\\""/"/g' -e 's/\([:,]\)\s*"\\[\\]*"/\1""/g' > static-catalog/temp/dequoted-5.json
 ```
 
 > **NOTE:** This command takes about _four minutes_ to run on an Apple Studio with an M1 Max!
@@ -158,7 +160,7 @@ $ jq .croissant ./data/json/sample/*.json | \
 Finally, use `src/scripts/parse-json.py` to look for lines that don't parse correctly and remove them, creating a JSON dataset we can successfully import into DuckDB. It also prints all bad lines found and statistics about the results:
 
 ```shell
-$ src/scripts/parse-json.py --verbose --input dequoted-5.json --output filtered-5.json
+$ static-catalog/src/scripts/parse-json.py --verbose --input static-catalog/temp/dequoted-5.json --output static-catalog/temp/filtered-5.json
 ...
 Error statistics:
              file:    total    bad        %
@@ -166,12 +168,12 @@ Error statistics:
 output file: filtered-5.json
 ```
 
-Great! Only 19 out of 261479 or 0.007%. Now, we'll load this data into DuckDB. (For the record, with the addition `sed` replacements omitted here, I got down to 16 bad records, but 19 is plenty good enough.)
+Great! Only 19 out of 261479 or 0.007%. Now, we'll load this data into DuckDB. (For the record, with the additional `sed` replacements omitted here, I got down to 16 bad records, but 19 is plenty good enough.)
 
 What if Dean had skipped all the `sed` hacking and just used this script?
 
 ```shell
-$ src/scripts/parse-json.py --verbose --input dequoted-1.json --output filtered-1.json
+$ static-catalog/src/scripts/parse-json.py --verbose --input static-catalog/temp/dequoted-1.json --output static-catalog/temp/filtered-1.json
 ...
 Error statistics:
              file:    total    bad        %
@@ -208,10 +210,10 @@ In the `duckdb` CLI, you install the `json` module.
 Start the CLI `duckdb`. In this case, a persistent database `croissant.duckdb` was used. This is highly recommended, otherwise everything is just in memory and lost when you exit the CLI:
 
 ```shell
-duckdb croissant.duckdb
+duckdb static-catalog/croissant.duckdb
 ```
 
-> **WARNING:** The `croissant.duckdb` file can easily grow to GBs in size!
+> **WARNING:** The `croissant.duckdb` file can easily grow to GBs in size! For this reason, we are not currently storing it in the git repo.
 
 At the `D` prompt (which will often be omitted in what follows, except when showing output...) type the following:
 
@@ -230,7 +232,7 @@ Now create the table!
 CREATE OR REPLACE TABLE hf_croissant AS
   FROM (
     SELECT *
-    FROM read_ndjson_objects('filtered-5.json')
+    FROM read_ndjson_objects('static-catalog/temp/filtered-5.json')
   );
 ```
 
@@ -314,7 +316,10 @@ WHERE     license NOT NULL
 LIMIT     5;
 ```
 
-> **NOTE:** Using `json->>'$.keywords[*]' AS keywords` extracts `keywords` as a `VARCHAR` array. Without the `[*]`, `keywords` would just be a `VARCHAR` and much less useful below.
+> [!NOTE]
+>
+> 1. Using `json->>'$.keywords[*]' AS keywords` extracts `keywords` as a `VARCHAR` array. Without the `[*]`, `keywords` would just be a `VARCHAR` and much less useful below.
+> 2. Note that we filter out the records with a `NULL` license.
 
 Here is what we get:
 
@@ -377,7 +382,8 @@ D DESCRIBE hf_metadata1;
 │ keywords     │ VARCHAR[]   │ YES     │ NULL    │ NULL    │ NULL    │
 │ creator_name │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
 │ creator_url  │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-└──────────────┴─────────────┴─────────┴─────────┴─────────┴─────────┘D SELECT count(*) FROM hf_metadata1;
+└──────────────┴─────────────┴─────────┴─────────┴─────────┴─────────┘
+D SELECT count(*) FROM hf_metadata1;
 ┌──────────────┐
 │ count_star() │
 │    int64     │
@@ -491,7 +497,7 @@ Let's create a table of unique licenses. To do this, we need a convenient way to
 
 ```sql
 CREATE OR REPLACE TABLE hf_licenses AS
-SELECT * FROM read_json('data/reference/license-id-name-mapping.json');
+SELECT * FROM read_json('static-catalog/data/reference/license-id-name-mapping.json');
 ```
 
 ```sql
@@ -553,6 +559,7 @@ D DESCRIBE hf_metadata;
 SELECT license, count(license) AS count
 FROM hf_metadata GROUP BY license ORDER BY count DESC;
 ```
+
 ```
 ┌────────────────────────────────────────────────────────────┬───────┐
 │                          license                           │ count │
@@ -614,7 +621,7 @@ COPY (SELECT
   hfm.license       AS license_url,
 FROM hf_metadata1 hfm
 LEFT JOIN hf_licenses  lic
-ON hfm.license = lic.url) TO 'toss.json' (FORMAT json, ARRAY true);
+ON hfm.license = lic.url) TO 'static-catalog/temp/toss.json' (FORMAT json, ARRAY true);
 
 SELECT 
   lic.id            AS license_id,
@@ -696,6 +703,12 @@ ORDER BY count DESC;
 ```
 
 Okay, for now, we will reject the datasets with invalid URLs for the licenses, even though some clearly intend to reference legitimate license sources.
+
+> [!NOTE]
+> We don't need `hf_metadata1` anymore, so we can drop it:
+> ```
+> drop table hf_metadata1;
+> ```
 
 #### Keeping "Bad" Licenses
 
@@ -884,11 +897,11 @@ Let's see which languages we can find.
 Let's save the keywords to a file to search for language entries with other tools (not shown here):
 
 ```sql
-COPY (SELECT keyword, count FROM hf_keywords ORDER BY keyword) TO 'hf_keywords.csv';
+COPY (SELECT keyword, count FROM hf_keywords ORDER BY keyword) TO 'static-catalog/temp/hf_keywords.csv';
 ```
 
 ```shell
-$ head -10 hf_keywords.csv
+$ head -10 static-catalog/temp/hf_keywords.csv
 head -10 hf_keywords.csv
 keyword,count
 #bert,1
@@ -909,7 +922,7 @@ Now, we need a list of the world's languages in a convenient format. Here are tw
 ```sql
 CREATE OR REPLACE TABLE iso_languages AS
   WITH langs AS (
-    SELECT * FROM read_json('data/reference/ISO-639-1-language.json')
+    SELECT * FROM read_json('static-catalog/data/reference/ISO-639-1-language.json')
   )
   SELECT code, lower(name) AS name
   FROM langs;
@@ -1083,7 +1096,7 @@ ORDER BY count DESC NULLS FIRST;
 └────────────────────┘
 ```
 
-Let's create a variation of `hf_metadata` generate a "concatenated" version of the language files. The first part of teh following query "unnests" the keywords, so we expand the records from, for example, one record with the keywords array `["lang1", "lang2", "lang3"]` to three records with individual `keyword` column values of `"lang1"`, etc.
+Let's create a variation of `hf_metadata` that generates a "concatenated" version of the language files. The first part of the following query "unnests" the keywords, so we expand the records from, for example, one record with the keywords array `["lang1", "lang2", "lang3"]` to three records with individual `keyword` column values of `"lang1"`, etc.
 
 ```sql
 CREATE OR REPLACE TABLE hf_languages AS
@@ -1167,7 +1180,7 @@ D SELECT count(*) FROM hf_languages;
 Now write it to a file:
 
 ```sql
-COPY hf_languages TO './data/reference/hf_all_languages.json' (FORMAT json, ARRAY true);
+COPY hf_languages TO 'static-catalog/data/reference/hf_all_languages.json' (FORMAT json, ARRAY true);
 ```
 
 A way to write the individual language files is to use `hf_languages`, e.g.,:
@@ -1185,26 +1198,28 @@ COPY (
     description
   FROM hf_languages
   WHERE language_keyword = 'arabic'
-) TO './data/json/processed/2025-05-12/languages/hf_arabic.json'
+) TO 'static-catalog/data/json/processed/2025-05-12/languages/hf_arabic.json'
  (FORMAT json, ARRAY true);
 ```
 
-> **NOTES:** 
+> [!NOTE]
 >
 > 1. I omitted the `language_keyword` field.
 > 2. The `(FORMAT json, ARRAY true)` lets you use an alternative extension, but it's the default if the extension is `json`. The `ARRAY true` causes `duckdb` to write a JSON array, not just "JSONL" records. This is very useful for converting this output to a JavaScript file, discussed below.
 
-Let's write several language datasets using `src/scripts/write-language-files.sh`. We'll put them in the directory, `./data/json/processed/YYYY-MM-DD/languages`, where the `YYYY-MM-DD` is treated as a "publication" date.
+Let's write several language datasets using `static-catalog/src/scripts/write-language-files.sh`. We'll put them in the directory, `static-catalog/data/json/processed/YYYY-MM-DD/languages`, where the `YYYY-MM-DD` is treated as a "publication" date.
 
-> **NOTE:** Since this section was written, I have moved to `src/scripts/write-category-files.py`, which also writes files for `modality` and `demain`, as well as `language`. Use it instead.
+> [!NOTE]
+> Since this section was written, I have moved to `static-catalog/src/scripts/write-category-files.py`, which also writes files for `modality` and `demain`, as well as `language`. Use it instead.
 
-> **WARNING:** Make sure to exit out of `duckdb` first, if you have it running, because second invocations of it will fail in order to prevent possible corruption of `croissant.duckdb` when accessed from concurrent `duckdb` processes.
+> [!WARN]
+> Make sure to exit out of `duckdb` first, if you have it running, because second invocations of it will fail in order to prevent possible corruption of `croissant.duckdb` when accessed from concurrent `duckdb` processes.
 
 The script basically runs the following code:
 
 ```shell
 timestamp=$(date "+%Y-%m-%d")
-base=./data/json/processed/$timestamp/languages
+base=static-catalog/data/json/processed/$timestamp/languages
 mkdir -p $base
 langs=(
   "arabic"
@@ -1227,7 +1242,7 @@ langs=(
 for lang in ${langs[@]}
 do
   output=$base/hf_$lang.json
-  cat <<EOF | duckdb croissant.duckdb
+  cat <<EOF | duckdb static-catalog/croissant.duckdb
   COPY (
     SELECT 
       name,
@@ -1249,8 +1264,8 @@ done
 We need JavaScript files to import into the website. This required careful coding because of the embedded escaped quotes, newlines, etc. The following, for example, doesn't really work, because escapes get evaluated!
 
 ```shell
-in=data/json/processed/2025-05-12/languages/hf_all_languages.json
-out=data/json/processed/2025-05-12/languages/hf_all_languages.js
+in=static-catalog/data/json/processed/2025-05-12/languages/hf_all_languages.json
+out=static-catalog/data/json/processed/2025-05-12/languages/hf_all_languages.js
 echo "var by_languages = " > $out
 first_line=true
 cat $in | while read line
@@ -1266,32 +1281,32 @@ done
 echo "\n];" >> $out
 ```
 
-The script `src/scripts/write-category-files.py` properly handles creation of the JS files from the JSON files. It does the following:
+The script `static-catalog/src/scripts/write-category-files.py` properly handles creation of the JS files from the JSON files. It does the following:
 
 1. Creates the JSON data files for _categories_ `modality`, `domain`, as well as `language`.
 1. Creates the corresponding `_<category>/<keyword>.markdown` files (which are simple _boilerplate_).
 1. Generates a JavaScript file from each JSON file.
 
-The JavaScript files are copied to `docs` with `src/scripts/copy-files-to-docs.sh` that runs commands similar to the following:
+The JavaScript files are copied to `docs` with `static-catalog/src/scripts/copy-files-to-docs.sh` that runs commands similar to the following:
 
 ```shell
 # run from the static-catalog directory!!
 ymd=$(date +"%Y-%m-%d")
-for d in ./data/json/processed/$ymd/*
+for d in static-catalog/data/json/processed/$ymd/*
 do
   group=$(basename $d)
   echo "JS for group: $group"
-  rm -rf ../docs/files/data/catalog/$group
-  mkdir -p ../docs/files/data/catalog/$group
-  cp $d/*.js ../docs/files/data/catalog/$group
+  rm -rf docs/files/data/catalog/$group
+  mkdir -p docs/files/data/catalog/$group
+  cp $d/*.js docs/files/data/catalog/$group
 done
-for d in ./markdown/processed/$ymd/*
+for d in static-catalog/markdown/processed/$ymd/*
 do
   group=$(basename $d)
   echo "Markdown for group: $group"
-  rm -rf ../docs/_$group
-  mkdir -p ../docs/_$group
-  cp $d/*.markdown ../docs/_$group
+  rm -rf docs/_$group
+  mkdir -p docs/_$group
+  cp $d/*.markdown docs/_$group
 done
 ```
 
@@ -1542,19 +1557,19 @@ SELECT keyword, count FROM hf_keywords WHERE count > 100 ORDER BY count DESC;
 There are 164. Let's save to a file:
 
 ```sql
-copy (SELECT keyword, count FROM hf_keywords WHERE count > 100 ORDER BY count DESC) 'biggest-keywords.csv'
+copy (SELECT keyword, count FROM hf_keywords WHERE count > 100 ORDER BY count DESC) 'static-catalog/data/reference/biggest-keywords.csv'
 ```
 
 As discussed above, we use `src/scripts/write-category-files.py` to write all the files for all the "popular" keywords we care about.
 
 ## Appendix: Running Some Test Queries
 
-Here are some additional queries tried with DuckDB to look at the original Parquet files and the "raw" output FROM the Spark job. You can see a _lot_ more of them in `duckdb-notes.md`. Note that some of the details below may not match current table schemas:
+Here are some additional queries tried with DuckDB to look at the original Parquet files and the "raw" output FROM the Spark job. You can see a _lot_ more of them in `static-catalog/duckdb-notes.md`. Note that some of the details below may not match current table schemas:
 
 ```sql
 DESCRIBE
   SELECT *
-  FROM './data/json/2025-05-06_16-36-59/spark/*.json';
+  FROM 'static-catalog/data/json/2025-05-06_16-36-59/spark/*.json';
 ```
 
 It prints:
@@ -1572,7 +1587,7 @@ What about the input Parquet files?
 ```sql
 DESCRIBE
   SELECT *
-  FROM './data/raw/*.parquet';
+  FROM 'static-catalog/data/raw/*.parquet';
 ```
 
 It prints:
@@ -1591,7 +1606,7 @@ It prints:
 ```
 
 ```sql
-SELECT * FROM './data/raw/*.parquet';
+SELECT * FROM 'static-catalog/data/raw/*.parquet';
 ```
 
 ```
@@ -1652,7 +1667,7 @@ So, it's clear we want to select for `response_reason = 'OK'`.
 This is what we did in the Spark job, so that the set of JSON files only has "useful" content:
 
 ```sql
-D SELECT * FROM './data/json/2025-05-06_16-36-59/spark/*.json' LIMIT 5;
+D SELECT * FROM 'static-catalog/data/json/2025-05-06_16-36-59/spark/*.json' LIMIT 5;
 ```
 
 It prints:
@@ -1673,7 +1688,7 @@ It prints:
 How many records?
 
 ```sql
-SELECT count(*) FROM './data/raw/*.parquet';
+SELECT count(*) FROM 'static-catalog/data/raw/*.parquet';
 ```
 
 ```
@@ -1686,7 +1701,7 @@ SELECT count(*) FROM './data/raw/*.parquet';
 ```
 
 ```sql
-SELECT count(*) FROM './data/json/2025-05-06_16-36-59/spark/*.json';
+SELECT count(*) FROM 'static-catalog/data/json/2025-05-06_16-36-59/spark/*.json';
 ```
 
 ```

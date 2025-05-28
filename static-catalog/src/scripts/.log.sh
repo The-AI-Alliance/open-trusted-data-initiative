@@ -10,6 +10,22 @@ LOG_LEVELS[INFO]=2
 LOG_LEVELS[WARN]=3
 LOG_LEVELS[ERROR]=4
 : ${LOG_LEVEL:=INFO}
+export LOG_LEVEL
+
+LOG_LEVELS_BY_NUMBER=(TRACE DEBUG INFO WARN ERROR)
+
+set_log_level_by_number() {
+  let n=$1
+  if [[ $n -lt 0 ]]
+  then
+    LOG_LEVEL=TRACE
+  elif [[ $n -gt ${#LOG_LEVELS_BY_NUMBER} ]]
+  then
+    LOG_LEVEL=ERROR
+  else
+    LOG_LEVEL=${LOG_LEVELS_BY_NUMBER[$n]}
+  fi
+}
 
 # Read standard out and log the lines
 stream_at_level() {

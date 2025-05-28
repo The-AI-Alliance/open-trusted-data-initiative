@@ -4,10 +4,18 @@ import argparse, json, os, pathlib, psutil, re, shutil, subprocess, sys
 
 today = datetime.today().strftime("%Y-%m-%d")
 
+# Should run from the project root directory. The following hack
+# tries to handle running in the root or static-catalog directories.
+sc_dir = "./static-catalog"
+cwd = os.getcwd()
+if cwd.endswith("static-catalog"):
+  sc_dir="."
+
+
 # Default output directories:
-def_root_dir_json   = f'./data/json/processed/{today}'
-def_root_dir_md     = f'./markdown/processed/{today}'
-def_categories_file = './data/reference/keyword-categories.json'
+def_root_dir_json   = f'{sc_dir}/data/json/processed/{today}'
+def_root_dir_md     = f'{sc_dir}/markdown/processed/{today}'
+def_categories_file = f'{sc_dir}/data/reference/keyword-categories.json'
 
 parser = argparse.ArgumentParser(
                     prog='write-category-files',
@@ -37,6 +45,17 @@ parser.add_argument('-v', '--verbose',
                     default=0) 
 args = parser.parse_args(sys.argv[1:])
 
+db_path_str = f"{sc_dir}/croissant.duckdb"
+db_path = pathlib.Path(db_path_str)
+if not db_path.exists():
+  print(f"""
+    ERROR: (write-category-files.py):
+           The required DuckDB database file, {db_path_str}, wasn't found.
+           This file is > 3GB, so it is not versioned in GitHub. Talk to the OTDI maintainers
+           to get a copy of this file.
+    """)
+  sys.exit(1)
+
 def make_directories(path: str, deletefirst=False):
   new_dir_path = pathlib.Path(path)
   if deletefirst and new_dir_path.exists():
@@ -44,8 +63,8 @@ def make_directories(path: str, deletefirst=False):
   
   try:
       new_dir_path.mkdir(parents=True)
-      # if args.verbose > 0:
-      #   print(f"Directory '{new_dir_path}' created successfully.")
+      if args.verbose > 0:
+        print(f"Directory '{new_dir_path}' created successfully.")
   except FileExistsError:
       if args.verbose > 1:
         print(f"Directory '{new_dir_path}' already exists.")
@@ -170,7 +189,7 @@ def write_topic_json_js(directory, keyword, title, parent_keyword, parent_title,
   js_output       = f"{directory}/{make_var_name(keyword)}.js"
   json_output     = f"{js_output}on"
   query = f"""
-duckdb croissant.duckdb
+duckdb {sc_dir}/croissant.duckdb
 COPY (
   SELECT 
     name,
@@ -229,7 +248,8 @@ def make_md_link(dict, mid_path, css_class="", use_hash=False):
   css_class_str = ''
   if len(css_class) > 0:
     css_class_str=f'{{:class="{css_class}"}}'
-  return f'[{make_title(dict)}]({{{{site.baseurl}}}}/{mid_path}/{hash}{dict["keyword"]}){css_class_str}'
+  cleaned_keyword = make_var_name(dict["keyword"])
+  return f'[{make_title(dict)}]({{{{site.baseurl}}}}/{mid_path}/{hash}{cleaned_keyword}){css_class_str}'
 
 def write_category_markdown(
   directory, 
@@ -243,7 +263,10 @@ def write_category_markdown(
   context,
   subcategories, 
   topics):
-  md_output_file = f"{directory}/{keyword}.markdown"    
+  base_name = keyword
+  if grand_parent_keyword == 'catalog':
+    base_name = f"{parent_keyword}_{keyword}"
+  md_output_file = f"{directory}/{base_name}.markdown"    
   with open(md_output_file, 'w') as md_out:
     alt_tags_str = make_alt_keywords_str(alt_keywords, delim='|')
     # WARNING: do not put the --- on a new line after the """! It adds a blank line at
@@ -277,7 +300,10 @@ subcategories: {'|'.join([s['keyword'] for s in subcategories])}
       print('\n')
 
     if topics and len(topics) > 0:
-      topics_links_btns = [make_md_link(t, f'{parent_keyword}/{cleaned_keyword}', css_class="topic-btn", use_hash=True) for t in topics]
+      prefix = parent_keyword
+      if grand_parent_keyword and len(grand_parent_keyword) > 0:
+        prefix = f'{grand_parent_keyword}/{parent_keyword}'
+      topics_links_btns = [make_md_link(t, f'{prefix}/{cleaned_keyword}', css_class="topic-btn", use_hash=True) for t in topics]
       print("### Keywords", file=md_out)
       print(' '.join(topics_links_btns), file=md_out)
 
@@ -341,7 +367,7 @@ if __name__ == "__main__":
   if is_process_running('duckdb'):
     error("It appears that 'duckdb' is already running. Please stop it then rerun this script.")
 
-  print("\n**** NOTE: This program runs for several minutes! (Invoke with '-v 1' to see progress.) ****\n")
+  print("\n**** NOTE: This program runs for several minutes! (Invoke with '--verbose 1' to see progress.) ****\n")
 
   # The high-level categories and subcategories are somewhat arbitrary.
   # The "topics" are found in the data set. We use arrays
@@ -393,26 +419,78 @@ if __name__ == "__main__":
     category_subcategories = category.get('subcategories', [])
 
     if args.no_markdown == False:
-      write_category_markdown(category_md_dir, category_keyword, category_title, 'catalog', 'Catalog', None, None, category_alt_keywords, category_context,
-      category_subcategories, category_topics)
+      write_category_markdown(
+        category_md_dir,
+        category_keyword,
+        category_title,
+        'catalog',
+        'Catalog',
+        None,
+        None,
+        category_alt_keywords,
+        category_context,
+        category_subcategories,
+        category_topics)
 
     for topic in category_topics:
-      process_topic(topic, category_var_name, category_title, category_keyword, None, category_path, category_md_dir, category_json_dir, indent_count=1)
+      process_topic(
+        topic,
+        category_var_name,
+        category_title,
+        category_keyword,
+        None,
+        category_path,
+        category_md_dir,
+        category_json_dir,
+        indent_count=1)
 
     for subcategory in category_subcategories:
       subcategory_keyword, subcategory_title, subcategory_alt_keywords, subcategory_like_clause, subcategory_context = \
         get_data(subcategory)
-      print_metadata("Subcategory", subcategory_keyword, subcategory_title, subcategory_alt_keywords, subcategory_like_clause, subcategory_context, indent_count=1)
+      
+      print_metadata(
+        "Subcategory",
+        subcategory_keyword,
+        subcategory_title,
+        subcategory_alt_keywords,
+        subcategory_like_clause,
+        subcategory_context,
+        indent_count=1)
 
       subcategory_var_name = make_var_name(subcategory_keyword)
       subcategory_key      = subcategory_var_name
       ancestor_path        = f"{category_path}/{subcategory_var_name}"
       subcategory_md_dir   = category_md_dir # same as category -- hack.
       subcategory_json_dir = f"{category_json_dir}/{subcategory_var_name}"
+      subcategory_topics   = subcategory.get('topics', [])
+
       if args.no_markdown == False:
         make_directories(subcategory_md_dir, deletefirst=False)
       if args.no_json == False:
         make_directories(subcategory_json_dir, deletefirst=False)
 
-      for topic in subcategory.get('topics', []):
-        process_topic(topic, subcategory_key, subcategory_title, category_keyword, category_title, ancestor_path, subcategory_md_dir, subcategory_json_dir, indent_count=2)
+      if args.no_markdown == False:
+        write_category_markdown(
+          subcategory_md_dir,
+          subcategory_keyword,
+          subcategory_title,
+          category_keyword,
+          category_title,
+          'catalog',
+          'Catalog',
+          subcategory_alt_keywords,
+          subcategory_context,
+          [],
+          subcategory_topics)
+
+      for topic in subcategory_topics:
+        process_topic(
+          topic,
+          subcategory_key,
+          subcategory_title,
+          category_keyword,
+          category_title,
+          ancestor_path,
+          subcategory_md_dir,
+          subcategory_json_dir,
+          indent_count=2)

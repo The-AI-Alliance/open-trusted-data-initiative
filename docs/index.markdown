@@ -8,9 +8,7 @@ language_tags: English
 
 # Open Trusted Data Initiative (OTDI) 
 
-> **We are cataloging the world's largest, most diverse collection of open datasets for AI. [Join us!]({{site.baseurl}}/about/#join-us)**
-
-[Take Me to the Data!]({{site.baseurl}}/catalog/catalog)
+> **We are [cataloging]({{site.baseurl}}/catalog/catalog) the world's largest, most diverse collection of open datasets for AI. [Join us!]({{site.baseurl}}/about/#join-us)**
 
 # [Datasets for Languages]({{site.baseurl}}/catalog/language/language)
 
