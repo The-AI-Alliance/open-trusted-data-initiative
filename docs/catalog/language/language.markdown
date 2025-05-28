@@ -10,7 +10,7 @@ parent: Dataset Catalog
 
 <a name="keywords-at-top"></a>
 
-<div class="table-wrapper">
+<div>
 {% assign current_region = "" %}
 {% for member in site.language %}
   {% if member.tag == "language" %} 
@@ -21,7 +21,7 @@ parent: Dataset Catalog
 
 ## Datasets for the Language Keywords
 
-<div class="table-wrapper">
+<div>
 <p>
 {% assign current_region = "" %}
 {% for member in site.language %}

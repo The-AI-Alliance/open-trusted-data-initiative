@@ -36,14 +36,6 @@ has_children: true
 ### [Datasets For Languages]({{site.baseurl}}/catalog/language/language)
 
 <div>
-{% for member in site.language %}
-  {% if member.tag == "language" %}
-    {{member.content}}
-  {% endif %}
-{% endfor %}
-</div>
-
-<div class="table-wrapper">
 {% assign current_region = "" %}
 {% for member in site.language %}
   {% if member.tag == "language" %} 
@@ -62,7 +54,7 @@ has_children: true
       {% assign current_region = region %}
 </div>
 <h4><a href="{{site.baseurl}}/catalog/language/{{member.parent_tag}}/">{{member.parent_title}}</a></h4>
-<div class="table-wrapper">
+<div>
     {% endif %}
     <a href="{{site.baseurl}}/catalog/language/{{member.parent_tag}}/#{{member.cleaned_tag}}" class="topic-btn">{{member.name}}</a>
   {% endif %}
@@ -79,17 +71,9 @@ has_children: true
 {% endfor %}
 </div>
 
-<div class="table-wrapper">
-{% for member in site.domain %}
-  {% if member.tag == "domain" %}
-    {{ member.content }}
-  {% endif %}
-{% endfor %}
-</div>
-
 ### [Datasets For Modalities]({{site.baseurl}}/catalog/modality/)
 
-<div class="table-wrapper">
+<div>
 {% for member in site.modality %}
   {% if member.tag == "modality" %}
     {{member.content}}

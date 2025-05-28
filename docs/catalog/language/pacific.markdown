@@ -19,7 +19,7 @@ Some are _pidgins_ or _creoles_ derived from languages originating elsewhere.
 
 ## Keywords for these Languages
 
-<div class="table-wrapper">
+<div>
 {% for member in site.language %}
   {% if member.parent_tag == "pacific" %} 
     <a href="#{{member.cleaned_tag}}" class="topic-btn">{{member.name}}</a>
