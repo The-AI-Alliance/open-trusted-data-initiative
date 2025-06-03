@@ -2,48 +2,109 @@ td {
 	vertical-align: top;
 }
 
+th {
+  background-color: #EEECE1;
+  white-space: nowrap;
+  text-align: left;
+  font-weight: bold;
+}
+
+td.project-title {
+  background-color: #F1FBEA; /* #FBF0FA; */
+  text-align: left;
+  font-weight: bold;
+  font-size: 110% !important;
+}
+
 .width-100 {
-	width: 100% !important;
+  width: 100% !important;
 }
 
 blockquote {
-	border: thick double #dddddd; //#52b1ae;
-	padding: 10px;
+  border: $border $border-color;
+  /*
+  border: solid 1px $blue-100; //#52b1ae;
+  background-color: rgba(240,240,240,0.5);
+  */
+  padding: 10px;
+  margin:  10px;
 }
 
 .description {
-	width: 100%;
-	font: 0.8rem "Fira Sans" sans-serif; 
+  width: 100%;
+  font: 0.8rem "Fira Sans" sans-serif; 
 }
 
+/* 
+Based on .site-header, but more flexible. 
+*/
+.site-header-logo {
+  display: inline;
+  vertical-align: top;
+  min-height: 20px;
+  max-width: 250px;
+  align-items: center;
+}
+
+.banner {
+  @include mq(md) {
+    /*
+    height: 60px; 
+    */
+    max-height: 100px;
+  }  
+}
+
+/* Buttons used at the tops of pages. */
+
+.header-btns {
+  display: inline;
+}
+
+.header-btn {
+  @extend .btn;
+  @include btn-color($white, $btn-primary-color);
+  @extend .fs-5;
+  @extend .mb-4;
+  @extend .mb-md-0;
+  @extend .mr-2;
+  @extend .no-glyph;
+  @extend .text-center;
+}
+
+/* 
+Smaller buttons used for "keywords" and "categories" of things.
+See https://the-ai-alliance.github.io/open-trusted-data-initiative/ for an example.
+*/
 .keyword-btn {
-	@extend .btn;
-	@extend .fs-5;
-	@extend .mb-4;
-	@extend .mb-md-0;
-	@extend .mr-2;
-	@extend .no-glyph;
-	@extend .text-center;
-	font: 0.75rem;
+  @extend .btn;
+  @extend .fs-5;
+  @extend .mb-4;
+  @extend .mb-md-0;
+  @extend .mr-2;
+  @extend .no-glyph;
+  @extend .text-center;
+  font: 0.75rem;
 }
 
 .category-btn {
-	@extend .keyword-btn;
-	@extend .btn-green;
+  @extend .keyword-btn;
+  @extend .btn-green;
 }
 
 .topic-btn {
-	@extend .keyword-btn;
-	@extend .btn-blue;
+  @extend .keyword-btn;
+  @extend .btn-blue;
 }
 
 h3.topic-btn {
-	@extend .topic-btn;
-	@extend .text-left;
+  @extend .topic-btn;
+  @extend .text-left;
 }
 h3.topic {
-	@extend .btn-blue;
+  @extend .btn-blue;
 }
+
 
 .resizable {
   position: relative;
@@ -86,20 +147,3 @@ h3.topic {
   max-width: fit-content;
 }
 
-.vertical-space {
-	min-height: 15px;
-}
-
-/* Based on .site-header, but taller, where $header-height is replaced with 100px. */
-.site-header-logo {
-  display: flex;
-  min-height: 100px;
-  max-width: 250px;
-  align-items: center;
-
-  @include mq(md) {
-    height: 100px;
-    max-height: 100px;
-    border-bottom: $border $border-color;
-  }
-}

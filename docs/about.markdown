@@ -5,6 +5,9 @@ nav_order: 60
 has_children: false
 ---
 
+| **Authors**      | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
+| **Last Update**  | V0.3.2, 2025-06-03 |
+
 # News
 
 | :--- | :--- |
@@ -17,9 +20,6 @@ has_children: false
 | November&nbsp;20,&nbsp;2024 | [BrightQuery]({{site.baseurl}}/catalog/catalog/#brightquery) joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/jose-plehn_brightquery-is-proud-to-now-be-a-member-of-activity-7265516443742478338-xjIz/?utm_source=share&utm_medium=member_desktop){:target="bq-li"}. |
 | November&nbsp;4,&nbsp;2024 | [PleIAs]({{site.baseurl}}/catalog/catalog/#pleias) joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/pleias_pleias-joins-the-ai-alliance-to-co-lead-open-ugcPost-7259263514542796800-Uphx/){:target="pleias-li"}.  |
 | October&nbsp;15,&nbsp;2024 | [Common Crawl Foundation]({{site.baseurl}}/catalog/catalog/#common-crawl-foundation) joins the AI Alliance and the Open Trusted Data Initiative. |
-
-| **Authors**      | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
-| **Last Update**  | V0.3.1, 2025-05-21 |
 
 
 <a name="join-us"></a>
@@ -100,6 +100,7 @@ The repo's [GITHUB_PAGES](https://github.com/The-AI-Alliance/open-trusted-data-i
 
 | Version  | Date       |
 | :------- | :--------- |
+| V0.3.2   | 2025-06-03 |
 | V0.3.1   | 2025-05-21 |
 | V0.3.0   | 2025-05-06 |
 | V0.2.8   | 2025-04-25 |
