@@ -77,12 +77,14 @@ img.centered {
   display: block
 } 
 
-// Style figure and table captions
+// Style figure captions
 p.caption {
   font-size: 80%;
   font-style: italic;
-  text-align: center;
 }
+
+.resizer { display:flex; margin:0; padding:0; resize:both; overflow:hidden }
+.resizer > .resized { flex-grow:1; margin:0; padding:0; border:0 }
 
 form.form-dataset-table {
 }
@@ -111,10 +113,4 @@ select.form-dataset-table-value {
 }
 select.form-dataset-table-value {
   background-color: blue;
-}
-
-.resizer { display:flex; margin:0; padding:0; resize:both; overflow:hidden }
-.resizer > .resized { flex-grow:1; margin:0; padding:0; border:0 }
-
-table.metadata-table {
 }
