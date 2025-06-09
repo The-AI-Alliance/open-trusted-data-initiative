@@ -22,6 +22,24 @@ This section is organized by topic.
 {:toc}
 </details>
 
+## Research on Gathering and Using Open Datasets
+
+While there are many open datasets of various sizes and areas of focus, a few attempts have been made to create very broad, completely open datasets suitable for training competitive foundation models.
+
+### Pleias
+
+In December 2024, [Pleias](https://pleias.fr) published [Common Corpus](https://huggingface.co/collections/PleIAs/common-corpus-6734e0f67ac3f35e44075f93){:target="common-corpus"}, a two trillion token dataset, and used it to train [several models](https://huggingface.co/PleIAs){:target="_blank"}. ([paper](https://arxiv.org/abs/2506.01732){:target="_blank"})
+
+The Pleias datasets are discussed in more detail on the [contributors]({{site.baseurl}}/catalog/contributors/#pleias) page.
+
+### Common Pile
+
+Another large open dataset, _Common Pile_ ([announcement](https://huggingface.co/blog/common-pile/common-pile-v0p1-announcement){:target="_blank"}, [HF location](https://huggingface.co/common-pile){:target="_blank"}, [Paper](https://github.com/r-three/common-pile/blob/main/paper.pdf){:target="_blank"},  [Code](https://github.com/r-three/common-pile){:target="_blank"}), was published in June 2025 by a consortium of researchers from University of Toronto, Vector Institute, Hugging Face, EleutherAI, The Allen Institute for Artificial Intelligence, Teraflop AI, Cornell University, University of Maryland College Park, MIT, CMU, Lila Sciences, Lawrence Livermore National Laboratory, etc.
+
+They used 1 trillion and 2 trillion subsets of Common Pile as [training datasets](https://huggingface.co/datasets/common-pile/comma_v0.1_training_dataset){:target="_blank"} for two models, [Comma-v0.1-1t](https://huggingface.co/common-pile/comma-v0.1-1t){:target="_blank"} and [Comma-v0.1-2t](https://huggingface.co/common-pile/comma-v0.1-2t){:target="_blank"}, respectively. Both are 7B parameter models.
+
+> **NOTE:** Because this dataset is published in Hugging Face, it will appear in our "snapshot" static catalog soon.
+
 ## General Data Concerns
 
 <a name="data-transparency"></a>
@@ -33,7 +51,7 @@ A call for &ldquo;minimum meaningful public transparency standards to support ef
 
 ### U.S. Department of Commerce
 
-[Generative Artificial Intelligence and Open Data: Guidelines and Best Practices](https://www.commerce.gov/news/blog/2025/01/generative-artificial-intelligence-and-open-data-guidelines-and-best-practices){:target="usdc-pdf"}) ([PDF](https://www.commerce.gov/sites/default/files/2025-01/GenerativeAI-Open-Data.pdf){:target="usdc-pdf"}). This guidance is intended to be used by the department and its bureaus, but it is generally useful. 
+[Generative Artificial Intelligence and Open Data: Guidelines and Best Practices](https://www.commerce.gov/news/blog/2025/01/generative-artificial-intelligence-and-open-data-guidelines-and-best-practices){:target="usdc-pdf"}) ([PDF](https://www.commerce.gov/sites/default/files/2025-01/GenerativeAI-Open-Data.pdf){:target="usdc-pdf"}). This guidance is intended to be used by the department and its bureaus, but it is generally useful.
 
 Note that it was published January 16, 2025, just before the end of the Biden administration. It is not clear if these guidelines will be retained by the new administration.
 
@@ -89,10 +107,10 @@ The [Data and Trust Alliance](https://dataandtrustalliance.org/){:target="dta"} 
 Here is their statement about the purpose of this standard, quoted from the project web page:
 
 > For AI to create value for business and society, the data that trains and feeds models must be trustworthy.
-> 
+>
 > Trust in data starts with transparency into provenance; assessing where data comes from, how it’s created, and whether it can be used, legally. Yet the ecosystem needs a common language to provide that transparency.
-> 
-> This is why we developed the first cross-industry data provenance standards. 
+>
+> This is why we developed the first cross-industry data provenance standards.
 
 ## Data Classification
 
@@ -122,5 +140,5 @@ Software BoMs have the same goals, to very clearly state what components a softw
 [This Linux Foundation report](https://www.linuxfoundation.org/research/ai-bom){:target="ai-bom"} discusses the concept in the content of AI. A quote from the website:
 
 > A Software Bill of Materials (SBOM) is becoming an increasingly important tool in regulatory and technical spaces to introduce more transparency and security into a project's software supply chain.
-> 
+>
 > Artificial intelligence (AI) projects face unique challenges beyond the security of their software, and thus require a more expansive approach to a bill of materials. In this report, we introduce the concept of an AI-BOM, expanding on the SBOM to include the documentation of algorithms, data collection methods, frameworks and libraries, licensing information, and standard compliance.

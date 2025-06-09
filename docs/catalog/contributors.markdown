@@ -25,7 +25,7 @@ The following organizations, shown in alphabetical order, maintain open data set
 
 ## BrightQuery
 
-[BrightQuery](https://brightquery.ai/){:target="bq"} ("BQ") provides proprietary financial, legal, and employment information on private and public companies derived from regulatory filings and disclosures. BQ proprietary data is used in capital markets for investment decisions, banking and insurance for KYC & credit checks, and enterprises for master data management, sales, and marketing purposes. 
+[BrightQuery](https://brightquery.ai/){:target="bq"} ("BQ") provides proprietary financial, legal, and employment information on private and public companies derived from regulatory filings and disclosures. BQ proprietary data is used in capital markets for investment decisions, banking and insurance for KYC & credit checks, and enterprises for master data management, sales, and marketing purposes.
 
 In addition, BQ provides public information consisting of clean and standardized statistical data from all the major government agencies and NGOs around the world, and is doing so in partnership with the source agencies. BQ public datasets will be published at [opendata.org/](https://opendata.org/){:target="od"} and cataloged in OTDI spanning all topics: economics, demographics, healthcare, crime, climate, education, sustainability, etc. See also their [documentation](https://docs.brightquery.com/index.html) about the datasets they are building. Much of the data will be tabular (i.e., structured) time series data, as well as unstructured text.
 
@@ -37,7 +37,7 @@ _More specific information is coming soon._
 
 _More specific information is coming soon._
 
-## EPFL 
+## EPFL
 
 The [EPFL LLM team](https://huggingface.co/epfl-llm){:target="epfl-llm"} has curated a dataset to train their [Meditron](https://github.com/epfLLM/meditron){:target="meditron"} models. An open-access subset of the medical guidelines data is published on [Hugging Face](https://huggingface.co/datasets/epfl-llm/guidelines){:target="guidelines"}
 
@@ -63,7 +63,7 @@ For more information, including a demo to see how it works on different material
 
 ## PleIAs
 
-Domain-specific, clean datasets. 
+Domain-specific, clean datasets.
 
 * PleIAs [website](https://pleias.fr){:target="pleias"}
 * PleIAs [Hugging Face organization](https://huggingface.co/PleIAs){:target="pleias-hf"}.
@@ -71,7 +71,7 @@ Domain-specific, clean datasets.
 
 | Name             | Description     |  URL     | Date Added |
 | :--------------- | :-------------- | :------- | :--------- |
-| **Common Corpus** | Largest multilingual pretraining data | [Hugging Face](https://huggingface.co/collections/PleIAs/common-corpus-6734e0f67ac3f35e44075f93){:target="common-corpus"} | 2024-11-04 |
+| **Common Corpus** | Largest multilingual pretraining data | [Hugging Face](https://huggingface.co/collections/PleIAs/common-corpus-6734e0f67ac3f35e44075f93){:target="common-corpus"} [paper](https://arxiv.org/abs/2506.01732){:target="_blank"} | 2024-11-04 |
 | **Toxic Commons** | Tools for de-toxifying public domain data, especially multilingual and historical text data and data with OCR errors | [Hugging Face](https://huggingface.co/collections/PleIAs/toxic-commons-672243e8ce64b6759e79b6dc){:target="toxic-commons"} | 2024-11-04 |
 | **Finance Commons** | A large collection of multimodal financial documents in open data | [Hugging Face](https://huggingface.co/collections/PleIAs/finance-commons-66925e1095c7fa6e6828e26c){:target="finance-commons"} | 2024-11-04 |
 | **Bad Data Toolbox** | PleIAs collection of models for the data processing of challenging document and data sources | [Hugging Face](https://huggingface.co/collections/PleIAs/bad-data-toolbox-66981c2d0df662459252844e){:target="bad-data-toolbox"} | 2024-11-04 |
@@ -81,7 +81,7 @@ Domain-specific, clean datasets.
 
 ## ServiceNow
 
-Multimodal, code, and other datasets. 
+Multimodal, code, and other datasets.
 
 * ServiceNow [website](https://www.servicenow.com){:target="servicenow"}
 * ServiceNow [Hugging Face organization](https://huggingface.co/ServiceNow){:target="servicenow-hf"}
