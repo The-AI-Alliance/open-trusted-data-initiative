@@ -208,7 +208,7 @@ COPY (
         output, err = process.communicate(input=encoded_string)
 
         if args.verbose > 1 and output:
-            info(f"Output from creating file {json_output}: ", output.decode('utf-8'))
+            info(f"Output from creating file {json_output}: {output.decode('utf-8')}")
         if err:
             error(f"Failed to create the file {json_output}: {err.decode('utf-8')}")
 

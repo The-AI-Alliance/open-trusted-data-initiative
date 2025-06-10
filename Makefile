@@ -32,6 +32,9 @@ STATIC_CATALOG_DATA_JSON_TEMP_DIR   ?= ${STATIC_CATALOG_DATA_DIR}/json/temp/${TI
 STATIC_CATALOG_DATA_JSON_ERRORS_DIR ?= ${STATIC_CATALOG_DATA_DIR}/json/errors/${TIMESTAMP}
 STATIC_CATALOG_DATA_JSON_FINAL_DIR  ?= ${STATIC_CATALOG_DATA_DIR}/json/processed/${TIMESTAMP}
 STATIC_CATALOG_MARKDOWN_FINAL_DIR   ?= ${STATIC_CATALOG_DIR}/markdown/processed/${TIMESTAMP}
+STATIC_CATALOG_DUCKDB_FILE          ?= ${STATIC_CATALOG_DATA_DIR}/croissant.duckdb
+STATIC_CATALOG_DATA_LICENSES_REF    ?= ${STATIC_CATALOG_DATA_DIR}/reference/license-id-name-mapping.json
+STATIC_CATALOG_DATA_ISO_LANGS_REF   ?= ${STATIC_CATALOG_DATA_DIR}/reference/ISO-639-1-language.json
 
 define help_message
 Quick help for open-trusted-data-initiative make process.
@@ -148,6 +151,9 @@ print-info:
 	@echo "STATIC_CATALOG_DATA_JSON_TEMP_DIR:  ${STATIC_CATALOG_DATA_JSON_TEMP_DIR}"
 	@echo "STATIC_CATALOG_DATA_JSON_FINAL_DIR: ${STATIC_CATALOG_DATA_JSON_FINAL_DIR}"
 	@echo "STATIC_CATALOG_MARKDOWN_FINAL_DIR:  ${STATIC_CATALOG_MARKDOWN_FINAL_DIR}"
+	@echo "STATIC_CATALOG_DUCKDB_FILE:         ${STATIC_CATALOG_DUCKDB_FILE}"
+	@echo "STATIC_CATALOG_DATA_LICENSES_REF:   ${STATIC_CATALOG_DATA_LICENSES_REF}"
+	@echo "STATIC_CATALOG_DATA_ISO_LANGS_REF:  ${STATIC_CATALOG_DATA_ISO_LANGS_REF}"
 
 clean::
 	rm -rf ${clean_dirs} 
@@ -179,41 +185,60 @@ ruby-installed-check:
 	@command -v gem  > /dev/null || \
 		( echo "ERROR: ${gem_required_message}" && exit 1 )
 
-.PHONY: catalog catalog-build catalog-data-prep catalog-json catalog-markdown catalog-clean catalog-install
+.PHONY: catalog catalog-clean catalog-data-prep catalog-duckdb-load catalog-build catalog-build-json catalog-build-markdown catalog-install
+.PHONY: catalog-clean catalog-clean-notice catalog-clean-db-file catalog-clean-json catalog-clean-markdown
 
-catalog:: catalog-clean catalog-data-prep catalog-build catalog-install
+catalog:: catalog-clean catalog-data-prep catalog-duckdb-load catalog-build catalog-install
 
-catalog-clean::
+catalog-clean:: catalog-clean-notice catalog-clean-db-file catalog-clean-json catalog-clean-markdown
+catalog-clean-notice::
 	@echo "Cleaning targets under static-catalog, not docs. The docs files are cleaned by catalog-install."
+catalog-clean-json::
 	rm -rf ${STATIC_CATALOG_DATA_JSON_TEMP_DIR}
 	rm -rf ${STATIC_CATALOG_DATA_JSON_ERRORS_DIR}
 	rm -rf ${STATIC_CATALOG_DATA_JSON_FINAL_DIR}
+catalog-clean-markdown::
 	rm -rf ${STATIC_CATALOG_MARKDOWN_FINAL_DIR}
+catalog-clean-db-file::
+	rm -f  ${STATIC_CATALOG_DUCKDB_FILE}
 
 catalog-data-prep::
-	${STATIC_CATALOG_BIN_DIR}/parquet-to-json.py --verbose ${STATIC_CATALOG_VERBOSE} \
-		--input ${STATIC_CATALOG_DATA_PARQUET_DIR} \
-		--output ${STATIC_CATALOG_DATA_JSON_TEMP_DIR} \
-		--errors ${STATIC_CATALOG_DATA_JSON_ERRORS_DIR}
+	${STATIC_CATALOG_BIN_DIR}/parquet-to-json.py \
+		--verbose ${STATIC_CATALOG_VERBOSE} \
+		--input   ${STATIC_CATALOG_DATA_PARQUET_DIR} \
+		--output  ${STATIC_CATALOG_DATA_JSON_TEMP_DIR} \
+		--errors  ${STATIC_CATALOG_DATA_JSON_ERRORS_DIR}
+
+catalog-duckdb-load:: catalog-clean-db-file
+	${STATIC_CATALOG_BIN_DIR}/load-into-duckdb.py \
+		--verbose   ${STATIC_CATALOG_VERBOSE} \
+		--db-file   ${STATIC_CATALOG_DUCKDB_FILE} \
+		--input     ${STATIC_CATALOG_DATA_JSON_TEMP_DIR}/* \
+		--licenses  ${STATIC_CATALOG_DATA_LICENSES_REF} \
+		--iso-langs ${STATIC_CATALOG_DATA_ISO_LANGS_REF}
 
 catalog-build::
-	${STATIC_CATALOG_BIN_DIR}/write-category-files.py --verbose ${STATIC_CATALOG_VERBOSE} \
-		--cat-file ${STATIC_CATEGORIES_FILE} \
-		--json-dir ${STATIC_CATALOG_DATA_PARQUET_DIR} \
+	${STATIC_CATALOG_BIN_DIR}/write-category-files.py \
+		--verbose      ${STATIC_CATALOG_VERBOSE} \
+		--cat-file     ${STATIC_CATEGORIES_FILE} \
+		--json-dir     ${STATIC_CATALOG_DATA_PARQUET_DIR} \
 		--markdown-dir ${STATIC_CATALOG_DATA_JSON_TEMP_DIR}
-catalog-json::
-	${STATIC_CATALOG_BIN_DIR}/write-category-files.py --verbose ${STATIC_CATALOG_VERBOSE} \
+catalog-build-json::
+	${STATIC_CATALOG_BIN_DIR}/write-category-files.py \
 		--no-markdown \
+		--verbose  ${STATIC_CATALOG_VERBOSE} \
 		--cat-file ${STATIC_CATEGORIES_FILE} \
 		--json-dir ${STATIC_CATALOG_DATA_PARQUET_DIR}
-catalog-markdown::
-	${STATIC_CATALOG_BIN_DIR}/write-category-files.py --verbose ${STATIC_CATALOG_VERBOSE} \
+catalog-build-markdown::
+	${STATIC_CATALOG_BIN_DIR}/write-category-files.py \
 		--no-json \
-		--cat-file ${STATIC_CATEGORIES_FILE} \
+		--verbose      ${STATIC_CATALOG_VERBOSE} \
+		--cat-file     ${STATIC_CATEGORIES_FILE} \
 		--markdown-dir ${STATIC_CATALOG_DATA_JSON_TEMP_DIR}
 
 catalog-install::
-	${STATIC_CATALOG_BIN_DIR}/copy-files-to-docs.sh --verbose ${STATIC_CATALOG_VERBOSE}
+	${STATIC_CATALOG_BIN_DIR}/copy-files-to-docs.sh \
+		--verbose ${STATIC_CATALOG_VERBOSE}
 
 
 %-error:

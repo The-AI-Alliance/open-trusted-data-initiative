@@ -20,9 +20,13 @@ Steps:
 * Parse a snapshot of data gathered from Hugging Face (short description TBD; see the rest of this README for details!)
 * Update `static-catalog/data/reference/keyword-categories.json` with any changes to the hierarchy or keywords.
 * Run `make catalog`, which does the following:
-  * Runs `src/scripts/write-category-files.py`. (It starts with a _shebang_, `/usr/bin/env python`, so you don't need to do `python src/...`.) It runs for several minutes. You can run this script separately; use `--help` to see options. It writes one markdown file _for each topic_ under `markdown/processed/YYYY-MM-DD`. It writes one JavaScript and one JSON file _for each topic_ under `data/json/processed/YYYY-MM-DD`.
-  * Runs `src/scripts/copy-files-to-docs.sh` to copy the files created over to the correct locations in `docs`.
+  * Runs `static-catalog/src/scripts/parquet-to-json.py`, which loads the parquet files in `static-catalog/data/parquet/<timestamp>` (where `<timestamp>` is the `YYYY-MM-DD` the snapshot was captured), extracts the `croissant` field as a string, performs _unescapes_ (e.g., `\"` to `"`, etc.), then writes JSON files to `static-catalog/data/json/temp/YYYY-MM-DD`. 
+  * Runs `static-catalog/src/scripts/load-into-duckdb.py`, which loads the JSON in `static-catalog/data/json/temp/YYYY-MM-DD` into `duckdb` tables. You can run this script separately; use `--help` to see options.
+  * Runs `static-catalog/src/scripts/write-category-files.py` to read the `temp` JSON output and write one markdown file _for each topic_ under `static-catalog/markdown/processed/YYYY-MM-DD`. It writes one JavaScript and one JSON file _for each topic_ under `static-catalog/data/json/processed/YYYY-MM-DD`. (Use `--help` to see options.)
+  * Runs `static-catalog/src/scripts/copy-files-to-docs.sh` to copy the files created over to the correct locations in `docs`.
 * Commit the changes and push upstream!
+
+You can run all the scripts discussed separately; use `--help` to see options.
 
 Notes:
 * `write-category-files.py` requires DuckDB to be installed (see [Using DuckDB](#using-duckdb)) _and_ it requires a database file named `static-catalog/croissant.duckdb`. This file is very large, so we don't version it in the git repo. Talk to Dean Wampler or Joe Olson to get a copy of this file and put it in the `static-catalog` directory.
@@ -923,11 +927,8 @@ Now, we need a list of the world's languages in a convenient format. Here are tw
 
 ```sql
 CREATE OR REPLACE TABLE iso_languages AS
-  WITH langs AS (
-    SELECT * FROM read_json('static-catalog/data/reference/ISO-639-1-language.json')
-  )
   SELECT code, lower(name) AS name
-  FROM langs;
+  FROM read_json('{args.iso_langs}');
 ```
 
 The names are converted to lower case, so joins can be performed with the `keywords` table.

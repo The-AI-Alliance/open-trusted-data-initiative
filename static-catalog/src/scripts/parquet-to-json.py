@@ -103,16 +103,19 @@ def run():
                         prog='parquet-to-json',
                         description='Reads HF metadata from Parquet and writes what we need to JSON',
                         epilog='')
-    parser.add_argument('-i', '--input',
-                        help="The input directory of parquet files.")
-    parser.add_argument('-o', '--output',
-                        help="The output directory for JSON files.")
-    parser.add_argument('-e', '--errors',
-                        help="The output directory for error logs.")
     parser.add_argument('-v', '--verbose',
                         help="Verbosity level for output. Higher numbers result in more details. Default value is 1. Use 0 for very little output.",
                         type=int,
                         default=1) 
+    parser.add_argument('-i', '--input',
+                        required=True,
+                        help="The input directory of parquet files.")
+    parser.add_argument('-o', '--output',
+                        required=True,
+                        help="The output directory for JSON files.")
+    parser.add_argument('-e', '--errors',
+                        required=True,
+                        help="The output directory for error logs.")
     args = parser.parse_args(sys.argv[1:])
     parquet_to_json(args)
 
