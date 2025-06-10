@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
-. src/scripts/common.sh
+DIR=$(dirname $0)
+SCRIPT=$(basename $0)
+. $DIR/common.sh
 
 help() {
     cat <<EOF

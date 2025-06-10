@@ -90,10 +90,10 @@ with open(out_file_path, 'w') as out:
                 line_count[in_file_path] = line_count[in_file_path] + 1
             except json.decoder.JSONDecodeError as err:
                 print(f"json.decoder.JSONDecodeError: {err}: line {i} will be ignored: {line2}")
-                bad_line_count[in_file_path] = bad_line_count[in_file_path] + 1
+                bad_line_count[in_file_path] += 1
             except Error as err:
                 print(f"Error: {err}: line {i} will be ignored: {line2}")
-                bad_line_count[in_file_path] = bad_line_count[in_file_path] + 1
+                bad_line_count[in_file_path] += 1
             json.dump(js, out)
             print("", file=out)
             if args.num_lines > 0 and args.num_lines <= i:

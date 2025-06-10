@@ -1,5 +1,5 @@
 
-pages_url    := https://the-ai-alliance.github.io/trust-safety-user-guide/
+pages_url    := https://the-ai-alliance.github.io/open-trusted-data-initiative/
 docs_dir     := docs
 site_dir     := ${docs_dir}/_site
 clean_dirs   := ${site_dir} ${docs_dir}/.sass-cache
@@ -13,18 +13,31 @@ ARCHITECTURE        ?= $(shell uname -m)
 # Override when running `make view-local` using e.g., `JEKYLL_PORT=8000 make view-local`
 JEKYLL_PORT         ?= 4000
 
-# Used for version tagging release artifacts.
+# Used for version tagging release and other build artifacts.
 GIT_HASH            ?= $(shell git show --pretty="%H" --abbrev-commit |head -1)
-TIMESTAMP           ?= $(shell date +"%Y%m%d-%H%M%S")
+TIMESTAMP           ?= $(shell date +"%Y-%m-%d")
 
 # For the static catalog generation.
-STATIC_CATALOG_DIR     ?= static-catalog
-STATIC_CATALOG_VERBOSE ?= 1
+STATIC_CATALOG_VERBOSE      ?= 1
+STATIC_CATALOG_DIR          ?= static-catalog
+STATIC_CATALOG_BIN_DIR      ?= ${STATIC_CATALOG_DIR}/src/scripts
+STATIC_CATALOG_DATA_DIR     ?= ${STATIC_CATALOG_DIR}/data
+STATIC_CATALOG_MARKDOWN_DIR ?= ${STATIC_CATALOG_DIR}/markdown
+STATIC_CATALOG_SUFFIX       ?= processed/${TIMESTAMP}
+STATIC_CATEGORIES_FILE      ?= ${STATIC_CATALOG_DATA_DIR}/data/reference/keyword-categories.json
+
+PARQUET_SNAPSHOT_TIMESTAMP  ?= 2025-06-05
+STATIC_CATALOG_DATA_PARQUET_DIR     ?= ${STATIC_CATALOG_DATA_DIR}/parquet/${PARQUET_SNAPSHOT_TIMESTAMP}
+STATIC_CATALOG_DATA_JSON_TEMP_DIR   ?= ${STATIC_CATALOG_DATA_DIR}/json/temp/${TIMESTAMP}
+STATIC_CATALOG_DATA_JSON_ERRORS_DIR ?= ${STATIC_CATALOG_DATA_DIR}/json/errors/${TIMESTAMP}
+STATIC_CATALOG_DATA_JSON_FINAL_DIR  ?= ${STATIC_CATALOG_DATA_DIR}/json/processed/${TIMESTAMP}
+STATIC_CATALOG_MARKDOWN_FINAL_DIR   ?= ${STATIC_CATALOG_DIR}/markdown/processed/${TIMESTAMP}
 
 define help_message
-Quick help for trust-safety-user-guide make process.
+Quick help for open-trusted-data-initiative make process.
 
-make all                # Clean and locally view the document.
+make all                # Clean and locally view the website.
+						# DOES NOT BUILD ANYTHING ELSE!
 make clean              # Remove built artifacts, etc.
 make view-pages         # View the published GitHub pages in a browser.
 make view-local         # View the pages locally (requires Jekyll).
@@ -33,8 +46,9 @@ make view-local         # View the pages locally (requires Jekyll).
 Tasks for building and deploying the static catalog.
 
 make catalog            # Makes "catalog-clean", "catalog-build" and "catalog-install".
-make catalog-build      # Process static-catalog/data/reference/keyword-categories.json to create
-                        # the catalog files in static-catalog/markdown/processed/YYYY-MM-DD and
+make catalog-build      # Process files from the initial parquet files through to catalog sections
+						# based on the defined categories and topics in static-catalog/data/reference/keyword-categories.json.
+						# The catalog files created are written to static-catalog/markdown/processed/YYYY-MM-DD and
                         # static-catalog/data/json/processed/YYYY-MM-DD.
 make catalog-json       # Same as "make catalog", but only builds the JSON files.
 make catalog-markdown   # Same as "make catalog", but only builds the Markdown files.
@@ -127,8 +141,13 @@ print-info:
 	@echo "UNAME:               ${UNAME}"
 	@echo "ARCHITECTURE:        ${ARCHITECTURE}"
 	@echo "GIT_HASH:            ${GIT_HASH}"
-	@echo "TIMESTAMP:           ${TIMESTAMP}"
 	@echo "JEKYLL_PORT:         ${JEKYLL_PORT}"
+	@echo
+	@echo "STATIC_CATEGORIES_FILE:             ${STATIC_CATEGORIES_FILE}"
+	@echo "STATIC_CATALOG_DATA_PARQUET_DIR:    ${STATIC_CATALOG_DATA_PARQUET_DIR}"
+	@echo "STATIC_CATALOG_DATA_JSON_TEMP_DIR:  ${STATIC_CATALOG_DATA_JSON_TEMP_DIR}"
+	@echo "STATIC_CATALOG_DATA_JSON_FINAL_DIR: ${STATIC_CATALOG_DATA_JSON_FINAL_DIR}"
+	@echo "STATIC_CATALOG_MARKDOWN_FINAL_DIR:  ${STATIC_CATALOG_MARKDOWN_FINAL_DIR}"
 
 clean::
 	rm -rf ${clean_dirs} 
@@ -141,7 +160,7 @@ view-pages::
 view-local:: setup-jekyll run-jekyll
 
 # Passing --baseurl '' allows us to use `localhost:4000` rather than require
-# `localhost:4000/The-AI-Alliance/trust-safety-user-guide` when running locally.
+# `localhost:4000/The-AI-Alliance/open-trusted-data-initiative` when running locally.
 run-jekyll: clean
 	@echo
 	@echo "Once you see the http://127.0.0.1:${JEKYLL_PORT}/ URL printed, open it with command+click..."
@@ -160,24 +179,41 @@ ruby-installed-check:
 	@command -v gem  > /dev/null || \
 		( echo "ERROR: ${gem_required_message}" && exit 1 )
 
-.PHONY: catalog catalog-build catalog-json catalog-markdown catalog-clean catalog-install
+.PHONY: catalog catalog-build catalog-data-prep catalog-json catalog-markdown catalog-clean catalog-install
 
-catalog:: catalog-clean catalog-build catalog-install
+catalog:: catalog-clean catalog-data-prep catalog-build catalog-install
 
 catalog-clean::
 	@echo "Cleaning targets under static-catalog, not docs. The docs files are cleaned by catalog-install."
-	rm -rf static-catalog/markdown/processed
-	rm -rf static-catalog/data/json/processed
+	rm -rf ${STATIC_CATALOG_DATA_JSON_TEMP_DIR}
+	rm -rf ${STATIC_CATALOG_DATA_JSON_ERRORS_DIR}
+	rm -rf ${STATIC_CATALOG_DATA_JSON_FINAL_DIR}
+	rm -rf ${STATIC_CATALOG_MARKDOWN_FINAL_DIR}
+
+catalog-data-prep::
+	${STATIC_CATALOG_BIN_DIR}/parquet-to-json.py --verbose ${STATIC_CATALOG_VERBOSE} \
+		--input ${STATIC_CATALOG_DATA_PARQUET_DIR} \
+		--output ${STATIC_CATALOG_DATA_JSON_TEMP_DIR} \
+		--errors ${STATIC_CATALOG_DATA_JSON_ERRORS_DIR}
 
 catalog-build::
-	${STATIC_CATALOG_DIR}/src/scripts/write-category-files.py --verbose ${STATIC_CATALOG_VERBOSE}
+	${STATIC_CATALOG_BIN_DIR}/write-category-files.py --verbose ${STATIC_CATALOG_VERBOSE} \
+		--cat-file ${STATIC_CATEGORIES_FILE} \
+		--json-dir ${STATIC_CATALOG_DATA_PARQUET_DIR} \
+		--markdown-dir ${STATIC_CATALOG_DATA_JSON_TEMP_DIR}
 catalog-json::
-	${STATIC_CATALOG_DIR}/src/scripts/write-category-files.py --verbose ${STATIC_CATALOG_VERBOSE} --no-markdown
+	${STATIC_CATALOG_BIN_DIR}/write-category-files.py --verbose ${STATIC_CATALOG_VERBOSE} \
+		--no-markdown \
+		--cat-file ${STATIC_CATEGORIES_FILE} \
+		--json-dir ${STATIC_CATALOG_DATA_PARQUET_DIR}
 catalog-markdown::
-	${STATIC_CATALOG_DIR}/src/scripts/write-category-files.py --verbose ${STATIC_CATALOG_VERBOSE} --no-json
+	${STATIC_CATALOG_BIN_DIR}/write-category-files.py --verbose ${STATIC_CATALOG_VERBOSE} \
+		--no-json \
+		--cat-file ${STATIC_CATEGORIES_FILE} \
+		--markdown-dir ${STATIC_CATALOG_DATA_JSON_TEMP_DIR}
 
 catalog-install::
-	${STATIC_CATALOG_DIR}/src/scripts/copy-files-to-docs.sh --verbose ${STATIC_CATALOG_VERBOSE}
+	${STATIC_CATALOG_BIN_DIR}/copy-files-to-docs.sh --verbose ${STATIC_CATALOG_VERBOSE}
 
 
 %-error:

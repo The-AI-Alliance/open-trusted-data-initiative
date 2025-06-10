@@ -1,8 +1,9 @@
 # README on Processing Hugging Face Metadata
 
 Dean Wampler, May 11, 2025
+Updates, June 9, 2025
 
-> **NOTE:** This is a condensed version of the long `duckdb-notes.md` file, plus other notes, where Dean experimented with DuckDB, Spark, and other tools. This file covers the commands that worked.
+> **NOTE:** This is a condensed version of the long `duckdb-notes.md` file, plus other notes, where Dean experimented with DuckDB, Spark, and other tools. This file covers the commands that worked. Also, this file has been updated since the initial draft as the processing steps have been refined and automated.
 
 ## Introduction
 
@@ -19,15 +20,15 @@ Steps:
 * Parse a snapshot of data gathered from Hugging Face (short description TBD; see the rest of this README for details!)
 * Update `static-catalog/data/reference/keyword-categories.json` with any changes to the hierarchy or keywords.
 * Run `make catalog`, which does the following:
-  * Runs `src/scripts/write-category-files.py`. (It starts with a _shebang_, `/usr/bin/env python`, so you don't need to do `python src/...`.) It runs for several minutes. You can run this script separately; use `--help` to see options. It writes one markdown file _for each topic_ under `markdown/processed/YYYY-MM-DD`. It writes one JavaScript and one JSON file _for each topic_ under `data/json/processed/YYYY-MM-DD`. 
+  * Runs `src/scripts/write-category-files.py`. (It starts with a _shebang_, `/usr/bin/env python`, so you don't need to do `python src/...`.) It runs for several minutes. You can run this script separately; use `--help` to see options. It writes one markdown file _for each topic_ under `markdown/processed/YYYY-MM-DD`. It writes one JavaScript and one JSON file _for each topic_ under `data/json/processed/YYYY-MM-DD`.
   * Runs `src/scripts/copy-files-to-docs.sh` to copy the files created over to the correct locations in `docs`.
 * Commit the changes and push upstream!
 
 Notes:
 * `write-category-files.py` requires DuckDB to be installed (see [Using DuckDB](#using-duckdb)) _and_ it requires a database file named `static-catalog/croissant.duckdb`. This file is very large, so we don't version it in the git repo. Talk to Dean Wampler or Joe Olson to get a copy of this file and put it in the `static-catalog` directory.
 * The markdown files copied to `docs` correspond to _collections_ defined in `docs/_config.yaml`; there is a subfolder for each collection, currently `_language`, `_domain`, and `_modality` (the `_` is required)
-* The JavaScript files are copied to `docs/files/data/catalog`. They contain the static data, defined as JS arrays of objects. 
-* The markdown and JSON directory hierarchies are _different_. The markdown files need to be flat, only _collection_ subfolders (currently `_language`, `_domain`, and `_modality`). We tried making hierarchical directories here, but this isn't supported by Jekyll/Liquid. In contrast, the JavaScript files written to `../docs/files/data/catalog` are hierarchical, because they use our own convention and are handled appropriately by the JavaScript code that loads them, `docs/_includes/data_table_template.html`. 
+* The JavaScript files are copied to `docs/files/data/catalog`. They contain the static data, defined as JS arrays of objects.
+* The markdown and JSON directory hierarchies are _different_. The markdown files need to be flat, only _collection_ subfolders (currently `_language`, `_domain`, and `_modality`). We tried making hierarchical directories here, but this isn't supported by Jekyll/Liquid. In contrast, the JavaScript files written to `../docs/files/data/catalog` are hierarchical, because they use our own convention and are handled appropriately by the JavaScript code that loads them, `docs/_includes/data_table_template.html`.
 
 The rest of this README covers how to parse the raw data into usable JSON. It doesn't cover editing of `data/reference/keyword-categories.json`, which was created manually!!
 
@@ -37,29 +38,30 @@ The rest of this README covers how to parse the raw data into usable JSON. It do
 Get a copy of the Parquet files with the Croissant metadata and use it as follows. Let's assume those Parquet files are in the current directory:
 
 ```shell
-mkdir -p data/raw
-mv *.parquet data/raw
+ymd=YYYY-MM-DD  # for today's date
+mkdir -p data/raw/$ymd
+mv *.parquet data/raw/$ymd
 mkdir -p data/json
 ```
 
 ## Python Dependencies
 
-You'll need these packages. PySpark is discussed next.
+You'll need these packages. Ray is discussed next.
 
 ```shell
-pip install psutil py4j pyspark
+pip install 'ray[default]' tqdm psutil
 ```
 
 ## Starting with Spark
 
-We start with [PySpark](https://spark.apache.org) to do the initial conversion from Parquet to JSON. In fact, this step could be done with DuckDB. 
+We start with [PySpark](https://spark.apache.org) to do the initial conversion from Parquet to JSON. In fact, this step could be done with DuckDB.
 
 Follow the installation instructions for Spark. The PySpark codeused is in `static-catalog/src/scripts/parquet-to-json.py` and it is invoked by `static-catalog/src/scripts/parquet-to-json.sh`. which reads the data from `static-catalog//data/raw` and writes the results to `static-catalog/data/json/<timestamp>/*.json` files (one file per _partition_). One script run executed this command:
 
 ```shell
-spark-submit -c spark.sql.parquet.enableVectorizedReader=false \ 
-  static-catalog/src/scripts/parquet-to-json.py \ 
-  --input static-catalog//data/raw \ 
+spark-submit -c spark.sql.parquet.enableVectorizedReader=false \
+  static-catalog/src/scripts/parquet-to-json.py \
+  --input static-catalog//data/raw \
   --output static-catalog//data/json/2025-05-10_16-02-30/spark
 ```
 
@@ -71,15 +73,15 @@ Here is what a line looks like in this file:
 {"croissant":"{\"@context\":{\"@language\":\"en\",...}}"}
 ```
 
-In other words, one _field_ named `croissant`, and an ugly, nested JSON string with lots of escapes for `"`, etc. This we need to extract and successfully _unescape_ to create the JSON records we want. 
+In other words, one _field_ named `croissant`, and an ugly, nested JSON string with lots of escapes for `"`, etc. This we need to extract and successfully _unescape_ to create the JSON records we want.
 
 The Spark code includes this SQL `WHERE` clauses, `WHERE response_reason = 'OK'`. It turns out there are a total of 332988 records in the Parquet data, which means there are that many datasets hosted at Hugging Face (at the time this data was gathers), but only 261495 of them have Croissant data. The rest of the records are discarded.
 
 At this point, Dean started using DuckDB because of its good support for JSON, but he found that further cleaning of the JSON files is necessary first, like extracting the value for the `croissant` column and "unquoting" at least the top-level quotes for strings, as discussed next.
 
-## Using `jq` and `sed` 
+## Using `jq` and `sed`
 
-This is the ugly part; to proceed some nasty regex hacking using `sed` was done to transform the JSON files to a more usable format. This is always an approach that is fraught with peril! 
+This is the ugly part; to proceed some nasty regex hacking using `sed` was done to transform the JSON files to a more usable format. This is always an approach that is fraught with peril!
 
 TLDR: This approach successfully cleaned up all but 19 of > 260K JSON records, which was more than good enough. The remaining 19 records were discarded.
 
@@ -89,7 +91,7 @@ Here is the sequence of transformations that produce usable JSON for loading int
 rm -rf static-catalog/data/json/temp
 mkdir static-catalog/data/json/temp
 for f in static-catalog/data/json/2025-05-10_16-02-30/spark/*.json
-do 
+do
   base=$(basename $f)
   number=$(echo $base | cut -d - -f 2)
   target=static-catalog/data/json/temp/$number.json
@@ -139,7 +141,7 @@ CREATE OR REPLACE TABLE hf_croissant AS
 Malformed JSON in file "static-catalog/temp/dequoted-1.json", at byte 5824 in line 271: unexpected character.
 ```
 
-Because the lines can be very long, Dean found it useful to write a shell script that could print a range of lines and only a specified range of character positions within those lines, called `static-catalog/src/scripts/print-lines.sh`. Use the `--help` option to see how to use it. In what follows, we won't show the invocations used as Dean worked through the malformed records, but here is an example invocation for an error on line 270, where `270:1` means print one line starting at 270, and print `100` characters from position `5800` (i.e., a range around the reported error around `5850`), in `dequoted-1.json`: 
+Because the lines can be very long, Dean found it useful to write a shell script that could print a range of lines and only a specified range of character positions within those lines, called `static-catalog/src/scripts/print-lines.sh`. Use the `--help` option to see how to use it. In what follows, we won't show the invocations used as Dean worked through the malformed records, but here is an example invocation for an error on line 270, where `270:1` means print one line starting at 270, and print `100` characters from position `5800` (i.e., a range around the reported error around `5850`), in `dequoted-1.json`:
 
 ```shell
 $ static-catalog/src/scripts/print-lines.sh --start 270:1 --pos 5800:100 static-catalog/temp/dequoted-1.json
@@ -282,11 +284,11 @@ D SELECT count(*) FROM hf_croissant;
 └──────────────┘
 ```
 
-> **NOTE:** It's not clear why this count is 261495, while the output of our filter script is 261479. 
+> **NOTE:** It's not clear why this count is 261495, while the output of our filter script is 261479.
 
 ## Extracting the Metadata Fields We Need
 
-Now we can use use DuckDB's [JSON support](https://duckdb.org/docs/stable/data/json/overview.html) to extract the fields we want into new tables. 
+Now we can use use DuckDB's [JSON support](https://duckdb.org/docs/stable/data/json/overview.html) to extract the fields we want into new tables.
 
 This [blog post](https://rpbouman.blogspot.com/2024/12/duckdb-bag-of-tricks-reading-json-data.html) about working with JSON in DuckDB was very informative.
 
@@ -312,7 +314,7 @@ SELECT    name,
           creator->>'$.name'         AS creator_name,
           creator->>'$.url'          AS creator_url,
 FROM      metadata
-WHERE     license NOT NULL 
+WHERE     license NOT NULL
 LIMIT     5;
 ```
 
@@ -517,8 +519,8 @@ D SELECT * FROM hf_licenses LIMIT 5;
 Now, let's join this this to `hf_metadata1` to create `hf_metadata`:
 
 ```sql
-CREATE OR REPLACE TABLE hf_metadata AS 
-  SELECT 
+CREATE OR REPLACE TABLE hf_metadata AS
+  SELECT
     hfm.name          AS name,
     hfm.description   AS description,
     lic.name          AS license,
@@ -614,7 +616,7 @@ D SELECT count() FROM hf_metadata;
 So, we lost more records, about 15K! It turns out there are a lot of URLs in the metadata for non-existing pages at [choosealicense.com](https://choosealicense.com/licenses). Many seem legitimate, but poorly specified.
 
 ```sql
-COPY (SELECT 
+COPY (SELECT
   hfm.name          AS name,
   lic.name          AS license,
   lic.id            AS license_id,
@@ -623,7 +625,7 @@ FROM hf_metadata1 hfm
 LEFT JOIN hf_licenses  lic
 ON hfm.license = lic.url) TO 'static-catalog/temp/toss.json' (FORMAT json, ARRAY true);
 
-SELECT 
+SELECT
   lic.id            AS license_id,
   hfm.license       AS license_url,
 FROM hf_metadata1 hfm
@@ -636,7 +638,7 @@ The second query reports 15.4K rows!
 
 ```sql
 WITH lics AS (
-  SELECT 
+  SELECT
     lic.id            AS license_id,
     hfm.license       AS license_url,
   FROM hf_metadata1 hfm
@@ -715,8 +717,8 @@ Okay, for now, we will reject the datasets with invalid URLs for the licenses, e
 As discussed above, we later created a second set of tables that kept the "bad" licenses, for further analysis. Using the same query to create `hf_metadata`, but with `hf_metadata1_with_null_licenses` instead of `hf_metadata1` and a `LEFT JOIN` with `hf_licenses`, instead of just `JOIN`:
 
 ```sql
-CREATE OR REPLACE TABLE hf_metadata_with_all_licenses AS 
-  SELECT 
+CREATE OR REPLACE TABLE hf_metadata_with_all_licenses AS
+  SELECT
     hfm.name          AS name,
     hfm.description   AS description,
     lic.name          AS license,
@@ -732,7 +734,7 @@ CREATE OR REPLACE TABLE hf_metadata_with_all_licenses AS
   ON hfm.license = lic.url;
 ```
 
-This table has 261495, as we would expect. 
+This table has 261495, as we would expect.
 
 ### Languages
 
@@ -804,7 +806,7 @@ SELECT unnest(keywords) AS keyword FROM hf_metadata LIMIT 10;
 Let's create a table of unique keywords:
 
 ```sql
-CREATE OR REPLACE TABLE hf_keywords AS 
+CREATE OR REPLACE TABLE hf_keywords AS
   WITH ks AS (
     SELECT trim(lower(unnest(keywords))) AS keyword
     FROM hf_metadata
@@ -886,11 +888,11 @@ D SELECT * FROM hf_keywords ORDER BY count DESC NULLS FIRST LIMIT 100;
 └──────────────────────────────────────┘
 ```
 
-So there are other languages present! 
+So there are other languages present!
 
 > **NOTE:** Look at the number of references to a few arXiv papers! We'll explore this below.
 
-Let's see which languages we can find. 
+Let's see which languages we can find.
 
 ### Languages
 
@@ -971,7 +973,7 @@ The input entries were in alphabetical order...
 Now, let's see what we can find using just the language codes:
 
 ```sql
-SELECT   ks.keyword, ks.count, ls.code, ls.name 
+SELECT   ks.keyword, ks.count, ls.code, ls.name
 FROM     hf_keywords   ks
 JOIN     iso_languages ls
 ON       ks.keyword = ls.code
@@ -1042,22 +1044,22 @@ FROM hf_keywords WHERE keyword IN (
   'aragonese',
   'aymara',
   'catalan',
-  'chinese', 
+  'chinese',
   'english',
-  'french', 
+  'french',
   'german',
-  'hindi', 
+  'hindi',
   'hungarian',
   'italian',
   'japanese',
   'javanese',
   'korean',
   'nyanja',
-  'portuguese', 
+  'portuguese',
   'russian',
   'spanish',
-  'turkish', 
-  'vietnamese', 
+  'turkish',
+  'vietnamese',
   'volapük',
   'xhosa',
   )
@@ -1112,7 +1114,7 @@ WITH expanded_keywords AS (
     description
   FROM hf_metadata
 )
-SELECT * 
+SELECT *
 FROM expanded_keywords
 WHERE language_keyword IN (
   'arabic',
@@ -1187,7 +1189,7 @@ A way to write the individual language files is to use `hf_languages`, e.g.,:
 
 ```sql
 COPY (
-  SELECT 
+  SELECT
     name,
     license,
     license_url,
@@ -1244,7 +1246,7 @@ do
   output=$base/hf_$lang.json
   cat <<EOF | duckdb static-catalog/croissant.duckdb
   COPY (
-    SELECT 
+    SELECT
       name,
       license,
       language,
@@ -1340,7 +1342,7 @@ D SELECT keyword, count FROM hf_keywords WHERE keyword LIKE 'arxiv:%' ORDER BY c
 For the interim static OTDI catalog, there are other keywords of interest:
 
 * `automation` - or `industrial`, `manufacturing`, ...
-* `molecular discovery` - or related terms like `chemistry`, `molecular`, `molecule`, `materials`, or variations thereof. 
+* `molecular discovery` - or related terms like `chemistry`, `molecular`, `molecule`, `materials`, or variations thereof.
 * `time-series` - or variations thereof.
 
 Modalities are interesting, including variations of the following:
@@ -1395,8 +1397,8 @@ Actually, 11 is not quite right...
 The lengths of the keyword arrays probably follow a Pareto distribution. Notice the following:
 
 ```sql
-SELECT name, len(keywords) AS len, keywords[0:4] 
-FROM hf_metadata 
+SELECT name, len(keywords) AS len, keywords[0:4]
+FROM hf_metadata
 ORDER BY len DESC;
 ```
 
@@ -1457,8 +1459,8 @@ So, datasets `language_tags` and `panlex` have by the keywords, which means they
 
 ```sql
 SELECT len(keywords) AS len, count() AS count
-FROM hf_metadata 
-GROUP BY len 
+FROM hf_metadata
+GROUP BY len
 ORDER BY len DESC;
 ```
 
@@ -1519,10 +1521,10 @@ ORDER BY len DESC;
 ```sql
 WITH kc AS (
   SELECT len(keywords) AS len, count() AS count
-  FROM hf_metadata 
-  GROUP BY len 
+  FROM hf_metadata
+  GROUP BY len
 )
-SELECT 
+SELECT
   round(avg(len), 2) AS len_avg, min(len), max(len), round(median(len), 2) AS len_median,
   round(avg(count), 2) AS count_avg, min(count), max(count), round(median(count), 2) AS count_median
 FROM kc;
