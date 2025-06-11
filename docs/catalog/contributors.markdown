@@ -8,7 +8,7 @@ parent: Dataset Catalog
 
 # Our Key Contributors and Their Datasets
 
-The following organizations, shown in alphabetical order, maintain open data sets that are becoming part of our catalog.
+The following AI Alliance member or affiliate organizations, shown in alphabetical order, maintain open data sets that are becoming part of our catalog.
 
 <details open markdown="block">
   <summary>
@@ -43,6 +43,22 @@ The [EPFL LLM team](https://huggingface.co/epfl-llm){:target="epfl-llm"} has cur
 
 See the Meditron GitHub repo [README](https://github.com/epfLLM/meditron?tab=readme-ov-file#medical-training-data){:target="meditron-readme"} for more details about the whole dataset used to train Meditron.
 
+## IBM Research
+
+### Social Stigma Q&A
+
+Social Stigma Q&A is a dataset from IBM Research. From the [arXiv paper abract](http://arxiv.org/abs/2312.07492){:target="social-stigma"}:
+
+> Current datasets for unwanted social bias auditing are limited to studying protected demographic features such as race and gender. In this work, we introduce a comprehensive benchmark that is meant to capture the amplification of social bias, via stigmas, in generative language models. Taking inspiration from social science research, we start with a documented list of 93 US-centric stigmas and curate a question-answering (QA) dataset which involves simple social situations. Our benchmark, SocialStigmaQA, contains roughly 10K prompts, with a variety of prompt styles, carefully constructed to systematically test for both social bias and model robustness. We present results for SocialStigmaQA with two open source generative language models and we find that the proportion of socially biased output ranges from 45% to 59% across a variety of decoding strategies and prompting styles. We demonstrate that the deliberate design of the templates in our benchmark (e.g., adding biasing text to the prompt or using different verbs that change the answer that indicates bias) impacts the model tendencies to generate socially biased output. Additionally, through manual evaluation, we discover problematic patterns in the generated chain-of-thought output that range from subtle bias to lack of reasoning. 
+
+For more information, see [Arxiv:2312.07492](http://arxiv.org/abs/2312.07492){:target="social-stigma"}.
+
+### Kepler
+
+[Kepler](https://github.com/sustainable-computing-io/kepler){:target="kepler"} ([paper](https://dl.acm.org/doi/10.1145/3604930.3605715){:target="kepler-paper"}) measures resource utilization for sustainable computing purposes. From the repo:
+
+> Kepler (Kubernetes-based Efficient Power Level Exporter) uses eBPF to probe performance counters and other system stats, use ML models to estimate workload energy consumption based on these stats, and exports them as Prometheus metrics.
+
 ## Meta
 
 ### Data for Good at Meta
@@ -60,6 +76,10 @@ For more information, including a demo to see how it works on different material
 * [Blog post](https://ai.meta.com/blog/meta-fair-science-new-open-source-releases/){:target="omol25-blog"}: including links to the research paper, the dataset, the trained model, and code.
 * [Demo](https://facebook-fairchem-uma-demo.hf.space/){:target="omol25-demo"}
 * Press coverage: [SEMAFOR](https://www.semafor.com/article/05/14/2025/meta-releases-new-data-set-ai-model-aimed-at-speeding-up-scientific-research){:target="omol25-semafor"}
+
+## Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)
+
+Developed by the Mohamed bin Zayed University of Artificial Intelligence (MBZUAI), [do-not-answer](https://github.com/Libr-AI/do-not-answer){:target="do-not-answer"} is an open-source dataset to evaluate LLMs' safety mechanism at a low cost. The dataset is curated and filtered to consist only of prompts to which responsible language models do not answer. Besides human annotations, Do not answer also implements model-based evaluation, where a 600M fine-tuned BERT-like evaluator achieves comparable results with human and GPT-4. 
 
 ## PleIAs
 
@@ -102,6 +122,16 @@ The training dataset for the [SemiKong](https://www.semikong.ai/){:target="semik
 | Name              | Description     |  URL     | Date Added |
 | :---------------- | :-------------- | :------- | :--------- |
 | **SemiKong** | An open model training dataset for semiconductor technology | [Hugging Face](https://huggingface.co/datasets/pentagoniac/SemiKong_Training_Datset){:target="semikong-dataset"} | 2024-09-01 |
+
+### `do-not-answer`
+
+Developed by the Mohamed bin Zayed University of Artificial Intelligence (MBZUAI), [do-not-answer](https://github.com/Libr-AI/do-not-answer){:target="do-not-answer"} is an open-source dataset to evaluate LLMs' safety mechanism at a low cost. The dataset is curated and filtered to consist only of prompts to which responsible language models do not answer. Besides human annotations, Do not answer also implements model-based evaluation, where a 600M fine-tuned BERT-like evaluator achieves comparable results with human and GPT-4. 
+
+### Sony AI and the University of Tokyo
+
+A collaboration of Sony AI and the University of Tokyo created the [Human-Centric Face Representations](https://ai.sony/publications/A-View-From-Somewhere-Human-Centric-Face-Representations/){:target="human-centric-faces"}, a collaboration to generate a dataset of 638,180 human judgments on face similarity. Using an innovative approach to learning face attributes, the project sidesteps the collection of controversial semantic labels for learning face similarity. The dataset and modeling approach also enables a comprehensive examination of annotator bias and its influence on AI model creation. 
+
+Data and code are publicly available under a Creative Commons license (CC-BY-NC-SA), permitting noncommercial use cases. See the [GitHub repo](https://github.com/SonyAI/a_view_from_somewhere){:target="human-centric-faces-github"}.
 
 ## Your Contributions?
 

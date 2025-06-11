@@ -19,6 +19,13 @@ Many other open datasets are not hosted at Hugging Face, but are not yet part of
 {:toc}
 </details>
 
+## Benchmark and Other Evaluation Datasets
+
+### NeurIPS 2024 Datasets Benchmarks
+
+The NeurIPS 2024 [Datasets Benchmarks](https://neurips.cc/virtual/2024/events/datasets-benchmarks-2024){:target="neurips2024"} is a list of recently-created datasets of interest for evaluation.
+
+
 ## Chemistry
 
 Many datasets for chemistry are open for use.
