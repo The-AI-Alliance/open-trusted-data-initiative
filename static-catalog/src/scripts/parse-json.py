@@ -20,18 +20,18 @@ def print_to_string(str, **kwargs):
     output.close()
     return contents
 
-def delete_file(file_path, verbose: bool = True):
+def delete_file(file_path, verbose: int = 0):
     if os.path.exists(file_path):
         if os.path.isdir(file_path):
             raise Exception(f"Directory passed to delete_file: {file_path}")
         elif os.path.isfile(file_path):
             try:
                 os.remove(file_path)
-                if verbose:
+                if verbose > 0:
                     print(f"File {file_path} deleted successfully.")
             except Exception as e:
                 print(f"An error occurred: {e}")
-    elif verbose:
+    elif verbose > 0:
         print(f"File {file_path} does not exist.")
 
 def get_file_paths(full_pattern: str) -> list[str]:
@@ -45,6 +45,10 @@ def parse_args():
                         prog='parse-json',
                         description='Parse JSON files with "JSONL" records. Discard bad lines.',
                         epilog='')
+    parser.add_argument('-v', '--verbose',
+                        help="Show verbose output",
+                        type=int,
+                        default=0)
     parser.add_argument('-i', '--input',
                         required=True,
                         help=f"A file name or path glob of JSON files to input (required).")
@@ -55,9 +59,6 @@ def parse_args():
                         type=int,
                         default=-1,
                         help="Stop after processing N lines in each file (default: process all lines).")
-    parser.add_argument('-v', '--verbose',
-                        help="Show verbose output",
-                        action='store_true')  # on/off flag
     args = parser.parse_args(sys.argv[1:])
     return args
 
@@ -90,16 +91,16 @@ with open(out_file_path, 'w') as out:
                 line_count[in_file_path] = line_count[in_file_path] + 1
             except json.decoder.JSONDecodeError as err:
                 print(f"json.decoder.JSONDecodeError: {err}: line {i} will be ignored: {line2}")
-                bad_line_count[in_file_path] = bad_line_count[in_file_path] + 1
+                bad_line_count[in_file_path] += 1
             except Error as err:
                 print(f"Error: {err}: line {i} will be ignored: {line2}")
-                bad_line_count[in_file_path] = bad_line_count[in_file_path] + 1
+                bad_line_count[in_file_path] += 1
             json.dump(js, out)
             print("", file=out)
             if args.num_lines > 0 and args.num_lines <= i:
                 break
 
-if args.verbose:
+if args.verbose > 0:
     file_str_fmt = "{0:>"+str(path_len)+"}:"
     print("Error statistics:")
     file_str=file_str_fmt.format("file")
