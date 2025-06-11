@@ -8,7 +8,7 @@ parent: Dataset Catalog
 
 # Our Key Contributors and Their Datasets
 
-The following AI Alliance member or affiliate organizations, shown in alphabetical order, maintain open data sets that are becoming part of our catalog.
+The following AI Alliance member or affiliate organizations, shown in alphabetical order, maintain open data sets that are becoming part of our catalog. 
 
 <details open markdown="block">
   <summary>
@@ -19,9 +19,7 @@ The following AI Alliance member or affiliate organizations, shown in alphabetic
 {:toc}
 </details>
 
-{% comment %}
-> **NOTES:** See also the AI Alliance's [Hugging Face organization](https://huggingface.co/aialliance){:target="aia-hf"} and the [Open Trusted Data Initiative catalog](https://huggingface.co/collections/aialliance/open-trusted-data-catalog-66d21b3cb66342762fb6108e){:target="aia-hf-otdi"} there, which will contain the datasets listed here.
-{% endcomment %}
+> **NOTE:** See also the AI Alliance's [Hugging Face organization](https://huggingface.co/aialliance){:target="aia-hf"} and the [dataset collection](https://huggingface.co/collections/aialliance/open-trusted-data-catalog-66d21b3cb66342762fb6108e){:target="aia-hf-otdi"} there, which list some datasets discussed below, as well as others that were donated or created by Alliance members.
 
 ## BrightQuery
 
