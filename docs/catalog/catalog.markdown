@@ -22,7 +22,7 @@ has_children: true
 >
 > The tables in this catalog list the metadata for Hugging Face-hosted datasets that were gathered as follows:
 > 
-> * The tables reflect a snapshot of the datasets as of May 5<sup>th</sup>, 2025. (Periodic updates are planned.)
+> * The tables reflect a snapshot of the datasets as of June 5<sup>th</sup>, 2025. (Periodic updates are planned.)
 > * Of the approximately 350,000 datasets, only those queryable using [Croissant](https://mlcommons.org/working-groups/data/croissant/){:target="croissant"} metadata are considered, about 260,000.
 > * Of those, we discard datasets without a specified license, leaving just approximately 60,000!
 > * The licenses are specified as corresponding [choosealicense.com/licenses/](https://choosealicense.com/licenses/){:target="cal"} URLs. Unfortunately, many undefined (&ldquo;404&rdquo;) URLs are specified. We discarded those datasets leaving 45,000.<a href="#footnote1"><sup>1</sup></a>

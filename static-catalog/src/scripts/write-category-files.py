@@ -1,29 +1,23 @@
 #!/usr/bin/env python
 
 import argparse, os, pathlib, subprocess, sys
+from typing import Dict, List, Any
 from common import (
-    error, info, is_process_running, list_to_str, 
-    make_directories, make_md_link, today
+    error, info, is_process_running, list_to_str, load_json, 
+    make_directories, make_var_name, today
 )
-
-# Should run from the project root directory. The following hack
-# tries to handle running in the root or static-catalog directories.
-sc_dir = "./static-catalog"
-cwd = os.getcwd()
-if cwd.endswith("static-catalog"):
-    sc_dir="."
-
-
-# Default output directories:
-var today = today()
-def_root_dir_json   = f'{sc_dir}/data/json/processed/{today}'
-def_root_dir_md     = f'{sc_dir}/markdown/processed/{today}'
-def_categories_file = f'{sc_dir}/data/reference/keyword-categories.json'
 
 parser = argparse.ArgumentParser(
                     prog='write-category-files',
                     description='Writes dataset listing files by topics (keywords), JSON and markdown',
                     epilog='')
+parser.add_argument('-v', '--verbose',
+                    help="Verbosity level for output. Higher numbers result in more details.",
+                    type=int,
+                    default=0) 
+parser.add_argument('--db-file',
+                    required=True,
+                    help=f"The duckdb database file.")
 parser.add_argument('--no-json',
                     help="Skip writing the JSON and JS files.",
                     action='store_true')  # on/off flag
@@ -31,35 +25,30 @@ parser.add_argument('--no-markdown', '--no-md',
                     help="Skip writing the markdown files.",
                     action='store_true') 
 parser.add_argument('--json-dir',
-                    help=f"Write the JSON and JavaScript files to this directory. (default: {def_root_dir_json})",
-                    default=def_root_dir_json)
+                    required=True,
+                    help=f"Write the JSON and JavaScript files to this directory.")
 parser.add_argument('--markdown-dir',
-                    help=f"Write the markdown files to this directory. (default: {def_root_dir_json})",
-                    default=def_root_dir_md)
+                    required=True,
+                    help=f"Write the markdown files to this directory.")
 parser.add_argument('--cat-file', '--categories-file',
-                    help=f"Read the categories and topics from this file. (default: {def_categories_file})",
-                    default=def_categories_file)
+                    required=True,
+                    help=f"Read the categories and topics from this file.")
 parser.add_argument('-c', '--categories',
-                    help=f"Process these categories and their subcategories and topics. (default: read from {def_categories_file})",
+                    help=f"Process these categories and their subcategories and topics. (default: use the --categories file categories)",
                     nargs="*")
-parser.add_argument('-v', '--verbose',
-                    help="Verbosity level for output. Higher numbers result in more details.",
-                    type=int,
-                    default=0) 
 args = parser.parse_args(sys.argv[1:])
 
-db_path_str = f"{sc_dir}/croissant.duckdb"
-db_path = pathlib.Path(db_path_str)
+db_path = pathlib.Path(args.db_file)
 if not db_path.exists():
     print(f"""
         ERROR: (write-category-files.py):
-               The required DuckDB database file, {db_path_str}, wasn't found.
+               The required DuckDB database file, {args.db_file}, wasn't found.
                This file is > 3GB, so it is not versioned in GitHub. Talk to the OTDI maintainers
-               to get a copy of this file.
+               to get a copy of this file or run the appropriate 'make' target.
         """)
     sys.exit(1)
 
-def make_title(kvs: dict[str, str]) -> str:
+def make_title(kvs: Dict[str, str]) -> str:
     """
     Get the `title` in the dictionary, if defined. Otherwise, 
     get the `keyword`, replace `-` with a space and capitalize 
@@ -71,11 +60,21 @@ def make_title(kvs: dict[str, str]) -> str:
         title = ' '.join([word.capitalize() for word in words])
     return title
 
+def make_md_link(dict: Dict[str, Any], mid_path: str, css_class: str="", use_hash: bool=False):
+    hash=''
+    if use_hash:
+        hash='#'
+    css_class_str = ''
+    if len(css_class) > 0:
+        css_class_str=f'{{:class="{css_class}"}}'
+    cleaned_keyword = make_var_name(dict["keyword"])
+    return f'[{make_title(dict)}]({{{{site.baseurl}}}}/{mid_path}/{hash}{cleaned_keyword}){css_class_str}'
+
 def print_metadata(
         label: str, 
         keyword: str, 
         title: str, 
-        alt_keywords: list[str], 
+        alt_keywords: List[str], 
         like_clause: str | None, 
         context: str, 
         indent_count: int=0) -> None:
@@ -86,7 +85,7 @@ def print_metadata(
         return
     alt_keywords_str = ''
     if alt_keywords and len(alt_keywords) > 0:
-        alt_keywords_str = f", Alt keywords = {[kw['keyword'] for kw in alt_keywords]}"
+        alt_keywords_str = f", Alt keywords = {alt_keywords}"
     like_clause_str = ''
     if like_clause and len(like_clause) > 0:
         like_clause_str = f", 'like' clause = {like_clause}"
@@ -95,7 +94,7 @@ def print_metadata(
         context_str = f", Context = {context}"
     print(f"{indent_count*'  '}{label}: Keyword = {keyword}, Title = {title}{alt_keywords_str}{context_str}{like_clause_str}")
 
-def get_data(kvs: dict[str, str]) -> str, str, [str], str, str:
+def get_data(kvs: Dict[str, str]) -> (str, str, List[str], str | None, str):
     """
     From the input dictionary, extract the keyword, title, and context, 
     which are returned. Optionally print the values (`if args.verbose > 0`).
@@ -109,7 +108,8 @@ def get_data(kvs: dict[str, str]) -> str, str, [str], str, str:
     alt_keywords = kvs.get('alt-keywords', [])
     like_clause  = kvs.get('like-clause')
     context      = kvs.get('context', "")
-    return keyword, title, alt_keywords, like_clause, context
+    alt_kws      = [kw['keyword'] for kw in alt_keywords]
+    return keyword, title, alt_kws, like_clause, context
 
 def make_keyword_query(keyword: str, like_clause: str | None) -> str:
     """
@@ -153,13 +153,14 @@ def write_all_categories_index_js_file(cat_file: str) -> None:
     js_file = os.path.splitext(cat_file)[0] + ".js"
     write_js_file(cat_file, js_file, 'global_categories_index')
 
-def write_topic_json_js(directory: str, 
+def write_topic_json_js(
+        directory: str, 
         keyword: str, 
         title: str, 
         parent_keyword: str, 
         parent_title: str, 
         ancestor_path: str, 
-        alt_keywords: list[str], 
+        alt_keywords: List[str], 
         like_clause: str | None, 
         context: str):
     """
@@ -169,12 +170,12 @@ def write_topic_json_js(directory: str,
     """
     ancestor_prefix = ancestor_path.replace('/', '_')
     query_prefix    = make_keyword_query(keyword, like_clause)
-    query_suffix    = [f" OR {make_keyword_query(kw['keyword'], None)}" for kw in alt_keywords]
+    query_suffix    = [f" OR {make_keyword_query(kw, None)}" for kw in alt_keywords]
     kw_query        = f"{query_prefix}{' '.join(query_suffix)}"
     js_output       = f"{directory}/{make_var_name(keyword)}.js"
     json_output     = f"{js_output}on"
     query = f"""
-duckdb {sc_dir}/croissant.duckdb
+duckdb {args.db_file}
 COPY (
   SELECT 
     name,
@@ -226,10 +227,10 @@ def write_category_markdown(
         parent_title: str, 
         grand_parent_keyword: str | None, 
         grand_parent_title: str | None, 
-        alt_keywords: list[str] | None, 
+        alt_keywords: List[str] | None, 
         context: str,
-        subcategories:  list[dict[str, str]] | None, 
-        topics: list[str] | None):
+        subcategories:  List[Dict[str, str]] | None, 
+        topics: List[str] | None):
     base_name = keyword
     if grand_parent_keyword == 'catalog':
         base_name = f"{parent_keyword}_{keyword}"
@@ -286,7 +287,7 @@ def write_topic_markdown(
         grand_parent_keyword: str, 
         grand_parent_title: str, 
         ancestor_path: str, 
-        alt_keywords: list[str] | None, 
+        alt_keywords: List[str] | None, 
         like_clause: str | None, 
         context: str) -> None:
     ancestor_prefix  = ancestor_path.replace('/', '_')
@@ -362,9 +363,15 @@ if __name__ == "__main__":
     # as "keyword LIKE '<like-clause>'" instead of "keyword = '<name>'". If defined,
     # the "like-clause" has to include the appropriate "%" for desired query.
     if args.verbose > 0:
-        info(f"Reading data from file: {args.cat_file}")
+        info("write-category-files.py:")
+        if args.no_markdown == False:
+            info(f"  Markdown directory:        {args.markdown_dir}")
+        if args.no_json == False:
+            info(f"  JSON directory:            {args.json_dir}")
+        info(f"  DuckDB file:               {args.db_file}")
+        info(f"  Category data file:        {args.cat_file}")
     categories = load_json(args.cat_file)
-
+    
     if args.no_markdown == False:
         make_directories(args.markdown_dir, delete_first=True, verbose=args.verbose)
     if args.no_json == False:
@@ -375,7 +382,7 @@ if __name__ == "__main__":
     categories_list = args.categories
     user_specified_categories = categories_list and len(categories_list) > 0
     if user_specified_categories and args.verbose > 0:
-        info(f"Processing only the user-specified categories: {', '.join(categories_list)}")
+        info(f"  User-specified categories: {', '.join(categories_list)}")
 
     for category in categories:
         category_keyword, category_title, category_alt_keywords, category_like_clause, category_context = \

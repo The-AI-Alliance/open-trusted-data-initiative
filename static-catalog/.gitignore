@@ -1,7 +1,7 @@
-croissant.duckdb
+*.duckdb
 dequoted-*.json
 filtered-*.json
-data/raw/
+data/parquet/
 data/json/
 markdown/
 metastore_db/

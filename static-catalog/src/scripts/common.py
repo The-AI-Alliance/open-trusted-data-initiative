@@ -82,17 +82,7 @@ def list_to_str(strs: list[str] | None, delim: str=' ') -> str:
     Return a `delim`-delimited string from the input `strs` array or
     return '' if the array is empty or `None`.
     """
-    if alt_keywords and len(alt_keywords):
-        return delim.join([k['keyword'] for k in alt_keywords])
+    if strs and len(strs):
+        return delim.join(strs)
     else:
         return ''
-
-def make_md_link(dict, mid_path, css_class="", use_hash=False):
-    hash=''
-    if use_hash:
-        hash='#'
-    css_class_str = ''
-    if len(css_class) > 0:
-        css_class_str=f'{{:class="{css_class}"}}'
-    cleaned_keyword = make_var_name(dict["keyword"])
-    return f'[{make_title(dict)}]({{{{site.baseurl}}}}/{mid_path}/{hash}{cleaned_keyword}){css_class_str}'

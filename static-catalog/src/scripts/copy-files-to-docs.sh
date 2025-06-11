@@ -26,7 +26,7 @@ where the options are:
 -h | --help               Print this message and exit.
 -n | --noop               Print the commands, but don't execute them.
 -v | --verbose N          Print more verbose output about what is being done. 
-                          N = to 5, where smaller values mean more output.
+                          N = 0 to 5, where larger values mean more output.
 -y | --ymd YYYY-MM-DD     Instead of the YMD in $def_js_source, use the specified date.
 --js-source SRC_DIR       Where to read the source JS files (default: $def_js_source)
 --md-source SRC_DIR       Where to read the source markdown files (default: $def_md_source)
@@ -51,7 +51,11 @@ do
       ;;
     -v|--verbose)
       shift
-      set_log_level_by_number $1
+      # Need to invert the sense of the number for the log library. But we subtract
+      # from 3 rather than 5 for closer approximate behavior to  the python scripts,
+      # which is also why we use larger numbers == more output to be consistent with them.
+      let lev=3-$1
+      set_log_level_by_number $lev
       ;;
     -y|--ymd)
       shift

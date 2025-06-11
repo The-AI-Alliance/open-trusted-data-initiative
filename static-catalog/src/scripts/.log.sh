@@ -29,43 +29,43 @@ set_log_level_by_number() {
 
 # Read standard out and log the lines
 stream_at_level() {
-  level=$1; shift
-  color=$1; shift
+  local lev=$1; shift
+  local color=$1; shift
   while read line
   do
-    log_at_level $level $color $line
+    log_at_level $lev $color $line
   done
 }
 
 # This function MUST redirect to stderr, because it's called from other functions
 # that write data to stdout
 log_at_level() {
-  level=$1; shift
-  color=$1; shift
-  let level_index=$LOG_LEVELS[$level]
+  local lev=$1; shift
+  local color=$1; shift
+  let lev_index=$LOG_LEVELS[$lev]
   let ll=$LOG_LEVELS[$LOG_LEVEL]
-  [[ $level_index -lt $ll ]] && return
+  [[ $lev_index -lt $ll ]] && return
   local message_format="\033[1;${color}m %-6s ($(script)) $(now): $@\033[0m\n"
   # local message_format="[${color}] %-6s ($(script)) $(now): $@[${color}]\n"
-  printf $message_format $level 1>&2
+  printf $message_format $lev 1>&2
 }
 
 
 stream_trace() {
-  stream_at_level "TRACE" $BLUE
+  stream_at_level TRACE $BLUE
 }
 stream_debug() {
-  stream_at_level "DEBUG" $LIGHT_CYAN
+  stream_at_level DEBUG $LIGHT_CYAN
 }
 stream_info() {
-  stream_at_level "INFO"  $GREEN
+  stream_at_level INFO  $GREEN
 }
 stream_warn() {
-  stream_at_level "WARN"  $YELLOW
+  stream_at_level WARN  $YELLOW
 }
 
 stream_error() {
-  stream_at_level "ERROR" $RED
+  stream_at_level ERROR $RED
 }
 
 # pc() {   # for "print color"
@@ -73,20 +73,20 @@ stream_error() {
 # }
 
 trace() {
-  log_at_level "TRACE" $BLUE "$@"
+  log_at_level TRACE $BLUE "$@"
 }
 debug() {
-  log_at_level "DEBUG" $LIGHT_CYAN "$@"
+  log_at_level DEBUG $LIGHT_CYAN "$@"
 }
 info() {
-  log_at_level "INFO"  $GREEN "$@"
+  log_at_level INFO  $GREEN "$@"
 }
 warn() {
-  log_at_level "WARN"  $YELLOW "$@"
+  log_at_level WARN  $YELLOW "$@"
 }
 
 log_error() {
-  log_at_level "ERROR" $RED "$@"
+  log_at_level ERROR $RED "$@"
 }
 
 help() {

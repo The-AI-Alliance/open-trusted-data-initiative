@@ -3,7 +3,7 @@
 import argparse, os, pathlib, subprocess, sys
 from common import (
     is_process_running, list_to_str, 
-    make_directories, make_md_link, today,
+    make_directories, today,
     info, warning, error, beep
 )
 
@@ -15,13 +15,17 @@ parser.add_argument('-v', '--verbose',
                     help="Verbosity level for output. Higher numbers result in more details. E.g., use '2' to see the queries that are executed.",
                     type=int,
                     default=0) 
-parser.add_argument('-i', '--input', required=True,
+parser.add_argument('-i', '--input',
+                    required=True,
                     help=f"Input JSON files location.")
-parser.add_argument('--db-file', required=True,
+parser.add_argument('--db-file',
+                    required=True,
                     help=f"The duckdb database file.")
-parser.add_argument('--licenses', required=True,
+parser.add_argument('--licenses',
+                    required=True,
                     help=f"A reference file with license metadata.")
-parser.add_argument('--iso-langs', required=True,
+parser.add_argument('--iso-langs',
+                    required=True,
                     help=f"A reference file with ISO codes for languages.")
 args = parser.parse_args(sys.argv[1:])
 
