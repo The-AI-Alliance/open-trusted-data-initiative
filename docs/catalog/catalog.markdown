@@ -23,9 +23,9 @@ has_children: true
 > The tables in this catalog list the metadata for Hugging Face-hosted datasets that were gathered as follows:
 > 
 > * The tables reflect a snapshot of the datasets as of June 5<sup>th</sup>, 2025. (Periodic updates are planned.)
-> * Of the approximately 350,000 datasets, only those queryable using [Croissant](https://mlcommons.org/working-groups/data/croissant/){:target="croissant"} metadata are considered, about 260,000.
-> * Of those, we discard datasets without a specified license, leaving just approximately 60,000!
-> * The licenses are specified as corresponding [choosealicense.com/licenses/](https://choosealicense.com/licenses/){:target="cal"} URLs. Unfortunately, many undefined (&ldquo;404&rdquo;) URLs are specified. We discarded those datasets leaving 45,000.<a href="#footnote1"><sup>1</sup></a>
+> * Of the approximately 413,000 datasets queried in this snapshot, 329,000 of them are queryable using [Croissant](https://mlcommons.org/working-groups/data/croissant/){:target="croissant"}.
+> * Of those, we discard datasets without a specified license, leaving just approximately 77,000!
+> * The licenses are specified as corresponding [choosealicense.com/licenses/](https://choosealicense.com/licenses/){:target="cal"} URLs. Unfortunately, many undefined (&ldquo;404&rdquo;) URLs are specified, about 17,000. We discarded those datasets leaving 60,000.<a href="#footnote1"><sup>1</sup></a>
 > * The groupings are based on the presence of relevant keywords. Note that _all_ the datasets list their language as `en` (English), but many have keywords for other languages. Those keywords are the basis for the [Languages]({{site.baseurl}}/catalog/language/language) tables (including the one for [English]({{site.baseurl}}/catalog/language/europe#english)).
 > * All keywords were converted to lower case before &ldquo;grouping&rdquo;. When a keyword entry lists _additional keywords_, it means we grouped together different keywords that we believe are related to the same topic, including synonyms. In these cases, we also show a **Keyword** column in the corresponding tables, so you can see which keyword was used to include a dataset.
 > * **Important:** At this time, we are not yet validating datasets to ensure their metadata accurately reflect the data records themselves.

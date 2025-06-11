@@ -3,13 +3,11 @@
 Dean Wampler, May 11, 2025
 Updates, June 9, 2025
 
-> **NOTE:** This is a condensed version of the long `duckdb-notes.md` file, plus other notes, where Dean experimented with DuckDB, Spark, and other tools. This file covers the commands that worked. Also, this file has been updated since the initial draft as the processing steps have been refined and automated.
+> **NOTE:** This is a condensed version of the long `duckdb-notes.md` file, plus other notes, where Dean experimented with DuckDB, Spark, and other tools. This file covers the commands that worked. Also, this file has been updated since the initial draft as the processing steps have been refined and automated. To see the notes for the first "V0.0.1" version of the static catalog, see this file as of git tag `V0.3.2-static-catalog-0.0.1`.
 
 ## Introduction
 
 We start with the metadata files created by Joe Olson's nightly job that queries Hugging Face for Croissant metadata. The format of those files is Parquet with a flat schema, with one column containing the entire JSON document for the metadata. Parsing that metadata proved difficult, because of deep "escape quoting". It was necessary to put together a set of tools to extract this metadata and load it into [DuckDB](https://duckdb.org) for further analysis and processing.
-
-We start with what most people need to see, the commands to rebuild the catalog data for the website, then discuss in detail how we "got here".
 
 ## Rebuilding the Catalog
 
@@ -17,183 +15,46 @@ Ask Dean Wampler for help, if needed.
 
 Steps:
 
-* Parse a snapshot of data gathered from Hugging Face (short description TBD; see the rest of this README for details!)
-* Update `static-catalog/data/reference/keyword-categories.json` with any changes to the hierarchy or keywords.
+* Acquire a snapshot of the parquet files and put them in the directory `static-catalog/data/parquet/<date>`, where date is the date the snapshot was captured, in the form `YYYY-MM-DD`.
+* Edit the `Makefile` and set `PARQUET_SNAPSHOT_TIMESTAMP` to match that date string. Note that by default, the current date will be used for temporary files created during the subsequent steps, which will likely be later than the parquet files capture date.
+* Update `static-catalog/data/reference/keyword-categories.json` with any changes to the hierarchy of categories and keywords you want to make.
 * Run `make catalog`, which does the following:
-  * Runs `static-catalog/src/scripts/parquet-to-json.py`, which loads the parquet files in `static-catalog/data/parquet/<timestamp>` (where `<timestamp>` is the `YYYY-MM-DD` the snapshot was captured), extracts the `croissant` field as a string, performs _unescapes_ (e.g., `\"` to `"`, etc.), then writes JSON files to `static-catalog/data/json/temp/YYYY-MM-DD`. 
-  * Runs `static-catalog/src/scripts/load-into-duckdb.py`, which loads the JSON in `static-catalog/data/json/temp/YYYY-MM-DD` into `duckdb` tables. You can run this script separately; use `--help` to see options.
-  * Runs `static-catalog/src/scripts/write-category-files.py` to read the `temp` JSON output and write one markdown file _for each topic_ under `static-catalog/markdown/processed/YYYY-MM-DD`. It writes one JavaScript and one JSON file _for each topic_ under `static-catalog/data/json/processed/YYYY-MM-DD`. (Use `--help` to see options.)
+  * Runs `static-catalog/src/scripts/parquet-to-json.py`, which reads the parquet files in `static-catalog/data/parquet/<date>`, extracts the `croissant` column as a string, performs _unescapes_ (e.g., `\"` to `"`, etc.), then writes JSON files to `static-catalog/data/json/temp/YYYY-MM-DD`, where `YYYY-MM-DD` is today's date by default. (You can override this with the environment variable `TIMESTAMP`.) 
+  * Runs `static-catalog/src/scripts/load-into-duckdb.py`, which reads the JSON in `static-catalog/data/json/temp/YYYY-MM-DD` into `duckdb` tables.
+  * Runs `static-catalog/src/scripts/write-category-files.py` to read the `temp` JSON output and write one markdown file _for each topic_ under `static-catalog/markdown/processed/YYYY-MM-DD`, and one JavaScript and one JSON file _for each topic_ under `static-catalog/data/json/processed/YYYY-MM-DD`.
   * Runs `static-catalog/src/scripts/copy-files-to-docs.sh` to copy the files created over to the correct locations in `docs`.
 * Commit the changes and push upstream!
 
 You can run all the scripts discussed separately; use `--help` to see options.
 
-Notes:
-* `write-category-files.py` requires DuckDB to be installed (see [Using DuckDB](#using-duckdb)) _and_ it requires a database file named `static-catalog/croissant.duckdb`. This file is very large, so we don't version it in the git repo. Talk to Dean Wampler or Joe Olson to get a copy of this file and put it in the `static-catalog` directory.
-* The markdown files copied to `docs` correspond to _collections_ defined in `docs/_config.yaml`; there is a subfolder for each collection, currently `_language`, `_domain`, and `_modality` (the `_` is required)
-* The JavaScript files are copied to `docs/files/data/catalog`. They contain the static data, defined as JS arrays of objects.
-* The markdown and JSON directory hierarchies are _different_. The markdown files need to be flat, only _collection_ subfolders (currently `_language`, `_domain`, and `_modality`). We tried making hierarchical directories here, but this isn't supported by Jekyll/Liquid. In contrast, the JavaScript files written to `../docs/files/data/catalog` are hierarchical, because they use our own convention and are handled appropriately by the JavaScript code that loads them, `docs/_includes/data_table_template.html`.
+> [!NOTE]
+>
+> * Even though this README is in the `static-catalog/` directory, we show it in the paths to tools, because we assume they are executed from the repo's root directory, e.g., when running `make catalog`.
+> * `parquet-to-json.py` requires `pandas`. 
+> * `write-category-files.py` requires DuckDB to be installed (see [Using DuckDB](#using-duckdb)) _and_ it requires a database file named `static-catalog/croissant.duckdb`. This file is very large, so we don't version it in the git repo. Talk to Dean Wampler or Joe Olson to get a copy of this file and put it in the `static-catalog` directory.
+> * The markdown files copied to `docs` correspond to _collections_ defined in `docs/_config.yaml`; there is a subfolder for each collection, currently `_language`, `_domain`, and `_modality` (the `_` is required)
+> * The JavaScript files are copied to `docs/files/data/catalog`. They contain the static data, defined as JS arrays of objects.
+> * The markdown and JSON directory hierarchies are _different_. The markdown files need to be flat, only _collection_ subfolders (currently `_language`, `_domain`, and `_modality`). We tried making hierarchical directories here, but this isn't supported by Jekyll/Liquid. In contrast, the JavaScript files written to `../docs/files/data/catalog` are hierarchical, because they use our own convention and are handled appropriately by the JavaScript code that loads them, `docs/_includes/data_table_template.html`.
 
-The rest of this README covers how to parse the raw data into usable JSON. It doesn't cover editing of `data/reference/keyword-categories.json`, which was created manually!!
-
+The rest of this README covers more details on how these processing steps work. It doesn't cover creating or editing `data/reference/keyword-categories.json`, which has been done manually!
 
 ## Initial Setup
+
+These steps are necessary before the `make catalog` automation can work.
+
+### Get the Parquet Data
 
 Get a copy of the Parquet files with the Croissant metadata and use it as follows. Let's assume those Parquet files are in the current directory:
 
 ```shell
 ymd=YYYY-MM-DD  # for today's date
-mkdir -p data/raw/$ymd
-mv *.parquet data/raw/$ymd
-mkdir -p data/json
+mkdir -p data/parquet/$ymd
+mv *.parquet data/parquet/$ymd
 ```
 
-## Python Dependencies
+### Install DuckDB
 
-You'll need these packages. Ray is discussed next.
-
-```shell
-pip install 'ray[default]' tqdm psutil
-```
-
-## Starting with Spark
-
-We start with [PySpark](https://spark.apache.org) to do the initial conversion from Parquet to JSON. In fact, this step could be done with DuckDB.
-
-Follow the installation instructions for Spark. The PySpark codeused is in `static-catalog/src/scripts/parquet-to-json.py` and it is invoked by `static-catalog/src/scripts/parquet-to-json.sh`. which reads the data from `static-catalog//data/raw` and writes the results to `static-catalog/data/json/<timestamp>/*.json` files (one file per _partition_). One script run executed this command:
-
-```shell
-spark-submit -c spark.sql.parquet.enableVectorizedReader=false \
-  static-catalog/src/scripts/parquet-to-json.py \
-  --input static-catalog//data/raw \
-  --output static-catalog//data/json/2025-05-10_16-02-30/spark
-```
-
-The output JSON files have single-line JSON docs. Basically _JSONL_ format, but the partitions aren't structured as arrays of JSON objects. Fortunately DuckDB handles this fine.
-
-Here is what a line looks like in this file:
-
-```json
-{"croissant":"{\"@context\":{\"@language\":\"en\",...}}"}
-```
-
-In other words, one _field_ named `croissant`, and an ugly, nested JSON string with lots of escapes for `"`, etc. This we need to extract and successfully _unescape_ to create the JSON records we want.
-
-The Spark code includes this SQL `WHERE` clauses, `WHERE response_reason = 'OK'`. It turns out there are a total of 332988 records in the Parquet data, which means there are that many datasets hosted at Hugging Face (at the time this data was gathers), but only 261495 of them have Croissant data. The rest of the records are discarded.
-
-At this point, Dean started using DuckDB because of its good support for JSON, but he found that further cleaning of the JSON files is necessary first, like extracting the value for the `croissant` column and "unquoting" at least the top-level quotes for strings, as discussed next.
-
-## Using `jq` and `sed`
-
-This is the ugly part; to proceed some nasty regex hacking using `sed` was done to transform the JSON files to a more usable format. This is always an approach that is fraught with peril!
-
-TLDR: This approach successfully cleaned up all but 19 of > 260K JSON records, which was more than good enough. The remaining 19 records were discarded.
-
-Here is the sequence of transformations that produce usable JSON for loading into DuckDB. First, for convenience, copy the Spark output partition files to a convenient place with shorter names:
-
-```shell
-rm -rf static-catalog/data/json/temp
-mkdir static-catalog/data/json/temp
-for f in static-catalog/data/json/2025-05-10_16-02-30/spark/*.json
-do
-  base=$(basename $f)
-  number=$(echo $base | cut -d - -f 2)
-  target=static-catalog/data/json/temp/$number.json
-  echo cp $f $target
-  cp $f $target
-done
-```
-
-```shell
-$ ll static-catalog/data/json/temp
-total 5672552
-drwxr-xr-x  7 me  staff   224B May 10 16:26 ./
-drwxr-xr-x@ 7 me  staff   224B May 10 16:26 ../
--rw-r--r--@ 1 me  staff     0B May 10 16:26 00000.json
--rw-r--r--@ 1 me  staff   1.1G May 10 16:26 00001.json
--rw-r--r--@ 1 me  staff   759M May 10 16:26 00004.json
--rw-r--r--@ 1 me  staff   685M May 10 16:26 00006.json
--rw-r--r--@ 1 me  staff   225M May 10 16:26 00007.json
-```
-
-Next, use `jq` to extract the JSON string for the single field, `croissant`. (This could probably also be done with Spark or DuckDB...). Pass the `jq` output through a `sed` command with three regex replacements to do the following:
-
-1. The output rows are surrounded with `"..."`. Use two replacements for the beginning and the end of the string to remove the double quotes.
-2. Replace all `\"` with `"`, but don't match on `\\"`, which are for _nested_ quotes. In other words, replace all the top-level escaped quotes. For example, `{\"foo\":\"1 \\"2\\" 3\"}` should become `{"foo":"1 \\"2\\" 3"}`. (Arguably, the `\\"2\\"` should become `\"2\"`, but we'll pursue this later, if necessary.)
-
-```shell
-mkdir static-catalog/temp # park temporary files
-jq .croissant static-catalog/data/json/temp/*.json | sed -e 's/^"//'  -e 's/"$//' -e 's/\([^\\]\)\\"/\1"/g' > static-catalog/temp/dequoted-1.json
-wc static-catalog/temp/dequoted-1.json
-```
-
-`wc` prints `261495 52099629 2604796536 static-catalog/temp/dequoted-1.json`.
-
-Use of DuckDB will be discussed shortly, but the process Dean followed at this point was to attempt to load this JSON file as a table, see what corrupt JSON DuckDB detected, then fix those errors by adding more regex replacements to the `sed` command. The first round went like this:
-
-Try to a create a table in DuckDB:
-
-```sql
-CREATE OR REPLACE TABLE hf_croissant AS
-  FROM (
-    SELECT *
-    FROM read_ndjson_objects('static-catalog/temp/dequoted-1.json')
-  );
-```
-
-```
-Malformed JSON in file "static-catalog/temp/dequoted-1.json", at byte 5824 in line 271: unexpected character.
-```
-
-Because the lines can be very long, Dean found it useful to write a shell script that could print a range of lines and only a specified range of character positions within those lines, called `static-catalog/src/scripts/print-lines.sh`. Use the `--help` option to see how to use it. In what follows, we won't show the invocations used as Dean worked through the malformed records, but here is an example invocation for an error on line 270, where `270:1` means print one line starting at 270, and print `100` characters from position `5800` (i.e., a range around the reported error around `5850`), in `dequoted-1.json`:
-
-```shell
-$ static-catalog/src/scripts/print-lines.sh --start 270:1 --pos 5800:100 static-catalog/temp/dequoted-1.json
--sa-4.0/","sameAs":"\","url":"https://huggingface.co/datasets/chenghao/sec-material-contracts"}
-```
-
-The problem here is the `\` in `"sameAs":"\","url"`. Note that DuckDB reported the error on line `271`, but the error is actually on is line `270`, which is what `awk`, which is used in `print-lines.sh`, reports.
-
-After many rounds of detecting these errors and attempting to fix them with `sed`, this is the final `sed` command we will use, where the `dequoted-5.json` was the output file used. We'll keep that name for consistency with `duckdb-notes.md`, where you'll see that dean actually went three more steps, to `dequoted-8.json`, but after "5", he was just adding very specific fixes for individual lines. Only a few bad lines were left, so it was better to just discard them at this point.
-
-```shell
-jq .croissant static-catalog/data/json/temp/*.json | \
-  sed -e 's/^"//'  -e 's/"$//' -e 's/\\"\\"/""/g' -e 's/\([^\\]\)\\"/\1"/g' -e 's/"\\\\\\"/"/g' -e 's/\\\\""/"/g' -e 's/\([:,]\)\s*"\\[\\]*"/\1""/g' > static-catalog/temp/dequoted-5.json
-```
-
-> **NOTE:** This command takes about _four minutes_ to run on an Apple Studio with an M1 Max!
-
-Finally, use `src/scripts/parse-json.py` to look for lines that don't parse correctly and remove them, creating a JSON dataset we can successfully import into DuckDB. It also prints all bad lines found and statistics about the results:
-
-```shell
-$ static-catalog/src/scripts/parse-json.py --verbose --input static-catalog/temp/dequoted-5.json --output static-catalog/temp/filtered-5.json
-...
-Error statistics:
-             file:    total    bad        %
-  dequoted-5.json:   261479     19   0.007%
-output file: filtered-5.json
-```
-
-Great! Only 19 out of 261479 or 0.007%. Now, we'll load this data into DuckDB. (For the record, with the additional `sed` replacements omitted here, I got down to 16 bad records, but 19 is plenty good enough.)
-
-What if Dean had skipped all the `sed` hacking and just used this script?
-
-```shell
-$ static-catalog/src/scripts/parse-json.py --verbose --input static-catalog/temp/dequoted-1.json --output static-catalog/temp/filtered-1.json
-...
-Error statistics:
-             file:    total    bad        %
-  dequoted-1.json:   258212   3283   1.271%
-output file: filtered-1.json
-```
-
-Discarding 1% of the records would not have been that bad. It would have saved a lot of time...
-
-## Using DuckDB
-
-Finally, we are ready to use [DuckDB](https://duckdb.org), which has good support for JSON.
-
-Install the [DuckDB](https://duckdb.org) CLI tools and Python library. See the [documentation](https://duckdb.org/docs/stable/) for details.
+We use the [DuckDB](https://duckdb.org) CLI tools. 
 
 Use this command to install the tools, including the `duckdb` CLI:
 
@@ -207,13 +68,13 @@ Optionally, install the Python library, but it is not used in what follows:
 pip install duckdb
 ```
 
-## Using the JSON Support in the `duckdb` CLI
+See the [documentation](https://duckdb.org/docs/stable/) for more details.
+
+### Using the JSON Support in the `duckdb` CLI
 
 The JSON processing functions are [documented here](https://duckdb.org/docs/stable/data/json/json_functions.html).
 
-In the `duckdb` CLI, you install the `json` module.
-
-Start the CLI `duckdb`. In this case, a persistent database `croissant.duckdb` was used. This is highly recommended, otherwise everything is just in memory and lost when you exit the CLI:
+Start the `duckdb` CLI so you can install the `json` module. We specify a persistent database `static-catalog/croissant.duckdb`. Otherwise, everything is just in memory and lost when you exit the CLI:
 
 ```shell
 duckdb static-catalog/croissant.duckdb
@@ -230,1148 +91,158 @@ load 'json';
 
 These commands don't need to be repeated in subsequent sessions.
 
-> **TIP:** Use `.quit` to exit `duckdb`.
+Use `.quit` to exit `duckdb`.
 
-Now create the table!
+### Python Dependencies
+
+You'll need these packages.
+
+```shell
+pip install pandas tqdm psutil
+```
+
+`Pandas` is used only for the first step, parsing parquet into JSON. The rest of the scripts use "plain" Python, sometimes to invoke `duckdb`, and `zsh`, the default shell on MacOS and Linux.
+
+## Parsing Parquet to JSON Files
+
+The `make catalog` build first builds `make-clean`, which deletes directories where new files will be created, then runs `make catalog-data-prep`. This target invokes `static-catalog/src/scripts/parquet-to-json.py`, which uses `pandas` to read the parquet files in `static-catalog/data/parquet/<date>`, where `<date>` is the snapshot capture date in the format `YYYY-MM-DD`.
+
+The input parquet format includes two columns we care about, `response_reason` and `croissant`. The former should have the value `OK`, meaning the metadata was successfully retrieved in Croissant format for the corresponding dataset. We filter out all records without this value, reducing the input from about 413,000 datasets to 329,000.
+
+The `croissant` column contains giant strings of quoted JSON, which means lots of _escapes_ like this:
+
+```json
+"{\"@context\":{\"@language\":\"en\",...}}"
+```
+
+The rest of `parquet-to-json.py` _unescapes_ the JSON string and writes it to one large file (>3GB), `static-catalog/data/json/YYYY-MM-DD/croissant.json`, where `YYYY-MM-DD` is today's date.
+
+## Load into DuckDB
+
+Next, the `make catalog` target makes the target `catalog-duckdb-load` to load the temporary JSON files into [DuckDB](https://duckdb.org), which has good support for JSON and it allows us to do useful joins, filtering, etc.
+
+Specifically, this make target runs the script `static-catalog/src/scripts/load-into-duckdb.py` to read the JSON in `static-catalog/data/json/temp/YYYY-MM-DD` and to create the following `duckdb` tables.
 
 ```sql
-CREATE OR REPLACE TABLE hf_croissant AS
-  FROM (
-    SELECT *
-    FROM read_ndjson_objects('static-catalog/temp/filtered-5.json')
-  );
-```
-
-This should be successful, printing this:
-```
-100% ▕████████████████████████████████████████████████████████████▏
-```
-
-Let's have a look. Again, `D` is the prompt which you should omit:
-
-```sql
-D DESCRIBE hf_croissant;
-┌─────────────┬─────────────┬─────────┬─────────┬─────────┬─────────┐
-│ column_name │ column_type │  null   │   key   │ default │  extra  │
-│   varchar   │   varchar   │ varchar │ varchar │ varchar │ varchar │
-├─────────────┼─────────────┼─────────┼─────────┼─────────┼─────────┤
-│ json        │ JSON        │ YES     │ NULL    │ NULL    │ NULL    │
-└─────────────┴─────────────┴─────────┴─────────┴─────────┴─────────┘
-D SELECT * FROM hf_croissant LIMIT 2;
-┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                                                         json                                                         │
-│                                                         json                                                         │
-├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│ {"@context": {"@language": "en", "@vocab": "https://schema.org/", "citeAs": "cr:citeAs", "column": "cr:column", "c…  │
-│ {"@context": {"@language": "en", "@vocab": "https://schema.org/", "citeAs": "cr:citeAs", "column": "cr:column", "c…  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
-D SELECT json_valid(json) as valid FROM hf_croissant WHERE valid = 'false';
-┌─────────┐
-│  valid  │
-│ boolean │
-├─────────┤
-│ 0 rows  │
-└─────────┘
-D SELECT json_keys(json) FROM hf_croissant LIMIT 1;
-┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                                                json_keys("json")                                                 │
-│                                                    varchar[]                                                     │
-├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│ [@context, @type, distribution, recordSet, conformsTo, name, description, alternateName, creator, keywords, url] │
-└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
-D SELECT count(*) FROM hf_croissant;
-┌──────────────┐
-│ count_star() │
-│    int64     │
-├──────────────┤
-│    261495    │
-└──────────────┘
-```
-
-> **NOTE:** It's not clear why this count is 261495, while the output of our filter script is 261479.
-
-## Extracting the Metadata Fields We Need
-
-Now we can use use DuckDB's [JSON support](https://duckdb.org/docs/stable/data/json/overview.html) to extract the fields we want into new tables.
-
-This [blog post](https://rpbouman.blogspot.com/2024/12/duckdb-bag-of-tricks-reading-json-data.html) about working with JSON in DuckDB was very informative.
-
-First, here is a query to grab a set of fields needed for our purposes:
-
-```sql
-WITH metadata AS (
-  SELECT  json->>'$.name'            AS name,
-          json->>'$.description'     AS description,
-          json->>'$.url'             AS url,
-          json->>'$.license'         AS license,
-          json->>'$.keywords[*]'     AS keywords,
-          json->'$."@context"'       AS context,
-          json->'$.creator'          AS creator,
-  FROM    hf_croissant
-)
-SELECT    name,
-          description,
-          license,
-          context->>'$."@language"'  AS language,
-          url,
-          keywords,
-          creator->>'$.name'         AS creator_name,
-          creator->>'$.url'          AS creator_url,
-FROM      metadata
-WHERE     license NOT NULL
-LIMIT     5;
-```
-
-> [!NOTE]
->
-> 1. Using `json->>'$.keywords[*]' AS keywords` extracts `keywords` as a `VARCHAR` array. Without the `[*]`, `keywords` would just be a `VARCHAR` and much less useful below.
-> 2. Note that we filter out the records with a `NULL` license.
-
-Here is what we get:
-
-```
-┌──────────────────────┬──────────────────────┬──────────────────────┬───┬──────────────────┬──────────────────────┐
-│         name         │     description      │       license        │ … │   creator_name   │     creator_url      │
-│       varchar        │       varchar        │       varchar        │   │     varchar      │       varchar        │
-├──────────────────────┼──────────────────────┼──────────────────────┼───┼──────────────────┼──────────────────────┤
-│ new03                │ \n\t\n\t\t\n\t\n\t…  │ https://choosealic…  │ … │ joey_fullname    │ https://huggingfac…  │
-│ silvervoz            │ iansousa12/silverv…  │ https://choosealic…  │ … │ Ian Sousa        │ https://huggingfac…  │
-│ test-codegen-basel…  │ echodrift/test-cod…  │ https://choosealic…  │ … │ Thieu Luu        │ https://huggingfac…  │
-│ silvervoz2           │ iansousa12/silverv…  │ https://choosealic…  │ … │ Ian Sousa        │ https://huggingfac…  │
-│ New_York_Times_Top…  │ dstefa/New_York_Ti…  │ https://choosealic…  │ … │ Dimos Stefanidis │ https://huggingfac…  │
-├──────────────────────┴──────────────────────┴──────────────────────┴───┴──────────────────┴──────────────────────┤
-│ 5 rows                                                                                       8 columns (5 shown) │
-└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
-
-The `->>` extracts the value as a basic type, like `VARCHAR`, while `->` extracts the content as a `JSON` object. The later is used for nested structures. There are alternative ways of writing these constructs. See the [docs](https://duckdb.org/docs/stable/data/json/overview.html).
-
-Also, note that records without a license field are removed, which leaves only about 60K records (see below), although some of the removed records do list the license in their keywords.
-
-Now create a metadata table, called `hf_metadata1`. We'll create a _final_ `hf_metadata` table shortly.:
-
-```sql
-CREATE OR REPLACE TABLE hf_metadata1 AS
-  WITH metadata AS (
-    SELECT  json->>'$.name'            AS name,
-            json->>'$.description'     AS description,
-            json->>'$.url'             AS dataset_url,
-            json->>'$.license'         AS license,
-            json->>'$.keywords[*]'     AS keywords,
-            json->'$."@context"'       AS context,
-            json->'$.creator'          AS creator,
-    FROM    hf_croissant
-  )
-  SELECT    name,
+CREATE OR REPLACE TABLE hf_croissant AS FROM (
+    SELECT  name,
             description,
+            url                        AS dataset_url,
             license,
-            context->>'$."@language"'  AS language,
-            dataset_url,
             keywords,
+            "@context"->>'$.@language' AS language,
             creator->>'$.name'         AS creator_name,
             creator->>'$.url'          AS creator_url,
-  FROM      metadata
-  WHERE     license NOT NULL;
+    FROM    read_json('static-catalog/data/json/temp/YYYY-MM-DD')
+);
 ```
 
-```sql
-D DESCRIBE hf_metadata1;
-┌──────────────┬─────────────┬─────────┬─────────┬─────────┬─────────┐
-│ column_name  │ column_type │  null   │   key   │ default │  extra  │
-│   varchar    │   varchar   │ varchar │ varchar │ varchar │ varchar │
-├──────────────┼─────────────┼─────────┼─────────┼─────────┼─────────┤
-│ name         │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ description  │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ license      │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ language     │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ dataset_url  │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ keywords     │ VARCHAR[]   │ YES     │ NULL    │ NULL    │ NULL    │
-│ creator_name │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ creator_url  │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-└──────────────┴─────────────┴─────────┴─────────┴─────────┴─────────┘
-D SELECT count(*) FROM hf_metadata1;
-┌──────────────┐
-│ count_star() │
-│    int64     │
-├──────────────┤
-│    60107     │
-└──────────────┘
-```
-> **NOTE:** To investigate datasets with `NULL` licenses, I later created `hf_metadata1_with_null_licenses`, where the `WHERE license IS NULL` clause was removed, and similarly `hf_metadata_with_all_licenses`, using modifications to the query below used to create `hf-metadata`. See the discussion there.
+The `foo->>bar` syntax is used to extract elements from nested JSON objects.
 
-### Licenses
-
-So, only 60K out of 261K records (23%) have a license! Not great. Let's see what those licenses are. First, let's tell `duckdb` to not truncate the output at the default of 40 rows. (Only ~75 lines are needed for the next query):
-
-```sql
-.maxrows 1234
-```
-
-```sql
-SELECT license, count(license) AS count
-FROM hf_metadata1 GROUP BY license ORDER BY count DESC NULLS FIRST;
-```
-
-Apache and MIT (popular with academics) are the most common licenses:
-
-```
-┌────────────────────────────────────────────────────────────────┬───────┐
-│                            license                             │ count │
-│                            varchar                             │ int64 │
-├────────────────────────────────────────────────────────────────┼───────┤
-│ https://choosealicense.com/licenses/apache-2.0/                │ 19822 │
-│ https://choosealicense.com/licenses/mit/                       │ 16916 │
-│ https://choosealicense.com/licenses/openrail/                  │  4567 │
-│ https://choosealicense.com/licenses/cc-by-4.0/                 │  3547 │
-│ https://choosealicense.com/licenses/unknown/                   │  1940 │
-│ https://choosealicense.com/licenses/cc-by-sa-4.0/              │  1589 │
-│ https://choosealicense.com/licenses/other/                     │  1543 │
-│ https://choosealicense.com/licenses/cc-by-nc-4.0/              │  1244 │
-│ https://choosealicense.com/licenses/cc-by-nc-sa-4.0/           │  1070 │
-│ https://choosealicense.com/licenses/cc0-1.0/                   │  1032 │
-│ https://choosealicense.com/licenses/cc/                        │   837 │
-│ https://choosealicense.com/licenses/cc-by-nc-nd-4.0/           │   530 │
-│ https://choosealicense.com/licenses/odc-by/                    │   518 │
-│ https://choosealicense.com/licenses/gpl-3.0/                   │   513 │
-│ https://choosealicense.com/licenses/cc-by-sa-3.0/              │   457 │
-│ https://choosealicense.com/licenses/gpl/                       │   421 │
-│ https://choosealicense.com/licenses/afl-3.0/                   │   386 │
-│ https://choosealicense.com/licenses/creativeml-openrail-m/     │   281 │
-│ https://choosealicense.com/licenses/llama2/                    │   211 │
-│ https://choosealicense.com/licenses/llama3/                    │   178 │
-│ https://choosealicense.com/licenses/wtfpl/                     │   156 │
-│ https://choosealicense.com/licenses/cc-by-3.0/                 │   154 │
-│ https://choosealicense.com/licenses/agpl-3.0/                  │   151 │
-│ https://choosealicense.com/licenses/llama3.1/                  │   144 │
-│ https://choosealicense.com/licenses/cc-by-2.0/                 │   137 │
-│ https://choosealicense.com/licenses/bsd/                       │   130 │
-│ https://choosealicense.com/licenses/unlicense/                 │   127 │
-│ https://choosealicense.com/licenses/cc-by-nc-2.0/              │   117 │
-│ https://choosealicense.com/licenses/undefined/                 │    99 │
-│ https://choosealicense.com/licenses/cc-by-nd-4.0/              │    97 │
-│ https://choosealicense.com/licenses/artistic-2.0/              │    84 │
-│ https://choosealicense.com/licenses/bsd-3-clause/              │    84 │
-│ https://choosealicense.com/licenses/llama3.2/                  │    77 │
-│ https://choosealicense.com/licenses/odbl/                      │    75 │
-│ https://choosealicense.com/licenses/cdla-permissive-2.0/       │    62 │
-│ https://choosealicense.com/licenses/pddl/                      │    59 │
-│ https://choosealicense.com/licenses/cc-by-nc-sa-3.0/           │    58 │
-│ https://choosealicense.com/licenses/c-uda/                     │    54 │
-│ https://choosealicense.com/licenses/gpl-2.0/                   │    54 │
-│ https://choosealicense.com/licenses/openrail++/                │    52 │
-│ https://choosealicense.com/licenses/cdla-sharing-1.0/          │    51 │
-│ https://choosealicense.com/licenses/bigscience-openrail-m/     │    51 │
-│ https://choosealicense.com/licenses/cc-by-nc-3.0/              │    49 │
-│ https://choosealicense.com/licenses/bsd-2-clause/              │    32 │
-│ https://choosealicense.com/licenses/llama3.3/                  │    31 │
-│ https://choosealicense.com/licenses/cc-by-nc-sa-2.0/           │    28 │
-│ https://choosealicense.com/licenses/mpl-2.0/                   │    24 │
-│ https://choosealicense.com/licenses/eupl-1.1/                  │    24 │
-│ https://choosealicense.com/licenses/lgpl-3.0/                  │    23 │
-│ https://choosealicense.com/licenses/cc-by-nc-nd-3.0/           │    22 │
-│ https://choosealicense.com/licenses/bigcode-openrail-m/        │    22 │
-│ https://choosealicense.com/licenses/gemma/                     │    20 │
-│ https://choosealicense.com/licenses/cc-by-2.5/                 │    20 │
-│ https://choosealicense.com/licenses/gfdl/                      │    19 │
-│ https://choosealicense.com/licenses/etalab-2.0/                │    17 │
-│ https://choosealicense.com/licenses/bigscience-bloom-rail-1.0/ │    13 │
-│ https://choosealicense.com/licenses/ecl-2.0/                   │    12 │
-│ https://choosealicense.com/licenses/ms-pl/                     │    12 │
-│ https://choosealicense.com/licenses/bsd-3-clause-clear/        │    11 │
-│ https://choosealicense.com/licenses/postgresql/                │     8 │
-│ https://choosealicense.com/licenses/bsl-1.0/                   │     8 │
-│ https://choosealicense.com/licenses/lgpl/                      │     7 │
-│ https://choosealicense.com/licenses/cdla-permissive-1.0/       │     7 │
-│ https://choosealicense.com/licenses/osl-3.0/                   │     6 │
-│ https://choosealicense.com/licenses/lgpl-2.1/                  │     5 │
-│ https://choosealicense.com/licenses/apple-amlr/                │     4 │
-│ https://choosealicense.com/licenses/isc/                       │     2 │
-│ https://choosealicense.com/licenses/epl-2.0/                   │     1 │
-│ https://choosealicense.com/licenses/epl-1.0/                   │     1 │
-│ https://choosealicense.com/licenses/ofl-1.1/                   │     1 │
-│ https://choosealicense.com/licenses/lgpl-lr/                   │     1 │
-│ https://choosealicense.com/licenses/zlib/                      │     1 │
-│ https://choosealicense.com/licenses/deepfloyd-if-license/      │     1 │
-├────────────────────────────────────────────────────────────────┴───────┤
-│ 73 rows                                                      2 columns │
-└────────────────────────────────────────────────────────────────────────┘
-```
-
-(There are no `NULLS`, but it's generally useful to have...)
-
-Let's create a table of unique licenses. To do this, we need a convenient way to map the license ids in the URL to names. We extracted this information from the `choosealicense` [GitHub repo](https://github.com/github/choosealicense.com/tree/gh-pages/_licenses), specifically the [`_licenses`](https://github.com/github/choosealicense.com/tree/gh-pages/_licenses) directory. A JSON file was created here with `src/scripts/make-license-id-mapping.sh` from the `_licenses` files and written to `./data/reference/license-id-name-mapping.json`.
+Two other _reference_ files are loaded as tables:
 
 ```sql
 CREATE OR REPLACE TABLE hf_licenses AS
-SELECT * FROM read_json('static-catalog/data/reference/license-id-name-mapping.json');
+    SELECT * FROM read_json('static-catalog/data/reference/license-id-name-mapping.json');
 ```
 
-```sql
-D SELECT * FROM hf_licenses LIMIT 5;
-┌──────────────┬────────────────────────────────────────┬──────────────────────────────────────────────────┐
-│      id      │                  name                  │                       url                        │
-│   varchar    │                varchar                 │                     varchar                      │
-├──────────────┼────────────────────────────────────────┼──────────────────────────────────────────────────┤
-│ 0bsd         │ BSD Zero Clause License                │ https://choosealicense.com/licenses/0bsd         │
-│ afl-3.0      │ Academic Free License v3.0             │ https://choosealicense.com/licenses/afl-3.0      │
-│ agpl-3.0     │ GNU Affero General Public License v3.0 │ https://choosealicense.com/licenses/agpl-3.0     │
-│ apache-2.0   │ Apache License 2.0                     │ https://choosealicense.com/licenses/apache-2.0   │
-│ artistic-2.0 │ Artistic License 2.0                   │ https://choosealicense.com/licenses/artistic-2.0 │
-└──────────────┴────────────────────────────────────────┴──────────────────────────────────────────────────┘
+This table maps [choosealicense.com](https://choosealicense.com) URLs used in the metadata to the names of the licenses. For example, the first line in the JSON file is this:
+
+```json
+{"id":"0bsd", "name":"BSD Zero Clause License", "url":"https://choosealicense.com/licenses/0bsd/"}
 ```
 
-Now, let's join this this to `hf_metadata1` to create `hf_metadata`:
+There are 47 rows.
 
-```sql
-CREATE OR REPLACE TABLE hf_metadata AS
-  SELECT
-    hfm.name          AS name,
-    hfm.description   AS description,
-    lic.name          AS license,
-    lic.id            AS license_id,
-    hfm.license       AS license_url,
-    hfm.language      AS language,
-    hfm.dataset_url   AS dataset_url,
-    hfm.keywords      AS keywords,
-    hfm.creator_name  AS creator_name,
-    hfm.creator_url   AS creator_url
-  FROM hf_metadata1 hfm
-  JOIN hf_licenses  lic
-  ON hfm.license = lic.url;
-```
-
-```sql
-D DESCRIBE hf_metadata;
-┌──────────────┬─────────────┬─────────┬─────────┬─────────┬─────────┐
-│ column_name  │ column_type │  null   │   key   │ default │  extra  │
-│   varchar    │   varchar   │ varchar │ varchar │ varchar │ varchar │
-├──────────────┼─────────────┼─────────┼─────────┼─────────┼─────────┤
-│ name         │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ description  │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ license      │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ license_id   │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ license_url  │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ language     │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ dataset_url  │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ keywords     │ VARCHAR[]   │ YES     │ NULL    │ NULL    │ NULL    │
-│ creator_name │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ creator_url  │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-├──────────────┴─────────────┴─────────┴─────────┴─────────┴─────────┤
-│ 10 rows                                                  6 columns │
-└────────────────────────────────────────────────────────────────────┘
-```
-
-```sql
-SELECT license, count(license) AS count
-FROM hf_metadata GROUP BY license ORDER BY count DESC;
-```
-
-```
-┌────────────────────────────────────────────────────────────┬───────┐
-│                          license                           │ count │
-│                          varchar                           │ int64 │
-├────────────────────────────────────────────────────────────┼───────┤
-│ Apache License 2.0                                         │ 19821 │
-│ MIT License                                                │ 16916 │
-│ Creative Commons Attribution 4.0 International             │  3547 │
-│ Creative Commons Attribution Share Alike 4.0 International │  1589 │
-│ Creative Commons Zero v1.0 Universal                       │  1032 │
-│ GNU General Public License v3.0                            │   513 │
-│ Academic Free License v3.0                                 │   386 │
-│ "Do What The F*ck You Want To Public License"              │   156 │
-│ GNU Affero General Public License v3.0                     │   151 │
-│ The Unlicense                                              │   127 │
-│ BSD 3-Clause "New" or "Revised" License                    │    84 │
-│ Artistic License 2.0                                       │    84 │
-│ GNU General Public License v2.0                            │    54 │
-│ BSD 2-Clause "Simplified" License                          │    32 │
-│ Mozilla Public License 2.0                                 │    24 │
-│ European Union Public License 1.1                          │    24 │
-│ GNU Lesser General Public License v3.0                     │    23 │
-│ Educational Community License v2.0                         │    12 │
-│ Microsoft Public License                                   │    12 │
-│ BSD 3-Clause Clear License                                 │    11 │
-│ PostgreSQL License                                         │     8 │
-│ Boost Software License 1.0                                 │     8 │
-│ Open Software License 3.0                                  │     6 │
-│ GNU Lesser General Public License v2.1                     │     5 │
-│ ISC License                                                │     2 │
-│ SIL Open Font License 1.1                                  │     1 │
-│ zlib License                                               │     1 │
-│ Eclipse Public License 2.0                                 │     1 │
-│ Eclipse Public License 1.0                                 │     1 │
-├────────────────────────────────────────────────────────────┴───────┤
-│ 29 rows                                                  2 columns │
-└────────────────────────────────────────────────────────────────────┘
-```
-
-But notice this:
-
-```sql
-D SELECT count() FROM hf_metadata;
-┌──────────────┐
-│ count_star() │
-│    int64     │
-├──────────────┤
-│    44631     │
-└──────────────┘
-```
-
-So, we lost more records, about 15K! It turns out there are a lot of URLs in the metadata for non-existing pages at [choosealicense.com](https://choosealicense.com/licenses). Many seem legitimate, but poorly specified.
-
-```sql
-COPY (SELECT
-  hfm.name          AS name,
-  lic.name          AS license,
-  lic.id            AS license_id,
-  hfm.license       AS license_url,
-FROM hf_metadata1 hfm
-LEFT JOIN hf_licenses  lic
-ON hfm.license = lic.url) TO 'static-catalog/temp/toss.json' (FORMAT json, ARRAY true);
-
-SELECT
-  lic.id            AS license_id,
-  hfm.license       AS license_url,
-FROM hf_metadata1 hfm
-LEFT JOIN hf_licenses  lic
-ON hfm.license = lic.url
-WHERE lic.url IS NULL;
-```
-
-The second query reports 15.4K rows!
-
-```sql
-WITH lics AS (
-  SELECT
-    lic.id            AS license_id,
-    hfm.license       AS license_url,
-  FROM hf_metadata1 hfm
-  LEFT JOIN hf_licenses  lic
-  ON hfm.license = lic.url
-  WHERE lic.url IS NULL
-  )
-SELECT license_url, count(license_url) AS count
-FROM lics
-GROUP BY license_url
-ORDER BY count DESC;
-```
-```
-┌────────────────────────────────────────────────────────────────┬───────┐
-│                          license_url                           │ count │
-│                            varchar                             │ int64 │
-├────────────────────────────────────────────────────────────────┼───────┤
-│ https://choosealicense.com/licenses/openrail/                  │  4567 │
-│ https://choosealicense.com/licenses/unknown/                   │  1940 │
-│ https://choosealicense.com/licenses/other/                     │  1543 │
-│ https://choosealicense.com/licenses/cc-by-nc-4.0/              │  1245 │
-│ https://choosealicense.com/licenses/cc-by-nc-sa-4.0/           │  1070 │
-│ https://choosealicense.com/licenses/cc/                        │   837 │
-│ https://choosealicense.com/licenses/cc-by-nc-nd-4.0/           │   530 │
-│ https://choosealicense.com/licenses/odc-by/                    │   518 │
-│ https://choosealicense.com/licenses/cc-by-sa-3.0/              │   457 │
-│ https://choosealicense.com/licenses/gpl/                       │   421 │
-│ https://choosealicense.com/licenses/creativeml-openrail-m/     │   281 │
-│ https://choosealicense.com/licenses/llama2/                    │   211 │
-│ https://choosealicense.com/licenses/llama3/                    │   178 │
-│ https://choosealicense.com/licenses/cc-by-3.0/                 │   154 │
-│ https://choosealicense.com/licenses/llama3.1/                  │   144 │
-│ https://choosealicense.com/licenses/cc-by-2.0/                 │   137 │
-│ https://choosealicense.com/licenses/bsd/                       │   130 │
-│ https://choosealicense.com/licenses/cc-by-nc-2.0/              │   117 │
-│ https://choosealicense.com/licenses/undefined/                 │    99 │
-│ https://choosealicense.com/licenses/cc-by-nd-4.0/              │    97 │
-│                         ·                                      │     · │
-│                         ·                                      │     · │
-│                         ·                                      │     · │
-│ https://choosealicense.com/licenses/cc-by-nc-sa-3.0/           │    58 │
-│ https://choosealicense.com/licenses/c-uda/                     │    54 │
-│ https://choosealicense.com/licenses/openrail++/                │    52 │
-│ https://choosealicense.com/licenses/cdla-sharing-1.0/          │    51 │
-│ https://choosealicense.com/licenses/bigscience-openrail-m/     │    51 │
-│ https://choosealicense.com/licenses/cc-by-nc-3.0/              │    49 │
-│ https://choosealicense.com/licenses/llama3.3/                  │    31 │
-│ https://choosealicense.com/licenses/cc-by-nc-sa-2.0/           │    28 │
-│ https://choosealicense.com/licenses/cc-by-nc-nd-3.0/           │    22 │
-│ https://choosealicense.com/licenses/bigcode-openrail-m/        │    22 │
-│ https://choosealicense.com/licenses/gemma/                     │    20 │
-│ https://choosealicense.com/licenses/cc-by-2.5/                 │    20 │
-│ https://choosealicense.com/licenses/gfdl/                      │    19 │
-│ https://choosealicense.com/licenses/etalab-2.0/                │    17 │
-│ https://choosealicense.com/licenses/bigscience-bloom-rail-1.0/ │    13 │
-│ https://choosealicense.com/licenses/cdla-permissive-1.0/       │     7 │
-│ https://choosealicense.com/licenses/lgpl/                      │     7 │
-│ https://choosealicense.com/licenses/apple-amlr/                │     4 │
-│ https://choosealicense.com/licenses/deepfloyd-if-license/      │     1 │
-│ https://choosealicense.com/licenses/lgpl-lr/                   │     1 │
-├────────────────────────────────────────────────────────────────┴───────┤
-│ 44 rows (40 shown)                                           2 columns │
-└────────────────────────────────────────────────────────────────────────┘
-```
-
-Okay, for now, we will reject the datasets with invalid URLs for the licenses, even though some clearly intend to reference legitimate license sources.
-
-> [!NOTE]
-> We don't need `hf_metadata1` anymore, so we can drop it:
-> ```
-> drop table hf_metadata1;
-> ```
-
-#### Keeping "Bad" Licenses
-
-As discussed above, we later created a second set of tables that kept the "bad" licenses, for further analysis. Using the same query to create `hf_metadata`, but with `hf_metadata1_with_null_licenses` instead of `hf_metadata1` and a `LEFT JOIN` with `hf_licenses`, instead of just `JOIN`:
-
-```sql
-CREATE OR REPLACE TABLE hf_metadata_with_all_licenses AS
-  SELECT
-    hfm.name          AS name,
-    hfm.description   AS description,
-    lic.name          AS license,
-    lic.id            AS license_id,
-    hfm.license       AS license_url,
-    hfm.language      AS language,
-    hfm.dataset_url   AS dataset_url,
-    hfm.keywords      AS keywords,
-    hfm.creator_name  AS creator_name,
-    hfm.creator_url   AS creator_url
-  FROM hf_metadata1_with_null_licenses hfm
-  LEFT JOIN hf_licenses lic
-  ON hfm.license = lic.url;
-```
-
-This table has 261495, as we would expect.
-
-### Languages
-
-Let's look at `language` and `keywords`:
-
-```sql
-SELECT language, count(language) AS count
-FROM hf_metadata GROUP BY language ORDER BY count DESC NULLS FIRST;
-```
-```
-┌──────────┬───────┐
-│ language │ count │
-│ varchar  │ int64 │
-├──────────┼───────┤
-│ en       │ 44631 │
-└──────────┴───────┘
-```
-
-Okay, so _every_ dataset is marked English!! This is not what we were hoping for, but it turns out other languages are at least partially covered, which we can see in the keywords.
-
-```sql
-SELECT keywords FROM hf_metadata LIMIT 10;
-```
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                                                       keywords                                                       │
-│                                                      varchar[]                                                       │
-├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│ [apache-2.0, 100K - 1M, parquet, Text, Datasets, pandas, Croissant, Polars, 🇺🇸 Region: US]                           │
-│ [mit, 10K - 100K, parquet, Text, Datasets, pandas, Croissant, Polars, 🇺🇸 Region: US]                                 │
-│ [mit, 100K - 1M, csv, Text, Datasets, pandas, Croissant, Polars, 🇺🇸 Region: US]                                      │
-│ [question-answering, text-generation, English, apache-2.0, 1M - 10M, parquet, Text, Datasets, Dask, Croissant, Pol…  │
-│ [question-answering, Russian, gpl-3.0, < 1K, csv, Text, Datasets, pandas, Croissant, Polars, 🇺🇸 Region: US, legal]   │
-│ [mit, < 1K, csv, Tabular, Datasets, pandas, Croissant, Polars, 🇺🇸 Region: US]                                        │
-│ [mit, 10K - 100K, csv, Text, Datasets, pandas, Croissant, Polars, 🇺🇸 Region: US]                                     │
-│ [mit, < 1K, csv, Tabular, Datasets, pandas, Croissant, Polars, 🇺🇸 Region: US]                                        │
-│ [apache-2.0, < 1K, parquet, Text, Datasets, pandas, Croissant, Polars, 🇺🇸 Region: US]                                │
-│ [mit, 100K - 1M, json, Tabular, Datasets, pandas, Croissant, Polars, 🇺🇸 Region: US, Imitation Learning, Expert Traj…  │
-├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│                                                       10 rows                                                        │
-└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
-
-Let's _unnest_ them:
-
-```sql
-SELECT unnest(keywords) AS keyword FROM hf_metadata LIMIT 10;
-```
-```
-┌───────────────┐
-│    keyword    │
-│    varchar    │
-├───────────────┤
-│ apache-2.0    │
-│ 100K - 1M     │
-│ parquet       │
-│ Text          │
-│ Datasets      │
-│ pandas        │
-│ Croissant     │
-│ Polars        │
-│ 🇺🇸 Region: US │
-│ mit           │
-├───────────────┤
-│    10 rows    │
-└───────────────┘
-```
-
-Let's create a table of unique keywords:
-
-```sql
-CREATE OR REPLACE TABLE hf_keywords AS
-  WITH ks AS (
-    SELECT trim(lower(unnest(keywords))) AS keyword
-    FROM hf_metadata
-  )
-  SELECT keyword, count(keyword) AS count
-  FROM ks
-  WHERE keyword <> '""' AND length(keyword) > 0
-  GROUP BY keyword;
-```
-
-Note that we convert the keywords to lower case and trim whitespace, _which needs to be done before the `GROUP BY` is performed_, then filter out apparent `""` and empty keywords.
-
-```sql
-D DESCRIBE hf_keywords;
-┌─────────────┬─────────────┬─────────┬─────────┬─────────┬─────────┐
-│ column_name │ column_type │  null   │   key   │ default │  extra  │
-│   varchar   │   varchar   │ varchar │ varchar │ varchar │ varchar │
-├─────────────┼─────────────┼─────────┼─────────┼─────────┼─────────┤
-│ keyword     │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ count       │ BIGINT      │ YES     │ NULL    │ NULL    │ NULL    │
-└─────────────┴─────────────┴─────────┴─────────┴─────────┴─────────┘
-D SELECT count() FROM hf_keywords;
-┌──────────────┐
-│ count_star() │
-│    int64     │
-├──────────────┤
-│    19129     │
-└──────────────┘
-D SELECT * FROM hf_keywords ORDER BY count DESC NULLS FIRST LIMIT 100;
-┌──────────────────────────────┬───────┐
-│           keyword            │ count │
-│           varchar            │ int64 │
-├──────────────────────────────┼───────┤
-│ 🇺🇸 region: us                │ 44614 │
-│ croissant                    │ 39476 │
-│ datasets                     │ 39450 │
-│ text                         │ 35865 │
-│ polars                       │ 33350 │
-│ pandas                       │ 27411 │
-│ apache-2.0                   │ 19824 │
-│ mit                          │ 16917 │
-│ parquet                      │ 15242 │
-│ < 1k                         │ 13149 │
-│ english                      │ 11334 │
-│ json                         │ 11050 │
-│ 1k - 10k                     │ 10955 │
-│ 10k - 100k                   │  8140 │
-│ csv                          │  7845 │
-│ tabular                      │  6922 │
-│ dask                         │  6706 │
-│ image                        │  6040 │
-│ text-generation              │  5259 │
-│ 100k - 1m                    │  4530 │
-│     ·                        │    ·  │
-│     ·                        │    ·  │
-│     ·                        │    ·  │
-│ portuguese                   │   404 │
-│ legal                        │   399 │
-│ document-retrieval           │   389 │
-│ afl-3.0                      │   386 │
-│ italian                      │   375 │
-│ table-question-answering     │   371 │
-│ turkish                      │   363 │
-│ visual-question-answering    │   347 │
-│ finance                      │   327 │
-│ sentence-transformers        │   324 │
-│ hindi                        │   323 │
-│ vietnamese                   │   311 │
-│ machine-generated            │   309 │
-│ mteb                         │   301 │
-│ indonesian                   │   297 │
-│ 10k<n<100k                   │   291 │
-│ automatic-speech-recognition │   281 │
-│ dutch                        │   278 │
-│ chemistry                    │   271 │
-│ zero-shot-classification     │   270 │
-├──────────────────────────────┴───────┤
-│ 100 rows (40 shown)        2 columns │
-└──────────────────────────────────────┘
-```
-
-So there are other languages present!
-
-> **NOTE:** Look at the number of references to a few arXiv papers! We'll explore this below.
-
-Let's see which languages we can find.
-
-### Languages
-
-Let's save the keywords to a file to search for language entries with other tools (not shown here):
-
-```sql
-COPY (SELECT keyword, count FROM hf_keywords ORDER BY keyword) TO 'static-catalog/temp/hf_keywords.csv';
-```
-
-```shell
-$ head -10 static-catalog/temp/hf_keywords.csv
-head -10 hf_keywords.csv
-keyword,count
-#bert,1
-#intent,1
-'are'are,2
-'auhelawa,4
-'finance,1
-/,17
-0,4
-0-bad,8
-0-deepfake,1
-```
-
-There are some funky entries here...
-
-Now, we need a list of the world's languages in a convenient format. Here are two JSON-formatted lists: [one](https://gist.github.com/jrnk/8eb57b065ea0b098d571), which claims to be an ISO list, and [two](https://gist.github.com/rglover/23d9d10d788c87e7fc5f5d7d8629633f). Even though the second list has more entries, ~240 vs. ~180, let's use the ISO list, saved to the file `data/reference/ISO-639-1-language.json`:
+Similarly, it's useful to have a reference table that maps ISO ids for languages to their names:
 
 ```sql
 CREATE OR REPLACE TABLE iso_languages AS
   SELECT code, lower(name) AS name
-  FROM read_json('{args.iso_langs}');
+  FROM read_json('static-catalog/data/reference/ISO-639-1-language.json');
 ```
 
-The names are converted to lower case, so joins can be performed with the `keywords` table.
+For example, the first entry is this:
+
+```json
+{ "code": "aa", "name": "Afar" },
+```
+
+In some cases, several names are given:
+
+```json
+{
+  "code": "cu",
+  "name": "Church Slavic; Old Slavonic; Church Slavonic; Old Bulgarian; Old Church Slavonic"
+},
+```
+
+There are 47 rows.
+
+From `hf_croissant` and `hf_licenses`, we create `hf_metadata`:
 
 ```sql
-D DESCRIBE iso_languages;
-┌─────────────┬─────────────┬─────────┬─────────┬─────────┬─────────┐
-│ column_name │ column_type │  null   │   key   │ default │  extra  │
-│   varchar   │   varchar   │ varchar │ varchar │ varchar │ varchar │
-├─────────────┼─────────────┼─────────┼─────────┼─────────┼─────────┤
-│ code        │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ name        │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-└─────────────┴─────────────┴─────────┴─────────┴─────────┴─────────┘
-D SELECT count() FROM iso_languages;
-┌──────────────┐
-│ count_star() │
-│    int64     │
-├──────────────┤
-│     184      │
-└──────────────┘
-D SELECT * FROM iso_languages LIMIT 10;
-┌─────────┬───────────┐
-│  code   │   name    │
-│ varchar │  varchar  │
-├─────────┼───────────┤
-│ aa      │ afar      │
-│ ab      │ abkhazian │
-│ ae      │ avestan   │
-│ af      │ afrikaans │
-│ ak      │ akan      │
-│ am      │ amharic   │
-│ an      │ aragonese │
-│ ar      │ arabic    │
-│ as      │ assamese  │
-│ av      │ avaric    │
-├─────────┴───────────┤
-│ 10 rows   2 columns │
-└─────────────────────┘
-```
-
-The input entries were in alphabetical order...
-
-Now, let's see what we can find using just the language codes:
-
-```sql
-SELECT   ks.keyword, ks.count, ls.code, ls.name
-FROM     hf_keywords   ks
-JOIN     iso_languages ls
-ON       ks.keyword = ls.code
-ORDER BY ks.count DESC;
-```
-
-```
-┌─────────┬───────┬─────────┬───────────────────────┐
-│ keyword │ count │  code   │         name          │
-│ varchar │ int64 │ varchar │        varchar        │
-├─────────┼───────┼─────────┼───────────────────────┤
-│ cv      │    11 │ cv      │ chuvash               │
-│ ko      │     9 │ ko      │ korean                │
-│ ga      │     8 │ ga      │ irish                 │
-│ it      │     7 │ it      │ italian               │
-│ tt      │     7 │ tt      │ tatar                 │
-│ mt      │     6 │ mt      │ maltese               │
-│ en      │     6 │ en      │ english               │
-│ ru      │     6 │ ru      │ russian               │
-│ ml      │     6 │ ml      │ malayalam             │
-│ ho      │     4 │ ho      │ hiri motu             │
-│ cs      │     4 │ cs      │ czech                 │
-│ uz      │     4 │ uz      │ uzbek                 │
-│ tr      │     4 │ tr      │ turkish               │
-│ fr      │     4 │ fr      │ french                │
-│ ik      │     3 │ ik      │ inupiaq               │
-│ wa      │     3 │ wa      │ walloon               │
-│ eu      │     3 │ eu      │ basque                │
-│ ja      │     3 │ ja      │ japanese              │
-│ ha      │     3 │ ha      │ hausa                 │
-│ pt      │     3 │ pt      │ portuguese            │
-│ ·       │     · │ ·       │     ·                 │
-│ ·       │     · │ ·       │     ·                 │
-│ ·       │     · │ ·       │     ·                 │
-│ uk      │     2 │ uk      │ ukrainian             │
-│ hu      │     2 │ hu      │ hungarian             │
-│ sa      │     2 │ sa      │ sanskrit              │
-│ es      │     2 │ es      │ spanish; castilian    │
-│ hi      │     2 │ hi      │ hindi                 │
-│ fi      │     2 │ fi      │ finnish               │
-│ eo      │     2 │ eo      │ esperanto             │
-│ ar      │     2 │ ar      │ arabic                │
-│ na      │     1 │ na      │ nauru                 │
-│ el      │     1 │ el      │ greek, modern (1453-) │
-│ no      │     1 │ no      │ norwegian             │
-│ rm      │     1 │ rm      │ romansh               │
-│ lv      │     1 │ lv      │ latvian               │
-│ to      │     1 │ to      │ tonga (tonga islands) │
-│ sq      │     1 │ sq      │ albanian              │
-│ kg      │     1 │ kg      │ kongo                 │
-│ zh      │     1 │ zh      │ chinese               │
-│ kr      │     1 │ kr      │ kanuri                │
-│ tg      │     1 │ tg      │ tajik                 │
-│ mk      │     1 │ mk      │ macedonian            │
-├─────────┴───────┴─────────┴───────────────────────┤
-│ 44 rows (40 shown)                      4 columns │
-└───────────────────────────────────────────────────┘
-```
-
-Lots of languages, but not a lot of datasets.
-
-Now search for some of the languages seen in the keywords (e.g., browsing the `hf_keywords.csv` created above):
-
-```sql
-SELECT keyword, count
-FROM hf_keywords WHERE keyword IN (
-  'arabic',
-  'aragonese',
-  'aymara',
-  'catalan',
-  'chinese',
-  'english',
-  'french',
-  'german',
-  'hindi',
-  'hungarian',
-  'italian',
-  'japanese',
-  'javanese',
-  'korean',
-  'nyanja',
-  'portuguese',
-  'russian',
-  'spanish',
-  'turkish',
-  'vietnamese',
-  'volapük',
-  'xhosa',
-  )
-ORDER BY count DESC NULLS FIRST;
-```
-
-```
-┌────────────┬───────┐
-│  keyword   │ count │
-│  varchar   │ int64 │
-├────────────┼───────┤
-│ english    │ 11334 │
-│ chinese    │  1175 │
-│ french     │   777 │
-│ russian    │   758 │
-│ spanish    │   694 │
-│ japanese   │   614 │
-│ german     │   597 │
-│ korean     │   469 │
-│ arabic     │   464 │
-│ portuguese │   404 │
-│ italian    │   375 │
-│ turkish    │   363 │
-│ hindi      │   323 │
-│ vietnamese │   311 │
-│ hungarian  │   160 │
-│ catalan    │   153 │
-│ javanese   │    70 │
-│ xhosa      │    68 │
-│ nyanja     │    18 │
-│ aragonese  │    16 │
-│ aymara     │    15 │
-│ volapük    │    15 │
-├────────────┴───────┤
-│ 22 rows  2 columns │
-└────────────────────┘
-```
-
-Let's create a variation of `hf_metadata` that generates a "concatenated" version of the language files. The first part of the following query "unnests" the keywords, so we expand the records from, for example, one record with the keywords array `["lang1", "lang2", "lang3"]` to three records with individual `keyword` column values of `"lang1"`, etc.
-
-```sql
-CREATE OR REPLACE TABLE hf_languages AS
-WITH expanded_keywords AS (
-  SELECT trim(lower(unnest(keywords))) AS language_keyword,
-    name,
-    license,
-    license_url,
-    language,
-    dataset_url,
-    creator_name,
-    creator_url,
-    description
-  FROM hf_metadata
-)
-SELECT *
-FROM expanded_keywords
-WHERE language_keyword IN (
-  'arabic',
-  'catalan',
-  'chinese',
-  'english',
-  'french',
-  'german',
-  'hindi',
-  'hungarian',
-  'italian',
-  'japanese',
-  'korean',
-  'portuguese',
-  'russian',
-  'spanish',
-  'turkish',
-  'vietnamese'
-);
-```
-
-```
-D DESCRIBE hf_languages;
-┌──────────────────┬─────────────┬─────────┬─────────┬─────────┬─────────┐
-│   column_name    │ column_type │  null   │   key   │ default │  extra  │
-│     varchar      │   varchar   │ varchar │ varchar │ varchar │ varchar │
-├──────────────────┼─────────────┼─────────┼─────────┼─────────┼─────────┤
-│ language_keyword │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ name             │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ license          │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ license_url      │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ language         │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ dataset_url      │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ creator_name     │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ creator_url      │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ description      │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-└──────────────────┴─────────────┴─────────┴─────────┴─────────┴─────────┘
-D SELECT * FROM hf_languages LIMIT 10;
-┌──────────────────┬──────────────────────┬───┬─────────────────────┬──────────────────────┬──────────────────────┐
-│ language_keyword │         name         │ … │    creator_name     │     creator_url      │     description      │
-│     varchar      │       varchar        │   │       varchar       │       varchar        │       varchar        │
-├──────────────────┼──────────────────────┼───┼─────────────────────┼──────────────────────┼──────────────────────┤
-│ english          │ tinymistral-hypnos…  │ … │ James               │ https://huggingfac…  │ Dataset created fo…  │
-│ russian          │ dataset-qa-ip-law    │ … │ lawful-good-project │ https://huggingfac…  │ Датасет для оценки…  │
-│ vietnamese       │ alpaca_multiturns_…  │ … │ Hieu Lam            │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ vietnamese       │ lima_dialogue_vi     │ … │ Hieu Lam            │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ vietnamese       │ itorca_dpo_vi        │ … │ Hieu Lam            │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ english          │ itorca_dpo_en        │ … │ Hieu Lam            │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ english          │ slorca_dialogue_en   │ … │ Hieu Lam            │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ vietnamese       │ oasst_dialogue_vi    │ … │ Hieu Lam            │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ vietnamese       │ oasst_dialogue_base  │ … │ Hieu Lam            │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-│ english          │ oasst_dialogue_base  │ … │ Hieu Lam            │ https://huggingfac…  │ \n\t\n\t\t\n\t\n\t…  │
-├──────────────────┴──────────────────────┴───┴─────────────────────┴──────────────────────┴──────────────────────┤
-│ 10 rows                                                                                     9 columns (5 shown) │
-└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
-D SELECT count(*) FROM hf_languages;
-┌──────────────┐
-│ count_star() │
-│    int64     │
-├──────────────┤
-│    18971     │
-└──────────────┘
-```
-
-Now write it to a file:
-
-```sql
-COPY hf_languages TO 'static-catalog/data/reference/hf_all_languages.json' (FORMAT json, ARRAY true);
-```
-
-A way to write the individual language files is to use `hf_languages`, e.g.,:
-
-```sql
-COPY (
-  SELECT
-    name,
-    license,
-    license_url,
-    language,
-    dataset_url,
-    creator_name,
-    creator_url,
-    description
-  FROM hf_languages
-  WHERE language_keyword = 'arabic'
-) TO 'static-catalog/data/json/processed/2025-05-12/languages/hf_arabic.json'
- (FORMAT json, ARRAY true);
-```
-
-> [!NOTE]
->
-> 1. I omitted the `language_keyword` field.
-> 2. The `(FORMAT json, ARRAY true)` lets you use an alternative extension, but it's the default if the extension is `json`. The `ARRAY true` causes `duckdb` to write a JSON array, not just "JSONL" records. This is very useful for converting this output to a JavaScript file, discussed below.
-
-Let's write several language datasets using `static-catalog/src/scripts/write-language-files.sh`. We'll put them in the directory, `static-catalog/data/json/processed/YYYY-MM-DD/languages`, where the `YYYY-MM-DD` is treated as a "publication" date.
-
-> [!NOTE]
-> Since this section was written, I have moved to `static-catalog/src/scripts/write-category-files.py`, which also writes files for `modality` and `demain`, as well as `language`. Use it instead.
-
-> [!WARN]
-> Make sure to exit out of `duckdb` first, if you have it running, because second invocations of it will fail in order to prevent possible corruption of `croissant.duckdb` when accessed from concurrent `duckdb` processes.
-
-The script basically runs the following code:
-
-```shell
-timestamp=$(date "+%Y-%m-%d")
-base=static-catalog/data/json/processed/$timestamp/languages
-mkdir -p $base
-langs=(
-  "arabic"
-  "catalan"
-  "chinese"
-  "english"
-  "french"
-  "german"
-  "hindi"
-  "hungarian"
-  "italian"
-  "japanese"
-  "korean"
-  "portuguese"
-  "russian"
-  "spanish"
-  "turkish"
-  "vietnamese"
-)
-for lang in ${langs[@]}
-do
-  output=$base/hf_$lang.json
-  cat <<EOF | duckdb static-catalog/croissant.duckdb
-  COPY (
+CREATE OR REPLACE TABLE hf_metadata AS
     SELECT
-      name,
-      license,
-      language,
-      url,
-      creator_name,
-      creator_url,
-      description
-    FROM hf_languages
-    WHERE language_keyword = '$lang'
-  ) TO '$output' (FORMAT json, ARRAY true);
-EOF
-done
+        hfc.name          AS name,
+        hfc.description   AS description,
+        lic.name          AS license,
+        lic.id            AS license_id,
+        hfc.license       AS license_url,
+        hfc.language      AS language,
+        hfc.dataset_url   AS dataset_url,
+        hfc.keywords      AS keywords,
+        hfc.creator_name  AS creator_name,
+        hfc.creator_url   AS creator_url
+    FROM hf_croissant hfc
+    JOIN hf_licenses  lic
+    ON hfc.license = lic.url;
 ```
 
-#### Making Valid JS Files
+This table has about 60,000 rows, whereas `hf_croissant` has 329,000; only 20% of the rows remain!
 
-We need JavaScript files to import into the website. This required careful coding because of the embedded escaped quotes, newlines, etc. The following, for example, doesn't really work, because escapes get evaluated!
-
-```shell
-in=static-catalog/data/json/processed/2025-05-12/languages/hf_all_languages.json
-out=static-catalog/data/json/processed/2025-05-12/languages/hf_all_languages.js
-echo "var by_languages = " > $out
-first_line=true
-cat $in | while read line
-do
-  if $first_line
-  then
-    first_line=false
-  else
-    printf ",\n" >> $out
-  fi
-  printf "%s" "$line" >> $out
-done
-echo "\n];" >> $out
-```
-
-The script `static-catalog/src/scripts/write-category-files.py` properly handles creation of the JS files from the JSON files. It does the following:
-
-1. Creates the JSON data files for _categories_ `modality`, `domain`, as well as `language`.
-1. Creates the corresponding `_<category>/<keyword>.markdown` files (which are simple _boilerplate_).
-1. Generates a JavaScript file from each JSON file.
-
-The JavaScript files are copied to `docs` with `static-catalog/src/scripts/copy-files-to-docs.sh` that runs commands similar to the following:
-
-```shell
-# run from the static-catalog directory!!
-ymd=$(date +"%Y-%m-%d")
-for d in static-catalog/data/json/processed/$ymd/*
-do
-  group=$(basename $d)
-  echo "JS for group: $group"
-  rm -rf docs/files/data/catalog/$group
-  mkdir -p docs/files/data/catalog/$group
-  cp $d/*.js docs/files/data/catalog/$group
-done
-for d in static-catalog/markdown/processed/$ymd/*
-do
-  group=$(basename $d)
-  echo "Markdown for group: $group"
-  rm -rf docs/_$group
-  mkdir -p docs/_$group
-  cp $d/*.markdown docs/_$group
-done
-```
-
-### ArXiv References?
-
-We noticed the two arXiv references earlier. How many references are there to arXiv papers?
+The reason for this radical reduction is the fact that most datasets don't define a license and many that do define a license, actually don't define it in a valid way. To see this, let's use a variation of the previous query with a `LEFT JOIN` to find the undefined or invalid licenses:
 
 ```sql
-D SELECT keyword, count FROM hf_keywords WHERE keyword LIKE 'arxiv:%' ORDER BY count DESC LIMIT 10;
-┌──────────────────┬───────┐
-│     keyword      │ count │
-│     varchar      │ int64 │
-├──────────────────┼───────┤
-│ arxiv:2204.07705 │  1176 │
-│ arxiv:2407.00066 │  1173 │
-│ arxiv:2208.01009 │    57 │
-│ arxiv:2306.02707 │    39 │
-│ arxiv:2401.06199 │    36 │
-│ arxiv:2301.13688 │    24 │
-│ arxiv:2501.19393 │    21 │
-│ arxiv:1606.05250 │    21 │
-│ arxiv:2110.14168 │    20 │
-│ arxiv:2304.13705 │    20 │
-├──────────────────┴───────┤
-│ 10 rows        2 columns │
-└──────────────────────────┘
+CREATE OR REPLACE TABLE hf_metadata_with_bad_licenses AS
+    SELECT
+        hfc.name          AS name,
+        hfc.description   AS description,
+        lic.name          AS license,
+        lic.id            AS license_id,
+        hfc.license       AS license_url,
+        hfc.language      AS language,
+        hfc.dataset_url   AS dataset_url,
+        hfc.keywords      AS keywords,
+        hfc.creator_name  AS creator_name,
+        hfc.creator_url   AS creator_url
+    FROM hf_croissant hfc
+    LEFT JOIN hf_licenses  lic
+    ON hfc.license = lic.url;
 ```
 
-## Other Keywords of Interest
-
-For the interim static OTDI catalog, there are other keywords of interest:
-
-* `automation` - or `industrial`, `manufacturing`, ...
-* `molecular discovery` - or related terms like `chemistry`, `molecular`, `molecule`, `materials`, or variations thereof.
-* `time-series` - or variations thereof.
-
-Modalities are interesting, including variations of the following:
-
-* `audio`
-* `image`
-* `video`
-* `text`
-* `multimedia`
-
-First, we used a similar query to the following above to get the language keywords, where we expand ("unnest") the array of `keywords`:
+The following query shows that there are 252,000 datasets with no license and many others where there is a URL, but no `license_id`:
 
 ```sql
-WITH expanded AS (
-SELECT trim(lower(unnest(keywords))) AS keyword,
-  name,
-  license,
-  license_url,
-  language,
-  dataset_url,
-  creator_name,
-  creator_url,
-  description
-FROM hf_metadata)
-SELECT count() FROM expanded;
+SELECT license_id, license_url, count() AS count 
+FROM hf_metadata_with_bad_licenses 
+GROUP BY license_id,license_url 
+ORDER BY count DESC;
 ```
 
-Let's create a table; we'll need it below.
+The cases where a URL is shown, but the `license_id` is `NULL` are due to datasets that use invalid URLs for choosealicense.com. Reading the URLs, many look like legitimate attempts to specify a known license, but the URLs are 404s. This query counts all those cases:
+
+```sql
+SELECT count() AS count 
+FROM hf_metadata_with_null_licenses 
+WHERE license_id IS NULL AND license_url NOT NULL;
+```
+
+About 17,600 datasets fall into this category.
+
+We discard all the datasets with no license or an improperly-defined license, although we intend to revisit that latter cases at some later time.
+
+Finally, we create `hf_expanded_metadata`, which expands the array of keywords into separate records, one per keyword:
 
 ```sql
 CREATE OR REPLACE TABLE hf_expanded_metadata AS (
@@ -1389,333 +260,62 @@ CREATE OR REPLACE TABLE hf_expanded_metadata AS (
 );
 ```
 
-It produces 499948 records from the original 44631 or 11 times as many! Of course, this tells us the average number of keywords per dataset is 11... _These keywords go to 11!_
+This table has 677,000 rows, suggesting on average there are 11 keywords per dataset. Note that the keywords are converted to lower case.
 
-#### Aside: The Lengths of the Keywords; A Pareto Distribution?
+This table is used subsequently to generate the JavaScript and Markdown files required for the static catalog rendering in the website.
 
-Actually, 11 is not quite right...
+## Creating JavaScript and Markdown Files for the Website
 
-The lengths of the keyword arrays probably follow a Pareto distribution. Notice the following:
+Next, `make catalog` builds the `make-build` target to _build_ the JavaScript and Markdown files required. This target runs the script `static-catalog/src/scripts/write-category-files.py` to do this.
 
-```sql
-SELECT name, len(keywords) AS len, keywords[0:4]
-FROM hf_metadata
-ORDER BY len DESC;
+The script reads the categories, possible subcategories, and topics (corresponding to keywords) from `static-catalog/data/reference/keyword-categories.json`. It generates Markdown files in three directories, `_language`, `_domain`, `_modality` in `static-catalog/markdown/processed/YYYY-MM-DD/`. The leading `_` is a convention used by Jekyll. These files will be copied to the root directory of the website, `docs`. Each file, such as `.../_language/language_asia_korean.markdown` contains metadata data in a YAML block and content to display for that language, e.g.,:
+
+```markdown
+---
+name: Korean
+tag: korean
+context: ""
+cleaned_tag: korean
+parent_tag: asia
+parent_title: Asian Languages
+grand_parent_tag: language
+grand_parent_title: Languages
+alt_tags: 
+---
+
+{% include data-table-template.html 
+  keyword="korean" 
+  cleaned_keyword="korean" 
+  title="Korean"
+  context=""
+  ancestor_path="language/asia" 
+  parent_title = "Asian Languages"
+  grand_parent_title = "Languages"
+  alt_keywords=""
+%}
 ```
 
-```
-┌──────────────────────┬───────┬───────────────────────────────────────────────────────────────────────────────────────┐
-│         name         │  len  │                                     keywords[0:4]                                     │
-│       varchar        │ int64 │                                       varchar[]                                       │
-├──────────────────────┼───────┼───────────────────────────────────────────────────────────────────────────────────────┤
-│ language_tags        │  7918 │ [Afade, Pará Arára, Afar, Aka-Bea]                                                    │
-│ panlex               │  6162 │ [Ghotuo, Alumu-Tesu, Ari, Amal]                                                       │
-│ GlotCC-V1            │  1405 │ [multilingual, Abau, Amarasi, Abkhaz]                                                 │
-│ panlex-meanings      │  1023 │ [translation, Afar, Western Abnaki, Abkhazian]                                        │
-│ biblenlp-corpus-mm…  │   875 │ [no-annotation, expert-generated, translation, multilingual]                          │
-│ biblenlp-corpus-mm…  │   874 │ [no-annotation, expert-generated, translation, multilingual]                          │
-│ udhr-lid             │   436 │ [multilingual, Tigrinya, Balkan Romani, Standard Arabic]                              │
-│ ParaNames            │   389 │ [token-classification, Nias, Kotava, Banjar]                                          │
-│ wikianc              │   336 │ [token-classification, machine-generated, crowdsourced, machine-generated]            │
-│ V1Q                  │   243 │ [text-classification, token-classification, table-question-answering, question-answ…  │
-│ Pontoon-Translations │   241 │ [translation, text2text-generation, crowdsourced, Abkhaz]                             │
-│ xP3x-Kongo           │   235 │ [other, translation, expert-generated, crowdsourced]                                  │
-│ xP3x-sample          │   230 │ [other, expert-generated, crowdsourced, multilingual]                                 │
-│ smol                 │   223 │ [translation, Afar, Abkhaz, Achinese]                                                 │
-│ opus_ubuntu          │   221 │ [translation, crowdsourced, expert-generated, found]                                  │
-│ sib-fleurs           │   218 │ [audio-classification, automatic-speech-recognition, audio-text-to-text, text-to-sp…  │
-│ sib200               │   216 │ [text-classification, topic-classification, found, expert-generated]                  │
-│ muri-it-language-s…  │   215 │ [text2text-generation, text-generation, question-answering, summarization]            │
-│ muri-it              │   215 │ [text2text-generation, text-generation, question-answering, summarization]            │
-│ sib200               │   211 │ [text-classification, topic-classification, found, expert-generated]                  │
-│   ·                  │     · │              ·                                                                        │
-│   ·                  │     · │              ·                                                                        │
-│   ·                  │     · │              ·                                                                        │
-│ octo_language_table  │     2 │ [apache-2.0, 🇺🇸 Region: US]                                                           │
-│ octo_stanford_hydra  │     2 │ [apache-2.0, 🇺🇸 Region: US]                                                           │
-│ octo_taco_play       │     2 │ [apache-2.0, 🇺🇸 Region: US]                                                           │
-│ octo_toto            │     2 │ [apache-2.0, 🇺🇸 Region: US]                                                           │
-│ UNSW_TON-IoT_Train…  │     2 │ [afl-3.0, 🇺🇸 Region: US]                                                              │
-│ UNSW_TON-IoT_Train…  │     2 │ [afl-3.0, 🇺🇸 Region: US]                                                              │
-│ hku_test             │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
-│ CveVulFunctions      │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
-│ Fpm-app              │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
-│ Corpus               │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
-│ articles2            │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
-│ Vitap                │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
-│ skin_cancer_captio…  │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
-│ Future_Track         │     2 │ [apache-2.0, 🇺🇸 Region: US]                                                           │
-│ Computational-adme   │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
-│ Roshambo             │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
-│ Language-Model-Bas…  │     2 │ [cc-by-sa-4.0, 🇺🇸 Region: US]                                                         │
-│ ArchonView           │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
-│ autodel              │     2 │ [apache-2.0, 🇺🇸 Region: US]                                                           │
-│ bc_z_lerobot         │     2 │ [mit, 🇺🇸 Region: US]                                                                  │
-├──────────────────────┴───────┴───────────────────────────────────────────────────────────────────────────────────────┤
-│ 44631 rows (40 shown)                                                                                      3 columns │
-└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+The template file `data-table-template.html` will be used to create the table shown for Korean. The data for the table comes from a separate JavaScript file.
+
+The JavaScript files are in `static-catalog/data/json/processed/YYYY-MM-DD`, e.g., a JSON file, `.../language/asia/korean.json`, and a corresponding JavaScript file, `.../language/asia/korean.js`, which just wraps the JSON in a variable definition for inclusion in the relevant catalog page. (There are alternative ways to load the JSON directly that we should pursue, rather than having separate, nearly-identical JSON and JavaScript files.) There are directories for `language`, `domain`, and `modality`.
+
+```javascript
+const data_for_language_asia_korean = 
+[
+  {"name":"MAPS","keyword":"korean","license":"MIT License","license_url":"https://choosealicense.com/licenses/mit/","language":"en","dataset_url":"https://huggingface.co/datasets/Fujitsu-FRE/MAPS","creator_name":"Fujitsu Research of Europe","creator_url":"https://huggingface.co/Fujitsu-FRE","description":"\n\t\n\t\t\n\t\tDataset Card for Multilingual Benchmark for Global Agent Performance and Security\n\t\n\nThis is the first Multilingual Agentic AI Benchmark for evaluating agentic AI systems across different languages and diverse tasks. Benchmark enables systematic analysis of how agents perform under multilingual conditions. To balance performance and safety evaluation, our benchmark comprises 805 tasks: 405 from performance-oriented datasets (GAIA, SWE-bench, MATH) and 400 from the Agent Security… See the full description on the dataset page: https://huggingface.co/datasets/Fujitsu-FRE/MAPS.","first_N":5,"first_N_keywords":["text-generation","question-answering","Arabic","English","Japanese"],"keywords_longer_than_N":true},
+  ...
+  {"name":"BH_test_ko","keyword":"korean","license":"Creative Commons Attribution Share Alike 4.0 International","license_url":"https://choosealicense.com/licenses/cc-by-sa-4.0/","language":"en","dataset_url":"https://huggingface.co/datasets/EunsuKim/BH_test_ko","creator_name":"Eunsu Kim","creator_url":"https://huggingface.co/EunsuKim","description":"EunsuKim/BH_test_ko dataset hosted on Hugging Face and contributed by the HF Datasets community","first_N":5,"first_N_keywords":["text-generation","Korean","cc-by-sa-4.0","10K - 100K","csv"],"keywords_longer_than_N":true}
+]
+;
 ```
 
-So, datasets `language_tags` and `panlex` have by the keywords, which means they appear all over the OTDI catalog!
+## Copy the JavaScript and Markdown Files to the Website
 
-```sql
-SELECT len(keywords) AS len, count() AS count
-FROM hf_metadata
-GROUP BY len
-ORDER BY len DESC;
-```
+Finally, `make catalog` builds the `catalog-install` target, which runs the `static-catalog/src/scripts/copy-files-to-docs.sh` script.
 
-```
-┌───────┬───────┐
-│  len  │ count │
-│ int64 │ int64 │
-├───────┼───────┤
-│  7918 │     1 │
-│  6162 │     1 │
-│  1405 │     1 │
-│  1023 │     1 │
-│   875 │     1 │
-│   874 │     1 │
-│   436 │     1 │
-│   389 │     1 │
-│   336 │     1 │
-│   243 │     1 │
-│   241 │     1 │
-│   235 │     1 │
-│   230 │     1 │
-│   223 │     1 │
-│   221 │     1 │
-│   218 │     1 │
-│   216 │     1 │
-│   215 │     2 │
-│   211 │     1 │
-│   209 │     1 │
-│     · │     · │
-│     · │     · │
-│     · │     · │
-│    21 │   447 │
-│    20 │   187 │
-│    19 │   286 │
-│    18 │   383 │
-│    17 │   609 │
-│    16 │   875 │
-│    15 │  3031 │
-│    14 │  1761 │
-│    13 │  2478 │
-│    12 │  3329 │
-│    11 │  3391 │
-│    10 │  4922 │
-│     9 │ 12990 │
-│     8 │  1492 │
-│     7 │  2672 │
-│     6 │   812 │
-│     5 │   587 │
-│     4 │   364 │
-│     3 │   653 │
-│     2 │  2162 │
-├───────┴───────┤
-│   110 rows    │
-│  (40 shown)   │
-└───────────────┘
-```
+This script copies the contents of `static-catalog/data/json/processed/YYYY-MM-DD` to `docs/files/data/catalog` and the contents of `static-catalog/markdown/processedYYYY-MM-DD` to `docs`.
 
-```sql
-WITH kc AS (
-  SELECT len(keywords) AS len, count() AS count
-  FROM hf_metadata
-  GROUP BY len
-)
-SELECT
-  round(avg(len), 2) AS len_avg, min(len), max(len), round(median(len), 2) AS len_median,
-  round(avg(count), 2) AS count_avg, min(count), max(count), round(median(count), 2) AS count_median
-FROM kc;
-```
+## Conclusions
 
-```
-┌─────────┬──────────┬──────────┬────────────┬───────────┬────────────┬────────────┬──────────────┐
-│ len_avg │ min(len) │ max(len) │ len_median │ count_avg │ min(count) │ max(count) │ count_median │
-│ double  │  int64   │  int64   │   double   │  double   │   int64    │   int64    │    double    │
-├─────────┼──────────┼──────────┼────────────┼───────────┼────────────┼────────────┼──────────────┤
-│ 245.84  │    2     │   7918   │    59.5    │  405.74   │     1      │   12990    │     2.0      │
-└─────────┴──────────┴──────────┴────────────┴───────────┴────────────┴────────────┴──────────────┘
-```
+You are now ready to commit and push the changes to the website, after local sanity checking, of course.
 
-Which tells us the following:
-
-* The length average, 245.8, means that, on average, the records have 246 keywords!
-* The minimum number is 2, as we from the query before this one.
-* The long tails are one record with _7918_ keywords(!) and _12990_ records with a unique keyword count. Note from the previous query that 2162 records have exactly 2 keywords.
-* _Half_ the records have 60 or less keywords and most keywords lengths are unique, so half of those counts are 2 or less.
-
-I won't take the time to plot the distribution, but I suspect it will be log-log, like a typical Pareto distribution...
-
-#### Most Common Keywords
-
-What are the most common keywords? Let's find all of them with > 100 records:
-
-```sql
-SELECT keyword, count FROM hf_keywords WHERE count > 100 ORDER BY count DESC;
-```
-
-There are 164. Let's save to a file:
-
-```sql
-copy (SELECT keyword, count FROM hf_keywords WHERE count > 100 ORDER BY count DESC) 'static-catalog/data/reference/biggest-keywords.csv'
-```
-
-As discussed above, we use `src/scripts/write-category-files.py` to write all the files for all the "popular" keywords we care about.
-
-## Appendix: Running Some Test Queries
-
-Here are some additional queries tried with DuckDB to look at the original Parquet files and the "raw" output FROM the Spark job. You can see a _lot_ more of them in `static-catalog/duckdb-notes.md`. Note that some of the details below may not match current table schemas:
-
-```sql
-DESCRIBE
-  SELECT *
-  FROM 'static-catalog/data/json/2025-05-06_16-36-59/spark/*.json';
-```
-
-It prints:
-```
-┌─────────────┬─────────────┬─────────┬─────────┬─────────┬─────────┐
-│ column_name │ column_type │  null   │   key   │ default │  extra  │
-│   varchar   │   varchar   │ varchar │ varchar │ varchar │ varchar │
-├─────────────┼─────────────┼─────────┼─────────┼─────────┼─────────┤
-│ croissant   │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-└─────────────┴─────────────┴─────────┴─────────┴─────────┴─────────┘
-```
-
-What about the input Parquet files?
-
-```sql
-DESCRIBE
-  SELECT *
-  FROM 'static-catalog/data/raw/*.parquet';
-```
-
-It prints:
-
-```
-┌─────────────────┬─────────────┬─────────┬─────────┬─────────┬─────────┐
-│   column_name   │ column_type │  null   │   key   │ default │  extra  │
-│     varchar     │   varchar   │ varchar │ varchar │ varchar │ varchar │
-├─────────────────┼─────────────┼─────────┼─────────┼─────────┼─────────┤
-│ dataset         │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ request_time    │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ response        │ BIGINT      │ YES     │ NULL    │ NULL    │ NULL    │
-│ response_reason │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-│ croissant       │ VARCHAR     │ YES     │ NULL    │ NULL    │ NULL    │
-└─────────────────┴─────────────┴─────────┴─────────┴─────────┴─────────┘
-```
-
-```sql
-SELECT * FROM 'static-catalog/data/raw/*.parquet';
-```
-
-```
-┌──────────────────────┬──────────────────────┬──────────┬─────────────────┬───────────────────────────────────────────┐
-│       dataset        │     request_time     │ response │ response_reason │                 croissant                 │
-│       varchar        │       varchar        │  int64   │     varchar     │                  varchar                  │
-├──────────────────────┼──────────────────────┼──────────┼─────────────────┼───────────────────────────────────────────┤
-│ FreedomIntelligenc…  │ 2025-03-17 04:04:5…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ facebook/natural_r…  │ 2025-03-17 04:04:5…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ open-r1/codeforces…  │ 2025-03-17 04:04:5…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ Congliu/Chinese-De…  │ 2025-03-17 04:04:5…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ SmallDoge/SmallTho…  │ 2025-03-17 04:04:5…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ open-r1/OpenR1-Mat…  │ 2025-03-17 04:04:5…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ gaia-benchmark/GAIA  │ 2025-03-17 04:04:5…  │      401 │ Unauthorized    │ {"error":"Access to dataset gaia-benchm…  │
-│ CharlieDreemur/Ope…  │ 2025-03-17 04:04:5…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ fka/awesome-chatgp…  │ 2025-03-17 04:04:5…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ Conard/fortune-tel…  │ 2025-03-17 04:04:5…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ open-r1/codeforces   │ 2025-03-17 04:04:5…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ SynthLabsAI/Big-Ma…  │ 2025-03-17 04:04:5…  │      401 │ Unauthorized    │ {"error":"Access to dataset SynthLabsAI…  │
-│ allenai/olmOCR-mix…  │ 2025-03-17 04:04:5…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ KodCode/KodCode-V1   │ 2025-03-17 04:04:5…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ madrylab/gsm8k-pla…  │ 2025-03-17 04:04:5…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ Intelligent-Intern…  │ 2025-03-17 04:04:5…  │      401 │ Unauthorized    │ {"error":"Access to dataset Intelligent…  │
-│ a-m-team/AM-DeepSe…  │ 2025-03-17 04:04:5…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ openai/gsm8k         │ 2025-03-17 04:04:5…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ HuggingFaceFW/fine…  │ 2025-03-17 04:04:5…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ Congliu/Chinese-De…  │ 2025-03-17 04:04:5…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│          ·           │          ·           │       ·  │ ·               │                     ·                     │
-│          ·           │          ·           │       ·  │ ·               │                     ·                     │
-│          ·           │          ·           │       ·  │ ·               │                     ·                     │
-│ gdsu/sdxl_images_s…  │ 2025-03-17 16:32:2…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ sert121/adult_data…  │ 2025-03-17 16:32:3…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ sert121/adult_data…  │ 2025-03-17 16:32:3…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ Tigressive/karen-l…  │ 2025-03-17 16:32:3…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ cat-searcher/code-…  │ 2025-03-17 16:32:3…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ mlfoundations-dev/…  │ 2025-03-17 16:32:3…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ mlfoundations-dev/…  │ 2025-03-17 16:32:3…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ sugarcokecola/eval…  │ 2025-03-17 16:32:3…  │      400 │ Bad Request     │ {"error":"The croissant format is not a…  │
-│ sert121/adult_data…  │ 2025-03-17 16:32:3…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ wskang/datasets      │ 2025-03-17 16:32:3…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ sert121/adult_data…  │ 2025-03-17 16:32:3…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ pltops/Humour-Bench  │ 2025-03-17 16:32:3…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ gdsu/sdxl_images_e…  │ 2025-03-17 16:32:3…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ ellen2imagine/push…  │ 2025-03-17 16:32:3…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ sert121/adult_data…  │ 2025-03-17 16:32:3…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ RodainaMel/pfe-dat…  │ 2025-03-17 16:32:3…  │      400 │ Bad Request     │ {"error":"The croissant format is not a…  │
-│ ZhiqiGao/TPBench     │ 2025-03-17 16:32:3…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ nthakur/bge-retrie…  │ 2025-03-17 16:32:3…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ ESITime/timesi-ari…  │ 2025-03-17 16:32:4…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-│ raftstudy/raft_sft…  │ 2025-03-17 16:32:4…  │      200 │ OK              │ {"@context":{"@language":"en","@vocab":…  │
-├──────────────────────┴──────────────────────┴──────────┴─────────────────┴───────────────────────────────────────────┤
-│ 332988 rows (40 shown)                                                                                     5 columns │
-└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
-
-So, it's clear we want to select for `response_reason = 'OK'`.
-
-This is what we did in the Spark job, so that the set of JSON files only has "useful" content:
-
-```sql
-D SELECT * FROM 'static-catalog/data/json/2025-05-06_16-36-59/spark/*.json' LIMIT 5;
-```
-
-It prints:
-
-```
-┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                                                      croissant                                                       │
-│                                                       varchar                                                        │
-├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│ {"@context":{"@language":"en","@vocab":"https://schema.org/","citeAs":"cr:citeAs","column":"cr:column","conformsTo…  │
-│ {"@context":{"@language":"en","@vocab":"https://schema.org/","citeAs":"cr:citeAs","column":"cr:column","conformsTo…  │
-│ {"@context":{"@language":"en","@vocab":"https://schema.org/","citeAs":"cr:citeAs","column":"cr:column","conformsTo…  │
-│ {"@context":{"@language":"en","@vocab":"https://schema.org/","citeAs":"cr:citeAs","column":"cr:column","conformsTo…  │
-│ {"@context":{"@language":"en","@vocab":"https://schema.org/","citeAs":"cr:citeAs","column":"cr:column","conformsTo…  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
-```
-
-How many records?
-
-```sql
-SELECT count(*) FROM 'static-catalog/data/raw/*.parquet';
-```
-
-```
-┌──────────────┐
-│ count_star() │
-│    int64     │
-├──────────────┤
-│    332988    │
-└──────────────┘
-```
-
-```sql
-SELECT count(*) FROM 'static-catalog/data/json/2025-05-06_16-36-59/spark/*.json';
-```
-
-```
-┌──────────────┐
-│ count_star() │
-│    int64     │
-├──────────────┤
-│    261495    │
-└──────────────┘
-```
-
-So, about 79% of the queries for metadata were successful.
-
-See `duckdb-notes.md` for additional queries that tried to use the DuckDB JSON functions to import the Spark output, with very limited success...

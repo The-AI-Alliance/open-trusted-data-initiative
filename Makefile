@@ -50,16 +50,22 @@ make view-local         # View the pages locally (requires Jekyll).
 
 Tasks for building and deploying the static catalog.
 
-make catalog            # Makes "catalog-clean", "catalog-build" and "catalog-install".
-make catalog-build      # Process files from the initial parquet files through to catalog sections
-						# based on the defined categories and topics in static-catalog/data/reference/keyword-categories.json.
-						# The catalog files created are written to static-catalog/markdown/processed/YYYY-MM-DD and
-                        # static-catalog/data/json/processed/YYYY-MM-DD.
-make catalog-json       # Same as "make catalog", but only builds the JSON files.
-make catalog-markdown   # Same as "make catalog", but only builds the Markdown files.
-make catalog-clean      # Deletes all static-catalog/markdown/processed/YYYY-MM-DD and
-                        # static-catalog/data/json/processed/YYYY-MM-DD directories.
-make catalog-install    # Copies the catalog files created by "catalog-build" to "_docs" locations.
+make catalog            # Makes "catalog-clean", "catalog-data-prep", "catalog-duckdb-load",
+						# "catalog-build" and "catalog-install".
+make catalog-clean      # Deletes all generated files under static-catalog/markdown and
+                        # static-catalog/data/json/ for YYYY-MM-DD.
+make catalog-data-prep  # Convert the raw parquet files into JSON
+make catalog-duckdb-load # Load the JSON into DuckDB tables.
+make catalog-build      # Uses the DuckDB tables to create markdown and JavaScript files for the
+						# website catalog,  based on the defined categories and topics in 
+						#   static-catalog/data/reference/keyword-categories.json.
+						# The catalog files created are written to 
+						#   static-catalog/markdown/processed/YYYY-MM-DD and
+                        #   static-catalog/data/json/processed/YYYY-MM-DD.
+make catalog-json       # Same as "catalog-build", but only builds the JSON files.
+make catalog-markdown   # Same as "catalog-build", but only builds the Markdown files.
+make catalog-install    # Copies the catalog files created by "catalog-build" to the 
+						# "docs" locations for rendering the catalog.
 
 Miscellaneous tasks for help, debugging, setup, etc.
 

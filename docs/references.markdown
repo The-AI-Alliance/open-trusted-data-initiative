@@ -28,7 +28,7 @@ While there are many open datasets of various sizes and areas of focus, a few at
 
 ### Pleias
 
-In December 2024, [Pleias](https://pleias.fr) published [Common Corpus](https://huggingface.co/collections/PleIAs/common-corpus-6734e0f67ac3f35e44075f93){:target="common-corpus"}, a two trillion token dataset, and used it to train [several models](https://huggingface.co/PleIAs){:target="_blank"}. ([paper](https://arxiv.org/abs/2506.01732){:target="_blank"})
+In December 2024, [Pleias](https://pleias.fr){:target="_blank"} published [Common Corpus](https://huggingface.co/collections/PleIAs/common-corpus-6734e0f67ac3f35e44075f93){:target="common-corpus"}, a two trillion token dataset, and used it to train [several models](https://huggingface.co/PleIAs){:target="_blank"}. ([paper](https://arxiv.org/abs/2506.01732){:target="_blank"})
 
 The Pleias datasets are discussed in more detail on the [contributors]({{site.baseurl}}/catalog/contributors/#pleias) page.
 
