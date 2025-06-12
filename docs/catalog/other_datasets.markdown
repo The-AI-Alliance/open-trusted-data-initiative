@@ -62,7 +62,7 @@ The Common Pile collaborators used 1 trillion and 2 trillion token subsets of Co
 
 ### Institutional Data Initiative
 
-The [Institutional Data Initiative] at the Harvard Law School Library has published [The Institutional Books Corpus](https://www.institutionaldatainitiative.org/institutional-books). This dataset is [available on Hugging Face](https://huggingface.co/datasets/institutional/institutional-books-1.0), but it is not in our catalog, because currently access to it, even its Croissant metadata, requires prior approval.
+The [Institutional Data Initiative] at the Harvard Law School Library has published [The Institutional Books Corpus](https://www.institutionaldatainitiative.org/institutional-books){:target="_blank"}. This dataset is [available on Hugging Face](https://huggingface.co/datasets/institutional/institutional-books-1.0){:target="_blank"}, but it is not in our catalog, because currently access to it, even its Croissant metadata, requires prior approval.
 
 ## Other Datasets?
 
