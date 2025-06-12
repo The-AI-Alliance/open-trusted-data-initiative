@@ -8,7 +8,9 @@ parent: Dataset Catalog
 
 # Other Datasets
 
-Many other open datasets are not hosted at Hugging Face, but are not yet part of our catalog. For now, they are listed here.
+Many other open datasets are not hosted at Hugging Face, so they are not yet part of our catalog. Other datasets that are hosted there aren't picked up by our metadata scans for various reasons. A common blocker is that some datasets are open access, but you have to request access explicitly before using them, even to get their Croissant metadata! This is an issue we will have to address.
+
+For now, here is a list of notable datasets that don't appear in the catalog pages, grouped into general topic areas.
 
 <details open markdown="block">
   <summary>
@@ -47,6 +49,12 @@ Many datasets for chemistry are open for use.
 > The data in PubChem comes from hundreds of data contributors (https://pubchem.ncbi.nlm.nih.gov/source/){:target="_blank"}. A data source may provide explicit data license information. One should check with the PubChem data source for the most current data licensing information.
 >
 > PubChem strives to make clear the data provenance of all content. Within a given data table row or beneath provided content, the data provenance is provided. For example, this data shows Medical Subject Headings (MeSH) as the data source for the assertion of a chemical being a “Fibrinolytic Agent”:
+
+## Text
+
+### Institutional Data Initiative
+
+The [Institutional Data Initiative] at the Harvard Law School Library has published [The Institutional Books Corpus](https://www.institutionaldatainitiative.org/institutional-books). This dataset is [available on Hugging Face](https://huggingface.co/datasets/institutional/institutional-books-1.0), but it is not in our catalog, because currently access to it, even its Croissant metadata, requires prior approval.
 
 ## Other Datasets?
 
