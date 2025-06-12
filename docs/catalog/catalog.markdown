@@ -21,17 +21,20 @@ has_children: true
 > **About This Catalog**
 >
 > The tables in this catalog list the metadata for Hugging Face-hosted datasets that were gathered as follows:
-> 
+>
 > * The tables reflect a snapshot of the datasets as of June 5<sup>th</sup>, 2025. (Periodic updates are planned.)
-> * Of the approximately 413,000 datasets queried in this snapshot, 329,000 of them are queryable using [Croissant](https://mlcommons.org/working-groups/data/croissant/){:target="croissant"}.
-> * Of those, we discard datasets without a specified license, leaving just approximately 77,000!
-> * The licenses are specified as corresponding [choosealicense.com/licenses/](https://choosealicense.com/licenses/){:target="cal"} URLs. Unfortunately, many undefined (&ldquo;404&rdquo;) URLs are specified, about 17,000. We discarded those datasets leaving 60,000.<a href="#footnote1"><sup>1</sup></a>
-> * The groupings are based on the presence of relevant keywords. Note that _all_ the datasets list their language as `en` (English), but many have keywords for other languages. Those keywords are the basis for the [Languages]({{site.baseurl}}/catalog/language/language) tables (including the one for [English]({{site.baseurl}}/catalog/language/europe#english)).
-> * All keywords were converted to lower case before &ldquo;grouping&rdquo;. When a keyword entry lists _additional keywords_, it means we grouped together different keywords that we believe are related to the same topic, including synonyms. In these cases, we also show a **Keyword** column in the corresponding tables, so you can see which keyword was used to include a dataset.
+> * Of the approximately 413,000 Hugging Face datasets, 329,000 of them have queryable [Croissant](https://mlcommons.org/working-groups/data/croissant/){:target="croissant"} metadata.
+> * There are many open datasets that require you to request permission to use them first, even to query their Croissant metadata. Hence, these datasets are not in our catalog tables. However, some of them are listed separately in our [Contributors]({{site.baseurl}}/catalog/contributors) and [Other Datasets]({{site.baseurl}}/catalog/other_datasets) pages, along with some datasets not available in Hugging Face.
+> * Of the 329,000 datasets, we discard datasets with no license specified, leaving just 77,000!
+> * Licenses are specified as [choosealicense.com/licenses/](https://choosealicense.com/licenses/){:target="cal"} URLs. Unfortunately, many datasets use undefined (&ldquo;404&rdquo;) URLs, about 17,000. We discarded those datasets, leaving 60,000.<a href="#footnote1"><sup>1</sup></a>
+> * The groupings are based on the presence of relevant keywords. Note that _all_ the datasets list their language as `en` (English), but many have keywords for other languages. Those keywords are the basis for the [Languages]({{site.baseurl}}/catalog/language/language) tables (including the one for [English]({{site.baseurl}}/catalog/language/europe#english)!).
+> * All keywords were converted to lower case before &ldquo;grouping&rdquo;.
+> * When a section for a keyword lists _additional keywords_, it means we grouped together different keywords that we believe are related to the same topic, including synonyms. (Please [point out](mailto:data@thealliance.ai) any errors!) In these cases, we also show a **Keyword** column in the corresponding tables, so you can see which keyword was used to include the dataset. (This also means that occasionally some datasets will be listed more than once in their table.)
 > * **Important:** At this time, we are not yet validating datasets to ensure their metadata accurately reflect the data records themselves.
-> * Do you know of any datasets that should be shown, but aren't? [Let us know!](mailto:data@thealliance.ai)
-> 
+>
 > <a name="#footnote1">1</a>: Some of the bad license links clearly intend to reference known licenses. We'll revisit those cases.
+>
+> Do you know of any datasets that should be shown, but aren't? [Let us know!](mailto:data@thealliance.ai)
 
 # The Current Keywords Cataloged
 
@@ -41,12 +44,12 @@ has_children: true
 {% comment %} We loop over site.language repeatedly. Is there a more efficient approach? {% endcomment %}
 {% assign current_region = "" %}
 {% for member in site.language %}
-  {% if member.tag == "language" %} 
+  {% if member.tag == "language" %}
     {{ member.content }}
     {% assign subcategories = member.subcategories | split: '|' %}
     {% for sub in subcategories %}
       {% for member2 in site.language %}
-        {% if member2.tag == sub %} 
+        {% if member2.tag == sub %}
           <h3><a href="{{site.baseurl}}/catalog/language/{{member2.tag}}/">{{member2.name}}</a></h3>
           {{ member2.content }}
         {% endif %}
