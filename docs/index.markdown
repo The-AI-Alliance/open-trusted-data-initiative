@@ -6,7 +6,7 @@ has_children: false
 language_tags: English
 ---
 
-# Open Trusted Data Initiative (OTDI) 
+# Open Trusted Data Initiative (OTDI)
 
 **_We are building the world's largest, most diverse [catalog]({{site.baseurl}}/catalog/catalog) of open and transparently sourced datasets for AI. [Join us!]({{site.baseurl}}/about/#join-us)_**
 
@@ -57,7 +57,7 @@ Our definition of these [criteria]({{site.baseurl}}/dataset-requirements/) is ev
 
 ### Find and Catalog Datasets for Diverse Topics
 
-AI models and applications need datasets covering a broad [range of topics]({{site.baseurl}}/contributing/#what-kinds-of-datasets-do-we-want) including: 
+AI models and applications need datasets covering a broad [range of topics]({{site.baseurl}}/contributing/#what-kinds-of-datasets-do-we-want) including:
 
 * **Text:** Especially for under-served language
 * **Multimedia:** Images, video, audio
@@ -76,9 +76,9 @@ Add your datasets [to our catalog](https://github.com/orgs/The-AI-Alliance/proje
 
 Currently, the [Dataset Catalog]({{site.baseurl}}/catalog/catalog) is a static resource. Help us make it [browsable and searchable](https://github.com/orgs/The-AI-Alliance/projects/28/views/1?filterQuery=label%3A%22dataset+catalog%22){:target="github"}.
 
-> See this short [presentation]({{site.baseurl}}/files/OTDI-Overview.pdf) (PDF) for more information about the Open Trusted Data Initiative.
+## For More Information
 
-## More Information
+> See this short [presentation]({{site.baseurl}}/files/OTDI-Overview.pdf) (PDF) for more information about the Open Trusted Data Initiative.
 
 * What [trustworthiness]({{site.baseurl}}/trustworthiness) means to us.
 * [About Us]({{site.baseurl}}/about): More about the AI Alliance, this initiative, how to get involved, and how to contact us.
