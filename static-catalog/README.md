@@ -19,7 +19,7 @@ Steps:
 * Edit the `Makefile` and set `PARQUET_SNAPSHOT_TIMESTAMP` to match that date string. Note that by default, the current date will be used for temporary files created during the subsequent steps, which will likely be later than the parquet files capture date.
 * Update `static-catalog/data/reference/keyword-categories.json` with any changes to the hierarchy of categories and keywords you want to make.
 * Run `make catalog`, which does the following:
-  * Runs `static-catalog/src/scripts/parquet-to-json.py`, which reads the parquet files in `static-catalog/data/parquet/<date>`, extracts the `croissant` column as a string, performs _unescapes_ (e.g., `\"` to `"`, etc.), then writes JSON files to `static-catalog/data/json/temp/YYYY-MM-DD`, where `YYYY-MM-DD` is today's date by default. (You can override this with the environment variable `TIMESTAMP`.) 
+  * Runs `static-catalog/src/scripts/parquet-to-json.py`, which reads the parquet files in `static-catalog/data/parquet/<date>`, extracts the `croissant` column as a string, performs _unescapes_ (e.g., `\"` to `"`, etc.), then writes JSON files to `static-catalog/data/json/temp/YYYY-MM-DD`, where `YYYY-MM-DD` is today's date by default. (You can override this with the environment variable `TIMESTAMP`.)
   * Runs `static-catalog/src/scripts/load-into-duckdb.py`, which reads the JSON in `static-catalog/data/json/temp/YYYY-MM-DD` into `duckdb` tables.
   * Runs `static-catalog/src/scripts/write-category-files.py` to read the `temp` JSON output and write one markdown file _for each topic_ under `static-catalog/markdown/processed/YYYY-MM-DD`, and one JavaScript and one JSON file _for each topic_ under `static-catalog/data/json/processed/YYYY-MM-DD`.
   * Runs `static-catalog/src/scripts/copy-files-to-docs.sh` to copy the files created over to the correct locations in `docs`.
@@ -30,7 +30,7 @@ You can run all the scripts discussed separately; use `--help` to see options.
 > [!NOTE]
 >
 > * Even though this README is in the `static-catalog/` directory, we show it in the paths to tools, because we assume they are executed from the repo's root directory, e.g., when running `make catalog`.
-> * `parquet-to-json.py` requires `pandas`. 
+> * `parquet-to-json.py` requires `pandas`.
 > * `write-category-files.py` requires DuckDB to be installed (see [Using DuckDB](#using-duckdb)) _and_ it requires a database file named `static-catalog/croissant.duckdb`. This file is very large, so we don't version it in the git repo. Talk to Dean Wampler or Joe Olson to get a copy of this file and put it in the `static-catalog` directory.
 > * The markdown files copied to `docs` correspond to _collections_ defined in `docs/_config.yaml`; there is a subfolder for each collection, currently `_language`, `_domain`, and `_modality` (the `_` is required)
 > * The JavaScript files are copied to `docs/files/data/catalog`. They contain the static data, defined as JS arrays of objects.
@@ -54,7 +54,7 @@ mv *.parquet data/parquet/$ymd
 
 ### Install DuckDB
 
-We use the [DuckDB](https://duckdb.org) CLI tools. 
+We use the [DuckDB](https://duckdb.org) CLI tools.
 
 Use this command to install the tools, including the `duckdb` CLI:
 
@@ -224,17 +224,17 @@ CREATE OR REPLACE TABLE hf_metadata_with_bad_licenses AS
 The following query shows that there are 252,000 datasets with no license and many others where there is a URL, but no `license_id`:
 
 ```sql
-SELECT license_id, license_url, count() AS count 
-FROM hf_metadata_with_bad_licenses 
-GROUP BY license_id,license_url 
+SELECT license_id, license_url, count() AS count
+FROM hf_metadata_with_bad_licenses
+GROUP BY license_id,license_url
 ORDER BY count DESC;
 ```
 
 The cases where a URL is shown, but the `license_id` is `NULL` are due to datasets that use invalid URLs for choosealicense.com. Reading the URLs, many look like legitimate attempts to specify a known license, but the URLs are 404s. This query counts all those cases:
 
 ```sql
-SELECT count() AS count 
-FROM hf_metadata_with_null_licenses 
+SELECT count() AS count
+FROM hf_metadata_with_bad_licenses
 WHERE license_id IS NULL AND license_url NOT NULL;
 ```
 
@@ -280,15 +280,15 @@ parent_tag: asia
 parent_title: Asian Languages
 grand_parent_tag: language
 grand_parent_title: Languages
-alt_tags: 
+alt_tags:
 ---
 
-{% include data-table-template.html 
-  keyword="korean" 
-  cleaned_keyword="korean" 
+{% include data-table-template.html
+  keyword="korean"
+  cleaned_keyword="korean"
   title="Korean"
   context=""
-  ancestor_path="language/asia" 
+  ancestor_path="language/asia"
   parent_title = "Asian Languages"
   grand_parent_title = "Languages"
   alt_keywords=""
@@ -300,7 +300,7 @@ The template file `data-table-template.html` will be used to create the table sh
 The JavaScript files are in `static-catalog/data/json/processed/YYYY-MM-DD`, e.g., a JSON file, `.../language/asia/korean.json`, and a corresponding JavaScript file, `.../language/asia/korean.js`, which just wraps the JSON in a variable definition for inclusion in the relevant catalog page. (There are alternative ways to load the JSON directly that we should pursue, rather than having separate, nearly-identical JSON and JavaScript files.) There are directories for `language`, `domain`, and `modality`.
 
 ```javascript
-const data_for_language_asia_korean = 
+const data_for_language_asia_korean =
 [
   {"name":"MAPS","keyword":"korean","license":"MIT License","license_url":"https://choosealicense.com/licenses/mit/","language":"en","dataset_url":"https://huggingface.co/datasets/Fujitsu-FRE/MAPS","creator_name":"Fujitsu Research of Europe","creator_url":"https://huggingface.co/Fujitsu-FRE","description":"\n\t\n\t\t\n\t\tDataset Card for Multilingual Benchmark for Global Agent Performance and Security\n\t\n\nThis is the first Multilingual Agentic AI Benchmark for evaluating agentic AI systems across different languages and diverse tasks. Benchmark enables systematic analysis of how agents perform under multilingual conditions. To balance performance and safety evaluation, our benchmark comprises 805 tasks: 405 from performance-oriented datasets (GAIA, SWE-bench, MATH) and 400 from the Agent Security… See the full description on the dataset page: https://huggingface.co/datasets/Fujitsu-FRE/MAPS.","first_N":5,"first_N_keywords":["text-generation","question-answering","Arabic","English","Japanese"],"keywords_longer_than_N":true},
   ...
@@ -318,4 +318,3 @@ This script copies the contents of `static-catalog/data/json/processed/YYYY-MM-D
 ## Conclusions
 
 You are now ready to commit and push the changes to the website, after local sanity checking, of course.
-
