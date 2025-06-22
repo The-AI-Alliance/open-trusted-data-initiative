@@ -1,5 +1,7 @@
 # Notes on Using DuckDB to Analyze the HF Metadata
 
+> **NOTE:** These are old notes using duckdb to analyze the data. Some details have been changed, such as how data is loaded into duckdb, due to subsequent refinements. The [README](README.md) is up to date.
+
 ## Getting Started
 
 Install the [DuckDB](https://duckdb.org) CLI tools and Python library. See the [documentation](https://duckdb.org/docs/stable/).
@@ -389,7 +391,7 @@ Now, let's try the ideas from the "bag of tricks" post:
 
 ```sql
 CREATE OR REPLACE TABLE hf_croissant AS
-SELECT * 
+SELECT *
   FROM read_json(
     './data/json/2025-05-06_16-36-59/spark/*.json',
     columns =  {
@@ -397,7 +399,7 @@ SELECT *
                     creator STRUCT(
                       name VARCHAR,
                       url VARCHAR
-                    ), 
+                    ),
                     name VARCHAR,
                     description VARCHAR,
                     url VARCHAR,
@@ -457,7 +459,7 @@ SELECT json_keys(unnest(croissant)) FROM hf_croissant2 LIMIT 5;
 SELECT json_structure(croissant) FROM hf_croissant2 LIMIT 5;  # returns "VARCHAR" for all rows
 SELECT json_type(croissant) FROM hf_croissant2 LIMIT 5;       # returns VARCHAR for all rows
 SELECT json(croissant) FROM hf_croissant2 LIMIT 5;            # Doesn't appear to do anything! The results look just like `SELECT croissant...`
-SELECT croissant FROM hf_croissant2 LIMIT 5;  
+SELECT croissant FROM hf_croissant2 LIMIT 5;
 SELECT json_structure(json(croissant)) FROM hf_croissant2 LIMIT 5;
 SELECT json_type(json(croissant)) FROM hf_croissant2 LIMIT 5;
 SELECT json(json(croissant)) FROM hf_croissant2 LIMIT 5;      # "Recursive" invocations do nothing!
@@ -475,7 +477,7 @@ INSERT INTO example (
 );
 SELECT json_structure(j) FROM example;
 
-SELECT croissant->'@context' FROM hf_croissant2 LIMIT 5;  
+SELECT croissant->'@context' FROM hf_croissant2 LIMIT 5;
 SELECT json_extract(croissant, '.') AS cr FROM hf_croissant2 LIMIT 5;
 SELECT json_extract(croissant, 'description') AS cr FROM hf_croissant2 LIMIT 5;
 SELECT json_extract(croissant, '"description"') AS cr FROM hf_croissant2 LIMIT 5;
@@ -496,7 +498,7 @@ Trying these files. `toss1.json` ends up with malformed JSON. The unquoting rege
 Trying some shell commands to get the "unquoting" right:
 
 ```shell
-head -5 ./data/json/sample/1.json > head5.json 
+head -5 ./data/json/sample/1.json > head5.json
 jq .croissant head5.json | sed -e 's/^"//'  -e 's/"$//'  -e 's/\([^\\]\)\\"/\1"/g' > toss-jq2b.json
 ```
 
@@ -515,7 +517,7 @@ def read_file_line_by_line(in_file_path):
                 line = line.strip()
                 yield count, line
     except FileNotFoundError:
-        print(f"File {in_file_path} not found.")   
+        print(f"File {in_file_path} not found.")
 
 def print_to_string(str, **kwargs):
     output = io.StringIO()
@@ -574,7 +576,7 @@ select * from hf_croissant2;
 Is it good??
 
 ```sql
-SELECT json->'@context'->'@language' FROM hf_croissant2 LIMIT 5; 
+SELECT json->'@context'->'@language' FROM hf_croissant2 LIMIT 5;
 ```
 ```
 ┌─────────────────────────────────────────┐
@@ -590,7 +592,7 @@ SELECT json->'@context'->'@language' FROM hf_croissant2 LIMIT 5;
 ```
 
 and
-```sql 
+```sql
 SELECT json_extract(json, 'description') FROM hf_croissant2 LIMIT 5;
 ```
 
@@ -844,7 +846,7 @@ SELECT    name,
           creator->>'$.name'         AS creator_name,
           creator->>'$.url'          AS creator_url,
 FROM      metadata
-WHERE     license NOT NULL 
+WHERE     license NOT NULL
 LIMIT     5;
 ```
 
@@ -913,7 +915,7 @@ D SELECT count(*) FROM hf_metadata;
 └──────────────┘
 ```
 
-So, only 60K out of 261K records (23%) have a license! Not great. 
+So, only 60K out of 261K records (23%) have a license! Not great.
 
 > **NOTE:** In preparing the condensed `README.md` from these notes, I realized that I should have used `json->>'$.keywords[*]' AS keywords,`, so that `keywords` has type `json[]` instead of `json`. The `README` follows that path, which greatly simplifies analysis of the keywords below. Here, I left these notes as they were originally.
 
@@ -1058,7 +1060,7 @@ WITH keywords AS (
   SELECT unnest(regexp_split_to_array(
     replace(replace(replace(keywords, '[', ''), ']', ''), '"', ''), '\s*,\s*')) AS keyword
   FROM hf_metadata
-) 
+)
 SELECT keyword, count(keyword) AS count
 FROM keywords GROUP BY keyword ORDER BY count DESC NULLS FIRST LIMIT 100;
 ```
@@ -1171,7 +1173,7 @@ FROM keywords GROUP BY keyword ORDER BY count DESC NULLS FIRST LIMIT 100;
 │ 100 rows                  2 columns │
 └─────────────────────────────────────┘
 ```
-So there are other languages present! 
+So there are other languages present!
 
 > **NOTES:**
 > 1. I tried `regexp_replace(keywords, '[\[\]"]+', '')`, but it appears to only replace the first match, not all of them, and there doesn't appear to be a function that will replace all occurrences! Hence I used the three `replace` functions, which is an ugly hack.
@@ -1186,7 +1188,7 @@ CREATE OR REPLACE TABLE keywords AS
     SELECT unnest(regexp_split_to_array(
       replace(replace(replace(keywords, '[', ''), ']', ''), '"', ''), '\s*,\s*')) AS keyword
     FROM hf_metadata
-  ) 
+  )
   SELECT lower(keyword) AS lower_keyword, count() AS count
   FROM keywords GROUP BY lower_keyword;
 DESCRIBE keywords;
@@ -1216,7 +1218,7 @@ Let's save to a file to search for language entries:
 COPY (SELECT lower_keyword FROM keywords) TO 'keywords.csv';
 ```
 
-Now, we need a list of the world's languages in a convenient format. Here are two JSON-formatted lists: [one](https://gist.github.com/jrnk/8eb57b065ea0b098d571), which claims to be an ISO list, and [two](https://gist.github.com/rglover/23d9d10d788c87e7fc5f5d7d8629633f). Even though the second has more entries, ~240 vs. ~180, let's use the ISO list, saved to 
+Now, we need a list of the world's languages in a convenient format. Here are two JSON-formatted lists: [one](https://gist.github.com/jrnk/8eb57b065ea0b098d571), which claims to be an ISO list, and [two](https://gist.github.com/rglover/23d9d10d788c87e7fc5f5d7d8629633f). Even though the second has more entries, ~240 vs. ~180, let's use the ISO list, saved to
 
 ```sql
 CREATE OR REPLACE TABLE languages AS
@@ -1264,7 +1266,7 @@ WITH langs AS (
   SELECT code, lower(name) AS lower_name
   FROM   languages
 )
-SELECT   keywords.lower_keyword, keywords.count, langs.code, langs.lower_name 
+SELECT   keywords.lower_keyword, keywords.count, langs.code, langs.lower_name
 FROM     keywords
 JOIN     langs
 ON       keywords.lower_keyword = langs.code
@@ -1337,22 +1339,22 @@ FROM keywords WHERE lower_keyword IN (
   'aragonese',
   'aymara',
   'catalan',
-  'chinese', 
+  'chinese',
   'english',
-  'french', 
+  'french',
   'german',
-  'hindi', 
+  'hindi',
   'hungarian',
   'italian',
   'japanese',
   'javanese',
   'korean',
   'nyanja',
-  'portuguese', 
+  'portuguese',
   'russian',
   'spanish',
-  'turkish', 
-  'vietnamese', 
+  'turkish',
+  'vietnamese',
   'volapük',
   'xhosa',
   )
@@ -1452,7 +1454,7 @@ COPY (
 ```
 
 ```shell
-for lang in english chinese # french russian spanish japanese german korean arabic portuguese italian turkish hindi vietnamese 
+for lang in english chinese # french russian spanish japanese german korean arabic portuguese italian turkish hindi vietnamese
 do
   echo "language: $lang"
   cat <<EOF > temp-query.sql
@@ -1518,7 +1520,7 @@ sed -e 's/\\" *\\"/""/g' -e 's/\([^\\]\)\\"/\1"/g' bad.json
 sed -e 's/\\" *\\"/""/g' -e 's/\([^\\]\)\\"/\1"/g' -e 's/\\[\\]*"\([^"]\)/\\"\1/g' bad.json
 sed -e 's/\\"\\"/""/g' -e 's/\([^\\]\)\\"/\1"/g' -e 's/\\\\"/\"/g' -e 's/\\\\""*/\"/g' bad.json
 sed -e 's/^"//'  -e 's/"$//' -e 's/\\"\\"/""/g' -e 's/\([^\\]\)\\"/\1"/g' -e 's/"\\\\\\"/"/g' -e 's/\\\\""/"/g' -e 's/\([:,]\)\s*"\\[\\]*"/\1""/g' bad.json
-e 's/"\\\\\\"/"/g' -e 's/\([:,]\)\s*"\\[\\]*"/\1""/g' 
+e 's/"\\\\\\"/"/g' -e 's/\([:,]\)\s*"\\[\\]*"/\1""/g'
 
 sed -e 's/^"//'  -e 's/"$//' -e 's/\\"\(\\*\)\\"/""/g' -e 's/\([^\\]\)\\"/\1"/g' -e 's/\\\\""/"/g' bad.json
 sed -e 's/^"//'  -e 's/"$//' -e 's/\\"\\"/""/g' -e 's/\([^\\]\)\\"/\1"/g' -e 's/"\\\\\\"/"/g' -e 's/\\\\""/"/g' -e 's/\([:,]\)\s*"\\[\\]*"/\1""/g' -e 's/manias\(\\*\)"/manias"/g' bad.json
@@ -1549,4 +1551,3 @@ For example:
 ```sql
 COPY (SELECT * FROM todos) TO 'todos.json';
 ```
-
