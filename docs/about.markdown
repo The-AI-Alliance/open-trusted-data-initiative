@@ -8,6 +8,8 @@ has_children: false
 | **Authors**      | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
 | **Last Update**  | V0.3.3, 2025-06-11 |
 
+> See this short [presentation]({{site.baseurl}}/files/OTDI-Overview.pdf) (PDF) for more information about the Open Trusted Data Initiative.
+
 # News
 
 | :--- | :--- |
@@ -27,14 +29,14 @@ has_children: false
 
 Want to contribute datasets to our catalog, [go here!]({{site.baseurl}}/contributing)
 
-Want to join one this initiative's projects? You can see our backlog [here](https://github.com/orgs/The-AI-Alliance/projects/28){:target="_blank"}. To join us, either Send email to [data@thealliance.ai](mailto:data@thealliance.ai?subject=I want to join the Open Trusted Data Initiative) or visit the [work group webpage](https://thealliance.ai/core-projects/open-trusted-data-initiative#foundation-models-working-group-form){:target="join-us"} and fill in the form. This [CONTRIBUTING](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/main/CONTRIBUTING.md){:target="_blank"} page has some specific information for developer contributions. 
+Want to join one this initiative's projects? You can see our backlog [here](https://github.com/orgs/The-AI-Alliance/projects/28){:target="_blank"}. To join us, either Send email to [data@thealliance.ai](mailto:data@thealliance.ai?subject=I want to join the Open Trusted Data Initiative) or visit the [work group webpage](https://thealliance.ai/core-projects/open-trusted-data-initiative#foundation-models-working-group-form){:target="join-us"} and fill in the form. This [CONTRIBUTING](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/main/CONTRIBUTING.md){:target="_blank"} page has some specific information for developer contributions.
 
 Thank you for your interest!
 
 <a name="contact-us"></a>
 # How to Contact Us
 
-Send email to [data@thealliance.ai](mailto:data@thealliance.ai?subject=Questions about the Open Trusted Data Initiative). 
+Send email to [data@thealliance.ai](mailto:data@thealliance.ai?subject=Questions about the Open Trusted Data Initiative).
 
 If you notice issues with this website or any of our other assets, considering [posting issues](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="otdi-issues"} in the project [GitHub repo](https://github.com/The-AI-Alliance/open-trusted-data-initiative){:target="otdi-repo"}.
 
@@ -42,7 +44,7 @@ If you notice issues with this website or any of our other assets, considering [
 
 ## Steering Committee
 
-The Steering Committee represents diverse industry experience in open data and AI. The committee guides the strategy of OTDI, oversees the technical projects, and helps expand awareness of our work. 
+The Steering Committee represents diverse industry experience in open data and AI. The committee guides the strategy of OTDI, oversees the technical projects, and helps expand awareness of our work.
 
 Here are the committee members, in alphabetical order (by first name):
 
@@ -76,7 +78,7 @@ Please [join us](#join-us)! We welcome organizations and individuals as collabor
 
 # About The AI Alliance
 
-The **Open Trusted Data Initiative** (OTDI) is a _core_ project managed by the [Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="tands"} in [The AI Alliance](https://thealliance.ai){:target="ai-alliance"}. The AI Alliance is a global collaboration of startups, enterprises, academic and other research institutions interested in advancing the state of the art, the availability, and the safety of AI technology and uses. 
+The **Open Trusted Data Initiative** (OTDI) is a _core_ project managed by the [Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="tands"} in [The AI Alliance](https://thealliance.ai){:target="ai-alliance"}. The AI Alliance is a global collaboration of startups, enterprises, academic and other research institutions interested in advancing the state of the art, the availability, and the safety of AI technology and uses.
 
 The AI Alliance's [core projects](https://thealliance.ai/core-projects){:target="core"} seek to address substantial cross-community challenges and are an opportunity for contributors to collaborate, build, and make an impact on the future of AI. Core Projects are managed directly by the AI Alliance and governed as described below. You can find a list of the [affiliated projects](https://thealliance.ai/affiliated-projects){:target="affiliated"}, which are Alliance member projects that we promote, but they are not directly managed by the Alliance.
 
@@ -95,7 +97,7 @@ We welcome your contributions to this documentation itself. The sources are in t
 
 The repo's [GITHUB_PAGES](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/main/GITHUB_PAGES.md){:target="otdi-repo"} file explains more details for testing the documentation website locally and for creating more extensive changes as PRs.
 
-<!-- 
+<!--
 ### Version History for This Site
 
 | Version  | Date       |
