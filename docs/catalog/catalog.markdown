@@ -24,8 +24,8 @@ has_children: true
 >
 > * The tables reflect a snapshot of the datasets as of June 5<sup>th</sup>, 2025. (Periodic updates are planned.)
 > * Of the approximately 413,000 Hugging Face datasets, 329,000 of them have queryable [Croissant](https://mlcommons.org/working-groups/data/croissant/){:target="croissant"} metadata.
+> * Of the 329,000  with Croissant data, we discard datasets with no license specified, leaving just 84,000!
 > * Among the remaining 84,000, 66,000 don't have available Croissant data and 18,000 require you to request permission to use them first, even to query their Croissant metadata. Hence, these 84,000 datasets are not in our catalog tables. However, some of them are listed separately in our [Contributors]({{site.baseurl}}/catalog/contributors) and [Other Datasets]({{site.baseurl}}/catalog/other_datasets) pages, along with some datasets not available in Hugging Face.
-> * Of the 329,000  with Croissant data, we discard datasets with no license specified, leaving just 77,000!
 > * Of the 77,000, 17,000 "attempt" to define licenses, but do so improperly. Licenses are specified as [choosealicense.com/licenses/](https://choosealicense.com/licenses/){:target="cal"} URLs. Unfortunately, 17,600 datasets specify undefined (i.e., &ldquo;404&rdquo;) URLs. We discarded those datasets, leaving 59,400.<a href="#footnote1"><sup>1</sup></a>
 > * The groupings are based on the presence of relevant keywords. Note that _all_ the datasets list their language as `en` (English), but many have keywords for other languages. Those keywords are the basis for the [Languages]({{site.baseurl}}/catalog/language/language) tables (including the one for [English]({{site.baseurl}}/catalog/language/europe#english)!).
 > * All keywords were converted to lower case before &ldquo;grouping&rdquo;.

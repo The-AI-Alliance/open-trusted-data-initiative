@@ -30,7 +30,6 @@ The 59,397 records contain arrays of keywords. We expanded those arrays to have 
 First, here are the top 40 by count:
 
 | keyword              | count |
-| varchar              | int64 |
 | :------------------- | :---- |
 | 🇺🇸 region: us        | 59373 |
 | croissant            | 52858 |
