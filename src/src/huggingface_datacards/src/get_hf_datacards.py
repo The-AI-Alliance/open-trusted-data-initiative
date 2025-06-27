@@ -43,7 +43,7 @@ def repair_table():
     }
 
     # Query Execution Parameters
-    sql = f"MSCK REPAIR TABLE {os.environ["ATHENA_DATABASE_NAME"]}.datasets_detail"
+    sql = f"MSCK REPAIR TABLE {os.environ["ATHENA_DATABASE_NAME"]}.datacards"
     context = {"Database": os.environ["ATHENA_DATABASE_NAME"]}
 
     client.start_query_execution(
