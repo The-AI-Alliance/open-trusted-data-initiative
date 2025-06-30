@@ -6,7 +6,7 @@ has_children: false
 ---
 
 | **Authors**      | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
-| **Last Update**  | V0.3.3, 2025-06-11 |
+| **Last Update**  | V0.3.4, 2025-06-30 |
 
 > See this short [presentation]({{site.baseurl}}/files/OTDI-Overview.pdf) (PDF) for more information about the Open Trusted Data Initiative.
 

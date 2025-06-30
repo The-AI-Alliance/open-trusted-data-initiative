@@ -20,7 +20,7 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "/open-trusted-data-initiative" # the subpath of your site, e.g. /blog
 url: "https://the-ai-alliance.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
-# Defined to be empty so Jekyll ignores the YAML block at the top of the 
+# Defined to be empty so Jekyll ignores the YAML block at the top of the
 # files/datasetcard_otdi_template.md file.
 card_data:
 
@@ -95,11 +95,11 @@ back_to_top_text: "Back to the top"
 # Footer last edited timestamp
 last_edit_timestamp: true # show or hide edit time - page must have `last_modified_date` defined in the frontmatter
 last_edit_time_format: "%Y-%m-%d %H:%M %z" # uses ruby's time format: https://ruby-doc.org/stdlib-2.7.0/libdoc/time/rdoc/Time.html
-last_modified_timestamp: 2025-06-11 08:02 -0500
-last_version: 0.3.3
+last_modified_timestamp: 2025-06-30 08:02 -0500
+last_version: 0.3.4
 
 # Custom: Add the range of years for the copyright here. This is done here,
-# rather than default.html, so that the latter file can remain completely 
+# rather than default.html, so that the latter file can remain completely
 # generic across repos, but the range of years can be configurable per repo.
 copyright_years: 2024-2025
 
