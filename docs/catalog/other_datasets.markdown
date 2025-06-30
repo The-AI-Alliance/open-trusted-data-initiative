@@ -21,6 +21,12 @@ For now, here is a list of notable datasets that don't appear in the catalog pag
 {:toc}
 </details>
 
+## Avoiding &ldquo;AI Slop&rdquo;
+
+The blog [Low-background Steel (Pre AI)](https://lowbackgroundsteel.ai){:target="_blank"} catalogs datasets known to predate the announcement of ChatGPT, after which AI-generated content became more and more prevalent in datasets. This site wants to ensure that _pure_, human-generated datasets exist for research and development. From the site:
+
+> Sources of data that haven’t been contaminated by AI-created content. Low-background Steel (and lead) is a type of metal uncontaminated by radioactive isotopes from nuclear testing. That steel and lead is usually recovered from ships that sunk before the Trinity Test in 1945. This blog is about uncontaminated content that I'm terming "Low-background Steel". The idea is to point to sources of text, images and video that were created prior to the explosion of AI-generated content that occurred in 2022.
+
 ## Benchmark and Other Evaluation Datasets
 
 ### NeurIPS 2024 Datasets Benchmarks

@@ -22,7 +22,7 @@ This section is organized by topic.
 {:toc}
 </details>
 
-## Research on Gathering and Using Open Datasets
+## Research Progress on Gathering and Using Open Datasets
 
 While there are many open datasets of various sizes and areas of focus, a few attempts have been made to create very broad, completely open datasets suitable for training competitive foundation models.
 
@@ -39,6 +39,12 @@ Another large open dataset, _Common Pile_ ([HF announcement](https://huggingface
 They used 1 trillion and 2 trillion token subsets of Common Pile as [training datasets](https://huggingface.co/datasets/common-pile/comma_v0.1_training_dataset){:target="_blank"} for two models, [Comma-v0.1-1t](https://huggingface.co/common-pile/comma-v0.1-1t){:target="_blank"} and [Comma-v0.1-2t](https://huggingface.co/common-pile/comma-v0.1-2t){:target="_blank"}, respectively. Both are 7B parameter models.
 
 > **NOTE:** Because this dataset is published in Hugging Face, it will appear in our "snapshot" static catalog soon.
+
+## Avoiding &ldquo;AI Slop&rdquo;
+
+The blog [Low-background Steel (Pre AI)](https://lowbackgroundsteel.ai){:target="_blank"} catalogs datasets known to predate the announcement of ChatGPT, after which AI-generated content became more and more prevalent in datasets. This site wants to ensure that _pure_, human-generated datasets exist for research and development. From the site:
+
+> Sources of data that haven’t been contaminated by AI-created content. Low-background Steel (and lead) is a type of metal uncontaminated by radioactive isotopes from nuclear testing. That steel and lead is usually recovered from ships that sunk before the Trinity Test in 1945. This blog is about uncontaminated content that I'm terming "Low-background Steel". The idea is to point to sources of text, images and video that were created prior to the explosion of AI-generated content that occurred in 2022.
 
 ## General Data Concerns
 
