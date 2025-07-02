@@ -160,8 +160,9 @@ async def main():
                 from {os.environ["ATHENA_DATABASE_NAME"]}.datasets 
                 where dataset not in (select dataset from 
                     {os.environ["ATHENA_DATABASE_NAME"]}.datacards 
-                    where date = CAST('{today}' AS DATE)) and  date in (select max(date) from huggingface.datasets) {limit}
+                    where date >= CAST('{today}' AS DATE) - interval '1' day) and  date >= CAST('{today}' AS DATE)- interval '1' day {limit}
             """
+    
     boto3.setup_default_session(
         region_name=os.environ["AWS_REGION"]
     )  # TODO: This limit and region will be passed in from aws cdk when we get there

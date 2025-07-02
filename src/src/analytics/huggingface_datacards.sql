@@ -24,7 +24,7 @@ MSCK REPAIR TABLE huggingface.datacards
 select * from  huggingface.datacards where date = cast('2025-06-19' as date) limit 100
 
 /* drop view*/
-drop view huggingface.v_datasets as
+drop view huggingface.v_datasets
 
 /* Create view to see just the latest COMPLETE data*/
 create view huggingface.v_datacards as
