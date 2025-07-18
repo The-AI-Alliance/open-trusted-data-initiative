@@ -133,7 +133,7 @@ Data and code are publicly available under a Creative Commons license (CC-BY-NC-
 
 ## Wikimedia Enterprise
 
-Datasets from the organization that hosts and supports Wikipedia, Wikidata, and many projects affiliated with the movement. 
+Datasets from the Wikimedia Foundation, the organization that hosts and supports Wikipedia, Wikidata, and many other projects affiliated with the movement. 
 
 * Wikimedia Enterprise [website](https://enterprise.wikimedia.com/){:target="wikimedia"}
 * Wikimedia Enterprise [Hugging Face organization](https://huggingface.co/wikimedia){:target="wikimedia-hf"}.
