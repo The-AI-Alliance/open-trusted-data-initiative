@@ -138,8 +138,8 @@ Datasets from the organization that hosts and supports Wikipedia, Wikidata, and 
 * Wikimedia Enterprise [website](https://enterprise.wikimedia.com/){:target="wikimedia"}
 * Wikimedia Enterprise [Hugging Face organization](https://huggingface.co/wikimedia){:target="wikimedia-hf"}.
 * Wikimedia Enterprise [Collections on Hugging Face](https://huggingface.co/collections/wikimedia){:target="wikimedia-hf-col"}
-* Wikimedia Enterprise [Collections on Kaggle] (https://www.kaggle.com/organizations/wikimedia-foundation/datasets) {:target="wikimedia-kaggle-col"
-Wikimedia Enterprise [GitHub Organization] (https://github.com/wikimedia-enterprise) {:target="github"}
+* Wikimedia Enterprise [Collections on Kaggle](https://www.kaggle.com/organizations/wikimedia-foundation/datasets){:target="wikimedia-kaggle-col"}
+* Wikimedia Enterprise [GitHub Organization](https://github.com/wikimedia-enterprise){:target="github"}
 
 | Name              | Description     |  URL     | Date Added |
 | :---------------- | :-------------- | :------- | :--------- |
@@ -147,7 +147,7 @@ Wikimedia Enterprise [GitHub Organization] (https://github.com/wikimedia-enterpr
 | **Wikipedia Structured Contents** | Early beta release of the English and French Wikipedia articles including infoboxes | [Kaggle](https://www.kaggle.com/datasets/wikimedia-foundation/wikipedia-structured-contents){:target="structured-contents"} | 2024-09-16 |
 | **Wikimedia Wikisource** | Wikisource dataset containing cleaned articles of all languages  |[Hugging Face](https://huggingface.co/datasets/wikimedia/wikisource){:target="wikisource"} | 2023-12-01 |
 | **Wikimedia Wikipedia** | Wikipedia dataset containing cleaned articles of all languages | [Hugging Face](https://huggingface.co/datasets/wikimedia/wikipedia){:target="wikipedia"} | 2023-11-01 |
-| **Wikimedia WIT** | WIT: Wikipedia-based Image Text Dataset for Multimodal Multilingual Machine Learning | [Hugging Face](https://huggingface.co/datasets/wikimedia/wit_base){:target="WIT"} [paper](https://arxiv.org/abs/2506.01732)(https://arxiv.org/abs/2103.01913){:target="_blank"} | 2022-05-22 |
+| **Wikimedia WIT** | WIT: Wikipedia-based Image Text Dataset for Multimodal Multilingual Machine Learning | [Hugging Face](https://huggingface.co/datasets/wikimedia/wit_base){:target="WIT"} [paper](https://arxiv.org/abs/2103.01913){:target="_blank"} | 2022-05-22 |
 
 ## Your Contributions?
 
