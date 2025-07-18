@@ -137,7 +137,7 @@ Datasets from the organization that hosts and supports Wikipedia, Wikidata, and 
 
 * Wikimedia Enterprise [website](https://enterprise.wikimedia.com/){:target="wikimedia"}
 * Wikimedia Enterprise [Hugging Face organization](https://huggingface.co/wikimedia){:target="wikimedia-hf"}.
-* Wikimedia Enterprise [Collections on Hugging Face](https://huggingface.co/collections/wikimedia){:target="wikimedia-hf-col"}
+* Wikimedia Enterprise [Collections on Hugging Face](https://huggingface.co/wikimedia/datasets){:target="wikimedia-hf-col"}
 * Wikimedia Enterprise [Collections on Kaggle](https://www.kaggle.com/organizations/wikimedia-foundation/datasets){:target="wikimedia-kaggle-col"}
 * Wikimedia Enterprise [GitHub Organization](https://github.com/wikimedia-enterprise){:target="github"}
 
