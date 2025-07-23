@@ -42,6 +42,10 @@ The rest of this README covers more details on how these processing steps work. 
 
 These steps are necessary before the `make catalog` automation can work.
 
+### Python Environment
+
+We'll use [`uv`](https://docs.astral.sh/uv/) to manage the Python environment, so `uv` commands will be shown. However, you can manage these dependencies any way you prefer.
+
 ### Get the Parquet Data
 
 Get a copy of the Parquet files with the Croissant metadata and use it as follows. Let's assume those Parquet files are in the current directory:
