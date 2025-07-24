@@ -63,9 +63,10 @@ stream_info() {
 stream_warn() {
   stream_at_level WARN  $YELLOW
 }
-
 stream_error() {
   stream_at_level ERROR $RED
+  help
+  exit 1
 }
 
 # pc() {   # for "print color"
