@@ -22,7 +22,8 @@ has_children: true
 >
 > The tables in this catalog list the metadata for Hugging Face-hosted datasets that were gathered as follows:
 >
-> * The tables reflect a snapshot of the datasets as of June 5<sup>th</sup>, 2025. (Periodic updates are planned.)
+> * The tables reflect a snapshot of the datasets as of July 20<sup>th</sup>, 2025. (We will do this approximately monthly while we work on a more &ldquo;dynamic&rdquo; process.)
+> * The numbers discussed next reflect the snapshot processing from a previous run on June 5<sup>th</sup>, 2025. (More datasets are added to Hugging Face every day...)
 > * Of the approximately 413,000 Hugging Face datasets, 329,000 of them have queryable [Croissant](https://mlcommons.org/working-groups/data/croissant/){:target="croissant"} metadata.
 > * Of the 329,000  with Croissant data, we discard datasets with no license specified, leaving just 84,000!
 > * Among the remaining 84,000, 66,000 don't have available Croissant data and 18,000 require you to request permission to use them first, even to query their Croissant metadata. Hence, these 84,000 datasets are not in our catalog tables. However, some of them are listed separately in our [Contributors]({{site.baseurl}}/catalog/contributors) and [Other Datasets]({{site.baseurl}}/catalog/other_datasets) pages, along with some datasets not available in Hugging Face.
