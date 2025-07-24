@@ -1,0 +1,21 @@
+[project]
+name = "static-catalog"
+version = "0.0.3"
+description = "Project to analyze Croissant data and build a catalog of it."
+authors = [
+    {name = "The AI Alliance",email = "data@thealliance.ai"}
+]
+license = {text = "Apache License Version 2.0"}
+readme = "README.md"
+requires-python = ">=3.12,<4.0"
+dependencies = [
+    "jupyterlab",
+    "pandas",
+    "pyshp",
+    "ipykernel",
+    "bokeh==3.5",
+    "duckdb",
+    "tqdm>=4.67.1",
+    "psutil>=7.0.0",
+    "pyarrow>=21.0.0",
+]

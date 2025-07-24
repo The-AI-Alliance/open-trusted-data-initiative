@@ -15,32 +15,41 @@ Ask Dean Wampler for help, if needed.
 
 Steps:
 
-* Acquire a snapshot of the parquet files and put them in the directory `static-catalog/data/parquet/<date>`, where date is the date the snapshot was captured, in the form `YYYY-MM-DD`.
-* Edit the `Makefile` and set `PARQUET_SNAPSHOT_TIMESTAMP` to match that date string. Note that by default, the current date will be used for temporary files created during the subsequent steps, which will likely be later than the parquet files capture date.
-* Update `static-catalog/data/reference/keyword-categories.json` with any changes to the hierarchy of categories and keywords you want to make.
+* Acquire a snapshot of the parquet files and put them in the directory `data/parquet/<date>` (under this directory, `static-catalog`), where date is the date the snapshot was captured, in the form `YYYY-MM-DD`.
+* Edit the `Makefile` and set `PARQUET_SNAPSHOT_TIMESTAMP` to match that date string. (Or just invoke the `make` commands below starting with `PARQUET_SNAPSHOT_TIMESTAMP=YYYY-MM-DD make targets` for the actual date.) Note that by default, the current date will be used for temporary files created during the subsequent steps, which will likely be later than the parquet files capture date.
+* Update `./data/reference/keyword-categories.json` with any changes to the hierarchy of categories and keywords you want to make.
 * Run `make catalog`, which does the following:
-  * Runs `static-catalog/src/scripts/parquet-to-json.py`, which reads the parquet files in `static-catalog/data/parquet/<date>`, extracts the `croissant` column as a string, performs _unescapes_ (e.g., `\"` to `"`, etc.), then writes JSON files to `static-catalog/data/json/temp/YYYY-MM-DD`, where `YYYY-MM-DD` is today's date by default. (You can override this with the environment variable `TIMESTAMP`.)
-  * Runs `static-catalog/src/scripts/load-into-duckdb.py`, which reads the JSON in `static-catalog/data/json/temp/YYYY-MM-DD` into `duckdb` tables.
-  * Runs `static-catalog/src/scripts/write-category-files.py` to read the `temp` JSON output and write one markdown file _for each topic_ under `static-catalog/markdown/processed/YYYY-MM-DD`, and one JavaScript and one JSON file _for each topic_ under `static-catalog/data/json/processed/YYYY-MM-DD`.
-  * Runs `static-catalog/src/scripts/copy-files-to-docs.sh` to copy the files created over to the correct locations in `docs`.
+  * Runs `./src/scripts/parquet-to-json.py`, which reads the parquet files in `./data/parquet/<date>`, extracts the `croissant` column as a string, performs _unescapes_ (e.g., `\"` to `"`, etc.), then writes JSON files to `./data/json/temp/YYYY-MM-DD`, where `YYYY-MM-DD` is today's date by default. (You can override this with the environment variable `TIMESTAMP`.)
+  * Runs `./src/scripts/load-into-duckdb.py`, which reads the JSON in `./data/json/temp/YYYY-MM-DD` into `duckdb` tables.
+  * Runs `./src/scripts/write-category-files.py` to read the `temp` JSON output and write one markdown file _for each topic_ under `./markdown/processed/YYYY-MM-DD`, and one JavaScript and one JSON file _for each topic_ under `./data/json/processed/YYYY-MM-DD`.
+  * Runs `./src/scripts/copy-files-to-docs.sh` to copy the files created over to the correct locations in `docs`.
 * Commit the changes and push upstream!
 
 You can run all the scripts discussed separately; use `--help` to see options.
 
 > [!NOTE]
 >
-> * Even though this README is in the `static-catalog/` directory, we show it in the paths to tools, because we assume they are executed from the repo's root directory, e.g., when running `make catalog`.
-> * `parquet-to-json.py` requires `pandas`.
-> * `write-category-files.py` requires DuckDB to be installed (see [Using DuckDB](#using-duckdb)) _and_ it requires a database file named `static-catalog/croissant.duckdb`. This file is very large, so we don't version it in the git repo. Talk to Dean Wampler or Joe Olson to get a copy of this file and put it in the `static-catalog` directory.
-> * The markdown files copied to `docs` correspond to _collections_ defined in `docs/_config.yaml`; there is a subfolder for each collection, currently `_language`, `_domain`, and `_modality` (the `_` is required)
-> * The JavaScript files are copied to `docs/files/data/catalog`. They contain the static data, defined as JS arrays of objects.
-> * The markdown and JSON directory hierarchies are _different_. The markdown files need to be flat, only _collection_ subfolders (currently `_language`, `_domain`, and `_modality`). We tried making hierarchical directories here, but this isn't supported by Jekyll/Liquid. In contrast, the JavaScript files written to `../docs/files/data/catalog` are hierarchical, because they use our own convention and are handled appropriately by the JavaScript code that loads them, `docs/_includes/data_table_template.html`.
+> * Run all the commands shown below in the `static-catalog` directory, e.g., when running `make catalog`.
+> * `./src/scripts/parquet-to-json.py` requires `pandas`.
+> * `./src/scripts/write-category-files.py` requires DuckDB to be installed (see [Using DuckDB](#using-duckdb)) _and_ it requires a database file named `./croissant.duckdb`. This file is very large, so we don't version it in the git repo. Talk to Dean Wampler or Joe Olson to get a copy of this file and put it in this directory.
+> * The markdown files copied to `../docs` correspond to _collections_ defined in `../docs/_config.yaml`; there is a subfolder for each collection, currently `_language`, `_domain`, and `_modality` (the `_` is required)
+> * The JavaScript files are copied to `../docs/files/data/catalog`. They contain the static data, defined as JS arrays of objects.
+> * The markdown and JSON directory hierarchies are _different_. The markdown files need to be flat, only _collection_ subfolders (currently `_language`, `_domain`, and `_modality`). We tried making hierarchical directories here, but this isn't supported by Jekyll/Liquid. In contrast, the JavaScript files written to `../docs/files/data/catalog` are hierarchical, because they use our own convention and are handled appropriately by the JavaScript code that loads them, `../docs/_includes/data_table_template.html`.
+> * When numbers of rows are quoted below, e.g., "123,456 rows in table foo", those numbers are from a June 2025 run of this process. As the number of Hugging Face datasets keeps growing, all such numbers will be larger in more recent runs.
 
-The rest of this README covers more details on how these processing steps work. It doesn't cover creating or editing `data/reference/keyword-categories.json`, which has been done manually!
+The rest of this README covers more details on how these processing steps work. It doesn't cover creating or editing `./data/reference/keyword-categories.json`, which was created manually!
 
 ## Initial Setup
 
 These steps are necessary before the `make catalog` automation can work.
+
+### Python Environment
+
+We'll use [`uv`](https://docs.astral.sh/uv/) to manage the Python environment, so `uv` commands will be shown. However, you can manage these dependencies any way you prefer. 
+
+If you don't want to use `uv`:
+* Install the dependencies seen in `./pyproject.toml` using `pip` or whatever tool you prefer. However, you can omit `jupyterlab`, `ipykernel`, and `bokeh`. They are _not_ required for generating the catalog data. They are used for an ad-hoc analysis of the metadata. See `analysis/README.md` for information. 
+* Edit the `Makefile` to define `UV_RUN` to be "".
 
 ### Get the Parquet Data
 
@@ -62,22 +71,16 @@ Use this command to install the tools, including the `duckdb` CLI:
 curl https://install.duckdb.org | sh
 ```
 
-Optionally, install the Python library, but it is not used in what follows:
-
-```shell
-pip install duckdb
-```
-
 See the [documentation](https://duckdb.org/docs/stable/) for more details.
 
 ### Using the JSON Support in the `duckdb` CLI
 
 The JSON processing functions are [documented here](https://duckdb.org/docs/stable/data/json/json_functions.html).
 
-Start the `duckdb` CLI so you can install the `json` module. We specify a persistent database `static-catalog/croissant.duckdb`. Otherwise, everything is just in memory and lost when you exit the CLI:
+Start the `duckdb` CLI so you can install the `json` module. We specify a persistent database `./croissant.duckdb`. Otherwise, everything is just in memory and lost when you exit the CLI:
 
 ```shell
-duckdb static-catalog/croissant.duckdb
+duckdb ./croissant.duckdb
 ```
 
 > **WARNING:** The `croissant.duckdb` file can easily grow to GBs in size! For this reason, we are not currently storing it in the git repo.
@@ -93,19 +96,9 @@ These commands don't need to be repeated in subsequent sessions.
 
 Use `.quit` to exit `duckdb`.
 
-### Python Dependencies
-
-You'll need these packages.
-
-```shell
-pip install pandas tqdm psutil
-```
-
-`Pandas` is used only for the first step, parsing parquet into JSON. The rest of the scripts use "plain" Python, sometimes to invoke `duckdb`, and `zsh`, the default shell on MacOS and Linux.
-
 ## Parsing Parquet to JSON Files
 
-The `make catalog` build first builds `make-clean`, which deletes directories where new files will be created, then runs `make catalog-data-prep`. This target invokes `static-catalog/src/scripts/parquet-to-json.py`, which uses `pandas` to read the parquet files in `static-catalog/data/parquet/<date>`, where `<date>` is the snapshot capture date in the format `YYYY-MM-DD`.
+The `make catalog` build first builds `make-clean`, which deletes directories where new files will be created, then runs `make catalog-data-prep`. This target invokes `./src/scripts/parquet-to-json.py`, which uses `pandas` to read the parquet files in `./data/parquet/<date>`, where `<date>` is the snapshot capture date in the format `YYYY-MM-DD`.
 
 The input parquet format includes two columns we care about, `response_reason` and `croissant`. The former should have the value `OK`, meaning the metadata was successfully retrieved in Croissant format for the corresponding dataset. We filter out all records without this value, reducing the input from about 413,000 datasets to 329,000.
 
@@ -115,13 +108,13 @@ The `croissant` column contains giant strings of quoted JSON, which means lots o
 "{\"@context\":{\"@language\":\"en\",...}}"
 ```
 
-The rest of `parquet-to-json.py` _unescapes_ the JSON string and writes it to one large file (>3GB), `static-catalog/data/json/YYYY-MM-DD/croissant.json`, where `YYYY-MM-DD` is today's date.
+The rest of `./src/scripts/parquet-to-json.py` _unescapes_ the JSON string and writes it to one large file (>3GB), `./data/json/YYYY-MM-DD/croissant.json`, where `YYYY-MM-DD` is today's date.
 
 ## Load into DuckDB
 
 Next, the `make catalog` target makes the target `catalog-duckdb-load` to load the temporary JSON files into [DuckDB](https://duckdb.org), which has good support for JSON and it allows us to do useful joins, filtering, etc.
 
-Specifically, this make target runs the script `static-catalog/src/scripts/load-into-duckdb.py` to read the JSON in `static-catalog/data/json/temp/YYYY-MM-DD` and to create the following `duckdb` tables.
+Specifically, this `make` target runs the script `./src/scripts/load-into-duckdb.py` to read the JSON in `./data/json/temp/YYYY-MM-DD` and to create the following `duckdb` tables.
 
 ```sql
 CREATE OR REPLACE TABLE hf_croissant AS FROM (
@@ -133,7 +126,7 @@ CREATE OR REPLACE TABLE hf_croissant AS FROM (
             "@context"->>'$.@language' AS language,
             creator->>'$.name'         AS creator_name,
             creator->>'$.url'          AS creator_url,
-    FROM    read_json('static-catalog/data/json/temp/YYYY-MM-DD')
+    FROM    read_json('./data/json/temp/YYYY-MM-DD')
 );
 ```
 
@@ -143,10 +136,10 @@ Two other _reference_ files are loaded as tables:
 
 ```sql
 CREATE OR REPLACE TABLE hf_licenses AS
-    SELECT * FROM read_json('static-catalog/data/reference/license-id-name-mapping.json');
+    SELECT * FROM read_json('./data/reference/license-id-name-mapping.json');
 ```
 
-This table maps [choosealicense.com](https://choosealicense.com) URLs used in the metadata to the names of the licenses. For example, the first line in the JSON file is this:
+In the original parquet and the derived JSON data, the license field is specified as a [choosealicense.com](https://choosealicense.com) URL. The `hf_licenses` table maps between these URLs and license names. For example, the first line in the JSON file is this:
 
 ```json
 {"id":"0bsd", "name":"BSD Zero Clause License", "url":"https://choosealicense.com/licenses/0bsd/"}
@@ -159,7 +152,7 @@ Similarly, it's useful to have a reference table that maps ISO ids for languages
 ```sql
 CREATE OR REPLACE TABLE iso_languages AS
   SELECT code, lower(name) AS name
-  FROM read_json('static-catalog/data/reference/ISO-639-1-language.json');
+  FROM read_json('./data/reference/ISO-639-1-language.json');
 ```
 
 For example, the first entry is this:
@@ -176,8 +169,6 @@ In some cases, several names are given:
   "name": "Church Slavic; Old Slavonic; Church Slavonic; Old Bulgarian; Old Church Slavonic"
 },
 ```
-
-There are 47 rows.
 
 From `hf_croissant` and `hf_licenses`, we create `hf_metadata`:
 
@@ -201,7 +192,7 @@ CREATE OR REPLACE TABLE hf_metadata AS
 
 This table has about 60,000 rows, whereas `hf_croissant` has 329,000; only 20% of the rows remain!
 
-The reason for this radical reduction is the fact that most datasets don't define a license and many that do define a license, actually don't define it in a valid way. To see this, let's use a variation of the previous query with a `LEFT JOIN` to find the undefined or invalid licenses:
+The reason for this radical reduction is the fact that most datasets don't define a license value at all and many that do use an invalid choosealicense.com URL for the license field. To see this, let's use a variation of the previous query with a `LEFT JOIN` to find the undefined or invalid licenses:
 
 ```sql
 CREATE OR REPLACE TABLE hf_metadata_with_bad_licenses AS
@@ -230,7 +221,7 @@ GROUP BY license_id,license_url
 ORDER BY count DESC;
 ```
 
-The cases where a URL is shown, but the `license_id` is `NULL` are due to datasets that use invalid URLs for choosealicense.com. Reading the URLs, many look like legitimate attempts to specify a known license, but the URLs are 404s. This query counts all those cases:
+The cases where a URL is shown, but the `license_id` is `NULL` are examples that use invalid URLs for choosealicense.com. Reading the URLs, many look like attempts to specify a legitimate, known license, but the URLs are 404s. This query counts all those cases:
 
 ```sql
 SELECT count() AS count
@@ -238,9 +229,9 @@ FROM hf_metadata_with_bad_licenses
 WHERE license_id IS NULL AND license_url NOT NULL;
 ```
 
-About 17,600 datasets fall into this category.
+About 17,600 datasets have this issue!
 
-We discard all the datasets with no license or an improperly-defined license, although we intend to revisit that latter cases at some later time.
+We discard all the datasets with no license or an improperly-defined license, although we intend to revisit that latter almost 18,000 records at some later time.
 
 Finally, we create `hf_expanded_metadata`, which expands the array of keywords into separate records, one per keyword:
 
@@ -262,13 +253,13 @@ CREATE OR REPLACE TABLE hf_expanded_metadata AS (
 
 This table has 677,000 rows, suggesting on average there are 11 keywords per dataset. Note that the keywords are converted to lower case.
 
-This table is used subsequently to generate the JavaScript and Markdown files required for the static catalog rendering in the website.
+This table is used subsequently to generate the JavaScript and Markdown files required for the static catalog rendering in the website for greater uniformity.
 
 ## Creating JavaScript and Markdown Files for the Website
 
-Next, `make catalog` builds the `make-build` target to _build_ the JavaScript and Markdown files required. This target runs the script `static-catalog/src/scripts/write-category-files.py` to do this.
+Next, `make catalog` builds the `make-build` target that _builds_ the JavaScript and Markdown files required. This target runs the script `./src/scripts/write-category-files.py` to do this.
 
-The script reads the categories, possible subcategories, and topics (corresponding to keywords) from `static-catalog/data/reference/keyword-categories.json`. It generates Markdown files in three directories, `_language`, `_domain`, `_modality` in `static-catalog/markdown/processed/YYYY-MM-DD/`. The leading `_` is a convention used by Jekyll. These files will be copied to the root directory of the website, `docs`. Each file, such as `.../_language/language_asia_korean.markdown` contains metadata data in a YAML block and content to display for that language, e.g.,:
+The script reads the categories, possible subcategories, and topics (corresponding to keywords) from `./data/reference/keyword-categories.json`. It generates Markdown files in three directories, `_language`, `_domain`, `_modality` in `./markdown/processed/YYYY-MM-DD/`. The leading `_` is a convention used by Jekyll. These files will be copied to the root directory of the website, `docs`. Each file, such as `.../_language/language_asia_korean.markdown` contains metadata data in a YAML block and content to display for that language, e.g.,:
 
 ```markdown
 ---
@@ -297,7 +288,7 @@ alt_tags:
 
 The template file `data-table-template.html` will be used to create the table shown for Korean. The data for the table comes from a separate JavaScript file.
 
-The JavaScript files are in `static-catalog/data/json/processed/YYYY-MM-DD`, e.g., a JSON file, `.../language/asia/korean.json`, and a corresponding JavaScript file, `.../language/asia/korean.js`, which just wraps the JSON in a variable definition for inclusion in the relevant catalog page. (There are alternative ways to load the JSON directly that we should pursue, rather than having separate, nearly-identical JSON and JavaScript files.) There are directories for `language`, `domain`, and `modality`.
+The JavaScript files are in `./data/json/processed/YYYY-MM-DD`, e.g., a JSON file, `.../language/asia/korean.json`, and a corresponding JavaScript file, `.../language/asia/korean.js`, which just wraps the JSON in a variable definition for inclusion in the relevant catalog page. (TODO: There are alternative ways to load the JSON directly that we should pursue, rather than having separate, nearly-identical JSON and JavaScript files.) There are directories for `language`, `domain`, and `modality`.
 
 ```javascript
 const data_for_language_asia_korean =
@@ -311,9 +302,9 @@ const data_for_language_asia_korean =
 
 ## Copy the JavaScript and Markdown Files to the Website
 
-Finally, `make catalog` builds the `catalog-install` target, which runs the `static-catalog/src/scripts/copy-files-to-docs.sh` script.
+Finally, `make catalog` builds the `catalog-install` target, which runs the `./src/scripts/copy-files-to-docs.sh` `zsh` script.
 
-This script copies the contents of `static-catalog/data/json/processed/YYYY-MM-DD` to `docs/files/data/catalog` and the contents of `static-catalog/markdown/processedYYYY-MM-DD` to `docs`.
+This script copies the contents of `./data/json/processed/YYYY-MM-DD` to `docs/files/data/catalog` and the contents of `./markdown/processed/YYYY-MM-DD` to `docs`.
 
 ## Conclusions
 

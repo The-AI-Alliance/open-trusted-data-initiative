@@ -1,0 +1,12 @@
+name: static-catalog
+channels:
+  - miniforge
+dependencies:
+  - python>=3.12
+  - pip
+  - jupyterlab
+  - pandas
+  - pyshp
+  - ipykernel
+  - pip:
+      - bokeh==3.5
