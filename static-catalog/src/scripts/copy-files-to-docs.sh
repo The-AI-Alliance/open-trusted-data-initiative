@@ -1,23 +1,19 @@
 #!/usr/bin/env zsh
+# Must run from the static-catalog directory. 
 
-# Should run from the project root directory. The following hack
-# tries to handle running in the root or static-catalog directories.
 DIR=$(dirname $0)
-ROOT=$(echo $DIR | sed -e 's?/*src/scripts/*??')
-SC_DIR="static-catalog"
-[[ $ROOT =~ static-catalog ]] || SC_DIR="."
+SC_DIR="."
+DOCS_DIR="../docs"
 
 . $SC_DIR/src/scripts/common.sh
-
-[[ -d "$SC_DIR" ]] || error "Run this script in the repo root directory."
 
 ymd=$(date +"%Y-%m-%d")
 def_js_source_root="$SC_DIR/data/json/processed"
 def_js_source="$def_js_source_root/$ymd"
 def_md_source_root="$SC_DIR/markdown/processed"
 def_md_source="$def_md_source_root/$ymd"
-def_js_target="$SC_DIR/../docs/files/data/catalog"
-def_md_target="$SC_DIR/../docs"
+def_js_target="$DOCS_DIR/files/data/catalog"
+def_md_target="$DOCS_DIR"
 
 help() {
   cat <<EOF
@@ -90,6 +86,17 @@ info "  JS source:       $js_source"
 info "  JS target:       $js_target"
 info "  Markdown source: $md_source"
 info "  Markdown target: $md_target"
+
+dont_exist() {
+  cat <<EOF | stream_error
+$1 files don't exist ($2). 
+Make sure you run the other tools that create these files first
+and run this script in the static-catalog directory.
+EOF
+}
+
+[[ -d "$md_source" ]] || dont_exist "Markdown" "$md_source"
+[[ -d "$js_source" ]] || dont_exist "JavaScript" "$js_source"
 
 $NOOP rm -rf $js_target
 $NOOP mkdir $js_target
