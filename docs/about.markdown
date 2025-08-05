@@ -6,7 +6,7 @@ has_children: false
 ---
 
 | **Authors**      | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
-| **Last Update**  | V0.3.5, 2025-07-24 |
+| **Last Update** | {{site.last_version}}, {{site.last_modified_timestamp}} |
 
 > See this short [presentation]({{site.baseurl}}/files/OTDI-Overview.pdf) (PDF) for more information about the Open Trusted Data Initiative.
 
@@ -102,14 +102,10 @@ The repo's [GITHUB_PAGES](https://github.com/The-AI-Alliance/open-trusted-data-i
 
 | Version  | Date       |
 | :------- | :--------- |
-| V0.3.3   | 2025-06-11 |
-| V0.3.2   | 2025-06-03 |
-| V0.3.1   | 2025-05-21 |
+| V0.3.5   | 2025-07-24 |
 | V0.3.0   | 2025-05-06 |
 | V0.2.0   | 2024-12-04 |
 | V0.1.0   | 2024-11-13 |
 | V0.0.4   | 2024-11-04 |
-| V0.0.3   | 2024-09-06 |
-| V0.0.2   | 2024-09-06 |
 | V0.0.1   | 2024-09-01 |
 -->
