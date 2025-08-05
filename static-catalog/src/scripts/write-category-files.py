@@ -266,17 +266,18 @@ subcategories: {'|'.join([s['keyword'] for s in subcategories])}
 
 """
         print(md_content_start, file=md_out)
-        print("### Subcategories\n", file=md_out)
-        print(' '.join(subcats_links_btns), file=md_out)
-        print('\n')
+        if len(subcats_links_btns) > 0:
+            print("### Subcategories\n", file=md_out)
+            print(' '.join(subcats_links_btns), file=md_out)
+            print('\n')
 
         if topics and len(topics) > 0:
             prefix = parent_keyword
-        if grand_parent_keyword and len(grand_parent_keyword) > 0:
-            prefix = f'{grand_parent_keyword}/{parent_keyword}'
-        topics_links_btns = [make_md_link(t, f'{prefix}/{cleaned_keyword}', css_class="topic-btn", use_hash=True) for t in topics]
-        print("### Keywords", file=md_out)
-        print(' '.join(topics_links_btns), file=md_out)
+            if grand_parent_keyword and len(grand_parent_keyword) > 0:
+                prefix = f'{grand_parent_keyword}/{parent_keyword}'
+            topics_links_btns = [make_md_link(t, f'{prefix}/{cleaned_keyword}', css_class="topic-btn", use_hash=True) for t in topics]
+            print("### Keywords", file=md_out)
+            print(' '.join(topics_links_btns), file=md_out)
 
 def write_topic_markdown(
         directory: str, 
