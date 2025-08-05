@@ -102,7 +102,7 @@ The repo's [GITHUB_PAGES](https://github.com/The-AI-Alliance/open-trusted-data-i
 
 | Version  | Date       |
 | :------- | :--------- |
-| V0.3.5   | 2025-07-24 |
+| V0.3.6   | 2025-08-05 |
 | V0.3.0   | 2025-05-06 |
 | V0.2.0   | 2024-12-04 |
 | V0.1.0   | 2024-11-13 |
