@@ -43,7 +43,13 @@ language_tags: English
 ## Help Us Build the Future of Trustworthy Data for AI
 
 {: .hightlight}
-The mission of **Open Trusted Data Initiative** (OTDI) is to create a comprehensive, widely-sourced **catalog of datasets** with **clear licenses for use**, **explicit provenance guarantees**, and **governed lifecycles**. These datasets are suitable for AI model training, tuning, and application patterns like RAG (retrieval augmented generation) and agents.
+The mission of **Open Trusted Data Initiative** (OTDI) is to create a comprehensive, widely-sourced **catalog of datasets** with these qualities:
+
+* **Clear licenses for use**
+* **Explicit provenance guarantees**
+* **Governed life cycles**
+
+These datasets are needed for AI model training and tuning, as well as domain-specific applications using agents, RAG (retrieval augmented generation) and other &ldquo;patterns&rdquo;.
 
 ## What Does _Trusted Data_ Mean?
 
@@ -81,5 +87,6 @@ Currently, the [Dataset Catalog]({{site.baseurl}}/catalog/catalog) is a static r
 > See this short [presentation]({{site.baseurl}}/files/OTDI-Overview.pdf) (PDF) for more information about the Open Trusted Data Initiative.
 
 * What [trustworthiness]({{site.baseurl}}/trustworthiness) means to us.
+* Our [current catalog]({{site.baseurl}}/catalog/catalog).
 * [About Us]({{site.baseurl}}/about): More about the AI Alliance, this initiative, how to get involved, and how to contact us.
 * [References]({{site.baseurl}}/references): Other viewpoints on open, trusted data.
