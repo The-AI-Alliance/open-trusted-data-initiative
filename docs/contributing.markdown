@@ -7,8 +7,8 @@ has_children: false
 
 # Contribute Your Dataset! 
 
-> **NOTE:**
-> Be sure to read the [Dataset Specification]({{site.baseurl}}/dataset-requirements) details before proceeding. If you have questions or concerns about the specification, please [contact us]({{site.baseurl}}/about/#contact-us).
+{: .note}
+> **NOTE:** Be sure to read the [Dataset Specification]({{site.baseurl}}/dataset-requirements) details before proceeding. If you have questions or concerns about the specification, please [contact us]({{site.baseurl}}/about/#contact-us).
 
 _Contribution_ means adding your dataset to our catalog. You continue to own and host the dataset where you see fit.
 

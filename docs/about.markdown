@@ -8,6 +8,7 @@ has_children: false
 | **Authors**      | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
 | **Last Update** | {{site.last_version}}, {{site.last_modified_timestamp}} |
 
+{: .highlight}
 > See this short [presentation]({{site.baseurl}}/files/OTDI-Overview.pdf) (PDF) for more information about the Open Trusted Data Initiative.
 
 # News

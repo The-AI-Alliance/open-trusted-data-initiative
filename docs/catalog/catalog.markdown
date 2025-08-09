@@ -18,6 +18,7 @@ has_children: true
 </details>
 {% endcomment %}
 
+{: .highlight}
 > **About This Catalog**
 >
 > The tables in this catalog list the metadata for Hugging Face-hosted datasets that were gathered as follows:

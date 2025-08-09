@@ -7,6 +7,7 @@ has_children: false
 
 # Dataset Specification
 
+{: .note}
 > **Note:** The specification documented here is the &ldquo;V0.1.5&rdquo; version of the criteria we believe are required for datasets cataloged by OTDI. We need and welcome your feedback! Either [contact us]({{site.baseurl}}/about/#contact-us) or consider using [pull requests](https://github.com/The-AI-Alliance/open-trusted-data-initiative/pulls){:target="prs"} with your suggestions. See the AI Alliance community page on [contributing](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md){:target="contrib"} for more details.
 >
 > Also [contact us]({{site.baseurl}}/about/#contact-us) if you are interested in contributing a dataset, but you have any questions or concerns about meeting the following specification.
@@ -47,6 +48,7 @@ First, to promote fully-traceable provenance and governance, for all data within
 
 This provision is necessary because many datasets contain data that was obtained by crawling the web, which frequently has mixed provenance and licenses for use.
 
+{: .note}
 > **NOTE:** One of the data processing pipelines we are building will carefully filter datasets for such crawled data to ensure our requirements are met for ownership, provenance, license for use, and quality. Until these tools are ready, we are limiting acceptance of crawled datasets.
 
 ### Dataset Hosting
@@ -57,12 +59,14 @@ Almost all datasets we catalog will remain hosted by the owners, but the AI Alli
 
 All useful datasets include _metadata_ about their provenance, license(s), target uses, known limitations and risks, etc. To provide a uniform, standardized way of expressing this metadata, we require every dataset to have a _dataset card_ (or _data card_) that follows the [Hugging Face Dataset Card](https://huggingface.co/docs/hub/datasets-cards){:target="hf-card"} format, where the `README.md` file functions as the dataset card, with our refinements discussed below. This choice reflects the fact that most AI-centric datasets are already likely to be available on the [Hugging Face Hub](https://huggingface.co/){:target="hf"}. 
 
+{: .tip}
 > **TIP:** For a general introduction to Hugging Face datasets, see [here](https://huggingface.co/docs/datasets){:target="hf-datasets"}.
 
 #### Quick Steps to Create a Dataset Card
 
 If you need to create a dataset card:
 
+{: .highlight}
 > 1. Download our version of the Hugging Face dataset card template, <a href="{{site.baseurl}}/files/datasetcard_otdi_template.md.template" download="datasetcard_otdi_template.md"><code>datasetcard_otdi_template.md</code></a>. (If you already have a card in Hugging Face, i.e., the `README.md`, compare our template to your card and add the new fields.)
 > 2. Edit the Markdown in the template file to provide the details, as described below.
 > 3. [Create the card](https://huggingface.co/docs/datasets/dataset_card){:target="hf-card-create"} in the Hugging Face UI (or edit your existing card.)
@@ -78,6 +82,7 @@ The [`templates/README_guide.md`](https://github.com/huggingface/datasets/blob/m
 
 ### YAML Metadata Block
 
+{: .tip}
 > **TIP:** The following tables are long, but starting with the [`datasetcard_template.md`](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md){:target="hf-dataset-card-template"} and the [dataset card process](https://huggingface.co/docs/datasets/dataset_card){:target="hf-card-create"} will handle most of the details. Then you can add the additional fields requested in [Table 2](#table-2), those marked with "OTDI".
 
 Table 1 lists all the fields in the dataset card YAML block. The **Required?** column uses &#9745; to indicate the field is required by us, &#9746; for fields that we don't allow, because they are incompatible with this project, and a blank entry indicates a field is optional.
@@ -176,6 +181,7 @@ The [dataset card template]({{site.baseurl}}/dataset-requirements/dataset-card-t
 
 We endeavor to be flexible on dataset file formats and how they are organized. For text, we recommend formats like CSV, JSON, Parquet, ORC, AVRO. Supporting PDFs, where extraction will be necessary, can be difficult, but not impossible.
 
+{: .note}
 > **NOTE:** Using Parquet has the benefit that [MLCommons Croissant](https://github.com/mlcommons/croissant){:target="mlc-croissant"} can be used to automatically extract some metadata. See [this Hugging Face page](https://huggingface.co/docs/dataset-viewer/en/croissant){:target="hf-croissant"} and the [`mlcroissant` library](https://huggingface.co/docs/dataset-viewer/en/mlcroissant){:target="mlc-lib"}, which supports loading a dataset using the Croissant metadata. 
 
 ### Diverse Datasets

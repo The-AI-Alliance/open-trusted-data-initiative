@@ -9,6 +9,7 @@ has_children: false
 
 Here is an evolving list of writings from other sources about the importance of open, trusted data, implications, technologies used, etc. Of course, the opinions expressed do not necessarily reflect the views of the AI Alliance. However, many of these sources influence our work.
 
+{: .highlight}
 > **Help Wanted:** If you have other references you like, please let us know through email, [data@thealliance.ai](mailto:data@thealliance.ai), or [edit this page](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/main/docs/references.markdown){:target='repo'}!
 
 This section is organized by topic.
@@ -38,12 +39,14 @@ Another large open dataset, _Common Pile_ ([HF announcement](https://huggingface
 
 They used 1 trillion and 2 trillion token subsets of Common Pile as [training datasets](https://huggingface.co/datasets/common-pile/comma_v0.1_training_dataset){:target="_blank"} for two models, [Comma-v0.1-1t](https://huggingface.co/common-pile/comma-v0.1-1t){:target="_blank"} and [Comma-v0.1-2t](https://huggingface.co/common-pile/comma-v0.1-2t){:target="_blank"}, respectively. Both are 7B parameter models.
 
+{: .note}
 > **NOTE:** Because this dataset is published in Hugging Face, it will appear in our "snapshot" static catalog soon.
 
 ## Avoiding &ldquo;AI Slop&rdquo;
 
 The blog [Low-background Steel (Pre AI)](https://lowbackgroundsteel.ai){:target="_blank"} catalogs datasets known to predate the announcement of ChatGPT, after which AI-generated content became more and more prevalent in datasets. This site wants to ensure that _pure_, human-generated datasets exist for research and development. From the site:
 
+{: .highlight}
 > Sources of data that haven’t been contaminated by AI-created content. Low-background Steel (and lead) is a type of metal uncontaminated by radioactive isotopes from nuclear testing. That steel and lead is usually recovered from ships that sunk before the Trinity Test in 1945. This blog is about uncontaminated content that I'm terming "Low-background Steel". The idea is to point to sources of text, images and video that were created prior to the explosion of AI-generated content that occurred in 2022.
 
 ## General Data Concerns
@@ -67,6 +70,7 @@ The [The European AI Office](https://digital-strategy.ec.europa.eu/en/policies/a
 
 [Open Future](https://openfuture.eu/){:target="open-future"}, in collaboration with the [Mozilla Foundation](https://foundation.mozilla.org/en/?gad_source=1){:target="mozilla"}, has authored a [white paper](https://openfuture.eu/publication/towards-robust-training-data-transparency/){:target="open-future-paper"} called _Suffiently Detailed? A proposal for implementing the AI Act’s training data transparency specification for GPAI_ (general-purpose AI). This paper discusses new specification for model developers to produce a _sufficiently detailed summary_ of the content used for model training. [The announcement](https://openfuture.eu/publication/towards-robust-training-data-transparency/){:target="open-future-paper"} says the following:
 
+{: .highlight}
 > The purpose of the paper we are sharing today is twofold. It clarifies the categories of rights and legitimate interests that justify access to information about training data. In addition to copyright, these include, among others, privacy and personal data protection, scientific freedom, the prohibition of discrimination, and respect for cultural and linguistic diversity. Moreover, it provides a blueprint for the forthcoming template for the &ldquo;sufficiently detailed summary,&rdquo; which is intended to serve these interests while respecting the rights of all parties concerned.
 
 ## FAIR Principles
@@ -75,6 +79,7 @@ The [The European AI Office](https://digital-strategy.ec.europa.eu/en/policies/a
 
 Quoting from the website:
 
+{: .highlight}
 > In 2016, the [FAIR Guiding Principles for scientific data management and stewardship](https://www.nature.com/articles/sdata201618){:target="fair2"} were published in _Scientific Data_. The authors intended to provide guidelines to improve the Findability, Accessibility, Interoperability, and Reuse of digital assets. The principles emphasize machine-actionability (i.e., the capacity of computational systems to find, access, interoperate, and reuse data with none or minimal human intervention) because humans increasingly rely on computational support to deal with data as a result of the increase in volume, complexity, and creation speed of data.
 
 Both data and metadata must be ***findable*** to be usable, such as storage in known locations. Machine readability is essential for practical use.
@@ -104,6 +109,7 @@ Finally, they define three **types of entities**: "data (or any digital object),
 
 There mission is to uncover the datasets used to train large language models. From their website:
 
+{: .highlight}
 > The Data Provenance Initiative is a volunteer collective of AI researchers from around the world. We conduct large-scale audits of the massive datasets that power state-of-the-art AI models. We have audited over 4,000 popular text, speech, and video datasets, tracing them from origin to creation, cataloging data sources, licenses, creators, and other metadata, which researchers can examine using our Explorer tool. We recently analyzed 14,000 web domains, to understand the evolving provenance and consent signals behind AI data. The purpose of this work is to map the landscape of AI data, improving transparency, documentation, and informed use of data.
 
 ### Data and Trust Alliance - Data Provenance Standards
@@ -112,6 +118,7 @@ The [Data and Trust Alliance](https://dataandtrustalliance.org/){:target="dta"} 
 
 Here is their statement about the purpose of this standard, quoted from the project web page:
 
+{: .highlight}
 > For AI to create value for business and society, the data that trains and feeds models must be trustworthy.
 >
 > Trust in data starts with transparency into provenance; assessing where data comes from, how it’s created, and whether it can be used, legally. Yet the ecosystem needs a common language to provide that transparency.
@@ -145,6 +152,7 @@ Software BoMs have the same goals, to very clearly state what components a softw
 
 [This Linux Foundation report](https://www.linuxfoundation.org/research/ai-bom){:target="ai-bom"} discusses the concept in the content of AI. A quote from the website:
 
+{: .highlight}
 > A Software Bill of Materials (SBOM) is becoming an increasingly important tool in regulatory and technical spaces to introduce more transparency and security into a project's software supply chain.
 >
 > Artificial intelligence (AI) projects face unique challenges beyond the security of their software, and thus require a more expansive approach to a bill of materials. In this report, we introduce the concept of an AI-BOM, expanding on the SBOM to include the documentation of algorithms, data collection methods, frameworks and libraries, licensing information, and standard compliance.
