@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest  
     permissions:  
       contents: read  # Read repo content (needed for repo object)  
-  
+    if: github.repository == 'The-AI-Alliance/opem-trusted-data-initiative'
     steps:  
       - name: Checkout code  
         uses: actions/checkout@v4  
