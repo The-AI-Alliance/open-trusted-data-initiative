@@ -46,8 +46,12 @@ print(f"ATHENA_DATABASE_NAME: {os.environ["ATHENA_DATABASE_NAME"]}")
 
 # Documentation:
 # https://huggingface.co/docs/huggingface_hub/v0.27.1/en/package_reference/hf_api#huggingface_hub.DatasetInfo
-hf_input_datasets = list(api.list_datasets())
-print(f"\tSuccessfully got datasets. Total number: {len(hf_input_datasets)}")
+hf_input_datasets = []
+try:
+    hf_input_datasets = list(api.list_datasets())
+    print(f"\tSuccessfully got datasets. Total number: {len(hf_input_datasets)}")
+except Exception as e:
+    print(f"Error getting datasets from HuggingFace: {e}")
 
 for dataset in hf_input_datasets:
     this_data_set = {}
