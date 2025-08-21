@@ -1,11 +1,29 @@
 ---
 layout: default
-title: Contribute Your Dataset!
+title: How to Contribute
 nav_order: 50
 has_children: false
 ---
 
-# Contribute Your Dataset! 
+# How to Contribute
+
+There are many ways you can contribute to the _Open Trusted Data Initiative_.
+
+## Report Errors in Our Catalog
+
+See a mistake in our [catalog]({{site.baseurl}}/catalog)? Send us [email](mailto:data@thealliance.ai?subject=Errors&#32;in&#32;the&#32;OTDI&#32;catalog), post an [issue](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="gh-issues"}, or start a [discussion](https://github.com/The-AI-Alliance/open-trusted-data-initiative/discussions){:target="gh-discussions"}.
+
+## Help Us Implement Our Data Processing Pipelines
+
+We are working on data processing pipelines, e.g., for evaluating how well datasets match their metadata, claims about licenses, etc., which we discuss on the [How We Process Datasets]({{site.baseurl}}/our-processing/) page.
+
+Want to learn more? Send us [email](mailto:data@thealliance.ai?subject=Data&#32;processing&#32;pipelines&#32;in&#32;OTDI), check out our [planned work](https://github.com/orgs/The-AI-Alliance/projects/28/views/1?filterQuery=label%3A%22data+pipelines%22){:target="gh-issues"}, or start a [discussion](https://github.com/The-AI-Alliance/open-trusted-data-initiative/discussions){:target="gh-discussions"}.
+
+## Let Us Know of a Dataset We Should Catalog
+
+Do you know of _someone else's_ open dataset we should catalog, Send us [email](mailto:data@thealliance.ai?subject=A&#32;dataset&#32;you&#32;should&#32;add&#32;to&#32;the&#32;OTDI&#32;catalog), post an [issue](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="gh-issues"}, or start a [discussion](https://github.com/The-AI-Alliance/open-trusted-data-initiative/discussions){:target="gh-discussions"}.
+
+Do you have an open dataset _of your own_ that we should catalog, let's discuss!
 
 {: .note}
 > **NOTE:** Be sure to read the [Dataset Specification]({{site.baseurl}}/dataset-requirements) details before proceeding. If you have questions or concerns about the specification, please [contact us]({{site.baseurl}}/about/#contact-us).
@@ -75,11 +93,14 @@ The Open Trusted Data Initiative is focused on obtaining datasets from submitter
 
 We prefer the [Community Data License Agreement - Permissive, Version 2.0](https://cdla.dev/permissive-2-0/){:target="cdla"} although [The Creative Commons License, Version 4.0 - CC BY 4.0](https://chooser-beta.creativecommons.org/){:target="cc-by-4"} is also sometimes used.
 
-By contributing the dataset to the Initiative, you grant anyone a license to the dataset and its data under the [Developer Certificate of Origin, Version 1.1](https://developercertificate.org/){:target="dco"} (see also our [community contributors page](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md){:target="community"}).  This does not affect your ownership, copyrights and other interests, and rights to and title to the dataset and its data.
+By contributing the dataset to the Initiative, you grant anyone a license to the dataset and its data under the [Developer Certificate of Origin, Version 1.1](https://developercertificate.org/){:target="dco"} (see also our [community repo's contributing page](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md){:target="community"}).  This does not affect your ownership, copyrights and other interests, and rights to and title to the dataset and its data.
 
 ## Contribute Your Dataset
 
-Use this form to tell us about your dataset. It will open your email client with the data added and formatted. After we receive your email, we will follow up with next steps.
+{: .note}
+> **Note:** If your dataset is hosted by Hugging Face and you meet our requirements above, we will pick it up automatically for the catalog. You can skip the following form. However, if you host your dataset elsewhere, you will need to tell us about it.
+
+Use this form to tell us about your dataset and where it is hosted. It will open your email client with the data added and formatted. After we receive your email, we will follow up with next steps.
 
 <div class="callout-box centered">
   <strong>For questions, send us email at <a href="mailto:data@thealliance.ai?subject=I%20have%20questions%20about%20contributing%20an%20OTDI%20dataset">data@thealliance.ai</a>.</strong>
@@ -101,7 +122,7 @@ Use this form to tell us about your dataset. It will open your email client with
                   <label for="dataset-location">Dataset&nbsp;location:</label>
                 </th>
                 <td class="form-dataset-table-value">
-                  <input type="url" id="dataset-url" name="dataset-url" class="form-dataset-table-input" placeholder="https://huggingface.co" pattern="https://.*" required />
+                  <input type="url" id="dataset-url" name="dataset-url" class="form-dataset-table-input" placeholder="https://some-special-place.com" pattern="https://.*" required />
                 </td>
             </tr>
             <tr>
@@ -109,7 +130,7 @@ Use this form to tell us about your dataset. It will open your email client with
                   <label for="dataset">Dataset&nbsp;card:</label>
                 </th>
                 <td class="form-dataset-table-value">
-                  <input type="url" id="dataset-card" name="dataset-url" class="form-dataset-table-input" placeholder="https://huggingface.co" pattern="https://.*" /> Leave blank if the location README <em>is</em> the dataset card.
+                  <input type="url" id="dataset-card" name="dataset-url" class="form-dataset-table-input" placeholder="https://some-special-place.com" pattern="https://.*" /> Leave blank if the location README <em>is</em> the dataset card.
                 </td>
             </tr>
             <!--
@@ -226,3 +247,17 @@ agree-to-terms: ${document.getElementById('agree-to-terms').value}
             }
         });
 </script>
+
+## Yet More Ways to Contribute...
+
+### Join the Initiative
+
+See also [Join the Open Trusted Data Initiative!]({{site.baseurl}}/about/#join-the-open-trusted-data-initiative) on the [About Us]({{site.baseurl}}/about/) page.
+
+### Contribute to This Website
+
+We welcome your contributions to this website itself. The sources are in the [`docs` directory](https://github.com/The-AI-Alliance/open-trusted-data-initiative/tree/main/docs){:target="otdi-repo-docs"} of [this GitHub repo](https://github.com/The-AI-Alliance/open-trusted-data-initiative){:target="otdi-repo"}. Please [post issues](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="otdi-repo"} or contribute changes as [pull requests](https://github.com/The-AI-Alliance/open-trusted-data-initiative/pulls){:target="otdi-repo"}. Also, notice that every page has _Edit this page on GitHub_ links, making it easy to go straight to the source of a page to make edits and submit a PR! This is the best way to help us fix typos and make single-page edits.
+
+The repo's [GITHUB_PAGES](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/main/GITHUB_PAGES.md){:target="otdi-repo"} file explains more details for testing the documentation website locally and for creating more extensive changes as PRs.
+
+

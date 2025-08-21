@@ -224,5 +224,5 @@ At this time, we use the following concepts for original and derived datasets, c
 
 See [How We Process Datasets]({{site.baseurl}}/our-processing) for more details on these levels and how we process datasets.
 
-After you have prepared or updated the dataset card as required, it's time to [contribute your dataset]({{site.baseurl}}/contributing)!
+After you have prepared or updated the dataset card as required, we will automatically pick up the changes from Hugging Face. If you are not hosting your dataset there, then [contribute your dataset]({{site.baseurl}}/contributing).
 

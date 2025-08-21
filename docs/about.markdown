@@ -8,9 +8,6 @@ has_children: false
 | **Authors**      | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
 | **Last Update** | {{site.last_version}}, {{site.last_modified_timestamp}} |
 
-{: .highlight}
-> See this short [presentation]({{site.baseurl}}/files/OTDI-Overview.pdf) (PDF) for more information about the Open Trusted Data Initiative.
-
 # News
 
 | :--- | :--- |
@@ -24,22 +21,12 @@ has_children: false
 | November&nbsp;4,&nbsp;2024 | [PleIAs]({{site.baseurl}}/catalog/catalog/#pleias) joins the AI Alliance and the Open Trusted Data Initiative: [LinkedIn announcement](https://www.linkedin.com/posts/pleias_pleias-joins-the-ai-alliance-to-co-lead-open-ugcPost-7259263514542796800-Uphx/){:target="pleias-li"}.  |
 | October&nbsp;15,&nbsp;2024 | [Common Crawl Foundation]({{site.baseurl}}/catalog/catalog/#common-crawl-foundation) joins the AI Alliance and the Open Trusted Data Initiative. |
 
-
-<a name="join-us"></a>
-# Join the Open Trusted Data Initiative!
-
-Want to contribute datasets to our catalog, [go here!]({{site.baseurl}}/contributing)
-
-Want to join one this initiative's projects? You can see our backlog [here](https://github.com/orgs/The-AI-Alliance/projects/28){:target="_blank"}. To join us, either Send email to [data@thealliance.ai](mailto:data@thealliance.ai?subject=I want to join the Open Trusted Data Initiative) or visit the [work group webpage](https://thealliance.ai/core-projects/open-trusted-data-initiative#foundation-models-working-group-form){:target="join-us"} and fill in the form. This [CONTRIBUTING](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/main/CONTRIBUTING.md){:target="_blank"} page has some specific information for developer contributions.
-
-Thank you for your interest!
-
 <a name="contact-us"></a>
 # How to Contact Us
 
 Send email to [data@thealliance.ai](mailto:data@thealliance.ai?subject=Questions about the Open Trusted Data Initiative).
 
-If you notice issues with this website or any of our other assets, considering [posting issues](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="otdi-issues"} in the project [GitHub repo](https://github.com/The-AI-Alliance/open-trusted-data-initiative){:target="otdi-repo"}.
+If you notice issues with this website or any of our other assets, considering [posting an issue](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="otdi-issues"} or [starting a discussion](https://github.com/The-AI-Alliance/open-trusted-data-initiative/discussions){:target="otdi-discussions"}
 
 # About the Open Trusted Data Initiative
 
@@ -75,7 +62,7 @@ These Alliance member organizations are contributing to OTDI in various ways. In
 * [Pleias](https://pleias.fr/){:target="pleias"}
 * [ServiceNow](https://www.servicenow.com/){:target="servicenow"}
 
-Please [join us](#join-us)! We welcome organizations and individuals as collaborators.
+We welcome new organizations and individuals as contributors.
 
 # About The AI Alliance
 
@@ -88,15 +75,9 @@ The AI Alliance's [core projects](https://thealliance.ai/core-projects){:target=
 * [More About the AI Alliance](https://thealliance.ai/about-aia){:target="ai-alliance"}
 * Follow us on [LinkedIn](https://www.linkedin.com/company/the-aialliance/){:target="linkedin"} and [Bluesky](https://bsky.app/profile/aialliance.bsky.social){:target="bluesky"}
 
-# About This Documentation
+# About This Website
 
-This documentation about OTDI is built with [GitHub Pages](https://pages.github.com/){:target="github-pages"}, which uses [Jekyll](https://github.com/jekyll/jekyll){:target="gh-jekyll"} to serve the website. We use the [Just the Docs](https://just-the-docs.github.io/just-the-docs/){:target="just-the-docs"} Jekyll theme.
-
-## How to Contribute to This Documentation
-
-We welcome your contributions to this documentation itself. The sources are in the [`docs` directory](https://github.com/The-AI-Alliance/open-trusted-data-initiative/tree/main/docs){:target="otdi-repo-docs"} of [this GitHub repo](https://github.com/The-AI-Alliance/open-trusted-data-initiative){:target="otdi-repo"}. Please [post issues](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="otdi-repo"} or contribute changes as [pull requests](https://github.com/The-AI-Alliance/open-trusted-data-initiative/pulls){:target="otdi-repo"}. Also, notice that every page has _Edit this page on GitHub_ links, making it easy to go straight to the source of a page to make edits and submit a PR! This is the best way to help us fix typos and make single-page edits.
-
-The repo's [GITHUB_PAGES](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/main/GITHUB_PAGES.md){:target="otdi-repo"} file explains more details for testing the documentation website locally and for creating more extensive changes as PRs.
+This website for OTDI is built with [GitHub Pages](https://pages.github.com/){:target="github-pages"}, which uses [Jekyll](https://github.com/jekyll/jekyll){:target="gh-jekyll"} to serve the website. We use the [Just the Docs](https://just-the-docs.github.io/just-the-docs/){:target="just-the-docs"} Jekyll theme.
 
 <!--
 ### Version History for This Site
