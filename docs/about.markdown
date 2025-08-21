@@ -84,7 +84,7 @@ This website for OTDI is built with [GitHub Pages](https://pages.github.com/){:t
 
 | Version  | Date       |
 | :------- | :--------- |
-| V0.3.6   | 2025-08-05 |
+| V0.3.7   | 2025-08-21 |
 | V0.3.0   | 2025-05-06 |
 | V0.2.0   | 2024-12-04 |
 | V0.1.0   | 2024-11-13 |
