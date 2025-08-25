@@ -162,7 +162,7 @@ async def main():
                     {os.environ["ATHENA_DATABASE_NAME"]}.datacards 
                     where date >= CAST('{today}' AS DATE) - interval '1' day) and  date >= CAST('{today}' AS DATE)- interval '1' day {limit}
             """
-    
+
     boto3.setup_default_session(
         region_name=os.environ["AWS_REGION"]
     )  # TODO: This limit and region will be passed in from aws cdk when we get there
@@ -176,6 +176,7 @@ async def main():
         print(f"ATHENA_DATABASE_NAME: {os.environ["ATHENA_DATABASE_NAME"]}")
         print(f"NUMBER_OF_PARTITIONS: {number_of_partitions}")
         print(f"Limit: {limit}")
+        print(f"Query: {query}")
         input_df = wr.athena.read_sql_query(sql=query, database="default")
         print(f"Input dimensions: {input_df.shape}")
 
