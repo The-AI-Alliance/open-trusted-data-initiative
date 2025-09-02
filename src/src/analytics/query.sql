@@ -96,3 +96,12 @@ select * from huggingface.datasets_detail where date in
 select date, count(*) as total from huggingface.v_datasets_detail group by date
 /* Get the data */
 select * from huggingface.v_datasets_detail limit 100
+
+/* view returns all the datasets, along with their last modified date */
+create or replace view v_datasets_last_modified as
+	select dataset, max(last_modified) as last_modified from	
+			(select distinct dataset, last_modified from huggingface.datasets where date=current_date
+			union all
+			select distinct dataset, last_modified from huggingface.datasets where date=cast('2025-06-01' as date)
+			)
+	group by dataset

@@ -43,12 +43,22 @@ print(f"ANALYTICS_BUCKET: {os.environ["ANALYTICS_BUCKET"]}")
 print(f"ANALYTICS_OUTPUT_BUCKET: {os.environ["ANALYTICS_OUTPUT_BUCKET"]}")
 print(f"AWS_REGION: {os.environ["AWS_REGION"]}")
 print(f"ATHENA_DATABASE_NAME: {os.environ["ATHENA_DATABASE_NAME"]}")
+print(f"NUMBER_OF_DATASETS_TO_REQUEST: {os.environ["NUMBER_OF_DATASETS_TO_REQUEST"]}")
 
 # Documentation:
 # https://huggingface.co/docs/huggingface_hub/v0.27.1/en/package_reference/hf_api#huggingface_hub.DatasetInfo
 hf_input_datasets = []
+
 try:
-    hf_input_datasets = list(api.list_datasets())
+    # Making the below HF API call will return HTTP 429 if not limited...
+    hf_input_datasets = list(
+        api.list_datasets(
+            sort="lastModified",
+            direction=-1,
+            limit=int(os.environ["NUMBER_OF_DATASETS_TO_REQUEST"]),
+        )
+    )
+
     print(f"\tSuccessfully got datasets. Total number: {len(hf_input_datasets)}")
 except Exception as e:
     print(f"Error getting datasets from HuggingFace: {e}")
@@ -90,18 +100,23 @@ for dataset in hf_input_datasets:
 print(
     f"\tSuccessfully processed {len(hf_input_datasets)} datasets. Writing to {target_s3_bucket}."
 )
-output_df = pd.DataFrame.from_dict(output_datasets)
-output_files = wr.s3.to_parquet(
-    df=output_df,
-    path=target_s3_bucket,
-    dataset=True,
-    partition_cols=["date"],
-    mode="append",
-)
-print(
-    f"\tSuccessfully wrote dataframe of dimensions {output_df.shape} to {output_files}."
-)
+if len(hf_input_datasets) > 0:
+    output_df = pd.DataFrame.from_dict(output_datasets)
 
-print("Start repairing table")
-repair_table()
-print("End repairing table")
+    output_files = wr.s3.to_parquet(
+        df=output_df,
+        path=target_s3_bucket,
+        dataset=True,
+        partition_cols=["date"],
+        mode="append",
+    )
+
+    print(
+        f"\tSuccessfully wrote dataframe of dimensions {output_df.shape} to {output_files}."
+    )
+
+    print("Start repairing table")
+    repair_table()
+    print("End repairing table")
+else:
+    print("No datasets to process. Exiting.")
