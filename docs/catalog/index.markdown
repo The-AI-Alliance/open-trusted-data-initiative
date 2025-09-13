@@ -18,7 +18,7 @@ has_children: true
 </details>
 {% endcomment %}
 
-{: .highlight}
+{: .attention}
 > **About This Catalog**
 >
 > We learned a **lot** about the quality of datasets by examining the metadata for the datasets hosted by Hugging Face. The tables in this catalog list the metadata for a small subset of these datasets, _small_ because of how we had to filter them. Here are the details of that process:

@@ -48,7 +48,7 @@ See the Meditron GitHub repo [README](https://github.com/epfLLM/meditron?tab=rea
 
 Social Stigma Q&A is a dataset from IBM Research. From the [arXiv paper abract](http://arxiv.org/abs/2312.07492){:target="social-stigma"}:
 
-{: .highlight}
+{: .attention}
 > Current datasets for unwanted social bias auditing are limited to studying protected demographic features such as race and gender. In this work, we introduce a comprehensive benchmark that is meant to capture the amplification of social bias, via stigmas, in generative language models. Taking inspiration from social science research, we start with a documented list of 93 US-centric stigmas and curate a question-answering (QA) dataset which involves simple social situations. Our benchmark, SocialStigmaQA, contains roughly 10K prompts, with a variety of prompt styles, carefully constructed to systematically test for both social bias and model robustness. We present results for SocialStigmaQA with two open source generative language models and we find that the proportion of socially biased output ranges from 45% to 59% across a variety of decoding strategies and prompting styles. We demonstrate that the deliberate design of the templates in our benchmark (e.g., adding biasing text to the prompt or using different verbs that change the answer that indicates bias) impacts the model tendencies to generate socially biased output. Additionally, through manual evaluation, we discover problematic patterns in the generated chain-of-thought output that range from subtle bias to lack of reasoning.
 
 For more information, see [Arxiv:2312.07492](http://arxiv.org/abs/2312.07492){:target="social-stigma"}.
@@ -57,7 +57,7 @@ For more information, see [Arxiv:2312.07492](http://arxiv.org/abs/2312.07492){:t
 
 [Kepler](https://github.com/sustainable-computing-io/kepler){:target="kepler"} ([paper](https://dl.acm.org/doi/10.1145/3604930.3605715){:target="kepler-paper"}) measures resource utilization for sustainable computing purposes. From the repo:
 
-{: .highlight}
+{: .attention}
 > Kepler (Kubernetes-based Efficient Power Level Exporter) uses eBPF to probe performance counters and other system stats, use ML models to estimate workload energy consumption based on these stats, and exports them as Prometheus metrics.
 
 ## Meta

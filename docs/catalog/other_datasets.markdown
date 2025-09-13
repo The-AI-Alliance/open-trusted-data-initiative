@@ -25,7 +25,7 @@ For now, here is a list of notable datasets that don't appear in the catalog pag
 
 The blog [Low-background Steel (Pre AI)](https://lowbackgroundsteel.ai){:target="_blank"} catalogs datasets known to predate the announcement of ChatGPT, after which AI-generated content became more and more prevalent in datasets. This site wants to ensure that _pure_, human-generated datasets exist for research and development. From the site:
 
-{: .highlight}
+{: .attention}
 > Sources of data that haven’t been contaminated by AI-created content. Low-background Steel (and lead) is a type of metal uncontaminated by radioactive isotopes from nuclear testing. That steel and lead is usually recovered from ships that sunk before the Trinity Test in 1945. This blog is about uncontaminated content that I'm terming "Low-background Steel". The idea is to point to sources of text, images and video that were created prior to the explosion of AI-generated content that occurred in 2022.
 
 ## Benchmark and Other Evaluation Datasets
@@ -43,14 +43,14 @@ Many datasets for chemistry are open for use.
 
 [CartBlanche](https://cartblanche.docking.org/){:target="_blank"} is an interface to ZINC-22, a free database of commercially-available compounds for virtual screening. From the website:
 
-{: .highlight}
+{: .attention}
 > ZINC-22 focuses on make-on-demand ("tangible") compounds from a small number of large catalogs: Enamine, WuXi and Mcule. Our sister database, [ZINC20](https://zinc20.docking.org/){:target="_blank"} focuses on smaller catalogs. ZINC-22 currently has about 54.9 billion molecules in 2D and 5.9 billion in 3D.
 
 ### PubChem
 
 [PubChem](https://pubchem.ncbi.nlm.nih.gov/docs/downloads){:target="_blank"} is a free-to-use chemistry database. From the website:
 
-{: .highlight}
+{: .attention}
 > PubChem is a free to use database with most of the data readily available for download. Exceptions may exist in cases where licensing agreements prevent our data contributors from allowing bulk downloads of some data sets.
 >
 > Please consult the NCBI [Policies and Disclaimers](https://www.ncbi.nlm.nih.gov/home/about/policies/){:target="_blank"} webpage and the [NLM Web Policies](https://www.nlm.nih.gov/web_policies.html){:target="_blank"} webpage.

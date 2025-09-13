@@ -66,7 +66,7 @@ All useful datasets include _metadata_ about their provenance, license(s), targe
 
 If you need to create a dataset card:
 
-{: .highlight}
+{: .attention}
 > 1. Download our version of the Hugging Face dataset card template, <a href="{{site.baseurl}}/files/datasetcard_otdi_template.md.template" download="datasetcard_otdi_template.md"><code>datasetcard_otdi_template.md</code></a>. (If you already have a card in Hugging Face, i.e., the `README.md`, compare our template to your card and add the new fields.)
 > 2. Edit the Markdown in the template file to provide the details, as described below.
 > 3. [Create the card](https://huggingface.co/docs/datasets/dataset_card){:target="hf-card-create"} in the Hugging Face UI (or edit your existing card.)

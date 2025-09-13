@@ -8,7 +8,7 @@ language_tags: English
 
 # Open Trusted Data Initiative (OTDI)
 
-{: .highlight}
+{: .attention}
 > **_We are building the world's largest, most diverse [catalog]({{site.baseurl}}/catalog/catalog) of open and transparently sourced datasets for AI. [Join us!]({{site.baseurl}}/contributing)_**
 
 ## [Datasets for Languages]({{site.baseurl}}/catalog/language/language)
@@ -43,7 +43,7 @@ language_tags: English
 
 ## Help Us Build the Future of Trustworthy Data for AI
 
-{: .hightlight}
+{: .attention}
 The mission of **Open Trusted Data Initiative** (OTDI) is to create a comprehensive, widely-sourced **catalog of datasets** with these qualities:
 
 * **Clear licenses for use**
@@ -85,7 +85,7 @@ Currently, the [Dataset Catalog]({{site.baseurl}}/catalog/catalog) is a static r
 
 ## For More Information
 
-{: .highlight}
+{: .attention}
 > See this short [presentation]({{site.baseurl}}/files/OTDI-Overview.pdf) (PDF) for more information about the Open Trusted Data Initiative.
 
 * What [trustworthiness]({{site.baseurl}}/trustworthiness) means to us.
