@@ -1,5 +1,12 @@
 # NextGem Data Catalog
 
+The purpose of the NextGem Data Catalog is to provide a way to search existing data sets and how they score against the AI Alliance's [Open And Trusted Data Initative Data Set Specification](https://the-ai-alliance.github.io/open-trusted-data-initiative/dataset-requirements/).
+
+The catalog can be accessed publicly [here](https://staging.d14w1cxochtzyd.amplifyapp.com/)
+
+The catalog is currently populated with metadata from data sets stored in Hugging Face. The catalog is refreshed once per day.
+
+
 ## About This Project
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
