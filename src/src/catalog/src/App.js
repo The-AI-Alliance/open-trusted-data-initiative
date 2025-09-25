@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Heading, Button, Flex, View, TextField, Text, Image, SliderField } from '@aws-amplify/ui-react';
+import { Heading, Button, Flex, View, TextField, Text, Image, SliderField, SelectField } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import athenaService from './services/athenaService';
 import QueryResultsTable from './components/QueryResultsTable';
@@ -14,19 +14,19 @@ function App() {
   const [license, setLicense] = useState('');
   const [minScore, setMinScore] = useState(0);
 
-  var clause1 = "";
+  var license_clause = "";
   if (license) {
-    clause1 = `contains(d.tags, 'license:${license}') and `
+    license_clause = `d.license like '${license}' and `
   }
   
-  var clause2 = "";
+  var language_clause = "";
   if (language) {
-    clause2 = `contains(d.tags, 'language:${language}') and `
+    language_clause = `contains(d.tags, 'language:${language}') and `
   }
 
-  var clause3 = "";
+  var tag_clause = "";
   if (searchText) {
-    clause3 = `contains(d.tags, '${searchText}') and `
+    tag_clause = `contains(d.tags, '${searchText}') and `
   }
 
 
@@ -56,9 +56,9 @@ function App() {
     where 
       o.date = cast('2025-06-29' as date) and 
       d.date = cast('2025-09-09' as date) and
-      ${clause1}
-      ${clause2}
-      ${clause3}
+      ${license_clause}
+      ${language_clause}
+      ${tag_clause}
       score >= ${minScore} 
     order by o.score desc
     limit 100    
@@ -134,17 +134,28 @@ function App() {
                     List of valid languages. Use column 'Set 1'.
                   </a>
                 </Text>
-                <TextField
+                <SelectField
                   value={license}
                   onChange={(e) => setLicense(e.target.value)}
-                  placeholder="Enter a license..."
+                  placeholder="Select a license..."
                   width="400px"
-                />
-                <Text fontSize="0.6em">
-                  <a href="https://huggingface.co/docs/hub/repositories-licenses" target="_blank" rel="noopener noreferrer">
-                    List of valid licenses. Use column 'license identifier'.
-                  </a>
-                </Text>
+                >
+                  <option value="afl%">Academic Free</option>
+                  <option value="apache%">Apache</option>
+                  <option value="bsd%">BSD</option>
+                  <option value="cc%">Creative Commons | Any version</option>
+                  <option value="cc%4.0">Creative Commons | ver 4.0</option>
+                  <option value="cc%3.0">Creative Commons | ver 3.0</option>
+                  <option value="cc%2.0">Creative Commons | ver 2.0</option>
+                  <option value="cc0-1.0">Creative Commons | ver 1.0</option>
+                  <option value="gpl%">GPL | Any version</option>
+                  <option value="gpl-3.0%">GPL | ver 3.0</option>
+                  <option value="gpl-2.0%">GPL | ver 2.0</option>
+                  <option value="llama%">Llama</option>
+                  <option value="odc%">Open Data Commons</option>
+                  <option value="%openrail%">OpenRAIL</option>
+                  <option value="mit%">MIT</option>
+                </SelectField>
                 <Flex direction="row" gap="1rem">
                   <Button onClick={executeQuery} disabled={loading}>
                     {loading ? 'Executing Query...' : 'Search Catalog'}
