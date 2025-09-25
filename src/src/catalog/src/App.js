@@ -141,7 +141,7 @@ function App() {
                   width="400px"
                 >
                   <option value="afl%">Academic Free</option>
-                  <option value="apache%">Apache</option>
+                  <option value="apache%">Apache 2.0</option>
                   <option value="bsd%">BSD</option>
                   <option value="cc%">Creative Commons | Any version</option>
                   <option value="cc%4.0">Creative Commons | ver 4.0</option>
