@@ -98,7 +98,7 @@ By contributing the dataset to the Initiative, you grant anyone a license to the
 ## Contribute Your Dataset
 
 {: .note}
-> **Note:** If your dataset is hosted by Hugging Face and you meet our requirements above, we will pick it up automatically for the catalog. You can skip the following form. However, if you host your dataset elsewhere, you will need to tell us about it.
+> **Note:** If your dataset is hosted by Hugging Face and you meet our requirements above, we will pick it up automatically for the catalog. You can skip the following form. **However**, we would love to hear from you anyway and if you host your dataset elsewhere, you will need to tell us about it here.
 
 Use this form to tell us about your dataset and where it is hosted. It will open your email client with the data added and formatted. After we receive your email, we will follow up with next steps.
 
@@ -197,7 +197,6 @@ Use this form to tell us about your dataset and where it is hosted. It will open
                   <input type="text" id="dataset-other-domain" name="dataset-other-domain" class="form-dataset-table-input-shorter" placeholder="Your domain suggestion" required />
                 </td>
             </tr>
-            -->
             <tr>
                 <th class="form-dataset-table-label">
                   <label for="email">Email:</label>
@@ -206,6 +205,7 @@ Use this form to tell us about your dataset and where it is hosted. It will open
                   <input type="email" id="email" name="email" class="form-dataset-table-input" placeholder="Your email address" required />   
                 </td>
             </tr>
+            -->
             <tr>
                 <th class="form-dataset-table-label">
                 &nbsp;
@@ -235,10 +235,9 @@ Use this form to tell us about your dataset and where it is hosted. It will open
             const body1 = `body=dataset-name: ${document.getElementById('dataset-name').value}
 dataset-url: ${document.getElementById('dataset-url').value}
 dataset-card: ${document.getElementById('dataset-card').value}
-email: ${document.getElementById('email').value}
 agree-to-terms: ${document.getElementById('agree-to-terms').value}
             `;
-            const body = body1.replace(/ /g, '%20').replace(/:/g, '%3A%20').replace(/\n/g, '%0D%0A');
+            const body = body1.replace(/ /g, '%20').replace(/:/g, '%3A').replace(/\n/g, '%0D%0A');
             const mailto = `mailto:data@thealliance.ai?subject=I%20want%20to%20contribute%20an%20OTDI%20dataset&${body}`
             try {
                 window.open(mailto, '_contribute_email').focus();
