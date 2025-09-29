@@ -33,12 +33,12 @@ function App() {
 
   var org_clause = "";
   if (orgText) {
-    org_clause = `lower(d.author) like '${orgText}%' and `
+    org_clause = `lower(d.author) like lower('${orgText}%') and `
   }
 
   var dataset_clause = "";
   if (datasetText) {
-    dataset_clause = `lower(d.dataset) like '%/${datasetText}%' and `
+    dataset_clause = `lower(d.dataset) like lower('%/${datasetText}%') and `
   }
 
 
