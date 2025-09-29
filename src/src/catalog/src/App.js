@@ -10,6 +10,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searchText, setSearchText] = useState('');
+  const [orgText, setOrgText] = useState('');
   const [language, setLanguage] = useState('');
   const [license, setLicense] = useState('');
   const [minScore, setMinScore] = useState(0);
@@ -29,11 +30,18 @@ function App() {
     tag_clause = `contains(d.tags, '${searchText}') and `
   }
 
+  var org_clause = "";
+  if (orgText) {
+    org_clause = `lower(d.author) like '${orgText}%' and `
+  }
+
 
   const resetForm = () => {
     setSearchText('');
     setLanguage('');
     setLicense('');
+    setLicense('');
+    setOrgText('');
     setMinScore(0);
     setQueryResults(null);
     setError(null);
@@ -52,13 +60,12 @@ function App() {
         o.score as "OTDI Score",
         o.notes as "Scoring Justification"
     from aialliance.otdi o
-    left join huggingface.datasets d  on o.dataset = d.dataset
+    left join huggingface.v_datasets d  on o.dataset = d.dataset
     where 
-      o.date = cast('2025-06-29' as date) and 
-      d.date = cast('2025-09-09' as date) and
       ${license_clause}
       ${language_clause}
       ${tag_clause}
+      ${org_clause}
       score >= ${minScore} 
     order by o.score desc
     limit 100    
@@ -121,6 +128,12 @@ function App() {
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}
                   placeholder="Enter a use case (e.g. legal, finance, chemisty...)"
+                  width="400px"
+                />
+                <TextField
+                  value={orgText}
+                  onChange={(e) => setOrgText(e.target.value)}
+                  placeholder="Enter an organization"
                   width="400px"
                 />
                 <SelectField
