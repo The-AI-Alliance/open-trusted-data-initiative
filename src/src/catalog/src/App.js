@@ -11,6 +11,7 @@ function App() {
   const [error, setError] = useState(null);
   const [searchText, setSearchText] = useState('');
   const [orgText, setOrgText] = useState('');
+  const [datasetText, setDatasetText] = useState('');
   const [language, setLanguage] = useState('');
   const [license, setLicense] = useState('');
   const [minScore, setMinScore] = useState(0);
@@ -35,6 +36,11 @@ function App() {
     org_clause = `lower(d.author) like '${orgText}%' and `
   }
 
+  var dataset_clause = "";
+  if (datasetText) {
+    dataset_clause = `lower(d.dataset) like '%/${datasetText}%' and `
+  }
+
 
   const resetForm = () => {
     setSearchText('');
@@ -42,6 +48,7 @@ function App() {
     setLicense('');
     setLicense('');
     setOrgText('');
+    setDatasetText('');
     setMinScore(0);
     setQueryResults(null);
     setError(null);
@@ -66,6 +73,7 @@ function App() {
       ${language_clause}
       ${tag_clause}
       ${org_clause}
+      ${dataset_clause}
       score >= ${minScore} 
     order by o.score desc
     limit 100    
@@ -134,6 +142,12 @@ function App() {
                   value={orgText}
                   onChange={(e) => setOrgText(e.target.value)}
                   placeholder="Enter an organization"
+                  width="400px"
+                />
+                <TextField
+                  value={datasetText}
+                  onChange={(e) => setDatasetText(e.target.value)}
+                  placeholder="Enter a dataset name"
                   width="400px"
                 />
                 <SelectField
