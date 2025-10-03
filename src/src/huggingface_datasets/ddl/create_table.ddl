@@ -5,15 +5,15 @@
 /* And Athena needs read and list rights to the bucket. */
 
 /* Create database...*/
-create database huggingface;
+create database <database>;
 
 /* Drop data sets table. Note this is schema on read so no */ 
 /* data is deleted, just the schema */
-drop table huggingface.datasets
+drop table <database>.datasets
 
 
 /* Create data sets table */
-CREATE EXTERNAL TABLE IF NOT EXISTS huggingface.datasets(
+CREATE EXTERNAL TABLE IF NOT EXISTS <database>.datasets(
     request_time string,
 	dataset string,
     author string,
@@ -31,7 +31,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS huggingface.datasets(
 partitioned by (`date` date)
 STORED AS PARQUET
 /* Replace <bucket> tag below with appropriate bucket name */
-LOCATION "s3://<bucket>/service=huggingface/datasets=datasets/";
+LOCATION "s3://<bucket>/service=<database>/datasets=datasets/";
 
 /*
  Creates a persistent Iceberg table that will contain the current state
