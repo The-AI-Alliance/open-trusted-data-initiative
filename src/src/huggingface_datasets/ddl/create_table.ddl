@@ -65,3 +65,6 @@ TBLPROPERTIES (
   'write_compression'='snappy',
   'optimize_rewrite_delete_file_threshold'='10'
 )
+
+create or replace view huggingface.v_datasets as
+select * from  <database>.datasets_complete
