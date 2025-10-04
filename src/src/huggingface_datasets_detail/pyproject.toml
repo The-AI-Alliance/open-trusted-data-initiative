@@ -1,10 +1,11 @@
 [tool.poetry]
-name = "huggingface_datasets"
+name = "huggingface_datasets_detail"
 version = "0.0.1"
 description = "Job to collect croissant metadata from data sets stored in HuggingFace Hub"
 authors = ["AI Alliance Data Team <data@ai_alliance.com>"]
 license = "Apache License Version 2.0"
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.12"
