@@ -16,9 +16,22 @@ TBLPROPERTIES (
   'optimize_rewrite_delete_file_threshold'='10'
 )
 
+/* Master view for datasets_detail */
 create or replace view <database>.v_datasets_detail as
 select * from  <database>.datasets_detail_complete
 
+/* 
+   This serves as the source query for the dataset detail job, which will
+   run once a day (for now).
+    
+   First part of this query is for datasets we don't have croissant data for. 
+   That should be about 1.2k / per day for new datasets brought in by the
+   get new datasets daily job. The second part of this query adds a bunch
+   more datasets where we have the croissant data, but in  may be 'old'. 
+   We don't know when crosissant data changes so, we constantly 
+   refresh 'old' data based on how long ago since we last asked for it. 
+   Expected number of records in this dataset should be well under 10k.
+*/
 create or replace view <database>.v_croissant_update as
 select 
 	dataset,
@@ -41,5 +54,5 @@ from
 	left join <database>.v_datasets_detail dd2
 	on d2.dataset = dd2.dataset	
 	order by dd2.request_time asc
-	limit 40000))
+	limit 5000))
 order by request_time asc
