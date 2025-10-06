@@ -18,7 +18,7 @@ import time
 def merge_query(date: str):
     return_val = f""" 
 merge into {os.environ["ATHENA_DATABASE_NAME"]}.datasets_complete as target
-using (select * from {os.environ["ATHENA_DATABASE_NAME"]}.datasets where date = cast('{date}' as date) and date(last_modified)>(cast('{date}' as date) - interval '3' day)) as source
+using {os.environ["ATHENA_DATABASE_NAME"]}.v_modified_datasets as source
 on target.dataset=source.dataset
 when matched then
     update set

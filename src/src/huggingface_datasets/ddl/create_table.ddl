@@ -68,3 +68,10 @@ TBLPROPERTIES (
 
 create or replace view <database>.v_datasets as
 select * from  <database>.datasets_complete
+
+create or replace view <database>.v_modified_datasets as 
+select * from <database>.datasets where (dataset, last_modified, request_time) in
+	(select dataset, max(last_modified) as last_modified, max(request_time) as request_time from 
+		(select * from <database>.datasets where date(last_modified)>(current_date - interval '3' day))
+	 group by dataset) 
+and date(last_modified)>(current_date - interval '3' day)
