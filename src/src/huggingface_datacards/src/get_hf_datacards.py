@@ -17,7 +17,7 @@ from aiohttp import (
 
 import pandas as pd
 import boto3
-from time import time
+import time
 import random
 import math
 from http import HTTPStatus
@@ -28,6 +28,51 @@ from datetime import datetime, timezone
 counter = 0
 gateway_timeout_counter = 0
 too_many_requests_counter = 0
+
+
+# Upsert daily results into main state table.
+# Expected to execute on about 15k datasets daily.
+# 2k new datasets, remainer update old datasets where the datacard may have changed
+def merge_query(date: str):
+    return_val = f""" 
+merge into {os.environ["ATHENA_DATABASE_NAME"]}.datacards_complete as target
+using (select * from {os.environ["ATHENA_DATABASE_NAME"]}.datacards where date = cast('{date}' as date)) as source
+on target.dataset=source.dataset
+when matched then
+	update set
+	    request_time =  cast(source.request_time as timestamp),
+	    datacard = source.datacard
+when not matched then
+	insert (request_time, dataset, datacard)
+	values (cast(source.request_time as timestamp), source.dataset, source.datacard)
+    """
+
+    return return_val
+
+
+# Evaluate what the state of a query is. This is used twice:
+# Once for MSCK REPAIR TABLE and the second for the upsert.
+def has_query_succeeded(client, execution_id):
+    state = "RUNNING"
+    max_execution = 10
+
+    while max_execution > 0 and state in ["RUNNING", "QUEUED"]:
+        max_execution -= 1
+        response = client.get_query_execution(QueryExecutionId=execution_id)
+        if (
+            "QueryExecution" in response
+            and "Status" in response["QueryExecution"]
+            and "State" in response["QueryExecution"]["Status"]
+        ):
+            state = response["QueryExecution"]["Status"]["State"]
+            if state == "SUCCEEDED":
+                return "Success"
+
+        time.sleep(30)
+    if max_execution == 0:
+        return "Failed - Query state never tranisitioned to SUCCEEDED and timed out"
+    else:
+        return response["QueryExecution"]["Status"]["AthenaError"]
 
 
 # AWS Athena implements schema-on-read as Hive, need to execute this
@@ -46,9 +91,33 @@ def repair_table():
     sql = f"MSCK REPAIR TABLE {os.environ["ATHENA_DATABASE_NAME"]}.datacards"
     context = {"Database": os.environ["ATHENA_DATABASE_NAME"]}
 
-    client.start_query_execution(
+    response = client.start_query_execution(
         QueryString=sql, QueryExecutionContext=context, ResultConfiguration=config
     )
+
+    success = has_query_succeeded(client, response["QueryExecutionId"])
+    return success
+
+
+# Execute the upsert
+def do_merge(merge_query: str):
+    # TODO: Session should be shared with repair_table()
+    boto3.setup_default_session(region_name=os.environ["AWS_REGION"])
+    client = boto3.client("athena")
+
+    config = {
+        "OutputLocation": f"s3://{os.environ["ANALYTICS_OUTPUT_BUCKET"]}/huggingface/output/",
+    }
+
+    # Query Execution Parameters
+    sql = merge_query
+    context = {"Database": os.environ["ATHENA_DATABASE_NAME"]}
+
+    response = client.start_query_execution(
+        QueryString=sql, QueryExecutionContext=context, ResultConfiguration=config
+    )
+    success = has_query_succeeded(client, response["QueryExecutionId"])
+    return success
 
 
 # This is intended to keep the parallelly executed API calls under the undocumented
@@ -58,15 +127,15 @@ class RateLimiter(object):
         self._lock = asyncio.Lock()
         self._delay = delay
         self._jitter = jitter
-        self._next_time = time()
+        self._next_time = time.time()
 
     async def wait(self):
         async with self._lock:
-            now = time()
+            now = time.time()
             if now < self._next_time:
                 await asyncio.sleep(self._next_time - now)
             self._next_time = (
-                time() + self._delay + random.uniform(-self._jitter, self._jitter)
+                time.time() + self._delay + random.uniform(-self._jitter, self._jitter)
             )
 
 
@@ -145,7 +214,9 @@ async def process_batch(batch_id, batch):
     return output_df
 
 
-# Let's get data cards or HF data where we do not already have it today.
+# Let's get data cards or HF data where we do not already have it today, or
+# we already have it but it might be out of date. There is no way to tell
+# if it is out of date....
 async def main():
     global gateway_timeout_counter
     global too_many_requests_counter
@@ -153,15 +224,7 @@ async def main():
     number_of_partitions = int(os.environ["NUMBER_OF_PARTITIONS"])
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     limit = f"limit {os.environ["FETCH_SIZE"]}"
-    # modified to allow multi-day runs, as the new rate limits + amount of
-    # data is too much to collect in one day, without partitioning the source data set
-    # and running multiple, differently configured jobs.
-    query = f"""select distinct dataset, date as dataset_date 
-                from {os.environ["ATHENA_DATABASE_NAME"]}.datasets 
-                where dataset not in (select dataset from 
-                    {os.environ["ATHENA_DATABASE_NAME"]}.datacards 
-                    where date >= CAST('{today}' AS DATE) - interval '1' day) and  date >= CAST('{today}' AS DATE)- interval '1' day {limit}
-            """
+    query = f"""select dataset, cast('{today}' as date) as dataset_date from {os.environ["ATHENA_DATABASE_NAME"]}.v_datacards_update {limit}"""
 
     boto3.setup_default_session(
         region_name=os.environ["AWS_REGION"]
@@ -211,8 +274,16 @@ async def main():
     print(f"\tWrote file(s): {paths}")
 
     print("Start repairing table")
-    repair_table()
-    print("End repairing table")
+    success = repair_table()
+    print(f"End repairing table. Status: {success}")
+
+    # Merge into huggingface.datasets_full
+    print("Start merge")
+    todays_merge_query = merge_query(date=datetime.today().strftime("%Y-%m-%d"))
+    print(f"Merge query: {todays_merge_query}")
+    success = do_merge(todays_merge_query)
+    print(f"End merge. Status: {success}")
+
     print(f"Ending job: {datetime.now(timezone.utc)}")
 
 

@@ -1,6 +1,6 @@
 # Purpose of code is to get a list of all data sets in HuggingFace Hub.
-# Uses the HF Datasets API to get them, then stores them as parquet files
-# in S3 so they can be queried using serverless SQL (AWS Athena) later.
+# Uses the HF Datasets API to get them, persist them to S3, then use that
+# then perform an upsert into the main state table.
 
 from huggingface_hub import HfApi
 import pandas as pd
@@ -8,6 +8,63 @@ import awswrangler as wr
 from datetime import datetime, timezone
 import boto3
 import os
+import time
+
+
+# Upsert daily results into main state table.
+# Will redundantly upsert the last three days data in the event
+# the job fails at some point. Epected case is 1.5k datasets will change from
+# day to day, meaning this will execute on about 4.5k datasets daily.
+def merge_query(date: str):
+    return_val = f""" 
+merge into {os.environ["ATHENA_DATABASE_NAME"]}.datasets_complete as target
+using {os.environ["ATHENA_DATABASE_NAME"]}.v_modified_datasets as source
+on target.dataset=source.dataset
+when matched then
+    update set
+        request_time = CURRENT_TIMESTAMP,
+        organization = lower(source.author),
+        dataset_name = lower(replace(source.dataset,source.author||'/' , '')),
+        created_at = source.created_at,   
+        last_modified = source.last_modified,
+        private = source.private,
+        disabled = source.disabled,
+        gated = source.gated,
+        downloads = source.downloads,
+        downloads_all_time= source.downloads_all_time,
+        tags = source.tags, 
+        license = source.license,
+        trending_score = source.trending_score
+when not matched then
+    insert (request_time, dataset, organization, dataset_name, created_at, last_modified, private, disabled, gated, downloads, downloads_all_time, tags, license, trending_score)
+    values (current_timestamp, source.dataset, lower(source.author), lower(replace(source.dataset,source.author||'/' , '')), source.created_at, source.last_modified, source.private, source.disabled, source.gated, source.downloads, source.downloads_all_time, source.tags, source.license, source.trending_score)
+    """
+    return return_val
+
+
+# Evaluate what the state of a query is. This is used twice:
+# Once for MSCK REPAIR TABLE and the second for the upsert.
+def has_query_succeeded(client, execution_id):
+    state = "RUNNING"
+    max_execution = 10
+
+    while max_execution > 0 and state in ["RUNNING", "QUEUED"]:
+        max_execution -= 1
+        response = client.get_query_execution(QueryExecutionId=execution_id)
+        if (
+            "QueryExecution" in response
+            and "Status" in response["QueryExecution"]
+            and "State" in response["QueryExecution"]["Status"]
+        ):
+            state = response["QueryExecution"]["Status"]["State"]
+            if state == "SUCCEEDED":
+                return "Success"
+
+        time.sleep(30)
+    if max_execution == 0:
+        return "Failed - Query state never tranisitioned to SUCCEEDED and timed out"
+    else:
+        return response["QueryExecution"]["Status"]["AthenaError"]
 
 
 # AWS Athena implements schema-on-read as Hive, need to execute this
@@ -26,9 +83,32 @@ def repair_table():
     sql = f"MSCK REPAIR TABLE {os.environ["ATHENA_DATABASE_NAME"]}.datasets"
     context = {"Database": os.environ["ATHENA_DATABASE_NAME"]}
 
-    client.start_query_execution(
+    response = client.start_query_execution(
         QueryString=sql, QueryExecutionContext=context, ResultConfiguration=config
     )
+    success = has_query_succeeded(client, response["QueryExecutionId"])
+    return success
+
+
+# Execute the upsert
+def do_merge(merge_query: str):
+    # TODO: Session should be shared with repair_table()
+    boto3.setup_default_session(region_name=os.environ["AWS_REGION"])
+    client = boto3.client("athena")
+
+    config = {
+        "OutputLocation": f"s3://{os.environ["ANALYTICS_OUTPUT_BUCKET"]}/huggingface/output/",
+    }
+
+    # Query Execution Parameters
+    sql = merge_query
+    context = {"Database": os.environ["ATHENA_DATABASE_NAME"]}
+
+    response = client.start_query_execution(
+        QueryString=sql, QueryExecutionContext=context, ResultConfiguration=config
+    )
+    success = has_query_succeeded(client, response["QueryExecutionId"])
+    return success
 
 
 api = HfApi()
@@ -103,6 +183,7 @@ print(
 if len(hf_input_datasets) > 0:
     output_df = pd.DataFrame.from_dict(output_datasets)
 
+    # Write to S3
     output_files = wr.s3.to_parquet(
         df=output_df,
         path=target_s3_bucket,
@@ -116,7 +197,15 @@ if len(hf_input_datasets) > 0:
     )
 
     print("Start repairing table")
-    repair_table()
-    print("End repairing table")
+    success = repair_table()
+    print(f"End repairing table. Status: {success}")
+
+    # Merge into huggingface.datasets_full
+    print("Start merge")
+    todays_merge_query = merge_query(date=datetime.today().strftime("%Y-%m-%d"))
+    print(f"Merge query: {todays_merge_query}")
+    success = do_merge(todays_merge_query)
+    print(f"End merge. Status: {success}")
+
 else:
     print("No datasets to process. Exiting.")
