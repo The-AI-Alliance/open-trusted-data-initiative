@@ -73,6 +73,20 @@ The [The European AI Office](https://digital-strategy.ec.europa.eu/en/policies/a
 {: .attention}
 > The purpose of the paper we are sharing today is twofold. It clarifies the categories of rights and legitimate interests that justify access to information about training data. In addition to copyright, these include, among others, privacy and personal data protection, scientific freedom, the prohibition of discrimination, and respect for cultural and linguistic diversity. Moreover, it provides a blueprint for the forthcoming template for the &ldquo;sufficiently detailed summary,&rdquo; which is intended to serve these interests while respecting the rights of all parties concerned.
 
+### Five Star Open Data
+
+[Five Star Open Data](https://5stardata.info/en/){:target="5sd"} is a concept promoted by Tim Berners-Lee, the inventor of the Web and Linked Data initiator, which suggests a 5-star deployment scheme for Open Data:
+
+| Stars | Description | 
+| :===: | :========== | 
+|   ★   | &ldquo;Make your stuff available on the Web (whatever format) under an open license.&rdquo; | 
+|   ★★  | &ldquo;Make it available as structured data (e.g., Excel instead of image scan of a table).&rdquo; |
+|  ★★★  | &ldquo;Make it available in a non-proprietary open format (e.g., CSV instead of Excel).&rdquo; |
+|  ★★★★ | &ldquo;Use URIs to denote things, so that people can point at your stuff.&rdquo; |
+| ★★★★★ | &ldquo;Link your data to other data to provide context.&rdquo; |
+
+The website gives examples for each step of the stars and explains costs and benefits that come along with it.
+
 ## FAIR Principles
 
 [Website](https://www.go-fair.org/fair-principles/){:target="fair"}
@@ -91,7 +105,6 @@ Datasets often need to be combined, requiring ***interoperable*** tools, storage
 Ultimately, the goal is to make data ***reusable***, leading to requirements for clear licensing, provenance, and governance.
 
 Finally, they define three **types of entities**: "data (or any digital object), metadata (information about that digital object), and infrastructure." For instance, findable means that both metadata and data are registered or indexed in a searchable resource (an infrastructure component).
-
 
 ## Licensing and Attribution
 
