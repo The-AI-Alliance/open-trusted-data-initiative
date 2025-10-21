@@ -1,9 +1,13 @@
-# README on Processing Hugging Face Metadata
+# README on Processing Hugging Face Metadata to Build the "Static" Catalog
 
 Dean Wampler, May 11, 2025
 Updates, June 9, 2025
 
-> **NOTE:** This is a condensed version of the long `duckdb-notes.md` file, plus other notes, where Dean experimented with DuckDB, Spark, and other tools. This file covers the commands that worked. Also, this file has been updated since the initial draft as the processing steps have been refined and automated. To see the notes for the first "V0.0.1" version of the static catalog, see this file as of git tag `V0.3.2-static-catalog-0.0.1`.
+## Introduction
+
+This README describes how the "static" catalog is built. The catalog currently shown on the OTDI website is called "static" because a snapshot of metadata, captured from Hugging Face, is processed into JSON files for loading into the catalog views by keywords. A "dynamic" catalog would be one where you have more flexible search of very recent metadata. The metadata used for the static catalog is captured continuously, but the catalog pages are only updated monthly, on average. This is a temporary implementation until the dynamic catalog is fully implemented and available.
+
+> **NOTE:** The following content is a condensed version of the long `duckdb-notes.md` file, plus other notes, where Dean experimented with DuckDB, Spark, and other tools. This file covers the commands that worked. Also, this file has been updated a few times since the initial draft as the processing steps have been refined and automated. To see the notes for the first "V0.0.1" version of the static catalog, see this file as of git tag `V0.3.2-static-catalog-0.0.1`.
 
 ## Introduction
 
