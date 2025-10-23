@@ -33,7 +33,7 @@ has_children: true
 >
 > * The groupings are based on the presence of relevant `keywords`. The metadata for the datasets all have a `language` field, but **all** contain `en` (English), so we ignore this field. However, many datasets have keywords for other languages. Those keywords are the basis for the [Languages]({{site.baseurl}}/catalog/language/language) tables (including the one for [English]({{site.baseurl}}/catalog/language/europe#english)!).
 > * All keywords were converted to lower case before grouping.
-> * When a section for a keyword lists _additional keywords_, it means we grouped together different keywords that we believe are related to the same topic, including synonyms. (Please [email us about any errors](mailto:data@thealliance.ai?subject=Errors&#32;in&#32;the&#32;OTDI&#32;catalog) or report problems [another way]({{site.baseurl}}/contributing)) In these cases, we also show a **Keyword** column in the corresponding table, so you can see which keyword was used to include the dataset. (This also means that occasionally some datasets will be listed more than once in their table.)
+> * When a section for a keyword lists _additional keywords_, it means we grouped together different keywords that we believe are related to the same topic, including synonyms. (Please [email us about any errors](mailto:data@thealliance.ai?subject=Errors in the OTDI catalog) or report problems [another way]({{site.baseurl}}/contributing)) In these cases, we also show a **Keyword** column in the corresponding table, so you can see which keyword was used to include the dataset. (This also means that occasionally some datasets will be listed more than once in their table.)
 >
 > **Important:** At this time, we are not yet validating datasets to ensure their metadata accurately reflect the data records themselves.
 >
@@ -41,7 +41,7 @@ has_children: true
 >
 > <a name="#footnote1">1</a>: Some of the bad license links clearly intend to reference known licenses. We will revisit those cases.
 >
-> Do you know of any datasets that should be shown, but aren't? Let us know through [email](mailto:data@thealliance.ai) or [another way]({{site.baseurl}}/contributing).
+> Do you know of any datasets that should be shown, but aren't? Let us know through [email](mailto:data@thealliance.ai?subject=A dataset for the OTDI catalog) or [another way]({{site.baseurl}}/contributing).
 
 # The Current Keywords Cataloged
 

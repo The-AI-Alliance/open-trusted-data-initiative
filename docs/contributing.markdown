@@ -11,17 +11,17 @@ There are many ways you can contribute to the _Open Trusted Data Initiative_.
 
 ## Report Errors in Our Catalog
 
-See a mistake in our [catalog]({{site.baseurl}}/catalog)? Send us [email](mailto:data@thealliance.ai?subject=Errors&#32;in&#32;the&#32;OTDI&#32;catalog), post an [issue](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="gh-issues"}, or start a [discussion](https://github.com/The-AI-Alliance/open-trusted-data-initiative/discussions){:target="gh-discussions"}.
+See a mistake in our [catalog]({{site.baseurl}}/catalog)? Send us [email](mailto:data@thealliance.ai?subject=Errors in the OTDI catalog), post an [issue](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="gh-issues"}, or start a [discussion](https://github.com/The-AI-Alliance/open-trusted-data-initiative/discussions){:target="gh-discussions"}.
 
 ## Help Us Implement Our Data Processing Pipelines
 
 We are working on data processing pipelines, e.g., for evaluating how well datasets match their metadata, claims about licenses, etc., which we discuss on the [How We Process Datasets]({{site.baseurl}}/our-processing/) page.
 
-Want to learn more? Send us [email](mailto:data@thealliance.ai?subject=Data&#32;processing&#32;pipelines&#32;in&#32;OTDI), check out our [planned work](https://github.com/orgs/The-AI-Alliance/projects/28/views/1?filterQuery=label%3A%22data+pipelines%22){:target="gh-issues"}, or start a [discussion](https://github.com/The-AI-Alliance/open-trusted-data-initiative/discussions){:target="gh-discussions"}.
+Want to learn more? Send us [email](mailto:data@thealliance.ai?subject=Data processing pipelines in OTDI), check out our [planned work](https://github.com/orgs/The-AI-Alliance/projects/28/views/1?filterQuery=label%3A%22data+pipelines%22){:target="gh-issues"}, or start a [discussion](https://github.com/The-AI-Alliance/open-trusted-data-initiative/discussions){:target="gh-discussions"}.
 
 ## Let Us Know of a Dataset We Should Catalog
 
-Do you know of _someone else's_ open dataset we should catalog, Send us [email](mailto:data@thealliance.ai?subject=A&#32;dataset&#32;you&#32;should&#32;add&#32;to&#32;the&#32;OTDI&#32;catalog), post an [issue](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="gh-issues"}, or start a [discussion](https://github.com/The-AI-Alliance/open-trusted-data-initiative/discussions){:target="gh-discussions"}.
+Do you know of _someone else's_ open dataset we should catalog, Send us [email](mailto:data@thealliance.ai?subject=A dataset you should add to the OTDI catalog), post an [issue](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="gh-issues"}, or start a [discussion](https://github.com/The-AI-Alliance/open-trusted-data-initiative/discussions){:target="gh-discussions"}.
 
 Do you have an open dataset _of your own_ that we should catalog, let's discuss!
 
