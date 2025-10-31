@@ -4,7 +4,10 @@
 
 This README describes my exploration of which licenses specified in the static datasets can be considered _permissive_.
 
-> **NOTE:** Some, but not all of the JSON files written to disk from queries are also in the git repo.
+> **NOTES:** 
+>
+> 1. The numbers shown reflect the static catalog data as of August 5th, 2025.
+> 2. Some, but not all of the JSON files written to disk from queries are also in the git repo.
 
 ## Loading License Datasets
 
@@ -12,7 +15,7 @@ Let's get some license datasets to use to analyze the licenses that appear in th
 
 ### ScanCode LicenseDB
 
-First, I loaded a [JSON file of licenses](https://scancode-licensedb.aboutcode.org/index.json) from the [ScanCode LicenseDB](https://scancode-licensedb.aboutcode.org/) project to load into DuckDB, using the same `croissant.duckdb` database discussed in the [`README.md`](README.md) for the _static catalog_ project (this directory).
+First, I loaded a [JSON file of licenses](https://scancode-licensedb.aboutcode.org/index.json)(saved to our repo as `data/reference/scancode_licensedb.aboutcode.org.index.json`) from the [ScanCode LicenseDB](https://scancode-licensedb.aboutcode.org/) project to load into DuckDB, using the same `croissant.duckdb` database discussed in the [`README.md`](README.md) for the _static catalog_ project (this directory).
 
 Next, I started the database and loaded the data:
 
@@ -25,7 +28,7 @@ At the `D` prompt:
 ```sql
 D CREATE OR REPLACE TABLE scancode_licenses AS
   SELECT *
-  FROM read_json('scancode-licensedb.aboutcode.org.index.json');
+  FROM read_json('data/reference/scancode_licensedb.aboutcode.org.index.json');
 
 D DESCRIBE scancode_licenses;
 ┌─────────────────────────┬─────────────┬─────────┬─────────┬─────────┬─────────┐
@@ -79,7 +82,7 @@ What are the category values?
 
 ```sql
 SELECT DISTINCT category
-FROM scan_licenses;
+FROM scancode_licenses;
 
 ┌──────────────────┐
 │     category     │
@@ -124,8 +127,10 @@ Hence, the only two we want to use at this time are `Permissive` and `Public Dom
 Similarly, I downloaded a [JSON file `licenses.json`](https://github.com/spdx/license-list-data/blob/main/json/licenses.json) of [SPDX licenses](https://spdx.org/licenses/). However, I needed to extract the list of licenses from it before loading into duckdb. I used [`jq`](https://jqlang.org/).
 
 ```shell
-jq '.licenses' licenses.json >spdx-licenses.json
+jq '.licenses' licenses.json > spdx-licenses.json
 ```
+
+(This file was also added to the git repo as `data/reference/spdx_licenses.json`.)
 
 Now create the table:
 
@@ -362,15 +367,15 @@ Hence, the 675-row `spdx_scancode_licenses` table is all we'll need.
 
 ## What Licenses Are in the HF Metadata?
 
-We discovered when creating the static catalog that many datasets specify a license, but not in a valid form, i.e., a non-existent choosealicense.com URL is used. To determine those cases, let's first confirm that when an invalid URL is used, the `license_id` and `license` are both `NULL`. We'll use the `hf_metadata_with_bad_licenses` table described in the README's [Invalid Licenses](README.md#invalid-licenses) section.
+We discovered when creating the static catalog that many datasets specify a license, but not in a valid form, i.e., a non-existent choosealicense.com URL is used. To determine those cases, let's first confirm that when an invalid URL is used, the `license_id` and `license` are both `NULL`. We'll use the `hf_metadata_with_all_licenses` table described in the README's [Invalid Licenses](README.md#invalid-licenses) section.
 
 ```sql
 SELECT license_id, license, license_url
-FROM hf_metadata_with_bad_licenses
+FROM hf_metadata_with_all_licenses
 WHERE license_url NOT NULL AND ( license_id IS NULL OR license IS NULL );
 
 SELECT license_id, license, license_url
-FROM hf_metadata_with_bad_licenses
+FROM hf_metadata_with_all_licenses
 WHERE license_url NOT NULL AND license_id IS NULL AND license IS NULL;
 ```
 
@@ -380,7 +385,7 @@ Let's confirm that the URL is never `NULL` if either `license` or `license_id` i
 
 ```sql
 SELECT license_id, license, license_url
-FROM hf_metadata_with_bad_licenses
+FROM hf_metadata_with_all_licenses
 WHERE license_url IS NULL AND ( license NOT NULL OR license_url NOT NULL );
 ```
 
@@ -392,7 +397,7 @@ Hence, we can examine the incorrectly specified licenses by looking only at the 
 SELECT license_url, count() AS count
 FROM (
   SELECT license_url
-  FROM   hf_metadata_with_bad_licenses
+  FROM   hf_metadata_with_all_licenses
   WHERE  license_url NOT NULL AND license_id IS NULL AND license IS NULL)
 GROUP BY license_url
 ORDER BY count DESC;
@@ -452,7 +457,7 @@ The URLs are of the form, `https://choosealicense.com/licenses/cc-by-nc-sa-4.0/`
 
 ```sql
 SELECT DISTINCT rtrim(regexp_replace(license_url, 'https://choosealicense.com/licenses/', ''), '/') AS id
-FROM hf_metadata_with_bad_licenses 
+FROM hf_metadata_with_all_licenses 
 WHERE license_url NOT NULL AND license_id IS NULL AND license IS NULL;
 ```
 
@@ -473,7 +478,7 @@ FROM (
        END AS id
   FROM (
     SELECT rtrim(regexp_replace(license_url, 'https://choosealicense.com/licenses/', ''), '/') AS id
-    FROM hf_metadata_with_bad_licenses
+    FROM hf_metadata_with_all_licenses
     WHERE license_url NOT NULL AND license_id IS NULL AND license IS NULL
   )
 )
@@ -886,12 +891,10 @@ Using `LIKE` clauses allowed us to _fuzzy match_ some license keys that appear i
 Let's just find all the `scancode_licenses` that are `Permissive` or `Public Domain`:
 
 ```sql
-CREATE OR REPLACE TABLE all_permissive_licenses AS
+CREATE OR REPLACE TABLE all_permissive_scancode_licenses AS
 SELECT *
 FROM scancode_licenses
 WHERE  category = 'Permissive' OR category = 'Public Domain';
-
-COPY all_permissive_licenses TO 'all-permissive-licenses.json';
 ```
 
 This table has 1009 rows.
@@ -920,7 +923,7 @@ FROM (
     license_id  AS hfm_license_id,
     license     AS hfm_license,
     license_url AS hfm_license_url 
-  FROM hf_metadata_with_bad_licenses)
+  FROM hf_metadata_with_all_licenses)
 JOIN (
   SELECT
     license_key,
@@ -929,28 +932,98 @@ JOIN (
   FROM scancode_licenses)
 ON lower(license_key) = hfm_real_license_id
 ORDER BY hfm_real_license_id ASC;
-
-COPY all_hf_licenses TO 'all-hf-licenses.json';
 ```
 
-This has 45 rows. What about just the permissive licenses?
+This has 45 rows. 
+
+Afterwards, doing some additional research, I discovered that all the following changes could be made to the data to fill in gaps. I made these edits either in the generated JSON file or the table, then made sure both the table and JSON file were up to date. The actual new file is `data/references/all_licenses.json`, using the location and naming conventions used for other data files used to create tables.
+
+Here are the edits I made:
+
+* Where the `hfm_license_id` was `NULL`, it was because a non-existent https://choosealicense.com/licenses URL was used, but those URLs could be replaced with a valid https://scancode-licensedb.aboutcode.org/, e.g., https://scancode-licensedb.aboutcode.org/cdla-permissive-2.0.html.
+* The `odc-by` and `pddl` licenses used in some datasets should have been `odc-by-1.0` and `pddl-1.0`, respectively, so I added a column `hfm_real_license_id` just for these two cases, where for example, `pddl` is `hfm_id` and `pddl-1.0` is `hfm_real_license_id`. For all other rows, `hfm_id` and `hfm_real_license_id` are identical. 
+* I dropped the column `license_key`, because the values are always identical to `hfm_real_license_id`. In other words, the following query returns zero rows:
 
 ```sql
-CREATE OR REPLACE TABLE all_hf_permissive_licenses AS
-SELECT * FROM all_hf_licenses
+SELECT hfm_real_license_id, license_key
+FROM all_hf_licenses
+WHERE hfm_real_license_id <> license_key;
+```
+
+* Similarly, drop the `license` column, because all entries are equivalent to the values of `hfm_real_license_id` with `.LICENSE` appended to them.
+* Renamed columns:
+    * `hfm_id` to `id`
+    * `hfm_real_license_id` to `real_id`
+    * `hfm_license_id` to `hfm_id`
+    * `hfm_license_url` to `url`
+    * `hfm_license` to `license_name`
+* Join this table with the SPDX table and retain some columns.
+
+Then I created the final table:
+
+```sql
+CREATE OR REPLACE TABLE all_licenses AS
+  SELECT * FROM read_json('./data/reference/all_licenses.json');
+```
+
+It has this schema:
+
+| Column Name          | Description |
+| :------------------- | :---------- |
+| `real_id`            | The corrected id. Always equals `id` except for two cases, `ppdl` and `odc-by` (which is why I created `real_id`) |
+| `id`                 | The license id that is _either_ the original `id` in the HF metadata _or_ the last part of the `choosealicense.com` URL. |
+| `hfm_id`             | `NULL` for invalid license specifications in the HF metadata. Otherwise, equal to `id`. |
+| `license_name`       | `NULL` for invalid license specifications in the HF metadata, _unless_ I replaced it by hand with the ScanCode license name. This was only done for permissive licenses; others left `NULL`. If you need a non-`NULL`, use the `spdx_name`. |
+| `spdx_name`          | The SPDX license name, which may or may not equal the `license_name`. |
+| `category`           | One of the ScanCode categories listed above and repeated after this table for convenience. |
+| `url`                | Never `NULL`. Either `https://choosealicense.com/licenses/{real_id}/` or `https://scancode-licensedb.aboutcode.org/{real_id}.html` value. |
+| `spdx_reference_url` | The corresponding SPDX license page URL. |
+| `spdx_details_url`   | The corresponding SPDX license JSON details. |
+
+Here again are the possible `category` values:
+
+```sql
+SELECT DISTINCT category
+FROM scancode_licenses;
+
+┌──────────────────┐
+│     category     │
+│     varchar      │
+├──────────────────┤
+│ Commercial       │
+│ CLA              │
+│ Unstated License │
+│ Patent License   │
+│ Proprietary Free │
+│ Copyleft         │
+│ Copyleft Limited │
+│ Source-available │
+│ Permissive       │
+│ Public Domain    │
+│ Free Restricted  │
+├──────────────────┤
+│     11 rows      │
+└──────────────────┘
+```
+
+So, for just the permissive licenses?
+
+```sql
+CREATE OR REPLACE TABLE all_permissive_licenses AS
+SELECT * FROM all_licenses
 WHERE  category = 'Permissive' OR category = 'Public Domain'
-ORDER BY hfm_real_license_id ASC;
+ORDER BY real_id ASC;
 
-SELECT count() FROM all_hf_permissive_licenses;
+SELECT count() FROM all_permissive_licenses;
 
-COPY all_hf_permissive_licenses TO 'all-hf-permissive-licenses.json';
+COPY all_permissive_licenses TO './data/reference/all_permissive_licenses.json';
 ```
 
 This returns 19 rows.
 
 ## Recap: How to Find the Permissive Datasets
 
-First, in `hf_metadata_with_bad_licenses`, if `license_id` isn't `NULL`, then the id extracted from the URL is _identical_ to `license_id`. The following query returns zero rows:
+First, in `hf_metadata_with_all_licenses`, if `license_id` isn't `NULL`, then the id extracted from the URL is _identical_ to `license_id`. The following query returns zero rows:
 
 ```sql
 SELECT
@@ -960,7 +1033,7 @@ FROM (
     rtrim(regexp_replace(license_url, 'https://choosealicense.com/licenses/', ''), '/') AS hfm_id,
     license_id,
     count() AS count
-  FROM hf_metadata_with_bad_licenses
+  FROM hf_metadata_with_all_licenses
   GROUP BY license_id, hfm_id
   ORDER BY count DESC)
 WHERE license_id NOT NULL AND license_id <> hfm_id;
@@ -972,7 +1045,7 @@ This effectively means we can ignore `license_id` as it is redundant with the co
 SELECT 
   rtrim(regexp_replace(license_url, 'https://choosealicense.com/licenses/', ''), '/') AS hfm_id,
   count() AS count
-FROM hf_metadata_with_bad_licenses
+FROM hf_metadata_with_all_licenses
 GROUP BY hfm_id
 ORDER BY count DESC;
 ```
@@ -982,49 +1055,47 @@ This has 78 rows. To determine which are permissive:
 ```sql
 CREATE OR REPLACE TABLE hf_good_licenses_counts AS
 SELECT 
-  hfm.id, hfm_real_license_id, count() AS count
+  hfm.id AS hfm_id, perm.real_id AS perm_real_id, perm.id AS perm_id, count() AS count
 FROM (
   SELECT 
     rtrim(regexp_replace(license_url, 'https://choosealicense.com/licenses/', ''), '/') AS id,
-  FROM hf_metadata_with_bad_licenses
+  FROM hf_metadata_with_all_licenses
   WHERE id NOT NULL) AS hfm
-JOIN all_hf_permissive_licenses AS perm
-ON   hfm.id = perm.hfm_id
-GROUP BY hfm.id, hfm_real_license_id
+JOIN all_permissive_licenses AS perm
+ON   hfm.id = perm.id
+GROUP BY hfm.id, perm.id, perm.real_id
 ORDER BY count DESC;
 
-COPY hf_good_licenses_counts TO 'hf-good-licenses-counts.json';
-
 SELECT * FROM hf_good_licenses_counts;
-┌─────────────────────┬─────────────────────┬───────┐
-│         id          │ hfm_real_license_id │ count │
-│       varchar       │       varchar       │ int64 │
-├─────────────────────┼─────────────────────┼───────┤
-│ apache-2.0          │ apache-2.0          │ 28229 │
-│ mit                 │ mit                 │ 21019 │
-│ cc-by-4.0           │ cc-by-4.0           │  5052 │
-│ cc0-1.0             │ cc0-1.0             │  1157 │
-│ odc-by              │ odc-by-1.0          │   618 │
-│ afl-3.0             │ afl-3.0             │   424 │
-│ cc-by-3.0           │ cc-by-3.0           │   179 │
-│ cc-by-2.0           │ cc-by-2.0           │   163 │
-│ unlicense           │ unlicense           │   150 │
-│ cdla-permissive-2.0 │ cdla-permissive-2.0 │    80 │
-│ pddl                │ pddl-1.0            │    67 │
-│ cc-by-2.5           │ cc-by-2.5           │    21 │
-│ etalab-2.0          │ etalab-2.0          │    21 │
-│ ecl-2.0             │ ecl-2.0             │    12 │
-│ ms-pl               │ ms-pl               │    12 │
-│ cdla-permissive-1.0 │ cdla-permissive-1.0 │    10 │
-│ postgresql          │ postgresql          │     9 │
-│ zlib                │ zlib                │     2 │
-│ isc                 │ isc                 │     2 │
-├─────────────────────┴─────────────────────┴───────┤
-│ 19 rows                                 3 columns │
-└───────────────────────────────────────────────────┘
+┌─────────────────────┬─────────────────────┬─────────────────────┬───────┐
+│       hfm_id        │    perm_real_id     │       perm_id       │ count │
+│       varchar       │       varchar       │       varchar       │ int64 │
+├─────────────────────┼─────────────────────┼─────────────────────┼───────┤
+│ apache-2.0          │ apache-2.0          │ apache-2.0          │ 28229 │
+│ mit                 │ mit                 │ mit                 │ 21019 │
+│ cc-by-4.0           │ cc-by-4.0           │ cc-by-4.0           │  5052 │
+│ cc0-1.0             │ cc0-1.0             │ cc0-1.0             │  1157 │
+│ odc-by              │ odc-by-1.0          │ odc-by              │   618 │
+│ afl-3.0             │ afl-3.0             │ afl-3.0             │   424 │
+│ cc-by-3.0           │ cc-by-3.0           │ cc-by-3.0           │   179 │
+│ cc-by-2.0           │ cc-by-2.0           │ cc-by-2.0           │   163 │
+│ unlicense           │ unlicense           │ unlicense           │   150 │
+│ cdla-permissive-2.0 │ cdla-permissive-2.0 │ cdla-permissive-2.0 │    80 │
+│ pddl                │ pddl-1.0            │ pddl                │    67 │
+│ etalab-2.0          │ etalab-2.0          │ etalab-2.0          │    21 │
+│ cc-by-2.5           │ cc-by-2.5           │ cc-by-2.5           │    21 │
+│ ecl-2.0             │ ecl-2.0             │ ecl-2.0             │    12 │
+│ ms-pl               │ ms-pl               │ ms-pl               │    12 │
+│ cdla-permissive-1.0 │ cdla-permissive-1.0 │ cdla-permissive-1.0 │    10 │
+│ postgresql          │ postgresql          │ postgresql          │     9 │
+│ isc                 │ isc                 │ isc                 │     2 │
+│ zlib                │ zlib                │ zlib                │     2 │
+├─────────────────────┴─────────────────────┴─────────────────────┴───────┤
+│ 19 rows                                                       4 columns │
+└─────────────────────────────────────────────────────────────────────────┘
 ```
 
-> **NOTE:** `unlicense` is a [real, premissive license](https://choosealicense.com/licenses/unlicense/), not the same as _no license_.
+> **NOTE:** `unlicense` is a [real, permissive license](https://choosealicense.com/licenses/unlicense/), not the same as `unknown` or _no license_.
 
 Compare this result to just looking at `hf_metadata` with valid `license_id`s:
 
@@ -1035,8 +1106,8 @@ FROM (
   SELECT license_id 
   FROM hf_metadata
   WHERE license_id NOT NULL)
-JOIN all_hf_permissive_licenses AS perm
-ON   license_id = perm.hfm_id
+JOIN all_permissive_licenses AS perm
+ON   license_id = perm.id
 GROUP BY license_id
 ORDER BY count DESC;
 ┌────────────┬───────┐
@@ -1059,7 +1130,7 @@ ORDER BY count DESC;
 └────────────────────┘
 ```
 
-We can pick up **eight** more licenses and **1159** more datasets.
+Hence, we can pick up **eight** more licenses and **1159** more datasets.
 
 | `id`                  | `hfm_real_license_id`   |  count |
 | :-------------------- | :---------------------- | -----: |
@@ -1072,3 +1143,114 @@ We can pick up **eight** more licenses and **1159** more datasets.
 | `etalab-2.0`          | `etalab-2.0`            |     21 |
 | `cdla-permissive-1.0` | `cdla-permissive-1.0`   |     10 |
 |                       | **Total:**              |**1159**|
+
+So, the best way to find all the HF datasets with a permissive license is to use this query:
+
+
+```sql
+SELECT 
+  hfm.name          AS dataset_name,
+  hfm.id            AS hfm_id, 
+  perm.real_id      AS real_id, 
+  perm.license_name AS license_name,
+FROM (
+  SELECT 
+    rtrim(regexp_replace(license_url, 'https://choosealicense.com/licenses/', ''), '/') AS id,
+    name
+  FROM hf_metadata_with_all_licenses) AS hfm
+JOIN all_permissive_licenses AS perm
+ON   hfm.id = perm.id;
+┌───────────────────────────────┬────────────┬────────────┬───────────────────────────────────────────────────────────────┐
+│         dataset_name          │   hfm_id   │  real_id   │                         license_name                          │
+│            varchar            │  varchar   │  varchar   │                            varchar                            │
+├───────────────────────────────┼────────────┼────────────┼───────────────────────────────────────────────────────────────┤
+│ piper_joint_ep_20250422_rea…  │ apache-2.0 │ apache-2.0 │ Apache License 2.0                                            │
+│ Dataset_Philosophy_Ethics_M…  │ mit        │ mit        │ MIT License                                                   │
+│ walmart-reviews-dataset       │ cc-by-4.0  │ cc-by-4.0  │ Creative Commons Attribution 4.0 International Public License │
+│ so100_point_first_ns          │ apache-2.0 │ apache-2.0 │ Apache License 2.0                                            │
+│ rlbench_rlds                  │ apache-2.0 │ apache-2.0 │ Apache License 2.0                                            │
+│ Genex-DB-World-Exploration    │ cc-by-4.0  │ cc-by-4.0  │ Creative Commons Attribution 4.0 International Public License │
+│ devanagari_and_roman_digits   │ mit        │ mit        │ MIT License                                                   │
+│ eval_act_so100_test           │ apache-2.0 │ apache-2.0 │ Apache License 2.0                                            │
+│ yzw_so100_stack_cube_to_tes…  │ apache-2.0 │ apache-2.0 │ Apache License 2.0                                            │
+│ kor_idiom                     │ mit        │ mit        │ MIT License                                                   │
+│ obs_env                       │ apache-2.0 │ apache-2.0 │ Apache License 2.0                                            │
+│ security_steerability         │ mit        │ mit        │ MIT License                                                   │
+│ Rots                          │ apache-2.0 │ apache-2.0 │ Apache License 2.0                                            │
+│ date_text_1                   │ apache-2.0 │ apache-2.0 │ Apache License 2.0                                            │
+│ koch_arm_gripper_blue_cable…  │ apache-2.0 │ apache-2.0 │ Apache License 2.0                                            │
+│ MemoRAG-Training              │ mit        │ mit        │ MIT License                                                   │
+│ koch_arm_gripper_blue_pen_t…  │ apache-2.0 │ apache-2.0 │ Apache License 2.0                                            │
+│ SDD                           │ mit        │ mit        │ MIT License                                                   │
+│ libero                        │ apache-2.0 │ apache-2.0 │ Apache License 2.0                                            │
+│ HawkBench                     │ apache-2.0 │ apache-2.0 │ Apache License 2.0                                            │
+│     ·                         │     ·      │     ·      │         ·                                                     │
+│     ·                         │     ·      │     ·      │         ·                                                     │
+│     ·                         │     ·      │     ·      │         ·                                                     │
+│ eval_StaticB1_Ours2OpenLoop   │ apache-2.0 │ apache-2.0 │ Apache License 2.0                                            │
+│ eval_StaticA2_Ours2OpenLoop   │ apache-2.0 │ apache-2.0 │ Apache License 2.0                                            │
+│ test                          │ apache-2.0 │ apache-2.0 │ Apache License 2.0                                            │
+│ data-kit-sub-iwslt2025-if-l…  │ cc-by-4.0  │ cc-by-4.0  │ Creative Commons Attribution 4.0 International Public License │
+│ benaF                         │ mit        │ mit        │ MIT License                                                   │
+│ Pick_all_blocks               │ apache-2.0 │ apache-2.0 │ Apache License 2.0                                            │
+│ nllp-entr-testdataset         │ mit        │ mit        │ MIT License                                                   │
+│ so100_testCamera999           │ apache-2.0 │ apache-2.0 │ Apache License 2.0                                            │
+│ so100_testCamera9999          │ apache-2.0 │ apache-2.0 │ Apache License 2.0                                            │
+│ factcheck-memes-x             │ apache-2.0 │ apache-2.0 │ Apache License 2.0                                            │
+│ metaworld_train_45_1T         │ apache-2.0 │ apache-2.0 │ Apache License 2.0                                            │
+│ Numbers                       │ mit        │ mit        │ MIT License                                                   │
+│ s2-user                       │ mit        │ mit        │ MIT License                                                   │
+│ Engineering_Mechanical        │ mit        │ mit        │ MIT License                                                   │
+│ s2-system                     │ mit        │ mit        │ MIT License                                                   │
+│ BIOINF595_BioactivityReport   │ mit        │ mit        │ MIT License                                                   │
+│ suanming                      │ mit        │ mit        │ MIT License                                                   │
+│ embeddings-gdn-question-163   │ etalab-2.0 │ etalab-2.0 │ Etalab Open License 2.0 English                               │
+│ contributions-gdn-question-…  │ etalab-2.0 │ etalab-2.0 │ Etalab Open License 2.0 English                               │
+│ dolma_urls_v1.7               │ odc-by     │ odc-by-1.0 │ Open Data Commons Attribution License v1.0                    │
+├───────────────────────────────┴────────────┴────────────┴───────────────────────────────────────────────────────────────┤
+│ 57227 rows (40 shown)                                                                                         4 columns │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+What is the count for each valid license?
+
+```sql
+SELECT 
+  hfm.id            AS hfm_id, 
+  perm.real_id      AS real_id, 
+  perm.license_name AS license_name,
+  count()           AS count
+FROM (
+  SELECT 
+    rtrim(regexp_replace(license_url, 'https://choosealicense.com/licenses/', ''), '/') AS id,
+  FROM hf_metadata_with_all_licenses) AS hfm
+JOIN all_permissive_licenses AS perm
+ON   hfm.id = perm.id
+GROUP BY hfm.id, perm.id, perm.real_id, perm.license_name
+ORDER BY count DESC;
+┌─────────────────────┬─────────────────────┬───────────────────────────────────────────────────────────────┬───────┐
+│       hfm_id        │       real_id       │                         license_name                          │ count │
+│       varchar       │       varchar       │                            varchar                            │ int64 │
+├─────────────────────┼─────────────────────┼───────────────────────────────────────────────────────────────┼───────┤
+│ apache-2.0          │ apache-2.0          │ Apache License 2.0                                            │ 28229 │
+│ mit                 │ mit                 │ MIT License                                                   │ 21019 │
+│ cc-by-4.0           │ cc-by-4.0           │ Creative Commons Attribution 4.0 International Public License │  5052 │
+│ cc0-1.0             │ cc0-1.0             │ Creative Commons Zero v1.0 Universal                          │  1157 │
+│ odc-by              │ odc-by-1.0          │ Open Data Commons Attribution License v1.0                    │   618 │
+│ afl-3.0             │ afl-3.0             │ Academic Free License v3.0                                    │   424 │
+│ cc-by-3.0           │ cc-by-3.0           │ Creative Commons Attribution 3.0                              │   179 │
+│ cc-by-2.0           │ cc-by-2.0           │ Creative Commons Attribution 2.0                              │   163 │
+│ unlicense           │ unlicense           │ The Unlicense                                                 │   150 │
+│ cdla-permissive-2.0 │ cdla-permissive-2.0 │ Community Data License Agreement Permissive 2.0               │    80 │
+│ etalab-2.0          │ etalab-2.0          │ Etalab Open License 2.0 English                               │    21 │
+│ cc-by-2.5           │ cc-by-2.5           │ Creative Commons Attribution 2.5                              │    21 │
+│ ms-pl               │ ms-pl               │ Microsoft Public License                                      │    12 │
+│ ecl-2.0             │ ecl-2.0             │ Educational Community License v2.0                            │    12 │
+│ cdla-permissive-1.0 │ cdla-permissive-1.0 │ Community Data License Agreement Permissive 1.0               │    10 │
+│ postgresql          │ postgresql          │ PostgreSQL License                                            │     9 │
+│ isc                 │ isc                 │ ISC License                                                   │     2 │
+│ zlib                │ zlib                │ zlib License                                                  │     2 │
+├─────────────────────┴─────────────────────┴───────────────────────────────────────────────────────────────┴───────┤
+│ 19 rows                                                                                                 4 columns │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+```

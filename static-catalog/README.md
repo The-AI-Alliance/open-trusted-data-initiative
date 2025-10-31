@@ -10,7 +10,7 @@ This README describes how the "static" catalog is built. The catalog currently s
 > [!NOTE]
 > The following content is a condensed version of the long `duckdb-notes.md` file, plus other notes, where Dean experimented with DuckDB, Spark, and other tools. This file covers the commands that worked. Also, this file has been updated a few times since the initial draft as the processing steps have been refined and automated. To see the notes for the first "V0.0.1" version of the static catalog, see this file as of git tag `V0.3.2-static-catalog-0.0.1`.
 >
-> Update October 24, 2025: See [`license-notes.md`](license-notes.md) for details on making sense of how licenses are specified, whether or not they are permissive, etc.
+> Update October 31, 2025: See [`license-notes.md`](license-notes.md) for details on making sense of how licenses are specified, and finding permissive licenses in datasets where the license was improperly specified.
 
 ## Introduction
 
@@ -205,7 +205,7 @@ This table has about 60,000 rows, whereas `hf_croissant` has 329,000; only 20% o
 The reason for this radical reduction is the fact that most datasets don't define a license value at all and many that do use an invalid choosealicense.com URL for the license field. To see this, let's use a variation of the previous query with a `LEFT JOIN` to find the undefined or invalid licenses:
 
 ```sql
-CREATE OR REPLACE TABLE hf_metadata_with_bad_licenses AS
+CREATE OR REPLACE TABLE hf_metadata_with_all_licenses AS
     SELECT
         hfc.name          AS name,
         hfc.description   AS description,
@@ -226,7 +226,7 @@ The following query shows that there are 252,000 datasets with no license and ma
 
 ```sql
 SELECT license_id, license_url, count() AS count
-FROM hf_metadata_with_bad_licenses
+FROM hf_metadata_with_all_licenses
 GROUP BY license_id,license_url
 ORDER BY count DESC;
 ```
@@ -235,7 +235,7 @@ The cases where a URL is shown, but the `license_id` is `NULL` are examples that
 
 ```sql
 SELECT count() AS count
-FROM hf_metadata_with_bad_licenses
+FROM hf_metadata_with_all_licenses
 WHERE license_id IS NULL AND license_url NOT NULL;
 ```
 
