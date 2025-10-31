@@ -6,8 +6,9 @@ This README describes my exploration of which licenses specified in the static d
 
 > **NOTES:** 
 >
-> 1. The numbers shown reflect the static catalog data as of August 5th, 2025.
-> 2. Some, but not all of the JSON files written to disk from queries are also in the git repo.
+> 1. These are long notes. Jump to the last section to see just the "what do I need to know?"
+> 2. The numbers shown reflect the static catalog data as of August 5th, 2025.
+> 3. Some, but not all of the JSON files written to disk from queries are also in the git repo.
 
 ## Loading License Datasets
 
@@ -1144,8 +1145,7 @@ Hence, we can pick up **eight** more licenses and **1159** more datasets.
 | `cdla-permissive-1.0` | `cdla-permissive-1.0`   |     10 |
 |                       | **Total:**              |**1159**|
 
-So, the best way to find all the HF datasets with a permissive license is to use this query:
-
+So, the best way to find all the HF datasets with a permissive license is to use this query (adjust the `SELECT` clause as desired...):
 
 ```sql
 SELECT 
@@ -1211,6 +1211,8 @@ ON   hfm.id = perm.id;
 │ 57227 rows (40 shown)                                                                                         4 columns │
 └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
+
+See `src/scripts/load-into-duckdb.py` for the actual query used.
 
 What is the count for each valid license?
 

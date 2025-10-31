@@ -180,13 +180,13 @@ COPY (
   SELECT 
     name,
     keyword,
-    license,
-    license_url,
-    language,
-    dataset_url,
+    description,
+    url,
     creator_name,
     creator_url,
-    description,
+    license_name,
+    license_url,
+    language,
     5 AS first_N,
     keywords[0:5] AS first_N_keywords,
     len(keywords) > 5 AS keywords_longer_than_N
@@ -194,6 +194,7 @@ COPY (
   WHERE {kw_query}
 ) TO '{json_output}' (FORMAT json, ARRAY true);
 """
+
     if args.verbose > 1:
         print(f"Running query: {query}")
 

@@ -62,50 +62,75 @@ CREATE OR REPLACE TABLE hf_licenses AS
     SELECT * FROM read_json('{args.licenses}');
 """
 
-# This query also removes all null licenses!
+# This query handles ill-defined licenses in the HF metadata.
+# See license-notes.md for details.
+hf_all_metadata_create_query = f"""
+CREATE OR REPLACE TABLE hf_metadata_with_all_licenses AS
+    SELECT
+        id,
+        name,
+        description,
+        language,
+        url,
+        keywords,
+        creator_name,
+        creator_url,
+        lic.license_name AS license_name,
+        lic.real_id      AS license_real_id,
+        lic.category.    AS license_category,
+        lic.url          AS license_url
+    FROM (
+        SELECT
+            rtrim(regexp_replace(hfc.license, 'https://choosealicense.com/licenses/', ''), '/') AS id,
+            hfc.name          AS name,
+            hfc.description   AS description,
+            hfc.language      AS language,
+            hfc.dataset_url   AS url,
+            hfc.keywords      AS keywords,
+            hfc.creator_name  AS creator_name,
+            hfc.creator_url   AS creator_url
+        FROM hf_croissant hfc
+    )
+    JOIN hf_licenses lic
+    ON hfc.id = lic.id;
+"""
+
 hf_metadata_create_query = f"""
 CREATE OR REPLACE TABLE hf_metadata AS
-    SELECT
-        hfc.name          AS name,
-        hfc.description   AS description,
-        lic.name          AS license,
-        lic.id            AS license_id,
-        hfc.license       AS license_url,
-        hfc.language      AS language,
-        hfc.dataset_url   AS dataset_url,
-        hfc.keywords      AS keywords,
-        hfc.creator_name  AS creator_name,
-        hfc.creator_url   AS creator_url
-    FROM hf_croissant hfc
-    JOIN hf_licenses  lic
-    ON hfc.license = lic.url;
+    SELECT * 
+    FROM hf_metadata_with_all_licenses
+    WHERE license_category = 'Permissive' OR license_category = 'Public Domain';
 """
 
 iso_languages_create_query = f"""
 CREATE OR REPLACE TABLE iso_languages AS
-  SELECT code, lower(name) AS name
-  FROM read_json('{args.iso_langs}');
+    SELECT code, lower(name) AS name
+    FROM read_json('{args.iso_langs}');
 """
 
 hf_expanded_metadata_create_query = f"""
 CREATE OR REPLACE TABLE hf_expanded_metadata AS (
-  SELECT trim(lower(unnest(keywords))) AS keyword,
-    name,
-    license,
-    license_url,
-    language,
-    dataset_url,
-    creator_name,
-    creator_url,
-    description,
-    keywords
-  FROM hf_metadata
+    SELECT trim(lower(unnest(keywords))) AS keyword,
+        id,
+        name,
+        description,
+        language,
+        url,
+        keywords,
+        creator_name,
+        creator_url,
+        license_name,
+        license_real_id,
+        license_category,
+        license_url
+    FROM hf_metadata
 );
 """
 
 queries = {
     "hf_croissant": hf_croissant_create_query,
     "hf_licenses": hf_licenses_create_query, 
+    "hf_all_metadata": hf_all_metadata_create_query,
     "hf_metadata": hf_metadata_create_query,
     "iso_languages": iso_languages_create_query,
     "hf_expanded_metadata": hf_expanded_metadata_create_query
