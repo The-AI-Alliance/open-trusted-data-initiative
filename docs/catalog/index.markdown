@@ -31,7 +31,7 @@ has_children: true
 >
 > How we group the remaining 59.4K datasets into tables using the `keywords` in the metadata:
 >
-> * The groupings are based on the presence of relevant `keywords`. The metadata for the datasets all have a `language` field, but **all** contain `en` (English), so we ignore this field. However, many datasets have keywords for other languages. Those keywords are the basis for the [Languages]({{site.baseurl}}/catalog/language/language) tables (including the one for [English]({{site.baseurl}}/catalog/language/europe#english)!).
+> * The groupings are based on the presence of relevant `keywords`. The metadata for the datasets all have a `language` field, but **all** contain _either `en` (English) or `NULL`, so we ignore this field. However, many datasets have keywords for other languages. Those keywords are the basis for the [Languages]({{site.baseurl}}/catalog/language/language) tables (including the one for [English]({{site.baseurl}}/catalog/language/europe#english)!).
 > * All keywords were converted to lower case before grouping.
 > * When a section for a keyword lists _additional keywords_, it means we grouped together different keywords that we believe are related to the same topic, including synonyms. (Please [email us about any errors](mailto:data@thealliance.ai?subject=Errors in the OTDI catalog) or report problems [another way]({{site.baseurl}}/contributing)) In these cases, we also show a **Keyword** column in the corresponding table, so you can see which keyword was used to include the dataset. (This also means that occasionally some datasets will be listed more than once in their table.)
 >
