@@ -186,6 +186,7 @@ COPY (
     creator_url,
     license_name,
     license_url,
+    license_category,
     language,
     5 AS first_N,
     keywords[0:5] AS first_N_keywords,
