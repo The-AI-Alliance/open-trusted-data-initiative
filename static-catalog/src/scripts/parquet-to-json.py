@@ -57,6 +57,8 @@ def parquet_to_json(args):
     Reads the HF-derived metadata from parquet files and writes the "croissant" JSON column to JSON files.
     """
 
+    info("NOTE: This program runs for a looong time!")
+
     make_directories(args.output, delete_first=True, verbose=args.verbose)
     make_directories(args.errors, delete_first=True, verbose=args.verbose)
 
@@ -66,11 +68,11 @@ def parquet_to_json(args):
     
     list_count = len(objs)
     if args.verbose > 1:
-        print("The input dataset size and first record:")
-        print(f"  count: {list_count}")
-        print(f"  first: {objs[0]}")
+        info("The input dataset size and first record:")
+        info(f"  count: {list_count}")
+        info(f"  first: {objs[0]}")
 
-    ok_count = 0
+    counts = {}
     successful_count = 0
     error_count = 0
     jsons = []
@@ -78,12 +80,14 @@ def parquet_to_json(args):
         extractor = CroissantExtractor()
 
         for obj in objs:
-            if obj['response_reason'] == 'OK':
-                ok_count += 1
+            response_reason = obj['response_reason']
+            counts[response_reason] = counts.get(response_reason, 0) + 1
+
+            if response_reason == 'OK':
                 success, obj, error_str = extractor(obj)
                 if not success:
                     error_count += 1
-                    print(error_str, file = errors_out)
+                    warning(error_str, file = errors_out)
                 else:
                     successful_count += 1
                     jsons += [obj]
@@ -92,11 +96,13 @@ def parquet_to_json(args):
         json.dump(jsons, json_out, indent="\t")
 
     if args.verbose > 0:
-        print("Counts:")
-        print(f"  input:       {list_count:-8d}")
-        print(f"  okay:        {ok_count:-8d} (where 'response_reason' = 'OK' in the record)")
-        print(f"  errors:      {error_count:-8d} (where extracting JSON failed)")
-        print(f"  successful:  {successful_count:-8d} (where extracting JSON succeeded)")
+        info("Counts:")
+        info(f"  input:            {list_count:-8d}")
+        info(f"  errors:           {error_count:-8d} (where extracting JSON failed)")
+        info(f"  successful:       {successful_count:-8d} (where extracting JSON succeeded)")
+        info(f"  response reasons seen with counts:")
+        for reason in sorted(counts):
+            info(f"  {reason:-15s}:        {counts[reasons]:-8d}")
 
 def run():
     parser = argparse.ArgumentParser(
@@ -119,7 +125,7 @@ def run():
     args = parser.parse_args(sys.argv[1:])
     parquet_to_json(args)
 
-    print(f"Output written to {args.output}")
+    info(f"Output written to {args.output}")
     beep()
 
 if __name__ == "__main__":
