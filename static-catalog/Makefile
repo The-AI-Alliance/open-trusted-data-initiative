@@ -15,7 +15,7 @@ TIMESTAMP           ?= $(shell date +"%Y-%m-%d")
 DOCS_DIR            ?= ../docs
 
 # For the static catalog generation.
-STATIC_CATALOG_VERBOSE      ?= 1
+STATIC_CATALOG_VERBOSE      ?= 2
 STATIC_CATALOG_DIR          ?= .
 STATIC_CATALOG_BIN_DIR      ?= ${STATIC_CATALOG_DIR}/src/scripts
 STATIC_CATALOG_DATA_DIR     ?= ${STATIC_CATALOG_DIR}/data
