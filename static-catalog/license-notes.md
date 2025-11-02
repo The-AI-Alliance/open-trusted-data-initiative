@@ -7,7 +7,7 @@ This README describes my exploration of which licenses specified in the static d
 > **NOTES:** 
 >
 > 1. These are long notes. Jump to the last section to see just the "what do I need to know?"
-> 2. The numbers shown reflect the static catalog data as of August 5th, 2025.
+> 2. The numbers shown reflect the static catalog data as of August 5th, 2025. The more recent datasets have similar trends, but higher numbers (usually...).
 > 3. Some, but not all of the JSON files written to disk from queries are also in the git repo.
 
 ## Loading License Datasets
@@ -16,7 +16,7 @@ Let's get some license datasets to use to analyze the licenses that appear in th
 
 ### ScanCode LicenseDB
 
-First, I loaded a [JSON file of licenses](https://scancode-licensedb.aboutcode.org/index.json)(saved to our repo as `data/reference/scancode_licensedb.aboutcode.org.index.json`) from the [ScanCode LicenseDB](https://scancode-licensedb.aboutcode.org/) project to load into DuckDB, using the same `croissant.duckdb` database discussed in the [`README.md`](README.md) for the _static catalog_ project (this directory).
+First, I loaded a [JSON file of licenses](https://scancode-licensedb.aboutcode.org/index.json) (saved to our repo as `data/reference/scancode_licensedb.aboutcode.org.index.json`) from the [ScanCode LicenseDB](https://scancode-licensedb.aboutcode.org/) project to load into DuckDB, using the same `croissant.duckdb` database discussed in the [`README.md`](README.md) for the _static catalog_ project (this directory).
 
 Next, I started the database and loaded the data:
 
