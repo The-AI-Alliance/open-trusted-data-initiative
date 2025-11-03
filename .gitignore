@@ -316,3 +316,4 @@ sdk/scidk/commands/function_service_cache/
 tmp
 Gemfile.lock
 uv.lock
+static-catalog/croissant.duckdb.wal
