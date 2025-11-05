@@ -15,7 +15,7 @@ TIMESTAMP           ?= $(shell date +"%Y-%m-%d")
 DOCS_DIR            ?= ../docs
 
 # For the static catalog generation.
-STATIC_CATALOG_VERBOSE      ?= 1
+STATIC_CATALOG_VERBOSE      ?= 2
 STATIC_CATALOG_DIR          ?= .
 STATIC_CATALOG_BIN_DIR      ?= ${STATIC_CATALOG_DIR}/src/scripts
 STATIC_CATALOG_DATA_DIR     ?= ${STATIC_CATALOG_DIR}/data
@@ -30,7 +30,7 @@ STATIC_CATALOG_DATA_JSON_ERRORS_DIR ?= ${STATIC_CATALOG_DATA_DIR}/json/errors/${
 STATIC_CATALOG_DATA_JSON_FINAL_DIR  ?= ${STATIC_CATALOG_DATA_DIR}/json/processed/${TIMESTAMP}
 STATIC_CATALOG_MARKDOWN_FINAL_DIR   ?= ${STATIC_CATALOG_DIR}/markdown/processed/${TIMESTAMP}
 STATIC_CATALOG_DUCKDB_FILE          ?= ${STATIC_CATALOG_DATA_DIR}/croissant.duckdb
-STATIC_CATALOG_DATA_LICENSES_REF    ?= ${STATIC_CATALOG_DATA_DIR}/reference/license-id-name-mapping.json
+STATIC_CATALOG_DATA_LICENSES_REF    ?= ${STATIC_CATALOG_DATA_DIR}/reference/all_licenses.json
 STATIC_CATALOG_DATA_ISO_LANGS_REF   ?= ${STATIC_CATALOG_DATA_DIR}/reference/ISO-639-1-language.json
 STATIC_CATALOG_DOCS_JS_DIR          ?= ${DOCS_DIR}/files/data/catalog
 STATIC_CATALOG_DOCS_MARKDOWN_DIR    ?= ${DOCS_DIR}

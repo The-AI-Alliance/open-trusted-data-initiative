@@ -39,12 +39,12 @@ function makeCatalogTable(uniqueID, keyword, data, showKeywordCol, detailsID, sa
     columns: Array.prototype.concat( [ //Define Table Columns
       {title:"Name", field:"name", formatter:"link", formatterParams:{
         labelField:"name",
-        urlField:"dataset_url",
+        urlField:"url",
         target:"_blank",
       }}],
       keywordArray,
-      [{title:"License", field:"license", formatter:"link", formatterParams:{
-        labelField:"license",
+      [{title:"License", field:"license_name", formatter:"link", formatterParams:{
+        labelField:"license_name",
         urlField:"license_url",
         target:"_blank",
       }},
@@ -68,7 +68,7 @@ function makeCatalogTable(uniqueID, keyword, data, showKeywordCol, detailsID, sa
         <tr><td><strong>Name:</strong></td><td><a href="${data.dataset_url}" target="_blank">${data.name}</a></td></tr>
         <tr><td><strong>Keyword:</strong></td><td>${data.keyword}</td></tr>      
         <tr><td><strong>Other Keywords:<sup>1</sup></strong></td><td>${keywords_str}</td></tr>      
-        <tr><td><strong>License:</strong></td><td><a href="${data.license_url}" target="_blank">${data.license}</a></td></tr>
+        <tr><td><strong>License:</strong></td><td><a href="${data.license_url}" target="_blank">${data.license_name}</a></td></tr>
         <tr><td><strong>Creator:</strong></td><td><a href="${data.creator_url}" target="_blank">${data.creator_name}</a></td></tr>
         <tr><td><strong>Description:</strong></td><td><p class="description">${desc}</p></td></tr>
       </table>
@@ -212,7 +212,7 @@ function enableTableFilters(id_prefix, table) {
   //Clear filters on "Clear Filters" button click
   clearElem.addEventListener("click", function(){
     fieldElem.value = "";
-    typeElem.value = "Like";
+    typeElem.value = "like";
     valueElem.value = "";
     table.clearFilter()
     setNumRows(id_prefix, table);

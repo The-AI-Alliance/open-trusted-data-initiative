@@ -43,6 +43,17 @@ info("\n**** NOTE: This program may run for several minutes! (Invoke with '--ver
 
 start = f"duckdb {args.db_file}"
 
+hf_licenses_create_query = f"""
+CREATE OR REPLACE TABLE hf_licenses AS
+    SELECT * FROM read_json('{args.licenses}');
+"""
+
+iso_languages_create_query = f"""
+CREATE OR REPLACE TABLE iso_languages AS
+    SELECT code, lower(name) AS name
+    FROM read_json('{args.iso_langs}');
+"""
+
 hf_croissant_create_query = f"""
 CREATE OR REPLACE TABLE hf_croissant AS FROM (
     SELECT  name,
@@ -57,64 +68,79 @@ CREATE OR REPLACE TABLE hf_croissant AS FROM (
 );
 """
 
-hf_licenses_create_query = f"""
-CREATE OR REPLACE TABLE hf_licenses AS
-    SELECT * FROM read_json('{args.licenses}');
-"""
-
-# This query also removes all null licenses!
-hf_metadata_create_query = f"""
-CREATE OR REPLACE TABLE hf_metadata AS
+# This query handles ill-defined licenses in the HF metadata.
+# See license-notes.md for details.
+hf_metadata_with_all_licenses_create_query = f"""
+CREATE OR REPLACE TABLE hf_metadata_with_all_licenses AS
     SELECT
+        hfc.id            AS id,
         hfc.name          AS name,
         hfc.description   AS description,
-        lic.name          AS license,
-        lic.id            AS license_id,
-        hfc.license       AS license_url,
         hfc.language      AS language,
-        hfc.dataset_url   AS dataset_url,
+        hfc.dataset_url   AS url,
         hfc.keywords      AS keywords,
         hfc.creator_name  AS creator_name,
-        hfc.creator_url   AS creator_url
-    FROM hf_croissant hfc
-    JOIN hf_licenses  lic
-    ON hfc.license = lic.url;
+        hfc.creator_url   AS creator_url,
+        lic.license_name  AS license_name,
+        lic.real_id       AS license_real_id,
+        lic.category      AS license_category,
+        lic.url           AS license_url
+    FROM (
+        SELECT
+            rtrim(regexp_replace(license, 'https://choosealicense.com/licenses/', ''), '/') AS id,
+            name,
+            description,
+            language,
+            dataset_url,
+            keywords,
+            creator_name,
+            creator_url
+        FROM hf_croissant 
+    ) hfc
+    JOIN hf_licenses lic
+    ON hfc.id = lic.id;
 """
 
-iso_languages_create_query = f"""
-CREATE OR REPLACE TABLE iso_languages AS
-  SELECT code, lower(name) AS name
-  FROM read_json('{args.iso_langs}');
+hf_metadata_create_query = f"""
+CREATE OR REPLACE TABLE hf_metadata AS
+    SELECT * 
+    FROM hf_metadata_with_all_licenses
+    WHERE license_category = 'Permissive' OR license_category = 'Public Domain';
 """
 
 hf_expanded_metadata_create_query = f"""
 CREATE OR REPLACE TABLE hf_expanded_metadata AS (
-  SELECT trim(lower(unnest(keywords))) AS keyword,
-    name,
-    license,
-    license_url,
-    language,
-    dataset_url,
-    creator_name,
-    creator_url,
-    description,
-    keywords
-  FROM hf_metadata
+    SELECT trim(lower(unnest(keywords))) AS keyword,
+        id,
+        name,
+        description,
+        language,
+        url,
+        keywords,
+        creator_name,
+        creator_url,
+        license_name,
+        license_real_id,
+        license_category,
+        license_url
+    FROM hf_metadata
 );
 """
 
 queries = {
-    "hf_croissant": hf_croissant_create_query,
     "hf_licenses": hf_licenses_create_query, 
-    "hf_metadata": hf_metadata_create_query,
     "iso_languages": iso_languages_create_query,
+    "hf_croissant": hf_croissant_create_query,
+    "hf_metadata_with_all_licenses": hf_metadata_with_all_licenses_create_query,
+    "hf_metadata": hf_metadata_create_query,
     "hf_expanded_metadata": hf_expanded_metadata_create_query
 }
 
 def run_query(prefix: str, table: str, query: str, verbose=0) -> None:
     try:
         if verbose > 1:
-            print(f"Running query, {prefix} {table}:")
+            for_table = f' for "{table}"' if len(table) > 0 else ''
+            print(f"Running '{prefix}'' query{for_table}:")
             print(query)
 
         # Open a new process with a pipe for stdin.
@@ -126,22 +152,26 @@ def run_query(prefix: str, table: str, query: str, verbose=0) -> None:
           shell=True, executable="/bin/zsh")
 
         # Communicate with the process. This sends data to stdin and returns data from stdout and stderr.
-        output, err = process.communicate(input=encoded_string)
+        output, serr = process.communicate(input=encoded_string)
 
-        if verbose > 0 and output:
+        sout = output.decode('utf-8') if output else '';
+        if verbose > 0 and sout:
             print(f"Output from {prefix} {table} query:")
-            print(output.decode('utf-8'))
-        if err:
-            error(f"Failures while {prefix} {table} query: {err.decode('utf-8')}")
+            print(sout)
+        if serr:
+            error(f"Error from {prefix} {table} query: Stderr not empty: {serr.decode('utf-8')}")
+        if 'error' in sout.lower():
+            error(f"Error from {prefix} {table} query: 'Error' string in stdout: {sout}")
+        if process.returncode != 0:
+            error(f"Error from {prefix} {table} query: Return code {process.returncode} != 0")
 
     except Exception as e:
-        error(f"An Exception {type(e)} occurred running the queries: {e}")
+        error(f"An Exception {type(e)} occurred running the {prefix} {table} query: {e}")
 
 for table in queries:
     run_query('create', table, queries[table], args.verbose)
+    run_query('count rows for', table, f'SELECT count() from {table};', args.verbose)
 
 if args.verbose > 0:
-    run_query('check that tables are present', '', '.tables', verbose=2)
+    run_query('confirm that the tables are present', '', '.tables', args.verbose)
     info(f"We expect the following tables: {list(queries.keys())}")
-    for table in queries:
-        run_query('count rows for', table, f'SELECT count() from {table};', verbose=2)
