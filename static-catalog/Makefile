@@ -15,43 +15,43 @@ TIMESTAMP           ?= $(shell date +"%Y-%m-%d")
 DOCS_DIR            ?= ../docs
 
 # For the static catalog generation.
-STATIC_CATALOG_VERBOSE      ?= 2
-STATIC_CATALOG_DIR          ?= .
-STATIC_CATALOG_BIN_DIR      ?= ${STATIC_CATALOG_DIR}/src/scripts
-STATIC_CATALOG_DATA_DIR     ?= ${STATIC_CATALOG_DIR}/data
-STATIC_CATALOG_MARKDOWN_DIR ?= ${STATIC_CATALOG_DIR}/markdown
-STATIC_CATALOG_SUFFIX       ?= processed/${TIMESTAMP}
-STATIC_CATEGORIES_FILE      ?= ${STATIC_CATALOG_DATA_DIR}/reference/keyword-categories.json
+CATALOG_VERBOSE      ?= 2
+CATALOG_DIR          ?= .
+CATALOG_BIN_DIR      ?= ${CATALOG_DIR}/src/scripts
+CATALOG_DATA_DIR     ?= ${CATALOG_DIR}/data
+CATALOG_MARKDOWN_DIR ?= ${CATALOG_DIR}/markdown
+CATALOG_SUFFIX       ?= processed/${TIMESTAMP}
+CATEGORIES_FILE      ?= ${CATALOG_DATA_DIR}/reference/keyword-categories.json
 PARQUET_SNAPSHOT_TIMESTAMP  ?= ${TIMESTAMP}
 
-STATIC_CATALOG_DATA_PARQUET_DIR     ?= ${STATIC_CATALOG_DATA_DIR}/parquet/${PARQUET_SNAPSHOT_TIMESTAMP}
-STATIC_CATALOG_DATA_JSON_TEMP_DIR   ?= ${STATIC_CATALOG_DATA_DIR}/json/temp/${TIMESTAMP}
-STATIC_CATALOG_DATA_JSON_ERRORS_DIR ?= ${STATIC_CATALOG_DATA_DIR}/json/errors/${TIMESTAMP}
-STATIC_CATALOG_DATA_JSON_FINAL_DIR  ?= ${STATIC_CATALOG_DATA_DIR}/json/processed/${TIMESTAMP}
-STATIC_CATALOG_MARKDOWN_FINAL_DIR   ?= ${STATIC_CATALOG_DIR}/markdown/processed/${TIMESTAMP}
-STATIC_CATALOG_DUCKDB_FILE          ?= ${STATIC_CATALOG_DATA_DIR}/croissant.duckdb
-STATIC_CATALOG_DATA_LICENSES_REF    ?= ${STATIC_CATALOG_DATA_DIR}/reference/all_licenses.json
-STATIC_CATALOG_DATA_ISO_LANGS_REF   ?= ${STATIC_CATALOG_DATA_DIR}/reference/ISO-639-1-language.json
-STATIC_CATALOG_DOCS_JS_DIR          ?= ${DOCS_DIR}/files/data/catalog
-STATIC_CATALOG_DOCS_MARKDOWN_DIR    ?= ${DOCS_DIR}
+CATALOG_DATA_PARQUET_DIR     ?= ${CATALOG_DATA_DIR}/parquet/${PARQUET_SNAPSHOT_TIMESTAMP}
+CATALOG_DATA_JSON_TEMP_DIR   ?= ${CATALOG_DATA_DIR}/json/temp/${TIMESTAMP}
+CATALOG_DATA_JSON_ERRORS_DIR ?= ${CATALOG_DATA_DIR}/json/errors/${TIMESTAMP}
+CATALOG_DATA_JSON_FINAL_DIR  ?= ${CATALOG_DATA_DIR}/json/processed/${TIMESTAMP}
+CATALOG_MARKDOWN_FINAL_DIR   ?= ${CATALOG_DIR}/markdown/processed/${TIMESTAMP}
+CATALOG_DUCKDB_FILE          ?= ${CATALOG_DATA_DIR}/croissant.duckdb
+CATALOG_DATA_LICENSES_REF    ?= ${CATALOG_DATA_DIR}/reference/all_licenses.json
+CATALOG_DATA_ISO_LANGS_REF   ?= ${CATALOG_DATA_DIR}/reference/ISO-639-1-language.json
+CATALOG_DOCS_JS_DIR          ?= ${DOCS_DIR}/files/data/catalog
+CATALOG_DOCS_MARKDOWN_DIR    ?= ${DOCS_DIR}
 
 define help_message
-Quick help for "${STATIC_CATALOG_DIR}" tasks for open-trusted-data-initiative.
+Quick help for "${CATALOG_DIR}" tasks for open-trusted-data-initiative.
 
 Tasks for building and deploying the static catalog.
 
 make catalog             # Makes "catalog-clean", "catalog-data-prep", "catalog-duckdb-load",
                          # "catalog-build" and "catalog-install".
-make catalog-clean       # Deletes all generated files under ${STATIC_CATALOG_DIR}/markdown and
-                         # ${STATIC_CATALOG_DIR}/data/json/ for YYYY-MM-DD.
+make catalog-clean       # Deletes all generated files under ${CATALOG_DIR}/markdown and
+                         # ${CATALOG_DIR}/data/json/ for YYYY-MM-DD.
 make catalog-data-prep   # Convert the raw parquet files into JSON
 make catalog-duckdb-load # Load the JSON into DuckDB tables.
 make catalog-build       # Uses the DuckDB tables to create markdown and JavaScript files for the
                          # website catalog,  based on the defined categories and topics in 
-                         #   ${STATIC_CATALOG_DIR}/data/reference/keyword-categories.json.
+                         #   ${CATALOG_DIR}/data/reference/keyword-categories.json.
                          # The catalog files created are written to 
-                         #   ${STATIC_CATALOG_DIR}/markdown/processed/YYYY-MM-DD and
-                         #   ${STATIC_CATALOG_DIR}/data/json/processed/YYYY-MM-DD.
+                         #   ${CATALOG_DIR}/markdown/processed/YYYY-MM-DD and
+                         #   ${CATALOG_DIR}/data/json/processed/YYYY-MM-DD.
 make catalog-json        # Same as "catalog-build", but only builds the JSON files.
 make catalog-markdown    # Same as "catalog-build", but only builds the Markdown files.
 make catalog-install     # Copies the catalog files created by "catalog-build" to the 
@@ -98,16 +98,16 @@ print-info:
 	@echo "GIT_HASH:            ${GIT_HASH}"
 	@echo "JEKYLL_PORT:         ${JEKYLL_PORT}"
 	@echo
-	@echo "STATIC_CATEGORIES_FILE:             ${STATIC_CATEGORIES_FILE}"
-	@echo "STATIC_CATALOG_DATA_PARQUET_DIR:    ${STATIC_CATALOG_DATA_PARQUET_DIR}"
-	@echo "STATIC_CATALOG_DATA_JSON_TEMP_DIR:  ${STATIC_CATALOG_DATA_JSON_TEMP_DIR}"
-	@echo "STATIC_CATALOG_DATA_JSON_FINAL_DIR: ${STATIC_CATALOG_DATA_JSON_FINAL_DIR}"
-	@echo "STATIC_CATALOG_MARKDOWN_FINAL_DIR:  ${STATIC_CATALOG_MARKDOWN_FINAL_DIR}"
-	@echo "STATIC_CATALOG_DUCKDB_FILE:         ${STATIC_CATALOG_DUCKDB_FILE}"
-	@echo "STATIC_CATALOG_DATA_LICENSES_REF:   ${STATIC_CATALOG_DATA_LICENSES_REF}"
-	@echo "STATIC_CATALOG_DATA_ISO_LANGS_REF:  ${STATIC_CATALOG_DATA_ISO_LANGS_REF}"
-	@echo "STATIC_CATALOG_DOCS_JS_DIR:         ${STATIC_CATALOG_DOCS_JS_DIR}"
-	@echo "STATIC_CATALOG_DOCS_MARKDOWN_DIR:   ${STATIC_CATALOG_DOCS_MARKDOWN_DIR}"
+	@echo "CATEGORIES_FILE:             ${CATEGORIES_FILE}"
+	@echo "CATALOG_DATA_PARQUET_DIR:    ${CATALOG_DATA_PARQUET_DIR}"
+	@echo "CATALOG_DATA_JSON_TEMP_DIR:  ${CATALOG_DATA_JSON_TEMP_DIR}"
+	@echo "CATALOG_DATA_JSON_FINAL_DIR: ${CATALOG_DATA_JSON_FINAL_DIR}"
+	@echo "CATALOG_MARKDOWN_FINAL_DIR:  ${CATALOG_MARKDOWN_FINAL_DIR}"
+	@echo "CATALOG_DUCKDB_FILE:         ${CATALOG_DUCKDB_FILE}"
+	@echo "CATALOG_DATA_LICENSES_REF:   ${CATALOG_DATA_LICENSES_REF}"
+	@echo "CATALOG_DATA_ISO_LANGS_REF:  ${CATALOG_DATA_ISO_LANGS_REF}"
+	@echo "CATALOG_DOCS_JS_DIR:         ${CATALOG_DOCS_JS_DIR}"
+	@echo "CATALOG_DOCS_MARKDOWN_DIR:   ${CATALOG_DOCS_MARKDOWN_DIR}"
 
 
 .PHONY: catalog catalog-data-prep catalog-duckdb-load catalog-build catalog-build-json catalog-build-markdown catalog-install
@@ -117,60 +117,60 @@ catalog:: catalog-clean catalog-data-prep catalog-duckdb-load catalog-build cata
 
 catalog-clean:: catalog-clean-notice catalog-clean-db-file catalog-clean-json catalog-clean-markdown
 catalog-clean-notice::
-	@echo "Cleaning targets under ${STATIC_CATALOG_DIR}, not docs. The docs files are cleaned by catalog-install."
+	@echo "Cleaning targets under ${CATALOG_DIR}, not docs. The docs files are cleaned by catalog-install."
 catalog-clean-json::
-	rm -rf ${STATIC_CATALOG_DATA_JSON_TEMP_DIR}
-	rm -rf ${STATIC_CATALOG_DATA_JSON_ERRORS_DIR}
-	rm -rf ${STATIC_CATALOG_DATA_JSON_FINAL_DIR}
+	rm -rf ${CATALOG_DATA_JSON_TEMP_DIR}
+	rm -rf ${CATALOG_DATA_JSON_ERRORS_DIR}
+	rm -rf ${CATALOG_DATA_JSON_FINAL_DIR}
 catalog-clean-markdown::
-	rm -rf ${STATIC_CATALOG_MARKDOWN_FINAL_DIR}
+	rm -rf ${CATALOG_MARKDOWN_FINAL_DIR}
 catalog-clean-db-file::
-	rm -f  ${STATIC_CATALOG_DUCKDB_FILE}
+	rm -f  ${CATALOG_DUCKDB_FILE}
 
 catalog-data-prep::
-	${UV_RUN} ${STATIC_CATALOG_BIN_DIR}/parquet-to-json.py \
-		--verbose ${STATIC_CATALOG_VERBOSE} \
-		--input   ${STATIC_CATALOG_DATA_PARQUET_DIR} \
-		--output  ${STATIC_CATALOG_DATA_JSON_TEMP_DIR} \
-		--errors  ${STATIC_CATALOG_DATA_JSON_ERRORS_DIR}
+	${UV_RUN} ${CATALOG_BIN_DIR}/parquet-to-json.py \
+		--verbose ${CATALOG_VERBOSE} \
+		--input   ${CATALOG_DATA_PARQUET_DIR} \
+		--output  ${CATALOG_DATA_JSON_TEMP_DIR} \
+		--errors  ${CATALOG_DATA_JSON_ERRORS_DIR}
 
 catalog-duckdb-load:: catalog-clean-db-file
-	${UV_RUN} ${STATIC_CATALOG_BIN_DIR}/load-into-duckdb.py \
-		--verbose   ${STATIC_CATALOG_VERBOSE} \
-		--db-file   ${STATIC_CATALOG_DUCKDB_FILE} \
-		--input     ${STATIC_CATALOG_DATA_JSON_TEMP_DIR}/* \
-		--licenses  ${STATIC_CATALOG_DATA_LICENSES_REF} \
-		--iso-langs ${STATIC_CATALOG_DATA_ISO_LANGS_REF}
+	${UV_RUN} ${CATALOG_BIN_DIR}/load-into-duckdb.py \
+		--verbose   ${CATALOG_VERBOSE} \
+		--db-file   ${CATALOG_DUCKDB_FILE} \
+		--input     ${CATALOG_DATA_JSON_TEMP_DIR}/* \
+		--licenses  ${CATALOG_DATA_LICENSES_REF} \
+		--iso-langs ${CATALOG_DATA_ISO_LANGS_REF}
 
 catalog-build::
-	${UV_RUN} ${STATIC_CATALOG_BIN_DIR}/write-category-files.py \
-		--verbose      ${STATIC_CATALOG_VERBOSE} \
-		--db-file      ${STATIC_CATALOG_DUCKDB_FILE} \
-		--cat-file     ${STATIC_CATEGORIES_FILE} \
-		--json-dir     ${STATIC_CATALOG_DATA_JSON_FINAL_DIR} \
-		--markdown-dir ${STATIC_CATALOG_MARKDOWN_FINAL_DIR}
+	${UV_RUN} ${CATALOG_BIN_DIR}/write-category-files.py \
+		--verbose      ${CATALOG_VERBOSE} \
+		--db-file      ${CATALOG_DUCKDB_FILE} \
+		--cat-file     ${CATEGORIES_FILE} \
+		--json-dir     ${CATALOG_DATA_JSON_FINAL_DIR} \
+		--markdown-dir ${CATALOG_MARKDOWN_FINAL_DIR}
 catalog-build-json::
-	${UV_RUN} ${STATIC_CATALOG_BIN_DIR}/write-category-files.py \
+	${UV_RUN} ${CATALOG_BIN_DIR}/write-category-files.py \
 		--no-markdown \
-		--verbose      ${STATIC_CATALOG_VERBOSE} \
-		--db-file      ${STATIC_CATALOG_DUCKDB_FILE} \
-		--cat-file     ${STATIC_CATEGORIES_FILE} \
-		--json-dir     ${STATIC_CATALOG_DATA_JSON_FINAL_DIR}
+		--verbose      ${CATALOG_VERBOSE} \
+		--db-file      ${CATALOG_DUCKDB_FILE} \
+		--cat-file     ${CATEGORIES_FILE} \
+		--json-dir     ${CATALOG_DATA_JSON_FINAL_DIR}
 catalog-build-markdown::
-	${UV_RUN} ${STATIC_CATALOG_BIN_DIR}/write-category-files.py \
+	${UV_RUN} ${CATALOG_BIN_DIR}/write-category-files.py \
 		--no-json \
-		--verbose      ${STATIC_CATALOG_VERBOSE} \
-		--db-file      ${STATIC_CATALOG_DUCKDB_FILE} \
-		--cat-file     ${STATIC_CATEGORIES_FILE} \
-		--markdown-dir ${STATIC_CATALOG_MARKDOWN_FINAL_DIR}
+		--verbose      ${CATALOG_VERBOSE} \
+		--db-file      ${CATALOG_DUCKDB_FILE} \
+		--cat-file     ${CATEGORIES_FILE} \
+		--markdown-dir ${CATALOG_MARKDOWN_FINAL_DIR}
 
 catalog-install::
-	${STATIC_CATALOG_BIN_DIR}/copy-files-to-docs.sh \
-		--verbose ${STATIC_CATALOG_VERBOSE} \
-		--js-source ${STATIC_CATALOG_DATA_JSON_FINAL_DIR} \
-		--md-source ${STATIC_CATALOG_MARKDOWN_FINAL_DIR} \
-		--js-target ${STATIC_CATALOG_DOCS_JS_DIR} \
-		--md-target ${STATIC_CATALOG_DOCS_MARKDOWN_DIR}
+	${CATALOG_BIN_DIR}/copy-files-to-docs.sh \
+		--verbose ${CATALOG_VERBOSE} \
+		--js-source ${CATALOG_DATA_JSON_FINAL_DIR} \
+		--md-source ${CATALOG_MARKDOWN_FINAL_DIR} \
+		--js-target ${CATALOG_DOCS_JS_DIR} \
+		--md-target ${CATALOG_DOCS_MARKDOWN_DIR}
 
 %-error:
 	$(error ${${@}-message})

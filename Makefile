@@ -10,7 +10,7 @@ MAKEFLAGS_RECURSIVE ?= # --print-directory (only useful for recursive makes...)
 UNAME               ?= $(shell uname)
 ARCHITECTURE        ?= $(shell uname -m)
 
-STATIC_CATALOG_DIR  ?= static-catalog
+CATALOG_DIR  ?= static-catalog
 
 # Override when running `make view-local` using e.g., `JEKYLL_PORT=8000 make view-local`
 JEKYLL_PORT         ?= 4000
@@ -33,7 +33,7 @@ Tasks for building and deploying the static catalog.
 To see help on these tasks, run the following:
 
 make catalog-help       # Show help for static catalog generation, effectively 
-                        #   make -C ${STATIC_CATALOG_DIR} help
+                        #   make -C ${CATALOG_DIR} help
                         # All the make targets shown can be invoked using
                         # this top-level Makefile, too.
 
@@ -157,10 +157,10 @@ ruby-installed-check:
 .PHONY: catalog catalog-help
 
 catalog-help:: 
-	${MAKE} -C ${STATIC_CATALOG_DIR} help
+	${MAKE} -C ${CATALOG_DIR} help
 
 catalog catalog-%:: 
-	${MAKE} -C ${STATIC_CATALOG_DIR} $@
+	${MAKE} -C ${CATALOG_DIR} $@
 
 %-error:
 	$(error ${${@}-message})
