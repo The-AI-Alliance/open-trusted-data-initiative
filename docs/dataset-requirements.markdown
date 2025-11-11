@@ -102,6 +102,7 @@ The [`templates/README_guide.md`](https://github.com/huggingface/datasets/blob/m
 {: .note}
 > **NOTE:** For source code, e.g., the code used for the [data processing pipelines]({{site.baseurl}}/our-processing), the AI Alliance standard code license is [_Apache 2.0_](https://spdx.org/licenses/Apache-2.0){:target="apache"}. For documentation, it is _The Creative Commons License, Version 4.0_, [CC BY 4.0](https://spdx.org/licenses/CC-BY-4.0.html){:target="cc-by-4"}. See the Alliance [`community/CONTRIBUTING` page](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md#licenses){:target="licenses"} for more details about licenses.
 
+
 ## The Markdown Content in the Dataset Card
 
 **Table 2** lists content that we require or recommend in the Markdown body of the dataset card, below the YAML header block. The **Source** column in the table contains the following:
@@ -200,3 +201,179 @@ See [How We Process Datasets]({{site.baseurl}}/our-processing) for more details 
 
 After you have prepared or updated the dataset card as required, we will automatically pick up the changes from Hugging Face. If you are not hosting your dataset there, then [contribute your dataset]({{site.baseurl}}/contributing).
 
+## Appendix: Task Categories
+
+The `task_categories` field in [**Table 1**](#table-1) above recommends using the &ldquo;types&rdquo; in [this list](https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/pipelines.ts){:target="hf-tasks"} in Hugging Face source code. For convenience, here is the same list, as of November 2025:
+
+Here we group the tasks by _modality_ (e.g., `nlp`). Some tasks have defined subtasks, which are listed with them. If not subtasks are shown, none are defined for the task.
+
+### Natural Language Processing - `nlp`
+
+| **Task** | **Subtasks** | **Name** |
+| :--- | :--- | :--- |
+| `text-classification` | | Text Classification |
+| | `acceptability-classification` | Acceptability Classification |
+| | `entity-linking-classification` | Entity Linking Classification |
+| | `fact-checking` | Fact Checking |
+| | `intent-classification` | Intent Classification |
+| | `language-identification` | Language Identification |
+| | `multi-class-classification` | Multi Class Classification |
+| | `multi-label-classification` | Multi Label Classification |
+| | `multi-input-text-classification` | Multi-input Text Classification |
+| | `natural-language-inference` | Natural Language Inference |
+| | `semantic-similarity-classification` | Semantic Similarity Classification |
+| | `sentiment-classification` | Sentiment Classification |
+| | `topic-classification` | Topic Classification |
+| | `semantic-similarity-scoring` | Semantic Similarity Scoring |
+| | `sentiment-scoring` | Sentiment Scoring |
+| | `sentiment-analysis` | Sentiment Analysis |
+| | `hate-speech-detection` | Hate Speech Detection |
+| | `text-scoring` | Text Scoring |
+| `token-classification` | | Token Classification | 
+| | `named-entity-recognition` | Named Entity Recognition |
+| | `part-of-speech` | Part of Speech |
+| | `parsing` | Parsing |
+| | `lemmatization` | Lemmatization |
+| | `word-sense-disambiguation` | Word Sense Disambiguation |
+| | `coreference-resolution` | Coreference-resolution |
+| `table-question-answering` | | Table Question Answering |
+| `question-answering` | | Question Answering | 
+| | `extractive-qa` | Extractive QA | 
+| | `open-domain-qa` | Open Domain QA | 
+| | `closed-domain-qa` | Closed Domain QA | 
+| `zero-shot-classification` | | Zero-Shot Classification | 
+| `translation` | | Translation |
+| `summarization` | | Summarization | 
+| | `news-articles-summarization` | News Articles Summarization |
+| | `news-articles-headline-generation` | News Articles Headline Generation |
+| `feature-extraction` | | Feature Extraction |
+| `text-generation` | | Text Generation |
+| | `dialogue-modeling` | Dialogue Modeling |
+| | `dialogue-generation` | Dialogue Generation |
+| | `conversational` | Conversational |
+| | `language-modeling` | Language Modeling |
+| | `text-simplification` | Text Simplification |
+| | `explanation-generation` | Explanation Generation |
+| | `abstractive-qa` | Abstractive QA |
+| | `open-domain-abstractive-qa` | Open Domain Abstractive QA |
+| | `closed-domain-qa` | Closed Domain QA |
+| | `open-book-qa` | Open Book QA |
+| | `closed-book-qa` | Closed Book QA |
+| | `text2text-generation` | Text2Text Generation |
+| `fill-mask` | | Fill Mask |
+| | `slot-filling` | Slot Filling |
+| | `masked-language-modeling` | Masked Language Modeling |
+| `table-to-text` | | Table to Text |
+| `multiple-choice` | | Multiple Choice |
+| | `multiple-choice-qa` | Multiple Choice QA |
+| | `multiple-choice-coreference-resolution` | Multiple Choice Coreference Resolution |
+| `text-ranking`   | | Text Ranking |
+| `text-retrieval` | | Text Retrieval |
+| | `document-retrieval`       | Document Retrieval       |
+| | `utterance-retrieval`      | Utterance Retrieval      |
+| | `entity-linking-retrieval` | Entity Linking Retrieval |
+| | `fact-checking-retrieval`  | Fact Checking Retrieval  |
+
+### Audio - `audio`
+
+| **Task** | **Subtasks** | **Name** |
+| :--- | :--- | :--- |
+| `sentence-similarity` | | Sentence Similarity |
+| `text-to-speech` | | Text-to-Speech |
+| `text-to-audio` | | Text-to-Audio |
+| `automatic-speech-recognition` | | Automatic Speech Recognition |
+| `audio-to-audio` | | Audio-to-Audio |
+| `audio-classification` | | Audio Classification |
+| | `keyword-spotting` | Keyword Spotting |
+| | `speaker-identification` | Speaker Identification |
+| | `audio-intent-classification` | Audio Intent Classification |
+| | `audio-emotion-recognition` | Audio Emotion Recognition |
+| | `audio-language-identification` | Audio Language Identification |
+| `voice-activity-detection` | | Voice Activity Detection | 
+
+### Multimodal - `multimodal`
+
+For `visual-question-answering` and `document-question-answering`, the Hugging Face source file lists each as its own subtask, which looks like a data error, but we show it for consistency.
+
+| **Task** | **Subtasks** | **Name** |
+| :--- | :--- | :--- |
+| `audio-text-to-text` | | Audio-Text-to-Text |
+| `image-text-to-text` | | Image-Text-to-Text |
+| `visual-question-answering` | | Visual Question Answering |
+| | `visual-question-answering` | Visual Question Answering |
+| `document-question-answering` | | Document Question Answering |
+| | `document-question-answering` | Document Question Answering |
+| `video-text-to-text` | | Video-Text-to-Text |
+| `visual-document-retrieval` | | Visual Document Retrieval |
+| `any-to-any` | | Any-to-Any |
+
+
+### Computer Vision - `cv`
+
+| **Task** | **Subtasks** | **Name** |
+| :--- | :--- | :--- |
+| `depth-estimation` | | Depth Estimation |
+| `image-classification` | | Image Classification |
+| | `multi-label-image-classification` | Multi Label Image Classification |
+| | `multi-class-image-classification` | Multi Class Image Classification |
+| `object-detection` | | Object Detection |
+| | `face-detection`    | Face Detection    |
+| | `vehicle-detection` | Vehicle Detection |
+| `image-segmentation` | | Image Segmentation |
+| | `instance-segmentation` | Instance Segmentation |
+| | `semantic-segmentation` | Semantic Segmentation |
+| | `panoptic-segmentation` | Panoptic Segmentation |
+| `text-to-image` | | Text-to-Image |
+| `image-to-text` | | Image-to-Text |
+| | `image-captioning` | Image Captioning |
+| `image-to-image` | | Image-to-Image |
+| | `image-inpainting`   | Image Inpainting   |
+| | `image-colorization` | Image Colorization |
+| | `super-resolution`   | Super Resolution     |
+| `image-to-video` | | Image-to-Video |
+| `unconditional-image-generation` | | Unconditional Image Generation |
+| `video-classification` | | Video Classification |
+| `text-to-video` | | Text-to-Video |
+| `zero-shot-image-classification` | | Zero-Shot Image Classification |
+| `mask-generation` | | Mask Generation |
+| `zero-shot-object-detection` | | Zero-Shot Object Detection |
+| `text-to-3d`  | | Text-to-3D  |
+| `image-to-3d` | | Image-to-3D |
+| `image-feature-extraction` | | Image Feature Extraction |
+| `keypoint-detection` | | Keypoint Detection |
+| `pose-estimation` | | Pose Estimation |
+| `video-to-video` | | Video-to-Video |
+
+
+### Reinforcement Learning - `rl`
+
+| **Task** | **Subtasks** | **Name** |
+| :--- | :--- | :--- |
+| `reinforcement-learning` | | Reinforcement Learning |
+| `robotics` | | Robotics |
+| | `grasping`      | Grasping      |
+| | `task-planning` | Task Planning |
+
+### Tabular - `tabular`
+
+| **Task** | **Subtasks** | **Name** |
+| :--- | :--- | :--- |
+| `tabular-classification` | | Tabular Classification |
+| | `tabular-multi-class-classification` | Tabular Multi Class Classification |
+| | `tabular-multi-label-classification` | Tabular Multi Label Classification |
+| `tabular-regression` | | Tabular Regression |
+| | `tabular-single-column-regression` | Tabular Single Column Regression |
+| `tabular-to-text` | | Tabular to Text |
+| | `rdf-to-text` | RDF to text |
+| `time-series-forecasting` | | Time Series Forecasting |
+| | `univariate-time-series-forecasting`   | Univariate Time Series Forecasting   |
+| | `multivariate-time-series-forecasting` | Multivariate Time Series Forecasting |
+
+### Other - `other`
+
+Special cases that don't fit in the other modality categories.
+
+| **Task** | **Name** |
+| :--- | :--- |
+| `graph-ml` | Graph Machine Learning |
+| `other`    | Other |

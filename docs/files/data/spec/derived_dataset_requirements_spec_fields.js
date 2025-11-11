@@ -27,8 +27,8 @@ const data_for_derived_dataset_requirements_spec_fields =
   },
   {
     "field_name": "pretty_name",
-    "description": "A modified name is strongly recommended to avoid potential confusion. It might just embed a version string.",
-    "required": 0
+    "description": "A modified name is strongly recommended to avoid potential confusion. It might just embed a version string. It can't be empty.",
+    "required": 1
   },
   {
     "field_name": "unique_metadata_identifier",
