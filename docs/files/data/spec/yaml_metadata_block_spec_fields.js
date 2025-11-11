@@ -37,12 +37,12 @@ const data_for_yaml_metadata_block_spec_fields =
   },
   {
     "field_name": "language_details", 
-    "description": "One or more of, for example, <code>en-US</code>, <code>fr-FR</code>, etc.",
-    "required": 1
+    "description": "One or more of, for example, <code>en-US</code>, <code>fr-FR</code>, etc. Normally, this would be required, but in practice, it is rarely used to hold anything other than `en-US`!",
+    "required": 0
   },
   {
     "field_name": "pretty_name", 
-    "description": "E.g., <code>Common Chemistry</code>. This is equivalent to the <code>Dataset title/name</code> field in the <a href=\"https://dataandtrustalliance.org/work/data-provenance-standards\" target=\"dta-prov\"}.",
+    "description": "E.g., <code>Common Chemistry</code>. This is equivalent to the <code>Dataset title/name</code> field in the <a href=\"https://dataandtrustalliance.org/work/data-provenance-standards\" target=\"dta-prov\"}. It can't be empty.",
     "required": 1
   },
   {
@@ -57,8 +57,8 @@ const data_for_yaml_metadata_block_spec_fields =
   },
   {
     "field_name": "task_categories", 
-    "description": "A YAML list; one or more from the list in <a href=\"https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/pipelines.ts\" target=\"hf-tasks\">this code</a>.",
-    "required": 1
+    "description": "A YAML list; one or more from the list in <a href=\"https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/pipelines.ts\" target=\"hf-tasks\">this code</a> (see below).",
+    "required": 0
   },
   {
     "field_name": "task_ids", 
