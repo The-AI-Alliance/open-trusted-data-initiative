@@ -42,7 +42,9 @@ has_children: true
 
 ## More About the Licenses
 
-More details of our analysis of the licenses can be found in the GitHub repo's [`license-notes.md`](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/main/static-catalog/license-notes.md){:target="repo"}. Here we provide a few more of the interesting details. The [ScanCode LicenseDB](https://scancode-licensedb.aboutcode.org/) project classifies licenses into one of six categories. The 109K &ldquo;good&rdquo; datasets are categorized as follows:
+More details of our analysis of the licenses can be found in the GitHub repo's [`license-notes.md`](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/main/static-catalog/license-notes.md){:target="repo"}. Here we provide a few more of the interesting details. The [ScanCode LicenseDB](https://scancode-licensedb.aboutcode.org/) project classifies licenses into one of six categories. The 109K &ldquo;good&rdquo; datasets are categorized as shown in Table 1:
+
+<a name="table-1"></a>
 
 | Category         | Count |
 | :--------------- | ----: |
@@ -53,7 +55,11 @@ More details of our analysis of the licenses can be found in the GitHub repo's [
 | Public Domain    |  2096 |
 | Copyleft         |  1112 |
 
-For our purposes, _Permissive_ and _Public Domain_ qualify as &ldquo;open&rdquo;, yielding 95K datasets. A total of 19 Permissive licenses were found:
+<p class="caption">Table 1: Types of licenses</p>
+
+For our purposes, _Permissive_ and _Public Domain_ qualify as &ldquo;open&rdquo;, yielding 95K datasets. A total of 19 Permissive licenses were found, shown in Table 2:
+
+<a name="table-2"></a>
 
 |                         License                               | Category         | Count |
 | :------------------------------------------------------------ | :--------------- | ----: |
@@ -76,6 +82,8 @@ For our purposes, _Permissive_ and _Public Domain_ qualify as &ldquo;open&rdquo;
 | Community Data License Agreement Permissive 1.0               | Permissive       |    13 |
 | zlib License                                                  | Permissive       |     9 |
 | ISC License                                                   | Permissive       |     7 |
+
+<p class="caption">Table 2: The Permissive Licenses</p>
 
 {: .attention}
 > **Important:** At this time, we are not yet validating datasets to ensure their metadata accurately reflect the data records themselves.
