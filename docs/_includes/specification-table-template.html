@@ -51,11 +51,34 @@
           "{{ include.table_id }}",
           data_for_{{ include.table_id }},
           [
-            {title:"R?",          field:"required",    width:40,  formatter: requiredProhibitedFormatter},
-            {title:"Field Name",  field:"field_name",  width:180, formatter: codeHTML},
-            {title:"Description", field:"description",            formatter:"html", variableHeight:true},
+            {
+              title: "Required or Disallowed?",
+              field: "required",
+              width: 40,
+              headerTooltip: true,
+              formatter:  requiredOrDisallowedFormatter
+            },
+            {
+              title: "Field Name",
+              field: "field_name",
+              width: 180,
+              headerTooltip: true, 
+              formatter:  codeHTML
+            },
+            {
+              title: "Description",
+              field: "description",
+              headerTooltip: true,
+              variableHeight: true,
+              formatter: "html"
+            },
             {% if include.show_source %}
-            {title:"Source", field:"source", width:90}
+            {
+              title: "Source",
+              field: "source",
+              width: 90,
+              headerTooltip: true
+            }
             {% endif %}
           ],
           false

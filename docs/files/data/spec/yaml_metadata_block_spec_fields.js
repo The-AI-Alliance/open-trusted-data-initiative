@@ -1,8 +1,8 @@
-const data_for_table1_spec_fields = 
+const data_for_yaml_metadata_block_spec_fields = 
 [
   {
     "field_name": "license", 
-    "description": "We <bold>strongly recommend</bold> <code>cdla-permissive-2.0</code> for the <a href=\"https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md#licenses\" target=\"cdla\">Community Data License Agreement – Permissive, Version 2.0</a> and may require it in the future. See the list of permissive licenses we accept in the <a href=\"{{site.baseurl}}/catalog/#table-1\">Catalog index page</a>. Use <a href=\"https://huggingface.co/docs/hub/repositories-licenses\" target=\"hf-licenses\">these names</a> for licenses.",
+    "description": "We <bold>strongly recommend</bold> <code>cdla-permissive-2.0</code> for the <a href=\"https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md#licenses\" target=\"cdla\">Community Data License Agreement – Permissive, Version 2.0</a> and may require it in the future. See the list of permissive licenses we accept in the <a href=\"../catalog/#table-1\">Catalog index page</a>. Use <a href=\"https://huggingface.co/docs/hub/repositories-licenses\" target=\"hf-licenses\">these names</a> for licenses.",
     "required": 1
   },
   {

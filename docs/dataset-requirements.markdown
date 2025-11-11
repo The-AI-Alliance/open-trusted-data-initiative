@@ -8,7 +8,7 @@ has_children: false
 # Dataset Specification
 
 {: .note}
-> **Note:** The specification documented here is the &ldquo;V0.1.6&rdquo; version of the criteria we believe are required for datasets cataloged by OTDI. We need and welcome your feedback! Either [contact us]({{site.baseurl}}/about/#contact-us) or consider using [pull requests](https://github.com/The-AI-Alliance/open-trusted-data-initiative/pulls){:target="prs"} with your suggestions. See the AI Alliance community page on [contributing](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md){:target="contrib"} for more details.
+> **Note:** The specification documented here is the &ldquo;V0.1.7&rdquo; version of the criteria we believe are required for datasets cataloged by OTDI. We need and welcome your feedback! Either [contact us]({{site.baseurl}}/about/#contact-us) or consider using [pull requests](https://github.com/The-AI-Alliance/open-trusted-data-initiative/pulls){:target="prs"} with your suggestions. See the AI Alliance community page on [contributing](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md){:target="contrib"} for more details.
 >
 > Also [contact us]({{site.baseurl}}/about/#contact-us) if you are interested in contributing a dataset, but you have any questions or concerns about meeting the following specification.
 
@@ -85,19 +85,19 @@ The [`templates/README_guide.md`](https://github.com/huggingface/datasets/blob/m
 {: .tip}
 > **TIP:** The following tables are long, but starting with the [`datasetcard_template.md`](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md){:target="hf-dataset-card-template"} and the [dataset card process](https://huggingface.co/docs/datasets/dataset_card){:target="hf-card-create"} will handle most of the details. Then you can add the additional fields requested in [Table 2](#table-2), those marked with "OTDI".
 
-**Table 1** lists all the fields in the dataset card YAML block. The **R?** (Required?) column uses &#10004; to indicate the field is required by us, &#x274c; for fields that we don't allow (because they are incompatible with this project), and a blank entry indicates a field is optional.
+**Table 1** lists all the fields in the dataset card YAML block. The **Required or Disallowed?** column uses &#10004; to indicate the field is required by us, &#x274c; for fields that we don't allow (because they are incompatible with this project), and a blank entry indicates a field is optional.
 
 <a name="table-1"></a>
 
-{% include data-spec-table-template.html 
-  title="Table 1"
+{% include specification-table-template.html 
+  title="YAML Metadata Block"
   context=""
-  table_id="table1_spec_fields"
+  table_id="yaml_metadata_block_spec_fields"
   show_source=false
   context=""
 %}
 
-<p class="caption"><strong>Table 1:</strong> Hugging Face Datacard Metadata</p>
+<p class="caption"><strong>Table 1:</strong> Hugging Face Datacard YAML Metadata Block</p>
 
 {: .note}
 > **NOTE:** For source code, e.g., the code used for the [data processing pipelines]({{site.baseurl}}/our-processing), the AI Alliance standard code license is [_Apache 2.0_](https://spdx.org/licenses/Apache-2.0){:target="apache"}. For documentation, it is _The Creative Commons License, Version 4.0_, [CC BY 4.0](https://spdx.org/licenses/CC-BY-4.0.html){:target="cc-by-4"}. See the Alliance [`community/CONTRIBUTING` page](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md#licenses){:target="licenses"} for more details about licenses.
@@ -113,15 +113,15 @@ The [`templates/README_guide.md`](https://github.com/huggingface/datasets/blob/m
 
 <a name="table-2"></a>
 
-{% include data-spec-table-template.html 
-  title="Table 2"
+{% include specification-table-template.html 
+  title="Markdown Metadata Content"
   context=""
-  table_id="table2_spec_fields"
+  table_id="markdown_metadata_content_spec_fields"
   show_source=true
   context=""
 %}
 
-<p class="caption"><strong>Table 2:</strong> Additional Content for the Dataset Card (<code>README.md</code>)</p>
+<p class="caption"><strong>Table 2:</strong> Additional Markdown Metadata Content in the Dataset Card (<code>README.md</code>)</p>
 
 
 {% comment %} 
@@ -158,22 +158,29 @@ We are particularly interested in new datasets that can be used to train and tun
 
 Use the `tags` metadata field discussed above to indicate this information, when applicable.
 
-## Derived Dataset Specification
+<a id="derived-dataset-specification"></a>
 
-_Every_ dataset that is _derived_ via a processing pipeline from one or more other datasets requires its own dataset card, which must reference all _upstream_ datasets that feed into it (and by extension, their dataset cards of metadata). 
+## Derived or Synthetic Dataset Specification
 
-For example, when a derived dataset is the filtered output of one or more _raw_ datasets (defined below), where duplication and offensive content removal was performed, the new dataset may now support different recommended `uses` (i.e., it is now more suitable for model training or more useful for a specific domain), have different `bias_risks_limitations`, and it will need to identify the upstream (ancestor) `source_datasets`.
+_Every_ dataset that is _derived_ or _synthesized_ via a processing pipeline from one or more other datasets or models requires its own dataset card, which must reference all _upstream_ datasets and models that feed into it (and by extension, their dataset and model cards of metadata). 
+
+For example, when a derived dataset is the filtered output of one or more _raw_ (defined below) datasets, where duplication and offensive content removal was performed, the new dataset may now support different recommended `uses` (i.e., it is now more suitable for model training or more useful for a specific domain), have different `bias_risks_limitations`, and it will need to identify the upstream (ancestor) `source_datasets`.
 
 Suppose a new version of an existing dataset is created, where additional or removed data is involved, but no other changes occur. It also needs a new dataset card, even while most of the metadata will be unchanged.
+
+Finally, what if several datasets are used to derive a new dataset and these upstream data sources have different licenses? What if synthetic data is generated using a model? **_The &ldquo;most restrictive&rdquo; upstream license must be used or a suitable alternative._** For example, if one upstream source is not permissively licensed, the data from it in the derived dataset can't be &ldquo;made&rdquo; permissive by using a more permissive license. The whole derived dataset **must** use the most restrictive license attached to the upstream datasets. Similarly, a synthetic dataset generated from a model has to be licensed in accordance with the terms of use for the model. Some commercial models don't allow generated content to be used in permissively-licensed datasets, for example.
+
+{: .note}
+> **NOTE:** The derived dataset license must match the &ldquo;most restrictive&rdquo; upstream license or a similarly-restrictive alternative must be used. For synthetic data generated by a model, the terms of service for the model must be supported by the new dataset's license.
 
 **Table 3** lists the minimum set of metadata fields that must change in a derived dataset:
 
 <a name="table-3"></a>
 
-{% include data-spec-table-template.html 
-  title="Table 3"
+{% include specification-table-template.html 
+  title="Derived Dataset Requirements"
   context=""
-  table_id="table3_spec_fields"
+  table_id="derived_dataset_requirements_spec_fields"
   show_source=false
   context=""
 %}

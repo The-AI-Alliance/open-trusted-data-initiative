@@ -62,24 +62,46 @@
           "{{ include.keyword }}",
           data_for_{{ unique_id }},
           [
-            {title:"Name", field:"name", formatter:"link", formatterParams:{
-              labelField:"name",
-              urlField:"url",
-              target:"_blank",
+            {
+              title: "Name",
+              field: "name",
+              variableHeight: true,
+              formatter: "link",
+              formatterParams: {
+              labelField: "name",
+              urlField: "url",
+              target: "_blank",
             }},
             {% if other_keywords.size > 0 %}
-            {title:"Keyword", field:"keyword", formatter: codeHTML},
+            {
+              title: "Keyword",
+              field: "keyword",
+              variableHeight: true,
+              formatter: codeHTML
+            },
             {% endif %}
-            {title:"License", field:"license_name", formatter:"link", formatterParams:{
-              labelField:"license_name",
-              urlField:"license_url",
-              target:"_blank",
-            }},
-            {title:"Creator", field:"creator_name", formatter:"link", formatterParams:{
-              labelField:"creator_name",
-              urlField:"creator_url",
-              target:"_blank",
-            }}
+            {
+              title: "License",
+              field: "license_name",
+              variableHeight: true,
+              formatter: "link",
+              formatterParams: {
+                labelField: "license_name",
+                urlField: "license_url",
+                target: "_blank",
+              }
+            },
+            {
+              title: "Creator",
+              field: "creator_name",
+              variableHeight: true,
+              formatter: "link",
+              formatterParams: {
+                labelField: "creator_name",
+                urlField: "creator_url",
+                target: "_blank",
+              }
+            }
           ],
           true
         );

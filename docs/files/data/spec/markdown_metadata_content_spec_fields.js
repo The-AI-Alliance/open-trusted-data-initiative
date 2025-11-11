@@ -1,4 +1,4 @@
-const data_for_table2_spec_fields = 
+const data_for_markdown_metadata_content_spec_fields = 
 [
   {
     "field_name": "standards_version_used",
@@ -8,7 +8,7 @@ const data_for_table2_spec_fields =
   },
   {
     "field_name": "unique_metadata_identifier",
-    "description": "A UUID that is globally unique. Derived datasets must have their own UUIDs. The UUID is very useful for unambiguous lineage tracking, which is why we require it.",
+    "description": "A UUID that is globally unique. We recommend using an <a href=\"https://iscc.codes/\" target=\"iscc\">ISCC code</a>. Derived and synthetic datasets must have their own UUIDs. The UUID is very useful for unambiguous lineage tracking, which is why we require it.",
     "required": 1,
     "source": "OTDI"
   },
@@ -44,8 +44,8 @@ const data_for_table2_spec_fields =
   },
   {
     "field_name": "source_data",
-    "description": "<a href=\"https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#source-data\" target=\"hf-datasetcard-template-source-data\">HF template section</a>. Use the subsections, described next, <code>data_collection_and_processing_section</code> and <code>source_data_producers_section</code> to describe important provenance information. Is the data synthetic or not? Note our specification above that you can only submit datasets where you have the necessary rights (see also <code>consent_documentation_location</code> below).",
-    "required": 1,
+    "description": "This is redundant with <code>source_datasets</code> in the YAML metadata block. <a href=\"https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md#source-data\" target=\"hf-datasetcard-template-source-data\">HF template section</a>. Use the subsections, described next, <code>data_collection_and_processing_section</code> and <code>source_data_producers_section</code> to describe important provenance information. Is the data synthetic or not? Note our specification above that you can only submit datasets where you have the necessary rights (see also <code>consent_documentation_location</code> below).",
+    "required": 0,
     "source": "HF"
   },
   {

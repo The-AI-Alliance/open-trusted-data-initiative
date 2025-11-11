@@ -163,7 +163,7 @@ function makeDataSpecTable(uniqueID, data, columns, useMaxHeight) {
             <strong>Required?</strong>
           </td>
           <td class="td-description-value">
-            ${requiredProhibitedString(data.required)}
+            ${requiredOrDisallowedString(data.required)}
           </td>
         </tr>
         <tr>
@@ -324,7 +324,7 @@ function enableTableFilters(id_prefix, table) {
   clearElem.click
 }
 
-function requiredProhibitedString(value) {
+function requiredOrDisallowedString(value) {
   var str = "";  //default: not required nor prohibited.
   if (value > 0) { // required
     str = "&#10004;";
@@ -334,8 +334,8 @@ function requiredProhibitedString(value) {
   return str;
 }
 
-function requiredProhibitedFormatter(cell, formatterParams) {
-  return requiredProhibitedString(cell.getValue());
+function requiredOrDisallowedFormatter(cell, formatterParams) {
+  return requiredOrDisallowedString(cell.getValue());
 }
 
 function codeHTML(cell, formatterParams) {
