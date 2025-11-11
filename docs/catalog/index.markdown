@@ -42,7 +42,7 @@ has_children: true
 
 ## More About the Licenses
 
-More details of our analysis of the licenses can be found in the GitHub repo's [`license-notes.md`](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/main/static-catalog/license-notes.md){:target="repo"}. Here we provide a few more of the interesting details. The [ScanCode LicenseDB](https://scancode-licensedb.aboutcode.org/) project classifies licenses into one of six categories. The 109K &ldquo;good&rdquo; datasets are categorized as shown in Table 1:
+More details of our analysis of the licenses can be found in the GitHub repo's [`license-notes.md`](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/main/static-catalog/license-notes.md){:target="repo"}. Here we provide a few more of the interesting details. The [ScanCode LicenseDB](https://scancode-licensedb.aboutcode.org/){:target="scancode-licensedb"} project classifies licenses into one of six categories. The 109K &ldquo;good&rdquo; datasets are categorized as shown in Table 1:
 
 <a name="table-1"></a>
 
