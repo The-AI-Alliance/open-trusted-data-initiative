@@ -32,6 +32,19 @@ td {
 	vertical-align: top;
 }
 
+td.td-description-title {
+  vertical-align: top;
+}
+td.td-description-value {
+  vertical-align: top;
+  width: 100%;
+}
+
+div.variable-height-description td {
+  word-wrap: break-word;
+  background-color: green;
+}
+
 th {
   background-color: rgba(222, 196, 172, 0.11); //#EEECE1;
   white-space: nowrap;

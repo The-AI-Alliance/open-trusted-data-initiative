@@ -10,7 +10,7 @@
 
 {% assign other_keywords = include.alt_keywords | split: '|' %}
 {% if other_keywords.size > 0 %}
-  <p>This set includes the following additional keywords: <strong>{{ other_keywords | join: "</strong>, <strong>" }}</strong><p>
+  <p>This set includes the following additional keywords: <code>{{ other_keywords | join: "</code>, <code>" }}</code><p>
 {% endif %}
 
 <blockquote id="{{ unique_id }}-selected-description">
@@ -40,7 +40,7 @@
     <input id="{{ unique_id }}-filter-value" type="text" placeholder="value to filter" form="none">
     <button id="{{ unique_id }}-filter-clear" type="reset" value="reset">Clear Filter</button>
     <span id="{{ unique_id }}-num-rows"></span>
-    <button id="{{ unique_id }}-download-data" type="button" onclick="saveTableAsJSON('{{ unique_id }}', '{{ unique_id }}-download-message');">Download Table</button><br/> <!-- <br> makes it wrap, but with less vertical space than using <p>...</p>. -->
+    <button id="{{ unique_id }}-download-data" type="button" onclick="saveTableAsJSON('{{ unique_id }}', '{{ unique_id }}-download-message');">Download Table</button><br/> <!-- <br/> makes it wrap, but with less vertical space than using <p>...</p>. -->
     <span id="{{ unique_id }}-download-message"></span>
   </form>
 </div>
@@ -50,20 +50,60 @@
       {% comment %} 
       The next import will define a JS array "data_for_{{ unique_id }}". 
       It also expects the outer div to have id "{{unique_id}}-table".
+      One argument to makeCatalogTable() is an array of "extra columns". 
+      If this dataset has more than one keyword grouped together, we 
+      show the "main" keyword as a column. If there are no other keywords,
+      this would be wasted space!
       {% endcomment %}
       <script type="text/javascript" src="{{site.baseurl}}/files/data/catalog/{{ include.ancestor_path }}/{{include.cleaned_keyword}}.js"></script>
       <script type="text/javascript">
         var idTable = makeCatalogTable(
           "{{ unique_id }}",
-          "{{include.keyword}}",
+          "{{ include.keyword }}",
           data_for_{{ unique_id }},
-          {% if other_keywords.size > 0 %}
-          true,
-          {% else %}
-          false,
-          {% endif %}
-          "{{ unique_id }}-selected-description-div",
-          "{{ unique_id }}.json"
+          [
+            {
+              title: "Name",
+              field: "name",
+              variableHeight: true,
+              formatter: "link",
+              formatterParams: {
+              labelField: "name",
+              urlField: "url",
+              target: "_blank",
+            }},
+            {% if other_keywords.size > 0 %}
+            {
+              title: "Keyword",
+              field: "keyword",
+              variableHeight: true,
+              formatter: codeHTML
+            },
+            {% endif %}
+            {
+              title: "License",
+              field: "license_name",
+              variableHeight: true,
+              formatter: "link",
+              formatterParams: {
+                labelField: "license_name",
+                urlField: "license_url",
+                target: "_blank",
+              }
+            },
+            {
+              title: "Creator",
+              field: "creator_name",
+              variableHeight: true,
+              formatter: "link",
+              formatterParams: {
+                labelField: "creator_name",
+                urlField: "creator_url",
+                target: "_blank",
+              }
+            }
+          ],
+          true
         );
       </script>
     </div>

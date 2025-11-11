@@ -11,7 +11,8 @@ has_children: false
 # News
 
 | :--- | :--- |
-| May&nbsp;21,&nbsp;2025 | We have added a &ldquo;static&rdquo; [catalog]({{site.baseurl}}/catalog/catalog/) of Hugging Face datasets with licenses, organized by the most common keywords. This is a temporary implementation while we work on a more feature-rich, interactive catalog |
+| November&nbsp;11,&nbsp;2025 | Numerous refinements to the open dataset specification and processing of datasets by for permissive licenses. |
+| May&nbsp;21,&nbsp;2025 | We have added a &ldquo;static&rdquo; [catalog]({{site.baseurl}}/catalog/catalog/) of Hugging Face datasets with licenses, organized by the most common keywords. This is a temporary implementation while we work on a more feature-rich, interactive catalog. |
 | May&nbsp;6,&nbsp;2025 | We are actively soliciting datasets covering diverse languages, domains, use cases, etc. Please see our [contributing]({{site.baseurl}}/contributing) page and the [catalog]({{site.baseurl}}/catalog/catalog/) of available datasets. |
 | February&nbsp;11,&nbsp;2025 | OTDI [announced](https://thealliance.ai/blog/announcing-open-trusted-data-initiative-otdi){:target="aias"} at the AI Action Summit in Paris. Added an [EPFL]({{site.baseurl}}/catalog/catalog/#epfl) dataset. |
 | January&nbsp;31,&nbsp;2025 | Added [Data for Good at Meta]({{site.baseurl}}/catalog/catalog/#meta) datasets. |
@@ -84,6 +85,7 @@ This website for OTDI is built with [GitHub Pages](https://pages.github.com/){:t
 
 | Version  | Date       |
 | :------- | :--------- |
+| V0.4.2   | 2025-11-11 |
 | V0.4.0   | 2025-11-05 |
 | V0.3.7   | 2025-08-21 |
 | V0.3.0   | 2025-05-06 |

@@ -1,0 +1,95 @@
+
+<div>
+{{include.context | htmlify}}
+</div>
+
+<blockquote id="{{ include.table_id }}-selected-description">
+  <div id="{{ include.table_id }}-selected-description-div">
+    <p>Click a row to see the full description. Use the line below the table to resize it.</p>
+  </div>
+</blockquote>
+<div id="{{ include.table_id }}-filter-div">
+  <form>
+    <select id="{{ include.table_id }}-filter-field" type="select">
+      <option value="field_name" selected="selected">Field Name</option>
+      <!-- TODO: Since we encode the required value using integers, we need a way to make the
+      filtering intuitive,e.g., by dynamically changing the ...-filter-type options to match
+      the visible indicators!
+      <option value="required">Required?</option> 
+      -->
+      <option value="description">Description</option>
+    </select>
+    <select id="{{ include.table_id }}-filter-type" type="select">
+      <option value="like" selected="selected">like</option>
+      <option value="=">=</option>
+      <option value="<"><</option>
+      <option value="<="><=</option>
+      <option value=">">></option>
+      <option value=">=">>=</option>
+      <option value="!=">!=</option>
+    </select>
+    <input id="{{ include.table_id }}-filter-value" type="text" placeholder="value to filter" form="none">
+    <button id="{{ include.table_id }}-filter-clear" type="reset" value="reset">Clear Filter</button>
+    <span id="{{ include.table_id }}-num-rows"></span>
+    <button id="{{ include.table_id }}-download-data" type="button" onclick="saveTableAsJSON('{{ include.table_id }}', '{{ include.table_id }}-download-message');">Download Table</button><br/> <!-- <br/> makes it wrap, but with less vertical space than using <p>...</p>. -->
+    <span id="{{ include.table_id }}-download-message"></span>
+  </form>
+</div>
+<div id="{{include.table_id}}-table-div-resizable" class="resizable variable-height-description">
+  <div class="resizers">
+    <div id="{{include.table_id}}-table" class="table-wrapper">
+      {% comment %} 
+      The next import will define a JS array "data_for_{{ include.table_id }}". 
+      It also expects the outer div to have id "{{include.table_id}}-table".
+      One argument to makeDataSpecTable() is an array of "extra columns". 
+      If this table is supposed to show a source for a field, e.g., us, HF, etc.,
+      then we show the "source" column. 
+      {% endcomment %}
+      <script type="text/javascript" src="{{site.baseurl}}/files/data/spec/{{include.table_id}}.js"></script>
+      <script type="text/javascript">
+        var idTable = makeDataSpecTable(
+          "{{ include.table_id }}",
+          data_for_{{ include.table_id }},
+          [
+            {
+              title: "Required or Disallowed?",
+              field: "required",
+              width: 40,
+              headerTooltip: true,
+              formatter:  requiredOrDisallowedFormatter
+            },
+            {
+              title: "Field Name",
+              field: "field_name",
+              width: 180,
+              headerTooltip: true, 
+              formatter:  codeHTML
+            },
+            {
+              title: "Description",
+              field: "description",
+              headerTooltip: true,
+              variableHeight: true,
+              formatter: "html"
+            },
+            {% if include.show_source %}
+            {
+              title: "Source",
+              field: "source",
+              width: 90,
+              headerTooltip: true
+            }
+            {% endif %}
+          ],
+          false
+        );
+      </script>
+    </div>
+    <div class="resizer-line bottom-line"></div>
+    <script type="text/javascript">
+      makeResizableTableDiv("{{include.table_id}}-table-div-resizable", idTable.table);
+      enableTableFilters("{{ include.table_id }}", idTable.table);
+      setNumRows("{{ include.table_id }}", idTable.table, num=data_for_{{ include.table_id }}.length);
+    </script>
+  </div>
+</div>

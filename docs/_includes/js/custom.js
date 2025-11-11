@@ -1,33 +1,31 @@
 /** 
- * All the catalog tables on this page. 
+ * All the Tabulator tables on this page. 
  */
-var dataTables = {};
+var allTables = {};
 
 /**
- * Function to render a Tabulator table for a keyword's data.
+ * Function to render a Tabulator table.
  * uniqueID:       For defining a unique id for the table object.
  * keyword:        The primary keyword for data in this table.
  * data:           The JS array to show in the table. See how the
  *                 columns are set up for documentation on the 
  *                 expected fields in the objects in "data".
- * showKeywordCol: Whether or not to show the "keyword" column. This 
- *                 is usually only true if a table has data from more
- *                 than one keyword. Otherwise, it's wasted space!
- * detailsID:      The HTML object that is replaced by a record's
- *                 details when the corresponding row is clicked.
+ * columns:        Table columns.
+ * useMaxHeight:   If true, doesn't specify a starting height, which means all rows are shown.
+ *                 If false, calculates a "reasonable" default starting height.
  * Notes:
  * 1. Using minHeight and maxHeight doesn't permit user resizing beyond those limits.
  * 2. A fixed height of 300 means that short tables have an empty gray area at the bottom
  *    so we use a "hack" calculation to estimate the size.
  */
-function makeCatalogTable(uniqueID, keyword, data, showKeywordCol, detailsID, saveJSONFileName) {
-  var keywordArray = [];
-  if (showKeywordCol) {
-    keywordArray = [{title:"Keyword", field:"keyword"}];
-  };
-  const startingHeight = data.length * 35 < 300? data.length * 35: 300;
+function makeTabulatorTable(uniqueID, data, columns, useMaxHeight) {
+  var startingHeight = 0;
+  if (useMaxHeight) {
+    startingHeight = data.length * 35 < 300? data.length * 35: 300;
+  }
   const tableID = `${uniqueID}-table`;
-  const dataTable = new Tabulator(`#${tableID}`, {
+
+  const table = new Tabulator(`#${tableID}`, {
     data: data, 
     height: startingHeight, // Set the height of the table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value).
     layout: "fitColumns", // Fit columns to width of table (optional).
@@ -36,47 +34,152 @@ function makeCatalogTable(uniqueID, keyword, data, showKeywordCol, detailsID, sa
     history: true,  // When table is editable, allow undo and redo actions.
     addRowPos: "top", // When editable, new elements go on top.
     movableColumns: true, // Allow columns to be reordered.
-    columns: Array.prototype.concat( [ //Define Table Columns
-      {title:"Name", field:"name", formatter:"link", formatterParams:{
-        labelField:"name",
-        urlField:"url",
-        target:"_blank",
-      }}],
-      keywordArray,
-      [{title:"License", field:"license_name", formatter:"link", formatterParams:{
-        labelField:"license_name",
-        urlField:"license_url",
-        target:"_blank",
-      }},
-      {title:"Creator", field:"creator_name", formatter:"link", formatterParams:{
-        labelField:"creator_name",
-        urlField:"creator_url",
-        target:"_blank",
-      }}])
+    columns: columns
   });
-  dataTables[uniqueID] = dataTable;
 
-  dataTable.on("rowClick", function(e, row){ 
+  allTables[uniqueID] = table;
+
+  return {"id": tableID, "table": table};
+}
+
+/**
+ * Function to render a Tabulator table for a keyword's data.
+ * uniqueID:       For defining a unique id for the table object.
+ * keyword:        The corresponding keyword.
+ * data:           The JS array to show in the table. See how the
+ *                 columns are set up for documentation on the 
+ *                 expected fields in the objects in "data".
+ * columns:        Table columns.
+ * useMaxHeight:   If true, doesn't specify a starting height, which means all rows are shown.
+ *                 If false, calculates a "reasonable" default starting height.
+ * Notes:
+ * 1. Using minHeight and maxHeight doesn't permit user resizing beyond those limits.
+ * 2. A fixed height of 300 means that short tables have an empty gray area at the bottom
+ *    so we use a "hack" calculation to estimate the size.
+ */
+function makeCatalogTable(uniqueID, keyword, data, columns, useMaxHeight) {
+  const detailsID = `${uniqueID}-selected-description-div`;
+
+  var id_table = makeTabulatorTable(uniqueID, data, columns, useMaxHeight);
+
+  id_table.table.on("rowClick", function(e, row){ 
     const data = row.getData();
-    var   keywords_str = data.first_N_keywords.join(', ')
+    var   keywords_str = "<code>" + data.first_N_keywords.join('</code>, <code>') + "</code>"
     if (data.keywords_longer_than_N) {
         keywords_str += "... (see dataset for all keywords)";
     };
-    const desc = data.description.replace(/\\+[nr]/g, "\n").replace(/\\+t/g, "\t"); // clean up escape quoting!
     const message = `
       <table>      
-        <tr><td><strong>Name:</strong></td><td><a href="${data.dataset_url}" target="_blank">${data.name}</a></td></tr>
-        <tr><td><strong>Keyword:</strong></td><td>${data.keyword}</td></tr>      
-        <tr><td><strong>Other Keywords:<sup>1</sup></strong></td><td>${keywords_str}</td></tr>      
-        <tr><td><strong>License:</strong></td><td><a href="${data.license_url}" target="_blank">${data.license_name}</a></td></tr>
-        <tr><td><strong>Creator:</strong></td><td><a href="${data.creator_url}" target="_blank">${data.creator_name}</a></td></tr>
-        <tr><td><strong>Description:</strong></td><td><p class="description">${desc}</p></td></tr>
+        <tr>
+          <td class="td-description-title">
+            <strong>Name:</strong>
+          </td>
+          <td class="td-description-value">
+            <a href="${data.dataset_url}" target="_blank">${data.name}</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-description-title">
+            <strong>Keyword:</strong>
+          </td>
+          <td class="td-description-value">
+            <code>${data.keyword}</code>
+          </td>
+        </tr>      
+        <tr>
+          <td class="td-description-title">
+            <strong>Other Keywords:<sup>1</sup></strong>
+          </td>
+          <td class="td-description-value">
+            ${keywords_str}
+          </td>
+        </tr>      
+        <tr>
+          <td class="td-description-title">
+            <strong>License:</strong>
+          </td>
+          <td class="td-description-value">
+            <a href="${data.license_url}" target="_blank">${data.license_name}</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-description-title">
+            <strong>Creator:</strong>
+          </td>
+          <td class="td-description-value">
+            <a href="${data.creator_url}" target="_blank">${data.creator_name}</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-description-title">
+            <strong>Description:</strong>
+          </td>
+          <td class="td-description-value">
+            ${cleanEscapeEncoding(data.description)}
+          </td>
+        </tr>
       </table>
       <span class="text-small text-grey-dk-100 mb-0">1: The list of keywords in the dataset itself, not the &ldquo;additional keywords&rdquo; (if any) grouped with <code>${keyword}</code>.</span>
     `;
     setInnerHTML(detailsID, message);
   });
-  return {"id": tableID, "table": dataTable, "numRows": data.length};
+
+  return {"id": id_table.id, "table": id_table.table, "numRows": data.length};
+}
+
+/**
+ * Function to render a Tabulator table for the open data specification.
+ * uniqueID:       For defining a unique id for the table object.
+ * data:           The JS array to show in the table. See how the
+ *                 columns are set up for documentation on the 
+ *                 expected fields in the objects in "data".
+ * columns:        Table columns.
+ * useMaxHeight:   If true, doesn't specify a starting height, which means all rows are shown.
+ *                 If false, calculates a "reasonable" default starting height.
+ * Notes:
+ * 1. Using minHeight and maxHeight doesn't permit user resizing beyond those limits.
+ * 2. A fixed height of 300 means that short tables have an empty gray area at the bottom
+ *    so we use a "hack" calculation to estimate the size.
+ */
+function makeDataSpecTable(uniqueID, data, columns, useMaxHeight) {
+  const detailsID = `${uniqueID}-selected-description-div`;
+
+  var id_table = makeTabulatorTable(uniqueID, data, columns, useMaxHeight);
+
+  id_table.table.on("rowClick", function(e, row){ 
+    const data = row.getData();
+    const message = `
+      <table>      
+        <tr>
+          <td class="td-description-title">
+            <strong>Field Name:</strong>
+          </td>
+          <td class="td-description-value">
+            <code>${data.field_name}</code>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-description-title">
+            <strong>Required?</strong>
+          </td>
+          <td class="td-description-value">
+            ${requiredOrDisallowedString(data.required)}
+          </td>
+        </tr>
+        <tr>
+          <td class="td-description-title">
+            <strong>Description:</strong>
+          </td>
+          <td class="td-description-value">
+            ${cleanEscapeEncoding(data.description)}
+          </td>
+        </tr>
+      </table>
+    `;
+    setInnerHTML(detailsID, message);
+  });
+
+  return {"id": id_table.id, "table": id_table.table, "numRows": data.length};
 }
 
 function setInnerHTML(id, content, ignoreMissing = false) {
@@ -93,7 +196,7 @@ function setDownloadMessage(id_prefix, message) {
 }
 
 function saveTableAsJSON(id_prefix, id_message) {
-  let table = dataTables[id_prefix];
+  let table = allTables[id_prefix];
   if (! table) {
     console.log(`ERROR: No table for id ${id_prefix}!`);
   } else {
@@ -210,7 +313,7 @@ function enableTableFilters(id_prefix, table) {
   valueElem.addEventListener("keyup", updateFilter);
 
   //Clear filters on "Clear Filters" button click
-  clearElem.addEventListener("click", function(){
+  clearElem.addEventListener("click", function() {
     fieldElem.value = "";
     typeElem.value = "like";
     valueElem.value = "";
@@ -219,4 +322,28 @@ function enableTableFilters(id_prefix, table) {
     setDownloadMessage(id_prefix, "");
   });
   clearElem.click
+}
+
+function requiredOrDisallowedString(value) {
+  var str = "";  //default: not required nor prohibited.
+  if (value > 0) { // required
+    str = "&#10004;";
+  } else if (value < 0) { // not allowed
+    str = "&#x274c;";
+  }
+  return str;
+}
+
+function requiredOrDisallowedFormatter(cell, formatterParams) {
+  return requiredOrDisallowedString(cell.getValue());
+}
+
+function codeHTML(cell, formatterParams) {
+  var value = cell.getValue();
+  return "<code>" + value + "</code>";
+}
+
+/** clean up escape quoting! */
+function cleanEscapeEncoding(text) {
+  return text.replace(/\\+[nr]/g, "\n").replace(/\\+t/g, "\t"); 
 }
