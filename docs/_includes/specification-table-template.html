@@ -10,7 +10,7 @@
 </blockquote>
 <div id="{{ include.table_id }}-filter-div">
   <form>
-    <select id="{{ include.table_id }}-filter-field" type="select">
+    Filter: <select id="{{ include.table_id }}-filter-field" type="select">
       <option value="field_name" selected="selected">Field Name</option>
       <!-- TODO: Since we encode the required value using integers, we need a way to make the
       filtering intuitive,e.g., by dynamically changing the ...-filter-type options to match
@@ -29,9 +29,13 @@
       <option value="!=">!=</option>
     </select>
     <input id="{{ include.table_id }}-filter-value" type="text" placeholder="value to filter" form="none">
-    <button id="{{ include.table_id }}-filter-clear" type="reset" value="reset">Clear Filter</button>
     <span id="{{ include.table_id }}-num-rows"></span>
-    <button id="{{ include.table_id }}-download-data" type="button" onclick="saveTableAsJSON('{{ include.table_id }}', '{{ include.table_id }}-download-message');">Download Table</button><br/> <!-- <br/> makes it wrap, but with less vertical space than using <p>...</p>. -->
+    <br/>
+    Save to: <input id="{{ include.table_id }}-file-name" type="text" class="width-50" value="{{ include.table_id }}.json" form="none">    
+    <button id="{{ include.table_id }}-download-data" type="button" onclick="saveTableAsJSON('{{ include.table_id }}', '{{ include.table_id }}-download-message');">Download</button>
+    <span class="width-100">&nbsp;</span>
+    <button id="{{ include.table_id }}-filter-clear" type="reset" value="reset">Reset</button>
+    <br/> <!-- <br/> makes it wrap, but with less vertical space than using <p>...</p>. -->
     <span id="{{ include.table_id }}-download-message"></span>
   </form>
 </div>

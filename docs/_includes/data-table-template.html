@@ -20,7 +20,7 @@
 </blockquote>
 <div id="{{ unique_id }}-filter-div">
   <form>
-    <select id="{{ unique_id }}-filter-field" type="select">
+    Filter: <select id="{{ unique_id }}-filter-field" type="select">
       <option value="name" selected="selected">Name</option>
       {% if other_keywords.size > 0 %}
       <option value="keyword">Keyword</option>
@@ -38,9 +38,13 @@
       <option value="!=">!=</option>
     </select>
     <input id="{{ unique_id }}-filter-value" type="text" placeholder="value to filter" form="none">
-    <button id="{{ unique_id }}-filter-clear" type="reset" value="reset">Clear Filter</button>
     <span id="{{ unique_id }}-num-rows"></span>
-    <button id="{{ unique_id }}-download-data" type="button" onclick="saveTableAsJSON('{{ unique_id }}', '{{ unique_id }}-download-message');">Download Table</button><br/> <!-- <br/> makes it wrap, but with less vertical space than using <p>...</p>. -->
+    <br/>
+    Save to: <input id="{{ unique_id }}-file-name" type="text" class="width-50" value="{{ unique_id }}.json" form="none">    
+    <button id="{{ unique_id }}-download-data" type="button" onclick="saveTableAsJSON('{{ unique_id }}', '{{ unique_id }}-download-message');">Download Table</button>
+    <span class="width-100">&nbsp;</span>
+    <button id="{{ unique_id }}-filter-clear" type="reset" value="reset">Reset</button>
+    <br/> <!-- <br/> makes it wrap, but with less vertical space than using <p>...</p>. -->
     <span id="{{ unique_id }}-download-message"></span>
   </form>
 </div>

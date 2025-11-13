@@ -200,12 +200,19 @@ function saveTableAsJSON(id_prefix, id_message) {
   if (! table) {
     console.log(`ERROR: No table for id ${id_prefix}!`);
   } else {
-    allData = table.getData();
-    filteredData = table.getData("active");
-    filteredStr = allData.length != filteredData.length ? "_filtered" : "";
-    filteredMsg = allData.length != filteredData.length ? "filtered" : "all";
-    fileName = `${id_prefix}${filteredStr}.json`;
-    message = `<span>Writing ${filteredMsg} data to <code>${fileName}</code> in your downloads folder.</span>`;
+    let allData = table.getData();
+    let filteredData = table.getData("active");
+    let fileNameElem = document.getElementById(`${id_prefix}-file-name`);
+    var fileName = fileNameElem.value;
+    if (fileName) {
+      if (! fileName.endsWith(".json")) {
+        fileName = `${fileName}.json`;
+      }
+    } else {
+      let filteredStr = allData.length != filteredData.length ? "_filtered" : "";
+      fileName = `${id_prefix}${filteredStr}.json`;
+    }
+    message = `<span>Writing table to <code>${fileName}</code> in your downloads folder.</span>`;
     setDownloadMessage(id_prefix, message);
     setInnerHTML(id_message, message);
     saveJSON(filteredData, fileName);
@@ -293,10 +300,11 @@ function setNumRows(id_prefix, table, num = -1) {
 function enableTableFilters(id_prefix, table) {
 
   // Define variables for input elements
-  var fieldElem = document.getElementById(`${id_prefix}-filter-field`);
-  var typeElem  = document.getElementById(`${id_prefix}-filter-type`);
-  var valueElem = document.getElementById(`${id_prefix}-filter-value`);
-  var clearElem = document.getElementById(`${id_prefix}-filter-clear`);
+  var fieldElem    = document.getElementById(`${id_prefix}-filter-field`);
+  var typeElem     = document.getElementById(`${id_prefix}-filter-type`);
+  var valueElem    = document.getElementById(`${id_prefix}-filter-value`);
+  var clearElem    = document.getElementById(`${id_prefix}-filter-clear`);
+  var fileNameElem = document.getElementById(`${id_prefix}-file-name`);
 
   // Trigger setFilter function with correct parameters
   function updateFilter(){
@@ -317,6 +325,7 @@ function enableTableFilters(id_prefix, table) {
     fieldElem.value = "";
     typeElem.value = "like";
     valueElem.value = "";
+    fileNameElem.value = `${id_prefix}.json`;
     table.clearFilter()
     setNumRows(id_prefix, table);
     setDownloadMessage(id_prefix, "");
