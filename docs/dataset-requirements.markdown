@@ -70,20 +70,20 @@ If you need to create a dataset card:
 > 1. Download our version of the Hugging Face dataset card template, <a href="{{site.baseurl}}/files/datasetcard_otdi_template.md.template" download="datasetcard_otdi_template.md"><code>datasetcard_otdi_template.md</code></a>. (If you already have a card in Hugging Face, i.e., the `README.md`, compare our template to your card and add the new fields.)
 > 2. Edit the Markdown in the template file to provide the details, as described below.
 > 3. [Create the card](https://huggingface.co/docs/datasets/dataset_card){:target="hf-card-create"} in the Hugging Face UI (or edit your existing card.)
-> 4. Fill in the metadata fields shown in their editor UI. (See [Table 1](#table-1) below.)
+> 4. Fill in the metadata fields shown in their editor UI. (See [**Table 1**](#table-1) below.)
 > 5. Paste the rest of your prepared Markdown into the file, after the YAML block delimited by `---`.
 > 6. Commit your changes.
 
 ## Required Metadata Fields
 
-Refer to the [`datasetcard.md`](https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1){:target="hf-datasetcard-md"} for details about the metadata fields Hugging Face recommends for inclusion in a YAML block at the top of the `README.md`. We comment on these fields below, in [Table 1](#table-1). 
+Refer to the [`datasetcard.md`](https://github.com/huggingface/hub-docs/blob/main/datasetcard.md?plain=1){:target="hf-datasetcard-md"} for details about the metadata fields Hugging Face recommends for inclusion in a YAML block at the top of the `README.md`. We comment on these fields below, in [**Table 1**](#table-1). 
 
 The [`templates/README_guide.md`](https://github.com/huggingface/datasets/blob/main/templates/README_guide.md){:target="hf-guide"} provides additional information about the template fields in their Markdown template file, [`datasetcard_template.md`](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md){:target="hf-dataset-card-template"} in the [`huggingface-hub` GitHub repo](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/){:target="hf-hub-repo"}. _However_, we recommend that you use our extended version: <a href="{{site.baseurl}}/files/datasetcard_otdi_template.md.template" download="datasetcard_otdi_template.md"><code>datasetcard_otdi_template.md</code></a>.
 
 ### YAML Metadata Block
 
 {: .tip}
-> **TIP:** The following tables are long, but starting with the [`datasetcard_template.md`](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md){:target="hf-dataset-card-template"} and the [dataset card process](https://huggingface.co/docs/datasets/dataset_card){:target="hf-card-create"} will handle most of the details. Then you can add the additional fields requested in [Table 2](#table-2), those marked with "OTDI".
+> **TIP:** The following tables are long, but starting with the [`datasetcard_template.md`](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md){:target="hf-dataset-card-template"} and the [dataset card process](https://huggingface.co/docs/datasets/dataset_card){:target="hf-card-create"} will handle most of the details. Then you can add the additional fields requested in [**Table 2**](#table-2).
 
 **Table 1** lists all the fields in the dataset card YAML block. The **Required or Disallowed?** column uses &#10004; to indicate the field is required by us, &#x274c; for fields that we don't allow (because they are incompatible with this project), and a blank entry indicates a field is optional.
 
@@ -97,7 +97,7 @@ The [`templates/README_guide.md`](https://github.com/huggingface/datasets/blob/m
   context=""
 %}
 
-<p class="caption"><strong>Table 1:</strong> Hugging Face Datacard YAML Metadata Block</p>
+<p class="caption"><strong>Table 1:</strong> Hugging Face datacard YAML metadata block.</p>
 
 {: .note}
 > **NOTES:** Some additional points about several of the fields: 
@@ -132,7 +132,7 @@ The [`templates/README_guide.md`](https://github.com/huggingface/datasets/blob/m
   context=""
 %}
 
-<p class="caption"><strong>Table 2:</strong> Additional Markdown Metadata Content in the Dataset Card (<code>README.md</code>)</p>
+<p class="caption"><strong>Table 2:</strong> Additional markdown metadata content in the dataset card (<code>README.md</code>).</p>
 
 
 {% comment %} 
@@ -196,7 +196,7 @@ Finally, what if several datasets are used to derive a new dataset and these ups
   context=""
 %}
 
-<p class="caption">Table 3: Minimum Required Dataset Card Changes for a Derived Dataset</p>
+<p class="caption"><strong>Table 3:</strong> Minimum required dataset card changes for a derived dataset.</p>
 
 ### Categories of Dataset Transformations
 
@@ -220,6 +220,8 @@ The `task_categories` field in [**Table 1**](#table-1) above recommends using th
 Here we group the task types by _modality_ (e.g., `nlp`). Some tasks have defined subtask types, which are listed with them. If no subtasks are shown, none are defined for the task type.
 
 ### Natural Language Processing - `nlp`
+
+**Table 4** lists tasks and subtasks related to natural language processing (`nlp`).
 
 | **Task Type** | **Subtask Type** | **Name** |
 | :------------ | :--------------- | :------- |
@@ -286,7 +288,11 @@ Here we group the task types by _modality_ (e.g., `nlp`). Some tasks have define
 | | `entity-linking-retrieval`               | Entity Linking Retrieval |
 | | `fact-checking-retrieval`                | Fact Checking Retrieval  |
 
+<p class="caption"><strong>Table 4:</strong> Tasks and subtasks related to natural language processing (<code>nlp</code>).</p>
+
 ### Audio - `audio`
+
+**Table 5** lists tasks and subtasks related to audio processing (`audio`).
 
 | **Task Type** | **Subtask Type** | **Name** |
 | :------------ | :--------------- | :------- |
@@ -303,9 +309,13 @@ Here we group the task types by _modality_ (e.g., `nlp`). Some tasks have define
 | | `audio-language-identification` | Audio Language Identification |
 | `voice-activity-detection` |      | Voice Activity Detection | 
 
+<p class="caption"><strong>Table 5:</strong> Tasks and subtasks related to audio processing (<code>audio</code>).</p>
+
 ### Multimodal - `multimodal`
 
 For `visual-question-answering` and `document-question-answering`, the Hugging Face source file lists each as its own subtask, which looks like a data error, but we show it for consistency.
+
+**Table 6** lists tasks and subtasks related to multimodal processing:
 
 | **Task Type** | **Subtask Type** | **Name** |
 | :------------ | :--------------- | :------- |
@@ -319,8 +329,11 @@ For `visual-question-answering` and `document-question-answering`, the Hugging F
 | `visual-document-retrieval` |   | Visual Document Retrieval |
 | `any-to-any` |                  | Any-to-Any |
 
+<p class="caption"><strong>Table 6:</strong> Tasks and subtasks relaed to multimodal processing.</p>
 
 ### Computer Vision - `cv`
+
+**Table 7** lists tasks and subtasks related to computer vision (`cv`):
 
 | **Task Type** | **Subtask Type** | **Name** |
 | :------------ | :--------------- | :------- |
@@ -356,8 +369,11 @@ For `visual-question-answering` and `document-question-answering`, the Hugging F
 | `pose-estimation` |                  | Pose Estimation |
 | `video-to-video` |                   | Video-to-Video |
 
+<p class="caption"><strong>Table 7:</strong> Tasks and subtasks related to computer vision (<code>cv</code>).</p>
 
 ### Reinforcement Learning - `rl`
+
+**Table 8** lists tasks and subtasks related to reinforcement learning (`rl`):
 
 | **Task Type** | **Subtask Type** | **Name** |
 | :------------ | :--------------- | :------- |
@@ -366,7 +382,11 @@ For `visual-question-answering` and `document-question-answering`, the Hugging F
 | | `grasping`               | Grasping      |
 | | `task-planning`          | Task Planning |
 
+<p class="caption"><strong>Table 8:</strong> Tasks and subtasks related to reinforcement learning (<code>rl</code>).</p>
+
 ### Tabular - `tabular`
+
+**Table 9** lists tasks and subtasks related to tabular data processing:
 
 | **Task Type** | **Subtask Type** | **Name** |
 | :------------ | :--------------- | :------- |
@@ -381,11 +401,15 @@ For `visual-question-answering` and `document-question-answering`, the Hugging F
 | | `univariate-time-series-forecasting`   | Univariate Time Series Forecasting   |
 | | `multivariate-time-series-forecasting` | Multivariate Time Series Forecasting |
 
+<p class="caption"><strong>Table 9:</strong> Tasks and subtasks related to tabular data processing.</p>
+
 ### Other - `other`
 
-Special cases that don't fit in the other modality categories.
+**Table 10** lists other special-case tasks and subtasks that don't fit in the other modality categories.
 
 | **Task Type** | **Subtask Type** | **Name** |
 | :------------ | :--------------- | :------- |
 | `graph-ml` | | Graph Machine Learning |
 | `other`    | | Other |
+
+<p class="caption"><strong>Table 10:</strong> Other special-case tasks and subtasks that don't fit in the other modality categories</p>
