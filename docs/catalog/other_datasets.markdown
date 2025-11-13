@@ -8,7 +8,7 @@ parent: Dataset Catalog
 
 # Other Datasets
 
-Many open datasets are not hosted at Hugging Face, so they are not yet part of our catalog. Other datasets that are hosted there aren't picked up by our catalog building process for various reasons, some of which are discussed in [About This Catalog]({{site.baseurl}}/catalog/catalog/). For example, Croissant metadata might not be available, licenses may be incorrectly defined or missing, or it may be required to manually request access to a dataset, even before you can see its Croissant metadata!
+Many open datasets are not hosted at Hugging Face, so they are not yet part of our catalog. Other datasets that are hosted there aren't picked up by our catalog building process for various reasons, some of which are discussed in [About This Catalog]({{site.baseurl}}/catalog//). For example, Croissant metadata might not be available, licenses may be incorrectly defined or missing, or it may be required to manually request access to a dataset, even before you can see its Croissant metadata!
 
 For now, here is a list of notable datasets that don't appear in the catalog pages, grouped into general topic areas. See also the [Contributors]({{site.baseurl}}/catalog/contributors/) page.
 

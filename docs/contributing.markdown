@@ -1,75 +1,70 @@
 ---
 layout: default
-title: How to Contribute
+title: How to Contribute to OTDI
 nav_order: 50
 has_children: false
 ---
 
-# How to Contribute
+# How to Contribute to OTDI
 
-There are many ways you can contribute to the _Open Trusted Data Initiative_.
+There are many ways to contribute. In particular, tell us about other datasets we should catalog!
 
-## Report Errors in Our Catalog
+## Tell Us About Other Datasets
 
-See a mistake in our [catalog]({{site.baseurl}}/catalog)? Send us [email](mailto:data@thealliance.ai?subject=Errors in the OTDI catalog), post an [issue](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="gh-issues"}, or start a [discussion](https://github.com/The-AI-Alliance/open-trusted-data-initiative/discussions){:target="gh-discussions"}.
-
-## Help Us Implement Our Data Processing Pipelines
-
-We are working on data processing pipelines, e.g., for evaluating how well datasets match their metadata, claims about licenses, etc., which we discuss on the [How We Process Datasets]({{site.baseurl}}/our-processing/) page.
-
-Want to learn more? Send us [email](mailto:data@thealliance.ai?subject=Data processing pipelines in OTDI), check out our [planned work](https://github.com/orgs/The-AI-Alliance/projects/28/views/1?filterQuery=label%3A%22data+pipelines%22){:target="gh-issues"}, or start a [discussion](https://github.com/The-AI-Alliance/open-trusted-data-initiative/discussions){:target="gh-discussions"}.
-
-## Let Us Know of a Dataset We Should Catalog
-
-Do you know of _someone else's_ open dataset we should catalog, Send us [email](mailto:data@thealliance.ai?subject=A dataset you should add to the OTDI catalog), post an [issue](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="gh-issues"}, or start a [discussion](https://github.com/The-AI-Alliance/open-trusted-data-initiative/discussions){:target="gh-discussions"}.
-
-Do you have an open dataset _of your own_ that we should catalog, let's discuss!
+Tell us about other datasets using the [form below](#contribute-your-dataset). If the datasets are already hosted at [Hugging Face](https://huggingface.co){:target="huggingface"}, we have already scanned the metadata for them. However, they won't appear in the OTDI catalog unless they meet some minimum requirements. For example, they must have a permissive license.
 
 {: .note}
-> **NOTE:** Be sure to read the [Dataset Specification]({{site.baseurl}}/dataset-requirements) details before proceeding. If you have questions or concerns about the specification, please [contact us]({{site.baseurl}}/about/#contact-us).
+> **NOTE:** Be sure to read the [Dataset Specification]({{site.baseurl}}/dataset-requirements/) details before proceeding. If you have questions or concerns about the specification, please [contact us]({{site.baseurl}}/about/#contact-us). See also the [Catalog page]({{site.baseurl}}/catalog/), where we discuss commonly-found problems with the metadata, which you should avoid.
 
-_Contribution_ means adding your dataset to our catalog. You continue to own and host the dataset where you see fit.
+If you prefer, you can also send us [email](mailto:data@thealliance.ai?subject=Datasets you should add to the OTDI catalog), post an [issue](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="gh-issues"}, or start a [discussion](https://github.com/The-AI-Alliance/open-trusted-data-initiative/discussions){:target="gh-discussions"}.
 
 ## What Kinds of Datasets Do We Seek?
 
-Broad, effective use of AI requires datasets covering the breadth of human languages, domains, modalities, and target applications. See the current [list of keywords]({{site.baseurl}}/catalog/catalog#the-current-keywords-cataloged) we have cataloged. 
+Broad, effective use of AI requires datasets covering the breadth of human languages, domains, modalities, and target applications. See the current [list of keywords]({{site.baseurl}}/catalog/#the-current-keywords-cataloged) we have cataloged. 
 
 We have particular interests in these areas:
 
 #### Science and Industry
 
-* `Climate`: Supporting research in climate change, modeling vegetation and water cover, studying agriculture, etc.
-* `Marine`: Supporting research on and applications targeted towards marine environments.
-* `Materials`: Known chemical and mechanical properties of chemicals useful for research into potential new and improved materials. 
-* `Drug Discovery`: Known chemical and medicinal properties of chemicals useful for research into potential new and improved pharmaceuticals. 
-* `Semiconductors`: Specific area of materials research focused on improving the state of the art for semiconductor performance and manufacturing.
-* `Physics`: Data for physical systems.
-* `Software`: Software code bases and supporting datasets, e.g., vulnerability datasets, analyses of software-related failures, etc.
+| Topic            | Description |
+| :--------------- | :---------- |
+| `Climate`        | Supporting research in climate change, modeling vegetation and water cover, studying agriculture, etc. |
+| `Marine`         | Supporting research on and applications targeted towards marine environments. |
+| `Materials`      | Known chemical and mechanical properties of chemicals useful for research into potential new and improved materials.  |
+| `Drug Discovery` | Known chemical and medicinal properties of chemicals useful for research into potential new and improved pharmaceuticals.  |
+| `Semiconductors` | Specific area of materials research focused on improving the state of the art for semiconductor performance and manufacturing. |
+| `Physics`        | Data for physical systems. |
+| `Software`       | Software code bases and supporting datasets, e.g., vulnerability datasets, analyses of software-related failures, etc. |
 
 Other science and industrial domains are welcome, too. 
 
 #### Vertical Domains
 
-* `Finance`: Historical market activity and behaviors. Connections to influences like climate, weather events, political events, etc. 
-* `Healthcare`: Everything from synthetic patient data for modeling outcomes, to public literature on known diseases and conditions, to diagnostics results and their analysis.
-* `Legal`: Jurisdiction-specific data about case law, etc.
-specific applications.
-* `Social Sciences`: Social dynamics, political activity and sentiments, etc.
+| Topic             | Description |
+| :---------------- | :---------- |
+| `Finance`         | Historical market activity and behaviors. Connections to influences like climate, weather events, political events, etc.  |
+| `Healthcare`      | Everything from synthetic patient data for modeling outcomes, to public literature on known diseases and conditions, to diagnostics results and their analysis. |
+| `Legal`           | Jurisdiction-specific data about case law, etc. specific applications. |
+| `Social Sciences` | Social dynamics, political activity and sentiments, etc. |
 
 Across industries, there are general concerns required for success:
 
-* `Security`: Security vulnerabilities, incidents, etc. for software and other systems, including datasets for red teaming, penetration testing, and other security practices.
-* `Safety`: AI safety in all its forms, including suppression of hate speech, assistance with harmful activities, and hallucinations.
+| Topic      | Description |
+| :--------- | :---------- |
+| `Security` | Security vulnerabilities, incidents, etc. for software and other systems, including datasets for red teaming, penetration testing, and other security practices. |
+| `Safety`   | AI safety in all its forms, including suppression of hate speech, assistance with harmful activities, and hallucinations. |
 
 #### Modalities
 
 In addition, we welcome datasets with different _modalities_. Hugging Face attempts to determine the modalities of datasets, but you can also use the `tags` to indicate modalities, such as the following:
 
-* `Text`: especially for under-served language.
-* `Image`: i.e., still images
-* `Audio`: 
-* `Video`: optional including audio
-* `Time series`: Data for training, tuning, and testing time series models, both general-purpose and for domain-specific applications.
+| Topic         | Description |
+| :------------ | :---------- |
+| `Text`        | Especially for under-served language. |
+| `Image`       | I.e., still images |
+| `Audio`       |  |
+| `Video`       | Optionally including audio |
+| `Time Series` | Data for training, tuning, and testing time series models, both general-purpose and for domain-specific applications. |
 
 In addition, some industry specific datasets have their own custom formats.
 
@@ -77,28 +72,17 @@ In addition, some industry specific datasets have their own custom formats.
 
 For all of the above categories, synthetic data is important for filling gaps, especially in domains where open datasets are hard to find, such as patient data in healthcare.
 
-## The Contribution Process
+## Are Your Datasets Truly Open?
 
-The process follows these steps:
+Think about these aspects of your datasets:
 
-1. **Prepare your contribution:** Make sure you meet the [Dataset Specification]({{site.baseurl}}/dataset-requirements) and prepare the dataset card.
-2. **Tell us about your dataset:** Follow the instructions in [Contribute Your Dataset](#contribute-your-dataset) below to submit your dataset for consideration.
-3. **Receive feedback from us:** After we evaluate the submission, we will provide feedback and request clarifications, where needed.
-4. **Be added to our dataset catalog:** Once your contribution is accepted, your dataset will be added to our [catalog]({{site.baseurl}}/catalog/catalog/).
-5. **Review your details:** After publication in our catalog, verify that the information about your dataset is correct.
+1. **Permissively licensed?** We can't catalog datasets without a license and those which don't specify one of the permissive licenses listed [here]({{site.baseurl}}/catalog/#more-about-the-licenses)
+2. **Other requirements are met?** See the [Dataset Specification]({{site.baseurl}}/dataset-requirements) and prepare the dataset card accordingly. Note that we don't yet enforce the requirements shown, except for the license, but we plan to enforce the whole specification, meaning we will filter out datasets that don't meet its requirements.
 
-## License
-
-The Open Trusted Data Initiative is focused on obtaining datasets from submitters who either own them or have a unrestricted, free-to-use license from all owners of data included in the dataset. By contributing a dataset to the catalog, you affirm that with respect to the dataset and all of its data, you are either (1) the owner or (2) you have been granted a license by all owner(s) of the data enabling you to license it to others under an acceptable open license, which gives anyone the right to use, modify, copy, and create derivative works of the data and dataset, among other things. Do not contribute any data that was obtained merely by collecting publicly-visible data from the Internet or from other sources that you do not own or to which you do not have a suitable license.
-
-We prefer the [Community Data License Agreement - Permissive, Version 2.0](https://cdla.dev/permissive-2-0/){:target="cdla"} although [The Creative Commons License, Version 4.0 - CC BY 4.0](https://chooser-beta.creativecommons.org/){:target="cc-by-4"} is also sometimes used.
-
-By contributing the dataset to the Initiative, you grant anyone a license to the dataset and its data under the [Developer Certificate of Origin, Version 1.1](https://developercertificate.org/){:target="dco"} (see also our [community repo's contributing page](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md){:target="community"}).  This does not affect your ownership, copyrights and other interests, and rights to and title to the dataset and its data.
-
-## Contribute Your Dataset
+## Let Us Know About Your Dataset
 
 {: .note}
-> **Note:** If your dataset is hosted by Hugging Face and you meet our requirements above, we will pick it up automatically for the catalog. You can skip the following form. **However**, we would love to hear from you anyway and if you host your dataset elsewhere, you will need to tell us about it here.
+> **Note:** If your dataset is hosted by Hugging Face and you meet our requirements discussed above, we will pick it up automatically for the catalog. You can skip the following form. **However**, we would love to hear from you anyway and if you host your dataset elsewhere, you will need to tell us about it here.
 
 Use this form to tell us about your dataset and where it is hosted. It will open your email client with the data added and formatted. After we receive your email, we will follow up with next steps.
 
@@ -133,7 +117,7 @@ Use this form to tell us about your dataset and where it is hosted. It will open
                   <input type="url" id="dataset-card" name="dataset-url" class="form-dataset-table-input" placeholder="https://some-special-place.com" pattern="https://.*" /> Leave blank if the location README <em>is</em> the dataset card.
                 </td>
             </tr>
-            <!--
+            {% comment %}
             <tr>
                 <th class="form-dataset-table-label">
                   <label for="dataset-hosting">Hosting:</label>
@@ -205,7 +189,6 @@ Use this form to tell us about your dataset and where it is hosted. It will open
                   <input type="email" id="email" name="email" class="form-dataset-table-input" placeholder="Your email address" required />   
                 </td>
             </tr>
-            -->
             <tr>
                 <th class="form-dataset-table-label">
                 &nbsp;
@@ -214,6 +197,7 @@ Use this form to tell us about your dataset and where it is hosted. It will open
                   <input type="checkbox" id="agree-to-terms" name="agree-to-terms" required /> I agree to the terms for contribution.
                 </td>
             </tr>
+            {% endcomment %}
             <tr>
                 <th class="form-dataset-table-label">
                 &nbsp;
@@ -235,7 +219,6 @@ Use this form to tell us about your dataset and where it is hosted. It will open
             const body1 = `body=dataset-name: ${document.getElementById('dataset-name').value}
 dataset-url: ${document.getElementById('dataset-url').value}
 dataset-card: ${document.getElementById('dataset-card').value}
-agree-to-terms: ${document.getElementById('agree-to-terms').value}
             `;
             const body = body1.replace(/ /g, '%20').replace(/:/g, '%3A').replace(/\n/g, '%0D%0A');
             const mailto = `mailto:data@thealliance.ai?subject=I%20want%20to%20contribute%20an%20OTDI%20dataset&${body}`
@@ -247,11 +230,19 @@ agree-to-terms: ${document.getElementById('agree-to-terms').value}
         });
 </script>
 
-## Yet More Ways to Contribute...
+## Other Ways to Contribute to OTDI
 
-### Join the Initiative
+There are many ways you can contribute to the _Open Trusted Data Initiative_.
 
-See also [Join the Open Trusted Data Initiative!]({{site.baseurl}}/about/#join-the-open-trusted-data-initiative) on the [About Us]({{site.baseurl}}/about/) page.
+### Report Errors in Our Catalog
+
+See a mistake in our [catalog]({{site.baseurl}}/catalog)? Send us [email](mailto:data@thealliance.ai?subject=Errors in the OTDI catalog), post an [issue](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="gh-issues"}, or start a [discussion](https://github.com/The-AI-Alliance/open-trusted-data-initiative/discussions){:target="gh-discussions"}.
+
+### Help Us Implement Our Data Processing Pipelines
+
+We are working on data processing pipelines, e.g., for evaluating how well datasets match their metadata, claims about licenses, etc., which we discuss on the [How We Process Datasets]({{site.baseurl}}/our-processing/) page.
+
+Want to learn more? Send us [email](mailto:data@thealliance.ai?subject=Data processing pipelines in OTDI), check out our [planned work](https://github.com/orgs/The-AI-Alliance/projects/28/views/1?filterQuery=label%3A%22data+pipelines%22){:target="gh-issues"}, or start a [discussion](https://github.com/The-AI-Alliance/open-trusted-data-initiative/discussions){:target="gh-discussions"}.
 
 ### Contribute to This Website
 
@@ -259,4 +250,7 @@ We welcome your contributions to this website itself. The sources are in the [`d
 
 The repo's [GITHUB_PAGES](https://github.com/The-AI-Alliance/open-trusted-data-initiative/blob/main/GITHUB_PAGES.md){:target="otdi-repo"} file explains more details for testing the documentation website locally and for creating more extensive changes as PRs.
 
+### Join the Initiative Work Group
+
+See also [Join the Open Trusted Data Initiative Work Group!]({{site.baseurl}}/about/#join-the-open-trusted-data-initiative) on the [About Us]({{site.baseurl}}/about/) page.
 

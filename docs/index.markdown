@@ -9,7 +9,7 @@ language_tags: English
 # Open Trusted Data Initiative (OTDI)
 
 {: .attention}
-> **_We are building the world's largest, most diverse [catalog]({{site.baseurl}}/catalog/catalog) of open and transparently sourced datasets for AI. [Join us!]({{site.baseurl}}/contributing)_**
+> **_We are building the world's largest, most diverse [catalog]({{site.baseurl}}/catalog/) of open and transparently sourced datasets for AI. [Join us!]({{site.baseurl}}/contributing)_**
 
 ## [Datasets for Languages]({{site.baseurl}}/catalog/language/language)
 
@@ -81,7 +81,7 @@ Add your datasets [to our catalog](https://github.com/orgs/The-AI-Alliance/proje
 
 ### Build a Searchable Dataset Catalog
 
-Currently, the [Dataset Catalog]({{site.baseurl}}/catalog/catalog) is a static resource. Help us make it [browsable and searchable](https://github.com/orgs/The-AI-Alliance/projects/28/views/1?filterQuery=label%3A%22dataset+catalog%22){:target="github"}.
+Currently, the [Dataset Catalog]({{site.baseurl}}/catalog/) is a static resource. Help us make it [browsable and searchable](https://github.com/orgs/The-AI-Alliance/projects/28/views/1?filterQuery=label%3A%22dataset+catalog%22){:target="github"}.
 
 ## For More Information
 
@@ -89,6 +89,6 @@ Currently, the [Dataset Catalog]({{site.baseurl}}/catalog/catalog) is a static r
 > See this short [presentation]({{site.baseurl}}/files/OTDI-Overview.pdf) (PDF) for more information about the Open Trusted Data Initiative.
 
 * What [trustworthiness]({{site.baseurl}}/trustworthiness) means to us.
-* Our [current catalog]({{site.baseurl}}/catalog/catalog).
+* Our [current catalog]({{site.baseurl}}/catalog/).
 * [About Us]({{site.baseurl}}/about): More about the AI Alliance, this initiative, how to get involved, and how to contact us.
 * [References]({{site.baseurl}}/references): Other viewpoints on open, trusted data.
