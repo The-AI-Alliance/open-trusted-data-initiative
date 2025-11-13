@@ -100,7 +100,17 @@ The [`templates/README_guide.md`](https://github.com/huggingface/datasets/blob/m
 <p class="caption"><strong>Table 1:</strong> Hugging Face Datacard YAML Metadata Block</p>
 
 {: .note}
-> **NOTE:** For source code, e.g., the code used for the [data processing pipelines]({{site.baseurl}}/our-processing), the AI Alliance standard code license is [_Apache 2.0_](https://spdx.org/licenses/Apache-2.0){:target="apache"}. For documentation, it is _The Creative Commons License, Version 4.0_, [CC BY 4.0](https://spdx.org/licenses/CC-BY-4.0.html){:target="cc-by-4"}. See the Alliance [`community/CONTRIBUTING` page](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md#licenses){:target="licenses"} for more details about licenses.
+> **NOTES:** Some additional points about several of the fields: 
+>
+> 1.For the `license` and related fields, see the list of permissive licenses we accept in the [Catalog index page]({{site.baseurl}}/catalog/#table-2). Use the names shown there, or for consistency with [Hugging Face dataset card conventions](https://huggingface.co/docs/hub/datasets-cards){:target="hf-card"}, consider using [their names](https://huggingface.co/docs/hub/repositories-licenses){:target="hf-licenses"} for these licenses, when different.
+> 2. Our recommended licenses:
+>   * For datasets: [_Community Data License Agreement – Permissive, Version 2.0_](https://spdx.org/licenses/CDLA-Permissive-2.0.html){:target="cdla"}
+>   * For source code: [_Apache 2.0_](https://spdx.org/licenses/Apache-2.0){:target="apache"}
+>   * For documentation: [_The Creative Commons License, Version 4.0_](https://spdx.org/licenses/CC-BY-4.0.html){:target="cc-by-4"}. 
+>   * See the Alliance [`community/CONTRIBUTING` page](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md#licenses){:target="licenses"} for more details about licenses.
+> 3. For `tags` values, there is no industry-standard list of values, but the [Data Classification]({{site.baseurl}}/references/#data-classification) section in the [References]({{site.baseurl}}/references/) lists some well-known taxonomies to consider using.
+> 4. For `task_categories` values, see the [Appendix](#appendix) below.
+
 
 
 ## The Markdown Content in the Dataset Card
@@ -159,7 +169,7 @@ We are particularly interested in new datasets that can be used to train and tun
 
 Use the `tags` metadata field discussed above to indicate this information, when applicable.
 
-<a id="derived-dataset-specification"></a>
+<a name="derived-dataset-specification"></a>
 
 ## Derived or Synthetic Dataset Specification
 
@@ -200,6 +210,8 @@ At this time, we use the following concepts for original and derived datasets, c
 See [How We Process Datasets]({{site.baseurl}}/our-processing) for more details on these levels and how we process datasets.
 
 After you have prepared or updated the dataset card as required, we will automatically pick up the changes from Hugging Face. If you are not hosting your dataset there, then [contribute your dataset]({{site.baseurl}}/contributing).
+
+<a name="appendix"></a>
 
 ## Appendix: Task Categories
 

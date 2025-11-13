@@ -2,18 +2,18 @@ const data_for_yaml_metadata_block_spec_fields =
 [
   {
     "field_name": "license", 
-    "description": "We <bold>strongly recommend</bold> <code>cdla-permissive-2.0</code> for the <a href=\"https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md#licenses\" target=\"cdla\">Community Data License Agreement – Permissive, Version 2.0</a> and may require it in the future. See the list of permissive licenses we accept in the <a href=\"../catalog/#table-1\">Catalog index page</a>. Use <a href=\"https://huggingface.co/docs/hub/repositories-licenses\" target=\"hf-licenses\">these names</a> for licenses.",
+    "description": "We <bold>strongly recommend</bold> <code>cdla-permissive-2.0</code> for the <a href=\"https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md#licenses\" target=\"cdla\">Community Data License Agreement – Permissive, Version 2.0</a> and may require it in the future. See the list of permissive licenses we accept in the <a href=\"../catalog/#table-2\">Catalog index page</a>. See the notes below for more details.",
     "required": 1
   },
   {
     "field_name": "license_name", 
-    "description": "e.g, <em>Community Data License Agreement – Permissive, Version 2.0</em>.",
+    "description": "e.g, <em>Community Data License Agreement – Permissive, Version 2.0</em>. See the notes below for more details.",
     "required": 1
   },
   {
     "field_name": "license_link", 
-    "description": "e.g, <code>LICENSE</code> or <code>LICENSE.md</code> in the same repo or a URL to another location.",
-    "required": 1
+    "description": "e.g, <code>LICENSE</code> or <code>LICENSE.md</code> in the same repo or a URL to another location. Only required <em>if</em> a definition of the license is not included in the home directory of the dataset nor a link is defined to an online location.",
+    "required": 0
   },
   {
     "field_name": "license_details", 
@@ -22,7 +22,7 @@ const data_for_yaml_metadata_block_spec_fields =
   },
   {
     "field_name": "tags", 
-    "description": "Useful for indicating target areas for searches, like <code>chemistry</code>, <code>synthetic</code>, etc. See also <code>task_categories</code>. Where applicable, we recommend that you use the categories described below in <a href=\"#diverse-datasets\">Diverse Datasets...</a>.",
+    "description": "Useful for indicating target areas for searches, like <code>chemistry</code>, <code>synthetic</code>, etc. See also <code>task_categories</code>. Where applicable, we recommend that you use the categories described below in <a href=\"#diverse-datasets\">Diverse Datasets</a>. See also the notes below.",
     "required": 0
   },
   {
@@ -42,7 +42,7 @@ const data_for_yaml_metadata_block_spec_fields =
   },
   {
     "field_name": "pretty_name", 
-    "description": "E.g., <code>Common Chemistry</code>. This is equivalent to the <code>Dataset title/name</code> field in the <a href=\"https://dataandtrustalliance.org/work/data-provenance-standards\" target=\"dta-prov\"}. It can't be empty.",
+    "description": "E.g., <code>Common Chemistry</code>. This is equivalent to the <code>Dataset title/name</code> field described by the Data and Trust Alliance's <a href=\"https://dataandtrustalliance.org/work/data-provenance-standards\" target=\"dta-prov\">Data Provenance Standards</a>. It can't be empty.",
     "required": 1
   },
   {
@@ -57,7 +57,7 @@ const data_for_yaml_metadata_block_spec_fields =
   },
   {
     "field_name": "task_categories", 
-    "description": "A YAML list; one or more from the list in <a href=\"https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/pipelines.ts\" target=\"hf-tasks\">this code</a> (see below).",
+    "description": "A YAML list; one or more from the list in <a href=\"https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/pipelines.ts\" target=\"hf-tasks\">this code</a>. See also the notes below.",
     "required": 0
   },
   {
