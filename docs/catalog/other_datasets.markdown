@@ -70,9 +70,51 @@ The Common Pile collaborators used 1 trillion and 2 trillion token subsets of Co
 {: .note}
 > **NOTE:** Because this dataset is published in Hugging Face, it will appear in our catalog soon.
 
+### Finance
+
+* [SEC Filings](https://www.sec.gov/data-research){:target="_blank"}
+
 ### Institutional Data Initiative
 
-The [Institutional Data Initiative] at the Harvard Law School Library has published [The Institutional Books Corpus](https://www.institutionaldatainitiative.org/institutional-books){:target="_blank"}. This dataset is [available on Hugging Face](https://huggingface.co/datasets/institutional/institutional-books-1.0){:target="_blank"}, but it is not in our catalog, because currently access to it, even its Croissant metadata, requires prior approval.
+The [Institutional Data Initiative] at the Harvard Law School Library has published [The Institutional Books Corpus](https://www.institutionaldatainitiative.org/institutional-books){:target="_blank"}. This dataset is [available on Hugging Face](https://huggingface.co/datasets/institutional/institutional-books-1.0){:target="_blank"}, but it is not in our catalog, because currently access to it, even its Croissant metadata, requires prior approval. (See our discussion of this issue [here]({{site.baseurl}}/catalog/).)
+
+## Legal
+
+* [Caselaw Project](https://case.law/){:target="_blank"}
+* [Freelaw Project](https://www.courtlistener.com/help/api/){:target="_blank"}
+
+## Medical
+
+* [PubMed Central](https://www.ncbi.nlm.nih.gov/pmc/tools/textmining/){:target="_blank"}
+
+
+### Source Code 
+
+_BigCode_ datasets:
+
+* [The Stack](https://huggingface.co/datasets/bigcode/the-stack){:target="_blank"} 
+* [CommitPack](https://huggingface.co/datasets/bigcode/commitpack)
+
+See also [Common Pile](https://github.com/r-three/common-pile){:target="_blank"}).
+
+### Time Series
+
+* [New York TLC Trip Record](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page){:target="_blank"}
+
+## Other General-purpose Training Datasets
+
+* [arXiv](https://huggingface.co/datasets/arxiv-community/arxiv_dataset){:target="_blank"}
+* [Common Crawl](https://commoncrawl.org/){:target="_blank"} (See also [Common Crawl Foundation]({{site.baseurl}}/catalog/contributors/common-crawl-foundation))
+* [FineWeb](https://huggingface.co/datasets/HuggingFaceFW/fineweb){:target="_blank"}
+* [Github Clean](https://huggingface.co/datasets/codeparrot/github-code-clean){:target="_blank"}
+* [Hacker News](https://console.cloud.google.com/marketplace/product/y-combinator/hacker-news?pli=1){:target="_blank"}
+* [OpenWeb Math](https://huggingface.co/datasets/open-web-math/open-web-math){:target="_blank"}
+* [OpenWeb Text](https://huggingface.co/datasets/Skylion007/openwebtext){:target="_blank"}
+* [The Pile](https://pile.eleuther.ai/){:target="_blank"}
+* [Project Gutenberg](https://huggingface.co/datasets/manu/project_gutenberg){:target="_blank"}
+* [RefinedWeb](https://huggingface.co/datasets/tiiuae/falcon-refinedweb){:target="_blank"}
+* [StackExchange](https://data.stackexchange.com/){:target="_blank"} [Datadump](https://archive.org/details/stackexchange){:target="_blank"}
+* [Wikipedia/Wikimedia](https://dumps.wikimedia.org/){:target="_blank"} (See also [Wikimedia Enterprise]({{site.baseurl}}/catalog/contributors/wikimedia-enterprise))
 
 ## Other Datasets?
 
