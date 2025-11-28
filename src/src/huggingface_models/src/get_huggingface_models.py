@@ -7,9 +7,63 @@ import pandas as pd
 import awswrangler as wr
 from datetime import datetime, timezone
 import boto3
+from botocore.exceptions import ClientError
 import os
 import time
 import json
+
+
+def get_secret_value(secret_name, region_name="us-east-2"):
+    """
+    Retrieve a secret value from AWS Secrets Manager
+    
+    Args:
+        secret_name: The name or ARN of the secret
+        region_name: AWS region where the secret is stored
+    
+    Returns:
+        The secret value (string or dict)
+    """
+    
+    # Create a Secrets Manager client
+    session = boto3.session.Session()
+    client = session.client(
+        service_name='secretsmanager',
+        region_name=region_name
+    )
+    
+    try:
+        # Retrieve the secret value
+        response = client.get_secret_value(SecretId=secret_name)
+        
+        # Secrets can be stored as either string or binary
+        if 'SecretString' in response:
+            secret = response['SecretString']
+            # If it's a JSON string, parse it
+            try:
+                return json.loads(secret)
+            except json.JSONDecodeError:
+                return secret
+        else:
+            # Binary secret
+            return response['SecretBinary']
+            
+    except ClientError as e:
+        # Handle specific errors
+        if e.response['Error']['Code'] == 'ResourceNotFoundException':
+            print(f"Secret {secret_name} not found")
+        elif e.response['Error']['Code'] == 'InvalidRequestException':
+            print(f"Invalid request for secret {secret_name}")
+        elif e.response['Error']['Code'] == 'InvalidParameterException':
+            print(f"Invalid parameter for secret {secret_name}")
+        elif e.response['Error']['Code'] == 'DecryptionFailure':
+            print(f"Cannot decrypt secret {secret_name}")
+        elif e.response['Error']['Code'] == 'InternalServiceError':
+            print(f"Internal service error retrieving {secret_name}")
+        raise e
+
+    
+
 
 # Upsert daily results into main state table.
 # Will redundantly upsert the last three days data in the event
@@ -134,15 +188,16 @@ output_models = []
 # TODO: Move this to the param store or pass in via aws cdk
 key = "/service=huggingface/datasets=models/"
 target_s3_bucket = f"s3://{os.environ["ANALYTICS_BUCKET"]}{key}"
-
+token = get_secret_value(os.environ["SECRET_NAME"])["token"]
 today = datetime.today().strftime("%Y-%m-%d")
+
 print(f"Starting run: {today}")
 print(f"ANALYTICS_BUCKET: {os.environ["ANALYTICS_BUCKET"]}")
 print(f"ANALYTICS_OUTPUT_BUCKET: {os.environ["ANALYTICS_OUTPUT_BUCKET"]}")
 print(f"AWS_REGION: {os.environ["AWS_REGION"]}")
 print(f"ATHENA_DATABASE_NAME: {os.environ["ATHENA_DATABASE_NAME"]}")
 print(f"NUMBER_OF_MODELS_TO_REQUEST: {os.environ["NUMBER_OF_MODELS_TO_REQUEST"]}")
-
+print(f"HF TOKEN: {token[-5:]}")
 # Documentation:
 # https://huggingface.co/docs/huggingface_hub/v0.27.1/en/package_reference/hf_api#huggingface_hub.DatasetInfo
 hf_input_models = []
@@ -150,17 +205,19 @@ hf_input_models = []
 try:
     # Making the below HF API call will return HTTP 429 if not limited...
     hf_input_models = list(
+        # https://huggingface.co/docs/huggingface_hub/package_reference/hf_api#huggingface_hub.HfApi.list_models.emissions_thresholds
         api.list_models(
             sort="lastModified",
             direction=-1,
+            token=token,
             limit=int(os.environ["NUMBER_OF_MODELS_TO_REQUEST"]),
         )
     )
 
     print(f"\tSuccessfully got models. Total number: {len(hf_input_models)}")
+    #print(hf_input_models[1])
 except Exception as e:
     print(f"Error getting models from HuggingFace: {e}")
-
 
 for model in hf_input_models:
     this_model = {}
@@ -179,7 +236,9 @@ for model in hf_input_models:
     this_model["author"] = model.author
     this_model["sha"] = model.sha
     this_model["created_at"] = model.created_at.strftime("%Y-%m-%d %H:%M:%S")
-    this_model["last_modified"] = model.last_modified.strftime("%Y-%m-%d %H:%M:%S")
+    this_model["last_modified"] = ""
+    if model.last_modified:
+        this_model["last_modified"] = model.last_modified.strftime("%Y-%m-%d %H:%M:%S")
     this_model["private"] = model.private
     this_model["disabled"] = model.disabled
     this_model["downloads"] = model.downloads
@@ -204,7 +263,9 @@ for model in hf_input_models:
     this_model["model_index"] = model.model_index
     this_model["config"] = model.config
     this_model["transformers_info"] = model.transformers_info
-    this_model["trending_score"] = model.trending_score
+    this_model["trending_score"] = None
+    if model.trending_score:
+        this_model["trending_score"] = round(model.trending_score)
     this_model["siblings"] = model.siblings
     this_model["spaces"] = model.spaces
     this_model["safetensors"] = model.safetensors
