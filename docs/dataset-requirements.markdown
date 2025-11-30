@@ -94,7 +94,6 @@ The [`templates/README_guide.md`](https://github.com/huggingface/datasets/blob/m
   context=""
   table_id="yaml_metadata_block_spec_fields"
   show_source=false
-  context=""
 %}
 
 <p class="caption"><strong>Table 1:</strong> Hugging Face datacard YAML metadata block.</p>
@@ -102,37 +101,44 @@ The [`templates/README_guide.md`](https://github.com/huggingface/datasets/blob/m
 {: .note}
 > **NOTES:** Some additional points about several of the fields: 
 >
-> 1.For the `license` and related fields, see the list of permissive licenses we accept in the [Catalog index page]({{site.baseurl}}/catalog/#table-2). Use the names shown there, or for consistency with [Hugging Face dataset card conventions](https://huggingface.co/docs/hub/datasets-cards){:target="hf-card"}, consider using [their names](https://huggingface.co/docs/hub/repositories-licenses){:target="hf-licenses"} for these licenses, when different.
-> 2. Our recommended licenses:
->   * For datasets: [_Community Data License Agreement – Permissive, Version 2.0_](https://spdx.org/licenses/CDLA-Permissive-2.0.html){:target="cdla"}
->   * For source code: [_Apache 2.0_](https://spdx.org/licenses/Apache-2.0){:target="apache"}
->   * For documentation: [_The Creative Commons License, Version 4.0_](https://spdx.org/licenses/CC-BY-4.0.html){:target="cc-by-4"}. 
->   * See the Alliance [`community/CONTRIBUTING` page](https://github.com/The-AI-Alliance/community/blob/main/CONTRIBUTING.md#licenses){:target="licenses"} for more details about licenses.
+> 1. For the `license` and related fields, the list of permissive licenses is shown in [Table 2 below](#table-2), which is a repeat of [Table 2]({{site.baseurl}}/catalog/#table-2) in the [Catalog page]({{site.baseurl}}/catalog/). The identifiers (i.e., `apache-2.0`) and most of the names are the same as those [recommended](https://huggingface.co/docs/hub/repositories-licenses){:target="hf-licenses"} by Hugging Face for [dataset cards](https://huggingface.co/docs/hub/datasets-cards){:target="hf-card"}.
+> 2. We recommend using the following licenses:
+>   * For datasets: [_Community Data License Agreement – Permissive, Version 2.0_](https://spdx.org/licenses/CDLA-Permissive-2.0.html){:target="cdla"} (`cdla-permissive-2.0`)
+>   * For source code: [_Apache 2.0_](https://spdx.org/licenses/Apache-2.0){:target="apache"} (`apache-2.0`)
+>   * For documentation: [_The Creative Commons License, Version 4.0_](https://spdx.org/licenses/CC-BY-4.0.html){:target="cc-by-4"} (`cc-by-4.0`) 
 > 3. For `tags` values, there is no industry-standard list of values, but the [Data Classification]({{site.baseurl}}/references/#data-classification) section in the [References]({{site.baseurl}}/references/) lists some well-known taxonomies to consider using.
 > 4. For `task_categories` values, see the [Appendix](#appendix) below.
 
+<a name="table-2"></a>
+
+{% include licenses-table-template.html 
+  title="The Permissive Licenses"
+  context=""
+  table_id="permissive_licenses"
+%}
+
+<p class="caption"><strong>Table 2:</strong> The permissive licenses.</p>
 
 
 ## The Markdown Content in the Dataset Card
 
-**Table 2** lists content that we require or recommend in the Markdown body of the dataset card, below the YAML header block. The **Source** column in the table contains the following:
+**Table 3** lists content that we require or recommend in the Markdown body of the dataset card, below the YAML header block. The **Source** column in the table contains the following:
 * &ldquo;HF&rdquo; for fields in the Hugging Face [`datasetcard_template.md`](https://github.com/huggingface/huggingface_hub/blob/main/src/huggingface_hub/templates/datasetcard_template.md){:target="hf-dataset-card-template"}. See the [`README_guide.md`](https://github.com/huggingface/datasets/blob/main/templates/README_guide.md){:target="hf-dataset-card-readme"} for descriptions of many of these fields.
 <!-- * &ldquo;OTDI&rdquo; for additional fields derived from the [Data Provenance Standard](https://dataandtrustalliance.org/work/data-provenance-standards){:target="dta-prov"} (OTDI). Where we require OTDI fields, add them to the `README.md` they seem to fit best. -->
 * &ldquo;OTDI&rdquo; for additional fields we believe are necessary.
 
 <!-- As noted in the following table, many of the fields appear in both the Hugging Face dataset card template and the Data Provenance Standard, but use different names. We ask you to use the Hugging Face names for consistency and convenience. When unique OTDI fields are used, we convert their field names to lowercase and use underscores as separators, for consistency. -->
 
-<a name="table-2"></a>
+<a name="table-3"></a>
 
 {% include specification-table-template.html 
   title="Markdown Metadata Content"
   context=""
   table_id="markdown_metadata_content_spec_fields"
   show_source=true
-  context=""
 %}
 
-<p class="caption"><strong>Table 2:</strong> Additional markdown metadata content in the dataset card (<code>README.md</code>).</p>
+<p class="caption"><strong>Table 3:</strong> Additional markdown metadata content in the dataset card (<code>README.md</code>).</p>
 
 
 {% comment %} 
@@ -186,17 +192,16 @@ Finally, what if several datasets are used to derive a new dataset and these ups
 
 **Table 3** lists the minimum set of metadata fields that must change in a derived dataset:
 
-<a name="table-3"></a>
+<a name="table-4"></a>
 
 {% include specification-table-template.html 
   title="Derived Dataset Requirements"
   context=""
   table_id="derived_dataset_requirements_spec_fields"
   show_source=false
-  context=""
 %}
 
-<p class="caption"><strong>Table 3:</strong> Minimum required dataset card changes for a derived dataset.</p>
+<p class="caption"><strong>Table 4:</strong> Minimum required dataset card changes for a derived dataset.</p>
 
 ### Categories of Dataset Transformations
 
@@ -221,7 +226,7 @@ Here we group the task types by _modality_ (e.g., `nlp`). Some tasks have define
 
 ### Natural Language Processing - `nlp`
 
-**Table 4** lists tasks and subtasks related to natural language processing (`nlp`).
+**Table 5** lists tasks and subtasks related to natural language processing (`nlp`).
 
 | **Task Type** | **Subtask Type** | **Name** |
 | :------------ | :--------------- | :------- |
@@ -288,11 +293,11 @@ Here we group the task types by _modality_ (e.g., `nlp`). Some tasks have define
 | | `entity-linking-retrieval`               | Entity Linking Retrieval |
 | | `fact-checking-retrieval`                | Fact Checking Retrieval  |
 
-<p class="caption"><strong>Table 4:</strong> Tasks and subtasks related to natural language processing (<code>nlp</code>).</p>
+<p class="caption"><strong>Table 5:</strong> Tasks and subtasks related to natural language processing (<code>nlp</code>).</p>
 
 ### Audio - `audio`
 
-**Table 5** lists tasks and subtasks related to audio processing (`audio`).
+**Table 6** lists tasks and subtasks related to audio processing (`audio`).
 
 | **Task Type** | **Subtask Type** | **Name** |
 | :------------ | :--------------- | :------- |
@@ -309,13 +314,13 @@ Here we group the task types by _modality_ (e.g., `nlp`). Some tasks have define
 | | `audio-language-identification` | Audio Language Identification |
 | `voice-activity-detection` |      | Voice Activity Detection | 
 
-<p class="caption"><strong>Table 5:</strong> Tasks and subtasks related to audio processing (<code>audio</code>).</p>
+<p class="caption"><strong>Table 6:</strong> Tasks and subtasks related to audio processing (<code>audio</code>).</p>
 
 ### Multimodal - `multimodal`
 
 For `visual-question-answering` and `document-question-answering`, the Hugging Face source file lists each as its own subtask, which looks like a data error, but we show it for consistency.
 
-**Table 6** lists tasks and subtasks related to multimodal processing:
+**Table 7** lists tasks and subtasks related to multimodal processing:
 
 | **Task Type** | **Subtask Type** | **Name** |
 | :------------ | :--------------- | :------- |
@@ -329,11 +334,11 @@ For `visual-question-answering` and `document-question-answering`, the Hugging F
 | `visual-document-retrieval` |   | Visual Document Retrieval |
 | `any-to-any` |                  | Any-to-Any |
 
-<p class="caption"><strong>Table 6:</strong> Tasks and subtasks relaed to multimodal processing.</p>
+<p class="caption"><strong>Table 7:</strong> Tasks and subtasks relaed to multimodal processing.</p>
 
 ### Computer Vision - `cv`
 
-**Table 7** lists tasks and subtasks related to computer vision (`cv`):
+**Table 8** lists tasks and subtasks related to computer vision (`cv`):
 
 | **Task Type** | **Subtask Type** | **Name** |
 | :------------ | :--------------- | :------- |
@@ -369,11 +374,11 @@ For `visual-question-answering` and `document-question-answering`, the Hugging F
 | `pose-estimation` |                  | Pose Estimation |
 | `video-to-video` |                   | Video-to-Video |
 
-<p class="caption"><strong>Table 7:</strong> Tasks and subtasks related to computer vision (<code>cv</code>).</p>
+<p class="caption"><strong>Table 8:</strong> Tasks and subtasks related to computer vision (<code>cv</code>).</p>
 
 ### Reinforcement Learning - `rl`
 
-**Table 8** lists tasks and subtasks related to reinforcement learning (`rl`):
+**Table 9** lists tasks and subtasks related to reinforcement learning (`rl`):
 
 | **Task Type** | **Subtask Type** | **Name** |
 | :------------ | :--------------- | :------- |
@@ -382,11 +387,11 @@ For `visual-question-answering` and `document-question-answering`, the Hugging F
 | | `grasping`               | Grasping      |
 | | `task-planning`          | Task Planning |
 
-<p class="caption"><strong>Table 8:</strong> Tasks and subtasks related to reinforcement learning (<code>rl</code>).</p>
+<p class="caption"><strong>Table 9:</strong> Tasks and subtasks related to reinforcement learning (<code>rl</code>).</p>
 
 ### Tabular - `tabular`
 
-**Table 9** lists tasks and subtasks related to tabular data processing:
+**Table 10** lists tasks and subtasks related to tabular data processing:
 
 | **Task Type** | **Subtask Type** | **Name** |
 | :------------ | :--------------- | :------- |
@@ -401,15 +406,15 @@ For `visual-question-answering` and `document-question-answering`, the Hugging F
 | | `univariate-time-series-forecasting`   | Univariate Time Series Forecasting   |
 | | `multivariate-time-series-forecasting` | Multivariate Time Series Forecasting |
 
-<p class="caption"><strong>Table 9:</strong> Tasks and subtasks related to tabular data processing.</p>
+<p class="caption"><strong>Table 10:</strong> Tasks and subtasks related to tabular data processing.</p>
 
 ### Other - `other`
 
-**Table 10** lists other special-case tasks and subtasks that don't fit in the other modality categories.
+**Table 11** lists other special-case tasks and subtasks that don't fit in the other modality categories.
 
 | **Task Type** | **Subtask Type** | **Name** |
 | :------------ | :--------------- | :------- |
 | `graph-ml` | | Graph Machine Learning |
 | `other`    | | Other |
 
-<p class="caption"><strong>Table 10:</strong> Other special-case tasks and subtasks that don't fit in the other modality categories</p>
+<p class="caption"><strong>Table 11:</strong> Other special-case tasks and subtasks that don't fit in the other modality categories</p>

@@ -182,6 +182,25 @@ function makeDataSpecTable(uniqueID, data, columns, useMaxHeight) {
   return {"id": id_table.id, "table": id_table.table, "numRows": data.length};
 }
 
+/**
+ * Function to render a Tabulator table for license information.
+ * uniqueID:       For defining a unique id for the table object.
+ * data:           The JS array to show in the table. See how the
+ *                 columns are set up for documentation on the 
+ *                 expected fields in the objects in "data".
+ * columns:        Table columns.
+ * useMaxHeight:   If true, doesn't specify a starting height, which means all rows are shown.
+ *                 If false, calculates a "reasonable" default starting height.
+ * Notes:
+ * 1. Using minHeight and maxHeight doesn't permit user resizing beyond those limits.
+ * 2. A fixed height of 300 means that short tables have an empty gray area at the bottom
+ *    so we use a "hack" calculation to estimate the size.
+ */
+function makeLicenseTable(uniqueID, data, columns, useMaxHeight) {
+  var id_table = makeTabulatorTable(uniqueID, data, columns, useMaxHeight);
+  return {"id": id_table.id, "table": id_table.table, "numRows": data.length};
+}
+
 function setInnerHTML(id, content, ignoreMissing = false) {
   const elem = document.getElementById(id);
   if (elem) {

@@ -51,7 +51,7 @@ Many datasets for chemistry are open for use.
 [PubChem](https://pubchem.ncbi.nlm.nih.gov/docs/downloads){:target="_blank"} is a free-to-use chemistry database. From the website:
 
 {: .attention}
-> PubChem is a free to use database with most of the data readily available for download. Exceptions may exist in cases where licensing agreements prevent our data contributors from allowing bulk downloads of some data sets.
+> PubChem is a free to use database with most of the data readily available for download. Exceptions may exist in cases where licensing agreements prevent our data contributors from allowing bulk downloads of some datasets.
 >
 > Please consult the NCBI [Policies and Disclaimers](https://www.ncbi.nlm.nih.gov/home/about/policies/){:target="_blank"} webpage and the [NLM Web Policies](https://www.nlm.nih.gov/web_policies.html){:target="_blank"} webpage.
 >

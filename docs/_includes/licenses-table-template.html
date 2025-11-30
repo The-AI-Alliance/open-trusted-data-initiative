@@ -1,0 +1,76 @@
+
+<div>
+{{include.context | htmlify}}
+</div>
+
+<div id="{{ include.table_id }}-filter-div">
+  <form>
+    Save to: <input id="{{ include.table_id }}-file-name" type="text" class="width-50" value="{{ include.table_id }}.json" form="none">    
+    <button id="{{ include.table_id }}-download-data" type="button" onclick="saveTableAsJSON('{{ include.table_id }}', '{{ include.table_id }}-download-message');">Download</button>
+    <span class="width-100">&nbsp;</span>
+    <button id="{{ include.table_id }}-filter-clear" type="reset" value="reset">Reset</button>
+    <br/> <!-- <br/> makes it wrap, but with less vertical space than using <p>...</p>. -->
+    <span id="{{ include.table_id }}-download-message"></span>
+  </form>
+</div>
+<div id="{{include.table_id}}-table-div-resizable" class="resizable variable-height-description">
+  <div class="resizers">
+    <div id="{{include.table_id}}-table" class="table-wrapper">
+      {% comment %} 
+      The next import will define a JS array "data_for_{{ include.table_id }}". 
+      {% endcomment %}
+      <script type="text/javascript" src="{{site.baseurl}}/files/data/licenses/{{include.table_id}}.js"></script>
+      <script type="text/javascript">
+        var idTable = makeLicenseTable(
+          "{{ include.table_id }}",
+          data_for_{{ include.table_id }},
+          [
+           {
+              title: "License",
+              field: "license",
+              // width: 300,
+              variableHeight: true,
+              headerTooltip: true, 
+              formatter: "link",
+              formatterParams: {
+                labelField: "license",
+                urlField: "license_url",
+                target: "_blank",
+              }
+            },
+            {
+              title: "Key",
+              field: "key",
+              width: 150,
+              headerTooltip: true, 
+              formatter:  codeHTML
+            },
+            {
+              title: "Category",
+              field: "category",
+              width: 120,
+              headerTooltip: true,
+              variableHeight: true,
+              formatter: "html"
+            },
+            {
+              title: "Count",
+              field: "count",
+              width: 100,
+              hozAlign:"right",
+              headerTooltip: true, 
+              formatter:  codeHTML
+            },
+          ],
+          true
+        );
+      </script>
+    </div>
+    <div class="resizer-line bottom-line"></div>
+    <script type="text/javascript">
+      makeResizableTableDiv("{{include.table_id}}-table-div-resizable", idTable.table);
+      enableTableFilters("{{ include.table_id }}", idTable.table);
+      setNumRows("{{ include.table_id }}", idTable.table, num=data_for_{{ include.table_id }}.length);
+    </script>
+  </div>
+</div>

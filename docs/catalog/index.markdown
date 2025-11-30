@@ -46,14 +46,14 @@ More details of our analysis of the licenses can be found in the GitHub repo's [
 
 <a name="table-1"></a>
 
-| Category         | Count |
-| :--------------- | ----: |
-| Permissive       | 92617 |
-| Source-available |  6181 |
-| Copyleft Limited |  3608 |
-| Unstated License |  3262 |
-| Public Domain    |  2096 |
-| Copyleft         |  1112 |
+| Category         | Count   |
+| :--------------- | ------: |
+| Permissive       | `92617` |
+| Source-available |  `6181` |
+| Copyleft Limited |  `3608` |
+| Unstated License |  `3262` |
+| Public Domain    |  `2096` |
+| Copyleft         |  `1112` |
 
 <p class="caption"><strong>Table 1:</strong> Categories of licenses.</p>
 
@@ -61,37 +61,21 @@ For our purposes, _Permissive_ and _Public Domain_ qualify as &ldquo;open&rdquo;
 
 <a name="table-2"></a>
 
-|                         License                               | Category         | Count |
-| :------------------------------------------------------------ | :--------------- | ----: |
-| Apache License 2.0                                            | Permissive       | 48751 |
-| MIT License                                                   | Permissive       | 33644 |
-| Creative Commons Attribution 4.0 International Public License | Permissive       |  7813 |
-| Creative Commons Zero v1.0 Universal                          | Public Domain    |  1755 |
-| Open Data Commons Attribution License v1.0                    | Permissive       |   845 |
-| Academic Free License v3.0                                    | Permissive       |   775 |
-| Creative Commons Attribution 2.0                              | Permissive       |   237 |
-| Creative Commons Attribution 3.0                              | Permissive       |   235 |
-| The Unlicense                                                 | Public Domain    |   232 |
-| Community Data License Agreement Permissive 2.0               | Permissive       |   145 |
-| Public Domain Dedication & License                            | Public Domain    |   109 |
-| Etalab Open License 2.0 English                               | Permissive       |    40 |
-| Educational Community License v2.0                            | Permissive       |    35 |
-| Creative Commons Attribution 2.5                              | Permissive       |    30 |
-| PostgreSQL License                                            | Permissive       |    19 |
-| Microsoft Public License                                      | Permissive       |    19 |
-| Community Data License Agreement Permissive 1.0               | Permissive       |    13 |
-| zlib License                                                  | Permissive       |     9 |
-| ISC License                                                   | Permissive       |     7 |
+{% include licenses-table-template.html 
+  title="The Permissive Licenses"
+  context=""
+  table_id="permissive_licenses"
+%}
 
 <p class="caption"><strong>Table 2:</strong> The permissive licenses.</p>
 
 {: .attention}
 > **Important:** At this time, we are not yet validating datasets to ensure their metadata accurately reflect the data records themselves.
 >
-> **Note:** Some of the datasets filtered out for one of the reasons discussed above are listed separately in our [Contributors]({{site.baseurl}}/catalog/contributors) or [Other Datasets]({{site.baseurl}}/catalog/other_datasets) pages, where we also describe some other useful datasets that are not available in Hugging Face and not yet included in the catalog itself.
+> **Note:** Some of the datasets filtered out for one of the reasons discussed above are listed separately in our [Contributors]({{site.baseurl}}/catalog/contributors) or [Other Datasets]({{site.baseurl}}/catalog/other_datasets) pages, where we also describe some other useful datasets that are not available in Hugging Face and not yet included in this catalog.
 
 {: .tip}
-> Do you know of any datasets that should be shown, but aren't? Let us know through [email](mailto:data@thealliance.ai?subject=A dataset for the OTDI catalog) or [another way]({{site.baseurl}}/contributing).
+> **Help Wanted:** Do you know of any datasets that should be shown, but aren't? Let us know through [email](mailto:data@thealliance.ai?subject=A dataset for the OTDI catalog) or [another way]({{site.baseurl}}/contributing).
 
 # The Current Keywords Cataloged
 

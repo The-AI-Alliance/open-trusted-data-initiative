@@ -8,7 +8,7 @@ parent: Dataset Catalog
 
 # Our Key Contributors and Their Datasets
 
-The following AI Alliance member or affiliate organizations, shown in alphabetical order, maintain open data sets that are becoming part of our catalog. See also the [Other Datasets]({{site.baseurl}}/catalog/other_datasets/) page.
+The following AI Alliance member or affiliate organizations, shown in alphabetical order, maintain open datasets that are becoming part of our catalog. See also the [Other Datasets]({{site.baseurl}}/catalog/other_datasets/) page.
 
 <details open markdown="block">
   <summary>
