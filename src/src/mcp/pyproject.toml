@@ -1,0 +1,12 @@
+[project]
+name = "next-gem-catalog-MCP-server"
+version = "0.1.0"
+description = "MCP Server for the Next Gem Catalog"
+package-mode = false
+requires-python = ">=3.10,<4.0"
+dependencies = [
+    "awswrangler>=3.14.0",
+    "boto3>=1.40.63",
+    "fastmcp>=2.6.1",
+    "pandas>=2.3.3",
+]
