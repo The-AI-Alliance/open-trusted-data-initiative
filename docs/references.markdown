@@ -138,6 +138,12 @@ Here is their statement about the purpose of this standard, quoted from the proj
 >
 > This is why we developed the first cross-industry data provenance standards.
 
+### Open Mined
+
+Open Mined posts:
+* https://openmined.org/blog/ai-hasnt-run-out-of-data/
+* https://ifp.org/unlocking-a-million-times-more-data-for-ai/
+
 ## Data Classification
 
 ### Interactive Advertising Bureau Taxonomy
