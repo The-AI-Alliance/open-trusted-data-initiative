@@ -32,9 +32,9 @@ _More specific information is coming soon._
 
 ## Common Crawl Foundation
 
-[Common Crawl Foundation](https://commoncrawl.org/){:target="ccf"} is working on tagged and filtered crawl subsets for English and other languages.
+[Common Crawl Foundation](https://commoncrawl.org/){:target="ccf"} is working on tagged and filtered crawl subsets for English and other languages. Their first major project in this area, [GneissWeb Annotations](https://commoncrawl.org/blog/announcing-gneissweb-annotations){:target="ccf-blog"}, was announced October 6, 2025.
 
-_More specific information is coming soon._
+These quality and category annotations for its entire web dataset were computed using [IBM’s GneissWeb](https://huggingface.co/datasets/ibm-granite/GneissWeb){:target="ibm"} tools, including a _bloom filter_ for analyzing documents and [Data Prep Kit](https://github.com/data-prep-kit/data-prep-kit){:target="dpk"} for creating the required data processing pipelines. The annotations enable users to filter for high-quality content and explore topics like medical, education, and technology. The announcement blog post contains links for the first index datasets, other tools, etc.
 
 ## EPFL
 
