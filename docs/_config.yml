@@ -74,7 +74,7 @@ aux_links:
     - "https://thealliance.ai"
 
 nav_external_links:
-  - title: The AI Alliance Open Trusted Data Initiative Repo"
+  - title: The AI Alliance Open Trusted Data Initiative Repo
     url: "https://github.com/The-AI-Alliance/open-trusted-data-initiative"
     hide_icon: false
 
