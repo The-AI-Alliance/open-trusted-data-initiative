@@ -73,4 +73,4 @@ The transformations to create one more structured datasets from a filtered datas
 
 ## For All Processing
 
-All ingestion and transformation steps will include full auditing to support data governance specification, so that full provenance and lineage back to original sources is tracked, with full visibility available to users of the datasets. _Each_ dataset will have its governance metadata in its own dataset card that is publically available with the dataset. For example, it can be used to create _Bills of Material_ by interested parties (see [here]({{site.baseurl}}/references/#ai-bom)).
+All ingestion and transformation steps will include full auditing to support data governance specification, so that full provenance and lineage back to original sources is tracked, with full visibility available to users of the datasets. _Each_ dataset will have its governance metadata in its own dataset card that is publically available with the dataset. For example, it can be used to create _Bills of Material_ by interested parties (see [here]({{site.referencesurl}}/#ai-bom)).

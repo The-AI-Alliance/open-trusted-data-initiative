@@ -106,7 +106,7 @@ The [`templates/README_guide.md`](https://github.com/huggingface/datasets/blob/m
 >   * For datasets: [_Community Data License Agreement – Permissive, Version 2.0_](https://spdx.org/licenses/CDLA-Permissive-2.0.html){:target="cdla"} (`cdla-permissive-2.0`)
 >   * For source code: [_Apache 2.0_](https://spdx.org/licenses/Apache-2.0){:target="apache"} (`apache-2.0`)
 >   * For documentation: [_The Creative Commons License, Version 4.0_](https://spdx.org/licenses/CC-BY-4.0.html){:target="cc-by-4"} (`cc-by-4.0`) 
-> 3. For `tags` values, there is no industry-standard list of values, but the [Data Classification]({{site.baseurl}}/references/#data-classification) section in the [References]({{site.baseurl}}/references/) lists some well-known taxonomies to consider using.
+> 3. For `tags` values, there is no industry-standard list of values, but the [Data Classification]({{site.referencesurl}}/#data-classification) section in the [References]({{site.referencesurl}}/) lists some well-known taxonomies to consider using.
 > 4. For `task_categories` values, see the [Appendix](#appendix) below.
 
 <a name="table-2"></a>
