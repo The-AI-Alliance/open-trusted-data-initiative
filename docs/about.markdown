@@ -5,10 +5,9 @@ nav_order: 60
 has_children: false
 ---
 
-| **Authors**      | [The AI Alliance Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="ai-alliance-wg"} |
-| **Last Update** | {{site.last_version}}, {{site.last_modified_timestamp}} |
+# About Us
 
-# News
+## News
 
 | :--- | :--- |
 | November&nbsp;11,&nbsp;2025 | Numerous refinements to the open dataset specification and processing of datasets by for permissive licenses. |
@@ -23,15 +22,15 @@ has_children: false
 | October&nbsp;15,&nbsp;2024 | [Common Crawl Foundation]({{site.baseurl}}/catalog//#common-crawl-foundation) joins the AI Alliance and the Open Trusted Data Initiative. |
 
 <a name="contact-us"></a>
-# How to Contact Us
+## How to Contact Us
 
 Send email to [data@thealliance.ai](mailto:data@thealliance.ai?subject=Questions about the Open Trusted Data Initiative).
 
 If you notice issues with this website or any of our other assets, considering [posting an issue](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="otdi-issues"} or [starting a discussion](https://github.com/The-AI-Alliance/open-trusted-data-initiative/discussions){:target="otdi-discussions"}
 
-# About the Open Trusted Data Initiative
+## About the Open Trusted Data Initiative
 
-## Steering Committee
+### Steering Committee
 
 The Steering Committee represents diverse industry experience in open data and AI. The committee guides the strategy of OTDI, oversees the technical projects, and helps expand awareness of our work.
 
@@ -46,11 +45,11 @@ Here are the committee members, in alphabetical order (by first name):
 * Yacine Jernite - [Hugging Face](https://huggingface.co){:target="huggingface"}
 
 
-## Maintainers
+### Maintainers
 
 The steering committee members contribute to the content published here. For the technical team that contributes to the data pipelines, etc., see the GitHub repo's [contributor list](https://github.com/The-AI-Alliance/open-trusted-data-initiative/graphs/contributors){:target="gh-contributors"}.
 
-## Contributing AI Alliance Member Organizations
+### Contributing AI Alliance Member Organizations
 
 These Alliance member organizations are contributing to OTDI in various ways. In alphabetical order:
 
@@ -65,32 +64,17 @@ These Alliance member organizations are contributing to OTDI in various ways. In
 
 We welcome new organizations and individuals as contributors.
 
-# About The AI Alliance
+## About The AI Alliance
 
 The **Open Trusted Data Initiative** (OTDI) is a _core_ project managed by the [Open Trusted Data Work Group](https://thealliance.ai/focus-areas/foundation-models){:target="tands"} in [The AI Alliance](https://thealliance.ai){:target="ai-alliance"}. The AI Alliance is a global collaboration of startups, enterprises, academic and other research institutions interested in advancing the state of the art, the availability, and the safety of AI technology and uses.
 
 The AI Alliance's [core projects](https://thealliance.ai/core-projects){:target="core"} seek to address substantial cross-community challenges and are an opportunity for contributors to collaborate, build, and make an impact on the future of AI. Core Projects are managed directly by the AI Alliance and governed as described below. You can find a list of the [affiliated projects](https://thealliance.ai/affiliated-projects){:target="affiliated"}, which are Alliance member projects that we promote, but they are not directly managed by the Alliance.
 
-## Other AI Alliance Information
+### Other AI Alliance Information
 
 * [More About the AI Alliance](https://thealliance.ai/about-aia){:target="ai-alliance"}
 * Follow us on [LinkedIn](https://www.linkedin.com/company/the-aialliance/){:target="linkedin"} and [Bluesky](https://bsky.app/profile/aialliance.bsky.social){:target="bluesky"}
 
-# About This Website
+## About This Website
 
 This website for OTDI is built with [GitHub Pages](https://pages.github.com/){:target="github-pages"}, which uses [Jekyll](https://github.com/jekyll/jekyll){:target="gh-jekyll"} to serve the website. We use the [Just the Docs](https://just-the-docs.github.io/just-the-docs/){:target="just-the-docs"} Jekyll theme.
-
-<!--
-### Version History for This Site
-
-| Version  | Date       |
-| :------- | :--------- |
-| V0.4.2   | 2025-11-11 |
-| V0.4.0   | 2025-11-05 |
-| V0.3.7   | 2025-08-21 |
-| V0.3.0   | 2025-05-06 |
-| V0.2.0   | 2024-12-04 |
-| V0.1.0   | 2024-11-13 |
-| V0.0.4   | 2024-11-04 |
-| V0.0.1   | 2024-09-01 |
--->
