@@ -1212,7 +1212,7 @@ ON   hfm.id = perm.id;
 └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-See `src/scripts/load-into-duckdb.py` for the actual query used.
+See `src/catalog/load-into-duckdb.py` for the actual query used.
 
 What is the count for each valid license?
 

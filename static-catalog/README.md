@@ -26,10 +26,10 @@ Steps:
 * Edit the `Makefile` and set `PARQUET_SNAPSHOT_TIMESTAMP` to match that date string. (Or just invoke the `make` commands below starting with `PARQUET_SNAPSHOT_TIMESTAMP=YYYY-MM-DD make targets` for the actual date.) Note that by default, the current date will be used for temporary files created during the subsequent steps, which will likely be later than the parquet files capture date.
 * Update `./data/reference/keyword-categories.json` with any changes to the hierarchy of categories and keywords you want to make.
 * Run `make catalog`, which does the following:
-  * Runs `./src/scripts/parquet-to-json.py`, which reads the parquet files in `./data/parquet/<date>`, extracts the `croissant` column as a string, performs _unescapes_ (e.g., `\"` to `"`, etc.), then writes JSON files to `./data/json/temp/YYYY-MM-DD`, where `YYYY-MM-DD` is today's date by default. (You can override this with the environment variable `TIMESTAMP`.)
-  * Runs `./src/scripts/load-into-duckdb.py`, which reads the JSON in `./data/json/temp/YYYY-MM-DD` into `duckdb` tables.
-  * Runs `./src/scripts/write-category-files.py` to read the `temp` JSON output and write one markdown file _for each topic_ under `./markdown/processed/YYYY-MM-DD`, and one JavaScript and one JSON file _for each topic_ under `./data/json/processed/YYYY-MM-DD`.
-  * Runs `./src/scripts/copy-files-to-docs.sh` to copy the files created over to the correct locations in `docs`.
+  * Runs `./src/catalog/parquet-to-json.py`, which reads the parquet files in `./data/parquet/<date>`, extracts the `croissant` column as a string, performs _unescapes_ (e.g., `\"` to `"`, etc.), then writes JSON files to `./data/json/temp/YYYY-MM-DD`, where `YYYY-MM-DD` is today's date by default. (You can override this with the environment variable `TIMESTAMP`.)
+  * Runs `./src/catalog/load-into-duckdb.py`, which reads the JSON in `./data/json/temp/YYYY-MM-DD` into `duckdb` tables.
+  * Runs `./src/catalog/write-category-files.py` to read the `temp` JSON output and write one markdown file _for each topic_ under `./markdown/processed/YYYY-MM-DD`, and one JavaScript and one JSON file _for each topic_ under `./data/json/processed/YYYY-MM-DD`.
+  * Runs `./src/catalog/copy-files-to-docs.sh` to copy the files created over to the correct locations in `docs`.
 * Commit the changes and push upstream!
 
 You can run all the scripts discussed separately; use `--help` to see options.
@@ -37,8 +37,8 @@ You can run all the scripts discussed separately; use `--help` to see options.
 > [!NOTE]
 >
 > * Run all the commands shown below in the `static-catalog` directory, e.g., when running `make catalog`.
-> * `./src/scripts/parquet-to-json.py` requires `pandas`.
-> * `./src/scripts/write-category-files.py` requires DuckDB to be installed (see [Using DuckDB](#using-duckdb)) _and_ it requires a database file named `./croissant.duckdb`. This file is very large, so we don't version it in the git repo. Talk to Dean Wampler or Joe Olson to get a copy of this file and put it in this directory.
+> * `./src/catalog/parquet-to-json.py` requires `pandas`.
+> * `./src/catalog/write-category-files.py` requires DuckDB to be installed (see [Using DuckDB](#using-duckdb)) _and_ it requires a database file named `./croissant.duckdb`. This file is very large, so we don't version it in the git repo. Talk to Dean Wampler or Joe Olson to get a copy of this file and put it in this directory.
 > * The markdown files copied to `../docs` correspond to _collections_ defined in `../docs/_config.yaml`; there is a subfolder for each collection, currently `_language`, `_domain`, and `_modality` (the `_` is required)
 > * The JavaScript files are copied to `../docs/files/data/catalog`. They contain the static data, defined as JS arrays of objects.
 > * The markdown and JSON directory hierarchies are _different_. The markdown files need to be flat, only _collection_ subfolders (currently `_language`, `_domain`, and `_modality`). We tried making hierarchical directories here, but this isn't supported by Jekyll/Liquid. In contrast, the JavaScript files written to `../docs/files/data/catalog` are hierarchical, because they use our own convention and are handled appropriately by the JavaScript code that loads them, `../docs/_includes/data_table_template.html`.
@@ -106,7 +106,7 @@ Use `.quit` to exit `duckdb`.
 
 ## Parsing Parquet to JSON Files
 
-The `make catalog` build first builds `make-clean`, which deletes directories where new files will be created, then runs `make catalog-data-prep`. This target invokes `./src/scripts/parquet-to-json.py`, which uses `pandas` to read the parquet files in `./data/parquet/<date>`, where `<date>` is the snapshot capture date in the format `YYYY-MM-DD`.
+The `make catalog` build first builds `make-clean`, which deletes directories where new files will be created, then runs `make catalog-data-prep`. This target invokes `./src/catalog/parquet-to-json.py`, which uses `pandas` to read the parquet files in `./data/parquet/<date>`, where `<date>` is the snapshot capture date in the format `YYYY-MM-DD`.
 
 The input parquet format includes two columns we care about, `response_reason` and `croissant`. The former should have the value `OK`, meaning the metadata was successfully retrieved in Croissant format for the corresponding dataset. We filter out all records without this value, reducing the input from about 413,000 datasets to 329,000.
 
@@ -116,13 +116,13 @@ The `croissant` column contains giant strings of quoted JSON, which means lots o
 "{\"@context\":{\"@language\":\"en\",...}}"
 ```
 
-The rest of `./src/scripts/parquet-to-json.py` _unescapes_ the JSON string and writes it to one large file (>3GB), `./data/json/YYYY-MM-DD/croissant.json`, where `YYYY-MM-DD` is today's date.
+The rest of `./src/catalog/parquet-to-json.py` _unescapes_ the JSON string and writes it to one large file (>3GB), `./data/json/YYYY-MM-DD/croissant.json`, where `YYYY-MM-DD` is today's date.
 
 ## Load into DuckDB
 
 Next, the `make catalog` target makes the target `catalog-duckdb-load` to load the temporary JSON files into [DuckDB](https://duckdb.org), which has good support for JSON and it allows us to do useful joins, filtering, etc.
 
-Specifically, this `make` target runs the script `./src/scripts/load-into-duckdb.py` to read the JSON in `./data/json/temp/YYYY-MM-DD` and to create the following `duckdb` tables.
+Specifically, this `make` target runs the script `./src/catalog/load-into-duckdb.py` to read the JSON in `./data/json/temp/YYYY-MM-DD` and to create the following `duckdb` tables.
 
 ```sql
 CREATE OR REPLACE TABLE hf_croissant AS FROM (
@@ -267,7 +267,7 @@ This table is used subsequently to generate the JavaScript and Markdown files re
 
 ## Creating JavaScript and Markdown Files for the Website
 
-Next, `make catalog` builds the `make-build` target that _builds_ the JavaScript and Markdown files required. This target runs the script `./src/scripts/write-category-files.py` to do this.
+Next, `make catalog` builds the `make-build` target that _builds_ the JavaScript and Markdown files required. This target runs the script `./src/catalog/write-category-files.py` to do this.
 
 The script reads the categories, possible subcategories, and topics (corresponding to keywords) from `./data/reference/keyword-categories.json`. It generates Markdown files in three directories, `_language`, `_domain`, `_modality` in `./markdown/processed/YYYY-MM-DD/`. The leading `_` is a convention used by Jekyll. These files will be copied to the root directory of the website, `docs`. Each file, such as `.../_language/language_asia_korean.markdown` contains metadata data in a YAML block and content to display for that language, e.g.,:
 
@@ -312,7 +312,7 @@ const data_for_language_asia_korean =
 
 ## Copy the JavaScript and Markdown Files to the Website
 
-Finally, `make catalog` builds the `catalog-install` target, which runs the `./src/scripts/copy-files-to-docs.sh` `zsh` script.
+Finally, `make catalog` builds the `catalog-install` target, which runs the `./src/catalog/copy-files-to-docs.sh` `zsh` script.
 
 This script copies the contents of `./data/json/processed/YYYY-MM-DD` to `docs/files/data/catalog` and the contents of `./markdown/processed/YYYY-MM-DD` to `docs`.
 
