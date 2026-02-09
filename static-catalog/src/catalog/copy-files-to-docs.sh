@@ -5,7 +5,7 @@ DIR=$(dirname $0)
 SC_DIR="."
 DOCS_DIR="../docs"
 
-. $SC_DIR/src/scripts/common.sh
+. $SC_DIR/src/catalog/common.sh
 
 ymd=$(date +"%Y-%m-%d")
 def_js_source_root="$SC_DIR/data/json/processed"
