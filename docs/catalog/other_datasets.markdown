@@ -1,16 +1,18 @@
 ---
 layout: default
-title: Other Datasets
+title: Other Datasets and Data Initiatives
 nav_order: 500
 has_children: false
 parent: Dataset Catalog
 ---
 
-# Other Datasets
+# Other Datasets and Data Initiatives
 
 Many open datasets are not hosted at Hugging Face, so they are not yet part of our catalog. Other datasets that are hosted there aren't picked up by our catalog building process for various reasons, some of which are discussed in [About This Catalog]({{site.baseurl}}/catalog//). For example, Croissant metadata might not be available, licenses may be incorrectly defined or missing, or it may be required to manually request access to a dataset, even before you can see its Croissant metadata!
 
-For now, here is a list of notable datasets that don't appear in the catalog pages, grouped into general topic areas. See also the [Contributors]({{site.baseurl}}/catalog/contributors/) page.
+In addition, other data initiatives are fostering the creation, maintenance, and cataloging of datasets for specific purposes, such as under-represented language families, domains and use cases, and areas of science.
+
+Here is a list of notable datasets and initiatives that don't appear in the catalog pages, grouped into general topic areas. See also the [Contributors]({{site.baseurl}}/catalog/contributors/) page.
 
 <details open markdown="block">
   <summary>
@@ -33,7 +35,6 @@ The blog [Low-background Steel (Pre AI)](https://lowbackgroundsteel.ai){:target=
 ### NeurIPS 2024 Datasets Benchmarks
 
 The NeurIPS 2024 [Datasets Benchmarks](https://neurips.cc/virtual/2024/events/datasets-benchmarks-2024){:target="neurips2024"} is a list of recently-created datasets of interest for evaluation.
-
 
 ## Chemistry
 
@@ -59,7 +60,11 @@ Many datasets for chemistry are open for use.
 >
 > PubChem strives to make clear the data provenance of all content. Within a given data table row or beneath provided content, the data provenance is provided. For example, this data shows Medical Subject Headings (MeSH) as the data source for the assertion of a chemical being a “Fibrinolytic Agent”:
 
-## Text
+## Language
+
+### Aquarium
+
+[_Aquarium_](https://aquarium.sea-lion.ai/){:target="aq"} ([blog post](https://sea-lion.ai/blog/aquarium-open-data-platform/){:target="aq-blog"}) is &ldquo;An Open Data Platform for Southeast Asian Languages.&rdquo;. A joint collaboration of AI Singapore and Google, Aquarium is a platform to promote gathering and sharing data sets for the hundreds of languages and dialects spoken by over 650 million people in Southeast Asia. Most of these languages and dialects are under represented in current training datasets used for AI.
 
 ### Common Pile
 
