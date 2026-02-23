@@ -75,6 +75,15 @@ The Common Pile collaborators used 1 trillion and 2 trillion token subsets of Co
 {: .note}
 > **NOTE:** Because this dataset is published in Hugging Face, it will appear in our catalog soon.
 
+### WAXAL: A Large-Scale Multilingual African Language Speech Corpus
+
+[WAXAL](https://huggingface.co/datasets/google/WaxalNLP){:target="waxal-hf"} ([paper](https://arxiv.org/abs/2602.02734){:target="waxal-hf"}) is a large-scale multilingual African language speech corpus. Quoting from the abstract:
+
+{: .attention}
+> The advancement of speech technology has predominantly favored high-resource languages, creating a significant digital divide for speakers of most Sub-Saharan African languages. To address this gap, we introduce WAXAL, a large-scale, openly accessible speech dataset for 21 languages representing over 100 million speakers. The collection consists of two main components: an Automated Speech Recognition (ASR) dataset containing approximately 1,250 hours of transcribed, natural speech from a diverse range of speakers, and a Text-to-Speech (TTS) dataset with over 180 hours of high-quality, single-speaker recordings reading phonetically balanced scripts... 
+
+## Domain-specific Datasets
+
 ### Finance
 
 * [SEC Filings](https://www.sec.gov/data-research){:target="_blank"}
@@ -83,12 +92,12 @@ The Common Pile collaborators used 1 trillion and 2 trillion token subsets of Co
 
 The [Institutional Data Initiative] at the Harvard Law School Library has published [The Institutional Books Corpus](https://www.institutionaldatainitiative.org/institutional-books){:target="_blank"}. This dataset is [available on Hugging Face](https://huggingface.co/datasets/institutional/institutional-books-1.0){:target="_blank"}, but it is not in our catalog, because currently access to it, even its Croissant metadata, requires prior approval. (See our discussion of this issue [here]({{site.baseurl}}/catalog/).)
 
-## Legal
+### Legal
 
 * [Caselaw Project](https://case.law/){:target="_blank"}
 * [Freelaw Project](https://www.courtlistener.com/help/api/){:target="_blank"}
 
-## Medical
+### Medical
 
 * [PubMed Central](https://www.ncbi.nlm.nih.gov/pmc/tools/textmining/){:target="_blank"}
 
@@ -121,6 +130,6 @@ See also [Common Pile](https://github.com/r-three/common-pile){:target="_blank"}
 * [StackExchange](https://data.stackexchange.com/){:target="_blank"} [Datadump](https://archive.org/details/stackexchange){:target="_blank"}
 * [Wikipedia/Wikimedia](https://dumps.wikimedia.org/){:target="_blank"} (See also [Wikimedia Enterprise]({{site.baseurl}}/catalog/contributors/wikimedia-enterprise))
 
-## Other Datasets?
+## What Other Important Datasets Should We Add?
 
 If you know of other open datasets that we should include in our catalog, [let us know]({{site.baseurl}}/contributing).
