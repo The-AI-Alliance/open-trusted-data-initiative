@@ -23,31 +23,33 @@ Here is a list of notable datasets and initiatives that don't appear in the cata
 {:toc}
 </details>
 
-## Avoiding &ldquo;AI Slop&rdquo;
+## Other General-Purpose Data Initiatives
+
+### Mozilla Data Collective
+
+The [Mozilla Data Collective](https://datacollective.mozillafoundation.org/){:target="mdc"} has curated over 470 high-quality datasets, sourced globally, which have been built in a transparent and ethical way.
+
+### Avoiding &ldquo;AI Slop&rdquo;
 
 The blog [Low-background Steel (Pre AI)](https://lowbackgroundsteel.ai){:target="_blank"} catalogs datasets known to predate the announcement of ChatGPT, after which AI-generated content became more and more prevalent in datasets. This site wants to ensure that _pure_, human-generated datasets exist for research and development. From the site:
 
 {: .attention}
 > Sources of data that haven’t been contaminated by AI-created content. Low-background Steel (and lead) is a type of metal uncontaminated by radioactive isotopes from nuclear testing. That steel and lead is usually recovered from ships that sunk before the Trinity Test in 1945. This blog is about uncontaminated content that I'm terming "Low-background Steel". The idea is to point to sources of text, images and video that were created prior to the explosion of AI-generated content that occurred in 2022.
 
-## Benchmark and Other Evaluation Datasets
+## Domain-Specific Datasets
 
-### NeurIPS 2024 Datasets Benchmarks
-
-The NeurIPS 2024 [Datasets Benchmarks](https://neurips.cc/virtual/2024/events/datasets-benchmarks-2024){:target="neurips2024"} is a list of recently-created datasets of interest for evaluation.
-
-## Chemistry
+### Chemistry
 
 Many datasets for chemistry are open for use.
 
-### CartBlanche
+#### CartBlanche
 
 [CartBlanche](https://cartblanche.docking.org/){:target="_blank"} is an interface to ZINC-22, a free database of commercially-available compounds for virtual screening. From the website:
 
 {: .attention}
 > ZINC-22 focuses on make-on-demand ("tangible") compounds from a small number of large catalogs: Enamine, WuXi and Mcule. Our sister database, [ZINC20](https://zinc20.docking.org/){:target="_blank"} focuses on smaller catalogs. ZINC-22 currently has about 54.9 billion molecules in 2D and 5.9 billion in 3D.
 
-### PubChem
+#### PubChem
 
 [PubChem](https://pubchem.ncbi.nlm.nih.gov/docs/downloads){:target="_blank"} is a free-to-use chemistry database. From the website:
 
@@ -60,13 +62,17 @@ Many datasets for chemistry are open for use.
 >
 > PubChem strives to make clear the data provenance of all content. Within a given data table row or beneath provided content, the data provenance is provided. For example, this data shows Medical Subject Headings (MeSH) as the data source for the assertion of a chemical being a “Fibrinolytic Agent”:
 
-## Language
+### Finance
 
-### Aquarium
+* [SEC Filings](https://www.sec.gov/data-research){:target="_blank"}
+
+### General and Regional Languages
+
+#### Aquarium
 
 [_Aquarium_](https://aquarium.sea-lion.ai/){:target="aq"} ([blog post](https://sea-lion.ai/blog/aquarium-open-data-platform/){:target="aq-blog"}) is &ldquo;An Open Data Platform for Southeast Asian Languages.&rdquo;. A joint collaboration of AI Singapore and Google, Aquarium is a platform to promote gathering and sharing data sets for the hundreds of languages and dialects spoken by over 650 million people in Southeast Asia. Most of these languages and dialects are under represented in current training datasets used for AI.
 
-### Common Pile
+#### Common Pile
 
 Another large open dataset, _Common Pile_ ([HF announcement](https://huggingface.co/blog/common-pile/common-pile-v0p1-announcement){:target="_blank"}, [HF location](https://huggingface.co/common-pile){:target="_blank"}, [HF blog](https://huggingface.co/blog/stellaathena/common-pile){:target="_blank"}, [Paper](https://github.com/r-three/common-pile/blob/main/paper.pdf){:target="_blank"}, [Code](https://github.com/r-three/common-pile){:target="_blank"}), was published in June 2025 by a consortium of researchers from University of Toronto, Vector Institute, Hugging Face, EleutherAI, The Allen Institute for Artificial Intelligence, Teraflop AI, Cornell University, University of Maryland College Park, MIT, CMU, Lila Sciences, Lawrence Livermore National Laboratory, etc. See also the PleIAs' [Common Corpus]({{site.baseurl}}/catalog/contributors/#pleias) dataset.
 
@@ -75,7 +81,7 @@ The Common Pile collaborators used 1 trillion and 2 trillion token subsets of Co
 {: .note}
 > **NOTE:** Because this dataset is published in Hugging Face, it will appear in our catalog soon.
 
-### WAXAL: A Large-Scale Multilingual African Language Speech Corpus
+#### WAXAL: A Large-Scale Multilingual African Language Speech Corpus
 
 [WAXAL](https://huggingface.co/datasets/google/WaxalNLP){:target="waxal-hf"} ([paper](https://arxiv.org/abs/2602.02734){:target="waxal-hf"}) is a large-scale multilingual African language speech corpus. Quoting from the abstract:
 
@@ -86,21 +92,15 @@ The Common Pile collaborators used 1 trillion and 2 trillion token subsets of Co
 
 ### Finance
 
-* [SEC Filings](https://www.sec.gov/data-research){:target="_blank"}
-
-### Institutional Data Initiative
-
-The [Institutional Data Initiative] at the Harvard Law School Library has published [The Institutional Books Corpus](https://www.institutionaldatainitiative.org/institutional-books){:target="_blank"}. This dataset is [available on Hugging Face](https://huggingface.co/datasets/institutional/institutional-books-1.0){:target="_blank"}, but it is not in our catalog, because currently access to it, even its Croissant metadata, requires prior approval. (See our discussion of this issue [here]({{site.baseurl}}/catalog/).)
-
 ### Legal
 
-* [Caselaw Project](https://case.law/){:target="_blank"}
-* [Freelaw Project](https://www.courtlistener.com/help/api/){:target="_blank"}
+* The [Institutional Data Initiative] at the Harvard Law School Library has published [The Institutional Books Corpus](https://www.institutionaldatainitiative.org/institutional-books){:target="_blank"}. This dataset is [available on Hugging Face](https://huggingface.co/datasets/institutional/institutional-books-1.0){:target="_blank"}, but it is not in our catalog, because in order to access it, even its Croissant metadata, requires prior approval. (See our discussion of this issue [here]({{site.baseurl}}/catalog/).)
+* The [Caselaw Project](https://case.law/){:target="_blank"}
+* The [Freelaw Project](https://www.courtlistener.com/help/api/){:target="_blank"}
 
 ### Medical
 
 * [PubMed Central](https://www.ncbi.nlm.nih.gov/pmc/tools/textmining/){:target="_blank"}
-
 
 ### Source Code 
 
@@ -115,13 +115,14 @@ See also [Common Pile](https://github.com/r-three/common-pile){:target="_blank"}
 
 * [New York TLC Trip Record](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page){:target="_blank"}
 
-## Other General-purpose Training Datasets
+## Datasets for Training, Benchmarks, and Other Evaluation Purposes
 
 * [arXiv](https://huggingface.co/datasets/arxiv-community/arxiv_dataset){:target="_blank"}
 * [Common Crawl](https://commoncrawl.org/){:target="_blank"} (See also [Common Crawl Foundation]({{site.baseurl}}/catalog/contributors/common-crawl-foundation))
 * [FineWeb](https://huggingface.co/datasets/HuggingFaceFW/fineweb){:target="_blank"}
 * [Github Clean](https://huggingface.co/datasets/codeparrot/github-code-clean){:target="_blank"}
 * [Hacker News](https://console.cloud.google.com/marketplace/product/y-combinator/hacker-news?pli=1){:target="_blank"}
+* [NeurIPS 2024 Datasets Benchmarks](https://neurips.cc/virtual/2024/events/datasets-benchmarks-2024){:target="neurips2024"} is a list of recently-created datasets of interest for evaluation.
 * [OpenWeb Math](https://huggingface.co/datasets/open-web-math/open-web-math){:target="_blank"}
 * [OpenWeb Text](https://huggingface.co/datasets/Skylion007/openwebtext){:target="_blank"}
 * [The Pile](https://pile.eleuther.ai/){:target="_blank"}
@@ -130,6 +131,6 @@ See also [Common Pile](https://github.com/r-three/common-pile){:target="_blank"}
 * [StackExchange](https://data.stackexchange.com/){:target="_blank"} [Datadump](https://archive.org/details/stackexchange){:target="_blank"}
 * [Wikipedia/Wikimedia](https://dumps.wikimedia.org/){:target="_blank"} (See also [Wikimedia Enterprise]({{site.baseurl}}/catalog/contributors/wikimedia-enterprise))
 
-## What Other Important Datasets Should We Add?
+## Other Important Datasets We Should Catalog?
 
 If you know of other open datasets that we should include in our catalog, [let us know]({{site.baseurl}}/contributing).

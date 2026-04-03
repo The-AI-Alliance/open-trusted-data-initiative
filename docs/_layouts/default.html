@@ -7,6 +7,8 @@ layout: table_wrappers
 <html lang="{{ site.lang | default: 'en-US' }}">
 {% include head.html %}
 <body>
+  <a id="go-to-top"></a>
+
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="svg-link" viewBox="0 0 24 24">
       <title>Link</title>
@@ -233,5 +235,7 @@ layout: table_wrappers
       <div class="search-overlay"></div>
     {% endif %}
   </div>
+
+  <span class="bottom-right"><a title="Go to the top" href="#go-to-top" class="go-to-top-btn">&#8593;</a></span>
 </body>
 </html>

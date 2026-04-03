@@ -72,6 +72,12 @@ td.project-title {
   width: 100% !important;
 }
 
+.bottom-right {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+}
+
 blockquote {
   border: $border $border-color;
   /*
@@ -177,6 +183,10 @@ h3.topic {
   @extend .btn-blue;
 }
 
+.go-to-top-btn {
+  @extend .keyword-btn;
+  @extend .btn-blue;
+}
 
 .resizable {
   position: relative;

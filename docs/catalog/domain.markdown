@@ -8,8 +8,6 @@ parent: Dataset Catalog
 
 # Datasets for Different Domains
 
-<a name="keywords-at-top"></a>
-
 <div>
 {% for member in site.domain %}
   {% if member.tag == "domain" %}

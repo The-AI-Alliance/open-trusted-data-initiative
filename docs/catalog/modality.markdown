@@ -8,8 +8,6 @@ parent: Dataset Catalog
 
 # Datasets for Different Modalities
 
-<a name="keywords-at-top"></a>
-
 <div>
 {% for member in site.modality %}
   {% if member.tag == "modality" %}

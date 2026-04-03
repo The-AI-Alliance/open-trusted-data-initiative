@@ -8,8 +8,6 @@ parent: Dataset Catalog
 
 # Datasets for Different Languages
 
-<a name="keywords-at-top"></a>
-
 <div>
 {% assign current_region = "" %}
 {% for member in site.language %}
