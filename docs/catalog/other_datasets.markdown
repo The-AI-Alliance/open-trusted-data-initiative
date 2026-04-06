@@ -107,7 +107,7 @@ The Common Pile collaborators used 1 trillion and 2 trillion token subsets of Co
 _BigCode_ datasets:
 
 * [The Stack](https://huggingface.co/datasets/bigcode/the-stack){:target="_blank"} 
-* [CommitPack](https://huggingface.co/datasets/bigcode/commitpack)
+* [CommitPack](https://huggingface.co/datasets/bigcode/commitpack){:target="_blank"}
 
 See also [Common Pile](https://github.com/r-three/common-pile){:target="_blank"}).
 
