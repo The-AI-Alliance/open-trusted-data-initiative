@@ -10,7 +10,7 @@ package-mode = false
 [tool.poetry.dependencies]
 python = "^3.12"
 huggingface-hub = "^0.27.1"
-pyarrow = "18.1.0"
+pyarrow = "^23.0.1"
 requests = "^2.32.3"
 pandas = "^2.2.3"
 openpyxl = "^3.1.5"
