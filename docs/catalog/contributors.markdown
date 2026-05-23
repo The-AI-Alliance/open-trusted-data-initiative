@@ -144,13 +144,12 @@ Datasets from the Wikimedia Foundation, the organization that hosts and supports
 * Wikimedia Enterprise [Collections on Kaggle](https://www.kaggle.com/organizations/wikimedia-foundation/datasets){:target="wikimedia-kaggle-col"}
 * Wikimedia Enterprise [GitHub Organization](https://github.com/wikimedia-enterprise){:target="github"}
 
-| Name              | Description     |  URL     | Date Added |
+| Name              | Description     |  URLs     | Dates Added |
 | :---------------- | :-------------- | :------- | :--------- |
-| **Wikipedia Structured Contents** | Early beta release of the English and French Wikipedia articles including infoboxes| [Hugging Face](https://huggingface.co/datasets/wikimedia/structured-wikipedia){:target="structured-contents"} | 2024-09-16 |
-| **Wikipedia Structured Contents** | Early beta release of the English and French Wikipedia articles including infoboxes | [Kaggle](https://www.kaggle.com/datasets/wikimedia-foundation/wikipedia-structured-contents){:target="structured-contents"} | 2024-09-16 |
-| **Wikimedia Wikisource** | Wikisource dataset containing cleaned articles of all languages  |[Hugging Face](https://huggingface.co/datasets/wikimedia/wikisource){:target="wikisource"} | 2023-12-01 |
-| **Wikimedia Wikipedia** | Wikipedia dataset containing cleaned articles of all languages | [Hugging Face](https://huggingface.co/datasets/wikimedia/wikipedia){:target="wikipedia"} | 2023-11-01 |
-| **Wikimedia WIT** | WIT: Wikipedia-based Image Text Dataset for Multimodal Multilingual Machine Learning | [Hugging Face](https://huggingface.co/datasets/wikimedia/wit_base){:target="WIT"} [paper](https://arxiv.org/abs/2103.01913){:target="_blank"} | 2022-05-22 |
+| **Wikipedia Structured Contents** | The English and French Wikipedia articles including infoboxes. Approximately 10.5 million articles, 44 GiB (2026-05-13 release). | [Hugging Face](https://huggingface.co/datasets/wikimedia/structured-wikipedia){:target="structured-contents-hf"}, [Kaggle](https://www.kaggle.com/datasets/wikimedia-foundation/wikipedia-structured-contents){:target="structured-contents-kaggle"} | 2024-09-16 (early beta), 2026-05-13 (latest complete) |
+| **Wikimedia Wikisource** | Wikisource dataset containing cleaned articles of all languages. | [Hugging Face](https://huggingface.co/datasets/wikimedia/wikisource){:target="wikisource"} | 2023-12-01 |
+| **Wikimedia Wikipedia** | Wikipedia dataset containing cleaned articles of all languages. | [Hugging Face](https://huggingface.co/datasets/wikimedia/wikipedia){:target="wikipedia"} | 2023-11-01 |
+| **Wikimedia WIT** | WIT: Wikipedia-based Image Text Dataset for Multimodal Multilingual Machine Learning. | [Hugging Face](https://huggingface.co/datasets/wikimedia/wit_base){:target="WIT"} [paper](https://arxiv.org/abs/2103.01913){:target="_blank"} | 2022-05-22 |
 
 ## Your Contributions?
 
