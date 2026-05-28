@@ -40,7 +40,7 @@ Confirm that the following have been completed:
 * [ ] Unit tests have been added for new functions
 * [ ] Code follows the existing style and convention
 * [ ] API keys or sensitive information have been removed
-* [ ] (Optional) I have suggested one or more reviewers (e.g., @deanwampler, @jolson-ibm)
+* [ ] (Optional) I have suggested one or more reviewers (e.g., @deanwampler, @jolson-allianceai)
 
 
 ## Additional Context
