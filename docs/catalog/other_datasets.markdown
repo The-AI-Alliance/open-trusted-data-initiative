@@ -70,7 +70,13 @@ Many datasets for chemistry are open for use.
 
 #### Aquarium
 
-[_Aquarium_](https://aquarium.sea-lion.ai/){:target="aq"} ([blog post](https://sea-lion.ai/blog/aquarium-open-data-platform/){:target="aq-blog"}) is &ldquo;An Open Data Platform for Southeast Asian Languages.&rdquo;. A joint collaboration of AI Singapore and Google, Aquarium is a platform to promote gathering and sharing data sets for the hundreds of languages and dialects spoken by over 650 million people in Southeast Asia. Most of these languages and dialects are under represented in current training datasets used for AI.
+[_Aquarium_](https://aquarium.sea-lion.ai/){:target="aq"} ([blog post](https://sea-lion.ai/blog/aquarium-open-data-platform/){:target="aq-blog"}) is &ldquo;An Open Data Platform for Southeast Asian Languages.&rdquo;. A joint collaboration of AI Singapore and Google, Aquarium is a platform to promote gathering and sharing datasets for the hundreds of languages and dialects spoken by over 650 million people in Southeast Asia. Most of these languages and dialects are under represented in current training datasets used for AI.
+
+### ATLAS
+
+[ATLAS](https://atlas-data.ai/en/datasets){:target="atlas"}, a project of [AI Singapore](https://aisingapore.org/){:target="ais"}, has very similar goals compared to OTDI. &ldquo;ATLAS catalogs the data that helps AI understand them. A living tapestry, woven by the communities it represents.&rdquo;
+
+The [ATLAS dataset catalog](https://atlas-data.ai/en/datasets){:target="atlas"}.
 
 #### Common Pile
 

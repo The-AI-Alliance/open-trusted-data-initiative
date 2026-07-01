@@ -27,6 +27,12 @@ This section is organized by topic.
 
 While there are many open datasets of various sizes and areas of focus, a few attempts have been made to create very broad, completely open datasets suitable for training competitive foundation models.
 
+### ATLAS
+
+[ATLAS](https://atlas-data.ai/en/datasets){:target="atlas"}, a project of [AI Singapore](https://aisingapore.org/){:target="ais"}, has very similar goals compared to OTDI. &ldquo;ATLAS catalogs the data that helps AI understand them. A living tapestry, woven by the communities it represents.&rdquo;
+
+The [ATLAS dataset catalog](https://atlas-data.ai/en/datasets){:target="atlas"}.
+
 ### Pleias
 
 In December 2024, [Pleias](https://pleias.fr){:target="_blank"} published [Common Corpus](https://huggingface.co/collections/PleIAs/common-corpus-6734e0f67ac3f35e44075f93){:target="common-corpus"}, a two trillion token dataset, and used it to train [several models](https://huggingface.co/PleIAs){:target="_blank"}. ([paper](https://arxiv.org/abs/2506.01732){:target="_blank"})
