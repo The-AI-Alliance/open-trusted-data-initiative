@@ -13,9 +13,9 @@ dependencies = [
     "pandas",
     "pyshp",
     "ipykernel",
-    "bokeh==3.5",
+    "bokeh>=3.8.2",
     "duckdb",
     "tqdm>=4.67.1",
     "psutil>=7.0.0",
-    "pyarrow>=21.0.0",
+    "pyarrow>=23.0.1",
 ]
