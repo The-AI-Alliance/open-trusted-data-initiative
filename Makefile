@@ -1,176 +1,159 @@
-
-pages_url    := https://the-ai-alliance.github.io/open-trusted-data-initiative/
-docs_dir     := docs
-site_dir     := ${docs_dir}/_site
-clean_dirs   := ${site_dir} ${docs_dir}/.sass-cache
-
-# Environment variables
-MAKEFLAGS            = -w  # --warn-undefined-variables
-MAKEFLAGS_RECURSIVE ?= # --print-directory (only useful for recursive makes...)
-UNAME               ?= $(shell uname)
-ARCHITECTURE        ?= $(shell uname -m)
-
-CATALOG_DIR  ?= static-catalog
-
-# Override when running `make view-local` using e.g., `JEKYLL_PORT=8000 make view-local`
-JEKYLL_PORT         ?= 4000
-
-# Used for version tagging release and other build artifacts.
-GIT_HASH            ?= $(shell git show --pretty="%H" --abbrev-commit |head -1)
-TIMESTAMP           ?= $(shell date +"%Y-%m-%d")
-
-define help_message
-Quick help for open-trusted-data-initiative make process.
-
-make all                # Clean and locally view the website.
-						# DOES NOT BUILD ANYTHING ELSE!
-make clean              # Remove built artifacts, etc.
-make view-pages         # View the published GitHub pages in a browser.
-make view-local         # View the pages locally (requires Jekyll).
-                        # Tip: "JEKYLL_PORT=8000 make view-local" uses port 8000 instead of 4000!
-
-Tasks for building and deploying the static catalog.
-To see help on these tasks, run the following:
-
-make catalog-help       # Show help for static catalog generation, effectively 
-                        #   make -C ${CATALOG_DIR} help
-                        # All the make targets shown can be invoked using
-                        # this top-level Makefile, too.
-
-Miscellaneous tasks for help, debugging, setup, etc.
-
-make help               # Prints this output.
-make print-info         # Print the current values of some make and env. variables.
-make setup-jekyll       # Install Jekyll. Make sure Ruby is installed. 
-                        # (Only needed for local viewing of the document.)
-make run-jekyll         # Used by "view-local"; assumes everything is already built.
-                        # Tip: "JEKYLL_PORT=8000 make run-jekyll" uses port 8000 instead of 4000!
-endef
-
-define missing_shell_command_error_message
-is needed by ${PWD}/Makefile. Try 'make help' and look at the README.
-endef
-
-ifndef docs_dir
-$(error ERROR: There is no ${docs_dir} directory!)
-endif
-
-define gem-error-message
-
-ERROR: Did the gem command fail with a message like this?
-ERROR: 	 "You don't have write permissions for the /Library/Ruby/Gems/2.6.0 directory."
-ERROR: To run the "gem install ..." command for the MacOS default ruby installation requires "sudo".
-ERROR: Instead, use Homebrew (https://brew.sh) to install ruby and make sure "/usr/local/.../bin/gem"
-ERROR: is on your PATH before "user/bin/gem".
-ERROR:
-ERROR: Or did the gem command fail with a message like this?
-ERROR:   Bundler found conflicting requirements for the RubyGems version:
-ERROR:     In Gemfile:
-ERROR:       foo-bar (>= 3.0.0) was resolved to 3.0.0, which depends on
-ERROR:         RubyGems (>= 3.3.22)
-ERROR:   
-ERROR:     Current RubyGems version:
-ERROR:       RubyGems (= 3.3.11)
-ERROR: In this case, try "brew upgrade ruby" to get a newer version.
-
-endef
-
-define bundle-error-message
-
-ERROR: Did the bundle command fail with a message like this?
-ERROR: 	 "/usr/local/opt/ruby/bin/bundle:25:in `load': cannot load such file -- /usr/local/lib/ruby/gems/3.1.0/gems/bundler-X.Y.Z/exe/bundle (LoadError)"
-ERROR: Check that the /usr/local/lib/ruby/gems/3.1.0/gems/bundler-X.Y.Z directory actually exists. 
-ERROR: If not, try running the clean-jekyll command first:
-ERROR:   make clean-jekyll setup-jekyll
-ERROR: Answer "y" (yes) to the prompts and ignore any warnings that you can't uninstall a "default" gem.
-
-endef
-
-define missing_ruby_gem_or_command_error_message
-is needed by ${PWD}/Makefile. Try "gem install ..."
-endef
-
-define ruby_and_gem_required_message
-'ruby' and 'gem' are required. See ruby-lang.org for installation instructions.
-endef
-
-define gem_required_message
-Ruby's 'gem' is required. See ruby-lang.org for installation instructions.
-endef
+# Makefile for the open-trusted-data-initiative code and GitHub pages website.
 
 
-.PHONY: all view-pages view-local clean help 
-.PHONY: setup-jekyll run-jekyll
+# Include all the common targets.
+include .common.mk
 
-all:: clean view-local
+# For the static catalog generation.
+CATALOG_DIR          ?= ${SRC_DIR}/static-catalog
+CATALOG_BIN_DIR      ?= ${CATALOG_DIR}/src/scripts
+CATALOG_DATA_DIR     ?= ${CATALOG_DIR}/data
+CATALOG_MARKDOWN_DIR ?= ${CATALOG_DIR}/markdown
+CATALOG_SUFFIX       ?= processed/${TIMESTAMP}
+CATEGORIES_FILE      ?= ${CATALOG_DATA_DIR}/reference/keyword-categories.json
+CATALOG_VERBOSE      ?= 2
+# CATALOG_OPT_ARGS:  Empty by default; define on invocation to customize behavior,
+#                    e.g., "CATALOG_OPT_ARGS=--help"
+CATALOG_OPT_ARGS     ?=
+
+PARQUET_SNAPSHOT_TIMESTAMP   ?= ${TIMESTAMP}
+
+CATALOG_DATA_PARQUET_DIR     ?= ${CATALOG_DATA_DIR}/parquet/${PARQUET_SNAPSHOT_TIMESTAMP}
+CATALOG_DATA_JSON_TEMP_DIR   ?= ${CATALOG_DATA_DIR}/json/temp/${TIMESTAMP}
+CATALOG_DATA_JSON_ERRORS_DIR ?= ${CATALOG_DATA_DIR}/json/errors/${TIMESTAMP}
+CATALOG_DATA_JSON_FINAL_DIR  ?= ${CATALOG_DATA_DIR}/json/processed/${TIMESTAMP}
+CATALOG_MARKDOWN_FINAL_DIR   ?= ${CATALOG_DIR}/markdown/processed/${TIMESTAMP}
+CATALOG_DUCKDB_FILE          ?= ${CATALOG_DATA_DIR}/croissant.duckdb
+CATALOG_DATA_LICENSES_REF    ?= ${CATALOG_DATA_DIR}/reference/all_licenses.json
+CATALOG_DATA_ISO_LANGS_REF   ?= ${CATALOG_DATA_DIR}/reference/ISO-639-1-language.json
+CATALOG_DOCS_JS_DIR          ?= ${WEBSITE_DIR}/files/data/catalog
+CATALOG_DOCS_MARKDOWN_DIR    ?= ${WEBSITE_DIR}
+
+# Add custom help for the application here, which will be shown when the user
+# types "make help".
+# When you see ${CODE}${_END} without anything between them in help messages,
+# it is there to make it easier to line up multi-line description comments.
+# See for example the definition of help-message-general in .common.mk.
 
 help::
-	$(info ${help_message})
+	$(info ${help-custom-message})
+
+define help-custom-message
+${HIGHLIGHT}Quick help for the ${CODE}static-catalog${_END}${HIGHLIGHT}targets:${_END_BOLD}${_END}
+
+Tasks for building and deploying the static catalog.
+
+${CODE}make catalog${_END}             # Makes ${CODE}catalog-clean${_END}, ${CODE}catalog-data-prep${_END}", ${CODE}catalog-duckdb-load${_END}",
+${CODE}${_END}                         # ${CODE}catalog-build${_END} and ${CODE}catalog-install${_END}.
+${CODE}make catalog-clean${_END}       # Deletes all generated files under ${CODE}${CATALOG_DIR}/markdown${_END} and
+${CODE}${_END}                         # ${CODE}${CATALOG_DIR}/data/json/${_END} for YYYY-MM-DD.
+${CODE}make catalog-data-prep${_END}   # Convert the raw parquet files into JSON
+${CODE}make catalog-duckdb-load${_END} # Load the JSON into DuckDB tables.
+${CODE}make catalog-build${_END}       # Uses the DuckDB tables to create markdown and JavaScript files for the
+${CODE}${_END}                         # website catalog,  based on the defined categories and topics in
+${CODE}${_END}                         #   ${CODE}${CATALOG_DIR}/data/reference/keyword-categories.json${_END}.
+${CODE}${_END}                         # The catalog files created are written to
+${CODE}${_END}                         #   ${CODE}${CATALOG_DIR}/markdown/processed/YYYY-MM-DD${_END} and
+${CODE}${_END}                         #   ${CODE}${CATALOG_DIR}/data/json/processed/YYYY-MM-DD${_END}.
+${CODE}make catalog-json${_END}        # Same as ${CODE}catalog-build${_END}, but only builds the JSON files.
+${CODE}make catalog-markdown${_END}    # Same as ${CODE}catalog-build${_END}, but only builds the Markdown files.
+${CODE}make catalog-install${_END}     # Copies the catalog files created by ${CODE}catalog-build${_END} to the
+${CODE}${_END}                         # ${CODE}${WEBSITE_DIR}${_END} locations for rendering the catalog.
+
+If the parquet file snapshot is older than today's date, use
+  ${CODE}PARQUET_SNAPSHOT_TIMESTAMP=YYYY-MM-DD make ...${_END}
+The processed files will still be written to directories using
+today's date, i.e., the date the processing was actually done, while
+using ${CODE}PARQUET_SNAPSHOT_TIMESTAMP${_END} to specify the date of the raw data
+snapshot. However, if you don't care to have the two separate timestamps,
+just use the following to define all times consistently, including the
+date of the raw capture:
+  ${CODE}TIMESTAMP=YYYY-MM-DD make ...${_END}
+endef
+
+clean:: catalog-clean
+
+print-info-custom::
+	@echo
+	@echo "${CODE}CATEGORIES_FILE${_END}:             ${CODE}${CATEGORIES_FILE}${_END}"
+	@echo "${CODE}CATALOG_DATA_PARQUET_DIR${_END}:    ${CODE}${CATALOG_DATA_PARQUET_DIR}${_END}"
+	@echo "${CODE}CATALOG_DATA_JSON_TEMP_DIR${_END}:  ${CODE}${CATALOG_DATA_JSON_TEMP_DIR}${_END}"
+	@echo "${CODE}CATALOG_DATA_JSON_FINAL_DIR${_END}: ${CODE}${CATALOG_DATA_JSON_FINAL_DIR}${_END}"
+	@echo "${CODE}CATALOG_MARKDOWN_FINAL_DIR${_END}:  ${CODE}${CATALOG_MARKDOWN_FINAL_DIR}${_END}"
+	@echo "${CODE}CATALOG_DUCKDB_FILE${_END}:         ${CODE}${CATALOG_DUCKDB_FILE}${_END}"
+	@echo "${CODE}CATALOG_DATA_LICENSES_REF${_END}:   ${CODE}${CATALOG_DATA_LICENSES_REF}${_END}"
+	@echo "${CODE}CATALOG_DATA_ISO_LANGS_REF${_END}:  ${CODE}${CATALOG_DATA_ISO_LANGS_REF}${_END}"
+	@echo "${CODE}CATALOG_DOCS_JS_DIR${_END}:         ${CODE}${CATALOG_DOCS_JS_DIR}${_END}"
+	@echo "${CODE}CATALOG_DOCS_MARKDOWN_DIR${_END}:   ${CODE}${CATALOG_DOCS_MARKDOWN_DIR}${_END}"
 	@echo
 
-print-info:
-	@echo "GitHub Pages URL:    ${pages_url}"
-	@echo "current dir:         ${PWD}"
-	@echo "docs dir:            ${docs_dir}"
-	@echo "site dir:            ${site_dir}"
-	@echo "clean dirs:          ${clean_dirs} (deleted by 'make clean')"
-	@echo
-	@echo "GIT_HASH:            ${GIT_HASH}"
-	@echo "TIMESTAMP:           ${TIMESTAMP}"
-	@echo "MAKEFLAGS:           ${MAKEFLAGS}"
-	@echo "MAKEFLAGS_RECURSIVE: ${MAKEFLAGS_RECURSIVE}"
-	@echo "UNAME:               ${UNAME}"
-	@echo "ARCHITECTURE:        ${ARCHITECTURE}"
-	@echo "GIT_HASH:            ${GIT_HASH}"
-	@echo "JEKYLL_PORT:         ${JEKYLL_PORT}"
 
-clean::
-	rm -rf ${clean_dirs} 
+.PHONY: catalog catalog-data-prep catalog-duckdb-load catalog-build catalog-build-json catalog-build-markdown catalog-install
+.PHONY: catalog-clean catalog-clean-notice catalog-clean-db-file catalog-clean-json catalog-clean-markdown
 
-view-pages::
-	@python -m webbrowser "${pages_url}" || \
-		(echo "ERROR: I could not open the GitHub Pages URL. Try ⌘-click or ^-click on this URL instead:" && \
-		 echo "ERROR:   ${pages_url}" && exit 1 )
+catalog:: catalog-clean catalog-data-prep catalog-duckdb-load catalog-build catalog-install
 
-view-local:: setup-jekyll run-jekyll
+catalog-clean:: catalog-clean-notice catalog-clean-db-file catalog-clean-json catalog-clean-markdown
+catalog-clean-notice::
+	@echo "Cleaning targets under ${CATALOG_DIR}, not docs. The docs files are cleaned by catalog-install."
+catalog-clean-json::
+	rm -rf ${CATALOG_DATA_JSON_TEMP_DIR}
+	rm -rf ${CATALOG_DATA_JSON_ERRORS_DIR}
+	rm -rf ${CATALOG_DATA_JSON_FINAL_DIR}
+catalog-clean-markdown::
+	rm -rf ${CATALOG_MARKDOWN_FINAL_DIR}
+catalog-clean-db-file::
+	rm -f  ${CATALOG_DUCKDB_FILE}
 
-# Passing --baseurl '' allows us to use `localhost:4000` rather than require
-# `localhost:4000/The-AI-Alliance/open-trusted-data-initiative` when running locally.
-run-jekyll: clean
-	@echo
-	@echo "Once you see the http://127.0.0.1:${JEKYLL_PORT}/ URL printed, open it with command+click..."
-	@echo
-	cd ${docs_dir} && bundle exec jekyll serve --port ${JEKYLL_PORT} --baseurl '' --incremental || ( echo "ERROR: Failed to run Jekyll. Try running 'make setup-jekyll'." && exit 1 )
+catalog-data-prep::
+	${UV_RUN} ${CATALOG_BIN_DIR}/parquet-to-json.py \
+		--verbose ${CATALOG_VERBOSE} \
+		--input   ${CATALOG_DATA_PARQUET_DIR} \
+		--output  ${CATALOG_DATA_JSON_TEMP_DIR} \
+		--errors  ${CATALOG_DATA_JSON_ERRORS_DIR} \
+		${CATALOG_OPT_ARGS}
 
-setup-jekyll:: ruby-installed-check bundle-ruby-command-check
-	@echo "Updating Ruby gems required for local viewing of the docs, including jekyll."
-	gem install jekyll bundler jemoji || ${MAKE} gem-error
-	bundle install || ${MAKE} bundle-error
-	bundle update html-pipeline || ${MAKE} bundle-error
+catalog-duckdb-load:: catalog-clean-db-file
+	${UV_RUN} ${CATALOG_BIN_DIR}/load-into-duckdb.py \
+		--verbose   ${CATALOG_VERBOSE} \
+		--db-file   ${CATALOG_DUCKDB_FILE} \
+		--input     ${CATALOG_DATA_JSON_TEMP_DIR}/* \
+		--licenses  ${CATALOG_DATA_LICENSES_REF} \
+		--iso-langs ${CATALOG_DATA_ISO_LANGS_REF} \
+		${CATALOG_OPT_ARGS}
 
-ruby-installed-check:
-	@command -v ruby > /dev/null || \
-		( echo "ERROR: ${ruby_and_gem_required_message}" && exit 1 )
-	@command -v gem  > /dev/null || \
-		( echo "ERROR: ${gem_required_message}" && exit 1 )
+catalog-build::
+	${UV_RUN} ${CATALOG_BIN_DIR}/write-category-files.py \
+		--verbose      ${CATALOG_VERBOSE} \
+		--db-file      ${CATALOG_DUCKDB_FILE} \
+		--cat-file     ${CATEGORIES_FILE} \
+		--json-dir     ${CATALOG_DATA_JSON_FINAL_DIR} \
+		--markdown-dir ${CATALOG_MARKDOWN_FINAL_DIR} \
+		${CATALOG_OPT_ARGS}
 
-.PHONY: catalog catalog-help
+catalog-build-json::
+	${UV_RUN} ${CATALOG_BIN_DIR}/write-category-files.py \
+		--no-markdown \
+		--verbose      ${CATALOG_VERBOSE} \
+		--db-file      ${CATALOG_DUCKDB_FILE} \
+		--cat-file     ${CATEGORIES_FILE} \
+		--json-dir     ${CATALOG_DATA_JSON_FINAL_DIR} \
+		${CATALOG_OPT_ARGS}
 
-catalog-help:: 
-	${MAKE} -C ${CATALOG_DIR} help
+catalog-build-markdown::
+	${UV_RUN} ${CATALOG_BIN_DIR}/write-category-files.py \
+		--no-json \
+		--verbose      ${CATALOG_VERBOSE} \
+		--db-file      ${CATALOG_DUCKDB_FILE} \
+		--cat-file     ${CATEGORIES_FILE} \
+		--markdown-dir ${CATALOG_MARKDOWN_FINAL_DIR} \
+		${CATALOG_OPT_ARGS}
 
-catalog catalog-%:: 
-	${MAKE} -C ${CATALOG_DIR} $@
-
-%-error:
-	$(error ${${@}-message})
-
-%-ruby-command-check:
-	@command -v ${@:%-ruby-command-check=%} > /dev/null || \
-		( echo "ERROR: Ruby command/gem ${@:%-ruby-command-check=%} ${missing_ruby_gem_or_command_error_message}" && \
-			exit 1 )
-
-%-shell-command-check:
-	@command -v ${@:%-shell-command-check=%} > /dev/null || \
-		( echo "ERROR: shell command ${@:%-shell-command-check=%} ${missing_shell_command_error_message}" && \
-			exit 1 )
+catalog-install::
+	${CATALOG_BIN_DIR}/copy-files-to-docs.sh \
+		--verbose ${CATALOG_VERBOSE} \
+		--js-source ${CATALOG_DATA_JSON_FINAL_DIR} \
+		--md-source ${CATALOG_MARKDOWN_FINAL_DIR} \
+		--js-target ${CATALOG_DOCS_JS_DIR} \
+		--md-target ${CATALOG_DOCS_MARKDOWN_DIR} \
+		${CATALOG_OPT_ARGS}

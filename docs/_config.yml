@@ -20,6 +20,11 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "/open-trusted-data-initiative" # the subpath of your site, e.g. /blog
 url: "https://the-ai-alliance.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
+
+ai_alliance_url: https://thealliance.ai/
+glossary_url: https://the-ai-alliance.github.io/glossary
+repo_url: https://github.com/The-AI-Alliance/open-trusted-data-initiative
+
 # Defined to be empty so Jekyll ignores the YAML block at the top of the
 # files/datasetcard_otdi_template.md file.
 card_data:
