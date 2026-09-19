@@ -6,25 +6,24 @@
 # Trick is to keep the requests under the undocumented HF API limiter.
 # Implemented job is scheduled to run for an hour 4x a day.
 
-from datetime import datetime, timezone
-import awswrangler as wr
 import asyncio
+import math
+import os
+import random
+import sys
+import time
+from datetime import UTC, datetime
+from http import HTTPStatus
+
+import awswrangler as wr
+import boto3
+import pandas as pd
 from aiohttp import (
-    ClientSession,
-    TCPConnector,
     ClientConnectionError,
     ClientResponseError,
+    ClientSession,
+    TCPConnector,
 )
-
-import pandas as pd
-import boto3
-import time
-import random
-import math
-from http import HTTPStatus
-import sys
-import os
-from datetime import datetime, timezone
 
 counter = 0
 gateway_timeout_counter = 0
@@ -123,7 +122,7 @@ def do_merge(merge_query: str):
 
 # This is intended to keep the parallelly executed API calls under the undocumented
 # API rate limit.
-class RateLimiter(object):
+class RateLimiter:
     def __init__(self, delay, jitter=0.1):
         self._lock = asyncio.Lock()
         self._delay = delay
@@ -141,13 +140,13 @@ class RateLimiter(object):
 
 
 async def process_row(id, dataset_date, session, limiter):
+    global too_many_requests_counter
+    global gateway_timeout_counter
+    global counter
     try:
         url = f"https://huggingface.co/api/datasets/{id}/croissant"
         await limiter.wait()
         response = await session.request(method="GET", url=url)
-        global counter
-        global gateway_timeout_counter
-        global too_many_requests_counter
         counter = counter + 1
 
         this_metadata = {}
@@ -160,7 +159,7 @@ async def process_row(id, dataset_date, session, limiter):
             # Athena does not support timestamps with timezones
             # https://docs.aws.amazon.com/athena/latest/ug/data-types.html
             this_metadata["request_time"] = (
-                datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S.%f")[:-3] + "Z"
+                datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S.%f")[:-3] + "Z"
             )
             this_metadata["response"] = response.status
             this_metadata["response_reason"] = str(response.reason)
@@ -173,19 +172,14 @@ async def process_row(id, dataset_date, session, limiter):
                 too_many_requests_counter = too_many_requests_counter + 1
     except ClientConnectionError as e:
         print(f"Connection error: {e} for {url}")
-        pass
     except ClientResponseError as e:
         print(f"HTTP error: {e.status} - {e.message} for {url}")
-        pass
-    except asyncio.TimeoutError as e:
+    except TimeoutError:
         print(f"Request timed out for {url}")
-        pass
     except ValueError as e:
         print(f"Error getting croissant data: {e} for {url}")
-        pass
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         print(f"An unexpected error occurred: {e} for {url}")
-        pass
 
     if len(this_metadata) == 0:
         return None
@@ -219,11 +213,9 @@ async def process_batch(batch_id, batch):
 # we already have it but it might be out of date. There is no way to tell
 # if it is out of date....
 async def main():
-    global gateway_timeout_counter
-    global too_many_requests_counter
-    print(f"Starting job: {datetime.now(timezone.utc)}")
+    print(f"Starting job: {datetime.now(UTC)}")
     number_of_partitions = int(os.environ["NUMBER_OF_PARTITIONS"])
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    today = datetime.now(UTC).strftime("%Y-%m-%d")
     limit = f"limit {os.environ["FETCH_SIZE"]}"
     query = f"""select dataset, cast('{today}' as date) as dataset_date from {os.environ["ATHENA_DATABASE_NAME"]}.v_croissant_update {limit}"""
     boto3.setup_default_session(
@@ -255,7 +247,7 @@ async def main():
     tasks = [process_batch(i, batch) for i, batch in enumerate(batches)]
 
     processed_batches = await asyncio.gather(*tasks, return_exceptions=False)
-    print(f"Concating dataframe")
+    print("Concating dataframe")
     final_df = pd.concat(processed_batches)
     print(f"Final dataframe shape: {final_df.shape}")
     print(f"Final dataframe types: {final_df.dtypes}")
@@ -276,11 +268,11 @@ async def main():
     success = repair_table()
     print(f"End repairing table. Status: {success}")
 
-    print(f"Ending job: {datetime.now(timezone.utc)}")
+    print(f"Ending job: {datetime.now(UTC)}")
 
     # Merge into huggingface.datasets_full
     print("Start merge")
-    todays_merge_query = merge_query(date=datetime.today().strftime("%Y-%m-%d"))
+    todays_merge_query = merge_query(date=datetime.now(UTC).strftime("%Y-%m-%d"))
     print(f"Merge query: {todays_merge_query}")
     success = do_merge(todays_merge_query)
     print(f"End merge. Status: {success}")

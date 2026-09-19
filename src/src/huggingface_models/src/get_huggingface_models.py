@@ -2,43 +2,41 @@
 # Uses the HF Datasets API to get them, persist them to S3, then use that
 # then perform an upsert into the main state table.
 
-from huggingface_hub import HfApi
-import pandas as pd
-import awswrangler as wr
-from datetime import datetime, timezone
-import boto3
-from botocore.exceptions import ClientError
+import json
 import os
 import time
-import json
+from datetime import UTC, datetime
+
+import awswrangler as wr
+import boto3
+import pandas as pd
+from botocore.exceptions import ClientError
+from huggingface_hub import HfApi
 
 
 def get_secret_value(secret_name, region_name="us-east-2"):
     """
     Retrieve a secret value from AWS Secrets Manager
-    
+
     Args:
         secret_name: The name or ARN of the secret
         region_name: AWS region where the secret is stored
-    
+
     Returns:
         The secret value (string or dict)
     """
-    
+
     # Create a Secrets Manager client
     session = boto3.session.Session()
-    client = session.client(
-        service_name='secretsmanager',
-        region_name=region_name
-    )
-    
+    client = session.client(service_name="secretsmanager", region_name=region_name)
+
     try:
         # Retrieve the secret value
         response = client.get_secret_value(SecretId=secret_name)
-        
+
         # Secrets can be stored as either string or binary
-        if 'SecretString' in response:
-            secret = response['SecretString']
+        if "SecretString" in response:
+            secret = response["SecretString"]
             # If it's a JSON string, parse it
             try:
                 return json.loads(secret)
@@ -46,23 +44,21 @@ def get_secret_value(secret_name, region_name="us-east-2"):
                 return secret
         else:
             # Binary secret
-            return response['SecretBinary']
-            
+            return response["SecretBinary"]
+
     except ClientError as e:
         # Handle specific errors
-        if e.response['Error']['Code'] == 'ResourceNotFoundException':
+        if e.response["Error"]["Code"] == "ResourceNotFoundException":
             print(f"Secret {secret_name} not found")
-        elif e.response['Error']['Code'] == 'InvalidRequestException':
+        elif e.response["Error"]["Code"] == "InvalidRequestException":
             print(f"Invalid request for secret {secret_name}")
-        elif e.response['Error']['Code'] == 'InvalidParameterException':
+        elif e.response["Error"]["Code"] == "InvalidParameterException":
             print(f"Invalid parameter for secret {secret_name}")
-        elif e.response['Error']['Code'] == 'DecryptionFailure':
+        elif e.response["Error"]["Code"] == "DecryptionFailure":
             print(f"Cannot decrypt secret {secret_name}")
-        elif e.response['Error']['Code'] == 'InternalServiceError':
+        elif e.response["Error"]["Code"] == "InternalServiceError":
             print(f"Internal service error retrieving {secret_name}")
-        raise e
-
-    
+        raise
 
 
 # Upsert daily results into main state table.
@@ -189,7 +185,7 @@ output_models = []
 key = "/service=huggingface/datasets=models/"
 target_s3_bucket = f"s3://{os.environ["ANALYTICS_BUCKET"]}{key}"
 token = get_secret_value(os.environ["SECRET_NAME"])["token"]
-today = datetime.today().strftime("%Y-%m-%d")
+today = datetime.now(UTC).strftime("%Y-%m-%d")
 
 print(f"Starting run: {today}")
 print(f"ANALYTICS_BUCKET: {os.environ["ANALYTICS_BUCKET"]}")
@@ -215,8 +211,8 @@ try:
     )
 
     print(f"\tSuccessfully got models. Total number: {len(hf_input_models)}")
-    #print(hf_input_models[1])
-except Exception as e:
+    # print(hf_input_models[1])
+except Exception as e:  # noqa: BLE001
     print(f"Error getting models from HuggingFace: {e}")
 
 for model in hf_input_models:
@@ -227,7 +223,7 @@ for model in hf_input_models:
     # Athena does not support timestamps with timezones
     # https://docs.aws.amazon.com/athena/latest/ug/data-types.html
     this_model["request_time"] = (
-        datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S.%f")[:-3] + "Z"
+        datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S.%f")[:-3] + "Z"
     )
 
     this_model["model_id"] = model.id
@@ -276,34 +272,35 @@ for model in hf_input_models:
 print(
     f"\tSuccessfully processed {len(hf_input_models)} models. Writing to {target_s3_bucket}."
 )
-#print(json.dumps(output_models, indent=3))
+# print(json.dumps(output_models, indent=3))
 
 if len(hf_input_models) > 0:
-    output_df = pd.DataFrame.from_dict(output_models)
+    for output_model in output_models:
+        output_df = pd.DataFrame.from_dict(output_model)
 
-    # Write to S3
-    output_files = wr.s3.to_parquet(
-        df=output_df,
-        path=target_s3_bucket,
-        dataset=True,
-        partition_cols=["date"],
-        mode="append",
-    )
+        # Write to S3
+        output_files = wr.s3.to_parquet(
+            df=output_df,
+            path=target_s3_bucket,
+            dataset=True,
+            partition_cols=["date"],
+            mode="append",
+        )
 
-    print(
-        f"\tSuccessfully wrote dataframe of dimensions {output_df.shape} to {output_files}."
-    )
-    
+        print(
+            f"\tSuccessfully wrote dataframe of dimensions {output_df.shape} to {output_files}."
+        )
+
     print("Start repairing table")
     success = repair_table()
     print(f"End repairing table. Status: {success}")
-       
+
     # Merge into huggingface.models_full
     print("Start merge")
-    todays_merge_query = merge_query(date=datetime.today().strftime("%Y-%m-%d"))
+    todays_merge_query = merge_query(date=datetime.now(UTC).strftime("%Y-%m-%d"))
     print(f"Merge query: {todays_merge_query}")
     success = do_merge(todays_merge_query)
     print(f"End merge. Status: {success}")
-    
+
 else:
     print("No models to process. Exiting.")

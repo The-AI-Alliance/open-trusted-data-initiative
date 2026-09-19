@@ -2,13 +2,14 @@
 # Uses the HF Datasets API to get them, persist them to S3, then use that
 # then perform an upsert into the main state table.
 
-from huggingface_hub import HfApi
-import pandas as pd
-import awswrangler as wr
-from datetime import datetime, timezone
-import boto3
 import os
 import time
+from datetime import UTC, datetime
+
+import awswrangler as wr
+import boto3
+import pandas as pd
+from huggingface_hub import HfApi
 
 
 # Upsert daily results into main state table.
@@ -117,7 +118,7 @@ output_datasets = []
 key = "/service=huggingface/datasets=datasets/"
 target_s3_bucket = f"s3://{os.environ["ANALYTICS_BUCKET"]}{key}"
 
-today = datetime.today().strftime("%Y-%m-%d")
+today = datetime.now(UTC).strftime("%Y-%m-%d")
 print(f"Starting run: {today}")
 print(f"ANALYTICS_BUCKET: {os.environ["ANALYTICS_BUCKET"]}")
 print(f"ANALYTICS_OUTPUT_BUCKET: {os.environ["ANALYTICS_OUTPUT_BUCKET"]}")
@@ -133,14 +134,14 @@ try:
     # Making the below HF API call will return HTTP 429 if not limited...
     hf_input_datasets = list(
         api.list_datasets(
-            sort="lastModified",
-            direction=-1,
+            sort="last_modified",
+            # direction=-1,
             limit=int(os.environ["NUMBER_OF_DATASETS_TO_REQUEST"]),
         )
     )
 
     print(f"\tSuccessfully got datasets. Total number: {len(hf_input_datasets)}")
-except Exception as e:
+except Exception as e:  # noqa: BLE001
     print(f"Error getting datasets from HuggingFace: {e}")
 
 for dataset in hf_input_datasets:
@@ -151,7 +152,7 @@ for dataset in hf_input_datasets:
     # Athena does not support timestamps with timezones
     # https://docs.aws.amazon.com/athena/latest/ug/data-types.html
     this_data_set["request_time"] = (
-        datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S.%f")[:-3] + "Z"
+        datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S.%f")[:-3] + "Z"
     )
 
     this_data_set["dataset"] = dataset.id
@@ -166,7 +167,7 @@ for dataset in hf_input_datasets:
     this_data_set["downloads"] = dataset.downloads
     this_data_set["downloads_all_time"] = dataset.downloads_all_time
     this_data_set["tags"] = dataset.tags
-    for tag in dataset.tags:
+    for tag in dataset.tags:  # ty: ignore[not-iterable]
         if "license" in tag:
             this_data_set["license"] = tag.replace("license:", "")
     this_data_set["trending score"] = dataset.trending_score
@@ -181,20 +182,21 @@ print(
     f"\tSuccessfully processed {len(hf_input_datasets)} datasets. Writing to {target_s3_bucket}."
 )
 if len(hf_input_datasets) > 0:
-    output_df = pd.DataFrame.from_dict(output_datasets)
+    for output_dataset in output_datasets:
+        output_df = pd.DataFrame.from_dict(output_dataset)
 
-    # Write to S3
-    output_files = wr.s3.to_parquet(
-        df=output_df,
-        path=target_s3_bucket,
-        dataset=True,
-        partition_cols=["date"],
-        mode="append",
-    )
+        # Write to S3
+        output_files = wr.s3.to_parquet(
+            df=output_df,
+            path=target_s3_bucket,
+            dataset=True,
+            partition_cols=["date"],
+            mode="append",
+        )
 
-    print(
-        f"\tSuccessfully wrote dataframe of dimensions {output_df.shape} to {output_files}."
-    )
+        print(
+            f"\tSuccessfully wrote dataframe of dimensions {output_df.shape} to {output_files}."
+        )
 
     print("Start repairing table")
     success = repair_table()
@@ -202,7 +204,7 @@ if len(hf_input_datasets) > 0:
 
     # Merge into huggingface.datasets_full
     print("Start merge")
-    todays_merge_query = merge_query(date=datetime.today().strftime("%Y-%m-%d"))
+    todays_merge_query = merge_query(date=datetime.now(UTC).strftime("%Y-%m-%d"))
     print(f"Merge query: {todays_merge_query}")
     success = do_merge(todays_merge_query)
     print(f"End merge. Status: {success}")

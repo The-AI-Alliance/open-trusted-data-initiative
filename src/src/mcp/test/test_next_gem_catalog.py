@@ -9,7 +9,9 @@ async def test_server():
     # Use "/sse" endpoint if using sse transport.
 
     try:
-        async with Client(os.environ.get("NEXT_GEM_DATA_CATALOG_MCP_SERVER")) as client:
+        async with Client(
+            os.environ.get("NEXT_GEM_DATA_CATALOG_MCP_SERVER")
+        ) as client:  # ty: ignore[no-matching-overload]
 
             # List available tools
             tools = await client.list_tools()
@@ -34,7 +36,7 @@ async def test_server():
             print(">>>  Calling execute_sql_query for bogus sql")
             result = await client.call_tool("execute_sql_query", {"sql_query": "BLAH"})
             print(f"<<<  Result: {result.data}")
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         print(f"Failed, reason: {e}")
 
 

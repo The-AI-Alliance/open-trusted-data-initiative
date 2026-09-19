@@ -2,7 +2,7 @@ import os
 import sys  
 import pandas as pd  
 from github import Github, GithubException, UnknownObjectException # Added UnknownObjectException  
-from datetime import datetime, timedelta, timezone # Added timezone  
+from datetime import datetime, timedelta, timezone
 import time  
 import requests
 import json
@@ -55,7 +55,7 @@ def run_graphql_query(token, query, variables=None):
 token = os.getenv("GITHUB_TOKEN")  
 repo_name = os.getenv("GITHUB_REPOSITORY") # Format: 'owner/repo'  
 lookback_days = 1 # Define the period for "new" items (e.g., last 1 day)  
-output_filename = f"github_metrics_{datetime.now().strftime('%Y%m%d_%H%M%S')}.parquet"  
+output_filename = f"github_metrics_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}.parquet"
 max_retries = 3 # Retries for API calls that might need time  
   
 # --- Input Validation ---  
