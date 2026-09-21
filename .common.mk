@@ -1,0 +1,486 @@
+# .common.mk
+
+# First, include a .custom.mk that _may or may not_ exist. The leading "-"
+# means that make will ignore the error if a file isn't found.
+# If this file is in a different directory, pass the option
+# "--include-dir that_dir" to make, where "that_dir" is the file's
+# location. This is another tool for customizing the make process,
+# in addition to overrides and other definitions in the Makefile.
+# One use is to add additional dependencies to standard targets defined
+# in this file. This is why many targets are defined like this:
+#   foo:: foo-prerequisite foo-command foo-postrequisite
+#
+# The "foo-command" is where the main work is done, such as running
+# tests or linting code. If you need to do something before "foo-command",
+# then add a dependency to "foo-prerequisite" and have it do the work
+# required. Similarly, after "foo-command", use "foo-postrequisite" as a
+# hook for any cleanup, etc.
+#
+# Similarly, you can *disable* a command by overriding the definition of
+# foo-command, as discussed in a long comment below.
+#
+# For most projects, this sort of customization is easy enough to do in
+# the main Makefile. We support the .custom.mk file idiom, because it is
+# useful in Project Tapestry's "contrib" directories for customization of
+# make targets *just within those directories*. See that project's .common.mk
+# and READMEs for more details (https://github.com/The-AI-Alliance/tapestry/).
+
+-include .custom.mk
+
+# Definitions of RED, GREEN, etc., and INFO, ERROR, etc. for console output.
+# To see them in action, try "make show-colors".
+include .console-colors.mk
+
+# Some of the following definitions may be overridden in Makefile. Some notes:
+# SRC_DIR: Root of the source code. This can be changed dynamically by targets
+#   to test specific modules in "other" directories.
+# WHICH_TESTS: By default, it is empty, meaning that all tests found under
+#   ${SRC_DIR} will be run. WHICH_TESTS can also be used on the command line
+#   to specify a particular directory, test file or test to run. Specify this
+#   value RELATIVE to ${SRC_DIR}! See the pytest docs for the syntax to use:
+#   https://docs.pytest.org/en/stable/how-to/usage.html
+SRC_DIR                  ?= src
+WHICH_TESTS              ?=
+OUTPUT_DIR               ?= output
+OUTPUT_TESTS_DIR         ?= ${OUTPUT_DIR}/tests
+OUTPUT_LOGS_ROOT_DIR     ?= ${OUTPUT_DIR}/logs
+OUTPUT_LOGS_DIR          ?= ${OUTPUT_LOGS_ROOT_DIR}/${TIMESTAMP}
+OUTPUT_LOGS_TESTS_DIR    ?= ${OUTPUT_TESTS_DIR}/logs/${TIMESTAMP}
+CLEAN_CODE_DIRS          := ${OUTPUT_DIR}
+CLEAN_DIRS               += ${CLEAN_CODE_DIRS}
+
+# The quality targets we run as part of "before-pr":
+# GITHUB_CI is set to a non-empty string in our .github/workflows/ci.yml
+# when running "make before-pr". We use that flag to change some of flags
+# defined below.
+GITHUB_CI                :=
+QUALITY_CHECKS_NO_TESTS  := format ruff pylint type-check
+QUALITY_CHECKS           := ${QUALITY_CHECKS_NO_TESTS} unit-tests
+
+# Commands as variables:
+# Time execution of commands. Prefix the command invocation with "${TIME}":
+TIME                     ?= time
+
+# Common flags for "uv run" (--active may be useful for some warnings that
+# can be seen during recursive uv invocations, but using it can cause
+# conflicting versions of dependencies to be installed in the top-level
+# environment, if the directories for those invocations have their own
+# "pyproject.toml" files. Therefore, DON'T USE THIS FLAG!):
+UV_RUN                   ?= uv run
+
+# Common flags for various tools:
+# *_OPT_ARGS:  Empty by default; define on invocation to customize behavior.
+# *_ARGS:      Standard arguments you shouldn't override on the command line.
+#              (Pytest uses different variables; see below.)
+PYLINT_OPT_ARGS          ?=
+RUFF_OPT_ARGS            ?=
+TY_OPT_ARGS              ?=
+BLACK_OPT_ARGS           ?=
+
+PYLINT_ARGS              := --recursive=y --ignore=.venv --ignore-pattern='.*cache.*'
+TY_ARGS                  := check
+# Some of the *_ARGS have different settings for CI...
+ifeq (${GITHUB_CI},)
+	# No CI, i.e., run manually by the developer.
+	BLACK_ARGS             :=
+	RUFF_ARGS              := check --fix
+else
+	# In CI, only have black check if reformatting would happen,
+	# not do any reformatting. It exits with code 1, if it would
+	# make changes, causing the PR to fail.
+	# Similarly, for ruff, only check, don't attempt to fix problems.
+	BLACK_ARGS             := --check
+	RUFF_ARGS              := check
+endif
+
+# Pytest-specific definitions. Note we still provide the "*_OPT_ARGS" hooks.
+PYTEST_RUN_OPT_ARGS      ?=
+PYTEST_COV_OPT_ARGS      ?=
+PYTEST_RUN_CMD           := ${UV_RUN} coverage run -m pytest -v -s ${PYTEST_RUN_OPT_ARGS}
+PYTEST_COV_REPORT_CMD    := ${UV_RUN} coverage report -m ${PYTEST_COV_OPT_ARGS}
+
+# The environment:
+MAKEFLAGS                ?= --warn-undefined-variables
+UNAME                    ?= $(shell uname)
+ARCHITECTURE             ?= $(shell uname -m)
+LOCAL_REPO_PATH          ?= $(shell git rev-parse --show-toplevel)
+REPO_NAME                ?= $(notdir ${LOCAL_REPO_PATH})
+# Used for version tagging release artifacts, temporary directories, etc.
+GIT_HASH                 ?= $(shell git show --pretty="%H" --abbrev-commit |head -1)
+TIMESTAMP                ?= $(shell date +"%Y%m%d-%H%M%S")
+
+# Model "appendix":
+# For cases where model inference is done in local environments, e.g., laptops
+# using ollama or llama.cpp, we define a variable that can be used to select
+# appropriate versions of models, targeted at particular hardware architectures.
+# E.g., if the architecture is "arm64" (Apple Silicon), then we define a
+# MODEL_APPENDIX=-mlx, which Makefiles can append to variables that specify LLMs.
+# Otherwise, this variable is empty. However, the value won't be changed if the
+# variable is already set in the Makefile that includes this file, _before_ this
+# file was included. So, for example, you could set MODEL_APPENDIX to specify a
+# quantized version of a model that way.
+
+ifeq (${ARCHITECTURE}, arm64)
+	MODEL_APPENDIX ?= -mlx
+else
+	MODEL_APPENDIX ?=
+endif
+
+ifndef SRC_DIR
+$(error ${ERROR}There is no ${SRC_DIR} directory!${_END_BOLD}${_END})
+endif
+
+# When you see ${CODE}${_end} without anything between them, it is there
+# to make it easier to line up multi-line description comments.
+
+define help-message-general
+${HIGHLIGHT}Quick help for this make process - General Targets:${_END_BOLD}${_END}
+
+${CODE}make all${_END}                # Makes the ${CODE}help${_END} and ${CODE}print-info${_END} targets.
+${CODE}make help${_END}               # Prints this output.
+${CODE}make print-info${_END}         # Print the current values of some make and environment variables.
+${CODE}make foo-watch${_END}          # Rerun ${CODE}make foo${_END} whenever any files are changed.
+${CODE}${_END}                        # See also the custom ${CODE}*-watch${_END} targets below.
+
+${HIGHLIGHT}Working with the code:${_END_BOLD}${_END}
+
+${CODE}make one-time-setup${_END}     # "One time setup" of ${CODE}uv${_END} dependencies (in ${CODE}.venv${_END}).
+${CODE}make setup${_END}              # Alias for ${CODE}one-time-setup${_END}.
+${CODE}make force-one-time-setup${_END} # "Force" the one time setup to run again, by first deleting ${CODE}.venv${_END}.
+${CODE}make force-setup${_END}        # Alias for ${CODE}force-one-time-setup${_END}.
+
+${CODE}make unit-tests${_END}         # Run the unit test suite.
+${CODE}make tests${_END}              # Alias for ${CODE}unit-tests${_END}.
+${CODE}make clean${_END}              # Remove built artifacts, temporary files, etc.
+${CODE}make format${_END}             # Format the Python code by making the ${CODE}black${_END} target.
+${CODE}make black${_END}              # Alias for ${CODE}format${_END}.
+${CODE}make lint${_END}               # Lint the Python code by making the ${CODE}ruff${_END} and ${CODE}pylint${_END} targets.
+${CODE}make ruff${_END}               # Lint the Python code with ${CODE}ruff${_END}.
+${CODE}make ruff-watch${_END}         # Lint the Python code with ${CODE}ruff${_END} in "watch" mode, re-linting whenever files are saved.
+${CODE}make pylint${_END}             # Lint the Python code with ${CODE}pylint${_END}.
+${CODE}make type-check${_END}         # Type check the Python code by making the ${CODE}ty${_END} target.
+${CODE}make type-check-watch${_END}   # Type check the Python code by making the ${CODE}ty-watch${_END} target.
+${CODE}${_END}                        # so you can fix mistakes and keep it updating.
+${CODE}make ty${_END}                 # Type check the Python code with ${CODE}ty${_END}.
+${CODE}make ty-watch${_END}           # Type check the Python code with ${CODE}ty${_END} in "watch" mode, re-typing whenever files are saved.
+
+${CODE}make before-pr${_END}          # Make ${CODE}format${_END}, ${CODE}lint${_END}, ${CODE}type-check${_END}, and ${CODE}unit-tests${_END}.
+${CODE}${_END}                        # ${RED}DO THIS BEFORE SUBMITTING A PR!${_END}
+${CODE}make before-pr-no-tests${_END} # Everything in ${CODE}before-pr${_END} except ${CODE}unit-tests${_END}.
+
+${NOTE_LABEL}
+Use the ${CODE}clean${_END} and ${CODE}clean-code${_END} targets with caution, since they both delete the ${CODE}OUTPUT_CODE_DIR${_END} 
+content, which can take a ${RED}LOT${_END} of compute to generate due to the inference involved!
+
+${help-top-level-message}
+endef
+
+define no-help-for-command-message
+${WARNING_LABEL}Sorry, no built-in help is available for CLI command '${CODE}${CMD}${_END}'.
+endef
+
+.PHONY: all print-info clean clean-code
+.PHONY: help help-command-not-installed do-help-command
+
+all:: help print-info clean clean-code
+
+clean::
+	rm -rf ${CLEAN_DIRS}
+
+clean-code::
+	rm -rf ${CLEAN_CODE_DIRS}
+
+# When you see @true commands, like here, they ensure that the recipe ends
+# with a "clean" successful status and no confusing messages are printed,
+# like "make: Nothing to be done for `help'".
+help::
+	$(info )
+	$(info ${help-message-general})
+	@true
+
+# NOTE: The order of declaration is important for the help-* targets, because
+# the help-*-% targets should come last.
+
+help-command-not-installed::
+	$(info ${WARNING_LABEL}Command ${CODE}${CMD}${_END} is not installed.)
+	@true
+
+help-command-%::
+	@${MAKE} CMD=${@:help-command-%=%} do-help-command
+do-help-command::
+	$(info ${${LABEL}_LABEL}Help on ${CODE}${CMD}${_END}:)
+	$(info $(if ${help-command-${CMD}-message},${help-command-${CMD}-message},${no-help-for-command-message}))
+	@true
+
+help-%::
+	$(info )
+	$(info ${${@}-message})
+	$(info )
+	@true
+
+.PHONY: error
+error::
+	@$(info ${command-failed-error-message})
+	@$(info ${${MSG_VARIABLE}})
+	@$(error )
+
+define command-failed-error-message
+${ERROR_LABEL}${MSG} (exit status = ${RED}${STATUS}${_END})!!
+endef
+
+define command-check-failed-message
+${TIP_LABEL}Installation help may be defined in this Makefile. Try ${CODE}make help-command-${CMD}${_END}
+${TIP_LABEL}or try ${CODE}make install-${CMD}${_END}. See also the project's ${CODE}README.md${_END}.
+endef
+
+# Check if a command is on the path.
+command-check-%:
+	@CMD=${@:command-check-%=%} && command -v $$CMD > /dev/null || \
+		${MAKE} CMD=$$CMD MSG="Command ${CODE}$$CMD${_END} not found! It is required for a make target." MSG_VARIABLE=command-check-failed-message STATUS=1 error
+
+silent-command-check-%:
+	cmd=${@:silent-command-check-%=%} && echo $$cmd && command -v $$cmd > /dev/null
+
+.PHONY: print-info-env print-info-custom
+print-info:: print-info-env print-info-custom
+print-info-env::
+	@echo "${HIGHLIGHT}Some 'environment' settings:${_END_BOLD}${_END}"
+	@echo
+	@echo "  ${DARK_GREEN}MAKEFLAGS:${_END}             ${CODE}${MAKEFLAGS}${_END}"
+	@echo "  ${DARK_GREEN}UNAME:${_END}                 ${CODE}${UNAME}${_END}"
+	@echo "  ${DARK_GREEN}ARCHITECTURE:${_END}          ${CODE}${ARCHITECTURE}${_END}"
+	@echo "  ${DARK_GREEN}MODEL_APPENDIX:${_END}        ${CODE}${MODEL_APPENDIX}${_END}"
+	@echo "  ${DARK_GREEN}TIMESTAMP:${_END}             ${CODE}${TIMESTAMP}${_END}"
+	@echo "  ${DARK_GREEN}REPO_NAME:${_END}             ${CODE}${REPO_NAME}${_END}"
+	@echo "  ${DARK_GREEN}GIT_HASH:${_END}              ${CODE}${GIT_HASH}${_END}"
+	@echo "  ${DARK_GREEN}PWD:${_END}                   ${CODE}${PWD}${_END} (current Directory)"
+	@echo "  ${DARK_GREEN}SRC_DIR:${_END}               ${CODE}${SRC_DIR}${_END}"
+	@echo "  ${DARK_GREEN}WHICH_TESTS:${_END}           ${CODE}${WHICH_TESTS}${_END}"
+	@echo
+
+print-info-custom::
+
+# In what follows, note the structure used for common tasks, like running the unit tests:
+#   unit-tests:: unit-tests-prerequisite unit-tests-command unit-tests-postrequisite
+# The *-prerequisite and *-postrequisite are hooks that permit a .custom.mk (or a Makefile)
+# to add additional dependencies or recipes to execute before or after the "core" command is
+# executed by the *-command target.  The *-prerequisite and *-postrequisite all have empty
+# recipes in this file. So, if you want to define them with custom behaviors, you must use
+# the double-colon syntax, "::", like this:
+#
+# unit-tests-prerequisite:: even-more
+#   @echo "Doing some unit testing setup..."
+# even-more::
+#   @echo "Doing even more stuff!"
+#
+# In contrast, the *-command targets are designed to be OVERRIDDEN. A common usage is to
+# disable a task. For example, if there are no unit tests in the project, then
+# unit-tests-command will fail, because of how it is defined below. (This isn't true for
+# ruff, black, pylint, and ty, which silently ignore when there is no python code.)
+# So, projects without python tests should have the following definition in their Makefile:
+#
+# unit-tests-command::
+#   @echo "${skip-command-target-message}"
+#   @true
+#
+# The "skip-command-target-message" variable is defined in .common.mk to provide a
+# useful notice to the reader that the target is skipped.
+# TIP: Run "make skip-command-example" to see what the output looks like.
+#
+# There is one more point to explain for how this is implemented. The _default_ way
+# *-command is actually declared is as follows:
+#
+# %-command::
+#  	@${MAKE} ${@}-default
+#
+# Take for example, unit-tests-command. Because the .custom.mk file (if any) is read
+# before this point in .common.mk, The target pattern "%-command" is _only_ used if
+# .custom.mk (and Makefile) do not define unit-tests-command themselves. When
+# this happens, the recipe calls `make unit-tests-command-default` to invoke the
+# "default" command for unit tests.
+#
+# See the bottom of this file for a note about a previous, alternative
+# implementation we used for this feature.
+
+# The default implementation of any *-command target:
+%-command:
+	@${MAKE} ${@}-default
+
+.PHONY: before-pr before-pr-no-tests print-pwd
+
+before-pr:: print-pwd ${QUALITY_CHECKS}
+before-pr-no-tests:: print-pwd ${QUALITY_CHECKS_NO_TESTS}
+
+print-pwd::
+	$(info ${INFO_LABEL}In directory: ${CODE}${PWD}${_END})
+	@true
+
+# Note that *-command-default targets are declared phony, but the dependencies for * targets
+# are *: *-prerequisite *-command *-postrequisite
+
+.PHONY: tests unit-tests unit-tests-prerequisite unit-tests-command-default unit-tests-postrequisite
+.PHONY: format format-prerequisite format-command-default format-postrequisite black
+.PHONY: ruff ruff-prerequisite ruff-command-default ruff-postrequisite
+.PHONY: ruff-watch ruff-watch-command-default
+.PHONY: pylint pylint-prerequisite pylint-command-default pylint-postrequisite
+.PHONY: type-check ty type-check-prerequisite type-check-command-default type-check-postrequisite
+.PHONY: type-check-watch ty-watch type-check-watch-command-default
+.PHONY: lint
+
+tests:: unit-tests
+unit-tests:: unit-tests-prerequisite unit-tests-command unit-tests-postrequisite
+unit-tests-prerequisite unit-tests-postrequisite::
+unit-tests-command-default::
+	@echo "${INFO_LABEL}Target ${CODE}unit-tests${_END}: Running the unit tests (with coverage)."
+	cd ${SRC_DIR} && ${PYTEST_RUN_CMD} ${WHICH_TESTS}
+	cd ${SRC_DIR} && ${PYTEST_COV_REPORT_CMD}
+
+# Convenient short hand for the two linters.
+lint:: ruff pylint
+
+format black:: format-prerequisite format-command format-postrequisite
+format-prerequisite format-postrequisite::
+format-command-default::
+	@echo "${INFO_LABEL}Target ${CODE}format${_END}: Running ${CODE}black${_END} on the code in ${CODE}${SRC_DIR}${_END}."
+	cd ${SRC_DIR} && ${UV_RUN} black ${BLACK_ARGS} ${BLACK_OPT_ARGS} .
+
+ruff:: ruff-prerequisite ruff-command ruff-postrequisite
+ruff-prerequisite ruff-postrequisite::
+ruff-command-default::
+	@echo "${INFO_LABEL}Target ${CODE}ruff${_END}: Running ${CODE}ruff${_END} to lint the code in ${CODE}${SRC_DIR}${_END}."
+	cd ${SRC_DIR} && ${UV_RUN} ruff ${RUFF_ARGS} ${RUFF_OPT_ARGS} .
+
+ruff-watch:: ruff-prerequisite ruff-watch-command ruff-postrequisite
+ruff-watch-command-default::
+	@echo "${INFO_LABEL}Target ${CODE}ruff${_END}: Running ${CODE}ruff${_END} to lint the code in ${CODE}${SRC_DIR}${_END} using 'watch' mode."
+	cd ${SRC_DIR} && ${UV_RUN} ruff ${RUFF_ARGS} --watch ${RUFF_OPT_ARGS} .
+
+pylint:: pylint-prerequisite pylint-command pylint-postrequisite
+pylint-prerequisite pylint-postrequisite::
+pylint-command-default::
+	@echo "${INFO_LABEL}Target ${CODE}pylint${_END}: Running ${CODE}pylint${_END} on the code in ${CODE}${SRC_DIR}${_END} (configuration in ${CODE}pylintrc.toml${_END})"
+	cd ${SRC_DIR} && ${UV_RUN} pylint ${PYLINT_ARGS} ${PYLINT_OPT_ARGS} .
+
+type-check:: ty
+ty:: type-check-prerequisite type-check-command type-check-postrequisite
+type-check-prerequisite type-check-postrequisite::
+type-check-command-default::
+	@echo "${INFO_LABEL}Target ${CODE}type-check${_END}: Running ${CODE}ty${_END} to type check the code in ${CODE}${SRC_DIR}${_END}."
+	cd ${SRC_DIR} && ${UV_RUN} ty ${TY_ARGS} ${TY_OPT_ARGS} .
+
+type-check-watch:: ty-watch
+ty-watch:: type-check-prerequisite type-check-watch-command type-check-postrequisite
+type-check-watch-command-default::
+	@echo "${INFO_LABEL}Target ${CODE}type-check-watch${_END}: Running ${CODE}ty${_END} to type check the code in ${CODE}${SRC_DIR}${_END} using 'watch' mode."
+	cd ${SRC_DIR} && ${UV_RUN} ty ${TY_ARGS} --watch ${TY_OPT_ARGS} .
+
+
+# Some explicit *-watch targets are defined above in this file for shell commands
+# with `--watch` flags, which continually rerun when files change. The following
+# %-watch target pattern provides similar behavior for arbitrary make targets. For
+# example, to keep running the unit tests as you edit the files, use:
+#   make unit-tests-watch
+
+%-watch:
+	@while true; do \
+        $(MAKE) ${@:%-watch=%}; \
+        echo "${HIGHLIGHT}Use CTRL-c TWICE to exit...${_END_BOLD}${_END}"; \
+        fswatch --one-event --recursive --extended \
+            --include '\.mk$$' \
+            --exclude '\.git' \
+            --exclude '\.coverage' \
+            --exclude '\.hypothesis' \
+            --exclude '__pycache__' \
+            --exclude '\..*_cache' \
+            . || exit 0; \
+        sleep 1; \
+	done
+
+.PHONY: one-time-setup clean-setup uninstall-uv install-dev-dependencies install-brew-commands
+.PHONY: force-setup force-one-time-setup rm-venv
+.PHONY: command-check-uv uv-venv install-requirements-txt-dependencies
+
+setup one-time-setup:: install-brew-commands uv-venv install-dev-dependencies
+force-setup force-one-time-setup:: rm-venv setup
+rm-venv::
+	rm -rf .venv
+	rm -f uv.lock
+
+clean-setup:: uninstall-uv
+
+uninstall-uv::
+	$(info ${help-command-${@}-message})
+	@true
+
+install-dev-dependencies::
+	uv pip install -e ".[dev]"
+
+install-brew-commands:: install-uv install-fswatch # install-jq
+	@command -v jq > /dev/null || ( \
+	echo "${TIP_LABEL}The ${CODE}jq${_END} command is recommended for analyzing JSON files, but we don't install it automatically." && \
+	echo "${TIP_LABEL}If you want to install it, run the command ${CODE}make install-jq${_END}." )
+
+# Check if a command is installed. If not and brew is installed, try that. If brew isn't
+# installed or it fails to work, try to provide help on installing the command.
+install-%::
+	@cmd=${@:install-%=%} && command -v $$cmd > /dev/null && \
+		echo "${INFO_LABEL}Command ${CODE}$$cmd${_END} is already installed." || \
+		${MAKE} do-brew-install-$$cmd
+
+do-brew-install-%::
+	@cmd=${@:do-brew-install-%=%} && command -v brew > /dev/null && \
+		echo "Using HomeBrew to install $$cmd:" && brew install $$cmd || \
+		echo "${WARNING_LABEL}${CODE}HomeBrew${_END} is not installed, so we can't install ${CODE}$$cmd${_END}. Attempting to provide help..." && \
+		${MAKE} LABEL=WARNING help-command-$$cmd && exit 1
+
+uv-venv:: command-check-uv
+	@test -d .venv && echo "${INFO_LABEL}directory ${CODE}.venv${_END} already exists; not running ${CODE}uv venv${_END}." || uv venv
+	@echo "${TIP_LABEL}Try running ${CODE}source .venv/bin/activate${_END} if subsequent make commands fail."
+	@echo "${TIP_LABEL}If they ${RED}still${_END} don't work, try ${CODE}make force-setup${_END}, which deletes ${CODE}.venv${_END}"
+	@echo "${TIP_LABEL}and runs ${CODE}setup${_END} again."
+
+command-check-uv::
+	@command -v uv > /dev/null || ! ${MAKE} help-command-uv
+
+install-jq:: help-command-jq
+
+%-error:
+	$(info ${ERROR} ${@:%-error=%} - Error ${_END})
+	$(error ${${@}-message})
+
+define help-command-uv-message
+${INFO_LABEL}The Python environment management tool ${CODE}uv${_END} is required.
+${INFO_LABEL}See ${CODE}https://docs.astral.sh/uv/${_END} for installation instructions.
+endef
+
+define help-command-uninstall-uv-message
+${WARNING_LABEL}You have to uninstall ${CODE}uv${_END} manually.
+${INFO_LABEL}If you used HomeBrew to install it, use ${CODE}brew uninstall uv${_END}.
+${INFO_LABEL}Otherwise, if you executed one of the installation commands from
+${INFO_LABEL}${CODE}https://docs.astral.sh/uv/${_END}, find the installation location and delete it.
+endef
+
+help-command-uvx-message = ${help-command-uv-message}
+
+define help-command-fswatch-message
+The command ${CODE}fswatch${_END} is required for most of the ${CODE}%-watch${_END} targets to work.
+See its website, ${CODE}https://emcrisostomo.github.io/fswatch/${_END} for details.
+For example, if you have HomeBrew installed, run ${CODE}brew install fswatch${_END}.
+endef
+
+define help-command-jq-message
+${INFO_LABEL}The CLI command ${CODE}jq${_END} is recommended, but not required, for processing JSON file.
+${INFO_LABEL}See ${CODE}https://jqlang.org/download/${_END} for installation instructions.
+endef
+
+define skip-command-target-message
+${WARNING_LABEL}Skipping ${CODE}${@:%-command=%}${_END} in ${CODE}${SRC_DIR}${_END}! Target ${CODE}$@${_END} is overridden in ${CODE}Makefile${_END}.
+endef
+
+open-url-message = ${TIP_LABEL}Try ${CODE}⌘+click${_END} or ${CODE}^+click${_END} on the URL.
+
+skip-command-example:
+	@echo "${skip-command-target-message}"
+
+# Definitions for the website:
+include .website.mk
