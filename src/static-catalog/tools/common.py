@@ -78,7 +78,7 @@ def is_process_running(process_name: str) -> bool:
             # Check if process name contains the given name string.
             if process_name.lower() in proc.name().lower():
                 return True
-        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+        except psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess:
             pass
     return False
 

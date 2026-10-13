@@ -203,8 +203,8 @@ try:
     hf_input_models = list(
         # https://huggingface.co/docs/huggingface_hub/package_reference/hf_api#huggingface_hub.HfApi.list_models.emissions_thresholds
         api.list_models(
-            sort="lastModified",
-            direction=-1,
+            sort="last_modified",
+            # direction=-1,  # This argument isn't recognized!
             token=token,
             limit=int(os.environ["NUMBER_OF_MODELS_TO_REQUEST"]),
         )
@@ -231,7 +231,12 @@ for model in hf_input_models:
     this_model["model_name"] = model.id.split("/")[1]
     this_model["author"] = model.author
     this_model["sha"] = model.sha
-    this_model["created_at"] = model.created_at.strftime("%Y-%m-%d %H:%M:%S")
+    if model.created_at:
+        this_model["created_at"] = model.created_at.strftime("%Y-%m-%d %H:%M:%S")
+    else:
+        this_model["created_at"] = datetime(1970, 1, 1, tzinfo=UTC).strftime(
+            "%Y-%m-%d %H:%M:%S"
+        )
     this_model["last_modified"] = ""
     if model.last_modified:
         this_model["last_modified"] = model.last_modified.strftime("%Y-%m-%d %H:%M:%S")
@@ -248,9 +253,10 @@ for model in hf_input_models:
     this_model["likes"] = model.likes
     this_model["library_name"] = model.library_name
     this_model["tags"] = model.tags
-    for tag in model.tags:
-        if "license" in tag:
-            this_model["license"] = tag.replace("license:", "")
+    if model.tags:
+        for tag in model.tags:
+            if "license" in tag:
+                this_model["license"] = tag.replace("license:", "")
 
     this_model["pipeline_tag"] = model.pipeline_tag
     this_model["mask_token"] = model.mask_token
