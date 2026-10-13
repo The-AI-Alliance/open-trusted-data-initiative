@@ -11,7 +11,7 @@ package-mode = false
 python = "^3.12"
 boto3 = "^1.36.19"
 awswrangler = "^3.11.0"
-
+urllib3 = "^2.8.0"
 
 [build-system]
 requires = ["poetry-core"]

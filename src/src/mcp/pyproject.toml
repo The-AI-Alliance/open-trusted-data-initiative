@@ -9,4 +9,5 @@ dependencies = [
     "boto3>=1.40.63",
     "fastmcp>=2.6.1",
     "pandas>=2.3.3",
+    "urllib3>=2.8.0",
 ]
