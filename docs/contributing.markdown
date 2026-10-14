@@ -7,18 +7,18 @@ has_children: false
 
 # How to Contribute to OTDI
 
-There are many ways to contribute. In particular, tell us about other datasets we should catalog!
+There are many ways to contribute. In particular, tell us about other datasets we should catalog! We also welcome engineering help for our catalog pipeline. See [Contact Us]({{site.baseurl}}/about/#contact-us) for ways to offer engineering help.
 
 ## Tell Us About Other Datasets
 
-Tell us about other datasets using the [form below](#contribute-your-dataset). If the datasets are already hosted at [Hugging Face](https://huggingface.co){:target="huggingface"}, we have already scanned the metadata for them. However, they won't appear in the OTDI catalog unless they meet some minimum requirements. For example, they must have a permissive license.
+Tell us about other datasets using the [form below](#contribute-your-dataset). If the datasets are already hosted at [Hugging Face](https://huggingface.co){:target="huggingface"}, we have already scanned the metadata for them. However, they won't appear in the OTDI catalog unless they meet some minimum requirements. For example, they must have a known permissive license and _croissant_ metadata.
 
 {: .note}
 > **NOTE:** Be sure to read the [Dataset Specification]({{site.baseurl}}/dataset-requirements/) details before proceeding. If you have questions or concerns about the specification, please [contact us]({{site.baseurl}}/about/#contact-us). See also the [Catalog page]({{site.baseurl}}/catalog/), where we discuss commonly-found problems with the metadata, which you should avoid.
 
 If you prefer, you can also send us [email](mailto:data@thealliance.ai?subject=Datasets you should add to the OTDI catalog), post an [issue](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="gh-issues"}, or start a [discussion](https://github.com/The-AI-Alliance/open-trusted-data-initiative/discussions){:target="gh-discussions"}.
 
-## What Kinds of Datasets Do We Seek?
+### What Kinds of Datasets Do We Seek?
 
 Broad, effective use of AI requires datasets covering the breadth of human languages, domains, modalities, and target applications. See the current [list of keywords]({{site.baseurl}}/catalog/#the-current-keywords-cataloged) we have cataloged. 
 
@@ -72,7 +72,7 @@ In addition, some industry specific datasets have their own custom formats.
 
 For all of the above categories, synthetic data is important for filling gaps, especially in domains where open datasets are hard to find, such as patient data in healthcare.
 
-## Are Your Datasets Truly Open?
+### Are Your Datasets Truly Open?
 
 Think about these aspects of your datasets:
 

@@ -8,11 +8,11 @@ parent: Dataset Catalog
 
 # Other Datasets and Data Initiatives
 
-Many open datasets are not hosted at Hugging Face, so they are not yet part of our catalog. Other datasets that are hosted there aren't picked up by our catalog building process for various reasons, some of which are discussed in [About This Catalog]({{site.baseurl}}/catalog//). For example, Croissant metadata might not be available, licenses may be incorrectly defined or missing, or it may be required to manually request access to a dataset, even before you can see its Croissant metadata!
+Many open datasets are not hosted at Hugging Face, so they are not yet part of our catalog. Other datasets that are hosted there aren't picked up by our catalog building process for various reasons, some of which are discussed in [About This Catalog]({{site.baseurl}}/catalog//). For example, Croissant metadata might not be available, licenses may be incorrectly defined or missing, or it may be required to manually request access to a dataset, even before you can see its Croissant metadata.
 
 In addition, other data initiatives are fostering the creation, maintenance, and cataloging of datasets for specific purposes, such as under-represented language families, domains and use cases, and areas of science.
 
-Here is a list of notable datasets and initiatives that don't appear in the catalog pages, grouped into general topic areas. See also the [Contributors]({{site.baseurl}}/catalog/contributors/) page.
+Here is a list of notable datasets and initiatives that don't appear in the catalog pages, grouped into general topic areas. Do you have a dataset that you think we should add? See [Tell Us About Other Datasets]({{site.baseurl}}/contributing/#tell-us-about-other-datasets).
 
 <details open markdown="block">
   <summary>
