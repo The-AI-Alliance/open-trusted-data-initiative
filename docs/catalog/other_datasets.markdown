@@ -138,7 +138,7 @@ These links will remain valid as the dataset is updated. As of this writing, the
 
 See the [dataset page](https://scam-detective8.acoco.ai/lookalike-domain-dataset){:target="acoco"} for details about the latest version of the dataset.
 
-### Source Code 
+### Source Code and Computer Science
 
 #### BigCode
 
@@ -148,6 +148,14 @@ See the [dataset page](https://scam-detective8.acoco.ai/lookalike-domain-dataset
 #### Common Pile
 
 * [Common Pile](https://github.com/r-three/common-pile){:target="_blank"})
+
+#### YJToon: The Open Reference Library
+
+[The Open Reference Library](https://yjtoon.com/){:target="yjtoon"} contains a [catalog](https://yjtoon.com/catalog/){:target="yjtoon"} of 205 reference datasets (at the time of this writing) in 27 categories related to programming and computer science, such as algorithms and data structures. There is also a [machine-readable index](https://www.yjtoon.com/llms.txt){:target="yjtoon"}. The library is [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/deed.en){:target="cc0"} licensed.
+
+The datasets are available in a number of formats, with no signup and no API key required. They are meant for grounding agents and for teaching purposes.
+
+The categories include HTTP status codes, network ports, Git commands, SQL joins, an LLM glossary, cognitive biases, various programming language patterns, etc.
 
 ### Time Series
 
