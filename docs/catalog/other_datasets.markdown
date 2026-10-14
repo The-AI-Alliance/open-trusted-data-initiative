@@ -96,28 +96,62 @@ The Common Pile collaborators used 1 trillion and 2 trillion token subsets of Co
 
 ## Domain-specific Datasets
 
-### Finance
-
 ### Legal
 
-* The [Institutional Data Initiative] at the Harvard Law School Library has published [The Institutional Books Corpus](https://www.institutionaldatainitiative.org/institutional-books){:target="_blank"}. This dataset is [available on Hugging Face](https://huggingface.co/datasets/institutional/institutional-books-1.0){:target="_blank"}, but it is not in our catalog, because in order to access it, even its Croissant metadata, requires prior approval. (See our discussion of this issue [here]({{site.baseurl}}/catalog/).)
+#### Institutional Data Initiative
+
+The [Institutional Data Initiative] at the Harvard Law School Library has published [The Institutional Books Corpus](https://www.institutionaldatainitiative.org/institutional-books){:target="_blank"}. This dataset is [available on Hugging Face](https://huggingface.co/datasets/institutional/institutional-books-1.0){:target="_blank"}, but it is not in our catalog, because in order to access it, even its Croissant metadata, requires prior approval. (See our discussion of this issue [here]({{site.baseurl}}/catalog/).)
+
+#### Caselaw and Freelaw Projects
+
 * The [Caselaw Project](https://case.law/){:target="_blank"}
 * The [Freelaw Project](https://www.courtlistener.com/help/api/){:target="_blank"}
 
 ### Medical
 
+#### PubMed
+
 * [PubMed Central](https://www.ncbi.nlm.nih.gov/pmc/tools/textmining/){:target="_blank"}
+
+### Safety and Security
+
+This is a broad category covering datasets used to help prevent various forms of fraud, scams, social engineering, and other bad actions. Many datasets used for trust and safety evaluation purposes are described in the projects listed [here](https://the-ai-alliance.github.io/safety-governance-education-projects/#safety-and-governance){:target="sgep"}.
+
+#### Documented Lookalike Storefront Hostnames
+
+[Autonomous Company Company](https://acoco.ai/){:target="acoco"} is developing a [Scam Detective](https://scam-detective8.acoco.ai/lookalike-domain-dataset){:target="acoco"} dataset of websites that mimic the legitimate websites of various businesses and organizations, using slightly different domain names, such as common typos.
+
+The license is Creative Commons Attribution 4.0 International (CC BY 4.0). The [dataset page](https://scam-detective8.acoco.ai/lookalike-domain-dataset){:target="acoco"} has the full dataset card details. The provenance and method are published with the data.  Rather than publish a single, current label for each hostname, the full history of fetch attempts for each hostname is included, which documents observed "decay", in some cases. The card details also include known limitations, such as documented fetch failures, for full disclosure of their methods.
+
+For convenience, here are the direct links to the dataset in different formats:
+* [CSV](https://scam-detective8.acoco.ai/lookalike-domain-dataset.csv){:target="data"}
+* [JSON](https://scam-detective8.acoco.ai/lookalike-domain-dataset.json){:target="data"}
+* [Plain text](https://scam-detective8.acoco.ai/lookalike-domain-dataset.txt){:target="data"}.
+
+These links will remain valid as the dataset is updated. As of this writing, the latest update was October, 13, 2026. Here are some statistics:
+
+| Name | Description |
+| :--- | :---------- |
+| **Summary** | 60 lookalike e-commerce storefront hostnames across 56 brands, tracked since 27 July 2026, with 423 dated observations. Each hostname carries its full dated decay history rather than a single current label. |
+| **Issue Date** | 2026-10-13 |
+| **Range Dates** | 2026-07-27 to 2026-10-13 |
+
+See the [dataset page](https://scam-detective8.acoco.ai/lookalike-domain-dataset){:target="acoco"} for details about the latest version of the dataset.
 
 ### Source Code 
 
-_BigCode_ datasets:
+#### BigCode
 
 * [The Stack](https://huggingface.co/datasets/bigcode/the-stack){:target="_blank"} 
 * [CommitPack](https://huggingface.co/datasets/bigcode/commitpack){:target="_blank"}
 
-See also [Common Pile](https://github.com/r-three/common-pile){:target="_blank"}).
+#### Common Pile
+
+* [Common Pile](https://github.com/r-three/common-pile){:target="_blank"})
 
 ### Time Series
+
+#### New York TLC Trip Record
 
 * [New York TLC Trip Record](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page){:target="_blank"}
 
