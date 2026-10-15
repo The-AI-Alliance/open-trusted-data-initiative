@@ -114,14 +114,14 @@ def parquet_to_json(args):
 
     if args.verbose > 0:
         info("Counts:")
-        info(f"  input:            {list_count:-8d}")
-        info(f"  errors:           {error_count:-8d} (where extracting JSON failed)")
+        info(f"  input:            {list_count:>8d}")
+        info(f"  errors:           {error_count:>8d} (where extracting JSON failed)")
         info(
-            f"  successful:       {successful_count:-8d} (where extracting JSON succeeded)"
+            f"  successful:       {successful_count:>8d} (where extracting JSON succeeded)"
         )
         info("  response reasons seen with counts:")
         for reason in sorted(counts):
-            info(f"  {reason:-15s}:        {counts[reason]:-8d}")
+            info(f"  {reason:>15s}:        {counts[reason]:>8d}")
 
 
 def run():

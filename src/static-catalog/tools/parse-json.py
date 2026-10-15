@@ -133,5 +133,5 @@ if args.verbose > 0:
         bad = bad_line_count[in_file_path]
         percentage = bad * 100.0 / total
         file_str = file_str_fmt.format(in_file_path)
-        print(f"  {file_str}  {total:7d}  {bad:5d}   {percentage:-5.3f}%")
+        print(f"  {file_str}  {total:7d}  {bad:5d}   {percentage:>5.3f}%")
     print(f"output file: {out_file_path}")
