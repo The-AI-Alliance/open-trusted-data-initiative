@@ -17,7 +17,7 @@ async def test_server():
     print(f"server_envvar = {server_envvar}")
     if not server_envvar:
         LOGGER.warning(
-            "Environment variable NEXT_GEM_DATA_CATALOG_MCP_SERVER not defined. Skipping this test..."
+            "Environment variable NEXT_GEM_DATA_CATALOG_MCP_SERVER is not defined. Skipping this test..."
         )
     else:
         try:
