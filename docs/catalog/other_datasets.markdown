@@ -119,14 +119,14 @@ This is a broad category covering datasets used to help prevent various forms of
 
 #### Documented Lookalike Storefront Hostnames
 
-[Autonomous Company Company](https://acoco.ai/){:target="acoco"} is developing a [Scam Detective](https://scam-detective8.acoco.ai/lookalike-domain-dataset){:target="acoco"} dataset of websites that mimic the legitimate websites of various businesses and organizations, using slightly different domain names, such as common typos.
+[Scam Detective](https://scam-detective8.acoco.ai/?src=otdi){:target="acoco"} has published the [Documented Lookalike Storefront Hostnames](https://scam-detective8.acoco.ai/lookalike-domain-dataset?src=otdi){:target="acoco"} dataset of dated observations of websites that mimic the legitimate websites of various businesses and organizations, using slightly different domain names, such as common typos.
 
-The license is Creative Commons Attribution 4.0 International (CC BY 4.0). The [dataset page](https://scam-detective8.acoco.ai/lookalike-domain-dataset){:target="acoco"} has the full dataset card details. The provenance and method are published with the data.  Rather than publish a single, current label for each hostname, the full history of fetch attempts for each hostname is included, which documents observed "decay", in some cases. The card details also include known limitations, such as documented fetch failures, for full disclosure of their methods.
+The license is Creative Commons Attribution 4.0 International (CC BY 4.0). The [dataset page](https://scam-detective8.acoco.ai/lookalike-domain-dataset?src=otdi){:target="acoco"} has the full dataset card details. The provenance and method are published with the data. Rather than publish a single, current label for each hostname, the full history of fetch attempts for each hostname is included (a useful feature not commonly found in datasets), which documents observed "decay", in some cases. The card details also include known limitations, such as documented fetch failures, for full disclosure of their methods.
 
 For convenience, here are the direct links to the dataset in different formats:
-* [CSV](https://scam-detective8.acoco.ai/lookalike-domain-dataset.csv){:target="data"}
-* [JSON](https://scam-detective8.acoco.ai/lookalike-domain-dataset.json){:target="data"}
-* [Plain text](https://scam-detective8.acoco.ai/lookalike-domain-dataset.txt){:target="data"}.
+* [CSV](https://scam-detective8.acoco.ai/lookalike-domain-dataset.csv?src=otdi){:target="data"}
+* [JSON](https://scam-detective8.acoco.ai/lookalike-domain-dataset.json?src=otdi){:target="data"}
+* [Plain text](https://scam-detective8.acoco.ai/lookalike-domain-dataset.txt?src=otdi){:target="data"}.
 
 These links will remain valid as the dataset is updated. As of this writing, the latest update was October, 13, 2026. Here are some statistics:
 
