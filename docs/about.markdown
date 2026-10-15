@@ -10,7 +10,7 @@ has_children: false
 ## News
 
 | :--- | :--- |
-| November&nbsp;11,&nbsp;2025 | Numerous refinements to the open dataset specification and processing of datasets by for permissive licenses. |
+| November&nbsp;11,&nbsp;2025 | Numerous refinements to the open dataset specification and processing of datasets with permissive licenses. |
 | May&nbsp;21,&nbsp;2025 | We have added a &ldquo;static&rdquo; [catalog]({{site.baseurl}}/catalog//) of Hugging Face datasets with licenses, organized by the most common keywords. This is a temporary implementation while we work on a more feature-rich, interactive catalog. |
 | May&nbsp;6,&nbsp;2025 | We are actively soliciting datasets covering diverse languages, domains, use cases, etc. Please see our [contributing]({{site.baseurl}}/contributing) page and the [catalog]({{site.baseurl}}/catalog//) of available datasets. |
 | February&nbsp;11,&nbsp;2025 | OTDI [announced](https://thealliance.ai/blog/announcing-open-trusted-data-initiative-otdi){:target="aias"} at the AI Action Summit in Paris. Added an [EPFL]({{site.baseurl}}/catalog//#epfl) dataset. |
@@ -24,9 +24,12 @@ has_children: false
 <a name="contact-us"></a>
 ## How to Contact Us
 
-Send email to [data@thealliance.ai](mailto:data@thealliance.ai?subject=Questions about the Open Trusted Data Initiative).
+You can contact us in several ways:
 
-If you notice issues with this website or any of our other assets, considering [posting an issue](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="otdi-issues"} or [starting a discussion](https://github.com/The-AI-Alliance/open-trusted-data-initiative/discussions){:target="otdi-discussions"}
+* Send email to [data@thealliance.ai](mailto:data@thealliance.ai?subject=Questions about the Open Trusted Data Initiative)
+* Post an [issue](https://github.com/The-AI-Alliance/open-trusted-data-initiative/issues){:target="otdi-issues"}
+* Start a [discussion](https://github.com/The-AI-Alliance/open-trusted-data-initiative/discussions){:target="otdi-discussions"}
+* See something wrong? Consider posting a [pull request](https://github.com/The-AI-Alliance/open-trusted-data-initiative/pulls){:target="otdi-prs"}
 
 ## About the Open Trusted Data Initiative
 
@@ -41,7 +44,6 @@ Here are the committee members, in alphabetical order (by first name):
 * Dean Wampler - [IBM Research](https://research.ibm.com){:target="ibm"}
 * Greg Lindahl - [Common Crawl Foundation](https://commoncrawl.org){:target="commoncrawl"}
 * Jose Plehn-Dujowich - [BrightQuery](https://brightquery.com){:target="brightquery"}
-* Sean Hughes - [ServiceNow](https://www.servicenow.com){:target="servicenow"}
 * Yacine Jernite - [Hugging Face](https://huggingface.co){:target="huggingface"}
 
 
