@@ -39,6 +39,8 @@ Miscellaneous other documentation, not in the website, is also captured here:
 * [`tools-notes`](tools-notes) - Notes on potential tool choices.
 * [`data-processing-notes`](data-processing-notes) - Notes on requirements and data-specific tool choices.
 
+The included `Makefile` defines a number of targets for running unit tests, formatting and linting Python, etc. Try `make help` for details.
+
 ## Getting Involved
 
 We welcome contributions as PRs. Please see our [Alliance community repo](https://github.com/The-AI-Alliance/community/) for general information about contributing to any of our projects. This section provides some specific details you need to know.

@@ -1,12 +1,10 @@
 import asyncio
 import logging
 import os
-import time
 
-from fastmcp import FastMCP
-import boto3
 import awswrangler as wr
-import pandas as pd
+import boto3
+from fastmcp import FastMCP
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(format="[%(levelname)s]: %(message)s", level=logging.INFO)
@@ -32,7 +30,7 @@ def get_next_gem_data_catalog_schema() -> str:
             Key="schemas/next_gem_data_catalog_schema.ddl",
         )
         return response["Body"].read().decode("utf-8")
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         return f"Error getting schema for the Next Gem Data Catalog. Error: {e}"
 
 
@@ -51,20 +49,21 @@ def execute_sql_query(sql_query: str):
         logger.info(f"Executing sql: {sql_query}")
         boto3.setup_default_session(region_name=os.environ["AWS_REGION"])
 
-        logger.info(f"Connecting to Athena")
+        logger.info("Connecting to Athena")
         results_df = wr.athena.read_sql_query(
             sql=sql_query, database=os.environ["NEXT_GEM_DATA_CATALOG_DATABASE_NAME"]
         )
-        logger.info(f"Query Executed")
+        logger.info("Query Executed")
         return results_df.to_csv(index=False)
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         msg = f"Unable to execute query: {e}"
         logger.info(msg)
         return msg
 
 
 if __name__ == "__main__":
-    logger.info(f" MCP server started on port {os.getenv('PORT', 8080)}")
+    port = int(os.getenv("PORT", "8080"))
+    logger.info(f" MCP server started on port {port}")
     # Could also use 'sse' transport, host="0.0.0.0" required for Cloud Run.
     asyncio.run(
         mcp.run_async(
@@ -72,6 +71,6 @@ if __name__ == "__main__":
             transport="streamable-http",
             # host="127.0.0.1",
             host="0.0.0.0",
-            port=os.getenv("PORT", 8080),
+            port=port,
         )
     )
