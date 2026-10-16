@@ -136,7 +136,7 @@ These links will remain valid as the dataset is updated. As of this writing, the
 | **Issue Date** | 2026-10-13 |
 | **Range Dates** | 2026-07-27 to 2026-10-13 |
 
-See the [dataset page](https://scam-detective8.acoco.ai/lookalike-domain-dataset){:target="acoco"} for details about the latest version of the dataset.
+See the [dataset page](https://scam-detective8.acoco.ai/lookalike-domain-dataset?src=otdi){:target="acoco"} for details about the latest version of the dataset.
 
 ### Source Code and Computer Science
 
