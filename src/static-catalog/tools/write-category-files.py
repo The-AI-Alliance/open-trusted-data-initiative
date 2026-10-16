@@ -70,21 +70,20 @@ This file is > 3GB, so it is not versioned in GitHub. Talk to the OTDI maintaine
 to get a copy of this file or run the appropriate 'make' target.
         """)
 
-def make_title(kvs: dict[str, str]) -> str:
+
+def make_title(title: str, keyword: str) -> str:
     """
-    Get the `title` in the dictionary, if defined. Otherwise,
-    get the `keyword`, replace `-` with a space and capitalize
-    each word.
+    Use the `title`, if defined. Otherwise, use the `keyword` and
+    replace `-` with a space and capitalize each word.
     """
-    title = kvs.get("title", "")
     if not title:
-        words = kvs.get("keyword", "").split("-")
+        words = keyword.split("-")
         title = " ".join([word.capitalize() for word in words])
     return title
 
 
 def make_md_link(
-    kvs: dict[str, Any], mid_path: str, css_class: str = "", use_hash: bool = False
+    keyword: str, mid_path: str, css_class: str = "", use_hash: bool = False
 ):
     hash = ""
     if use_hash:
@@ -93,11 +92,12 @@ def make_md_link(
     if len(css_class) > 0:
         css_class_str = f'{{:class="{css_class}"}}'
     try:
-        cleaned_keyword = make_var_name(kvs["keyword"])
-        return f"[{make_title(kvs)}]({{{{site.baseurl}}}}/{mid_path}/{hash}{cleaned_keyword}){css_class_str}"
+        cleaned_keyword = make_var_name(keyword)
+        return f"[{make_title("", keyword)}]({{{{site.baseurl}}}}/{mid_path}/{hash}{cleaned_keyword}){css_class_str}"
     except TypeError as te:
-        warning(f"kvs['keyword'] = <{kvs['keyword']}>, kvs = <{kvs}>, TypeError = {te}")
+        warning(f"keyword = <{keyword}>, TypeError = {te}")
         raise
+
 
 def print_metadata(
     label: str,
@@ -127,7 +127,11 @@ def print_metadata(
     )
 
 
-def get_data(kvs: dict[str, str]) -> tuple[str, str, list[str], str, str]:
+def extract_keywords(keywords: list[dict[str, str]]) -> list[str]:
+    return [kws["keyword"] for kws in keywords if "keyword" in kws]
+
+
+def get_data(kvs: dict[str, Any]) -> tuple[str, str, list[str], str, str]:
     """
     From the input dictionary, extract the keyword, title, and context,
     which are returned. Optionally print the values (`if args.verbose > 0`).
@@ -137,11 +141,11 @@ def get_data(kvs: dict[str, str]) -> tuple[str, str, list[str], str, str]:
     keyword = kvs.get("keyword", "")
     if not keyword:
         error(f"'keyword' not found! Keys = {kvs.keys()}")
-    title = make_title(kvs)
+    title = make_title(kvs.get("title", ""), keyword)
     alt_keywords = kvs.get("alt-keywords", [])
+    alt_kws = extract_keywords(alt_keywords)
     like_clause = kvs.get("like-clause", "")
     context = kvs.get("context", "")
-    alt_kws = [kw for kw in alt_keywords]
     return keyword, title, alt_kws, like_clause, context
 
 
@@ -280,7 +284,7 @@ def write_category_markdown(
     grand_parent_title: str,
     alt_keywords: list[str],
     context: str,
-    subcategories: list[dict[str, str]],
+    subcategories: list[str],
     topics: list[str],
 ):
     base_name = keyword
@@ -293,7 +297,7 @@ def write_category_markdown(
         subcats_str = ""
         subcats_links_btns = []
         if subcategories and len(subcategories):
-            subcats_str = "|".join([s["keyword"] for s in subcategories])
+            subcats_str = "|".join(subcategories)
             subcats_links_btns = [
                 make_md_link(
                     scs, f"{parent_keyword}/{cleaned_keyword}", css_class="category-btn"
@@ -334,12 +338,12 @@ subcategories: {subcats_str}
                 prefix = f"{grand_parent_keyword}/{parent_keyword}"
             topics_links_btns = [
                 make_md_link(
-                    t, # {"keyword": t},
+                    topic,
                     f"{prefix}/{cleaned_keyword}",
                     css_class="topic-btn",
                     use_hash=True,
                 )
-                for t in topics
+                for topic in topics
             ]
             print("### Keywords", file=md_out)
             print(" ".join(topics_links_btns), file=md_out)
@@ -409,8 +413,6 @@ def process_topic(
         "Topic", keyword, title, alt_keywords, like_clause, context, indent_count
     )
 
-    alt_kws = [kvs['keyword'] for kvs in alt_keywords if 'keyword' in kvs]
-
     if args.no_markdown == False:
         write_topic_markdown(
             md_dir,
@@ -421,7 +423,7 @@ def process_topic(
             grand_parent_keyword,
             grand_parent_title,
             ancestor_path,
-            alt_kws,
+            alt_keywords,
             like_clause,
             context,
         )
@@ -433,7 +435,7 @@ def process_topic(
             parent_keyword,
             parent_title,
             ancestor_path,
-            alt_kws,
+            alt_keywords,
             like_clause,
             context,
         )
@@ -519,9 +521,14 @@ if __name__ == "__main__":
                 category_json_dir, delete_first=False, verbose=args.verbose
             )
 
-        category_topics = category.get("topics", [])
-        category_subcategories = category.get("subcategories", [])
-        info(f"category_topics = <{category_topics}>, category_subcategories = <{category_subcategories}>")
+        category_topics_dicts = category.get("topics", [])
+        category_topics = extract_keywords(category_topics_dicts)
+        category_subcategories_dicts = category.get("subcategories", [])
+        category_subcategories = extract_keywords(category_subcategories_dicts)
+        info(
+            f"category_topics = <{category_topics}>, category_subcategories = <{category_subcategories}>"
+        )
+        # f"category_topics = <{category_topics}>, category_topics_dicts = <{category_topics_dicts}>, category_subcategories = <{category_subcategories}>, category_subcategories_dicts = <{category_subcategories_dicts}>"
 
         if args.no_markdown == False:
             write_category_markdown(
@@ -538,7 +545,7 @@ if __name__ == "__main__":
                 category_topics,
             )
 
-        for topic in category_topics:
+        for topic in category_topics_dicts:
             process_topic(
                 topic,
                 category_var_name,
@@ -551,7 +558,7 @@ if __name__ == "__main__":
                 indent_count=1,
             )
 
-        for subcategory in category_subcategories:
+        for subcategory in category_subcategories_dicts:
             (
                 subcategory_keyword,
                 subcategory_title,
@@ -575,7 +582,8 @@ if __name__ == "__main__":
             ancestor_path = f"{category_path}/{subcategory_var_name}"
             subcategory_md_dir = category_md_dir  # same as category -- hack.
             subcategory_json_dir = f"{category_json_dir}/{subcategory_var_name}"
-            subcategory_topics = subcategory.get("topics", [])
+            subcategory_topics_dicts = subcategory.get("topics", [])
+            subcategory_topics = extract_keywords(subcategory_topics_dicts)
 
             if args.no_markdown == False:
                 make_directories(
@@ -601,7 +609,7 @@ if __name__ == "__main__":
                     subcategory_topics,
                 )
 
-            for topic in subcategory_topics:
+            for topic in subcategory_topics_dicts:
                 process_topic(
                     topic,
                     subcategory_key,
