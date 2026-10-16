@@ -150,11 +150,11 @@ catalog-build-markdown::
 		${CATALOG_OPT_ARGS}
 
 catalog-install::
-	${CATALOG_BIN_DIR}/copy-files-to-docs.sh \
+	${UV_RUN} ${CATALOG_BIN_DIR}/copy-files-to-docs.py \
 		--verbose ${CATALOG_VERBOSE} \
 		--js-source ${CATALOG_DATA_JSON_FINAL_DIR} \
-		--md-source ${CATALOG_MARKDOWN_FINAL_DIR} \
 		--js-target ${CATALOG_DOCS_JS_DIR} \
+		--md-source ${CATALOG_MARKDOWN_FINAL_DIR} \
 		--md-target ${CATALOG_DOCS_MARKDOWN_DIR} \
 		${CATALOG_OPT_ARGS}
 

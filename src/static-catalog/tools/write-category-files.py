@@ -15,6 +15,7 @@ from common import (
     load_json,
     make_directories,
     make_var_name,
+    warning,
 )
 
 parser = argparse.ArgumentParser(
@@ -63,14 +64,11 @@ args = parser.parse_args(sys.argv[1:])
 
 db_path = pathlib.Path(args.db_file)
 if not db_path.exists():
-    print(f"""
-        ERROR: (write-category-files.py):
-               The required DuckDB database file, {args.db_file}, wasn't found.
-               This file is > 3GB, so it is not versioned in GitHub. Talk to the OTDI maintainers
-               to get a copy of this file or run the appropriate 'make' target.
+    error(f"""
+The required DuckDB database file, {args.db_file}, wasn't found.
+This file is > 3GB, so it is not versioned in GitHub. Talk to the OTDI maintainers
+to get a copy of this file or run the appropriate 'make' target.
         """)
-    sys.exit(1)
-
 
 def make_title(kvs: dict[str, str]) -> str:
     """
@@ -94,9 +92,12 @@ def make_md_link(
     css_class_str = ""
     if len(css_class) > 0:
         css_class_str = f'{{:class="{css_class}"}}'
-    cleaned_keyword = make_var_name(kvs["keyword"])
-    return f"[{make_title(kvs)}]({{{{site.baseurl}}}}/{mid_path}/{hash}{cleaned_keyword}){css_class_str}"
-
+    try:
+        cleaned_keyword = make_var_name(kvs["keyword"])
+        return f"[{make_title(kvs)}]({{{{site.baseurl}}}}/{mid_path}/{hash}{cleaned_keyword}){css_class_str}"
+    except TypeError as te:
+        warning(f"kvs['keyword'] = <{kvs['keyword']}>, kvs = <{kvs}>, TypeError = {te}")
+        raise
 
 def print_metadata(
     label: str,
@@ -261,6 +262,9 @@ COPY (
             f"An error occurred running the query to create the file {json_output}: {e}"
         )
 
+    json_path = pathlib.Path(json_output)
+    assert json_path.exists(), json_path
+
     write_js_file(
         json_output, js_output, make_var_name(f"data_for_{ancestor_prefix}_{keyword}")
     )
@@ -330,7 +334,7 @@ subcategories: {subcats_str}
                 prefix = f"{grand_parent_keyword}/{parent_keyword}"
             topics_links_btns = [
                 make_md_link(
-                    {"keyword": t},
+                    t, # {"keyword": t},
                     f"{prefix}/{cleaned_keyword}",
                     css_class="topic-btn",
                     use_hash=True,
@@ -404,6 +408,9 @@ def process_topic(
     print_metadata(
         "Topic", keyword, title, alt_keywords, like_clause, context, indent_count
     )
+
+    alt_kws = [kvs['keyword'] for kvs in alt_keywords if 'keyword' in kvs]
+
     if args.no_markdown == False:
         write_topic_markdown(
             md_dir,
@@ -414,7 +421,7 @@ def process_topic(
             grand_parent_keyword,
             grand_parent_title,
             ancestor_path,
-            alt_keywords,
+            alt_kws,
             like_clause,
             context,
         )
@@ -426,7 +433,7 @@ def process_topic(
             parent_keyword,
             parent_title,
             ancestor_path,
-            alt_keywords,
+            alt_kws,
             like_clause,
             context,
         )
@@ -514,6 +521,7 @@ if __name__ == "__main__":
 
         category_topics = category.get("topics", [])
         category_subcategories = category.get("subcategories", [])
+        info(f"category_topics = <{category_topics}>, category_subcategories = <{category_subcategories}>")
 
         if args.no_markdown == False:
             write_category_markdown(
