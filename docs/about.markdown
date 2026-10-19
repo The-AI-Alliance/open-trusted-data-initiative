@@ -33,6 +33,7 @@ You can contact us in several ways:
 
 ## About the Open Trusted Data Initiative
 
+{% comment %}
 ### Steering Committee
 
 The Steering Committee represents diverse industry experience in open data and AI. The committee guides the strategy of OTDI, oversees the technical projects, and helps expand awareness of our work.
@@ -45,6 +46,8 @@ Here are the committee members, in alphabetical order (by first name):
 * Greg Lindahl - [Common Crawl Foundation](https://commoncrawl.org){:target="commoncrawl"}
 * Jose Plehn-Dujowich - [BrightQuery](https://brightquery.com){:target="brightquery"}
 * Yacine Jernite - [Hugging Face](https://huggingface.co){:target="huggingface"}
+
+{% endcomment %}
 
 
 ### Maintainers
