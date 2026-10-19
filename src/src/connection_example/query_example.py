@@ -1,10 +1,8 @@
-import asyncio
 import logging
 import os
-import time
 
-import boto3
 import awswrangler as wr
+import boto3
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(format="[%(levelname)s]: %(message)s", level=logging.INFO)
@@ -24,7 +22,7 @@ def execute_sql_query(sql_query: str):
         logger.info(f"Executing sql: {sql_query}")
         boto3.setup_default_session(region_name=os.environ["AWS_REGION"])
 
-        logger.info(f"Connecting to AWS Athena")
+        logger.info("Connecting to AWS Athena")
         results_df = wr.athena.read_sql_query(
             sql=sql_query,
             database=os.environ["OTD_CATALOG_DATABASE_NAME"],
@@ -32,9 +30,9 @@ def execute_sql_query(sql_query: str):
                 "max_cache_seconds": 90,
             },
         )
-        logger.info(f"Query Executed")
+        logger.info("Query Executed")
         return results_df.to_csv(index=False)
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         msg = f"Unable to execute query: {e}"
         logger.info(msg)
         return msg

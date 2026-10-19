@@ -15,7 +15,7 @@ openpyxl = "^3.1.5"
 asyncio = "^3.4.3"
 boto3 = "^1.36.19"
 awswrangler = "^3.11.0"
-
+urllib3 = "^2.8.0"
 
 [build-system]
 requires = ["poetry-core"]
